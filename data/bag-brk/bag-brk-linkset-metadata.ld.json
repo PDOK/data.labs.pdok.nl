@@ -1,0 +1,46 @@
+{
+  "@context":{
+    "@language": "nl",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dcterms:related": { "@type": "@id" },
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "prov:used": { "@type": "@id" },
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdfs:subPropertyOf": { "@type": "@id" },
+    "void": "http://rdfs.org/ns/void#",
+    "void:Linkset": { "@type": "@id" },
+    "void:target": { "@type": "@id" },
+    "void:subjectsTarget": { "@type": "@id" },
+    "void:objectsTarget": { "@type": "@id" }
+  },
+  "@type": ["void:Linkset", "prov:Entity"],
+  "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk_kennemerland",
+  "void:target": ["http://data.pdok.nl/datasets/bag", "http://data.pdok.nl/datasets/brk"],
+  "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
+  "void:objectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
+  "void:linkPredicate": {
+    "@type": "owl:ObjectProperty",
+    "@id": "http://data.labs.pdok.nl/linksets/def/linksets#relatedParcel",
+    "rdfs:label": "BRK-perceel gerelateerd aan BAG pand",
+    "rdfs:subPropertyOf": "dcterms:related"
+  },
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "@id": "http://data.labs.pdok.nl/activities/id/bag_brk_kennemerland",
+    "rdfs:label": "De wijze waarop de linkset tot stand is gekomen",
+    "prov:startedAtTime": "2017-05-16T15:15:36",
+    "prov:used": "https://"
+  },
+  "prov:wasAttributedTo": {
+    "@type": ["prov:Person", "prov:Agent"],
+    "@id": "http://reinvantveer.github.io/me/me.ttl",
+    "rdfs:label": "Rein van 't Veer",
+    "prov:actedOnBehalfOf": {
+      "@type": "prov:Organisation",
+      "@id": "http://data.pdok.nl/organisatie/id/organisatie/Kadaster",
+      "rdfs:label": "Kadaster"
+    }
+  },
+  "void:triples": 200000
+}
