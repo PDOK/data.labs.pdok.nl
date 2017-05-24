@@ -16,6 +16,8 @@
   },
   "@type": ["void:Linkset", "prov:Entity"],
   "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk_kennemerland",
+  "rdfs:label": "Gedeeltelijke linkset van BAG panden naar BRK percelen, beperkt tot Kennemerland",
+  "void:sparqlEndpoint": "http://data.labs.pdok.nl/sparql",
   "void:target": ["http://data.pdok.nl/datasets/bag", "http://data.pdok.nl/datasets/brk"],
   "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
   "void:objectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
@@ -27,10 +29,14 @@
   },
   "prov:wasGeneratedBy": {
     "@type": "prov:Activity",
-    "@id": "http://data.labs.pdok.nl/activities/id/bag_brk_kennemerland",
+    "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland",
     "rdfs:label": "De wijze waarop de linkset tot stand is gekomen",
     "prov:startedAtTime": "2017-05-16T15:15:36",
-    "prov:used": "https://"
+    "prov:used": [
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/bag-brk.py",
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-KadastraleObjectenEnAdressen.xlsm",
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Apprechtcomplex-met-Grondpercelen.csv"
+    ]
   },
   "prov:wasAttributedTo": {
     "@type": ["prov:Person", "prov:Agent"],
