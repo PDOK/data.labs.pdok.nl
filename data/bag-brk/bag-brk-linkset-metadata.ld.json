@@ -16,22 +16,24 @@
   },
   "@type": ["void:Linkset", "prov:Entity"],
   "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk_kennemerland",
-  "rdfs:label": "Gedeeltelijke linkset van BAG panden naar BRK percelen, beperkt tot Kennemerland",
-  "void:sparqlEndpoint": "http://data.labs.pdok.nl/sparql",
-  "void:target": ["http://data.pdok.nl/datasets/bag", "http://data.pdok.nl/datasets/brk"],
-  "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
-  "void:objectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Pand",
+  "rdfs:label": "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+  "void:sparqlEndpoint": "https://data.labs.pdok.nl/sparql",
+  "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/bag_brk_kennemerland.trig.zip",
+  "void:target": ["http://bag.basisregistraties.overheid.nl", "http://brk.basisregistraties.overheid.nl"],
+  "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Nummeraanduiding",
+  "void:objectsTarget": "http://brk.basisregistraties.overheid.nl/def/brk#Perceel",
   "void:linkPredicate": {
     "@type": "owl:ObjectProperty",
-    "@id": "http://data.labs.pdok.nl/linksets/def/linksets#relatedParcel",
-    "rdfs:label": "BRK-perceel gerelateerd aan BAG pand",
+    "@id": "http://data.labs.pdok.nl/linksets/def/bag_brk_kennemerland#relatedParcel",
+    "rdfs:label": "BRK-perceel gerelateerd aan BAG nummeraanduiding",
     "rdfs:subPropertyOf": "dcterms:related"
   },
   "prov:wasGeneratedBy": {
     "@type": "prov:Activity",
     "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland",
     "rdfs:label": "De wijze waarop de linkset tot stand is gekomen",
-    "prov:startedAtTime": "2017-05-16T15:15:36",
+    "prov:startedAtTime": "2017-05-16T14:42:00",
+    "prov:endedAtTime": "2017-05-24T15:15:00",
     "prov:used": [
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/bag-brk.py",
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-KadastraleObjectenEnAdressen.xlsm",
@@ -48,5 +50,5 @@
       "rdfs:label": "Kadaster"
     }
   },
-  "void:triples": 200000
+  "void:triples": 248951
 }
