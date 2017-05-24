@@ -91,29 +91,21 @@ for row in ws.iter_rows(min_row=2):  # Skip first row: column name header
     if not row[0].value:
         continue  # There could be empty rows at the end of the worksheet. We need to skip over them
 
-    # Intermediate saves, every 100 objects
-    if row_counter % 100 == 0 and row_counter > 0:
+    # Intermediate saves, every so many objects
+    if row_counter % 200 == 0 and row_counter > 0:
         logging.debug('Saving intermediate results')
         wb.save(xlsx)
 
     cadastral_designation = row[0].value
 
-    if len(cadastral_designation.split(' ')) == 1:
-        cadastral_designation = cadastral_designation[:6] + ' ' + cadastral_designation[7:]
-
-    if len(cadastral_designation.split(' ')) == 1:  # If selective replacing didn't work...
-        row[6].value = 'Kon perceelgegevens niet parsen'
-        logging.error('Unable to parse parcel or apartment particulars')
-        continue
-
     parameters = {
-        'kadastraleGemeentecode': cadastral_designation.split(' ')[0][0:5],  # cadastral municipality name
-        'sectie': cadastral_designation.split(' ')[0][-1],  # cadastral municipality section
-        'perceelnummer': int(cadastral_designation.split(' ')[1][0:5])  # parcel number
+        'kadastraleGemeentecode': cadastral_designation[0:5],  # cadastral municipality name
+        'sectie': cadastral_designation[5:7].strip(),  # cadastral municipality section
+        'perceelnummer': int(cadastral_designation[7:12])  # parcel number
     }
 
-    # If labeled with an 'A' for 'apartment' rather than 'G': skip
-    if cadastral_designation.split(' ')[1][5:6] == 'A':
+    # If labeled with an 'A' for 'apartment' rather than 'G':
+    if cadastral_designation[12] == 'A':
         logging.debug('Apartment right %s' % cadastral_designation)
         apartment_designation = cadastral_designation[0:13] + '0000'
         parcel_matches = find_apartment(apartment_designation)
@@ -124,7 +116,7 @@ for row in ws.iter_rows(min_row=2):  # Skip first row: column name header
             continue
         elif len(parcel_matches) == 1:
             # Override parcel parameter for the API lookup to the 'mother parcel'
-            parameters['perceelnummer'] = int(parcel_matches[0].split(' ')[1][0:5])
+            parameters['perceelnummer'] = int(parcel_matches[0][7:12])
 
             # Save the found mother parcel for reference
             row[5].value = parcel_matches[0]
@@ -138,7 +130,7 @@ for row in ws.iter_rows(min_row=2):  # Skip first row: column name header
                 for cell in row:
                     new_row.append(cell.value)
                 # Override parcel parameter for the API lookup to the 'mother parcel'
-                parameters['perceelnummer'] = int(match.split(' ')[1][0:5])
+                parameters['perceelnummer'] = int(match[7:12])
 
                 try:
                     uri = get_parcel_uri(parameters)
