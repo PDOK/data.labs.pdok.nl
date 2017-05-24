@@ -28,18 +28,29 @@
     "rdfs:label": "BRK-perceel gerelateerd aan BAG nummeraanduiding",
     "rdfs:subPropertyOf": "dcterms:related"
   },
-  "prov:wasGeneratedBy": {
+  "prov:wasGeneratedBy": [{
     "@type": "prov:Activity",
     "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland",
-    "rdfs:label": "De wijze waarop de linkset tot stand is gekomen",
+    "rdfs:label": "Python script voor het opvragen van de BRK percelen uit de BRK API",
     "prov:startedAtTime": "2017-05-16T14:42:00",
     "prov:endedAtTime": "2017-05-24T15:15:00",
     "prov:used": [
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/bag-brk.py",
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris.xlsx",
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-KadastraleObjectenEnAdressen.xlsm",
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Apprechtcomplex-met-Grondpercelen.csv"
     ]
-  },
+  }, {
+    "@type": "prov:Activity",
+    "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland_openrefine",
+    "rdfs:label": "OpenRefine configuratie voor het omzetten naar Linked Data",
+    "prov:startedAtTime": "2017-05-16T15:30:00",
+    "prov:endedAtTime": "2017-05-24T15:35:00",
+    "prov:used": [
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris-xlsx.openrefine.tar.gz"
+    ]
+  }
+  ],
   "prov:wasAttributedTo": {
     "@type": ["prov:Person", "prov:Agent"],
     "@id": "http://reinvantveer.github.io/me/me.ttl",
