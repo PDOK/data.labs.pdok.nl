@@ -6,6 +6,7 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "prov": "http://www.w3.org/ns/prov#",
     "prov:used": { "@type": "@id" },
+    "prov:wasAssociatedWith": { "@type": "@id" },
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "rdfs:subPropertyOf": { "@type": "@id" },
     "void": "http://rdfs.org/ns/void#",
@@ -16,7 +17,13 @@
   },
   "@type": ["void:Linkset", "prov:Entity"],
   "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk_kennemerland",
-  "rdfs:label": "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+  "rdfs:label": [
+    "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+    {
+      "@value": "Partial linkset of BAG addresses to BRK parcels, limited to pertaining to the area of Kennemerland",
+      "@language": "en"
+    }
+  ],
   "void:sparqlEndpoint": "https://data.labs.pdok.nl/sparql",
   "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/bag_brk_kennemerland.trig.zip",
   "void:target": ["http://bag.basisregistraties.overheid.nl", "http://brk.basisregistraties.overheid.nl"],
@@ -25,13 +32,22 @@
   "void:linkPredicate": {
     "@type": "owl:ObjectProperty",
     "@id": "http://data.labs.pdok.nl/linksets/def/bag_brk_kennemerland#relatedParcel",
-    "rdfs:label": "BRK-perceel gerelateerd aan BAG nummeraanduiding",
+    "rdfs:label": ["BRK-perceel gerelateerd aan BAG nummeraanduiding",
+      {
+        "@value": "BRK parcel related to BAG address",
+        "@language": "en"
+      }],
     "rdfs:subPropertyOf": "dcterms:related"
   },
   "prov:wasGeneratedBy": [{
     "@type": "prov:Activity",
     "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland",
-    "rdfs:label": "Python script voor het opvragen van de BRK percelen uit de BRK API",
+    "prov:wasAssociatedWith": "http://reinvantveer.github.io/me/me.ttl",
+    "rdfs:label": ["Python script voor het opvragen van de BRK percelen uit de BRK API",
+      {
+        "@value": "Python script for querying the BRK parcels from the BRK API",
+        "@language": "en"
+      }],
     "prov:startedAtTime": "2017-05-16T14:42:00",
     "prov:endedAtTime": "2017-05-24T15:15:00",
     "prov:used": [
@@ -43,12 +59,15 @@
   }, {
     "@type": "prov:Activity",
     "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland_openrefine",
-    "rdfs:label": "OpenRefine configuratie voor het omzetten naar Linked Data",
+    "prov:wasAssociatedWith": "http://reinvantveer.github.io/me/me.ttl",
+    "rdfs:label": ["OpenRefine configuratie voor het omzetten naar Linked Data",
+      {
+        "@value": "OpenRefine configuration for transforming to Linked Data",
+        "@language": "en"
+      }],
     "prov:startedAtTime": "2017-05-16T15:30:00",
     "prov:endedAtTime": "2017-05-24T15:35:00",
-    "prov:used": [
-      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris-xlsx.openrefine.tar.gz"
-    ]
+    "prov:used": "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris-xlsx.openrefine.tar.gz"
   }
   ],
   "prov:wasAttributedTo": {
