@@ -2,3 +2,6 @@
 /data/bag-brk/error.log
 /data/bag-brk/logfile.log
 /_site/
+Gemfile.lock
+data/bag-brk/bag_brk_kennemerland.trig
+data/bag-brk/test/
