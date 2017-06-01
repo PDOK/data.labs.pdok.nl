@@ -25,7 +25,7 @@
     }
   ],
   "void:sparqlEndpoint": "https://data.labs.pdok.nl/sparql",
-  "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/bag_brk_kennemerland.trig.zip",
+  "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/statements_bag_brk.nt.zip",
   "void:target": ["http://bag.basisregistraties.overheid.nl", "http://brk.basisregistraties.overheid.nl"],
   "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Nummeraanduiding",
   "void:objectsTarget": "http://brk.basisregistraties.overheid.nl/def/brk#Perceel",
@@ -80,5 +80,5 @@
       "rdfs:label": "Kadaster"
     }
   },
-  "void:triples": 248951
+  "void:triples": 248944
 }
