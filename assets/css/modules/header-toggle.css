@@ -1,0 +1,20 @@
+/* Header toggle
+For mobile toggle menu
+*/
+
+.header-toggle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    font-size: 36px;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+@media screen and (min-width: 992px) {
+    .header-toggle {
+        display: none;
+    }
+}

@@ -1,0 +1,279 @@
+.dataset {
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    margin-bottom: 30px;
+}
+
+.dataset-highlighted {
+    padding: 30px;
+    background: #154273;
+    color: #fff;
+}
+
+.dataset-highlighted.has-image:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(24, 67, 113, 0.6);
+}
+
+.dataset-highlighted.has-image {
+    background-position: center;
+}
+
+.dataset-highlighted .dataset-heading {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.dataset-highlighted .dataset-description {
+    margin-bottom: 20px;
+}
+
+.dataset-highlighted .dataset-list {
+    margin-top: 20px;
+}
+
+.dataset-highlighted .dataset-list.meta {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.dataset-highlighted .dataset-list.meta li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dataset-highlighted .dataset-list.meta li:before {
+    content: '● ';
+}
+
+.dataset-flipper {
+    position: relative;
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+}
+
+.dataset:hover .dataset-back {
+    transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+}
+
+.dataset:hover .dataset-front {
+    transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.dataset.hover .dataset-back {
+    transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+}
+
+.dataset.hover .dataset-front {
+    transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+/*.dataset:hover .dataset-flipper {*/
+    /*transform: rotateY(180deg);*/
+    /*-ms-transform: rotateY(180deg);*/
+    /*-webkit-transform: rotateY(180deg);*/
+/*}*/
+
+/*.dataset.hover .dataset-flipper {*/
+    /*transform: rotateY(180deg);*/
+    /*-ms-transform: rotateY(180deg);*/
+    /*-webkit-transform: rotateY(180deg);*/
+/*}*/
+
+    .dataset-heading {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-family: 'Roboto Medium', sans-serif;
+    }
+
+    .dataset-description {
+        font-size: 16px;
+    }
+
+    .dataset-action {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+.dataset-front,
+.dataset-back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: rotateY(0deg);
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+    -moz-transform: rotateY(0deg);
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+    -o-transform: rotateY(0deg);
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+    -ms-transform: rotateY(0deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    border-bottom: 10px solid #154273;
+}
+
+.dataset-front > div,
+.dataset-back > div {
+    padding: 30px 30px 50px 30px;
+}
+
+.dataset-front {
+    position: static;
+    height: 100%;
+    z-index: 2;
+    transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+}
+
+.dataset-front .link {
+    display: none;
+    color: #e46f00;
+    font-size: 16px;
+}
+
+.touch-device .dataset-front .link {
+    display: block;
+}
+
+.dataset-back {
+    overflow: hidden;
+    padding-bottom: 165px;
+    background: #154273;
+    border-bottom-color: #e46f00;
+    transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+.dataset-back .btn-close {
+    position: absolute;
+    color: #fff;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    display: none;
+}
+
+.touch-device .dataset-back .btn-close {
+    display: block;
+}
+
+.dataset-back .dataset-description,
+.dataset-back .dataset-heading {
+    color: #fff;
+}
+
+.dataset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dataset-list.meta {
+    margin-top: 20px;
+}
+
+.dataset-list.meta li {
+    font-size: 14px;
+}
+
+.dataset-list.meta li:before {
+    content: '- ';
+}
+
+.dataset-list li {
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.dataset-list a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+.dataset-list a:before {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.dataset-list a:hover:before {
+    text-decoration: none;
+}
+
+.dataset-actions .link {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.dataset-actions .btn:before {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.dataset-actions {
+    margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .dataset-highlighted {
+        padding: 60px;
+    }
+
+    .dataset-highlighted .dataset-list {
+        margin-top: 0;
+    }
+
+    .dataset-back > div {
+        padding: 30px 30px 180px 30px;
+    }
+
+    .dataset-actions {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+    }
+}

@@ -1,0 +1,38 @@
+/* USP */
+
+.usp {
+    margin-bottom: 40px;
+}
+
+    .usp__icon {
+        position: relative;
+        display: none;
+        margin: 0 auto;
+        height: 150px;
+        width: 150px;
+        background-color: #e26f02;
+        color: #fff;
+        border-radius: 50%;
+    }
+
+    .usp__icon:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 65px;
+        margin: 0;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .usp__text {
+        margin: 0 auto 20px;
+        width: 80%;
+    }
+
+    @media screen and (min-width: 768px) {
+        .usp__icon {
+            display: block;
+        }
+    }

@@ -1,0 +1,104 @@
+/* Navigation */
+
+.main__navigation {
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    z-index: 999;
+    background: #FBFAF7;
+    border-bottom: 1px solid #154273;
+}
+
+    .main__navigation-brand {
+        display: block;
+        position: absolute;
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 189px;
+        height: 58px;
+        padding: 0;
+        text-indent: -9999em;
+        background: url(../../images/logo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+    }
+
+    .main__navigation__list{
+        position: absolute;
+        top: 50%;
+        left: 250px;
+        right: 30px;
+        transform: translateY(-50%);
+    }
+
+    .main__navigation__list li{
+        display: inline;
+    }
+    .main__navigation__list li.active a{
+        color: #e46f00;
+    }
+    .main__navigation__list li a{
+        display: inline-block;
+        padding: 0 15px;
+        color: #585968;
+        transition: .2s ease-in-out;
+        -webkit-transition: .2s ease-in-out;
+    }
+    .main__navigation__list li a:hover{
+        color: #e46f00;
+    }
+
+    .main__navigation__list li.call__to__action a {
+        background: #e8e9e8;
+        color: #575867;
+        padding: 6px 15px;
+        border-radius: 20px;
+    }
+
+    .main__navigation__list li.pull-right {
+        margin-right: 0;
+    }
+
+    .main__navigation__logo-right {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        height: 58px;
+    }
+
+@media screen and (max-width: 992px) {
+    .main__navigation__logo-right {
+        display: none;
+    }
+
+    .main__navigation__list {
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: translateY(80px);
+        opacity: 0;
+        visibility: hidden;
+        background-color: #fff;
+        transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+        -webkit-transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+        border-bottom: 1px solid #154273;
+        padding: 0;
+    }
+
+    .main__navigation__list li {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .is-open .main__navigation__list {
+        opacity: 1;
+        visibility: visible;
+    }
+}

@@ -1,0 +1,100 @@
+/* Hero - introduction */
+.hero {
+    position: relative;
+    color: #fff;
+    background: url(/images/intro.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+    /* Hero children */
+    .hero:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0; bottom: 0; left: 0; right: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero__intro {
+        position: absolute;
+        padding: 80px 0;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .hero__logo {
+        display: none;
+        width: 350px;
+        margin-bottom: 1em;
+    }
+
+    .hero__click-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        z-index: 9;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color .3s ease;
+        -webkit-transition: background-color .3s ease;
+    }
+
+    .hero__click-down:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        font-size: 40px;
+        margin: 0;
+    }
+
+    .hero__click-down:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .hero__click-down:hover:before {
+        animation: upDown .75s infinite ease;
+    }
+
+    .hero__title {
+        margin: 0;
+    }
+
+@keyframes upDown {
+    25% {
+        transform: translate(-50%, -45%);
+        -ms-transform: translate(-50%, -45%);
+        -webkit-transform: translate(-50%, -45%);
+    }
+
+    100% {
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .hero__logo {
+        display: inline-block;
+    }
+
+    .hero__intro {
+        left: 50%;
+        top: 50%;
+        padding: 0;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+}

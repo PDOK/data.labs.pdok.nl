@@ -1,0 +1,15 @@
+/* Footer */
+
+.footer {
+    color: #fff;
+}
+
+    .footer a {
+        font-size: 18px;
+        color: inherit;
+    }
+
+    .footer a:hover,
+    .footer a:focus {
+        text-decoration: underline;
+    }

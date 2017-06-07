@@ -1,0 +1,27 @@
+/* BTN
+extends Bootstrap
+*/
+
+.btn {
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #e26f02;
+    color: #fff;
+    border-radius: 5px;
+}
+
+    .btn--secondary {
+        background-color: #154273;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        color: #fff;
+        background-color: #ad5e02;
+    }
+
+    .btn--secondary:hover,
+    .btn--secondary:focus {
+        background-color: #0f3452;
+    }

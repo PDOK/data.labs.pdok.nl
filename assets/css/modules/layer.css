@@ -1,0 +1,19 @@
+/* Layer
+used for background colors
+*/
+
+.layer {
+    padding: 80px 0;
+}
+
+    .layer--small {
+        padding: 40px 0;
+    }
+
+    .layer--primary { /* Modifier */
+        background-color: #154273;
+    }
+
+    .layer--secondary {
+        background-color: #f3f5f6;
+    }

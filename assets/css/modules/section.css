@@ -1,0 +1,14 @@
+/* Section */
+
+.section {}
+
+.section--half-page { /* Modifier */
+    height: 60%; /* IE fix */
+    height: 60vh;
+}
+
+    .section__content {
+        min-height: 100%;
+    }
+
+

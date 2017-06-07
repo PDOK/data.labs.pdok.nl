@@ -2,3 +2,14 @@
 ---
 
 @import 'jekyll-theme-dinky';
+
+h1 {
+  font-family: Roboto;
+}
+h1.header {
+  font-family: inherit;
+}
+
+img {
+  border: 0;
+}

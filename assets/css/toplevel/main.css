@@ -1,0 +1,35 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    padding-top: 80px;
+    font-size: 18px;
+    color: #154273;
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .content {
+        position: relative;
+        min-height: 100%;
+    }
+
+    main {
+        padding-bottom: 250px; 
+    }
+}
