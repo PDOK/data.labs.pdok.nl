@@ -1,0 +1,47 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix beeldbank: <https://data.pdok.nl/beeldbank/id/monument/>
+prefix dc: <http://purl.org/dc/elements/1.1/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix vocab: <https://data.pdok.nl/beeldbank/vocab/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select distinct ?monument ?wkt ?wktLabel {
+  bind ("Amersfoort" as ?plaatsnaam)
+  bind (strlang(?plaatsnaam, "nl") as ?plaatsnaam1)
+  ?monument vocab:houseNumber ?houseNumber1 ;
+            vocab:place ?plaatnaam1 ;
+            vocab:street ?streetName1 ;
+            rdfs:label ?monumentName .
+  bind (xsd:integer(?houseNumber1) as ?houseNumber)
+  bind (str(?streetName1) as ?streetName)
+  {
+    select ?monument (sample(?imageLabel) as ?imageLabel) {
+      ?image foaf:depicts ?monument ;
+             vocab:locator ?locator ;
+             dc:created ?date ;
+             vocab:fotograaf ?photographer
+      bind (concat('http://images.memorix.nl/rce/download/fullsize/',?locator,'.jpg') as ?url)
+      bind (concat('<a href="',?url,'"><img src="',?url,'" style="width: 200px;"></a><p>',str(?photographer),', ',str(?date),'</p>') as ?imageLabel)
+    }
+    group by ?monument
+  }
+  service <https://data.pdok.nl/sparql> {
+    ?plaats bag:naamWoonplaats ?plaatsnaam .
+    ?openbareRuimte bag:naamOpenbareRuimte ?streetName ;
+                    bag:bijbehorendeWoonplaats ?plaats .
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?houseNumber .
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand ;
+                     bag:status ?verblijfsobjectStatus .
+    ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+    ?pand bag:oorspronkelijkBouwjaar ?buildYear ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+          bag:status ?pandStatus .
+    ?pandStatus rdfs:label ?pandStatusLabel
+  }
+  bind (concat('<center><h4><a href="',str(?monument),'">',str(?monumentName),'</a></h4><h4>',str(?streetName),' ',str(?houseNumber),', <a href="',str(?plaats),'">',str(?plaatsnaam),'</a></h4>',?imageLabel,'<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p><p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?buildYear),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p></center>') as ?wktLabel)
+}
+limit 25

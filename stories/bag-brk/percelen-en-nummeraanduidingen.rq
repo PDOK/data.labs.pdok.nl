@@ -1,0 +1,13 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+select * where {
+  { select * where {
+	  service <https://data.labs.pdok.nl/sparql> {
+    	?nummeraanduiding dcterms:related ?perceel
+	}
+    } limit 100 }
+  ?perceel a <http://brk.basisregistraties.overheid.nl/def/brk#Perceel>;
+  ?p ?o ;
+  <http://brk.basisregistraties.overheid.nl/def/brk#plaatscoordinaten> ?geom .
+  ?geom geosparql:asWKT ?wkt
+} limit 100

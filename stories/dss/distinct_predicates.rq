@@ -1,0 +1,6 @@
+prefix das: <http://purl.org/collections/nl/dss/das/>
+select distinct ?p {
+  ?x a das:Ship ;
+     ?p ?o
+}
+limit 100

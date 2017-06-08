@@ -43,7 +43,7 @@
     }
     .main__navigation__list li a{
         display: inline-block;
-        padding: 0 15px;
+        padding: 0 12px;
         color: #585968;
         transition: .2s ease-in-out;
         -webkit-transition: .2s ease-in-out;

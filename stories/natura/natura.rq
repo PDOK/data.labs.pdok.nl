@@ -1,0 +1,31 @@
+prefix def: <http://data.pdok.nl/mossel-en-oesterhabitats/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix n2k: <http://data.pdok.nl/natura-2000/def/natura-2000#>
+prefix gsp: <http://www.opengis.net/ont/geosparql#>
+select ?wkt ?wktLabel ?wktColor {
+#from <http://data.pdok.nl/natura-2000>
+  {
+    {
+      ?sub n2k:sitecode_h "NL2007001"
+    } union {
+      ?sub n2k:sitecode_h "NL1000001"
+    } union {
+      ?sub n2k:sitecode_v "NL9801001"
+    }
+    ?sub a n2k:Natura2000 ;
+         rdfs:label ?label ;
+         n2k:bescherming ?bescherming ;
+         gsp:hasGeometry [ gsp:asWKT ?wkt ]
+    bind(concat(?label," | ",?bescherming) as ?wktLabel)
+  } union {
+    ?x a def:mossel-en-oesterhabitats\#Mosselenoesterhabitats ;
+       gsp:hasGeometry/gsp:asWKT ?wkt;
+       rdfs:label ?wktLabel
+    values (?wktLabel ?wktColor) {
+      ("mussel" "red")
+      ("oyster" "blue")
+      ("mussel/oyster" "green")
+    }
+  }
+}
+#limit 10

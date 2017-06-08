@@ -1,0 +1,23 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktLabel {
+  bind ("'t Spiker" as ?streetName)
+  bind (24 as ?houseNumber)
+  bind ("Warnsveld" as ?woonplaatsNaam)
+  ?openbareRuimte bag:naamOpenbareRuimte ?streetName ;
+                  bag:bijbehorendeWoonplaats ?woonplaats .
+  ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                    bag:huisnummer ?houseNumber .
+  ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                   bag:oppervlakte ?surface ;
+                   bag:pandrelatering ?pand ;
+                   bag:status ?verblijfsobjectStatus .
+  ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+  ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
+        bag:geometriePand/geo:asWKT ?wkt ;
+        bag:status ?pandStatus .
+  ?pandStatus rdfs:label ?pandStatusLabel
+  bind (concat('<h4>',str(?streetName),' ',str(?houseNumber),'</h4><h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?surface),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?buildyear),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
+}
