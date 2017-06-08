@@ -28,7 +28,7 @@
                 class="pull-right main__navigation__logo-right"></nav>
       <header>
         <h1 class="header">{{ site.title | default: site.github.repository_name }}</h1>
-        <img src="{{ '/assets/images/beta.png' | relative_url }}" style="width: 80%"/>
+        <img src="{{ '/assets/images/beta.png' | relative_url }}" style="width: 80%; margin: 0 0 0 0"/>
 
         <ul>
           {% if site.show_downloads %}
@@ -54,7 +54,6 @@
       </section>
 
       <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using a modified Dinky theme</small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
