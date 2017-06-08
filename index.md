@@ -2,5 +2,14 @@
 layout: default
 title: Home
 ---
-# Welcome at PDOK data labs!
-Check out our [sparql stories](/stories)
+# PDOK data labs!
+Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
+
+## SPARQL Stories
+Check onze [sparql stories](/stories)
+
+## GeoSPARQL
+We hosten een apart [geosparql endpoint](/geosparql)
+
+## Apps
+Bekijk de [visualisatie- en dataverwerkingsapplicaties](/apps)

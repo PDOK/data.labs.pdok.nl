@@ -7,11 +7,21 @@ h1 {
   font-family: Roboto;
 }
 
+a.github {
+  font-size: smaller;
+}
+
 header {
-  background-color: #e26f02;
+  background-color: #ef8000;
   border: 0;
   width: 160px;
   padding: 34px 25px 22px 40px;
+  li {
+    width: 140px;
+    background: -webkit-linear-gradient(top, #005693 0%, #032F93 100%);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 }
 
 h1.header {
