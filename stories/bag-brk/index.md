@@ -5,7 +5,7 @@ title: Linkset BAG-BRK
 # De 'linkset' BAG-BRK
 
 ## INSPIRE AR3NA
-Het Kadaster participeert in een initiatief om INSPIRE data beschikbaar te krijgen als Linked Data, en de meerwaarde van deze data aan te tonen. De lead van dit project ligt bij het bedrijf [Netage](http://netage.nl/), die een demonstrator zal gaan realiseren om het nut van Linked Data voor hulpdiensten aan te tonen.
+Het Kadaster participeert in een initiatief om INSPIRE data beschikbaar te krijgen als Linked Data, en de meerwaarde van deze data aan te tonen. De lead van dit project ligt bij het bedrijf [Netage](http://netage.nl/), dat een demonstrator zal gaan realiseren om het nut van Linked Data voor hulpdiensten aan te tonen.
 
 Een kernelement in deze demonstrator is het gebruik van de koppeling tussen panden en percelen. Voor de brandweer is het van belang te weten welke nabijgelegen panden zich bij een brand bevinden, op welke percelen deze liggen, wie de eigenaar hiervan is en welke belendende percelen naast de brandhaard liggen. Het Kadaster heeft hiertoe een koppeltabel gepubliceerd die aldaar intern bekend staat onder LKO: Locatie Kadastraal Object. Het vormt de koppeling tussen [BAG nummeraanduidingen](https://bag.basisregistraties.overheid.nl/query/model#Nummeraanduiding) en BRK perceels- en appartementsrechtsregistraties.  
 
