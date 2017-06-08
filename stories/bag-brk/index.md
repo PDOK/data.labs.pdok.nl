@@ -15,4 +15,4 @@ De LKO koppeltabel van BAG-nummeraanduidingen naar BRK percelen is vertaald naar
 ## SPARQL
 De BAG-BRK linkset is gepubliceerd in een andere RDF store dan die waarmee de BAG en BRK zelf zijn gepubliceerd. Normaliter is dit direct een data-integratievraagstuk, maar dit is niet het geval met Linked Data. Door het SPARQL-mechanisme is data op te vragen uit willekeurige andere SPARQL-endpoints, via het zogenaamde 'federated query'-principe.
 
-<div data-query data-query-sparql="percelen-en-nummeraanduidingen.rq" data-showQuery></div>
+<div data-query data-query-sparql="percelen-en-nummeraanduidingen.rq" data-query-output="leaflet" data-showQuery></div>
