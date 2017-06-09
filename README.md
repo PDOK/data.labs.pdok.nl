@@ -7,8 +7,8 @@
 - Install ruby from `https://rubyinstaller.org/downloads/`
 - run `gem install bundler`
 - in the root folder, run `bundler install`
-- Open notepad in Adminstrator mode to change your C:\Windows\System\Drivers\etc\hosts
-- Add the entry `127.0.0.1:4000 data.labs.pdok.nl`
+- now, you should be able to run `jekyll serve`. If you encounter any trouble on dependencies, you can try alternatively `bundler exec jekyll serve`
+- the site is now available on [http://localhost](http://localhost). If you have other services running on port :80, you can alter the contents of _config.yml to have Jekyll run on a different port.
 
 # Troubleshooting
 If you run into a SSL certificate not found error:
