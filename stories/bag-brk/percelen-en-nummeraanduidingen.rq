@@ -1,30 +1,29 @@
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select distinct ?wkt ?straat ?wktLabel where {
-
-  # Federated subquery die eerst een willekeurige greep doet uit de linkset. Deze strategie werkt dus niet voor een grotere linkset...
-  { select * where {
-	  service <https://data.labs.pdok.nl/sparql> {
-    	?nummeraanduiding dcterms:related ?perceel
-	}
-  } limit 2000 }
-
-  # Vis vervolgens de bijbehorende informatie uit de data.pdok.nl/sparql productie-omgeving
-  ?perceel a <http://brk.basisregistraties.overheid.nl/def/brk#Perceel>;
-    <http://brk.basisregistraties.overheid.nl/def/brk#begrenzingPerceel> ?geom .
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
+select distinct ?wkt ?straat ?wktLabel
+where {
+  service <https://data.labs.pdok.nl/sparql> {
+    service <https://data.pdok.nl/sparql> {
+      # Een dubbel-federated SPARQL Call die eerst nummeraanduidingen uit de relevante straat haalt
+      select distinct ?nummeraanduiding ?straat ?huisnummer {
+        bind ("Oranjekade"@nl as ?straat)
+        ?or_uri rdfs:label ?straat .
+        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
+        ?nummeraanduiding bag:huisnummer ?huisnummer .
+      }
+    }
+    # dcterms:related wordt ondersteund dankzij de RDF reasoner
+    # De linkset zelf gebruikt een predicaat op maat. Zo is er eenvoudig onderscheid te maken en zijn specifieke definities te geven.
+    ?nummeraanduiding dcterms:related ?perceel
+  }
+  # Haal de perceelsinformatie op
+  ?perceel a brk:Perceel;
+    brk:begrenzingPerceel ?geom ;
+    brk:perceelnummer ?perceelnummer .
   ?geom geosparql:asWKT ?wkt .
-
-  # Zoek de straatnaam erbij, voor de labelinfo
-  ?nummeraanduiding <http://bag.basisregistraties.overheid.nl/def/bag#bijbehorendeOpenbareRuimte> ?or_uri .
-  ?or_uri rdfs:label ?straat .
-  # Filter op straatnaam
-  filter(str(?straat) = "Bloemendaalseweg")
-  ?nummeraanduiding <http://bag.basisregistraties.overheid.nl/def/bag#huisnummer> ?huisnummer .
-
-  # Zoek het perceelnummer erbij, voor de labelinfo
-  ?perceel <http://brk.basisregistraties.overheid.nl/def/brk#perceelnummer> ?perceelnummer .
-
   # Vorm eenvoudige html voor de labelinformatie
   bind(concat(
     "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
