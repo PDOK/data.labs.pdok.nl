@@ -5,7 +5,7 @@ title: Home
 # PDOK data labs!
 Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
 
-## SPARQL Stories
+## Data Stories
 Check onze [Data Stories](/stories)
 
 ## GeoSPARQL
