@@ -19,5 +19,9 @@ select distinct ?wkt ?straat ?wktLabel where {
 
   ?perceel <http://brk.basisregistraties.overheid.nl/def/brk#perceelnummer> ?perceelnummer .
 
-  bind(concat(str(?straat), " ", str(?huisnummer), ": ", "perceel no. ", str(?perceelnummer)) as ?wktLabel)
+  bind(
+    concat(
+        "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
+    ) as ?wktLabel
+)
 }
