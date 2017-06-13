@@ -6,7 +6,10 @@ title: Home
 Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
 
 ## SPARQL Stories
-Check onze [sparql stories](/stories)
+Check onze [Data Stories](/stories)
+
+## GeoSPARQL
+We hebben een eigen [sparql endpoint](/sparql)
 
 ## GeoSPARQL
 We hosten een apart [geosparql endpoint](/geosparql)
