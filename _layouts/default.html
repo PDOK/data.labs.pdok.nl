@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/assets/css/yasgui/yasgui.min.css">
     <script src="/assets/js/yasgui.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/app.css?v=' | append: site.github.build_revision | relative_url }}">
-    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision }}">
+    <link rel="stylesheet" href="{{ '/assets/css/app.css?v=' | append: site.github.build_revision }}">
+    <script src="/assets/js/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -28,11 +28,11 @@
           <li><a href="https://translate.google.nl/translate?sl=nl&tl=en&js=y&prev=_t&hl=nl&ie=UTF-8&u=https%3A%2F%2Fdata.labs.pdok.nl&edit-text=">[View in English]</a></li>
         </ul>
         <span data-target="body" class="header-toggle js-toggle icon-menu"></span><img
-                src="{{ '/assets/images/kadaster.jpg' | relative_url }}" alt="kadaster"
+                src="/assets/images/kadaster.jpg" alt="kadaster"
                 class="pull-right main__navigation__logo-right"></nav>
       <header>
         <h1 class="header">{{ site.title | default: site.github.repository_name }}</h1>
-        <img src="{{ '/assets/images/beta-orange.png' | relative_url }}" style="width: 80%; margin: 0 0 0 0"/>
+        <img src="/assets/images/beta-orange.png" style="width: 80%; margin: 0 0 0 0"/>
 
         <ul>
           {% if site.show_downloads %}
