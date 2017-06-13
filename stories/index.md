@@ -3,6 +3,8 @@ layout: default
 title: SPARQL Stories
 ---
 
+# Data Stories
+
 Data stories zijn HTML presentaties waarin de mogelijkheden van SPARQL, de kracht van datavisualisatie en de eenvoud van beschrijvende tekst worden gedemonstreerd.
 
 Een uitgebreidere beschrijving van de manier waarop deze technisch tot stand komen is [hier](about.html) te vinden.

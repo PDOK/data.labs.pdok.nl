@@ -1,13 +1,23 @@
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
-select * where {
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select distinct ?wkt ?straat ?wktLabel where {
   { select * where {
 	  service <https://data.labs.pdok.nl/sparql> {
     	?nummeraanduiding dcterms:related ?perceel
 	}
-    } limit 100 }
+    } limit 2000 }
   ?perceel a <http://brk.basisregistraties.overheid.nl/def/brk#Perceel>;
   ?p ?o ;
-  <http://brk.basisregistraties.overheid.nl/def/brk#plaatscoordinaten> ?geom .
-  ?geom geosparql:asWKT ?wkt
-} limit 100
+  <http://brk.basisregistraties.overheid.nl/def/brk#begrenzingPerceel> ?geom .
+  ?geom geosparql:asWKT ?wkt .
+  ?nummeraanduiding <http://bag.basisregistraties.overheid.nl/def/bag#bijbehorendeOpenbareRuimte> ?or_uri .
+  ?or_uri rdfs:label ?straat .
+  filter(str(?straat) = "Bloemendaalseweg")
+
+  ?nummeraanduiding <http://bag.basisregistraties.overheid.nl/def/bag#huisnummer> ?huisnummer .
+
+  ?perceel <http://brk.basisregistraties.overheid.nl/def/brk#perceelnummer> ?perceelnummer .
+
+  bind(concat(str(?straat), " ", str(?huisnummer), ": ", "perceel no. ", str(?perceelnummer)) as ?wktLabel)
+}
