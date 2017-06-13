@@ -2,6 +2,5 @@ title: PDOK Labs
 description: PDOK Data research lab
 theme: jekyll-theme-dinky
 repository: PDOK/data.labs.pdok.nl
-port: 80
+port: 4000
 host: 127.0.0.1
-baseurl: /data.labs.pdok.nl

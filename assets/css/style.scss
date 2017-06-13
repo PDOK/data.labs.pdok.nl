@@ -21,12 +21,14 @@ header {
   width: 160px;
   padding: 34px 25px 22px 40px;
   li {
-    width: 140px;
+    width: 142px;
     background: -webkit-linear-gradient(top, #005693 0%, #032F93 100%);
     -webkit-box-shadow: none;
     box-shadow: none;
   }
 }
+
+header ul {position: static}
 
 h1.header {
   font-family: inherit;
