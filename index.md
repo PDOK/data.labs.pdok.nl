@@ -8,7 +8,7 @@ Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmecha
 ## Data Stories
 Check onze [Data Stories](/stories)
 
-## GeoSPARQL
+## SPARQL
 We hebben een eigen [sparql endpoint](/sparql)
 
 ## GeoSPARQL
