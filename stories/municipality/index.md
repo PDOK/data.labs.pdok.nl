@@ -1,6 +1,7 @@
 ---
 layout: story
 title: Kadaster Data Stories ― Nederlandse gemeentes
+logo: /stories/municipality/logo.png
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---

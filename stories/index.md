@@ -12,7 +12,14 @@ Een uitgebreidere beschrijving van de manier waarop deze technisch tot stand kom
 ## Beschikbare data stories
 
 {% for page in site.pages %}
-    {% if page.layout == "story" %}
-* [{{page.title}}]({{page.url}})
+  {% if page.layout == "story" %}
+<div class="showcase" style="background-image: url('{{page.logo}}'); background-repeat: no-repeat; background-position: bottom;">
+  <h2>
+    <div class="showcase-title">{{page.title}}</div>
+  </h2>
+  <p style="background-color: rgba(255, 255, 255, 0.6);">{{page.description}}</p>
+  <br>
+  <div href="{{page.url}}" class="btn showcase-btn">Kijk verder...</div>
+</div>
     {% endif %}
 {% endfor %}

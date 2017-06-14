@@ -1,7 +1,8 @@
 ---
 layout: story
 title: Kadaster Data Stories ― Ships & Sailors
-endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
+logo: /stories/dss/logo.jpg
+endpoint: https://semanticweb.cs.vu.nl/dss/sparql/
 ---
 # Hands on exercises Dutch Ships and Sailors
 ## By: Victor de Boer

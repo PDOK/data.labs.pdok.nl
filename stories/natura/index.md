@@ -1,6 +1,7 @@
 ---
 layout: story
 title: Kadaster Data Stories ― Natura 2000
+logo: /stories/natura/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---

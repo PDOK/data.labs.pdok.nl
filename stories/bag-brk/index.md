@@ -1,6 +1,8 @@
 ---
 layout: story
 title: Linkset BAG-BRK
+logo: /stories/bag-brk/logo.jpg
+description: Toelichting op de linkset BAG-BRK
 ---
 # De 'linkset' BAG-BRK
 

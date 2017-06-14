@@ -41,3 +41,26 @@ img {
 .leaflet-tile {
   padding: 0px;
 }
+
+.showcase {
+  float: left;
+  width: 45%;
+  height: 300px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.showcase-title {
+  margin: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 62px;
+  vertical-align: top;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn.showcase-btn {
+  margin: 10px;
+  vertical-align: bottom;
+}

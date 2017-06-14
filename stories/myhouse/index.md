@@ -1,6 +1,7 @@
 ---
 layout: story
 title: Kadaster Data Stories ― My House
+logo: /stories/myhouse/logo.png
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---

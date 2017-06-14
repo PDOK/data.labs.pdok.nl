@@ -1,6 +1,7 @@
 ---
 title: Kadaster Data Stories ― Nederlandse verkiezingen
 layout: story
+logo: /stories/election/logo.jpg
 endpoint: https://virtuoso.lod.labs.vu.nl/sparql
 output: gchart
 ---

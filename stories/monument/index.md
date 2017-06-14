@@ -1,6 +1,7 @@
 ---
 layout: story
 title: Kadaster Data Stories ― Nederlandse monumenten
+logo: /stories/monument/logo.jpg
 output: leaflet
 ---
 # Nederlandse monumenten
