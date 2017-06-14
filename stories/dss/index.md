@@ -3,9 +3,9 @@ layout: story
 title: Kadaster Data Stories ― Ships & Sailors
 endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
 ---
-<h1>Hands on exercises Dutch Ships and Sailors</h1>
-<h2>By: Victor de Boer</h2>
-<p>This page lists SPARQL Queries that you can test on a Dutch
+# Hands on exercises Dutch Ships and Sailors
+## By: Victor de Boer
+This page lists SPARQL Queries that you can test on a Dutch
   Ships and Sailors (DDS) SPARQL Endpoint.  There are two
   ClioPatria triple stores: one hosted at Huygens ING
   (<a href="http://dutchshipsandsailors.nl/data">http://dutchshipsandsailors.nl/data</a>)
@@ -17,14 +17,17 @@ endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
   right). For live SPARQL Queries you find a number of options
   under the “Query” menu This includes the great YASGUI
   interface with all kinds of query assistance or the simple
-  form.  I suggest using that one.</p>
-<p>If you want to use an external tool for these queries (such
+  form.  I suggest using that one.
+  
+If you want to use an external tool for these queries (such
   as CURL or SPARQL for R), you should use the endpoint for
   machines which is at “/sparql/” (Don’t forget the slash at the
   end
-  ie. <code>http://semanticweb.cs.vu.nl/dss/sparql/?query=PREFIX…</code>).</p>
-<h2>The data</h2>
-<p>These following example queries work on the Dutch Asiatic
+  ie. <code>http://semanticweb.cs.vu.nl/dss/sparql/?query=PREFIX…</code>).
+  
+## The data
+
+These following example queries work on the Dutch Asiatic
   Shipping subset of the DSS data.  The dataset lists voyages of
   VOC ships in the 17th Century, including the ship, its name,
   the captain, date and place of departure and arrival.  To get
@@ -36,13 +39,15 @@ endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
   of predicates used in that graph</a>.  Another way is to look
   at an instance of a specific voyage, for
   example <a href="http://purl.org/collections/nl/dss/das/voyage-5580_1">this
-  one</a>:</p>
+  one</a>:
 <!--
 <div data-query data-query-sparql="describe.rq" data-query-output="raw"></div>
 -->
 <div data-query data-query-sparql="cbd.rq"></div>
-<h2>Example queries and exercises</h2>
-<p>In SPARQL queries <code>#</code> denotes line comments.  In
+
+## Example queries and exercises
+
+In SPARQL queries <code>#</code> denotes line comments.  In
   between the example queries there are a few open exercises to
   expand on the queries.  You can change the queries in order to
   explore the data yourself.  For inspiration and checking
@@ -50,20 +55,25 @@ endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
   a <a href="http://jena.apache.org/tutorials/sparql.html">SPARQL
   tutorial</a> or this page with
   <a href="https://code.google.com/p/void-impl/wiki/SPARQLQueriesForStatistics">SPARQL
-  examples for statistical queries</a>.</p>
-<p>The alias <code>das</code> denotes the IRI
+  examples for statistical queries</a>.
+  
+The alias <code>das</code> denotes the IRI
   prefix <code>http://purl.org/collections/nl/dss/das/</code>
-  and is used to abbreviate long IRIs.</p>
-<p>It is a good idea to set the entailment
+  and is used to abbreviate long IRIs.
+  
+It is a good idea to set the entailment
   to <code>rdfslite</code>, since this reduces calculation
-  times.</p>
+  times.
 
-<h2>Let's go!</h2>
-<p>Our first query: List the first 10 triples:</p>
+## Let's go!
+
+Our first query: List the first 10 triples:
 <div data-query data-query-sparql="10_triples.rq" data-showQuery></div>
-<p>Now, list the first 100 “<code>?instance</code> is of
+
+Now, list the first 100 “<code>?instance</code> is of
   type <code>?class</code>” triples (the letter <code>a</code>
-  is used as shorthand notation for <code>rdf:type</code>).</p>
+  is used as shorthand notation for <code>rdf:type</code>).
+
 <div data-query data-query-sparql="100_instances.rq" data-showQuery></div>
 <p>Find all distinct predicates that DAS Ships have (Set
   Entailment to <code>rdfslite</code> otherwise the query takes
@@ -71,20 +81,13 @@ endpoint: http://semanticweb.cs.vu.nl/dss/sparql/
 <div data-query data-query-sparql="distinct_predicates.rq" data-showQuery>
 </div>
     
-<p><b>EXERCISE 1A</b>: Adjust the above query in order to find
-  all distinct classes.  What are these?</p>
-<p><b>EXERCISE 1B</b>: Find all distinct classes in the DAS
+<b>EXERCISE 1A</b>: Adjust the above query in order to find
+  all distinct classes.  What are these?
+  
+<b>EXERCISE 1B</b>: Find all distinct classes in the DAS
   named graph (hint, you can use <code>GRAPH { *graph pattern
-  here* }</code></p>
+  here* }</code>
 
-<p>Find all DAS places with preferred label “Middelburg”:</p>
+Find all DAS places with preferred label “Middelburg”:
 <div data-query data-query-sparql="middelburg.rq" data-showQuery></div>
 
-<script src="/resource/js/jquery-3.2.1.min.js"></script>
-<script src="/resource/js/tether-1.3.3.min.js"></script>
-<script src="/resource/js/bootstrap.min.js"></script>
-<script src="/resource/js/yasgui.min.js"></script>
-<script type="text/javascript">
-YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
-YASGUI.sparqlStories();
-</script>
