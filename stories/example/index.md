@@ -1,6 +1,6 @@
 ---
 layout: story
-title: Kadaster Data Stories ― Nederlandse gemeentes
+title: Kadaster Data Stories ― example
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
