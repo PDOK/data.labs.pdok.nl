@@ -40,9 +40,7 @@ These following example queries work on the Dutch Asiatic
   at an instance of a specific voyage, for
   example <a href="http://purl.org/collections/nl/dss/das/voyage-5580_1">this
   one</a>:
-<!--
-<div data-query data-query-sparql="describe.rq" data-query-output="raw"></div>
--->
+<!--<div data-query data-query-sparql="describe.rq" data-query-output="raw"></div>-->
 <div data-query data-query-sparql="cbd.rq"></div>
 
 ## Example queries and exercises
