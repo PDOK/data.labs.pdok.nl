@@ -1,7 +1,13 @@
 ---
 layout: default
 ---
-<div class="container story" data-query-endpoint="https://data.labs.pdok.nl/sparql/">
+
+{% if page.endpoint %}
+  <div class="container story" data-query-endpoint="{{ page.endpoint }}">
+{% else %}
+  <!-- Fallback to default labs endpoint -->
+  <div class="container story" data-query-endpoint="https://data.labs.pdok.nl/sparql/">
+{% endif %}
 
 {{ content }}
 
