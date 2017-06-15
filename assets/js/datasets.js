@@ -10,7 +10,7 @@ $.get('/api/v1/graphs', sets => {
     .filter(set => set['@type'].find(type => type === 'void:Dataset'))
     .forEach(dataset => {
       let uri = dataset['@id'];
-      if (uri.slice(-1) === '/') uri = uri.slice(0, -2);
+      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
       $('#dataset-showcases')
         .append(`
 <div class="showcase">
