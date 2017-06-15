@@ -3,7 +3,24 @@ layout: default
 title: Datasets
 ---
 
+# Data
+Op de labs-omgeving host het PDOK dataplatform een aantal datasets die nog niet productierijp zijn, maar wel interessant om de waarde ervan te beproeven. Het gaat vrijwel altijd om snapshots, dus de data is niet actueel.
+
+## Op deze pagina
+- [datasets](#datasets)
+- [linksets](#linksets)
+- [overig](#overig)
+
 # Datasets
-Op de labs-omgeving host het PDOK dataplatform een aantal datasets die nog niet productierijp zijn, maar wel interessant om de waarde ervan te beproeven. Het gaat vrijwel altijd om snapshots, dus er is geen garantie op de actualiteit van de data. 
+<section>
+<div id='dataset-showcases' style='width: 100%;'></div>
+</section>
 
 # Linksets
+PDOK labs verzorgt ook een aantal zogenaamde 'linksets'. Deze linksets verbinden twee datasets door overeenkomende of gerelateerde entiteiten met elkaar te verbinden.
+<div id='linkset-showcases'></div>
+
+# Overig
+<div id='overig-showcases'></div>
+
+<script src='/assets/js/datasets.js'></script>
