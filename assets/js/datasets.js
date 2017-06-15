@@ -15,7 +15,7 @@ $.get('/api/v1/graphs', sets => {
         .append(`
 <div class="showcase">
   <h2 class="showcase-title">Zonder titel</h2>
-  <a href="${uri}">${uri.split('/').slice(-1)}</a>
+  <a href="dataset['@id']">${uri.split('/').slice(-1)}</a>
 </div>
 `
         );
@@ -24,20 +24,28 @@ $.get('/api/v1/graphs', sets => {
   // Populate void:Linkset part
   sets['@graph']
     .filter(set => set['@type'].find(type => type === 'void:Linkset'))
-    .forEach(dataset => $('#linkset-showcases')
-      .append(`
+    .forEach(dataset => {
+      let uri = dataset['@id'];
+      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
+      $('#linkset-showcases')
+        .append(`
 <div class="showcase">
 <h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${dataset['@id'].split('/').slice(-1)}</a></div>`
-    ));
+<a href="${dataset['@id']}">${uri.split('/').slice(-1)}</a></div>`
+        );
+    });
 
   // Populate miscellaneous
   sets['@graph']
     .filter(set => !set['@type'].find(type => type === 'void:Linkset' || type === 'void:Dataset'))
-    .forEach(dataset => $('#overig-showcases')
-      .append(`
+    .forEach(dataset => {
+      let uri = dataset['@id'];
+      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
+      $('#overig-showcases')
+        .append(`
 <div class="showcase">
 <h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${dataset['@id'].split('/').slice(-1)}</a></div>`
-    ));
+<a href="${dataset['@id']}">${uri.split('/').slice(-1)}</a></div>`
+        );
+    });
 });
