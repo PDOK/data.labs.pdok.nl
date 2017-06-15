@@ -4,7 +4,7 @@
 
 /* global $ */
 
-$.get('http://localhost/api/v1/graphs', sets => {
+$.get('/api/v1/graphs', sets => {
   // Populate void:Dataset part
   sets['@graph']
     .filter(set => set['@type'].find(type => type === 'void:Dataset'))
