@@ -11,8 +11,10 @@ $.get('/api/v1/graphs', sets => {
     .forEach(dataset => $('#dataset-showcases')
       .append(`
 <div class="showcase">
-<h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${dataset['@id']}</a></div>`
+  <h2 class="showcase-title">Zonder titel</h2>
+  <a href="${dataset['@id']}">${dataset['@id'].split('/').slice(-1)}</a>
+</div>
+`
     ));
 
   // Populate void:Linkset part
@@ -22,7 +24,7 @@ $.get('/api/v1/graphs', sets => {
       .append(`
 <div class="showcase">
 <h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${dataset['@id']}</a></div>`
+<a href="${dataset['@id']}">${dataset['@id'].split('/').slice(-1)}</a></div>`
     ));
 
   // Populate miscellaneous
@@ -32,6 +34,6 @@ $.get('/api/v1/graphs', sets => {
       .append(`
 <div class="showcase">
 <h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${dataset['@id']}</a></div>`
+<a href="${dataset['@id']}">${dataset['@id'].split('/').slice(-1)}</a></div>`
     ));
 });
