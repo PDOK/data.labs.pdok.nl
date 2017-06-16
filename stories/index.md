@@ -19,7 +19,7 @@ Een uitgebreidere beschrijving van de manier waarop deze technisch tot stand kom
   </h2>
   <p style="background-color: rgba(255, 255, 255, 0.6);">{{page.description}}</p>
   <br>
-  <div href="{{page.url}}" class="btn showcase-btn">Kijk verder...</div>
+  <a href="{{page.url}}" class="btn showcase-btn">Kijk verder...</a>
 </div>
     {% endif %}
 {% endfor %}
