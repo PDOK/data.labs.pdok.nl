@@ -14,7 +14,7 @@ select distinct ?monument (min(?wkt) as ?wkt) (min(?wktLabel) as ?wktLabel) {
   bind (strlang(?streetName, "nl") as ?streetNameNL)
   bind (str(?houseNumber) as ?houseNumberNL)
   ?monument vocab:houseNumber ?houseNumberNL ;
-            vocab:place ?plaatnaamNL ;
+            vocab:place ?plaatsnaamNL ;
             vocab:street ?streetNameNL ;
             rdfs:label ?monumentName .
   ?image foaf:depicts ?monument ;
