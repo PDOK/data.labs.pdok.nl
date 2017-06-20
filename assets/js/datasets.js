@@ -4,48 +4,38 @@
 
 /* global $ */
 
-$.get('/api/v1/graphs', sets => {
+function addShowcase(dataset, divId) {
+  let uri = dataset['@id'];
+  if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
+  const description = dataset['dcterms:description'] ?
+    dataset['dcterms:description'] :
+    uri.split('/').slice(-1);
+
+  $(divId)
+    .append(`
+<div class="showcase">
+  <h2 class="showcase-title">
+    ${dataset['dcterms:title'] ? dataset['dcterms:title'] : uri.split('/').slice(-1)}
+  </h2>
+  <a href="${dataset['@id']}">${description}</a>
+</div>`);
+}
+
+$.get('https://data.labs.pdok.nl/api/v1/graphs', sets => {
   // Populate void:Dataset part
   sets['@graph']
-    .filter(set => set['@type'].find(type => type === 'void:Dataset'))
-    .forEach(dataset => {
-      let uri = dataset['@id'];
-      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
-      $('#dataset-showcases')
-        .append(`
-<div class="showcase">
-  <h2 class="showcase-title">Zonder titel</h2>
-  <a href="dataset['@id']">${uri.split('/').slice(-1)}</a>
-</div>
-`
-        );
-    });
+    .filter(set => set['@type'].find(type => type === 'http://rdfs.org/ns/void#Dataset'))
+    .forEach(dataset => addShowcase(dataset, '#dataset-showcases'));
 
   // Populate void:Linkset part
   sets['@graph']
-    .filter(set => set['@type'].find(type => type === 'void:Linkset'))
-    .forEach(dataset => {
-      let uri = dataset['@id'];
-      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
-      $('#linkset-showcases')
-        .append(`
-<div class="showcase">
-<h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${uri.split('/').slice(-1)}</a></div>`
-        );
-    });
+    .filter(set => set['@type'].find(type => type === 'http://rdfs.org/ns/void#Linkset'))
+    .forEach(dataset => addShowcase(dataset, '#linkset-showcases'));
 
   // Populate miscellaneous
   sets['@graph']
-    .filter(set => !set['@type'].find(type => type === 'void:Linkset' || type === 'void:Dataset'))
-    .forEach(dataset => {
-      let uri = dataset['@id'];
-      if (uri.slice(-1) === '/') uri = uri.slice(0, -1);
-      $('#overig-showcases')
-        .append(`
-<div class="showcase">
-<h2 class="showcase-title">Zonder titel</h2>
-<a href="${dataset['@id']}">${uri.split('/').slice(-1)}</a></div>`
-        );
-    });
+    .filter(set => !set['@type'].find(
+      type => type === 'http://rdfs.org/ns/void#Linkset' ||
+      type === 'http://rdfs.org/ns/void#Dataset'))
+    .forEach(dataset => addShowcase(dataset, '#overig-showcases'));
 });
