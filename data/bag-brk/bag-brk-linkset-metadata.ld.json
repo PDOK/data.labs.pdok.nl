@@ -24,6 +24,20 @@
       "@language": "en"
     }
   ],
+  "dcterms:description": [
+    "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+    {
+      "@value": "Partial linkset of BAG addresses to BRK parcels, limited to pertaining to the area of Kennemerland",
+      "@language": "en"
+    }
+  ],
+  "dcterms:title": [
+    "Gedeeltelijke linkset BAG-BRK",
+    {
+      "@value": "Partial linkset BAG-BRK",
+      "@language": "en"
+    }
+  ],
   "void:sparqlEndpoint": "https://data.labs.pdok.nl/sparql",
   "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/statements_bag_brk.nt.zip",
   "void:target": ["http://bag.basisregistraties.overheid.nl", "http://brk.basisregistraties.overheid.nl"],
