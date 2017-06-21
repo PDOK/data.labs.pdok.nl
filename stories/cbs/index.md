@@ -1,0 +1,15 @@
+---
+layout: story
+title: Kadaster Data Stories ― CBS
+logo: /stories/monument/logo.png
+output: leaflet
+---
+# Statistieken over mijn wijk
+
+TODO
+
+<div data-query data-query-sparql="wijk.rq"></div>
+
+TODO
+
+<div data-query data-query-sparql="buurten.rq"></div>

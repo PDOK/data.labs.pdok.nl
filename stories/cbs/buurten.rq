@@ -1,0 +1,30 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktLabel ?wktColor {
+  bind ("Apeldoorn" as ?woonplaatsNaam)
+  ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
+                      brt:nummer ?registratiefGebiedCode .
+  service <https://data.labs.pdok.nl/sparql> {
+    graph <https://data.pdok.nl/cbs/2015> {
+      bind (concat("GM",?registratiefGebiedCode) as ?gemeenteCode)
+      ?buurt cbs:GM_CODE ?gemeenteCode ;
+             cbs:BU_CODE ?buurtCode ;
+             cbs:WK_CODE ?wijkCode ;
+             geo:hasGeometry/geo:asWKT ?wkt ;
+             cbs:AUTO_TOT  ?autoBuurt ;
+             cbs:OPP_LAND ?oppervlakteBuurt ;
+             cbs:BU_NAAM ?buurtNaam .
+      bind (xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt) as ?autoDichtheidBuurt)
+      bind (concat(
+        '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
+        str(?autoDichtheidBuurt),' auto\'s per m²</p>'
+        ) as ?wktLabel)
+      bind (floor(?autoDichtheidBuurt) * 20 as ?green)
+      bind (255 - (floor(?autoDichtheidBuurt) * 20) as ?red)
+      bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
+    }
+  }
+}
+limit 100
