@@ -34,8 +34,9 @@ $.get('https://data.labs.pdok.nl/api/v1/graphs', sets => {
 
   // Populate miscellaneous
   sets['@graph']
-    .filter(set => !set['@type'].find(
-      type => type === 'http://rdfs.org/ns/void#Linkset' ||
-      type === 'http://rdfs.org/ns/void#Dataset'))
+    .filter(set => !set['@type'].find(type =>
+      type === 'http://rdfs.org/ns/void#Linkset' ||
+      type === 'http://rdfs.org/ns/void#Dataset'
+    ))
     .forEach(dataset => addShowcase(dataset, '#overig-showcases'));
 });
