@@ -17,7 +17,7 @@ function addShowcase(dataset, divId) {
   <h2 class="showcase-title">
     ${dataset['dcterms:title'] ? dataset['dcterms:title'] : uri.split('/').slice(-1)}
   </h2>
-  <a href="${dataset['@id']}">${description}</a>
+  <a href="https://data.labs.pdok.nl/yasgui?query=describe <${dataset['@id']}&gt">${description}</a>
 </div>`);
 }
 
