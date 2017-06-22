@@ -14,7 +14,7 @@ Helaas weten we ook dat er nog enkele zaken niet volledig correct in de basisreg
 <div data-query data-query-sparql="hoogbouw.rq"></div>
 
 # 'Anders' geklassificeerde hoogbouw
-Is er echt niet meer hoogbouw in Nederland? Toch wel: er zijn tamelijk veel gebouwen met een hoogte groter dan 35 meter, die niet zijn aangemerkt als hoogbouw: 
+Is er echt niet meer hoogbouw in Nederland? Toch wel: er zijn gebouwen met een hoogte groter dan 35 meter, die niet zijn aangemerkt als hoogbouw: 
 <div data-query data-query-sparql="laagbouw-maar-hoogbouw.rq" data-query-output="leaflet"></div>
 
 Slechts twee! Waar is dan de overige hoogbouw?
