@@ -2,7 +2,7 @@ prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 prefix cbs: <https://data.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel ?wktColor {
+select ?wkt ?wktLabel ?wktColor ?cafeBuurt ?green ?red {
   bind ("Apeldoorn" as ?woonplaatsNaam)
   ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                       brt:nummer ?registratiefGebiedCode .
@@ -19,8 +19,8 @@ select ?wkt ?wktLabel ?wktColor {
         '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
         str(?cafeBuurt),' km tot café</p>'
         ) as ?wktLabel)
-      bind (floor(?cafeBuurt) * 20 as ?green)
-      bind (255 - (floor(?cafeBuurt) * 20) as ?red)
+      bind (xsd:integer(xsd:float(?cafeBuurt)) * 50 as ?green)
+      bind (255 - (xsd:integer(xsd:float(?cafeBuurt)) * 50) as ?red)
       bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
     }
   }
