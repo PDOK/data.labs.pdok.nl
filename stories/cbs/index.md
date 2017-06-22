@@ -107,11 +107,18 @@ elkaar gescheiden door een snelweg.
 
 <div data-query data-query-sparql="buurten.rq"></div>
 
+De CBS data bevatten nog veel meer statistieken: de afstand tot
+voorzieningen, bioscopen, en restaurants.  De samenstelling van de
+bevolking in leeftijdscathegoriën.  Door meerdere statistieken te
+combineren kan voor alle gebouwen in Nederland een indicator van de
+buurt/omgeving gemaakt worden.
+
 Hoe zit het met de afstand tot cafés door de tijd heen?  Neemt de
 afstand toe of af?  De CBS data zijn beschikbaar voor de jaren
 2010-2016.  Niet alle statistieken worden ieder jaar gemeten, maar
 voor de jaren waarin de afstand tot cafés gemeten is, kunnen we deze
-weergeven in onderstaande query:
+weergeven in onderstaande query.  We zien dat de afstand tot cafés in
+de laatste jaren erg is toegenomen.
 
 <div data-query
      data-query-sparql="tijd.rq"
