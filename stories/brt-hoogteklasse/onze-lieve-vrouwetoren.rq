@@ -2,11 +2,11 @@ PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select * where {
-  <http://brt.basisregistraties.overheid.nl/top10nl/id/gebouw/103010444> a brt:Gebouw ;
+  <http://brt.basisregistraties.overheid.nl/top10nl/id/gebouw/103018712> a brt:Gebouw ;
           geo:hasGeometry/geo:asWKT ?wkt ;
           rdfs:label ?gebouwlabel ;
           brt:hoogteklasse ?hoogteklasse .
           ?hoogteklasse rdfs:label ?hoogteklasselabel
-  bind(concat("<h3>Onze-Lieve-Vrouwetoren</h3><a href='http://brt.basisregistraties.overheid.nl/top10nl/id/gebouw/103010444' target='_blank'>", ?gebouwlabel ,"</a><br>Hoogte: onbekend<br>Hoogteklasse: <a href='", str(?hoogteklasse), "'>", ?hoogteklasselabel, "</a>") as ?wktLabel).
+  bind(concat("<h3>Onze-Lieve-Vrouwetoren</h3><a href='http://brt.basisregistraties.overheid.nl/top10nl/id/gebouw/103018712' target='_blank'>", ?gebouwlabel ,"</a><br>Hoogte: onbekend<br>Hoogteklasse: <a href='", str(?hoogteklasse), "'>", ?hoogteklasselabel, "</a>") as ?wktLabel).
 
 }

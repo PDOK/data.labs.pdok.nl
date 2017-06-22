@@ -19,6 +19,10 @@ Is er echt niet meer hoogbouw in Nederland? Toch wel: er zijn tamelijk veel gebo
 
 Slechts twee! Waar is dan de overige hoogbouw?
 
-Het blijkt dat we over veel gebouwen in Nederland helaas nog niet over hoogte-informatie beschikken, bijvoorbeeld de Onze-Lieve-Vrouwetoren in Amersfoort. Uit [Wikipedia](https://nl.wikipedia.org/wiki/Onze_Lieve_Vrouwetoren_(Amersfoort)) weten we dat deze 98,33 meter hoog is, maar omdat in de BRT de hoogte ontbreekt, wordt deze gedocumenteerd als laagbouw:
+Het blijkt dat we over veel gebouwen in Nederland helaas nog niet over hoogte-informatie beschikken, bijvoorbeeld de Onze-Lieve-Vrouwetoren in Amersfoort. Uit [DBpedia](http://dbpedia.org) weten we dat deze 98,33 meter hoog is:
+
+<div data-query data-query-endpoint="https://dbpedia.org/sparql" data-query-sparql="dbpedia-onze-lieve-vrouwetoren.rq" data-query-output="leaflet"></div>
+
+, maar omdat in de BRT de hoogte ontbreekt, wordt deze gedocumenteerd als laagbouw:
 
 <div data-query data-query-sparql="onze-lieve-vrouwetoren.rq" data-query-output="leaflet"></div>
