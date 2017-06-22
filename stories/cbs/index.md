@@ -30,7 +30,7 @@ bevat (getallen en tekst), maar ook als Linked Data identificatoren.
 Door op de links te klikken kan men door het Kadaster Semantisch Web
 wandelen.  Bijvoorbeeld: door op de
 link
-[_Laan van Westenenk_]() te
+[_Laan van Westenenk_](http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0200300022472362) te
 klikken navigeert men naar de registratie van de bijbehorende openbare
 ruimte.  Hier is meer informatie over deze openbare ruimte
 beschikbaar.  Andere links op de popup in deze query verwijzen naar
@@ -70,7 +70,8 @@ Onderaan de popup in deze query staat bijvoorbeeld het registratief
 gebied waartoe _Laan van Westenenk_ behoord.  Registratieve gebieden
 staan in een andere dataset: de Basisregistratie Topografie (BRT).
 
-<div data-query data-query-sparql="pand.rq"></div>
+<div data-query data-query-sparql="pand.rq">
+</div>
 
 Hierboven lieten we al zien dat Linked Data zich niet beperkt to één
 dataset: BAG en BRT informatie is opvraagbaar vanuit dezelfde query.
@@ -90,7 +91,8 @@ onderstaande query zichtbaar gemaakt.
 _Laan van Westenenk 701_ blijkt in buurt _Wernem_ te liggen (CBS code
 BU02000311), en in wijk _Apeldoorn Zuidwest (CBS code WK02003).
 
-<div data-query data-query-sparql="buurt.rq"></div>
+<div data-query data-query-sparql="buurt.rq">
+</div>
 
 _Laan van Westenenk 701_ lijkt niet de beste plek te zijn voor iemand
 die dicht bij een café in de buurt wil zijn: de afstand voor de buurt
@@ -105,7 +107,8 @@ met een afstand van 1.7 km.  Op de BAG achtergrondkaart is de oorzaak
 van dit grote verschil direct inzichtelijk: beide buurten zijn van
 elkaar gescheiden door een snelweg.
 
-<div data-query data-query-sparql="buurten.rq"></div>
+<div data-query data-query-sparql="buurten.rq">
+</div>
 
 De CBS data bevatten nog veel meer statistieken: de afstand tot
 voorzieningen, bioscopen, en restaurants.  De samenstelling van de
