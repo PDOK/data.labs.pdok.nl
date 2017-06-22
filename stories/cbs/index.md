@@ -106,3 +106,10 @@ van dit grote verschil direct inzichtelijk: beide buurten zijn van
 elkaar gescheiden door een snelweg.
 
 <div data-query data-query-sparql="buurten.rq"></div>
+
+Hoe zit het met de afstand tot cafés door de tijd?  De CBS data zijn
+beschikbaar voor de jaren 2010-2016.  Niet alle statistieken worden
+ieder jaar gemeten, maar voor de jaren waarin de afstand tot cafés
+gemeten is, kunnen we deze weergeven in onderstaande query:
+
+<div data-query data-query-sparql="tijd.rq"></div>
