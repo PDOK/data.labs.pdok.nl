@@ -47,9 +47,11 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
              geo:hasGeometry/geo:asWKT ?oppervlakte ;
              cbs:BU_NAAM ?buurtNaam .
       filter (geof:sfWithin(?punt, ?oppervlakte) = true)
-      ?wijk cbs:WK_CODE ?wijkCode .
+      ?wijk cbs:WK_CODE ?wijkCode ;
+            cbs:WK_NAAM ?wijkNaam .
       filter not exists { ?wijk cbs:BU_CODE [] }
-      ?gemeente cbs:GM_CODE ?gemeenteCode .
+      ?gemeente cbs:GM_CODE ?gemeenteCode ;
+                cbs:GM_NAAM ?gemeenteNaam .
       filter not exists { ?gemeente cbs:WK_CODE [] }
       ?buurt cbs:AF_CAFE ?cafeBuurt .
       ?wijk cbs:AF_CAFE ?cafeWijk .
@@ -67,10 +69,10 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
       #bind (substr(str(xsd:integer(?autoGemeente) / xsd:integer(?oppervlakteGemeente)),1,4)
       #      as ?autoDichtheidGemeente)
       bind (concat(
-        '<p><b>Afstand tot café (',?buurtNaam,')</b></p>',
-        '<p>Buurt <a href="',str(?buurt),'">',str(?buurtCode),'</a>: ',str(?cafeBuurt),' km</p>',
-        '<p>Wijk <a href="',str(?wijk),'">',str(?wijkCode),'</a>: ',str(?cafeWijk),' km</p>',
-        '<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteCode),'</a>: ',str(?cafeGemeente),' km</p>'
+        '<p><b>Afstand tot dichtstbijzijnde café</b></p>',
+        '<p>Buurt <a href="',str(?buurt),'">',str(?buurtNaam),'</a> (',str(?buurtCode),'): ',str(?cafeBuurt),' km</p>',
+        '<p>Wijk <a href="',str(?wijk),'">',str(?wijkNaam),'</a> (',str(?wijkCode),'): ',str(?cafeWijk),' km</p>',
+        '<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteNaam),'</a> (',str(?gemeenteCode),'): ',str(?cafeGemeente),' km</p>'
         ) as ?oppervlakteLabel)
     }
   }

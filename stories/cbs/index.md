@@ -85,10 +85,24 @@ buurt.  We kunnen met Linked Data niet alleen expliciete links volgen,
 maar ook impliciete links.  Ons BAG gebouw en de CBS gegevens voor
 buurten zijn impliciet gelinked middels hun geometrie: het BAG gebouw
 ligt binnen de CBS buurt.  Deze ruimtelijke relatering is in
-onderstaande query zichtbaar.
+onderstaande query zichtbaar gemaakt.
+
+_Laan van Westenenk 701_ blijkt in buurt _Wernem_ te liggen (CBS code
+BU02000311), en in wijk _Apeldoorn Zuidwest (CBS code WK02003).
 
 <div data-query data-query-sparql="buurt.rq"></div>
 
-TODO
+_Laan van Westenenk 701_ lijkt niet de beste plek te zijn voor iemand
+die dicht bij een café in de buurt wil zijn: de afstand voor de buurt
+(Wernem) is groter dan de afstand voor de wijk (Apeldoorn Zuidwest).
+Welke buurten in Apeldoorn hebben de beste toegang tot cafés?  Die
+vraag wordt beantwoord in onderstaande query.
+
+Het centrum heeft, als vanzelfsprekend, kortere afstanden tot cafés.
+Soms verschilt de afstand abrupt tussen twee buurten.  Een voorbeeld
+hiervan zijn _Ugchelen_ met een afstand van 0.8 km, en _Ugchelen-Zuid_
+met een afstand van 1.7 km.  Op de BAG achtergrondkaart is de oorzaak
+van dit grote verschil direct inzichtelijk: beide buurten zijn van
+elkaar gescheiden door een snelweg.
 
 <div data-query data-query-sparql="buurten.rq"></div>
