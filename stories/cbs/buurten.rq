@@ -13,14 +13,11 @@ select ?wkt ?wktLabel ?wktColor {
              cbs:BU_CODE ?buurtCode ;
              cbs:WK_CODE ?wijkCode ;
              geo:hasGeometry/geo:asWKT ?wkt ;
-             cbs:AUTO_TOT  ?autoBuurt ;
-             cbs:OPP_LAND ?oppervlakteBuurt ;
+             cbs:AF_CAFE ?cafeBuurt ;
              cbs:BU_NAAM ?buurtNaam .
-      bind (substr(str(xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt)),1,4)
-            as ?autoDichtheidBuurt)
       bind (concat(
         '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
-        str(?autoDichtheidBuurt),' auto\'s per m²</p>'
+        str(?cafeBuurt),' km tot café</p>'
         ) as ?wktLabel)
       bind (floor(?autoDichtheidBuurt) * 20 as ?green)
       bind (255 - (floor(?autoDichtheidBuurt) * 20) as ?red)

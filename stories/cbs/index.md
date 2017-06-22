@@ -79,10 +79,15 @@ Dat betekent dat we nu _vragen over datasets heen kunnen stellen_.
 Als voorbeeld nemen we
 de
 [CBS Wijk- en Buurtstatistieken](https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken).
-Stel dat we geïnteresseerd zijn in hoeveel auto's er in de omgeving
-van een gebouw
+Stel dat we geïnteresseerd zijn in de afstand van gebouwen tot cafés.
+Informatie over cafés is niet per gebouw opgeslagen, maar wel per
+buurt.  We kunnen met Linked Data niet alleen expliciete links volgen,
+maar ook impliciete links.  Ons BAG gebouw en de CBS gegevens voor
+buurten zijn impliciet gelinked middels hun geometrie: het BAG gebouw
+ligt binnen de CBS buurt.  Deze ruimtelijke relatering is in
+onderstaande query zichtbaar.
 
-<div data-query data-query-sparql="wijk.rq"></div>
+<div data-query data-query-sparql="buurt.rq"></div>
 
 TODO
 
