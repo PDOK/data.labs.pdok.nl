@@ -115,5 +115,5 @@ weergeven in onderstaande query:
 
 <div data-query
      data-query-sparql="tijd.rq"
-     data-query-endpoint="https://data.labs.pdok.n/sparql">
+     data-query-endpoint="https://data.labs.pdok.nl/sparql">
 </div>
