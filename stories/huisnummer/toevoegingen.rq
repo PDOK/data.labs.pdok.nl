@@ -1,0 +1,10 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+select distinct ?huisletter (count(?nummeraanduiding) as ?aantalVoorkomens) {
+  bind ("Apeldoorn" as ?woonplaatsNaam)
+  ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+  ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats .
+  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                    bag:huisletter ?huisletter
+} 
+group by ?huisletter
+order by desc(?aantalVoorkomens)
