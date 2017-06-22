@@ -19,8 +19,8 @@ select ?wkt ?wktLabel ?wktColor {
         '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
         str(?cafeBuurt),' km tot café</p>'
         ) as ?wktLabel)
-      bind (floor(?autoDichtheidBuurt) * 20 as ?green)
-      bind (255 - (floor(?autoDichtheidBuurt) * 20) as ?red)
+      bind (floor(?cafeBuurt) * 20 as ?green)
+      bind (255 - (floor(?cafeBuurt) * 20) as ?red)
       bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
     }
   }
