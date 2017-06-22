@@ -50,23 +50,29 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
       filter not exists { ?wijk cbs:BU_CODE [] }
       ?gemeente cbs:GM_CODE ?gemeenteCode .
       filter not exists { ?gemeente cbs:WK_CODE [] }
-      ?buurt cbs:AUTO_TOT  ?autoBuurt ;
-             cbs:OPP_LAND ?oppervlakteBuurt .
-      ?wijk cbs:AUTO_TOT ?autoWijk ;
-            cbs:OPP_LAND ?oppervlakteWijk .
-      ?gemeente cbs:AUTO_TOT ?autoGemeente ;
-                cbs:OPP_LAND ?oppervlakteGemeente .
-      bind (xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt) as ?autoDichtheidBuurt)
-      bind (xsd:integer(?autoWijk) / xsd:integer(?oppervlakteWijk) as ?autoDichtheidWijk)
-      bind (xsd:integer(?autoGemeente) / xsd:integer(?oppervlakteGemeente) as ?autoDichtheidGemeente)
+      ?buurt cbs:AF_CAFE ?cafeBuurt .
+      ?wijk cbs:AF_CAFE ?cafeWijk .
+      ?gemeente cbs:AF_CAFE ?cafeGemeente .
+      #?buurt cbs:AUTO_TOT  ?autoBuurt ;
+      #       cbs:OPP_LAND ?oppervlakteBuurt .
+      #?wijk cbs:AUTO_TOT ?autoWijk ;
+      #      cbs:OPP_LAND ?oppervlakteWijk .
+      #?gemeente cbs:AUTO_TOT ?autoGemeente ;
+      #          cbs:OPP_LAND ?oppervlakteGemeente .
+      #bind (substr(str(xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt)),1,4)
+      #      as ?autoDichtheidBuurt)
+      #bind (substr(str(xsd:integer(?autoWijk) / xsd:integer(?oppervlakteWijk)),1,4)
+      #      as ?autoDichtheidWijk)
+      #bind (substr(str(xsd:integer(?autoGemeente) / xsd:integer(?oppervlakteGemeente)),1,4)
+      #      as ?autoDichtheidGemeente)
       bind (concat(
-        '<p><b>Dichtheid autobezit</b></p>',
+        '<p><b>Afstand tot café</b></p>',
         '<p>Buurt <a href="',str(?buurt),'">',str(?buurtCode),'</a><br>',
-        str(?autoDichtheidBuurt),' auto\'s per m²</p>',
+        str(?cafeBuurt),' auto\'s per m²</p>',
         '<p>Wijk <a href="',str(?wijk),'">',str(?wijkCode),'</a><br>',
-        str(?autoDichtheidWijk),' auto\'s per m²</p>',
+        str(?cafeWijk),' auto\'s per m²</p>',
         '<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteCode),'</a><br>',
-        str(?autoDichtheidGemeente),' auto\'s per m²</p>'
+        str(?cafeGemeente),' auto\'s per m²</p>'
         ) as ?oppervlakteLabel)
     }
   }

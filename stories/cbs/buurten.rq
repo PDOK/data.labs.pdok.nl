@@ -16,7 +16,8 @@ select ?wkt ?wktLabel ?wktColor {
              cbs:AUTO_TOT  ?autoBuurt ;
              cbs:OPP_LAND ?oppervlakteBuurt ;
              cbs:BU_NAAM ?buurtNaam .
-      bind (xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt) as ?autoDichtheidBuurt)
+      bind (substr(str(xsd:integer(?autoBuurt) / xsd:integer(?oppervlakteBuurt)),1,4)
+            as ?autoDichtheidBuurt)
       bind (concat(
         '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
         str(?autoDichtheidBuurt),' auto\'s per m²</p>'
