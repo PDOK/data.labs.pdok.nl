@@ -1,8 +1,10 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 select distinct ?huisletter (count(?nummeraanduiding) as ?aantalVoorkomens) {
   bind ("Apeldoorn" as ?woonplaatsNaam)
+  #bind ("Laan van Westenenk" as ?straatNaam)
   ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
-  ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats .
+  ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                  bag:naamOpenbareRuimte ?straatNaam .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
                     bag:huisletter ?huisletter
 } 
