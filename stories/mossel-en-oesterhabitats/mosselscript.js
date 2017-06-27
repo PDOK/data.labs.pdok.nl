@@ -16,14 +16,14 @@ select * where {
 order by ?dist_metres
 limit 10`;
 
+YASGUI.YASQE.defaults.value = query;
+
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(location => {
     YASGUI.YASQE.defaults.value = query.replace(
       'POINT(5 52)', `POINT(${location.coords.longitude} ${location.coords.latitude})`
     );
-    console.log(location);
+    YASGUI.sparqlStories();
   });
-} else {
-  YASGUI.YASQE.defaults.value = query;
 }
 
