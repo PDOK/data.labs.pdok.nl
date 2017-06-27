@@ -1,7 +1,7 @@
 ---
 layout: story
-title: Kadaster Data Stories ― CBS
-logo: /stories/monument/logo.png
+title: Kadaster Data Stories ― Huisnummer toevoeging
+logo: /stories/huisnummer/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
