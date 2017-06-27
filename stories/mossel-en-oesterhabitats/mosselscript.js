@@ -11,6 +11,9 @@ select * where {
     bind(geof:distance(
       ?wkt, "POINT(5 52)"^^geo:wktLiteral, uom:metre) as ?dist_metres
     )
+    bind(
+      concat("Op slechts ", str(round(?dist_metres / 1000)), " km. (water)fietsen!" )
+      as ?wktLabel)
   }
 }
 order by ?dist_metres
