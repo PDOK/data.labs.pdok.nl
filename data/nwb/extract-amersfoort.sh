@@ -5,12 +5,14 @@ curl -X POST \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: d736d1ab-f543-0067-87cd-cfb7ab6a6bac' \
-  --data-urlencode "query=PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+  --data-urlencode "query=PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX nwbw:<http://data.labs.pdok.nl/nwb-wegen/def/nwb-wegen#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX nwbw: <http://data.labs.pdok.nl/nwb-wegen/def/nwb-wegen#>
 
 construct {
-  ?uri a nwbw:Wegvak ;
+  ?uri a geo:Feature, nwbw:Wegvak ;
+    rdfs:label ?label ;
     nwbw:junctieEindWegvak ?eindwegvakuri ;
     nwbw:junctieBeginWegvak ?beginwegvakuri ;
 	#optionele dingen
@@ -65,14 +67,13 @@ construct {
 
 } where {
   ?s <urn:col:WVK_ID> ?o ;
-  	<urn:col:WVK_BEGDAT> ?begdat ;
   	<urn:col:JTE_ID_BEG> ?beginwegvak ;
   	<urn:col:JTE_ID_END> ?eindwegvak ;
   	<urn:col:WGVK_LEN_M> ?lengte ;
   	<urn:col:wkt_sha1> ?geomhash ;
-    <urn:col:WKT> ?wkt .
+    <urn:col:WKT> ?wkt_string .
 
-  optional { ?s <urn:col:WVK_BEGDAT> ?begdat }
+  optional { ?s <urn:col:WVK_BEGDAT> ?begin }
   optional { ?s <urn:col:WEGBEHSRT> ?wegbeheersoort }
   optional { ?s <urn:col:WEGNUMMER> ?wegnummer }
   optional { ?s <urn:col:WEGDEELLTR> ?wegdeelletter}
@@ -114,8 +115,14 @@ construct {
   optional { ?s <urn:col:WEGNR_AW> ?wegnummer }
 
   bind(uri(concat('http://data.labs.pdok.nl/nwb-wegen/id/wegvak/', ?o)) as ?uri) .
+  bind(concat('Wegvak ', ?o) as ?label) .
   bind(uri(concat('http://data.labs.pdok.nl/nwb-wegen/id/wegvak/', ?beginwegvak)) as ?beginwegvakuri) .
   bind(uri(concat('http://data.labs.pdok.nl/nwb-wegen/id/wegvak/', ?eindwegvak)) as ?eindwegvakuri) .
   bind(uri(concat('http://data.labs.pdok.nl/nwb-wegen/id/geometry/', ?geomhash)) as ?geomuri) .
   bind(strdt(?lengte, xsd:decimal) as ?lengte_m) .
-}" | sed 's/ \./ <http:\/\/data.labs.pdok.nl\/nwb-wegen> ./' > nwb-wegen-wegvakken.nq
+  bind(strdt(?begin, xsd:date) as ?begdat) .
+  bind(strdt(?wkt_string, geo:wktLiteral) as ?wkt) .
+
+  # Amersfoort
+  filter(?plaatsnaamnen = 'AMERSFOORT')
+}" | sed 's/ \./ <http:\/\/data.labs.pdok.nl\/nwb-wegen> ./' > nwb-wegen-wegvakken-amersfoort.nq

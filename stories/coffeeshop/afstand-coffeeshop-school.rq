@@ -1,0 +1,41 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+
+select distinct ?vbo ?wkt ?wktLabel ?afstand where {
+  {
+    ?vbo a ?type ;
+         rdfs:label ?vbolabel ;
+         bag:pandrelatering ?pand ;
+         geo:hasGeometry/geo:asWKT ?wkt .
+    ?pand rdfs:label ?pandlabel .
+    filter(?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000462567>)
+    bind(concat(
+        "<h3>Coffeeshop</h3>",
+        "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
+        "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+      ) as ?wktLabel)
+  } union {
+    ?vbo a ?type ;
+         rdfs:label ?vbolabel ;
+         bag:pandrelatering ?pand ;
+         geo:hasGeometry/geo:asWKT ?wkt .
+    ?pand rdfs:label ?pandlabel .
+    filter(
+      ?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000519401>
+    )
+    bind(concat(
+        "<h3>School</h3>",
+        "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
+        "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+      ) as ?wktLabel)
+  } union {
+    <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000462567> geo:hasGeometry/geo:asWKT ?punt1 .
+    <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000519401> geo:hasGeometry/geo:asWKT ?punt2 .
+    bind(concat("LINESTRING ((", replace(str(?punt1), "POINT\\s\\((.*)\\)", "$1"), ", ", replace(str(?punt2), "POINT\\s\\((.*)\\)", "$1"), "))") as ?wkt)
+    bind(geof:distance(?punt1, ?punt2, uom:metre) as ?afstand)
+    bind(concat("<h3>Afstand hemelsbreed</h3><br>", str(round(?afstand)), " meter") as ?wktLabel)
+  }
+}

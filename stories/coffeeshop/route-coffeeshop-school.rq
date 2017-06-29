@@ -1,0 +1,42 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX nwbw: <http://data.labs.pdok.nl/nwb-wegen/def/nwb-wegen#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+
+select * where {
+  {
+    service <https://data.pdok.nl/sparql> {
+      select distinct ?vbo ?wkt ?wktLabel ?afstand where {
+        {
+          ?vbo a ?type ;
+               rdfs:label ?vbolabel ;
+               bag:pandrelatering ?pand ;
+               geo:hasGeometry/geo:asWKT ?wkt .
+          ?pand rdfs:label ?pandlabel .
+          filter(?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000462567>)
+          bind(concat(
+              "<h3>Coffeeshop</h3>",
+              "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
+              "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+            ) as ?wktLabel)
+        } union {
+          ?vbo a ?type ;
+               rdfs:label ?vbolabel ;
+               bag:pandrelatering ?pand ;
+               geo:hasGeometry/geo:asWKT ?wkt .
+          ?pand rdfs:label ?pandlabel .
+          filter(
+            ?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000519401>
+          )
+          bind(concat(
+              "<h3>School</h3>",
+              "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
+              "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+            ) as ?wktLabel)
+        }
+      }
+    }
+  }
+}
