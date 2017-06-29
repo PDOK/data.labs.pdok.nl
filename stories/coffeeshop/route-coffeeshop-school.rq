@@ -34,9 +34,23 @@ select * where {
               "<h3>School</h3>",
               "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
               "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
-            ) as ?wktLabel)
+            ) as ?wktLabel) .
+          bind(?wkt as ?punt2) .
         }
       }
     }
+  } union
+  {
+    select * where {
+      ?wegvak a nwbw:Wegvak ;
+              rdfs:label ?wegvaklabel ;
+              geo:hasGeometry/geo:asWKT ?wkt .
+      bind(geof:distance(?punt2, ?wkt, uom:metre) as ?coffeeshop_weg_afstand) .
+      bind(concat(
+              "<h3>Wegvak</h3>",
+              "<a href='", str(?wegvak), "'>", str(?wegvaklabel), "</a>"
+        ) as ?wktLabel)
+    } order by ?coffeeshop_weg_afstand
+    limit 1
   }
 }
