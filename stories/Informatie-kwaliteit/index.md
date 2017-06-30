@@ -6,7 +6,7 @@ endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
 
-#Informatie Kwaliteit
+# Informatie Kwaliteit
 
 
 De kracht van Linked Data wordt vaak aangetoond door middel van het bevragen van meerdere datasets, tegelijkertijd. 
@@ -61,4 +61,4 @@ Hierin staat de dataset met alle metingen, definities en vlaggen. Zie hieronder 
 Gebruikers kunnen dus niet alleen de waardes van de metingen bekijken, maar ook wat ze betekenen.
 
 
-[logo]: /graph-model.png "Quality Measurement Graph"
+[logo]: graph-model.png "Quality Measurement Graph"
