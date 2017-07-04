@@ -12,6 +12,9 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
   bind ("Laan van Westenenk" as ?straatNaam)
   bind (701 as ?huisnummer)
   service <https://data.pdok.nl/sparql> {
+    bind ("Apeldoorn" as ?woonplaatsNaam)
+    bind ("Laan van Westenenk" as ?straatNaam)
+    bind (701 as ?huisnummer)
     ?woonplaats bag:identificatiecode ?woonplaatsCode ;
                 bag:naamWoonplaats ?woonplaatsNaam .
     ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
