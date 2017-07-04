@@ -64,7 +64,7 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
     'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
     'Gehuwd: ',str(?gehuwd),' personen<br>',
     'Ongehuwd: ',str(?ongehuwd),' personen<br>',
-    'Verweduwd: ',str(?verweduwd),' personen<br>',
+    #'Verweduwd: ',str(?verweduwd),' personen<br>',
     'Afstand tot café: ',str(?afstandCafe),' km</p>'
     ) as ?oppervlakteLabel)
   bind (month(?begin) as ?maand)
