@@ -2,9 +2,9 @@ prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?wkt ?wktLabel {
-  bind ("'t Spiker" as ?streetName)
-  bind (24 as ?houseNumber)
-  bind ("Warnsveld" as ?woonplaatsNaam)
+  values (?woonplaatsNaam ?straatNaam ?huisnummer) {
+    ("Warnsveld" "'t Spiker" 24) 
+  }
   ?openbareRuimte bag:naamOpenbareRuimte ?streetName ;
                   bag:bijbehorendeWoonplaats ?woonplaats .
   ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
