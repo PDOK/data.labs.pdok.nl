@@ -61,7 +61,7 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
   bind (concat(
     '<p><b>Afstand tot dichtstbijzijnde café</b></p>',
     '<p>Buurt <a href="',str(?buurt),'">',str(?buurtNaam),'</a> (',str(?buurtCode),'): ',str(?cafeBuurt),' km</p>',
-    '<p>Wijk <a href="',str(?wijk),'">',str(?wijkNaam),'</a> (',str(?wijkCode),'): ',str(?cafeWijk),' km</p>',
+    '<p>Wijk <a href="',str(?wijk),'">',str(?wijkNaam),'</a> (',str(?wijkCode),'): ',str(?cafeWijk),' km</p>'
     #'<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteNaam),'</a> (',str(?gemeenteCode),'): ',str(?cafeGemeente),' km</p>'
     ) as ?oppervlakteLabel)
   bind (month(?begin) as ?maand)
