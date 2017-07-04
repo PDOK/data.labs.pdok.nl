@@ -59,7 +59,7 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
     filter (xsd:integer(?bevolkingsDichtheid) > 0)
   }
   bind (concat(
-    '<p><b>Statistieken voor buurt <a href="',str(?buurt),'">',str(?buurtNaam),'</a></b></p>',
+    '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
     '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
     'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
     'Gehuwd: ',str(?gehuwd),' personen<br>',
