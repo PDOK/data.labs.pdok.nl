@@ -51,18 +51,18 @@ select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
     ?wijk cbs:WK_CODE ?wijkCode ;
           cbs:WK_NAAM ?wijkNaam .
     filter not exists { ?wijk cbs:BU_CODE [] }
-    ?gemeente cbs:GM_CODE ?gemeenteCode ;
-              cbs:GM_NAAM ?gemeenteNaam .
-    filter not exists { ?gemeente cbs:WK_CODE [] }
+    #?gemeente cbs:GM_CODE ?gemeenteCode ;
+    #          cbs:GM_NAAM ?gemeenteNaam .
+    #filter not exists { ?gemeente cbs:WK_CODE [] }
     ?buurt cbs:AF_CAFE ?cafeBuurt .
     ?wijk cbs:AF_CAFE ?cafeWijk .
-    ?gemeente cbs:AF_CAFE ?cafeGemeente .
+    #?gemeente cbs:AF_CAFE ?cafeGemeente .
   }
   bind (concat(
     '<p><b>Afstand tot dichtstbijzijnde café</b></p>',
     '<p>Buurt <a href="',str(?buurt),'">',str(?buurtNaam),'</a> (',str(?buurtCode),'): ',str(?cafeBuurt),' km</p>',
     '<p>Wijk <a href="',str(?wijk),'">',str(?wijkNaam),'</a> (',str(?wijkCode),'): ',str(?cafeWijk),' km</p>',
-    '<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteNaam),'</a> (',str(?gemeenteCode),'): ',str(?cafeGemeente),' km</p>'
+    #'<p>Gemeente <a href="',str(?gemeente),'">',str(?gemeenteNaam),'</a> (',str(?gemeenteCode),'): ',str(?cafeGemeente),' km</p>'
     ) as ?oppervlakteLabel)
   bind (month(?begin) as ?maand)
   bind (if(?maand=1,"januari",
