@@ -3,8 +3,8 @@ prefix cbs: <https://data.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?wkt ?wktLabel ?wktColor ?cafeBuurt ?green ?red {
-  bind ("Apeldoorn" as ?woonplaatsNaam)
-  service <https://data.labs.pdok.nl/sparql> {
+  service <https://data.pdok.nl/sparql> {
+    bind ("Apeldoorn" as ?woonplaatsNaam)
     ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                         brt:nummer ?registratiefGebiedCode
   }
