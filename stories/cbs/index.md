@@ -5,8 +5,6 @@ logo: /stories/cbs/logo.png
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
-# Statistieken over mijn wijk/buurt/gemeente
-
 Alle gebouwen in Nederland zijn vindbaar in de Basisregistratie
 Adressen en Gebouwen (BAG).  Voor gebouwen wordt o.a. de volgende
 informatie opgeslagen:
