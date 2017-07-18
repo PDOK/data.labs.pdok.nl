@@ -2,11 +2,9 @@
 layout: story
 title: Kadaster Data Stories ― CBS
 logo: /stories/cbs/logo.png
-endpoint: https://data.pdok.nl/sparql
+endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
-# Statistieken over mijn wijk/buurt/gemeente
-
 Alle gebouwen in Nederland zijn vindbaar in de Basisregistratie
 Adressen en Gebouwen (BAG).  Voor gebouwen wordt o.a. de volgende
 informatie opgeslagen:
@@ -70,7 +68,8 @@ Onderaan de popup in deze query staat bijvoorbeeld het registratief
 gebied waartoe _Laan van Westenenk_ behoord.  Registratieve gebieden
 staan in een andere dataset: de Basisregistratie Topografie (BRT).
 
-<div data-query data-query-sparql="pand.rq">
+<div data-query data-query-sparql="pand.rq"
+     data-query-endpoint="https://data.pdok.nl/sparql">
 </div>
 
 Hierboven lieten we al zien dat Linked Data zich niet beperkt to één
@@ -124,6 +123,5 @@ weergeven in onderstaande query.  We zien dat de afstand tot cafés in
 de laatste jaren erg is toegenomen.
 
 <div data-query
-     data-query-sparql="tijd.rq"
-     data-query-endpoint="https://data.labs.pdok.nl/sparql">
+     data-query-sparql="tijd.rq">
 </div>
