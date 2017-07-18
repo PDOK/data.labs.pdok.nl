@@ -6,6 +6,12 @@ description: Toelichting op de linkset BAG-BRK
 ---
 # De 'linkset' BAG-BRK
 
+## Disclaimer
+Op deze story en de data die erbij hoort, is de [algemene PDOK disclaimer](https://www.pdok.nl/nl/pdok-producten) van toepassing.
+
+De handleiding en uitleg van de LKO-koppeling kun je vinden in het document: [BRK-BAG koppeling specificatie en bijhouding](https://www.kadaster.nl/documents/20838/87954/BRK-BAG+koppeling+-+specificatie+en+bijhouding/d62103e7-3215-4942-ad90-c76e5fb3097d).
+
+
 ## INSPIRE AR3NA
 Het Kadaster participeert in een initiatief om INSPIRE data beschikbaar te krijgen als Linked Data, en de meerwaarde van deze data aan te tonen. De lead van dit project ligt bij het bedrijf [Netage](http://netage.nl/), dat een demonstrator zal gaan realiseren om het nut van Linked Data voor hulpdiensten aan te tonen.
 
