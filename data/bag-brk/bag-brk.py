@@ -1,11 +1,10 @@
-import requests
-import openpyxl as xl
-import time
+import csv
 import logging
 import sys
 
 from ProgressBar import ProgressBar
 from FindApartment import find_apartment
+from GetParcelURI import get_parcel_uri
 
 
 def init_logging():
@@ -33,127 +32,114 @@ def init_logging():
 
 init_logging()
 
-xlsx = 'Kennemerland-with-uris.xlsx'
-
-wb = xl.load_workbook(xlsx)
-ws = wb['Resultaat BAG']
-number_of_rows = ws.max_row
-row_counter = 0
+graph_name = 'http://data.labs.pdok.nl/linksets/id/bag-brk'
+pand_base_uri = 'http://bag.basisregistraties.overheid.nl/bag/id/pand/'
+link_predicate = 'http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel'
 
 
-def get_parcel_uri(params):
-    # Don't flood the server
-    time.sleep(0.2)
-
-    r = requests.get('https://brk.basisregistraties.overheid.nl/api/v1/perceel', params=params)
-    # Too many requests:
-    if r.status_code == 429:
-        time.sleep(2)  # Give it two seconds to recuperate
-        logging.warning('Retrying due to too many requests')
-        r = requests.get('https://brk.basisregistraties.overheid.nl/api/v1/perceel', params=params)
-    # Other bad response code:
-    elif not r.status_code == 200:
-        # Save results so far
-        wb.save(xlsx)
-        logging.error('Bad request response code %s on %s: %s' % (r.status_code, params, r.text))
-        raise RuntimeError('Bad request response code %s on %s: %s' % (r.status_code, params, r.text))
-
-    response_dict = r.json()
-
-    # Not enough results:
-    if len(response_dict['_embedded']['results']) == 0:
-        raise ValueError('No results for %s' % parameters)
-
-    # Ambiguous results:
-    if len(response_dict['_embedded']['results']) > 1:
-        raise ValueError('Ambiguous multiple results on request: %s' % response_dict['_embedded']['results'])
-
-    uri = response_dict['_embedded']['results'][0]['_links']['source']['href']
-    logging.debug('Found %s' % uri)
-
-    return uri
+# init the array of already processed items
+with open('processed-lines.csv', 'r') as pr:
+    processed = csv.reader(pr)
+    processed_lines = []
+    for line in processed:
+        processed_lines.append(line)
 
 
-for row in ws.iter_rows(min_row=2):  # Skip first row: column name header
-    row_counter += 1
-    ProgressBar.update_progress(row_counter / number_of_rows)
+def is_already_processed(cadastral_designation):
+    for item in processed_lines:
+        if item[0] == cadastral_designation:
+            return True
+    return False
 
-    # If the URI has already been filled in: skip
-    if not row[4].value is None:
-        logging.debug('Skipping already matched row')
-        continue
 
-    if not row[6].value is None:
-        logging.debug('Skipping already tried but failed row')
-        continue
+def run(file_path):
+    row_counter = 0
+    linkset = open('linkset.nq', 'a')
 
-    # Parse particulars from cadastral designation
-    if not row[0].value:
-        continue  # There could be empty rows at the end of the worksheet. We need to skip over them
+    processed_writer = csv.writer(open('processed-lines.csv', 'a', newline=''), quoting=csv.QUOTE_NONNUMERIC)
 
-    # Intermediate saves, every so many objects
-    if row_counter % 200 == 0 and row_counter > 0:
-        logging.debug('Saving intermediate results')
-        wb.save(xlsx)
+    with open(file_path) as lko:
+        lko_reader = csv.reader(lko)
 
-    cadastral_designation = row[0].value
+        with open(file_path) as count_lines:
+            number_of_rows = sum(1 for _ in csv.reader(count_lines))
 
-    parameters = {
-        'kadastraleGemeentecode': cadastral_designation[0:5],  # cadastral municipality name
-        'sectie': cadastral_designation[5:7].strip(),  # cadastral municipality section
-        'perceelnummer': int(cadastral_designation[7:12])  # parcel number
-    }
+        for row in lko_reader:
+            row_counter += 1
+            ProgressBar.update_progress(row_counter / number_of_rows)
 
-    # If labeled with an 'A' for 'apartment' rather than 'G':
-    if cadastral_designation[12] == 'A':
-        logging.debug('Apartment right %s' % cadastral_designation)
-        apartment_designation = cadastral_designation[0:13] + '0000'
-        parcel_matches = find_apartment(apartment_designation)
+            if not row[0]:
+                continue  # There could be empty rows at the end of the data source
 
-        if len(parcel_matches) == 0:
-            logging.error('Unable to find corresponding mother parcel for apartment %s' % apartment_designation)
-            row[6].value = 'Geen moederperceel gevonden'
-            continue
-        elif len(parcel_matches) == 1:
-            # Override parcel parameter for the API lookup to the 'mother parcel'
-            parameters['perceelnummer'] = int(parcel_matches[0][7:12])
+            # If the URI has already been processed: skip
+            if is_already_processed(row[0]):
+                logging.debug('Skipping already matched or failed designation %s' % row[0])
+                continue
 
-            # Save the found mother parcel for reference
-            row[5].value = parcel_matches[0]
-        else:
-            # TODO: add multiple apartment mother parcel matches
-            logging.debug('Multiple mother parcels for apartment %s' % apartment_designation)
-            row[6].value = 'Meerdere percelen, toegevoegd aan einde lijst'
+            # Parse particulars from cadastral designation
+            cadastral_designation = row[0]
+            pand_id = row[1]
+            match_type = row[2]
 
-            for match in parcel_matches:
-                new_row = []
-                for cell in row:
-                    new_row.append(cell.value)
-                # Override parcel parameter for the API lookup to the 'mother parcel'
-                parameters['perceelnummer'] = int(match[7:12])
+            parameters = {
+                'kadastraleGemeentecode': cadastral_designation[0:5],  # cadastral municipality name
+                'sectie': cadastral_designation[5:7].strip(),  # cadastral municipality section
+                'perceelnummer': int(cadastral_designation[7:12])  # parcel number
+            }
 
-                try:
-                    uri = get_parcel_uri(parameters)
-                except ValueError as e:
-                    logging.error(e)
-                    row[6].value = str(e)
+            # If labeled with an 'A' for 'apartment' rather than 'G':
+            if cadastral_designation[12] == 'A':
+                logging.debug('Apartment right %s' % cadastral_designation)
+                apartment_designation = cadastral_designation[0:13] + '0000'
+                parcel_matches = find_apartment(apartment_designation)
+
+                if len(parcel_matches) == 0:
+                    logging.error('Unable to find corresponding mother parcel for apartment %s' % apartment_designation)
+                    parcel_error = 'Geen moederperceel gevonden'
+                    processed_writer.writerow(
+                        [cadastral_designation, pand_id, match_type, None, None, None, parcel_error])
                     continue
+                elif len(parcel_matches) == 1:
+                    # Override parcel parameter for the API lookup to the 'mother parcel'
+                    parameters['perceelnummer'] = int(parcel_matches[0][7:12])
+                else:
+                    # TODO: add multiple apartment mother parcel matches
+                    logging.debug('Multiple mother parcels for apartment %s' % apartment_designation)
 
-                # Save the uri and mother parcel for reference
-                new_row[4] = uri
-                new_row[5] = match
-                ws.append(new_row)
+                    for match in parcel_matches:
+                        # Override parcel parameter for the API lookup to the 'mother parcel'
+                        parameters['perceelnummer'] = int(match[7:12])
 
-    try:
-        uri = get_parcel_uri(parameters)
-    except ValueError as e:
-        logging.error(e)
-        row[6].value = str(e)
-        continue
+                        try:
+                            parcel_uri = get_parcel_uri(parameters)
+                        except ValueError as parcel_error:
+                            logging.error(parcel_error)
+                            processed_writer.writerow(
+                                [cadastral_designation, pand_id, match_type, parcel_uri, '', match, str(parcel_error)])
+                            continue
 
-    row[4].value = uri
+                        # If successful, save the uri and mother parcel for reference
+                        processed_writer.writerow(
+                            [cadastral_designation, pand_id, match_type, parcel_uri, '', match, None])
+                        linkset.write('<%s> <%s> <%s> <%s>. \n' % (
+                            pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
 
-# Finish
-logging.info('Saving one last time...')
-wb.save(xlsx)
-logging.info('Finished!')
+            try:
+                parcel_uri = get_parcel_uri(parameters)
+            except ValueError as parcel_error:
+                logging.error(parcel_error)
+                processed_writer.writerow(
+                    [cadastral_designation, pand_id, match_type, parcel_uri, '', '', str(parcel_error)])
+                continue
+
+            processed_writer.writerow([cadastral_designation, pand_id, match_type, parcel_uri, '', '', None])
+            linkset.write('<%s> <%s> <%s> <%s>. \n' % (pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
+
+    logging.info('Finished!')
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('Please supply the file path to process, exiting')
+    else:
+        file_path = sys.argv[1]
+        run(file_path)
