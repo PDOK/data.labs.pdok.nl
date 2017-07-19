@@ -3,5 +3,10 @@
 /data/bag-brk/logfile.log
 /_site/
 Gemfile.lock
-data/bag-brk/bag_brk_kennemerland.trig
 data/bag-brk/test/
+/data/bag-brk/BRK-Adressen-Koppelingen-Nederland-07062016.csv
+/data/bag-brk/Apprechtcomplex-met-Grondpercelen-mei2017.csv
+/data/bag-brk/linkset.nq
+/data/bag-brk/processed-lines.csv
+/data/bag-brk/Apprechtcomplex-met-Grondpercelen-mei2017.zip
+/data/bag-brk/BRK-Adressen-Koppelingen-Nederland-07062016.zip

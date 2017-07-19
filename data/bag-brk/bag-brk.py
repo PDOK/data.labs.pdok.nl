@@ -38,11 +38,15 @@ link_predicate = 'http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel'
 
 
 # init the array of already processed items
-with open('processed-lines.csv', 'r') as pr:
-    processed = csv.reader(pr)
-    processed_lines = []
-    for line in processed:
-        processed_lines.append(line)
+processed_lines = []
+
+try:
+    with open('processed-lines.csv', 'r') as pr:
+        processed = csv.reader(pr)
+        for line in processed:
+            processed_lines.append(line)
+except Exception as e:
+    logging.warning(e)
 
 
 def is_already_processed(cadastral_designation):
