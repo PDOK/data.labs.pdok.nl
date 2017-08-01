@@ -2,9 +2,9 @@ import csv
 import logging
 import sys
 
-from ProgressBar import ProgressBar
-from FindApartment import find_apartment
-from GetParcelURI import get_parcel_uri
+from modules.ProgressBar import ProgressBar
+from modules.FindApartment import find_apartment
+from modules.GetParcelURI import get_parcel_uri_from_sparql
 
 
 def init_logging():
@@ -61,6 +61,7 @@ def run(file_path):
     linkset = open('linkset.nq', 'a')
 
     processed_writer = csv.writer(open('processed-lines.csv', 'a', newline=''), quoting=csv.QUOTE_NONNUMERIC)
+    progress_bar = ProgressBar()
 
     with open(file_path) as lko:
         lko_reader = csv.reader(lko)
@@ -70,7 +71,7 @@ def run(file_path):
 
         for row in lko_reader:
             row_counter += 1
-            ProgressBar.update_progress(row_counter / number_of_rows)
+            progress_bar.update_progress(row_counter / number_of_rows)
 
             if not row[0]:
                 continue  # There could be empty rows at the end of the data source
@@ -115,7 +116,7 @@ def run(file_path):
                         parameters['perceelnummer'] = int(match[7:12])
 
                         try:
-                            parcel_uri = get_parcel_uri(parameters)
+                            parcel_uri = get_parcel_uri_from_sparql(parameters)
                         except ValueError as parcel_error:
                             logging.error(parcel_error)
                             processed_writer.writerow(
@@ -129,7 +130,7 @@ def run(file_path):
                             pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
 
             try:
-                parcel_uri = get_parcel_uri(parameters)
+                parcel_uri = get_parcel_uri_from_sparql(parameters)
             except ValueError as parcel_error:
                 logging.error(parcel_error)
                 processed_writer.writerow(
