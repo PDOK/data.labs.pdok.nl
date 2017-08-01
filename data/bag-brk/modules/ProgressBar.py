@@ -3,7 +3,6 @@ import sys
 
 """
 Adapted from http://stackoverflow.com/questions/3160699/python-progress-bar
-This module provides a simple console progress bar indicator
 """
 
 
@@ -21,7 +20,7 @@ class ProgressBar:
 
     def update_progress(self, progress):
         """
-        update_progress() : Displays or updates a console progress bar
+        update_progress() : Displays or updates a std out progress bar
 
         The method simply repeats  on the console each time the method is called
         :param progress: Accepts a float between 0 and 1. Any int will be converted to a float.
@@ -44,12 +43,12 @@ class ProgressBar:
         block = int(round(self.bar_length * progress))
         progress_rounded = "{:10.2f}".format(float(progress*100))
         elapseded_time = datetime.datetime.now() - self.start_seconds
-        projected_time = elapseded_time / progress
+        projected_time = (elapseded_time / progress) - elapseded_time
 
         text = "\rPercent: [{0}] {1}% ETA {2} {3}"\
             .format("#" * block + "-" * (self.bar_length - block),
                     progress_rounded,
-                    (str(projected_time.days) + ' days ' + str(projected_time.seconds) + ' seconds'),
+                    str(projected_time),
                     status)
 
         sys.stdout.write(text)
