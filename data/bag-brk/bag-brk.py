@@ -4,7 +4,7 @@ import sys
 
 from modules.ProgressBar import ProgressBar
 from modules.FindApartment import find_apartment
-from modules.GetParcelURI import get_parcel_uri_from_sparql
+from modules.GetParcelURI import ParcelUri
 
 
 def init_logging():
@@ -62,6 +62,7 @@ def run(file_path):
 
     processed_writer = csv.writer(open('processed-lines.csv', 'a', newline=''), quoting=csv.QUOTE_NONNUMERIC)
     progress_bar = ProgressBar()
+    parcelUri = ParcelUri()
 
     with open(file_path) as lko:
         lko_reader = csv.reader(lko)
@@ -116,7 +117,7 @@ def run(file_path):
                         parameters['perceelnummer'] = int(match[7:12])
 
                         try:
-                            parcel_uri = get_parcel_uri_from_sparql(parameters)
+                            parcel_uri = parcelUri.get_parcel_uri_from_sparql(parameters)
                         except ValueError as parcel_error:
                             logging.error(parcel_error)
                             processed_writer.writerow(
@@ -130,7 +131,7 @@ def run(file_path):
                             pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
 
             try:
-                parcel_uri = get_parcel_uri_from_sparql(parameters)
+                parcel_uri = parcelUri.get_parcel_uri_from_sparql(parameters)
             except ValueError as parcel_error:
                 logging.error(parcel_error)
                 processed_writer.writerow(
