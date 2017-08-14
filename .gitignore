@@ -3,9 +3,11 @@
 /data/bag-brk/logfile.log
 /_site/
 Gemfile.lock
-/data/bag-brk/BRK-Adressen-Koppelingen-Nederland-07062016.csv
-/data/bag-brk/Apprechtcomplex-met-Grondpercelen-mei2017.csv
-/data/bag-brk/linkset.nq
-/data/bag-brk/processed-lines.csv
-/data/bag-brk/Apprechtcomplex-met-Grondpercelen-mei2017.zip
-/data/bag-brk/BRK-Adressen-Koppelingen-Nederland-07062016.zip
+/data/bag-brk/data/BRK-Adressen-Koppelingen-Nederland-07062016.csv
+/data/bag-brk/data/Apprechtcomplex-met-Grondpercelen-mei2017.csv
+/data/bag-brk/data/linkset.nq
+/data/bag-brk/data/_processed-lines.csv
+/data/bag-brk/data/Apprechtcomplex-met-Grondpercelen-mei2017.zip
+/data/bag-brk/data/BRK-Adressen-Koppelingen-Nederland-07062016.zip
+/data/bag-brk/data/_processed-lines.db
+/data/bag-brk/db/processed-lines.db

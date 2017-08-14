@@ -16,16 +16,16 @@
     "void:objectsTarget": { "@type": "@id" }
   },
   "@type": ["void:Linkset", "prov:Entity"],
-  "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk_kennemerland",
+  "@id": "http://data.labs.pdok.nl/linksets/id/linksets/bag_brk",
   "rdfs:label": [
-    "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+    "Linkset van BAG nummeraanduidingen naar BRK percelen",
     {
-      "@value": "Partial linkset of BAG addresses to BRK parcels, limited to pertaining to the area of Kennemerland",
+      "@value": "linkset of BAG addresses to BRK parcels",
       "@language": "en"
     }
   ],
   "dcterms:description": [
-    "Gedeeltelijke linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+    "Linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
     {
       "@value": "Partial linkset of BAG addresses to BRK parcels, limited to pertaining to the area of Kennemerland",
       "@language": "en"
@@ -55,11 +55,11 @@
   },
   "prov:wasGeneratedBy": [{
     "@type": "prov:Activity",
-    "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland",
+    "@id": "http://data.labs.pdok.nl/activity/id/bag_brk",
     "prov:wasAssociatedWith": "http://reinvantveer.github.io/me/me.ttl",
-    "rdfs:label": ["Python script voor het opvragen van de BRK percelen uit de BRK API",
+    "rdfs:label": ["Python script voor het opvragen van de BRK URI's en genereren van de linkset",
       {
-        "@value": "Python script for querying the BRK parcels from the BRK API",
+        "@value": "Python script for getting the BRK URIs and generating the linkset",
         "@language": "en"
       }],
     "prov:startedAtTime": "2017-05-16T14:42:00",
@@ -70,18 +70,6 @@
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-KadastraleObjectenEnAdressen.xlsm",
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Apprechtcomplex-met-Grondpercelen.csv"
     ]
-  }, {
-    "@type": "prov:Activity",
-    "@id": "http://data.labs.pdok.nl/activity/id/bag_brk_kennemerland_openrefine",
-    "prov:wasAssociatedWith": "http://reinvantveer.github.io/me/me.ttl",
-    "rdfs:label": ["OpenRefine configuratie voor het omzetten naar Linked Data",
-      {
-        "@value": "OpenRefine configuration for transforming to Linked Data",
-        "@language": "en"
-      }],
-    "prov:startedAtTime": "2017-05-16T15:30:00",
-    "prov:endedAtTime": "2017-05-24T15:35:00",
-    "prov:used": "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris-xlsx.openrefine.tar.gz"
   }
   ],
   "prov:wasAttributedTo": {
