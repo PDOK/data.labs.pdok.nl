@@ -1,5 +1,7 @@
 import csv
 import logging
+import sqlite3
+
 import sys
 
 from modules.ProgressBar import ProgressBar
@@ -33,34 +35,35 @@ def init_logging():
 init_logging()
 
 graph_name = 'http://data.labs.pdok.nl/linksets/id/bag-brk'
-pand_base_uri = 'http://bag.basisregistraties.overheid.nl/bag/id/pand/'
+nummeraanduiding_base_uri = 'http://bag.basisregistraties.overheid.nl/bag/id/nummeraanduiding/'
 link_predicate = 'http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel'
 
 
-# init the array of already processed items
-processed_lines = []
-
-try:
-    with open('processed-lines.csv', 'r') as pr:
-        processed = csv.reader(pr)
-        for line in processed:
-            processed_lines.append(line)
-except Exception as e:
-    logging.warning(e)
+# init the database of already processed items
+conn = sqlite3.connect('db/processed-lines.db')
+cursor = conn.cursor()
 
 
-def is_already_processed(cadastral_designation):
-    for item in processed_lines:
-        if item[0] == cadastral_designation:
-            return True
+def is_already_processed(cadastral_designation, address_id):
+    result = cursor.execute("""
+    SELECT cadastral_designation FROM processed 
+    WHERE cadastral_designation = '%s' AND bag_nummeraanduiding_id = '%s'
+    """ % (cadastral_designation, address_id))
+    for _ in result:
+        return True
     return False
+
+
+def mark_as_processed(particulars):
+    cursor.execute('INSERT INTO processed (cadastral_designation, bag_nummeraanduiding_id, match_type, parcel_uri, '
+                   'dummy, mother_parcel_match, parcel_error) VALUES (?, ?, ?, ?, ?, ?, ?)', particulars)
+    conn.commit()
 
 
 def run(file_path):
     row_counter = 0
-    linkset = open('linkset.nq', 'a')
+    linkset = open('data/linkset.nq', 'a')
 
-    processed_writer = csv.writer(open('processed-lines.csv', 'a', newline=''), quoting=csv.QUOTE_NONNUMERIC)
     progress_bar = ProgressBar()
     parcelUri = ParcelUri()
 
@@ -74,17 +77,20 @@ def run(file_path):
             row_counter += 1
             progress_bar.update_progress(row_counter / number_of_rows)
 
-            if not row[0]:
+            cadastral_id = row[0]
+            address_id = row[1]
+
+            if not cadastral_id:
                 continue  # There could be empty rows at the end of the data source
 
             # If the URI has already been processed: skip
-            if is_already_processed(row[0]):
-                logging.debug('Skipping already matched or failed designation %s' % row[0])
+            if is_already_processed(cadastral_id, address_id):
+                logging.debug('Skipping already matched or failed designation %s' % cadastral_id)
                 continue
 
             # Parse particulars from cadastral designation
-            cadastral_designation = row[0]
-            pand_id = row[1]
+            cadastral_designation = cadastral_id
+            nummeraanduiding_id = row[1]
             match_type = row[2]
 
             parameters = {
@@ -102,8 +108,8 @@ def run(file_path):
                 if len(parcel_matches) == 0:
                     logging.error('Unable to find corresponding mother parcel for apartment %s' % apartment_designation)
                     parcel_error = 'Geen moederperceel gevonden'
-                    processed_writer.writerow(
-                        [cadastral_designation, pand_id, match_type, None, None, None, parcel_error])
+                    mark_as_processed(
+                        [cadastral_designation, nummeraanduiding_id, match_type, None, None, None, parcel_error])
                     continue
                 elif len(parcel_matches) == 1:
                     # Override parcel parameter for the API lookup to the 'mother parcel'
@@ -120,26 +126,27 @@ def run(file_path):
                             parcel_uri = parcelUri.get_parcel_uri_from_sparql(parameters)
                         except ValueError as parcel_error:
                             logging.error(parcel_error)
-                            processed_writer.writerow(
-                                [cadastral_designation, pand_id, match_type, parcel_uri, '', match, str(parcel_error)])
+                            mark_as_processed(
+                                [cadastral_designation, nummeraanduiding_id, match_type, parcel_uri, '', match, str(parcel_error)])
                             continue
 
                         # If successful, save the uri and mother parcel for reference
-                        processed_writer.writerow(
-                            [cadastral_designation, pand_id, match_type, parcel_uri, '', match, None])
+                        mark_as_processed(
+                            [cadastral_designation, nummeraanduiding_id, match_type, parcel_uri, '', match, None])
                         linkset.write('<%s> <%s> <%s> <%s>. \n' % (
-                            pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
+                            nummeraanduiding_base_uri + nummeraanduiding_id, link_predicate, parcel_uri, graph_name))
 
             try:
                 parcel_uri = parcelUri.get_parcel_uri_from_sparql(parameters)
             except ValueError as parcel_error:
                 logging.error(parcel_error)
-                processed_writer.writerow(
-                    [cadastral_designation, pand_id, match_type, parcel_uri, '', '', str(parcel_error)])
+                mark_as_processed(
+                    [cadastral_designation, nummeraanduiding_id, match_type, parcel_uri, '', '', str(parcel_error)])
                 continue
 
-            processed_writer.writerow([cadastral_designation, pand_id, match_type, parcel_uri, '', '', None])
-            linkset.write('<%s> <%s> <%s> <%s>. \n' % (pand_base_uri + pand_id, link_predicate, parcel_uri, graph_name))
+            mark_as_processed([cadastral_designation, nummeraanduiding_id, match_type, parcel_uri, '', '', None])
+            linkset.write('<%s> <%s> <%s> <%s>. \n' % (nummeraanduiding_base_uri + nummeraanduiding_id, link_predicate,
+                                                       parcel_uri, graph_name))
 
     logging.info('Finished!')
 
