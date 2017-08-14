@@ -4,11 +4,11 @@ In het kader van een INSPIRE RDF pilot is er gewerkt aan een linkset tussen de B
 
 ## Bestanden en scripts
 Alle benodigdheden om de brondata in deze set te genereren, is hier te vinden:
-- De [brondata van de linkset](BRK-Adressen-Koppelingen-Nederland-07062016.zip)
+- De [brondata van de linkset](data/BRK-Adressen-Koppelingen-Nederland-07062016.zip)
 - Het [transformatiescript](bag-brk.py)
 
 ## Installatie en gebruik
-Pak de [zip](Inspire-BRK-Adressen-Koppelingen-Nederland-07062016.zip) uit en pak de sub-zips uit. 
+Pak de [zip](data/Inspire-BRK-Adressen-Koppelingen-Nederland-07062016.zip) uit en pak de sub-zips uit. 
 
 Het draaien van het script vereist [Python 3](https://www.python.org/downloads/) (of hoger). Het script gebruikt, buiten standaard libraries, de `requests` bibliotheek:
 `pip install requests`.

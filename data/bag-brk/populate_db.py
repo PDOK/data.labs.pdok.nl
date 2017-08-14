@@ -13,7 +13,7 @@ with open('data/processed-lines.csv', 'r') as pr:
         processed_lines.append(line)
 
 print('Inserting rows into database...')
-c.executemany('INSERT INTO processed (cadastral_designation, bag_pand_id, match_type, parcel_uri, '
+c.executemany('INSERT INTO processed (cadastral_designation, bag_nummeraanduiding_id, match_type, parcel_uri, '
               'dummy, mother_parcel_match, parcel_error) VALUES (?, ?, ?, ?, ?, ?, ?)', processed_lines)
 
 print('Committing records...')
