@@ -14,16 +14,15 @@ Het draaien van het script vereist [Python 3](https://www.python.org/downloads/)
 `pip install requests`.
 
 Draaien van het script gaat als volgt:
+1. Unzip data/Inspire-BRK-Adressen-Koppelingen-Nederland-07062016.zip
+2. Run `python3 create_db.py`
+4. Run `python3 bag-brk.py data/BRK-Adressen-Koppelingen-Nederland-07062016.csv`
 
-```bash
-python bag-brk.py BRK-Adressen-Koppelingen-Nederland-07062016.csv
-```
-
-Het script draait nu ongeveer een dag. Mocht het script crashen, dan is het met hetzelfde commando te hervatten. Het zal dan verder gaan waar het gebleven was. 
+Het script draait nu ongeveer een week. Mocht het script crashen, dan is het met hetzelfde commando te hervatten. Het zal dan verder gaan waar het gebleven was. Het gebruik van een sqlite3 database is met een goede reden: het maakt en index aan van links die al verwerkt zijn. Hiermee wordt niet alleen de hervatting verkort van dagen naar minuten, maar ook het opstarten van het script gaat een stuk sneller en de memory-footprint van het script is aanzienlijk kleiner. 
 
 Wil je alleen een kleine test draaien, gebruik dan:
 ```bash
-python bag-brk.py lko-head.csv
+python bag-brk.py data/lko-head.csv
 ```
 
 De output van de transformatie wordt opgeslagen in `linkset.nq`
