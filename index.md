@@ -14,5 +14,5 @@ We hebben een eigen [sparql endpoint](/sparql)
 ## GeoSPARQL
 We hosten een apart [geosparql endpoint](/geosparql)
 
-## Apps
+## Demonstrators (apps)
 Bekijk de [visualisatie- en dataverwerkingsapplicaties](/apps)
