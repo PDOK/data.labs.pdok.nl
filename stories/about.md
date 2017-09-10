@@ -16,7 +16,7 @@ Data Stories defines the following two HTML elements:
   
     An HTML `div` element with class name `story`.
 
-  * **data query** lement
+  * **data query** element
 
     An HTML `div` element with attribute `data-query`.
 

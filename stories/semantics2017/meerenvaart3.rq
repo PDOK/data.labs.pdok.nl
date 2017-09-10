@@ -1,0 +1,18 @@
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?wkt (CONCAT("<strong>", SAMPLE(?naamOpenbareRuimte), " ", SAMPLE(STR(?huisnummer)), ", ", SAMPLE(?postcode), "</strong><br>", GROUP_CONCAT(DISTINCT ?Verblijfsobject_type; separator="<br>")) as ?wktLabel)
+WHERE {
+  ?Nummeraanduiding a bag:Nummeraanduiding ;
+    bag:postcode ?postcode ;
+    bag:huisnummer ?huisnummer ;
+    bag:bijbehorendeOpenbareRuimte ?OpenbareRuimte .
+  ?Verblijfsobject rdf:type/rdfs:label ?Verblijfsobject_type ;
+    bag:hoofdadres ?Nummeraanduiding ;
+    bag:pandrelatering ?Pand ;
+    geo:hasGeometry/geo:asWKT ?wkt .
+  ?OpenbareRuimte bag:naamOpenbareRuimte ?naamOpenbareRuimte .
+}
+GROUP BY ?wkt
+VALUES ?Pand {<http://bag.basisregistraties.overheid.nl/bag/id/pand/0363100012085435>}
