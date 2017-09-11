@@ -46,14 +46,14 @@ and woonplaats have an associated geometry, which may be a point or polygon.
 Hence it is relatively straightforward to show these geometries on a map:
 
 <div data-query
-     data-query-sparql="meerenvaart2.rq"
+     data-query-sparql="meerenvaart2.rq">
 </div>
 
 Or we could show the verblijfsobject located in the same property as the Meervaart Theatre
 with a pop-up showing more information about the object:
 
 <div data-query
-     data-query-sparql="meerenvaart3.rq"
+     data-query-sparql="meerenvaart3.rq">
 </div>
 
 One of the more subtle aspects to querying the BAG is understanding how change over time
