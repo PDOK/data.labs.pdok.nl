@@ -1,0 +1,7 @@
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+DESCRIBE ?Nummeraanduiding
+WHERE {
+  ?Nummeraanduiding a bag:Nummeraanduiding ;
+    bag:postcode "1068LE" ;
+    bag:huisnummer 300 .
+}
