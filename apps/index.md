@@ -6,7 +6,7 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
-## Proeftuin Omgevingswet Kadaster (OK)
+## Proeftuin Omgevingswet Kadaster
 **Pilot Starten Bierbrouwerij**
 
 *Kadaster in samenwerking met gemeente Emmen en gemeente Nijmegen – april t/m september 2017*
