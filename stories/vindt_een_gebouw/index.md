@@ -1,11 +1,11 @@
 ---
 layout: story
-title: Kadaster Data Stories ― My House
+title: Kadaster Data Stories ― Vindt een gebouw
 logo: /stories/myhouse/logo.png
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
-# Vindt mijn huis
+# Vindt een gebouw
 
 De volgende vraag kan gebruikt worden om een specifieke gebouwen
 (inclusief woonhuizen) te vinden.  De informatie voor een specifiek
