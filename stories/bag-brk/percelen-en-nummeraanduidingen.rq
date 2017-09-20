@@ -8,8 +8,10 @@ select distinct * where {
     select distinct ?nummeraanduiding ?straat ?huisnummer where {
       bind ("Oranjekade"@nl as ?straat)
       ?or_uri rdfs:label ?straat .
-      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
-      ?nummeraanduiding bag:huisnummer ?huisnummer .
+      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri ;
+			  bag:postcode ?postcode ;
+        bag:huisnummer ?huisnummer .
+      filter(strstarts(?postcode, "2011"))
     }
   }
   service <https://data.labs.pdok.nl/sparql> {
