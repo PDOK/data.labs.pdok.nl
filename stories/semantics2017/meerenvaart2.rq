@@ -1,0 +1,17 @@
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+SELECT ?wkt
+WHERE {
+  ?Nummeraanduiding a bag:Nummeraanduiding ;
+    bag:postcode "1068LE" ;
+    bag:huisnummer 300 ;
+    bag:bijbehorendeOpenbareRuimte ?OpenbareRuimte .
+  ?Verblijfsobject bag:hoofdadres ?Nummeraanduiding ;
+    bag:pandrelatering ?Pand .
+  ?OpenbareRuimte bag:bijbehorendeWoonplaats ?Woonplaats .
+  { ?Verblijfsobject geo:hasGeometry/geo:asWKT ?wkt }
+  UNION
+  { ?Pand geo:hasGeometry/geo:asWKT ?wkt }
+  UNION
+  { ?Woonplaats geo:hasGeometry/geo:asWKT ?wkt }
+}

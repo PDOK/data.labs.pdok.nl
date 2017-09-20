@@ -1,0 +1,43 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktLabel {
+  bind ("Apeldoorn" as ?woonplaatsNaam)
+  bind ("Molenstraat-Centrum" as ?straatNaam)
+  bind (1 as ?huisnummer)
+  graph ?openbareRuimteVoorkomen {
+    ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
+                    bag:bijbehorendeWoonplaats ?woonplaats ;
+                    rdfs:isDefinedBy ?openbareRuimteVoorkomen .
+  }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+  graph ?woonplaatsVoorkomen {
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam ;
+                rdfs:isDefinedBy ?woonplaatsVoorkomen .
+  }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+  graph ?nummeraanduidingVoorkomen {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisnummer ;
+                      rdfs:isDefinedBy ?nummeraanduidingVoorkomen .
+  }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+  graph ?verblijfsobjectVoorkomen {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand ;
+                     bag:status ?verblijfsobjectStatus ;
+                     rdfs:isDefinedBy ?verblijfsobjectVoorkomen .
+  }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
+  ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+  graph ?pandVoorkomen {
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+          bag:status ?pandStatus ;
+          rdfs:isDefinedBy ?pandVoorkomen .
+  }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
+  ?pandStatus rdfs:label ?pandStatusLabel .
+  bind (concat('<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4><h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte:',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
+}

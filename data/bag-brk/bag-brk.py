@@ -1,8 +1,7 @@
+import sys
 import csv
 import logging
 import sqlite3
-
-import sys
 
 from modules.ProgressBar import ProgressBar
 from modules.FindApartment import find_apartment
