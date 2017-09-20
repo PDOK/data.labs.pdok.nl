@@ -6,27 +6,22 @@ PREFIX brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
 select distinct * where {
   {
     select distinct ?nummeraanduiding ?straat ?huisnummer where {
-      service <https://data.pdok.nl/sparql> {
-
-            bind ("Oranjekade"@nl as ?straat)
-            ?or_uri rdfs:label ?straat .
-            ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
-            ?nummeraanduiding bag:huisnummer ?huisnummer .
-      }
+      bind ("Oranjekade"@nl as ?straat)
+      ?or_uri rdfs:label ?straat .
+      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
+      ?nummeraanduiding bag:huisnummer ?huisnummer .
     }
   }
   service <https://data.labs.pdok.nl/sparql> {
 	  ?nummeraanduiding dcterms:related ?perceel
   }
-  service <https://data.pdok.nl/sparql> {
-      # Haal de perceelsinformatie op
-    ?perceel a brk:Perceel;
-      brk:begrenzingPerceel ?geom ;
-      brk:perceelnummer ?perceelnummer .
-    ?geom geosparql:asWKT ?wkt .
-    # Vorm eenvoudige html voor de labelinformatie
-    bind(concat(
+  # Haal de perceelsinformatie op
+  ?perceel a brk:Perceel;
+           brk:begrenzingPerceel ?geom ;
+           brk:perceelnummer ?perceelnummer .
+  ?geom geosparql:asWKT ?wkt .
+  # Vorm eenvoudige html voor de labelinformatie
+  bind(concat(
       "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
     ) as ?wktLabel)
-  }
 }
