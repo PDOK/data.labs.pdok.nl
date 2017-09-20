@@ -3,29 +3,30 @@ PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 PREFIX brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
-select distinct ?wkt ?straat ?wktLabel
-where {
-  service <https://data.labs.pdok.nl/sparql> {
-    service <https://data.pdok.nl/sparql> {
-      # Een dubbel-federated SPARQL Call die eerst nummeraanduidingen uit de relevante straat haalt
-      select distinct ?nummeraanduiding ?straat ?huisnummer {
-        bind ("Oranjekade"@nl as ?straat)
-        ?or_uri rdfs:label ?straat .
-        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
-        ?nummeraanduiding bag:huisnummer ?huisnummer .
+select distinct * where {
+  {
+    select distinct ?nummeraanduiding ?straat ?huisnummer where {
+      service <https://data.pdok.nl/sparql> {
+
+            bind ("Oranjekade"@nl as ?straat)
+            ?or_uri rdfs:label ?straat .
+            ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri .
+            ?nummeraanduiding bag:huisnummer ?huisnummer .
       }
     }
-    # dcterms:related wordt ondersteund dankzij de RDF reasoner
-    # De linkset zelf gebruikt een predicaat op maat. Zo is er eenvoudig onderscheid te maken en zijn specifieke definities te geven.
-    ?nummeraanduiding dcterms:related ?perceel
   }
-  # Haal de perceelsinformatie op
-  ?perceel a brk:Perceel;
-    brk:begrenzingPerceel ?geom ;
-    brk:perceelnummer ?perceelnummer .
-  ?geom geosparql:asWKT ?wkt .
-  # Vorm eenvoudige html voor de labelinformatie
-  bind(concat(
-    "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
-  ) as ?wktLabel)
+  service <https://data.labs.pdok.nl/sparql> {
+	  ?nummeraanduiding dcterms:related ?perceel
+  }
+  service <https://data.pdok.nl/sparql> {
+      # Haal de perceelsinformatie op
+    ?perceel a brk:Perceel;
+      brk:begrenzingPerceel ?geom ;
+      brk:perceelnummer ?perceelnummer .
+    ?geom geosparql:asWKT ?wkt .
+    # Vorm eenvoudige html voor de labelinformatie
+    bind(concat(
+      "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
+    ) as ?wktLabel)
+  }
 }

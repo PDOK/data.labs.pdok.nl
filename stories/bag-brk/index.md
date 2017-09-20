@@ -28,4 +28,4 @@ De BAG-BRK linkset is gepubliceerd in een andere RDF store dan die waarmee de BA
 ## Voorbeeld
 Onderstaand een overzicht van een serie nummeraanduidingen en gerelateerde percelen aan de Oranjekade te Haarlem. De meest noordelijke marker betreft een 'outlier': hier zit mogelijk iets fout in de linkset.
 
-<div data-query data-query-endpoint="https://data.pdok.nl/sparql" data-query-sparql="percelen-en-nummeraanduidingen.rq" data-query-output="leaflet" data-showQuery></div>
+<div data-query data-query-endpoint="https://data.labs.pdok.nl/sparql" data-query-sparql="percelen-en-nummeraanduidingen.rq" data-query-output="leaflet" data-showQuery></div>
