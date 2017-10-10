@@ -5,10 +5,17 @@
 
 h1 {
   font-family: Roboto;
+  font-size: 26px;
 }
 
 h2 {
   font-family: inherit;
+  font-size: 22px;
+}
+
+p, ul, ol, table, dl {
+  margin: 0 0 22px;
+  font-size: 16px;
 }
 
 a.github {
