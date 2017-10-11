@@ -17,7 +17,7 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
 <div>
 <h1>Datasets</h1>
 <div id='dataset-showcases' style='width: 100%;'></div>
-</section>
+</div>
 
 <div>
 <h1>Linksets</h1>
