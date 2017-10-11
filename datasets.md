@@ -14,19 +14,19 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
 - [linksets](#linkset-showcases)
 - [overig](#overig-showcases)
 
-<section>
+<div>
 <h1>Datasets</h1>
 <div id='dataset-showcases' style='width: 100%;'></div>
 </section>
 
-<section>
+<div>
 <h1>Linksets</h1>
 PDOK labs verzorgt ook een aantal zogenaamde 'linksets'. Deze linksets verbinden twee datasets door overeenkomende of gerelateerde entiteiten met elkaar te verbinden.
 <div id='linkset-showcases'></div>
-</section>
+</div>
 
-<section>
+<div>
 <h1>Overig</h1>
 <div id='overig-showcases'></div>
 <script src='/assets/js/datasets.js'></script>
-</section>
+</div>
