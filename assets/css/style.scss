@@ -3,9 +3,12 @@
 
 @import 'jekyll-theme-dinky';
 
+/* Wouter commented this out on 2017/10/12 because the YASGUI widgets
+   in Data Storis became too narrow due to this rule.
 .wrapper {
   width: 70%;
 }
+*/
 
 h1 {
   font-family: Roboto;
