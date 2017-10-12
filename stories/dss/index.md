@@ -4,6 +4,7 @@ title: Kadaster Data Stories ― Ships & Sailors
 logo: /stories/dss/logo.jpg
 endpoint: https://semanticweb.cs.vu.nl/dss/sparql/
 ---
+
 # Hands on exercises Dutch Ships and Sailors
 ## By: Victor de Boer
 This page lists SPARQL Queries that you can test on a Dutch

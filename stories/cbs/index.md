@@ -5,6 +5,9 @@ logo: /stories/cbs/logo.png
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
+
+# BAG panden & CBS buurten
+
 Alle gebouwen in Nederland zijn vindbaar in de Basisregistratie
 Adressen en Gebouwen (BAG).  Voor gebouwen wordt o.a. de volgende
 informatie opgeslagen:
