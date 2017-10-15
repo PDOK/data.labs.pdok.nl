@@ -2,7 +2,7 @@
 layout: story
 title: Kadaster Data Stories ― Colored Map
 logo: /stories/municipality/logo.png
-endpoint: https://data.pdok.nl/sparql
+endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
 # Colored Map
