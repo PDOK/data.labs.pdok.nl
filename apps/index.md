@@ -6,6 +6,14 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+## Common Sense demo
+TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet voor het Kadaster. Met deze webapplicatie wordt een kaartgebaseerde visualisatie van de vergunningenafhandeling in Eindhoven gedemonstreerd.
+
+- Het resultaat van de demo is hier te zien: [http://tnopresenter.nl/Vergunningen](http://tnopresenter.nl/Vergunningen)
+- TNO biedt in een presentatie een overzicht van de doelen en functionaliteit, op [http://www.tnopresenter.nl/cs](http://www.tnopresenter.nl/cs)
+- Op YouTube is een demonstratie te zien:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4" frameborder="0" allowfullscreen></iframe> 
+
 ## Proeftuin Omgevingswet Kadaster
 Voor vragen/opmerkingen/feedback/interesse naar meer info etc. m.b.t. één van de onderstaande demo-omgevingen kunt u een mail sturen naar: <omgevingswet@kadaster.nl>
 
@@ -33,3 +41,5 @@ De omgeving is gebaseerd op het idee dat een persoon/initiatiefnemer zich afvraa
 Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende samenwerking tussen deze vijf beoogde informatiehuizen om te komen tot een representatie van de mogelijke samengestelde informatievoorziening vanuit de verschillende betrokken domeinen voor de klantgerichte beantwoording van vragen m.b.t. initiatieven onder de nieuwe Omgevingswet. Via bijbehorende link kunt u de demo-omgeving verkennen. 
  
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
+
+
