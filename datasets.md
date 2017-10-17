@@ -30,3 +30,13 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
   <a href="/stories/cbs/" class="btn showcase-btn">Bekijk de datastory!</a>
   <a href="/dumps/cbs-wijken-en-buurten/" class="btn showcase-btn">Download de dump</a>
 </div>
+
+<div class="showcase" style="background-image: url('/stories/bag-brk/logo.jpg'); background-repeat: no-repeat; background-position: bottom;">
+  <h2>
+    <div class="showcase-title">Linkset BAG-BRK</div>
+  </h2>
+  <p style="background-color: rgba(255, 255, 255, 0.6);">Linkset BAG-BRK met koppelingen van BAG-nummeraanduidingen naar BRK-perceel</p>
+  <br>
+  <a href="/stories/bag-brk/" class="btn showcase-btn">Bekijk de datastory!</a>
+  <a href="/dumps/linkset-bag-brk/" class="btn showcase-btn">Download de dump</a>
+</div>
