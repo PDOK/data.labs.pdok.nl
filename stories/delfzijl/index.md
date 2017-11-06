@@ -2,7 +2,7 @@
 layout: story
 title: Kadaster Data Stories ― CBS
 logo: /stories/cbs/logo.png
-endpoint: https://data.pdok.nl/sparql
+endpoint: https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql
 output: leaflet
 ---
 
@@ -15,7 +15,9 @@ Monumentale panden in Delfzijl:
 
 Datzelfde pand, maar dan in de BAG:
 
-<div data-query data-query-sparql="pand.rq">
+<div data-query
+     data-query-endpoint="https://data.pdok.nl/sparql"
+     data-query-sparql="pand.rq">
 </div>
 
 Geo query tussen de BAG en de BRT:
