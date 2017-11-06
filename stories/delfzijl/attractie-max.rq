@@ -1,0 +1,6 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+select (max(?value) as ?max) {
+  graph <https://data.pdok.nl/cbs/graph/2015> {
+    ?gemeente a cbs:Gemeente ; cbs:attractieAfstand ?value .
+  }
+}

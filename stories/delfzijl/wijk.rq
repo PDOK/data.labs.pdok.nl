@@ -1,6 +1,7 @@
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
 prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
 select ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
   bind (verblijfsobject:0010010000050378 as ?bag)
@@ -8,11 +9,26 @@ select ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
   graph <https://data.pdok.nl/cbs/graph/2015> {
     ?buurt geo:sfWithin* gemeente:GM0010 ;
            geo:hasGeometry/geo:asWKT ?wkt ; 
-           cbs:buurtNaam ?buurtNaam .
+           cbs:buurtNaam ?buurtNaam ;
+           cbs:oprit ?opritValue ;
+           cbs:attracties0-10 ?attr10Value ;
+           cbs:attracties0-20 ?attr20Value ;
+           cbs:treinstation ?treinValue .
     filter (bif:st_within(?wkt0, ?wkt))
   }
+  cbs:treinstation rdfs:label ?treinLabel ; rdfs:comment ?treinDesc .
+  cbs:oprit rdfs:label ?opritLabel ; rdfs:comment ?opritDesc .
+  cbs:attracties0-10 rdfs:label ?attr10Label ; rdfs:comment ?attr10Desc .
+  cbs:attracties0-20 rdfs:label ?attr20Label ; rdfs:comment ?attr20Desc .
   bind ("red" as ?wkt0Color)
   bind (concat('<h3><a href="',?bag,'">BAG</a></h3>') as ?wkt0Label)
-  bind (concat('<h3>CBS buurt ',str(?buurtNaam),'</h3>') as ?wktLabel)
+  bind (concat(
+    '<h3>CBS buurt <a href="',?buurt,'">',str(?buurtNaam),'</a></h3><dl>',
+    '<dt>',?treinLabel,': ',str(?treinValue),'km</dt><dd>',?treinDesc,'</dd>',
+    '<dt>',?opritLabel,': ',str(?opritValue),'km</dt><dd>',?opritDesc,'</dd>',
+    '<dt>',?attr10Label,': ',str(?attr10Value),'</dt><dd>',?attr10Desc,'</dd>',
+    '<dt>',?attr20Label,': ',str(?attr20Value),'</dt><dd>',?attr20Desc,'</dd>',
+    '</dl>'
+  ) as ?wktLabel)
 }
 limit 10

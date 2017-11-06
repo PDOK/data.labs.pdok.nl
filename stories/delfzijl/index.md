@@ -29,3 +29,15 @@ Geo query van BAG pand naar CBS wijk:
 
 <div data-query data-query-sparql="wijk.rq">
 </div>
+
+We gebruiken de maximale afstand tot een attractie als normalizatie
+voor de kleurenkaart:
+
+<div data-query data-query-sparql="attractie-max.rq">
+</div>
+
+Met deze normalizatie waarde kussen we de gemiddelde afstand tot een
+attractie (voor Groningen en Friesland) als ‘heatmap’ weergeven:
+
+<div data-query data-query-sparql="attractie.rq">
+</div>
