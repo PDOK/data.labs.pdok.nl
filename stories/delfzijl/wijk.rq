@@ -1,0 +1,18 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
+select ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
+  bind (verblijfsobject:0010010000050378 as ?bag)
+  bind (bif:st_geomfromtext("POLYGON ((6.925997612937113 53.330772519122775, 6.92605887135979 53.330788342232324, 6.92608309542222 53.33082433801643, 6.9260566629779845 53.33086100021181, 6.925993184813314 53.330878437963804, 6.925935442559749 53.33086061073607, 6.925910253239511 53.330823225368626, 6.92593612882228 53.33078736115431, 6.925997612937113 53.330772519122775))") as ?wkt0)
+  graph <https://data.pdok.nl/cbs/graph/2015> {
+    ?buurt geo:sfWithin* gemeente:GM0010 ;
+           geo:hasGeometry/geo:asWKT ?wkt ; 
+           cbs:buurtNaam ?buurtNaam .
+    filter (bif:st_within(?wkt0, ?wkt))
+  }
+  bind ("red" as ?wkt0Color)
+  bind (concat('<h3><a href="',?bag,'">BAG</a></h3>') as ?wkt0Label)
+  bind (concat('<h3>CBS buurt ',str(?buurtNaam),'</h3>') as ?wktLabel)
+}
+limit 10
