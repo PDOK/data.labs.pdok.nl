@@ -1,16 +1,16 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/def/>
 prefix dct: <http://purl.org/dc/terms/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix rce: <https://cultureelerfgoed.nl/vocab/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel {
+select ?straatNaam ?wkt ?wktLabel {
   bind ("Delfzijl" as ?woonplaatsNaam)
-  #bind ("'t Spiker" as ?straatNaam)
-  #bind (24 as ?huisnummer)
+  bind ("Molenberg" as ?straatNaam)
+  bind (21 as ?huisnummer)
   ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                   bag:naamOpenbareRuimte ?straatNaam ;
                   bag:status ?openbareRuimteStatus .
@@ -51,9 +51,14 @@ select ?wkt ?wktLabel {
         if(?maand=10,"oktober",
         if(?maand=11,"november",
         "december"))))))))))) as ?maandLabel)
+  service <https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql> {
+    ?image foaf:depicts <https://cultureelerfgoed.nl/id/monument/12310> ;
+           rce:locator ?url .
+  }
   bind (concat(
     '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
     '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
+    '<center><a href="',str(?url),'"><img height="125" src="',str(?url),'"></a></center>',
     '<p><b><a href="',str(?pand),'">Pand</a></b><br>',
     'Bouwjaar: ',str(?buildyear),'<br>',
     'Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>',
