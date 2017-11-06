@@ -43,6 +43,9 @@
         {% if site.github.is_project_page %}
         <p>Bekijk onze datasets en services op <a class="header name" href="https://data.pdok.nl">data.pdok.nl</a>!</p>
         {% endif %}
+        <h2>Laatste wijzigingen:</h2>
+        <div id="updates"></div>
+        <script type="application/javascript" src="{{ '/assets/js/latest-updates.js?v=' | append: site.github.build_revision }}"></script>
 
         {% if site.github.is_user_page %}
           <ul>
