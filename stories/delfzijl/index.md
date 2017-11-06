@@ -2,7 +2,7 @@
 layout: story
 title: Kadaster Data Stories ― CBS
 logo: /stories/cbs/logo.png
-endpoint: https://data.labs.pdok.nl/sparql
+endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
