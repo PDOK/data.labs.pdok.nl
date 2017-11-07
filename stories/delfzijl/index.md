@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Kadaster Data Stories ― Delfzijl
-logo: /stories/cbs/logo.png
+logo: /stories/delfzijl/logo.png
 endpoint: https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql
 output: leaflet
 ---
