@@ -8,12 +8,16 @@ output: leaflet
 
 # Delfzijl
 
-## Monumentale panden in Delfzijl
+## Monumentale woning in Delfzijl
 
+<!--
 <div data-query data-query-sparql="monumenten.rq">
 </div>
+-->
 
-## Het eerste monumentale pand in de BAG
+Ik heb een monumentale woning gezien in Delfzijl (<a
+href="TODO"><code>GM0010</code></a>).  Geef me de informatie uit de
+BAG en BRT over deze woning.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
