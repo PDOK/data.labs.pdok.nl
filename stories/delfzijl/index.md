@@ -34,7 +34,7 @@ BAG en BRT over deze woning.
 <div data-query data-query-sparql="wijk.rq">
 </div>
 
-## Afstand tot attracties
+## Afstand tot attracties (CBS)
 
 We gebruiken de maximale afstand tot een attractie als normalizatie
 voor de kleurenkaart:
@@ -46,4 +46,9 @@ Met deze normalizatie waarde kussen we de gemiddelde afstand tot een
 attractie (voor Groningen en Friesland) als ‘heatmap’ weergeven:
 
 <div data-query data-query-sparql="attractie.rq">
+</div>
+
+## Afstand tot kerncentrales (BRT)
+
+<div data-query data-query-sparql="kerncentrales.rq">
 </div>
