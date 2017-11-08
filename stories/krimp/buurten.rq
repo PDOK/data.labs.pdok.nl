@@ -1,0 +1,7 @@
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+
+select ?wkt ?wktLabel where {
+  graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+    ?wktLabel geo:hasGeometry/geo:asWKT ?wkt
+  }
+} limit 100
