@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Krimpgebieden
-logo: krimp/logo.jpg
+logo: /stories/krimp/logo.jpg
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
