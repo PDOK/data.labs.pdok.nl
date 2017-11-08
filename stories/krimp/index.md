@@ -24,8 +24,8 @@ QUERY 1.
 
 Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet de bevolkingsopbouw eruit? Ook vergrijsd? En weinig jeugd is de verwachting?
 
-## Bevolkingsopbouw in steden
-Vraag Wouter/Rein kunnen we dit vergelijken met de vier groten steden, en dat bv. in een tabel eruit gooien?
+## Bevolkingsopbouw in vergelijking
+Vraag Wouter/Rein kunnen we dit vergelijken met de provincie (achterhoek vergelijken met gelderland), en dat bv. in een tabel eruit gooien?  (Kunnen we het ook afzetten tegen het gemiddelde van Nederland?)
 
 We focussen ons op het thema mobiliteit en werk.
 
@@ -39,10 +39,10 @@ query 2:Vergelijken met de rest van NL. Kan dat? In tabel?
 
 Is de reisafstand naar het werk voor de mensen in krimpgebieden groter?
 
-query 3.Reisafstand naar werk van de 9 krimpgebieden, en anderen... (DIT UIT DE AFSTANDBANEN DATASET: WAT IS ER NOG MEER UIT TE HALEN?)
+query 3.Reisafstand naar werk van de 9 krimpgebieden, en anderen... (DIT UIT DE AFSTANDBANEN DATASET) (2013 data)
 
 ## Werk
-Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: WAT NOG MEER UIT DEZE DATASET???)
+Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: )
 
 
 
@@ -50,13 +50,13 @@ Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolk
 Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een 
 
 ## Energiepotentieel
-De wijken waar de grootste mogelijkheden liggen op het verbeteren van het verlies van energie in de woning, liggen die in een krimpgebied of niet; relevante informatie voor het beleid op subsidies.
+De wijken waar de grootste mogelijkheden liggen op het verbeteren van het verlies van energie in de woning, liggen die in een krimpgebied of niet; relevante informatie voor het beleid op subsidies. (ook voor het slopen relevant)
 
 
 
 
 ## Tot slot
-De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Het laatste voorbeeld laat iets zien van de diversiteit en rijkheid van deze dataset door een aantal andere niet eerder gebruikte statistieken van de wijken in de Achterhoek te presenteren. LEX???
+De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Op https://facetcheck.triply.cc/ hebben we een eerste versie van de Wijken en Buurten Browser gezet...
 
 
 
