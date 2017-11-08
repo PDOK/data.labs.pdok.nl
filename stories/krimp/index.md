@@ -53,11 +53,14 @@ Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschi
 De wijken waar de grootste mogelijkheden liggen op het verbeteren van het verlies van energie in de woning, liggen die in een krimpgebied of niet; relevante informatie voor het beleid op subsidies.
 
 
-<div data-query data-query-sparql="buurten.rq">
-</div>
-
-
 
 
 ## Tot slot
 De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Het laatste voorbeeld laat iets zien van de diversiteit en rijkheid van deze dataset door een aantal andere niet eerder gebruikte statistieken van de wijken in de Achterhoek te presenteren. LEX???
+
+
+
+<div data-query data-query-sparql="buurten.rq">
+</div>
+
+
