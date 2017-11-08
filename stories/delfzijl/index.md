@@ -8,12 +8,16 @@ output: leaflet
 
 # Delfzijl
 
-## Monumentale panden in Delfzijl
+## Monumentale woning in Delfzijl
 
+<!--
 <div data-query data-query-sparql="monumenten.rq">
 </div>
+-->
 
-## Het eerste monumentale pand in de BAG
+Ik heb een monumentale woning gezien in Delfzijl (<a
+href="TODO"><code>GM0010</code></a>).  Geef me de informatie uit de
+BAG en BRT over deze woning.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -30,7 +34,7 @@ output: leaflet
 <div data-query data-query-sparql="wijk.rq">
 </div>
 
-## Afstand tot attracties
+## Afstand tot attracties (CBS)
 
 We gebruiken de maximale afstand tot een attractie als normalizatie
 voor de kleurenkaart:
@@ -42,4 +46,9 @@ Met deze normalizatie waarde kussen we de gemiddelde afstand tot een
 attractie (voor Groningen en Friesland) als ‘heatmap’ weergeven:
 
 <div data-query data-query-sparql="attractie.rq">
+</div>
+
+## Afstand tot kerncentrales (BRT)
+
+<div data-query data-query-sparql="kerncentrales.rq">
 </div>
