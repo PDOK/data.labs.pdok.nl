@@ -5,7 +5,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 select
 # ?buurt ?hipheid
-?wkt ?wktColor ?gemeente ?hipheid
+?wkt ?wktColor ?gemeente ?transacties
 where {
   graph <https://data.pdok.nl/cbs/transacties> {
     ?buurt cbs_def:transacties_2016 ?transacties ;
@@ -23,8 +23,8 @@ where {
   graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
    	?buurt geo:hasGeometry/geo:asWKT ?wkt .
   }
-  bind (xsd:integer(?hipheid * 255) as ?green)
-  bind (xsd:integer(255 - (?hipheid * 255)) as ?red)
+  bind (xsd:integer(?transacties / 100 * 255) as ?green)
+  bind (xsd:integer(255 - (?transacties / 100 * 255)) as ?red)
   bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
 }
 order by desc(?hipheid)
