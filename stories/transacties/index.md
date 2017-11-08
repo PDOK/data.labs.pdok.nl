@@ -16,5 +16,6 @@ De data is samengesteld uit een combinatie van woningtransactiegegevens van het 
 </div>
 
 # Gemeente Delfzijl
+Hieronder is het aantal woningtransacties afgezet tegen dezelfde maat als die voor Amsterdam is toegepast (een bereik tussen 0 en 100 transacties per buurt). Wat duidelijk hieruit blijkt, is dat er weinig woningverkopen zijn geweest in vergelijking met een grote stad.
 <div data-query data-query-sparql="delfzijl-hipheid.rq">
 </div>
