@@ -13,7 +13,7 @@ Een uitgebreidere beschrijving van de manier waarop deze technisch tot stand kom
 
 {% for page in site.pages %}
   {% if page.layout == "story" %}
-<div class="showcase" style="background-image: url('{{page.logo}}'); background-repeat: no-repeat; background-position: bottom;">
+<div class="showcase" style="background-image: url('{{page.logo}}'); background-repeat: no-repeat; background-size: cover; background-position: bottom;">
   <h2>
     <div class="showcase-title">{{page.title}}</div>
   </h2>
