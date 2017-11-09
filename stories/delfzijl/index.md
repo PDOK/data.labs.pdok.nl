@@ -63,3 +63,8 @@ In bovenstaande queries werd CBS Wijken en Buurten gebruikt om informatie te pre
 </div>
 
 Met deze data story hebben we laten zien dat we een rijkheid aan informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de BAG, Wijken en Buurten, BRT, Monumenten. En dat we data analyses kunnen doen zonder specifieke tooling.
+
+<div data-query data-query-sparql="thematische_kaart.rq">
+</div>
+
+<img src="brt-Elektriciteitscentrale.png">
