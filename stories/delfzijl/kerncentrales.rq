@@ -16,8 +16,7 @@ select distinct ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
   }
   bind (concat('<p><a href="',?pand,'">BAG</a></p>') as ?wkt0Label)
   bind ("red" as ?wkt0Color)
-
-  bind (geof:distance(?wkt0, ?wkt, uom:metre) / 1000 as ?d)
+  bind (substr(str(geof:distance(?wkt0, ?wkt, uom:metre) / 1000), 1, 5) as ?d)
   bind (concat('<p>Afstand tot kerncentrale: ', ?d, ' km</p>') as ?wktLabel)
 }
 order by asc(?d)
