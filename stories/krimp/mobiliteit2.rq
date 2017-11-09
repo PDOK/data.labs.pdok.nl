@@ -35,7 +35,7 @@ select ?wkt ?wktLabel {
     '<h4>Aantal banen binnen 10km</h4>',
     if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',?nijverheid,' x1.000 👷 (gem. ',?_nijverheid,' x1.000)</p>',
     if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',?landbouw,' x1.000 👷 (gem. ',?_landbouw,' x1.000)</p>',
-    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',?totaal,' x1.000 👷 (gem. ',?_totaal,' x1.000)</p>',
+    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',?totaal,' x1.000 👷 (gem. ',?_totaal,' x1.000)</p>'
   ) as ?wktLabel)
 }
 limit 100
