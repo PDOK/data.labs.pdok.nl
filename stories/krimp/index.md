@@ -75,7 +75,9 @@ query 3.Reisafstand naar werk van de 9 krimpgebieden, en anderen... (DIT UIT DE 
 ## Werk
 Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: )
 
-
+<div data-query
+  data-query-sparql="arbeidsparticipatieKrimp.rq">
+</div>
 
 ## Inzoomen in de wijken...
 Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
