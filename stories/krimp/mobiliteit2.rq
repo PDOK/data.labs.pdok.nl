@@ -9,7 +9,9 @@ select ?wkt ?wktLabel {
   bind (1.48 as ?_kind)
   bind (0.97 as ?_boodschap)
   bind (1.16 as ?_auto)
-  bind (62.88 as ?_arbeid)
+  bind (5.1851 as ?_nijverheid)
+  bind (0.1383 as ?_landbouw)
+  bind (32.2277 as ?_totaal)
   ?gemeente a cbs:Gemeente ;
     geo:hasGeometry/geo:asWKT ?wkt ;
     rdfs:label ?label ;
@@ -18,17 +20,22 @@ select ?wkt ?wktLabel {
     cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?trein ;
     cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?kind ;
     cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?boodschap ;
-    cbs:nettoarbeidsparticipatie_p ?arbeid ;
-    cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?auto .
+    cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?auto ;
+    cbs:werkgelegenheid_aantalbanen_B_Fnijverheidenenergie_Binnen10km_x1000 ?nijverheid ;
+    cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?landbouw ;
+    cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?totaal .
   bind (concat(
     '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',?label,'’</h4>',
     '<p>',if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
     if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',?trein,' km (gem. ',?_trein,' km)<br>',
     if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',?kind,' km (gem. ',?_kind,' km)<br>',
     if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',?boodschap,' km (gem. ',?_boodschap,' km)</p>',
-    '<h4>Autobezit &amp; Arbeidsparticipatie</h4>',
+    '<h4>Autobezit</h4>',
     if(?auto<?_auto,'🠋','🠉'),' Aantal auto\'s per huishouden: ',?auto,' 🚗 (gem. ',?_auto,' 🚗)</p>',
-    if(?arbeid<?_arbeid,'🠋','🠉'),' Arbeidsparticipatie: ',?arbeid,'% (gem. ',?_arbeid,'%)</p>'
+    '<h4>Aantal banen binnen 10km</h4>',
+    if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',?nijverheid,' x1.000 👷 (gem. ',?_nijverheid,' x1.000)</p>',
+    if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',?landbouw,' x1.000 👷 (gem. ',?_landbouw,' x1.000)</p>',
+    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',?totaal,' x1.000 👷 (gem. ',?_totaal,' x1.000)</p>',
   ) as ?wktLabel)
 }
 limit 100
