@@ -10,6 +10,14 @@ output: leaflet
 # Wat weten we over Krimp?
 Krimpregio's en Verstedelijking zijn onderwerpen die maatschappelijk vol in de schijnwerpers staan. Het is een complex vraagstuk. Begin november 2017 vond de CBS/Kadaster Datathon plaats waarin een team van data specialisten van Kadaster en CBS aan de slag zijn gegaan met Linked Data. Samen met datajournalisten Frédérik Ruys en Stephan Okhuijsen is het thema Krimp gekozen voor deze data story.
 
+## Wat zijn de Krimpregio's?
+De krimpregio's die we in Nederland kennen zijn:
+
+<div data-query
+  data-query-sparql="krimpregionamen.rq">
+</div>
+
+
 ## Waar zijn de Krimpregio's?
 
 Allereerst zijn we benieuwd welke krimpregio's we eigenlijk hebben in Nederland, en hoe zijn die over Nederland verdeelt? Het resultaat laat zien dat er 9 krimpgebieden zijn vooral aan de landsgrenzen.
@@ -56,28 +64,27 @@ afstand larger is dan gemiddeld.
 <div data-query data-query-sparql="mobiliteit2.rq"></div>
 
 
-
-
-
-Is de reisafstand naar het werk voor de mensen in krimpgebieden groter? WOUTER
-
-query 3.Reisafstand naar werk van de 9 krimpgebieden, en anderen... (DIT UIT DE AFSTANDBANEN DATASET) (2013 data)
-
 ## Werk
-Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: )  PANO/REIN
+Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de beroepsbevolking heeft een baan?
 
 <div data-query
   data-query-sparql="arbeidsparticipatieKrimp.rq">
 </div>
+
+Wat is over heel Nederland het minimale en maximale arbeidsparticipatiepercentage?
 
 <div data-query
   data-query-output="table"
   data-query-sparql="rangeArbeidsparticipatie.rq">
 </div>
 
+Hoe komen de krimpregio's uit de bus, vergeleken met het Nederlands gemiddelde?
+
 <div data-query
   data-query-sparql="thematischeKrimp.rq">
 </div>
+
+Wat is het beeld over heel Nederland van de arbeidsparticipatie?
 
 <div data-query
   data-query-sparql="thematischeArbeidspNl.rq">

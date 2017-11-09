@@ -1,0 +1,7 @@
+PREFIX cbs: <https://data.pdok.nl/cbs/vocab/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?krimpgebied WHERE {
+ graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
+     ?krimp rdfs:label ?krimpgebied .
+  }
+}
