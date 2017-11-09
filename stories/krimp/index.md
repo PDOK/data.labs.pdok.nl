@@ -27,15 +27,14 @@ Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet d
   data-query-sparql="leeftijdscategorien.rq">
 </div>
 
-## Bevolkingsopbouw in vergelijking
-Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
-We bekijken het aan de hand van één krimpregio. Deze krimpregio kan in de query eenvoudig aangepast worden.
 
 <div data-query
   data-query-sparql="leeftijdscatWijk.rq">
 </div>
 
-
+## Bevolkingsopbouw in vergelijking
+Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
+We bekijken het aan de hand van één krimpregio. Deze krimpregio kan in de query eenvoudig aangepast worden.
 
 <div data-query
   data-query-output="gchart"
