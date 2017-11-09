@@ -41,11 +41,27 @@ Vraag Wouter/Rein kunnen we dit vergelijken met de provincie (achterhoek vergeli
 
 We focussen ons op het thema mobiliteit en werk.
 
-## Mobiliteit een krimpregio...
-Een thema waar we in willen duiken is mobiliteit; zijn voorzieningen in krimpregio's op (grotere) afstand, zijn er meer auto's per huishouden, en zijn de auto's in krimpregio's oud? En zit in een trein station op grotere afstand?
+## Mobiliteit een krimpregio…
 
-query 1: Hoe moeten we dit doen? kunnen we dit per krimpgebied doen? En dus 9 pijltjes op de kaart?
-Kunnen we een tabel doen waarin we de 9 krimpregio's met elkaar vergelijken?
+We zijn geïnteresseerd in de afstanden tot voorzieningen.  Eerst nemen
+we voor allegemeenten de gemiddelde afstanden tot enkele
+voorzieningen:
+
+<div data-query data-query-sparql="mobiliteit2.rq"></div>
+
+Daarna vergelijken we de gmiddelde afstand tot voorzieningen per
+krimpgemeente tot het landelijk gemiddelde (over alle gemeentes):
+
+<div data-query data-query-sparql="mobiliteit2.rq"></div>
+
+Een thema waar we in willen duiken is mobiliteit; zijn voorzieningen
+in krimpregio's op (grotere) afstand, zijn er meer auto's per
+huishouden, en zijn de auto's in krimpregio's oud? En zit in een trein
+station op grotere afstand?
+
+query 1: Hoe moeten we dit doen? kunnen we dit per krimpgebied doen?
+En dus 9 pijltjes op de kaart?  Kunnen we een tabel doen waarin we de
+9 krimpregio's met elkaar vergelijken?
 
 query 2:Vergelijken met de rest van NL. Kan dat? In tabel?
 

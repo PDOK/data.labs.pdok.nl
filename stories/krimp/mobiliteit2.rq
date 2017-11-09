@@ -1,0 +1,28 @@
+# Afstand tot voorzieningen in krimpregio's.
+prefix dct: <http://purl.org/dc/terms/>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktLabel {
+  bind (1.39 as ?_oprit)
+  bind (8.03 as ?_trein)
+  bind (1.48 as ?_kind)
+  bind (0.97 as ?_boodschap)
+  ?gemeente a cbs:Gemeente ;
+    geo:hasGeometry/geo:asWKT ?wkt ;
+    rdfs:label ?label ;
+    dct:partOf [] ;
+    cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?oprit ;
+    cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?trein ;
+    cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?kind ;
+    cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?boodschap .
+  bind (concat(
+    '<h4>Afstanden tot voorzieningen voor krimpgemeente ',?label,'</h4>',
+    '<p>',if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
+    if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',?trein,' km (gem. ',?_trein,' km)<br>',
+    if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',?kind,' km (gem. ',?_kind,' km)<br>',
+    if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',?boodschap,' km (gem. ',?_boodschap,' km)</p>'
+  ) as ?wktLabel)
+}
+limit 100
