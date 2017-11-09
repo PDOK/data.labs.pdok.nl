@@ -50,7 +50,8 @@ We bekijken het aan de hand van één krimpregio. Deze krimpregio kan in de quer
 </div>
 
 
-## Mobiliteit een krimpregio…
+## Mobiliteit in krimpregio's
+
 Hoe is de mobiliteit in een krimpregio? We zijn geïnteresseerd in de afstanden tot bijvoorbeeld de afstand tot de oprit van een hoofdweg, treinstations, kinderdagverblijf, supermarkt en hoeveelheid auto's per huishouden. Eerst nemen
 we voor alle gemeenten de gemiddelde afstanden tot enkele voorzieningen:
 
