@@ -18,7 +18,7 @@ select ?wkt ?wktLabel {
     cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?kind ;
     cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?boodschap .
   bind (concat(
-    '<h4>Afstanden tot voorzieningen voor krimpgemeente ',?label,'</h4>',
+    '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',?label,'’</h4>',
     '<p>',if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
     if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',?trein,' km (gem. ',?_trein,' km)<br>',
     if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',?kind,' km (gem. ',?_kind,' km)<br>',

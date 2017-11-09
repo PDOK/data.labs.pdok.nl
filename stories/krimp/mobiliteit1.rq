@@ -11,8 +11,6 @@ select
   (avg(?_boodschap) as ?boodschap)
 {
   ?gemeente a cbs:Gemeente ;
-    geo:hasGeometry/geo:asWKT ?wkt ;
-    rdfs:label ?label ;
     dct:partOf [] ;
     cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?_oprit ;
     cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?_trein ;
