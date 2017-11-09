@@ -44,6 +44,8 @@ Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende sam
 
 ### FacetCheck
 
+[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
+
 | Eigenschap                     | Aan/uit |
 |--------------------------------+---------|
 | provincie                      | ✓       |
@@ -125,4 +127,4 @@ Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende sam
 | woz                            | ✓       |
 | ziekenhuisAfstand              | ❌      |
 | zonnebank                      | ❌      |
-| zwembad"                       | ❌      |
+| zwembad                        | ❌      |
