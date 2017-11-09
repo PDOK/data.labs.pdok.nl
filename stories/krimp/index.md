@@ -57,10 +57,27 @@ Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolk
 Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
 
 ## Energiepotentieel
-De wijken waar de grootste mogelijkheden liggen op het verbeteren van het verlies van energie in de woning, liggen die in een krimpgebied of niet; relevante informatie voor het beleid op subsidies. (ook voor het slopen relevant)
 
+De wijken waar de grootste mogelijkheden liggen op het verbeteren van
+het verlies van energie in de woning, liggen die in een krimpgebied of
+niet; relevante informatie voor het beleid op subsidies. (ook voor het
+slopen relevant)
 
+Het gemiddelde theoretische besparingspotentieel wordt per gemeente
+gerekend.  Dit besparingspotentieel ligt tussen €25 en €1.900 per
+jaar.  Hieronder vragen we de thematische kaart op, waar blauw/koud
+een laag, en rood/warm een hoog besparingspotentieel aanduidt.  (In de
+query zit een comment ‘<code>#</code>’ die, wanneer verwijdert, ht
+precieze bedrag voor iedere gemeente laat zien.)
 
+<div data-query data-query-sparql="energiepotentieel1.rq">
+</div>
+
+Als we het besparingspotentieel alleen voor de krimpregio's laten
+zien, krijgen we de volgende kaart:
+
+<div data-query data-query-sparql="energiepotentieel2.rq">
+</div>
 
 ## Tot slot
 De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Op https://facetcheck.triply.cc/ hebben we een eerste versie van de Wijken en Buurten Browser gezet...

@@ -1,0 +1,17 @@
+prefix dct: <http://purl.org/dc/terms/>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktColor ?wktLabel {
+  ?gemeente a cbs:Gemeente ;
+            geo:hasGeometry/geo:asWKT ?wkt ;
+            rdfs:label ?label ;
+            dct:partOf [] .
+  graph <https://data.pdok.nl/cbs/energiebesparingspotentie_gemeente> {
+    ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
+  }
+  bind (xsd:float(?euro - 25) / 1900 as ?normalized)
+  bind (concat("jet,",?normalized) as ?wktColor)
+  #bind (concat('<h3>',?label,'</h3><p>€',?euro,',-</p>') as ?wktLabel)
+} 
+limit 100
