@@ -53,15 +53,23 @@ Om de rijkheid van de Wijken en Buurten data....
 | stedelijkheid                  | ✓       |
 | afstandCafé                    | ❌      |
 | antillianen                    | ✓       |
+| percentage antillianen         | ❌      |
 | attractieAfstand               | ✓       |
 | bedrijfsvestigingen            | ✓       |
 | bedrijfsvestigingenA           | ❌      |
+| percentage bedrijfsvestigingenA | ❌     |
 | bedrijfsvestigingenBF          | ❌      |
+| percentage bedrijfsvestigingenBF | ❌    |
 | bedrijfsvestigingenGI          | ❌      |
+| percentage bedrijfsvestigingenGI | ❌    |
 | bedrijfsvestigingenHJ          | ❌      |
+| percentage bedrijfsvestigingenHJ | ❌    |
 | bedrijfsvestigingenKL          | ❌      |
+| percentage bedrijfsvestigingenKL | ❌    |
 | bedrijfsvestigingenMN          | ❌      |
+| percentage bedrijfsvestigingenMN | ❌    |
 | bedrijfsvestigingenRU          | ❌      |
+| percentage bedrijfsvestigingenRU | ❌    |
 | bedrijfsmotorvoertuigen        | ❌      |
 | bevolkingsdichtheid            | ✓       |
 | bibliotheek                    | ❌      |
@@ -77,7 +85,9 @@ Om de rijkheid van de Wijken en Buurten data....
 | geboorte                       | ❌      |
 | geboortePercentage             | ✓       |
 | gehuwd                         | ✓       |
+| percentage gehuwd              | ❌      |
 | gescheiden                     | ✓       |
+| percentage gescheiden          | ❌      |
 | hotelAfstand                   | ❌      |
 | huishoudenGrootte              | ❌      |
 | huishoudens                    | ❌      |
@@ -86,23 +96,32 @@ Om de rijkheid van de Wijken en Buurten data....
 | ijsbaan                        | ❌      |
 | inwoners                       | ✓       |
 | inwoners0-14                   | ✓       |
+| percentage inwoners0-14        | ❌       |
 | inwoners15-24                  | ✓       |
+| percentage inwoners15-24       | ❌       |
 | inwoners25-44                  | ✓       |
+| percentage inwoners25-44       | ❌       |
 | inwoners45-64                  | ✓       |
+| percentage inwoners45-64       | ❌       |
 | inwoners65+                    | ✓       |
+| percentage inwoners65+         | ❌       |
 | kinderdagverblijfAfstand       | ✓       |
 | mannen                         | ✓       |
 | marokkanen                     | ❌      |
+| percentage marokkanen          | ❌      |
 | meergezinswoningen             | ✓       |
 | motortweewielers               | ✓       |
 | nietwesterseAllochtonen        | ❌      |
+| percentage nietwesterseAllochtonen | ❌  |
 | omgevingsadressendichtheid     | ❌      |
 | ongehuwd                       | ✓       |
+| percentage ongehuwd            | ❌      |
 | oppervlakte                    | ✓       |
 | oppervlakteLand                | ✓       |
 | oppervlakteWater               | ✓       |
 | oprit                          | ❌      |
 | overigeNietwesterseAllochtonen | ❌      |
+| percentage overigeNietwesterseAllochtonen | ❌ |
 | overigeWinkelsAfstand          | ❌      |
 | overstapstation                | ❌      |
 | personenautos                  | ❌      |
@@ -117,13 +136,17 @@ Om de rijkheid van de Wijken en Buurten data....
 | sterftePercentage              | ❌      |
 | supermarktAfstand              | ❌      |
 | surinamers                     | ❌      |
+| percentage surinamers          | ❌      |
 | treinstation                   | ❌      |
 | turken                         | ❌      |
+| percentage turken              | ❌      |
 | verweduwd                      | ❌      |
+| percentage verweduwd           | ❌      |
 | vrouwen                        | ✓       |
 | warenhuisAfstand               | ❌      |
 | water                          | ❌      |
 | westerseAllochtonen            | ❌      |
+| percentage westerseAllochtonen | ❌      |
 | woningen                       | ❌      |
 | woz                            | ✓       |
 | ziekenhuisAfstand              | ❌      |
