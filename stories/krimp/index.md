@@ -70,6 +70,21 @@ Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolk
   data-query-sparql="arbeidsparticipatieKrimp.rq">
 </div>
 
+<div data-query
+  data-query-output="table"
+  data-query-sparql="rangeArbeidsparticipatie.rq">
+</div>
+
+<div data-query
+  data-query-sparql="thematischeKrimp.rq">
+</div>
+
+<div data-query
+  data-query-sparql="thematischeArbeidspNl.rq">
+</div>
+
+## Inzoomen in de wijken...
+Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
 
 ## Energiepotentieel
 
@@ -95,5 +110,3 @@ zien, krijgen we de volgende kaart:
 
 ## Tot slot
 De data is rijk...in de CBS/Kadaster datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten 2016 dataset. Op https://facetcheck.triply.cc/ is een eerste versie van de BuurtBrowser beschikbaar op basis van deze dataset.
-
-
