@@ -15,8 +15,7 @@ Deze datastory is gemaakt op de eerste dag van de CBS/Kadaster Datathon, en heef
 </div>
 -->
 
-Ik heb een monumentale woning gezien in Delfzijl, maar ja, het is een krimpgebied. Wil ik daar wel wonen? (<a
-href="TODO"><code>GM0010</code></a>).  Als startpunt wil ik graag weten wat de BAG en BRT weten over deze woning. En, aangezien het een monument betreft, is ook informatie (zoals een foto) vanuit het Monumenten Register ook van harte welkom.
+Ik heb een monumentale woning gezien in Delfzijl, maar ja, het is een krimpgebied. Wil ik daar wel wonen? Als startpunt wil ik graag weten wat de BAG en BRT weten over deze woning. En, aangezien het een monument betreft, is ook informatie (zoals een foto) vanuit het Monumenten Register ook van harte welkom.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"

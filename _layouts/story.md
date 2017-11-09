@@ -16,3 +16,10 @@ layout: default
 YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
 YASGUI.sparqlStories();
 </script>
+
+<style>
+.google-visualization-table .gradient { 
+  color: black; 
+  font-family: inherit;
+}
+</style>
