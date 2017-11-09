@@ -35,9 +35,14 @@ Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet d
   data-query-sparql="leeftijdscatWijk.rq">
 </div>
 
-
 ## Bevolkingsopbouw in vergelijking
-Vraag Wouter/Rein kunnen we dit vergelijken met de provincie (achterhoek vergelijken met gelderland), en dat bv. in een tabel eruit gooien?  (Kunnen we het ook afzetten tegen het gemiddelde van Nederland?)
+Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
+We bekijken het aan de hand van één krimpregio.
+
+<div data-query
+  data-query-output="gchart"
+  data-query-sparql="leeftijdscatKrimpVsNL.rq">
+</div>
 
 We focussen ons op het thema mobiliteit en werk.
 
