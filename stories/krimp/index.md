@@ -48,10 +48,12 @@ We zijn geïnteresseerd in de afstanden tot voorzieningen.  Eerst nemen
 we voor allegemeenten de gemiddelde afstanden tot enkele
 voorzieningen:
 
-<div data-query data-query-sparql="mobiliteit2.rq"></div>
+<div data-query data-query-sparql="mobiliteit1.rq"></div>
 
 Daarna vergelijken we de gmiddelde afstand tot voorzieningen per
-krimpgemeente tot het landelijk gemiddelde (over alle gemeentes):
+krimpgemeente tot het landelijk gemiddelde (over alle gemeentes): ‘🠋’
+betekent dat de afstand korter is dan gemiddeld; ‘🠉’ betekent dat de
+afstand larger is dan gemiddeld.
 
 <div data-query data-query-sparql="mobiliteit2.rq"></div>
 
