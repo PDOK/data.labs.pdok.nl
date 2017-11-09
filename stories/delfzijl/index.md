@@ -43,7 +43,7 @@ Zou er een plaats zijn waar ik beter kan gaan zoeken naar een woning, en wel aar
 <div data-query data-query-sparql="attractie-max.rq">
 </div>
 
-Hiermee kunnen we een thematische kaart voor de afstand tot een attractie maken (voor Groningen en Friesland, maar via de query eenvoudig aan te passen voor andere provincies) als ‘heatmap’ weergeven:
+Hiermee kunnen we een thematische kaart voor de afstand tot een attractie maken (voor Groningen en Friesland, maar via de query eenvoudig aan te passen voor andere provincies):
 
 <div data-query data-query-sparql="attractie.rq">
 </div>
