@@ -94,6 +94,6 @@ zien, krijgen we de volgende kaart:
 </div>
 
 ## Tot slot
-De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Op https://facetcheck.triply.cc/ is een eerste versie van de BuurtBrowser beschikbaar...
+De data is rijk...in de CBS/Kadaster datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten 2016 dataset. Op https://facetcheck.triply.cc/ is een eerste versie van de BuurtBrowser beschikbaar op basis van deze dataset.
 
 
