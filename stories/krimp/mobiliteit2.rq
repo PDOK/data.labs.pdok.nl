@@ -9,7 +9,7 @@ select ?wkt ?wktLabel {
   bind (1.48 as ?_kind)
   bind (0.97 as ?_boodschap)
   bind (1.16 as ?_auto)
-  bind (5.1851 as ?_nijverheid)
+  bind (5.185 as ?_nijverheid)
   bind (0.1383 as ?_landbouw)
   bind (32.2277 as ?_totaal)
   ?gemeente a cbs:Gemeente ;
@@ -33,9 +33,9 @@ select ?wkt ?wktLabel {
     '<h4>Autobezit</h4>',
     if(?auto<?_auto,'🠋','🠉'),' Aantal auto\'s per huishouden: ',?auto,' 🚗 (gem. ',?_auto,' 🚗)</p>',
     '<h4>Aantal banen binnen 10km</h4>',
-    if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',?nijverheid,' x1.000 👷 (gem. ',?_nijverheid,' x1.000)</p>',
-    if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',?landbouw,' x1.000 👷 (gem. ',?_landbouw,' x1.000)</p>',
-    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',?totaal,' x1.000 👷 (gem. ',?_totaal,' x1.000)</p>'
+    if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',xsd:int(?nijverheid*1000),' 👷 (gem. ',xsd:int(?_nijverheid*1000),')<br>',
+    if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',xsd:int(?landbouw*1000),' x1.000 👷 (gem. ',xsd:int(?_landbouw*1000),' x1.000)<br>',
+    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',xsd:int(?totaal*1000),' x1.000 👷 (gem. ',xsd:int(?_totaal*1000),' x1.000)</p>'
   ) as ?wktLabel)
 }
 limit 100
