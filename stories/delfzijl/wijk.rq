@@ -1,34 +1,53 @@
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
 prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
-select ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
-  bind (verblijfsobject:0010010000050378 as ?bag)
-  bind (bif:st_geomfromtext("POLYGON ((6.925997612937113 53.330772519122775, 6.92605887135979 53.330788342232324, 6.92608309542222 53.33082433801643, 6.9260566629779845 53.33086100021181, 6.925993184813314 53.330878437963804, 6.925935442559749 53.33086061073607, 6.925910253239511 53.330823225368626, 6.92593612882228 53.33078736115431, 6.925997612937113 53.330772519122775))") as ?wkt0)
-  graph <https://data.pdok.nl/cbs/graph/2015> {
-    ?buurt geo:sfWithin* gemeente:GM0010 ;
-           geo:hasGeometry/geo:asWKT ?wkt ; 
-           cbs:buurtNaam ?buurtNaam ;
-           cbs:oprit ?opritValue ;
-           cbs:attracties0-10 ?attr10Value ;
-           cbs:attracties0-20 ?attr20Value ;
-           cbs:treinstation ?treinValue .
-    filter (bif:st_within(?wkt0, ?wkt))
-  }
-  cbs:treinstation rdfs:label ?treinLabel ; rdfs:comment ?treinDesc .
-  cbs:oprit rdfs:label ?opritLabel ; rdfs:comment ?opritDesc .
-  cbs:attracties0-10 rdfs:label ?attr10Label ; rdfs:comment ?attr10Desc .
-  cbs:attracties0-20 rdfs:label ?attr20Label ; rdfs:comment ?attr20Desc .
-  bind ("red" as ?wkt0Color)
-  bind (concat('<h3><a href="',?bag,'">BAG</a></h3>') as ?wkt0Label)
-  bind (concat(
-    '<h3>CBS buurt <a href="',?buurt,'">',str(?buurtNaam),'</a></h3><dl>',
-    '<dt>',?treinLabel,': ',str(?treinValue),'km</dt><dd>',?treinDesc,'</dd>',
-    '<dt>',?opritLabel,': ',str(?opritValue),'km</dt><dd>',?opritDesc,'</dd>',
-    '<dt>',?attr10Label,': ',str(?attr10Value),'</dt><dd>',?attr10Desc,'</dd>',
-    '<dt>',?attr20Label,': ',str(?attr20Value),'</dt><dd>',?attr20Desc,'</dd>',
-    '</dl>'
-  ) as ?wktLabel)
-}
-limit 10
+
+
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+PREFIX gemeente: <https://data.pdok.nl/cbs/id/gemeente/2016>
+prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
+
+select * where {
+    bind (verblijfsobject:0010010000050378 as ?bag)
+    bind (strdt("POLYGON ((6.925997612937113 53.330772519122775, 6.92605887135979 53.330788342232324, 6.92608309542222 53.33082433801643, 6.9260566629779845 53.33086100021181, 6.925993184813314 53.330878437963804, 6.925935442559749 53.33086061073607, 6.925910253239511 53.330823225368626, 6.92593612882228 53.33078736115431, 6.925997612937113 53.330772519122775))", geo:wktLiteral) as ?wkt0)
+    ?buurt a cbs:Buurt ;
+        geo:hasGeometry/geo:asWKT ?wkt ;
+        geo:sfWithin/geo:sfWithin gemeente:GM0010 .
+    filter(geof:sfWithin(?wkt0, ?wkt))
+} limit 100
+
+# select ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
+#   bind (verblijfsobject:0010010000050378 as ?bag)
+#   bind (strdt("POLYGON ((6.925997612937113 53.330772519122775, 6.92605887135979 53.330788342232324, 6.92608309542222 53.33082433801643, 6.9260566629779845 53.33086100021181, 6.925993184813314 53.330878437963804, 6.925935442559749 53.33086061073607, 6.925910253239511 53.330823225368626, 6.92593612882228 53.33078736115431, 6.925997612937113 53.330772519122775))", geo:wktLiteral) as ?wkt0)
+#   graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+#     ?buurt a cbs:Buurt ;
+#      geo:sfWithin/geo:sfWithin gemeente:GM0010 .
+#            geo:hasGeometry/geo:asWKT ?wkt ;
+#            # cbs:buurtNaam ?buurtNaam ;
+#            # cbs:oprit ?opritValue ;
+#            # cbs:attracties0-10 ?attr10Value ;
+#            # cbs:attracties0-20 ?attr20Value ;
+#            # cbs:treinstation ?treinValue .
+#     filter(geof:sfWithin(?wkt0, ?wkt))
+#   }
+#   # cbs:treinstation rdfs:label ?treinLabel ; rdfs:comment ?treinDesc .
+#   # cbs:oprit rdfs:label ?opritLabel ; rdfs:comment ?opritDesc .
+#   # cbs:attracties0-10 rdfs:label ?attr10Label ; rdfs:comment ?attr10Desc .
+#   # cbs:attracties0-20 rdfs:label ?attr20Label ; rdfs:comment ?attr20Desc .
+#   bind ("red" as ?wkt0Color)
+#   bind (concat('<h3><a href="',?bag,'">BAG</a></h3>') as ?wkt0Label)
+#   bind (concat(
+#     '<h3>CBS buurt <a href="',?buurt,'">',str(?buurtNaam),'</a></h3><dl>',
+#     '<dt>',?treinLabel,': ',str(?treinValue),'km</dt><dd>',?treinDesc,'</dd>',
+#     '<dt>',?opritLabel,': ',str(?opritValue),'km</dt><dd>',?opritDesc,'</dd>',
+#     '<dt>',?attr10Label,': ',str(?attr10Value),'</dt><dd>',?attr10Desc,'</dd>',
+#     '<dt>',?attr20Label,': ',str(?attr20Value),'</dt><dd>',?attr20Desc,'</dd>',
+#     '</dl>'
+#   ) as ?wktLabel)
+# }
+# limit 10

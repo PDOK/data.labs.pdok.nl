@@ -24,15 +24,13 @@ href="TODO"><code>GM0010</code></a>).  Als startpunt wil ik graag weten wat de B
 </div>
 
 ## Geo query van BAG pand naar BRT gebouw
-Vervolgens...Waarom moeten we dit??? Wouter kan jij hier even tekst maken?
-
-
+Vervolgens kunnen we het bijbehorende BRT gebouw opzoeken:
 <div data-query data-query-sparql="brt.rq">
 </div>
 
+<!-- div data-query data-query-sparql="wijk.rq">
 ## Maar is de Wijk wel interessant? (Geo query van BAG pand naar CBS wijk)
 Maar nu wil ik meer weten over de krimpwijk. Dus gaan we de Wijken en Buurten informatie van CBS bevragen over deze wijk. Klik maar op de blauwe pijl van de wijk....Uit de rijke set van gegevens van Wijken en Buurten hebben we een paar semi-willekeurige items gekozen zoals afstand tot attractieparken, belangrijk voor mijn kinderen. Alle andere items zijn eenvoudig toe te voegen door de query aan te passen.
-<!--div data-query data-query-sparql="wijk.rq">
 </div -->
 
 ## Afstand tot attracties
@@ -50,11 +48,6 @@ Hiermee kunnen we een thematische kaart voor de afstand tot een attractie maken 
   data-query-endpoint="https://data.labs.pdok.nl/sparql" 
   data-query-sparql="attractie.rq">
 </div>
-
-
-## Criminaliteit
-De overlast van hangjongeren vind ik onplezierig, en ik wil daarom graag weten of het risico in deze wijk daarop aanwezig is. Met bijvoorbeeld data over jeugdzorgtrajecten kan ik een indicatie krijgen:
-
 
 ## Afstand tot kerncentrales (BRT)
 In bovenstaande queries werd CBS Wijken en Buurten gebruikt om informatie te presenteren, maar er is zoveel meer informatie beschikbaar! Bijvoorbeeld de BRT bevat een schat aan informatie (met name de "Functioneel Gebieden" en "Gebouwen": https://brt.basisregistraties.overheid.nl/query/model). Bijvoorbeeld ik wil ook weten op welke afstand de kerncentrales uit Nederland liggen. (deze query is eenvoudig aan te passen voor andere gebouwen)
