@@ -4,21 +4,23 @@ title: Krimpgebieden
 logo: /stories/krimp/logo.jpg
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
---- 
-weg te halen: 
+---
+weg te halen:
 WOUTER/Rein: Misschien ook wel erg leuk om niet alleen queries te doen met resultaten op een kaartje....maar ook een paar met een mooie grafiek....(zolang het maar geen piecharts zijn...)
 Ook bij een paar queries goed om aan te geven hoe een paar queries zijn aan te passen met andere waardes
 
 ---
 
 # Wat weten we over Krimp?
-Krimpregio's en Verstedelijking zijn onderwerpen die maatschappelijk vol in de schijnwerpers staan. Het is een complex vraagstuk. Begin november 2017 vond de CBS/Kadaster Datathon plaats waarin een team van data specialisten van Kadaster en CBS aan de slag zijn gegaan met Linked Data. Samen met datajournalisten Frédérik Ruys en Stephan Okhuijsen is het thema Krimp gekozen voor deze data story. 
+Krimpregio's en Verstedelijking zijn onderwerpen die maatschappelijk vol in de schijnwerpers staan. Het is een complex vraagstuk. Begin november 2017 vond de CBS/Kadaster Datathon plaats waarin een team van data specialisten van Kadaster en CBS aan de slag zijn gegaan met Linked Data. Samen met datajournalisten Frédérik Ruys en Stephan Okhuijsen is het thema Krimp gekozen voor deze data story.
 
 ## Waar zijn de Krimpregio's?
 
 Allereerst zijn we benieuwd welke krimpregio's we eigenlijk hebben in Nederland, en hoe zijn die over Nederland verdeelt? Het resultaat laat zien dat er 9 krimpgebieden zijn vooral aan de landsgrenzen.
 
-QUERY 1.
+<div data-query
+     data-query-sparql="krimpregios.rq">
+</div>
 
 ## Bevolkingsopbouw
 
@@ -32,7 +34,7 @@ We focussen ons op het thema mobiliteit en werk.
 ## Mobiliteit een krimpregio...
 Een thema waar we in willen duiken is mobiliteit; zijn voorzieningen in krimpregio's op (grotere) afstand, zijn er meer auto's per huishouden, en zijn de auto's in krimpregio's oud? En zit in een trein station op grotere afstand?
 
-query 1: Hoe moeten we dit doen? kunnen we dit per krimpgebied doen? En dus 9 pijltjes op de kaart? 
+query 1: Hoe moeten we dit doen? kunnen we dit per krimpgebied doen? En dus 9 pijltjes op de kaart?
 Kunnen we een tabel doen waarin we de 9 krimpregio's met elkaar vergelijken?
 
 query 2:Vergelijken met de rest van NL. Kan dat? In tabel?
@@ -47,7 +49,7 @@ Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolk
 
 
 ## Inzoomen in de wijken...
-Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een 
+Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
 
 ## Energiepotentieel
 De wijken waar de grootste mogelijkheden liggen op het verbeteren van het verlies van energie in de woning, liggen die in een krimpgebied of niet; relevante informatie voor het beleid op subsidies. (ook voor het slopen relevant)
@@ -62,5 +64,3 @@ De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data
 
 <div data-query data-query-sparql="buurten.rq">
 </div>
-
-

@@ -42,7 +42,10 @@ Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende sam
  
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
 
-### FacetCheck
+### De BuurtBrowser (met FacetCheck)
+Om de rijkheid van de Wijken en Buurten data....
+
+[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
 
 | Eigenschap                     | Aan/uit |
 |--------------------------------+---------|
@@ -125,4 +128,4 @@ Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende sam
 | woz                            | ✓       |
 | ziekenhuisAfstand              | ❌      |
 | zonnebank                      | ❌      |
-| zwembad"                       | ❌      |
+| zwembad                        | ❌      |
