@@ -5,11 +5,7 @@ logo: /stories/krimp/logo.jpg
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 ---
-weg te halen:
-WOUTER/Rein: Misschien ook wel erg leuk om niet alleen queries te doen met resultaten op een kaartje....maar ook een paar met een mooie grafiek....(zolang het maar geen piecharts zijn...)
-Ook bij een paar queries goed om aan te geven hoe een paar queries zijn aan te passen met andere waardes
 
----
 
 # Wat weten we over Krimp?
 Krimpregio's en Verstedelijking zijn onderwerpen die maatschappelijk vol in de schijnwerpers staan. Het is een complex vraagstuk. Begin november 2017 vond de CBS/Kadaster Datathon plaats waarin een team van data specialisten van Kadaster en CBS aan de slag zijn gegaan met Linked Data. Samen met datajournalisten Frédérik Ruys en Stephan Okhuijsen is het thema Krimp gekozen voor deze data story.
@@ -35,9 +31,14 @@ Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet d
   data-query-sparql="leeftijdscatWijk.rq">
 </div>
 
-
 ## Bevolkingsopbouw in vergelijking
-Vraag Wouter/Rein kunnen we dit vergelijken met de provincie (achterhoek vergelijken met gelderland), en dat bv. in een tabel eruit gooien?  (Kunnen we het ook afzetten tegen het gemiddelde van Nederland?)
+Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
+We bekijken het aan de hand van één krimpregio.
+
+<div data-query
+  data-query-output="gchart"
+  data-query-sparql="leeftijdscatKrimpVsNL.rq">
+</div>
 
 We focussen ons op het thema mobiliteit en werk.
 
@@ -101,9 +102,6 @@ zien, krijgen we de volgende kaart:
 </div>
 
 ## Tot slot
-De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Op https://facetcheck.triply.cc/ hebben we een eerste versie van de Wijken en Buurten Browser gezet...
+De data is rijk...in de datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten dataset. Op https://facetcheck.triply.cc/ is een eerste versie van de BuurtBrowser beschikbaar...
 
 
-
-<div data-query data-query-sparql="buurten.rq">
-</div>

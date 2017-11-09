@@ -25,10 +25,6 @@ select ?regionaam
           ?gemeente a cbs:Gemeente .
           ?regio ^dct:partOf ?gemeente .
         }
-        graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
-          ?gemeente geo:hasGeometry ?geom .
-          ?geom geo:asWKT ?wkt .
-        }
         graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
           ?gemeente wibu:bevolking_Aantalinwoners_aantal ?g_tot ;
                     wibu:bevolking_Leeftijdsgroepen_0tot15jaar_aantal ?g_lg1 ;
