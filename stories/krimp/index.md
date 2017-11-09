@@ -27,67 +27,56 @@ Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet d
   data-query-sparql="leeftijdscategorien.rq">
 </div>
 
+## Bevolkingsopbouw in vergelijking
+Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
+We bekijken het aan de hand van één krimpregio. Deze krimpregio kan in de query eenvoudig aangepast worden.
+
 <div data-query
   data-query-sparql="leeftijdscatWijk.rq">
 </div>
 
-## Bevolkingsopbouw in vergelijking
-Hoe is de verhouding over de verschillende leeftijdsgroepen in krimpgebieden versus heel Nederland?
-We bekijken het aan de hand van één krimpregio.
+
 
 <div data-query
   data-query-output="gchart"
   data-query-sparql="leeftijdscatKrimpVsNL.rq">
 </div>
 
-We focussen ons op het thema mobiliteit en werk.
 
 ## Mobiliteit een krimpregio…
-
-We zijn geïnteresseerd in de afstanden tot voorzieningen.  Eerst nemen
-we voor allegemeenten de gemiddelde afstanden tot enkele
-voorzieningen:
+Hoe is de mobiliteit in een krimpregio? We zijn geïnteresseerd in de afstanden tot bijvoorbeeld de afstand tot de oprit van een hoofdweg, treinstations, kinderdagverblijf, supermarkt en hoeveelheid auto's per huishouden. Eerst nemen
+we voor alle gemeenten de gemiddelde afstanden tot enkele voorzieningen:
 
 <div data-query data-query-sparql="mobiliteit1.rq"></div>
 
-Daarna vergelijken we de gmiddelde afstand tot voorzieningen per
+Daarna vergelijken we de gemiddelde afstand tot voorzieningen per
 krimpgemeente tot het landelijk gemiddelde (over alle gemeentes): ‘🠋’
 betekent dat de afstand korter is dan gemiddeld; ‘🠉’ betekent dat de
 afstand larger is dan gemiddeld.
 
 <div data-query data-query-sparql="mobiliteit2.rq"></div>
 
-Een thema waar we in willen duiken is mobiliteit; zijn voorzieningen
-in krimpregio's op (grotere) afstand, zijn er meer auto's per
-huishouden, en zijn de auto's in krimpregio's oud? En zit in een trein
-station op grotere afstand?
 
-query 1: Hoe moeten we dit doen? kunnen we dit per krimpgebied doen?
-En dus 9 pijltjes op de kaart?  Kunnen we een tabel doen waarin we de
-9 krimpregio's met elkaar vergelijken?
 
-query 2:Vergelijken met de rest van NL. Kan dat? In tabel?
 
-Is de reisafstand naar het werk voor de mensen in krimpgebieden groter?
+
+Is de reisafstand naar het werk voor de mensen in krimpgebieden groter? WOUTER
 
 query 3.Reisafstand naar werk van de 9 krimpgebieden, en anderen... (DIT UIT DE AFSTANDBANEN DATASET) (2013 data)
 
 ## Werk
-Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: )
+Dat brengt ons eigenlijk automatisch bij het thema werk. Welk deel van de bevolking is deel van de beroepsbevolking en heeft een baan? (Arbeidsdeelname dataset: )  PANO/REIN
 
 <div data-query
   data-query-sparql="arbeidsparticipatieKrimp.rq">
 </div>
 
-## Inzoomen in de wijken...
-Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
 
 ## Energiepotentieel
 
 De wijken waar de grootste mogelijkheden liggen op het verbeteren van
 het verlies van energie in de woning, liggen die in een krimpgebied of
-niet; relevante informatie voor het beleid op subsidies. (ook voor het
-slopen relevant)
+niet; relevante informatie voor het beleid op subsidies, of voor het slopen van woningen in krimpgebieden.
 
 Het gemiddelde theoretische besparingspotentieel wordt per gemeente
 gerekend.  Dit besparingspotentieel ligt tussen €25 en €1.900 per
