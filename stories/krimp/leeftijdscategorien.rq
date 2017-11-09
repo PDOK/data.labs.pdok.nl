@@ -1,0 +1,31 @@
+PREFIX cbs: <https://data.pdok.nl/cbs/vocab/>
+PREFIX wibu: <https://data.pdok.nl/cbs/vocab/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?regionaam
+((?inw_0_15 / ?inw_tot) as ?verhouding_inwoners_0_tot_15_jaar ) {
+  select ?regionaam (sum(?g_lg1) as ?inw_0_15 ) (sum(?g_tot) as ?inw_tot )
+  where {
+    {
+      select ?regio ?gemeente ?wkt ?g_lg1 ?g_tot
+      where {
+        graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
+          ?gemeente a cbs:Gemeente .
+          ?regio ^dct:partOf ?gemeente .
+        }
+        graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
+          ?gemeente geo:hasGeometry ?geom .
+          ?geom geo:asWKT ?wkt .
+        }
+        graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+          ?gemeente wibu:bevolking_Leeftijdsgroepen_0tot15jaar_aantal ?g_lg1 ;
+                    wibu:bevolking_Aantalinwoners_aantal ?g_tot .
+        }
+      }
+    }
+    ?regio rdfs:label ?regionaam
+  }
+  group by ?regionaam
+}

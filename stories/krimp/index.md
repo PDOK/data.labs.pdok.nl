@@ -19,12 +19,17 @@ Krimpregio's en Verstedelijking zijn onderwerpen die maatschappelijk vol in de s
 Allereerst zijn we benieuwd welke krimpregio's we eigenlijk hebben in Nederland, en hoe zijn die over Nederland verdeelt? Het resultaat laat zien dat er 9 krimpgebieden zijn vooral aan de landsgrenzen.
 
 <div data-query
-     data-query-sparql="krimpregios.rq">
+  data-query-sparql="krimpregios.rq">
 </div>
 
 ## Bevolkingsopbouw
 
 Krimpregio's zijn gebieden waar het aantal inwoners lager wordt. Maar hoe ziet de bevolkingsopbouw eruit? Ook vergrijsd? En weinig jeugd is de verwachting?
+
+<div data-query
+  data-query-output="gchart"
+  data-query-sparql="leeftijdscategorien.rq">
+</div>
 
 ## Bevolkingsopbouw in vergelijking
 Vraag Wouter/Rein kunnen we dit vergelijken met de provincie (achterhoek vergelijken met gelderland), en dat bv. in een tabel eruit gooien?  (Kunnen we het ook afzetten tegen het gemiddelde van Nederland?)
