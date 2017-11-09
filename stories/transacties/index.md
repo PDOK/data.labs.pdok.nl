@@ -19,3 +19,9 @@ De data is samengesteld uit een combinatie van woningtransactiegegevens van het 
 Hieronder is het aantal woningtransacties afgezet tegen dezelfde maat als die voor Amsterdam is toegepast (een bereik tussen 0 en 100 transacties per buurt). Wat duidelijk hieruit blijkt, is dat er weinig woningverkopen zijn geweest in vergelijking met een grote stad.
 <div data-query data-query-sparql="delfzijl-hipheid.rq">
 </div>
+
+# Andere gemeentecode?
+Je kan deze vraag natuurlijk ook stellen voor een andere gemeente. Je kan de bijbehorende gemeentecode opzoeken in de onderstaande query:
+
+<div data-query data-query-output="table" data-query-sparql="gemeente-lookup.rq">
+</div>

@@ -1,0 +1,11 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+
+select ?jrstatcode where {
+    graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+        ?gemente a cbs:Gemeente ;
+           cbs:regioaanduiding_Codering_code ?gemeentecode ;
+           cbs:regioaanduiding_Gemeentenaam_naam "Amsterdam" .
+        bind(concat('2016', ?gemeentecode) as ?jrstatcode)
+    }
+} limit 100 
