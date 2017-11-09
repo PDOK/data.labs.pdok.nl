@@ -1,19 +1,20 @@
 # Landelijke gemiddeldes voor afstanden tot voorzieningen.
 prefix dct: <http://purl.org/dc/terms/>
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
-prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select
   (avg(?_oprit) as ?oprit)
   (avg(?_trein) as ?trein)
   (avg(?_kind) as ?kind)
   (avg(?_boodschap) as ?boodschap)
+  (avg(?_auto) as ?auto)
+  (avg(?_arbeid) as ?arbeid)
 {
   ?gemeente a cbs:Gemeente ;
     dct:partOf [] ;
     cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?_oprit ;
     cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?_trein ;
     cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?_kind ;
-    cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?_boodschap .
+    cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?_boodschap ;
+    cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?_auto ;
+    cbs:nettoarbeidsparticipatie_p ?arbeid .
 }
