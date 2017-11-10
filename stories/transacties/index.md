@@ -4,6 +4,7 @@ title: Hipheidsindex
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 logo: /stories/transacties/logo.jpg
+published: false
 ---
 
 # Woningtransacties en de onofficiële hipheidsindex
