@@ -41,12 +41,12 @@ Klik op onderstaande link om de demo-omgeving te verkennen.
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
 
 ### De BuurtBrowser (met FacetCheck)
-Om de rijkheid van de Wijken en Buurten data te verkennen heeft Triply de *FacetCheck* geïntroduceerd: een faceted linked data browser waarmee linked data eenvoudig gefilterd kan worden met behulp van de eigenschappen van de data zelf. 
-In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
+
+In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. 
 
 [https://facetcheck.triply.cc](https://facetcheck.triply.cc)
 
-De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in de toepassing, daarom is een selectie toegepast. De demonstrator voor de Wijken en Buurten dataset van het CBS heeft de volgende eigenschappen om op te kunnen filteren:
+We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
 
 | Eigenschap                     | Aan/uit |
 |--------------------------------+---------|
