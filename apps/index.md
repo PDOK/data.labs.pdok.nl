@@ -6,6 +6,11 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+## Demonstrator Energielabels
+De volgende demonstrator is in het kader van de DSO Hackathon (25/26 okt. 2017) van de gemeente Amsterdam ontwikkeld. Met deze applicatie worden de energielabels per Bag object getoond. Naast deze open energielabel data set van Amsterdam wordt de BAG informatie en ook de ruimtelijke plannnen informatie op de kaart getoond.
+
+[http://kadaster.semaku.com/energielabels/#/map](http://kadaster.semaku.com/energielabels/#/map)
+
 ## Common Sense demo
 TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet voor het Kadaster. Met deze webapplicatie wordt een kaartgebaseerde visualisatie van de vergunningenafhandeling in Eindhoven gedemonstreerd.
 
