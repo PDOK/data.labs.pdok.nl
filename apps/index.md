@@ -15,37 +15,37 @@ TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4" frameborder="0" allowfullscreen></iframe> 
 
 ## Proeftuin Omgevingswet Kadaster
-Voor vragen/opmerkingen/feedback/interesse naar meer info etc. m.b.t. één van de onderstaande demo-omgevingen kunt u een mail sturen naar: <omgevingswet@kadaster.nl>
+**Voor vragen en/of opmerkingen met betrekking tot één van onderstaande demo-omgevingen, kunt u een e-mail sturen naar <omgevingswet@kadaster.nl>**
 
 ### Pilot Starten Bierbrouwerij
 
-*Kadaster in samenwerking met gemeente Emmen en gemeente Nijmegen – april t/m september 2017*
+*In samenwerking met de gemeenten Emmen en Nijmegen – april t/m september 2017*
  
-N.a.v. een andere pilot waarin informatiebehoefte van vergunningenprocessen is uitgewerkt aangaande diverse concrete bouw aanvraag casussen heeft de gemeente Emmen aangegeven de behoefte te hebben aan een simulatie van een gerelateerde case. Bij gemeenten heersen nog vele vragen omtrent de informatievoorziening 2019 in het kader van de Omgevingswet. Waar haal je dan je informatie vandaan? Wat zijn de grootste verschillen t.o.v. nu? Als de initiatiefnemer dezelfde informatie heeft, wat voor effect heeft dat dan op je activiteiten en houding? Etc. 
+Gemeenten hebben veel vragen over de toekomstige informatievoorziening in het kader van de Omgevingswet. Welke informatie vind je dan waar? Wat zijn de grote verschillen ten opzichte van de situatie nu? Het is lastig om zonder concreet of illustratief voorbeeld antwoord te geven op bovenstaande vragen. Naar aanleiding van eerder onderzoek van de gemeente Emmen naar de informatiebehoefte in vergunningen processen (aan de hand van ‘bouw’ gerelateerde cases), is in deze pilot een simulatie gemaakt hoe in een gerelateerde case relevante informatie bij elkaar kan worden gebracht en op eenvoudige wijze kan worden gepresenteerd. 
  
-Het is nu lastig om zonder concreet of illustratief voorbeeld antwoord te geven op deze vragen. Een demonstrator van een use case van een vergunningsverleningsproces zal zeer tastbaar de verschillen van het proces nu en hoe het proces vanaf 2019 zal kunnen gaan lopen aantonen. De use case waar wij ons op gericht hebben betreft het starten van een bierbrouwerij en de daarbij behorende vergunningsaanvraagprocessen. Echter heeft deze pilot geleid tot de mogelijkheid om de start van meerdere soorten bedrijven op locatie aan te vragen, vandaar dat de demonstrator vernoemd is tot “Zoek bedrijfslocatie”. Via de bijbehorende link kunt u meer over de pilot data lezen (nog in ontwikkeling) en de demo-omgeving verkennen.
+De pilot heeft een demonstrator opgeleverd van relevante informatie voor de use case ‘starten van een bierbrouwerij’. De gebouwde demonstrator ‘Zoek bedrijfslocatie’ is zodanig ontwikkeld dat ook voor andere soorten bedrijven de geschiktheid van een potentiële bedrijfslocatie kan worden onderzocht. De demonstrator is nog in ontwikkeling. Heeft u interesse om bij te dragen? We horen graag van u via bovengenoemd e-mail adres. 
+
+Klik op onderstaande link om meer over deze pilot te lezen en de demo-omgeving te verkennen. 
 
 [http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
 
 ### Beeldende pilot
-*Kadaster in samenwerking met RCE (Rijksdienst voor het Cultureel Erfgoed) en IPO (Interprovinciaal Overleg) – april t/m september 2016*
+*In samenwerking met de Rijksdienst voor het Cultureel Erfgoed (RCE) en het Interprovinciaal Overleg (IPO) – april t/m september 2016*
 
-Om de informatieproducten voor de Omgevingswet vast te stellen en te realiseren zijn bij Kadaster, als beoogd huismeester, de informatiehuizen Ruimte en Bouw ondergebracht. In deze zelfde context is informatiehuis cultureel erfgoed ondergebracht bij RCE (Rijksdienst Cultureel erfgoed) en de informatiehuizen Natuur en Externe veiligheid bij IPO (Interprovinciaal Overleg).
+De Omgevingswet vraagt om beschikbaarheid van informatie uit diverse informatiedomeinen. Informatie die in de vorm van Informatieproducten wordt geleverd door Informatiehuizen. Vijf Informatiehuizen hebben in deze pilot met elkaar samengewerkt om gemeenschappelijke uitdagingen te leren kennen. Een van de resultaten is een demonstrator die een indicatie geeft hoe een integraal beeld kan ontstaan op basis van informatie uit diverse informatiehuizen. In deze pilot werkten het Informatiehuis Cultureel Erfgoed (RCE), de Informatiehuizen Natuur en Externe Veiligheid (IPO) en de Informatiehuizen Ruimte en Bouw (Kadaster) samen.  
 
-Om te leren samenwerken met de mensen, zijn we met deze vijf informatiehuizen voortvarend van start gegaan met het samenwerken op de uitwisseling en koppeling van vraag en antwoord, en van verschillende informatie uit de vijf betrokken domeinen. Zo stelden we onszelf instaat om naast het verzetten van veel papierwerk en onderzoek binnen ons eigen domein ook onze handen uit de mouwen te steken en een integraal testproduct in elkaar te zetten. 
+In de demonstrator is het mogelijk om een vraag te beantwoorden met gebruikmaking van informatie uit meer domeinen tegelijkertijd. De use case wil ingaan op veelverwachte vragen van initiatiefnemers over een bepaald pand: “Wat is dat” en “Mag dat”. Dus onder meer antwoord geven op de vraag welke bestemming een pand heeft en wat er in dat pand is toegelaten. Dit heeft geresulteerd in de demo-omgeving met als titel: “Wasda Magda”.  
 
-De nadruk van deze samenwerking heeft gelegen op het leren samenwerken om met meerdere partijen en domeinen tot één integraal antwoord te komen. De demo-omgeving is bijproduct geworden van deze leerzame weg, waarin het tevens voor eenieder mogelijk is om mee te kijken hoe één vraag die betrekking heeft op meerdere domeinen met één klik op de kaart en één antwoord digitaal beantwoord zou kunnen worden. 
+Klik op onderstaande link om de demo-omgeving te verkennen. 
 
-De omgeving is gebaseerd op het idee dat een persoon/initiatiefnemer zich afvraagt wat een bepaalde pand is of voor bestemming heeft (Wat is dat?) waar die een toekomstidee mee heeft en zich afvraagt of dat mag (mag dat wat ik wil?). Dit heeft geresulteerd in de demo-omgeving met als titel: Wasda Magda. 
-
-Samengevat: Wasda Magda is een resultaat van een verkennende en inspirerende samenwerking tussen deze vijf beoogde informatiehuizen om te komen tot een representatie van de mogelijke samengestelde informatievoorziening vanuit de verschillende betrokken domeinen voor de klantgerichte beantwoording van vragen m.b.t. initiatieven onder de nieuwe Omgevingswet. Via bijbehorende link kunt u de demo-omgeving verkennen. 
- 
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
 
 ### De BuurtBrowser (met FacetCheck)
-Om de rijkheid van de Wijken en Buurten data....
+Om de rijkheid van de Wijken en Buurten data te verkennen heeft Triply de *FacetCheck* geïntroduceerd: een faceted linked data browser waarmee linked data eenvoudig gefilterd kan worden met behulp van de eigenschappen van de data zelf. 
 
 [https://facetcheck.triply.cc](https://facetcheck.triply.cc)
+
+De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in de toepassing, daarom is een selectie toegepast. De demonstrator voor de Wijken en Buurten dataset van het CBS heeft de volgende eigenschappen om op te kunnen filteren:
 
 | Eigenschap                     | Aan/uit |
 |--------------------------------+---------|
