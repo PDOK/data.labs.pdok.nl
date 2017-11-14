@@ -42,6 +42,7 @@ Klik op onderstaande link om de demo-omgeving te verkennen.
 
 ### De BuurtBrowser (met FacetCheck)
 Om de rijkheid van de Wijken en Buurten data te verkennen heeft Triply de *FacetCheck* geïntroduceerd: een faceted linked data browser waarmee linked data eenvoudig gefilterd kan worden met behulp van de eigenschappen van de data zelf. 
+In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
 
 [https://facetcheck.triply.cc](https://facetcheck.triply.cc)
 
@@ -53,15 +54,23 @@ De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in 
 | stedelijkheid                  | ✓       |
 | afstandCafé                    | ❌      |
 | antillianen                    | ✓       |
+| percentage antillianen         | ❌      |
 | attractieAfstand               | ✓       |
 | bedrijfsvestigingen            | ✓       |
 | bedrijfsvestigingenA           | ❌      |
+| percentage bedrijfsvestigingenA | ❌     |
 | bedrijfsvestigingenBF          | ❌      |
+| percentage bedrijfsvestigingenBF | ❌    |
 | bedrijfsvestigingenGI          | ❌      |
+| percentage bedrijfsvestigingenGI | ❌    |
 | bedrijfsvestigingenHJ          | ❌      |
+| percentage bedrijfsvestigingenHJ | ❌    |
 | bedrijfsvestigingenKL          | ❌      |
+| percentage bedrijfsvestigingenKL | ❌    |
 | bedrijfsvestigingenMN          | ❌      |
+| percentage bedrijfsvestigingenMN | ❌    |
 | bedrijfsvestigingenRU          | ❌      |
+| percentage bedrijfsvestigingenRU | ❌    |
 | bedrijfsmotorvoertuigen        | ❌      |
 | bevolkingsdichtheid            | ✓       |
 | bibliotheek                    | ❌      |
@@ -77,7 +86,9 @@ De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in 
 | geboorte                       | ❌      |
 | geboortePercentage             | ✓       |
 | gehuwd                         | ✓       |
+| percentage gehuwd              | ❌      |
 | gescheiden                     | ✓       |
+| percentage gescheiden          | ❌      |
 | hotelAfstand                   | ❌      |
 | huishoudenGrootte              | ❌      |
 | huishoudens                    | ❌      |
@@ -86,23 +97,32 @@ De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in 
 | ijsbaan                        | ❌      |
 | inwoners                       | ✓       |
 | inwoners0-14                   | ✓       |
+| percentage inwoners0-14        | ❌       |
 | inwoners15-24                  | ✓       |
+| percentage inwoners15-24       | ❌       |
 | inwoners25-44                  | ✓       |
+| percentage inwoners25-44       | ❌       |
 | inwoners45-64                  | ✓       |
+| percentage inwoners45-64       | ❌       |
 | inwoners65+                    | ✓       |
+| percentage inwoners65+         | ❌       |
 | kinderdagverblijfAfstand       | ✓       |
 | mannen                         | ✓       |
 | marokkanen                     | ❌      |
+| percentage marokkanen          | ❌      |
 | meergezinswoningen             | ✓       |
 | motortweewielers               | ✓       |
 | nietwesterseAllochtonen        | ❌      |
+| percentage nietwesterseAllochtonen | ❌  |
 | omgevingsadressendichtheid     | ❌      |
 | ongehuwd                       | ✓       |
+| percentage ongehuwd            | ❌      |
 | oppervlakte                    | ✓       |
 | oppervlakteLand                | ✓       |
 | oppervlakteWater               | ✓       |
 | oprit                          | ❌      |
 | overigeNietwesterseAllochtonen | ❌      |
+| percentage overigeNietwesterseAllochtonen | ❌ |
 | overigeWinkelsAfstand          | ❌      |
 | overstapstation                | ❌      |
 | personenautos                  | ❌      |
@@ -117,13 +137,17 @@ De Wijken en Buurten dataset bevat teveel eigenschappen om allemaal te tonen in 
 | sterftePercentage              | ❌      |
 | supermarktAfstand              | ❌      |
 | surinamers                     | ❌      |
+| percentage surinamers          | ❌      |
 | treinstation                   | ❌      |
 | turken                         | ❌      |
+| percentage turken              | ❌      |
 | verweduwd                      | ❌      |
+| percentage verweduwd           | ❌      |
 | vrouwen                        | ✓       |
 | warenhuisAfstand               | ❌      |
 | water                          | ❌      |
 | westerseAllochtonen            | ❌      |
+| percentage westerseAllochtonen | ❌      |
 | woningen                       | ❌      |
 | woz                            | ✓       |
 | ziekenhuisAfstand              | ❌      |
