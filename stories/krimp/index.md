@@ -91,8 +91,7 @@ Wat is het beeld over heel Nederland van de arbeidsparticipatie?
   data-query-sparql="thematischeArbeidspNl.rq">
 </div>
 
-## Inzoomen in de wijken...
-Maar hoe zit het met de verschillen binnen een krimpregio? Zijn er grote verschillen binnen een gebied, waarmee bijvoorbeeld het beleid rekening mee moet houden? Laten we kijken naar het krimpgebied Achterhoek, en daar voor een
+
 
 ## Energiepotentieel
 
