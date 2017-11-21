@@ -71,6 +71,7 @@ kunnen doen zonder domein-specifieke tooling.
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
      data-query-sparql="maximum-kerncentrale.rq">
+</div>
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
@@ -82,6 +83,7 @@ kunnen doen zonder domein-specifieke tooling.
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
      data-query-sparql="maximum-elektriciteitscentrale.rq">
+</div>
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
