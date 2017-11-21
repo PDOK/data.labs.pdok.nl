@@ -5,6 +5,8 @@
 - Use Git Bash
 - clone the repository
 - Install ruby from `https://rubyinstaller.org/downloads/`
+  - On Fedora: `dnf install ruby ruby-devel`
+  - On Ubuntu: `apt install ruby ruby-dev`
 - run `gem install bundler`
 - in the root folder, run `bundler install`
 - now, you should be able to run `jekyll serve`. If you encounter any trouble on dependencies, you can try alternatively `bundler exec jekyll serve`
