@@ -41,7 +41,7 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
   <a href="/dumps/linkset-bag-brk/" class="btn showcase-btn">Download de dump</a>
 </div>
 
-<div class="showcase" style="background-image: url('/stories/transacties/logo.jpg'); background-repeat: no-repeat; background-position: bottom;">
+<!-- div class="showcase" style="background-image: url('/stories/transacties/logo.jpg'); background-repeat: no-repeat; background-position: bottom;">
   <h2>
     <div class="showcase-title">Woningtransacties per buurt 2016</div>
   </h2>
@@ -49,4 +49,4 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
   <br>
   <!-- a href="/stories/transacties/" class="btn showcase-btn">Bekijk de datastory!</a -->
   <a href="/dumps/woning_transacties_2016/" class="btn showcase-btn">Download de dump</a>
-</div>
+</div -->
