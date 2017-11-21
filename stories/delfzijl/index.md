@@ -77,13 +77,13 @@ kunnen doen zonder domein-specifieke tooling.
      data-query-sparql="thematische-kaart-kerncentrale.rq">
 </div>
 
-## Afstand tot energiecentrales: landelijk
+## Afstand tot elektriciteitscentrales: landelijk
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="maximum-energiecentrale.rq">
+     data-query-sparql="maximum-elektriciteitscentrale.rq">
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="thematische-kaart-energiecentrale.rq">
+     data-query-sparql="thematische-kaart-elektriciteitscentrale.rq">
 </div>
