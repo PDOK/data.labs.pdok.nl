@@ -47,6 +47,6 @@ Op [https://data.labs.pdok.nl/dumps/](https://data.labs.pdok.nl/dumps/) kan je a
   </h2>
   <p style="background-color: rgba(255, 255, 255, 0.6);">Hoeveel woningen verwisselden van eigenaar in 2016? Bekijk het voor jouw buurt.</p>
   <br>
-  <!-- a href="/stories/transacties/" class="btn showcase-btn">Bekijk de datastory!</a -->
+  <a href="/stories/transacties/" class="btn showcase-btn">Bekijk de datastory!</a>
   <a href="/dumps/woning_transacties_2016/" class="btn showcase-btn">Download de dump</a>
 </div -->
