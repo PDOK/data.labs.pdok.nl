@@ -27,7 +27,7 @@ select
       bind (bif:st_distance(?pA, ?pB) as ?d)
     } group by ?gemeente
   }
-  bind ((173.662 - xsd:float(?min)) / 173.662 as ?normalized)
+  bind ((72.2096 - xsd:float(?min)) / 72.2096 as ?normalized)
   bind (concat("jet,",?normalized) as ?wktColor)
   bind (concat('<p>',?gemeenteNaam,'</p><p>Afstand tot kerncentrale: ',substr(str(?min),1,5),'km</p>') as ?wktLabel)
 }
