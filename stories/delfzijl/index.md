@@ -1,8 +1,8 @@
 ---
 layout: story
-title: Kadaster Data Stories ― Delfzijl
 logo: /stories/delfzijl/logo.png
 output: leaflet
+title: Kadaster Data Stories ― Delfzijl
 ---
 
 # Delfzijl - Een krimpgemeente bekeken
@@ -48,17 +48,44 @@ Hiermee kunnen we een thematische kaart voor de afstand tot een attractie maken 
   data-query-sparql="attractie.rq">
 </div>
 
-## Afstand tot kerncentrales (BRT)
-In bovenstaande queries werd CBS Wijken en Buurten gebruikt om informatie te presenteren, maar er is zoveel meer informatie beschikbaar! Bijvoorbeeld de BRT bevat een schat aan informatie (met name de "Functioneel Gebieden" en "Gebouwen": https://brt.basisregistraties.overheid.nl/query/model). Bijvoorbeeld ik wil ook weten op welke afstand de kerncentrales uit Nederland liggen. (deze query is eenvoudig aan te passen voor andere gebouwen)
+## Afstand tot kerncentrales: Delfzijl
+
+In bovenstaande queries werd CBS Wijken en Buurten gebruikt om
+informatie te presenteren, maar er is zoveel meer informatie
+beschikbaar! Bijvoorbeeld de BRT bevat een schat aan informatie (met
+name de "Functioneel Gebieden" en "Gebouwen":
+https://brt.basisregistraties.overheid.nl/query/model). Bijvoorbeeld
+ik wil ook weten op welke afstand de kerncentrales uit Nederland
+liggen. (deze query is eenvoudig aan te passen voor andere gebouwen)
 
 <div data-query data-query-sparql="kerncentrales.rq">
 </div>
 
-Met deze data story hebben we laten zien dat we een rijkheid aan informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de BAG, Wijken en Buurten, BRT, Monumenten. En dat we data analyses kunnen doen zonder specifieke tooling.
+Met deze data story hebben we laten zien dat we een rijkheid aan
+informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de
+BAG, Wijken en Buurten, BRT, Monumenten.  En dat we data analyses
+kunnen doen zonder domein-specifieke tooling.
+
+## Afstand tot kerncentrales: landelijk
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="thematische_kaart.rq">
+     data-query-sparql="maximum-kerncentrale.rq">
 </div>
 
-<img src="brt-Elektriciteitscentrale.png">
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
+     data-query-sparql="thematische-kaart-kerncentrale.rq">
+</div>
+
+## Afstand tot elektriciteitscentrales: landelijk
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
+     data-query-sparql="maximum-elektriciteitscentrale.rq">
+</div>
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
+     data-query-sparql="thematische-kaart-elektriciteitscentrale.rq">
+</div>
