@@ -97,13 +97,14 @@ Wat is het beeld over heel Nederland van de arbeidsparticipatie?
 
 De wijken waar de grootste mogelijkheden liggen op het verbeteren van
 het verlies van energie in de woning, liggen die in een krimpgebied of
-niet; relevante informatie voor het beleid op subsidies, of voor het slopen van woningen in krimpgebieden.
+niet; relevante informatie voor het beleid op subsidies, of voor het
+slopen van woningen in krimpgebieden.
 
 Het gemiddelde theoretische besparingspotentieel wordt per gemeente
 gerekend.  Dit besparingspotentieel ligt tussen €25 en €1.900 per
 jaar.  Hieronder vragen we de thematische kaart op, waar blauw/koud
 een laag, en rood/warm een hoog besparingspotentieel aanduidt.  (In de
-query zit een comment ‘<code>#</code>’ die, wanneer verwijdert, ht
+query zit een comment ‘<code>#</code>’ die, wanneer verwijdert, het
 precieze bedrag voor iedere gemeente laat zien.)
 
 <div data-query data-query-sparql="energiepotentieel1.rq">
@@ -116,4 +117,8 @@ zien, krijgen we de volgende kaart:
 </div>
 
 ## Tot slot
-De data is rijk...in de CBS/Kadaster datathon zijn meerdere datasets omgezet naar Linked Data, maar een parel is toch wel de Wijken en Buurten 2016 dataset. Op https://facetcheck.triply.cc/ is een eerste versie van de BuurtBrowser beschikbaar op basis van deze dataset.
+
+De data is rijk...in de CBS/Kadaster datathon zijn meerdere datasets
+omgezet naar Linked Data, maar een parel is toch wel de Wijken en
+Buurten 2016 dataset.  Op https://facetcheck.triply.cc/ is een eerste
+versie van de BuurtBrowser beschikbaar op basis van deze dataset.
