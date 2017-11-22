@@ -26,10 +26,10 @@ select ?wkt ?wktLabel {
     cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?totaal .
   bind (concat(
     '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',?label,'’</h4>',
-    '<p>',if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
+    if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
     if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',?trein,' km (gem. ',?_trein,' km)<br>',
     if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',?kind,' km (gem. ',?_kind,' km)<br>',
-    if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',?boodschap,' km (gem. ',?_boodschap,' km)</p>',
+    if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',?boodschap,' km (gem. ',?_boodschap,' km)',
     '<h4>Autobezit</h4>',
     if(?auto<?_auto,'🠋','🠉'),' Aantal auto\'s per huishouden: ',?auto,' 🚗 (gem. ',?_auto,' 🚗)</p>',
     '<h4>Aantal banen binnen 10km</h4>',
