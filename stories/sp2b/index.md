@@ -1,10 +1,14 @@
 ---
 layout: story
 title: SP2B
-endpoint: https://api.krr.triply.cc/datasets/wbeek/100K/containers/1GB/sparql
+endpoint: https://api.krr.triply.cc/datasets/wbeek/50K/containers/1GB/sparql
 ---
 
-# SP2B
+# SP<sup>2</sup>B
+
+Running the <a
+href="http://dbis.informatik.uni-freiburg.de/index.php?project=SP2B/queries.php">SP<sup>2</sup>B
+SPARQL benchmark</a> over 50K triples with a 1GB Virtuoso endpoint.
 
 ## Q1: Return the year of publication of “Journal 1 (1940)”
 
