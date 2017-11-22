@@ -1,8 +1,9 @@
 ---
+endpoint: https://api.krr.triply.cc/datasets/wbeek/50K/containers/1GB/sparql
 layout: story
 logo: /stories/sp2b/logo.png
+output: gchart
 title: SP2B
-endpoint: https://api.krr.triply.cc/datasets/wbeek/50K/containers/1GB/sparql
 ---
 
 # SP<sup>2</sup>B
