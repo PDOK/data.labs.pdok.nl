@@ -1,0 +1,37 @@
+# SP²B9: Return incoming and outgoing properties of persons.
+#
+# This query has been designed to test non-standard data access
+# patterns.  Naive implementations would compute the triple patterns
+# of the `union' subexpressions separately, thus evaluate patterns
+# where no component is bound.  Then, pattern `?subject ?predicate
+# ?person' would select all graph triples, which is rather
+# inefficient.  Another idea is to evaluate the first triple in each
+# `union' subexpression, afterwards using the bindings for variable
+# `?person' to evaluate the second patterns more efficiently.  In this
+# case, we observe patterns where only the subject (resp. the object)
+# is bound.  Also observe that this query extracts schema information.
+# The result size is exactly 4 (for sufficiently large documents).
+# Statistics about incoming/outgoing properties of Person-typed
+# objects in native engines might be used to answer this query in
+# constant time, even without data access.  In-memory engines always
+# must load the document, hence might scale linearly to document size.
+#
+# |     10,000 | 4 |
+# |     50,000 | 4 |
+# |    250,000 | 4 |
+# |  1,000,000 | 4 |
+# |  5,000,000 | 4 |
+# | 25,000,000 | 4 |
+#
+# O(1)
+
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+select distinct ?p {
+  {
+    ?person a foaf:Person .
+    ?s ?p ?person
+  } union {
+    ?person a foaf:Person ;
+      ?p ?o
+  }
+}

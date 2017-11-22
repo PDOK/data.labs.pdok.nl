@@ -1,0 +1,26 @@
+# SP²B11: Return (up to) 10 electronic edition URLs starting from the
+# 51th publication, in lexicographical order.
+#
+# This query focuses on the combination of solution modifiers `order
+# by', `limit', and `offset'.  In-memory engines have to read,
+# process, and sort electronic editions prior to processing `limit'
+# and `offset'.  In contrast, native engines might exploit indices to
+# access only a fraction of all electronic editions and, as the result
+# is limited to 10, reach constant runtimes.
+#
+# |     10,000 | 10 |
+# |     50,000 | 10 |
+# |    250,000 | 10 |
+# |  1,000,000 | 10 |
+# |  5,000,000 | 10 |
+# | 25,000,000 | 10 |
+#
+# O(1)
+
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?ee {
+  ?publication rdfs:seeAlso ?ee
+}
+order by ?ee
+limit 10
+offset 50

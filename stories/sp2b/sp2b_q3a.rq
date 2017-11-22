@@ -1,0 +1,21 @@
+# SP²B3a: Select all articles with property `swrc:pages'.
+#
+# This query tests `filter' expressions with varying selectivity.
+# According to Table I, the `filter' expression is not very selective
+# (i.e. retains about 92.61% of all articles).  Data access through a
+# secondary index is probably not very efficient.
+#
+# |     10,000 |     846 |
+# |     50,000 |   3,637 |
+# |    250,000 |  15,853 |
+# |  1,000,000 |  52,676 |
+# |  5,000,000 | 192,373 |
+# | 25,000,000 | 594,890 |
+
+prefix bench: <http://localhost/vocabulary/bench/>
+prefix  swrc: <http://swrc.ontoware.org/ontology#>
+select ?article {
+  ?article a bench:Article ;
+    ?p ?o
+  filter (?p=swrc:pages)
+}

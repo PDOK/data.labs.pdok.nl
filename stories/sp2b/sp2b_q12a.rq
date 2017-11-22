@@ -1,0 +1,31 @@
+# SP²B12a: Return ✓ if a person occurs as author of at least one
+# inproceeding and article, ❌ otherwise.
+#
+# This query shares the properties of its `select' counterpart SP²B5a.
+# It always returns ✓ for sufficiently large documents.  When
+# evaluating such `ask' queries, engines should break as soon a
+# solution has been found.  They might adapt the QEP, to efficiently
+# locate a witness.  For instance, based on execution time estimations
+# it might be favorable to evaluate the second part of the `union' in
+# SP²B12b first.  Both native and in-memory engines should answer
+# these queries very fast, independent from document size.
+#
+# |     10,000 | 1 |
+# |     50,000 | 1 |
+# |    250,000 | 1 |
+# |  1,000,000 | 1 |
+# |  5,000,000 | 1 |
+# | 25,000,000 | 1 |
+#
+# O(1)
+
+prefix bench: <http://localhost/vocabulary/bench/>
+prefix    dc: <http://purl.org/dc/elements/1.1/>
+prefix  foaf: <http://xmlns.com/foaf/0.1/>
+ask {
+  ?article a bench:Article ;
+    dc:creator/foaf:name ?name1 .
+  ?inproc a bench:Inproceedings ;
+    dc:creator/foaf:name ?name2
+  filter (?name1=?name2)
+}

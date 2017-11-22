@@ -1,0 +1,22 @@
+# SP²B12c: Return ✓ if person “John Q. Public” is present in the
+# database.
+#
+# Asks for a single triple that is not present in the database.  With
+# indices, native engines might execute this query in constant time.
+# Again, in-memory engines must scan (and hence, load) the whole
+# document.
+#
+# |     10,000 | 0 |
+# |     50,000 | 0 |
+# |    250,000 | 0 |
+# |  1,000,000 | 0 |
+# |  5,000,000 | 0 |
+# | 25,000,000 | 0 |
+#
+# O(1)
+
+prefix   foaf: <http://xmlns.com/foaf/0.1/>
+prefix person: <http://localhost/persons/>
+ask {
+  person:John_Q_Public a foaf:Person.
+}
