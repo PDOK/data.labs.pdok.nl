@@ -1,7 +1,7 @@
 ---
 layout: story
 title: SP2B
-endpoint: https://api.krr.triply.cc/datasets/wbeek/1M/containers/2GB/sparql
+endpoint: https://api.krr.triply.cc/datasets/wbeek/100K/containers/1GB/sparql
 ---
 
 # SP2B
