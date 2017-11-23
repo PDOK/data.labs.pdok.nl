@@ -9,14 +9,15 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?wkt ?wktLabel {
   values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-    ("Apeldoorn" "Laan van Westenenk" 701) 
+    ("Apeldoorn"@nl "Laan van Westenenk" 701)
   }
+  bind(str(?woonplaatsNaam) as ?bagWplNaam) .
   ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                   bag:naamOpenbareRuimte ?straatNaam ;
                   bag:status ?openbareRuimteStatus .
   ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel .
   ?woonplaats bag:identificatiecode ?woonplaatsCode ;
-              bag:naamWoonplaats ?woonplaatsNaam .
+              bag:naamWoonplaats ?bagWplNaam .
   ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                       brt:nummer ?registratiefGebiedCode .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;

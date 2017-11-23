@@ -12,6 +12,6 @@ select * where {
     filter(?hoogteklasse != <http://brt.basisregistraties.overheid.nl/id/begrip/Hoogbouw>) .
   }
 
-  bind(concat("<a href='", str(?gebouw), "' target='_blank'>", ?gebouwlabel ,"</a><br>Hoogte: ", str(?hoogte)) as ?wktLabel).
+  bind(concat("<a href='", str(?gebouw), "' target='_blank'>", str(?gebouwlabel) ,"</a><br>Hoogte: ", str(?hoogte)) as ?wktLabel).
   filter(?hoogte > 35) .
 }

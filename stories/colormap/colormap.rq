@@ -4,7 +4,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?shape ?shapeColor ?shapeLabel {
   service <https://data.pdok.nl/sparql> {
-    bind ("Apeldoorn" as ?woonplaatsNaam)
+    bind ("Apeldoorn"@nl as ?woonplaatsNaam)
     ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                         brt:nummer ?registratiefGebiedCode
   }
