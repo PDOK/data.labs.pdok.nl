@@ -19,6 +19,8 @@ documents).  Native engines might use index lookups in order to answer
 this query in (almost) constant time, i.e. execution time should be
 independent from document size.
 
+Expected number of results: 1.
+
 <div data-query data-query-sparql="sp2b_q1.rq" data-query-output="table"></div>
 
 ## Q2: Extract all inproceedings with various properties
@@ -35,6 +37,8 @@ ordering is necessary due to operator `order by`.  Both native and
 in-memory engines might reach evaluation times that are almost linear
 to the document size.
 
+Expected number of results: 965.
+
 <div data-query data-query-sparql="sp2b_q2.rq"></div>
 
 ## Q3a: Select all articles with property `swrc:pages`
@@ -44,6 +48,8 @@ According to Table I, the `filter` expression is not very selective
 (i.e. retains about 92.61% of all articles).  Data access through a
 secondary index is probably not very efficient.
 
+Expected number of results: 3,637.
+
 <div data-query data-query-sparql="sp2b_q3a.rq"></div>
 
 ## Q3b: Select all articles with property `swrc:month`
@@ -51,6 +57,8 @@ secondary index is probably not very efficient.
 This query tests `filter` expressions with varying selectivity.  Data
 access through a secondary index might work well for this query, which
 selects only 0.65% of all articles.
+
+Expected number of results: 25.
 
 <div data-query data-query-sparql="sp2b_q3b.rq"></div>
 
@@ -61,7 +69,9 @@ filter condition in this query is never satisfied, as no articles have
 `swrc:isbn` predicates.  Schema statistics might be used to answer
 this query in constant time.
 
-<div data-query data-query-sparql="sp2b_q3c.rq"></div>
+Expected number of results: 0.
+
+<div data-query data-query-sparql="sp2b_q3c.rq" data-query-output="table"></div>
 
 ## Q4: Select all distinct pairs of article author names for authors that have published in the same journal.
 
@@ -75,6 +85,8 @@ e.g. by exploiting indices on author names.  The `distinct` modifier
 further complicates the query.  We expect superlinear behavior, even
 for native engines.
 
+Expected number of results: 104,746.
+
 <div data-query data-query-sparql="sp2b_q4.rq"></div>
 
 ## Q5a: Return the names of all persons that occur as author of at least one inproceeding and at least one article
@@ -87,6 +99,8 @@ optimization on top of such keys for RDF has been proposed.  Such an
 approach might detect the equivalence of both queries in this scenario
 and select the more efficient variant.
 
+Expected number of results: 1,085.
+
 <div data-query data-query-sparql="sp2b_q5a.rq"></div>
 
 ## Q5b: Return the names of all persons that occur as author of at least one inproceeding and at least one article.
@@ -98,6 +112,8 @@ query SP²B5a.  In [14], semantic optimization on top of such keys for
 RDF has been proposed.  Such an approach might detect the equivalence
 of both queries in this scenario and select the more efficient
 variant.
+
+Expected number of results: 1,085.
 
 <div data-query data-query-sparql="sp2b_q5b.rq"></div>
 
@@ -112,6 +128,8 @@ earlier publications from authors that appear outside.  The outer
 unbound, i.e. exactly the publications of authors without publications
 in earlier years.
 
+Expected number of results: 1,769.
+
 <div data-query data-query-sparql="sp2b_q6.rq"></div>
 
 ## Q7: Return the titles of all papers that have been cited at least once, but not by any paper that has not been cited itself
@@ -124,7 +142,9 @@ pattern results, for instance, the block `?class[i] rdf:type
 foaf:Document. ?doc[i] rdf:type ?class[i].` occurs three times, for
 empty [i], [i]=3, and [i]=4.
 
-<div data-query data-query-sparql="sp2b_q7.rq"></div>
+Expected number of results: 2.
+
+<div data-query data-query-sparql="sp2b_q7.rq" data-query-output="table"></div>
 
 ## Q8: Compute authors that have published with Paul Erdös or with an author that has published with Paul Erdös
 
@@ -134,6 +154,8 @@ like graph pattern (or subexpression) reusing might apply.  Another
 very promising optimization approach is to decompose the filter
 expressions and push down its components, in order to decrease the
 size of intermediate results.
+
+Expected number of results: 264.
 
 <div data-query data-query-sparql="sp2b_q8.rq"></div>
 
@@ -155,9 +177,13 @@ might be used to answer this query in constant time, even without data
 access.  In-memory engines always must load the document, hence might
 scale linearly to document size.
 
-<div data-query data-query-sparql="sp2b_q9.rq"></div>
+Expected number of results: 4.
+
+<div data-query data-query-sparql="sp2b_q9.rq" data-query-output="table"></div>
 
 ## Q10
+
+Expected number of results: 307.
 
 <div data-query data-query-sparql="sp2b_q10.rq"></div>
 
@@ -170,7 +196,9 @@ In contrast, native engines might exploit indices to access only a
 fraction of all electronic editions and, as the result is limited to
 10, reach constant runtimes.
 
-<div data-query data-query-sparql="sp2b_q11.rq"></div>
+Expected number of results: 10.
+
+<div data-query data-query-sparql="sp2b_q11.rq" data-query-output="table"></div>
 
 ## Q12a: Return ✓ if a person occurs as author of at least one inproceeding and article, ❌ otherwise
 
@@ -182,6 +210,8 @@ For instance, based on execution time estimations it might be
 favorable to evaluate the second part of the `union` in SP²B12b first.
 Both native and in-memory engines should answer these queries very
 fast, independent from document size.
+
+Expected result: ✓.
 
 <div data-query data-query-sparql="sp2b_q12a.rq"></div>
 
@@ -196,6 +226,8 @@ favorable to evaluate the second part of the `union` in SP²B12b first.
 Both native and in-memory engines should answer these queries very
 fast, independent from document size.
 
+Expected result: ✓.
+
 <div data-query data-query-sparql="sp2b_q12b.rq"></div>
 
 ## Q12c: Return ✓ if person “John Q. Public” is present in the database
@@ -204,5 +236,7 @@ Asks for a single triple that is not present in the database.  With
 indices, native engines might execute this query in constant time.
 Again, in-memory engines must scan (and hence, load) the whole
 document.
+
+Expected result: ❌.
 
 <div data-query data-query-sparql="sp2b_q12c.rq"></div>
