@@ -19,7 +19,7 @@ documents).  Native engines might use index lookups in order to answer
 this query in (almost) constant time, i.e. execution time should be
 independent from document size.
 
-<div data-query data-query-sparql="sp2b_q1.rq"></div>
+<div data-query data-query-sparql="sp2b_q1.rq" data-query-output="table"></div>
 
 ## Q2: Extract all inproceedings with various properties
 
