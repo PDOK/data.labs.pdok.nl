@@ -10,10 +10,11 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
   service <https://data.pdok.nl/sparql> {
     values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-      ("Apeldoorn" "Laan van Westenenk" 701) 
+      ("Apeldoorn"@nl "Laan van Westenenk" 701)
     }
+    bind(str(?woonplaatsNaam) as ?bagWplNaam) .
     ?woonplaats bag:identificatiecode ?woonplaatsCode ;
-                bag:naamWoonplaats ?woonplaatsNaam .
+                bag:naamWoonplaats ?bagWplNaam .
     ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                     bag:naamOpenbareRuimte ?straatNaam ;
                     bag:status ?openbareRuimteStatus .
