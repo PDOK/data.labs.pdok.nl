@@ -1,5 +1,41 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix monument: <https://cultureelerfgoed.nl/id/monument/>
-select ?p ?o {
-  monument:17892 ?p ?o
+prefix rce: <https://cultureelerfgoed.nl/vocab/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+select ?code ?wkt ?wktLabel {
+  #monument:17892
+  bind (5 as ?huisnummer)
+  bind ("Prinsegracht" as ?straatNaam)
+  bind ("'s-Gravenhage" as ?plaatsNaam)
+  bind (strdt(?huisnummer,xsd:string) as ?o1)
+  bind (strdt(?straatNaam,xsd:string) as ?o2)
+  ?monument dct:description ?desc ;
+            dbo:city ?city ;
+            <http://dbpedia.org/ontology/codeNationalMonument> ?code ;
+            dbo:codeNationalMonument ?code1 ;
+            rce:huisnummer ?o1 ;
+            vcard:hasStreetAddress ?o2 .
+  filter (str(?city) = ?plaatsNaam)
+  service <https://data.pdok.nl/sparql> {
+    ?plaats bag:naamWoonplaats ?plaatsNaam .
+    ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
+                    bag:bijbehorendeWoonplaats ?plaats .
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisNummer .
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand ;
+                     bag:status ?verblijfsobjectStatus .
+    ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+          bag:status ?pandStatus .
+    ?pandStatus rdfs:label ?pandStatusLabel
+  }
+  bind (concat('<center><h4>Monument ',str(?code),', ',str(?straatNaam),' ',str(?huisNummer),', <a href="',str(?plaats),'">',str(?plaatsNaam),'</a></h4><p>',str(?desc),'<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p><p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?bouwjaar),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p></center>') as ?wktLabel)
 }
-limit 100
+limit 1
