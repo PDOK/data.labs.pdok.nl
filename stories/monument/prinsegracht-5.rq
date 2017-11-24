@@ -1,0 +1,5 @@
+prefix monument: <https://cultureelerfgoed.nl/id/monument/>
+select ?p ?o {
+  monument:17892 ?p ?o
+}
+limit 100

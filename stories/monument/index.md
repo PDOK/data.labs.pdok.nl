@@ -17,6 +17,12 @@ We vragen een monument op uit de RCE monumenten datasets
   welk verblijfsobject en welk pand bij het monument horen
   (dataset 3).  In de BAG vinden we ook het bouwjaar en de
   gebruiksstatus van dit verblijfsobject en pand.
+
+<div data-query data-query-sparql="museum_flehite.rq"></div>
+
+## Prinsegracht 5, Den Haag
+
 <div data-query
-     data-query-sparql="museum_flehite.rq">
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
+     data-query-sparql="prinsegracht-5.rq">
 </div>
