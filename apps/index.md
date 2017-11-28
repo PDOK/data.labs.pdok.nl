@@ -2,9 +2,457 @@
 layout: default
 title: Demonstrators (apps)
 ---
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
+
+## De BuurtBrowser (met FacetCheck)
+
+In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. 
+
+[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
+
+We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
+
+<script>
+$( function() {
+  $( "#accordion" ).accordion({
+    collapsible: true,
+    active: false 
+  });
+} );
+</script>
+
+<div id="accordion">
+  <h3><button>Klik om opties te tonen...</button></h3>
+  <div>
+    <p>
+      <table>
+        <thead>
+          <tr>
+            <th>Eigenschap</th>
+            <th>Aan/uit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>provincie</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>stedelijkheid</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>afstandCafé</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>antillianen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage antillianen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>attractieAfstand</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenA</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenA</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenBF</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenBF</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenGI</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenGI</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenHJ</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenHJ</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenKL</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenKL</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenMN</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenMN</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsvestigingenRU</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage bedrijfsvestigingenRU</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bedrijfsmotorvoertuigen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bevolkingsdichtheid</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>bibliotheek</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bioscoopAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>bouwklasse-1999</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>bouwklasse2000+</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>brandweer</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>buitenpolikliniekAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>buitenschoolseopvangAfstand</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>cafetariumAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>ééngezinswoningen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>éénpersoonsHuishoudens</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>geboorte</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>geboortePercentage</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>gehuwd</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage gehuwd</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>gescheiden</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage gescheiden</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>hotelAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>huishoudenGrootte</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>huishoudens</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>huishoudensMetKinderen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>huishoudensZonderKinderen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>ijsbaan</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>inwoners</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>inwoners0-14</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage inwoners0-14</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>inwoners15-24</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage inwoners15-24</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>inwoners25-44</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage inwoners25-44</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>inwoners45-64</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage inwoners45-64</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>inwoners65+</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage inwoners65+</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>kinderdagverblijfAfstand</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>mannen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>marokkanen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage marokkanen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>meergezinswoningen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>motortweewielers</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>nietwesterseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage nietwesterseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>omgevingsadressendichtheid</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>ongehuwd</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>percentage ongehuwd</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>oppervlakte</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>oppervlakteLand</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>oppervlakteWater</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>oprit</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>overigeNietwesterseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage overigeNietwesterseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>overigeWinkelsAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>overstapstation</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>personenautos</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>personenautos0-5</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>personenautos6+</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>personenautosBenzine</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>personenautosBrandstofOverig</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>personenautosNaarOppervlakte</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>personenautosPerHuishouden</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>restaurantAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>sauna</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>sterftePercentage</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>supermarktAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>surinamers</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage surinamers</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>treinstation</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>turken</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage turken</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>verweduwd</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage verweduwd</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>vrouwen</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>warenhuisAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>water</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>westerseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>percentage westerseAllochtonen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>woningen</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>woz</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>ziekenhuisAfstand</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>zonnebank</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>zwembad</td>
+            <td>❌</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  </div>
+</div>
 
 ## Demonstrator Energielabels
 De volgende demonstrator is in het kader van de DSO Hackathon (25/26 okt. 2017) van de gemeente Amsterdam ontwikkeld. Met deze applicatie worden de energielabels per Bag object getoond. Naast deze open energielabel data set van Amsterdam wordt de BAG informatie en ook de ruimtelijke plannnen informatie op de kaart getoond.
@@ -21,6 +469,15 @@ TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet 
 
 ## Proeftuin Omgevingswet Kadaster
 **Voor vragen en/of opmerkingen met betrekking tot één van onderstaande demo-omgevingen, kunt u een e-mail sturen naar <omgevingswet@kadaster.nl>**
+
+### Pilot Soest 2.0
+*In samenwerking met de gemeenten Emmen, Nijmegen en Soest en informatiehuizen Geluid, Afval, Bouw en Ruimte – oktober 2017 t/m (eindatum nog onbekend)*
+
+Dit is een preview van een demo-omgeving welke wij nu nog volop aan het ontwikkelen zijn. Al lerende richten wij ons hiermee op de volgende doelen:
+* Het vooraf toetsen van een vergunning aanvraag aan bestaande regelgeving voor het plaatsen van een bijgebouw
+* Het bieden van ondersteuning bij het maken van een keuze voor een geschikte vestigingslocatie
+
+[http://omgevingsplanner.kadaster.semaku.com/](http://omgevingsplanner.kadaster.semaku.com/) 
 
 ### Pilot Starten Bierbrouwerij
 
@@ -44,117 +501,3 @@ In de demonstrator is het mogelijk om een vraag te beantwoorden met gebruikmakin
 Klik op onderstaande link om de demo-omgeving te verkennen. 
 
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
-
-### De BuurtBrowser (met FacetCheck)
-
-In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. 
-
-[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
-
-We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
-
-| Eigenschap                     | Aan/uit |
-|--------------------------------+---------|
-| provincie                      | ✓       |
-| stedelijkheid                  | ✓       |
-| afstandCafé                    | ❌      |
-| antillianen                    | ✓       |
-| percentage antillianen         | ❌      |
-| attractieAfstand               | ✓       |
-| bedrijfsvestigingen            | ✓       |
-| bedrijfsvestigingenA           | ❌      |
-| percentage bedrijfsvestigingenA | ❌     |
-| bedrijfsvestigingenBF          | ❌      |
-| percentage bedrijfsvestigingenBF | ❌    |
-| bedrijfsvestigingenGI          | ❌      |
-| percentage bedrijfsvestigingenGI | ❌    |
-| bedrijfsvestigingenHJ          | ❌      |
-| percentage bedrijfsvestigingenHJ | ❌    |
-| bedrijfsvestigingenKL          | ❌      |
-| percentage bedrijfsvestigingenKL | ❌    |
-| bedrijfsvestigingenMN          | ❌      |
-| percentage bedrijfsvestigingenMN | ❌    |
-| bedrijfsvestigingenRU          | ❌      |
-| percentage bedrijfsvestigingenRU | ❌    |
-| bedrijfsmotorvoertuigen        | ❌      |
-| bevolkingsdichtheid            | ✓       |
-| bibliotheek                    | ❌      |
-| bioscoopAfstand                | ❌      |
-| bouwklasse-1999                | ✓       |
-| bouwklasse2000+                | ✓       |
-| brandweer                      | ✓       |
-| buitenpolikliniekAfstand       | ❌      |
-| buitenschoolseopvangAfstand    | ✓       |
-| cafetariumAfstand              | ❌      |
-| ééngezinswoningen              | ❌      |
-| éénpersoonsHuishoudens         | ❌      |
-| geboorte                       | ❌      |
-| geboortePercentage             | ✓       |
-| gehuwd                         | ✓       |
-| percentage gehuwd              | ❌      |
-| gescheiden                     | ✓       |
-| percentage gescheiden          | ❌      |
-| hotelAfstand                   | ❌      |
-| huishoudenGrootte              | ❌      |
-| huishoudens                    | ❌      |
-| huishoudensMetKinderen         | ✓       |
-| huishoudensZonderKinderen      | ✓       |
-| ijsbaan                        | ❌      |
-| inwoners                       | ✓       |
-| inwoners0-14                   | ✓       |
-| percentage inwoners0-14        | ❌       |
-| inwoners15-24                  | ✓       |
-| percentage inwoners15-24       | ❌       |
-| inwoners25-44                  | ✓       |
-| percentage inwoners25-44       | ❌       |
-| inwoners45-64                  | ✓       |
-| percentage inwoners45-64       | ❌       |
-| inwoners65+                    | ✓       |
-| percentage inwoners65+         | ❌       |
-| kinderdagverblijfAfstand       | ✓       |
-| mannen                         | ✓       |
-| marokkanen                     | ❌      |
-| percentage marokkanen          | ❌      |
-| meergezinswoningen             | ✓       |
-| motortweewielers               | ✓       |
-| nietwesterseAllochtonen        | ❌      |
-| percentage nietwesterseAllochtonen | ❌  |
-| omgevingsadressendichtheid     | ❌      |
-| ongehuwd                       | ✓       |
-| percentage ongehuwd            | ❌      |
-| oppervlakte                    | ✓       |
-| oppervlakteLand                | ✓       |
-| oppervlakteWater               | ✓       |
-| oprit                          | ❌      |
-| overigeNietwesterseAllochtonen | ❌      |
-| percentage overigeNietwesterseAllochtonen | ❌ |
-| overigeWinkelsAfstand          | ❌      |
-| overstapstation                | ❌      |
-| personenautos                  | ❌      |
-| personenautos0-5               | ✓       |
-| personenautos6+                | ✓       |
-| personenautosBenzine           | ❌      |
-| personenautosBrandstofOverig   | ❌      |
-| personenautosNaarOppervlakte   | ❌      |
-| personenautosPerHuishouden     | ❌      |
-| restaurantAfstand              | ❌      |
-| sauna                          | ❌      |
-| sterftePercentage              | ❌      |
-| supermarktAfstand              | ❌      |
-| surinamers                     | ❌      |
-| percentage surinamers          | ❌      |
-| treinstation                   | ❌      |
-| turken                         | ❌      |
-| percentage turken              | ❌      |
-| verweduwd                      | ❌      |
-| percentage verweduwd           | ❌      |
-| vrouwen                        | ✓       |
-| warenhuisAfstand               | ❌      |
-| water                          | ❌      |
-| westerseAllochtonen            | ❌      |
-| percentage westerseAllochtonen | ❌      |
-| woningen                       | ❌      |
-| woz                            | ✓       |
-| ziekenhuisAfstand              | ❌      |
-| zonnebank                      | ❌      |
-| zwembad                        | ❌      |
