@@ -2,7 +2,7 @@
 endpoint: https://api.krr.triply.cc/datasets/wbeek/50K/containers/1GB/sparql
 layout: story
 logo: /stories/sp2b/logo.png
-output: gchart
+output: table
 title: SP2B
 ---
 
@@ -21,7 +21,7 @@ independent from document size.
 
 Expected number of results: 1.
 
-<div data-query data-query-sparql="sp2b_q1.rq" data-query-output="table"></div>
+<div data-query data-query-sparql="sp2b_q1.rq"></div>
 
 ## Q2: Extract all inproceedings with various properties
 
@@ -71,7 +71,7 @@ this query in constant time.
 
 Expected number of results: 0.
 
-<div data-query data-query-sparql="sp2b_q3c.rq" data-query-output="table"></div>
+<div data-query data-query-sparql="sp2b_q3c.rq"></div>
 
 ## Q4: Select all distinct pairs of article author names for authors that have published in the same journal.
 
@@ -144,7 +144,7 @@ empty [i], [i]=3, and [i]=4.
 
 Expected number of results: 2.
 
-<div data-query data-query-sparql="sp2b_q7.rq" data-query-output="table"></div>
+<div data-query data-query-sparql="sp2b_q7.rq"></div>
 
 ## Q8: Compute authors that have published with Paul Erdös or with an author that has published with Paul Erdös
 
@@ -179,7 +179,7 @@ scale linearly to document size.
 
 Expected number of results: 4.
 
-<div data-query data-query-sparql="sp2b_q9.rq" data-query-output="table"></div>
+<div data-query data-query-sparql="sp2b_q9.rq"></div>
 
 ## Q10
 
@@ -198,7 +198,7 @@ fraction of all electronic editions and, as the result is limited to
 
 Expected number of results: 10.
 
-<div data-query data-query-sparql="sp2b_q11.rq" data-query-output="table"></div>
+<div data-query data-query-sparql="sp2b_q11.rq"></div>
 
 ## Q12a: Return ✓ if a person occurs as author of at least one inproceeding and article, ❌ otherwise
 

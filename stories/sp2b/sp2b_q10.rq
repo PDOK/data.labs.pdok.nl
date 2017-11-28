@@ -1,4 +1,6 @@
 prefix person: <http://localhost/persons/>
-select ?s ?p {
-  ?s ?p person:Paul_Erdoes
+select (count(*) as ?n) {
+  select ?s ?p {
+    ?s ?p person:Paul_Erdoes
+  }
 }

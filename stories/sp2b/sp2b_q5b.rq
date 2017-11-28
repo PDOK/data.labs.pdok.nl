@@ -19,10 +19,12 @@
 prefix bench: <http://localhost/vocabulary/bench/>
 prefix    dc: <http://purl.org/dc/elements/1.1/>
 prefix  foaf: <http://xmlns.com/foaf/0.1/>
-select distinct ?person ?name {
-  ?article a bench:Article ;
-    dc:creator ?person .
-  ?inproc a bench:Inproceedings ;
-    dc:creator ?person .
-  ?person foaf:name ?name
+select (count(*) as ?n) {
+  select distinct ?person ?name {
+    ?article a bench:Article ;
+      dc:creator ?person .
+    ?inproc a bench:Inproceedings ;
+      dc:creator ?person .
+    ?person foaf:name ?name
+  }
 }

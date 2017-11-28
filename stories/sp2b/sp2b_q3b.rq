@@ -14,7 +14,7 @@
 
 prefix bench: <http://localhost/vocabulary/bench/>
 prefix  swrc: <http://swrc.ontoware.org/ontology#>
-select ?article {
+select (count(?article) as ?n) {
   ?article a bench:Article ;
     ?p ?o
   filter (?p=swrc:month)

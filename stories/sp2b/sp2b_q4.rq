@@ -24,12 +24,14 @@ prefix    dc: <http://purl.org/dc/elements/1.1/>
 prefix  foaf: <http://xmlns.com/foaf/0.1/>
 prefix   rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix  swrc: <http://swrc.ontoware.org/ontology#>
-select distinct ?name1 ?name2 {
-  ?article1 a bench:Article ;
-    dc:creator/foaf:name ?name1 ;
-    swrc:journal ?journal .
-  ?article2 a bench:Article ;
-    dc:creator/foaf:name ?name2 ;
-    swrc:journal ?journal
-  filter (?name1<?name2)
+select (count(*) as ?n) {
+  select distinct ?name1 ?name2 {
+    ?article1 a bench:Article ;
+      dc:creator/foaf:name ?name1 ;
+      swrc:journal ?journal .
+    ?article2 a bench:Article ;
+      dc:creator/foaf:name ?name2 ;
+      swrc:journal ?journal
+    filter (?name1<?name2)
+  }
 }

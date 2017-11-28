@@ -18,7 +18,7 @@
 prefix   dc: <http://purl.org/dc/elements/1.1/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix  xsd: <http://www.w3.org/2001/XMLSchema#>
-select distinct ?name {
+select (count(distinct ?name) as ?n) {
   ?erdoes a foaf:Person ;
     foaf:name "Paul Erdoes"^^xsd:string .
   {

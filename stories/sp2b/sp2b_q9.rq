@@ -26,7 +26,7 @@
 # O(1)
 
 prefix foaf: <http://xmlns.com/foaf/0.1/>
-select distinct ?p {
+select (count(distinct ?p) as ?n) {
   {
     ?person a foaf:Person .
     ?s ?p ?person
