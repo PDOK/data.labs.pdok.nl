@@ -46,17 +46,17 @@ $( function() {
           </tr>
           <tr>
             <td>afstandCafé</td>
-            <td>❌</td>
+            <td>✓</td>
           </tr>
           <tr>
             <td>antillianen</td>
-            <td>✓</td>
+            <td>❌</td>
           </tr>
+          <tr>
           <tr>
             <td>percentage antillianen</td>
             <td>❌</td>
           </tr>
-          <tr>
             <td>attractieAfstand</td>
             <td>✓</td>
           </tr>
@@ -214,7 +214,7 @@ $( function() {
           </tr>
           <tr>
             <td>ijsbaan</td>
-            <td>❌</td>
+            <td>✓</td>
           </tr>
           <tr>
             <td>inwoners</td>
@@ -390,7 +390,7 @@ $( function() {
           </tr>
           <tr>
             <td>treinstation</td>
-            <td>❌</td>
+            <td>✓</td>
           </tr>
           <tr>
             <td>turken</td>
