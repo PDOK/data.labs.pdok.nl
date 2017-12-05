@@ -9,9 +9,9 @@ Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld
 
 ## De BuurtBrowser (met FacetCheck)
 
-In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. 
+In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset.
 
-[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
+[https://data.labs.pdok.nl/facetcheck/](https://data.labs.pdok.nl/facetcheck/)
 
 We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
 
@@ -19,7 +19,7 @@ We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is r
 $( function() {
   $( "#accordion" ).accordion({
     collapsible: true,
-    active: false 
+    active: false
   });
 } );
 </script>
@@ -465,7 +465,7 @@ TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet 
 - Het resultaat van de demo is hier te zien: [http://tnopresenter.nl/Vergunningen](http://tnopresenter.nl/Vergunningen)
 - TNO biedt in een presentatie een overzicht van de doelen en functionaliteit, op [http://www.tnopresenter.nl/cs](http://www.tnopresenter.nl/cs)
 - Op YouTube is een demonstratie te zien:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4" frameborder="0" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4" frameborder="0" allowfullscreen></iframe>
 
 ## Proeftuin Omgevingswet Kadaster
 **Voor vragen en/of opmerkingen met betrekking tot één van onderstaande demo-omgevingen, kunt u een e-mail sturen naar <omgevingswet@kadaster.nl>**
@@ -477,17 +477,17 @@ Dit is een preview van een demo-omgeving welke wij nu nog volop aan het ontwikke
 * Het vooraf toetsen van een vergunning aanvraag aan bestaande regelgeving voor het plaatsen van een bijgebouw
 * Het bieden van ondersteuning bij het maken van een keuze voor een geschikte vestigingslocatie
 
-[http://omgevingsplanner.kadaster.semaku.com/](http://omgevingsplanner.kadaster.semaku.com/) 
+[http://omgevingsplanner.kadaster.semaku.com/](http://omgevingsplanner.kadaster.semaku.com/)
 
 ### Pilot Starten Bierbrouwerij
 
 *In samenwerking met de gemeenten Emmen en Nijmegen – april t/m september 2017*
- 
-Gemeenten hebben veel vragen over de toekomstige informatievoorziening in het kader van de Omgevingswet. Welke informatie vind je dan waar? Wat zijn de grote verschillen ten opzichte van de situatie nu? Het is lastig om zonder concreet of illustratief voorbeeld antwoord te geven op bovenstaande vragen. Naar aanleiding van eerder onderzoek van de gemeente Emmen naar de informatiebehoefte in vergunningen processen (aan de hand van ‘bouw’ gerelateerde cases), is in deze pilot een simulatie gemaakt hoe in een gerelateerde case relevante informatie bij elkaar kan worden gebracht en op eenvoudige wijze kan worden gepresenteerd. 
- 
-De pilot heeft een demonstrator opgeleverd van relevante informatie voor de use case ‘starten van een bierbrouwerij’. De gebouwde demonstrator ‘Zoek bedrijfslocatie’ is zodanig ontwikkeld dat ook voor andere soorten bedrijven de geschiktheid van een potentiële bedrijfslocatie kan worden onderzocht. De demonstrator is nog in ontwikkeling. Heeft u interesse om bij te dragen? We horen graag van u via bovengenoemd e-mail adres. 
 
-Klik op onderstaande link om meer over deze pilot te lezen en de demo-omgeving te verkennen. 
+Gemeenten hebben veel vragen over de toekomstige informatievoorziening in het kader van de Omgevingswet. Welke informatie vind je dan waar? Wat zijn de grote verschillen ten opzichte van de situatie nu? Het is lastig om zonder concreet of illustratief voorbeeld antwoord te geven op bovenstaande vragen. Naar aanleiding van eerder onderzoek van de gemeente Emmen naar de informatiebehoefte in vergunningen processen (aan de hand van ‘bouw’ gerelateerde cases), is in deze pilot een simulatie gemaakt hoe in een gerelateerde case relevante informatie bij elkaar kan worden gebracht en op eenvoudige wijze kan worden gepresenteerd.
+
+De pilot heeft een demonstrator opgeleverd van relevante informatie voor de use case ‘starten van een bierbrouwerij’. De gebouwde demonstrator ‘Zoek bedrijfslocatie’ is zodanig ontwikkeld dat ook voor andere soorten bedrijven de geschiktheid van een potentiële bedrijfslocatie kan worden onderzocht. De demonstrator is nog in ontwikkeling. Heeft u interesse om bij te dragen? We horen graag van u via bovengenoemd e-mail adres.
+
+Klik op onderstaande link om meer over deze pilot te lezen en de demo-omgeving te verkennen.
 
 [http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
 
@@ -498,6 +498,6 @@ De Omgevingswet vraagt om beschikbaarheid van informatie uit diverse informatied
 
 In de demonstrator is het mogelijk om een vraag te beantwoorden met gebruikmaking van informatie uit meer domeinen tegelijkertijd. De use case wil ingaan op veelverwachte vragen van initiatiefnemers over een bepaald pand: “Wat is dat” en “Mag dat”. Dus onder meer antwoord geven op de vraag welke bestemming een pand heeft en wat er in dat pand is toegelaten. Dit heeft geresulteerd in de demo-omgeving met als titel: “Wasda Magda”.  
 
-Klik op onderstaande link om de demo-omgeving te verkennen. 
+Klik op onderstaande link om de demo-omgeving te verkennen.
 
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
