@@ -25,17 +25,17 @@ select ?wkt ?wktLabel {
     cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?landbouw ;
     cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?totaal .
   bind (concat(
-    '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',?label,'’</h4>',
-    if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',?oprit, 'km (gem. ',?_oprit,' km)<br>',
-    if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',?trein,' km (gem. ',?_trein,' km)<br>',
-    if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',?kind,' km (gem. ',?_kind,' km)<br>',
-    if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',?boodschap,' km (gem. ',?_boodschap,' km)',
+    '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',str(?label),'’</h4>',
+    if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',str(?oprit), 'km (gem. ',str(?_oprit),' km)<br>',
+    if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',str(?trein),' km (gem. ',str(?_trein),' km)<br>',
+    if(?kind<?_kind,'🠋','🠉'),' Kinderopvang: ',str(?kind),' km (gem. ',str(?_kind),' km)<br>',
+    if(?boodschap<?_boodschap,'🠋','🠉'),' Dagelijkse boodschappen: ',str(?boodschap),' km (gem. ',str(?_boodschap),' km)',
     '<h4>Autobezit</h4>',
-    if(?auto<?_auto,'🠋','🠉'),' Aantal auto\'s per huishouden: ',?auto,' 🚗 (gem. ',?_auto,' 🚗)</p>',
+    if(?auto<?_auto,'🠋','🠉'),' Aantal auto\'s per huishouden: ',str(?auto),' 🚗 (gem. ',str(?_auto),' 🚗)</p>',
     '<h4>Aantal banen binnen 10km</h4>',
-    if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',xsd:int(?nijverheid*1000),' 👷 (gem. ',xsd:int(?_nijverheid*1000),')<br>',
-    if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',xsd:int(?landbouw*1000),' x1.000 👷 (gem. ',xsd:int(?_landbouw*1000),' x1.000)<br>',
-    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',xsd:int(?totaal*1000),' x1.000 👷 (gem. ',xsd:int(?_totaal*1000),' x1.000)</p>'
+    if(?nijverheid<?_nijverheid,'🠋','🠉'),' Nijverheid &amp; energie: ',str(xsd:int(?nijverheid*1000)),' 👷 (gem. ',str(xsd:int(?_nijverheid*1000)),')<br>',
+    if(?landbouw<?_landbouw,'🠋','🠉'),' Landbouw, bowbouw &amp; visserij: ',str(xsd:int(?landbouw*1000)),' x1.000 👷 (gem. ',str(xsd:int(?_landbouw*1000)),' x1.000)<br>',
+    if(?totaal<?_totaal,'🠋','🠉'),' Totaal: ',str(xsd:int(?totaal*1000)),' x1.000 👷 (gem. ',str(xsd:int(?_totaal*1000)),' x1.000)</p>'
   ) as ?wktLabel)
 }
 limit 100

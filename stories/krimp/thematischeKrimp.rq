@@ -37,7 +37,7 @@ where {
                   .
         bind(concat("<h3>Arbeidsparticipatie</h3>",
             "<h4>", ?g_naam, "</h4>",
-            "<p>Voor deze gemeente: <b>", ?g_ap, "%</b></p>" ,
+            "<p>Voor deze gemeente: <b>", str(?g_ap), "%</b></p>" ,
             "<p>Voor Nederland: <b>65.8%</b></p>") as ?wktLabel)
         bind(((?g_ap - ?min) / ?spreiding) as ?wktColorIndex)
         bind (xsd:integer(?wktColorIndex * 255) as ?green)

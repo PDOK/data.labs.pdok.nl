@@ -12,7 +12,7 @@ select ?wkt ?wktColor ?wktLabel {
     ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
   }
   bind (xsd:float(?euro - 25) / 1900 as ?normalized)
-  bind (concat("jet,",?normalized) as ?wktColor)
-  #bind (concat('<h3>',?label,'</h3><p>€',?euro,',-</p>') as ?wktLabel)
-} 
+  bind (concat("jet,",str(?normalized)) as ?wktColor)
+  #bind (concat('<h3>',str(?label),'</h3><p>€',str(?euro),',-</p>') as ?wktLabel)
+}
 limit 100
