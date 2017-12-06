@@ -3,7 +3,7 @@ layout: default
 title: PDOK data connector
 ---
 <script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js" type="text/javascript"></script>
-<script src="../js/wicket.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.2/wicket.min.js" type="text/javascript"></script>
 
 <script>
     (function() {
