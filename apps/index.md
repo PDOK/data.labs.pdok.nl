@@ -7,6 +7,11 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+## LinkDaLe
+Voor zijn afstudeerstage ontwierp Gerwin Bosch een applicatie genaamd [LinkDaLe](http://linkdale.org). LinkdaLe staat voor "Linked Data Learning Environment", en maakt het mogelijk om mensen op laagdrempelige manier kennis te laten maken met Linked Data door data te transformeren naar Linked Data. De getransformeerde data kan vervolgens worden opgeslagen in een publiek beschikbaar SPARQL endpoint. Stan Ronhzin leverde bijdragen in de vorm van begeleidende teksten.
+
+Probeer het hier zelf: [http://linkdale.org](http://linkdale.org)
+
 ## De BuurtBrowser (met FacetCheck)
 
 In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset. 
