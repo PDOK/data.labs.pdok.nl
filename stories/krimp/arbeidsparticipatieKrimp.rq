@@ -22,7 +22,7 @@ where {
    	.
     bind(concat("<h3>Arbeidsparticipatie</h3>",
         		"<h4>", ?g_naam, "</h4>",
-        		"<p>Voor deze gemeente: <b>", ?g_ap, "%</b></p>" ,
+        		"<p>Voor deze gemeente: <b>", str(?g_ap), "%</b></p>" ,
         		"<p>Voor Nederland: <b>65.8%</b></p>") as ?wktLabel)
   }
   values (?regio ?wktColor) {
