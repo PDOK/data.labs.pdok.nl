@@ -15,13 +15,14 @@ layout: default
 <script type="text/javascript">
 YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
 YASGUI.YASR.defaults.outputPlugins = ["table","error","boolean","rawResponse","pivot","leaflet"];
-
+YASGUI.YASR.plugins.gchart = undefined
+YASGUI.YASR.defaults.useGoogleCharts = false;
 YASGUI.sparqlStories();
 </script>
 
 <style>
-.google-visualization-table .gradient { 
-  color: black; 
+.google-visualization-table .gradient {
+  color: black;
   font-family: inherit;
 }
 </style>
