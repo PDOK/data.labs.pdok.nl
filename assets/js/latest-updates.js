@@ -24,7 +24,7 @@ $.ajax(settings).done(function (commits) {
 
       $.ajax(settings).done(function (response) {
         response.files
-          .filter(function (file) { return file.filename.slice(-2) === 'md' })
+          .filter(function (file) { return file.filename.slice(-2) === 'md' && file.filename[0] !== "_"})
           .forEach(function (markDownFile) {
             var path = markDownFile.filename
               .replace('.md', '.html');
