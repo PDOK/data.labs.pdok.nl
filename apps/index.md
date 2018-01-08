@@ -495,7 +495,8 @@ Klik op onderstaande link en/of PDF document met toelichting om meer over deze p
 
 [http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
 
-[Toelichting in PDF](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
+<a href="/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf" target="_blank">
+Toelichting in PDF</a>
 
 ### Beeldende pilot
 *In samenwerking met de Rijksdienst voor het Cultureel Erfgoed (RCE) en het Interprovinciaal Overleg (IPO) – april t/m september 2016*
