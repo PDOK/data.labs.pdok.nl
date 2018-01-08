@@ -469,8 +469,7 @@ TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet 
 
 - Het resultaat van de demo is hier te zien: [http://tnopresenter.nl/Vergunningen](http://tnopresenter.nl/Vergunningen)
 - TNO biedt in een presentatie een overzicht van de doelen en functionaliteit, op [http://www.tnopresenter.nl/cs](http://www.tnopresenter.nl/cs)
-- Op YouTube is een demonstratie te zien:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4" frameborder="0" allowfullscreen></iframe>
+- [Klik hier om een demonstratie te zien](https://youtu.be/EGTMvd5jYd4).
 
 ## Proeftuin Omgevingswet Kadaster
 **Voor vragen en/of opmerkingen met betrekking tot één van onderstaande demo-omgevingen, kunt u een e-mail sturen naar <omgevingswet@kadaster.nl>**
