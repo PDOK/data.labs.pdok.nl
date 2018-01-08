@@ -512,7 +512,7 @@ Klik op onderstaande link om de demo-omgeving te verkennen.
 ### Data exploration with Tableau
 
 [Tableau](https://www.tableau.com/) is a BI software. 
-Example OF consuming BAG data in Tableau can be find below:
+An example of consuming BAG data in Tableau can be find below:
 
 <script type='text/javascript' src='/assets/js/tableau/viz_v1.js'></script>
 
