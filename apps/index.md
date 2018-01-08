@@ -492,9 +492,11 @@ Gemeenten hebben veel vragen over de toekomstige informatievoorziening in het ka
 
 De pilot heeft een demonstrator opgeleverd van relevante informatie voor de use case ‘starten van een bierbrouwerij’. De gebouwde demonstrator ‘Zoek bedrijfslocatie’ is zodanig ontwikkeld dat ook voor andere soorten bedrijven de geschiktheid van een potentiële bedrijfslocatie kan worden onderzocht. De demonstrator is nog in ontwikkeling. Heeft u interesse om bij te dragen? We horen graag van u via bovengenoemd e-mail adres.
 
-Klik op onderstaande link om meer over deze pilot te lezen en de demo-omgeving te verkennen.
+Klik op onderstaande link en/of PDF document met toelichting om meer over deze pilot te lezen en de demo-omgeving te verkennen.
 
 [http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
+
+[Toelichting in PDF](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
 
 ### Beeldende pilot
 *In samenwerking met de Rijksdienst voor het Cultureel Erfgoed (RCE) en het Interprovinciaal Overleg (IPO) – april t/m september 2016*
