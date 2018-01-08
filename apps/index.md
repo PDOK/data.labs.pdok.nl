@@ -2,7 +2,7 @@
 layout: default
 title: Demonstrators (apps)
 ---
-<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<script src="/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
