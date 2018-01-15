@@ -7,6 +7,25 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+### Data exploration with Tableau
+
+[Tableau](https://www.tableau.com/) is a BI software. 
+An example of consuming BAG data in Tableau can be found below:
+
+<script type='text/javascript' src='/assets/js/tableau/viz_v1.js'></script>
+
+<div class='tableauPlaceholder' style='width: 1920px; height: 818px;'>
+  <object class='tableauViz' width='1920' height='818' style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fdub01.online.tableau.com%2F' />
+    <param name='embed_code_version' value='2' />
+    <param name='site_root' value='&#47;t&#47;kadastertableauintegration' />
+    <param name='name' value='Enschede&#47;Dashboard1' /><param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='showAppBanner' value='false' />
+    <param name='showShareOptions' value='true' />
+  </object>
+</div>
+
 ## LinkDaLe
 Voor zijn afstudeerstage ontwierp Gerwin Bosch een applicatie genaamd [LinkDaLe](http://linkdale.org). LinkdaLe staat voor "Linked Data Learning Environment", en maakt het mogelijk om mensen op laagdrempelige manier kennis te laten maken met Linked Data door data te transformeren naar Linked Data. De getransformeerde data kan vervolgens worden opgeslagen in een publiek beschikbaar SPARQL endpoint. Stan Ronhzin leverde bijdragen in de vorm van begeleidende teksten.
 
@@ -508,23 +527,3 @@ In de demonstrator is het mogelijk om een vraag te beantwoorden met gebruikmakin
 Klik op onderstaande link om de demo-omgeving te verkennen.
 
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)
-
-
-### Data exploration with Tableau
-
-[Tableau](https://www.tableau.com/) is a BI software. 
-An example of consuming BAG data in Tableau can be find below:
-
-<script type='text/javascript' src='/assets/js/tableau/viz_v1.js'></script>
-
-<div class='tableauPlaceholder' style='width: 1920px; height: 818px;'>
-  <object class='tableauViz' width='1920' height='818' style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Fdub01.online.tableau.com%2F' />
-    <param name='embed_code_version' value='2' />
-    <param name='site_root' value='&#47;t&#47;kadastertableauintegration' />
-    <param name='name' value='Enschede&#47;Dashboard1' /><param name='tabs' value='no' />
-    <param name='toolbar' value='yes' />
-    <param name='showAppBanner' value='false' />
-    <param name='showShareOptions' value='true' />
-  </object>
-</div>
