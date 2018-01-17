@@ -1,0 +1,47 @@
+---
+endpoint: https://data.pdok.nl/sparql
+layout: story
+logo: /stories/sp2b/logo.png
+output: table
+title: Hackathon
+---
+
+# Resultaten hackathon
+
+De story bevat de uitkomsten van de Kadaster Linked Data Hackathon,
+maar dan aangepast zodanig dat alleen huidige BAG records getoond
+worden.  (Het is namelijk triviaal om ‘kwaliteitsproblemen’ in oude
+records te vinden: deze zijn heel vaak opgelost in een later record.)
+
+## Oppervlakte
+
+Verblijfsobjecten met een oppervlakte van 99,999m².  Alle
+verblijfsobjecten met deze oppervlakte worden getoond.
+
+<div data-query data-query-sparql="oppervlakte-groot.rq"></div>
+
+Verblijfsobjecten met een oppervlakte van 1m².  Het aantal
+verblijfsobjecten per BAG status is getoond.
+
+<div data-query data-query-sparql="oppervlakte-klein.rq"></div>
+
+## Bouwjaar
+
+Panden met bouwjaar 9999.  Het aantal panden per BAG status is
+getoond.
+
+<div data-query data-query-sparql="bouwjaar.rq"></div>
+
+## Huisnummer
+
+Nummeraanduidingen met huisnummer 9999.  Het aantal nummeraanduidingen
+per BAG status is getoond.
+
+<div data-query data-query-sparql="huisnummer.rq"></div>
+
+## Huisnummer toevoeging
+
+Nummeraanduidingen met huisnummer toevoeging ‘kwek’.  Het aantal
+nummeraanduidingen per BAG status is getoond.
+
+<div data-query data-query-sparql="huisnummer-toevoeging.rq"></div>
