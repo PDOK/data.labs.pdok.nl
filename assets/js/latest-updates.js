@@ -10,7 +10,6 @@ var settings = {
   }
 };
 
-var commits;
 var updatedMarkdownFiles = [];
 
 String.prototype.capitalize = function() {
@@ -24,7 +23,12 @@ $.ajax(settings).done(function (commits) {
 
       $.ajax(settings).done(function (response) {
         response.files
-          .filter(function (file) { return file.filename.slice(-2) === 'md' && file.filename[0] !== "_"})
+          .filter(function (file) {
+            return file.filename.slice(-2) === 'md' &&
+              file.filename[0] !== "_" &&
+              file.filename.slice(0, 6) !== "README"
+
+          })
           .forEach(function (markDownFile) {
             var path = markDownFile.filename
               .replace('.md', '.html');
