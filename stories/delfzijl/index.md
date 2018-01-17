@@ -66,26 +66,14 @@ informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de
 BAG, Wijken en Buurten, BRT, Monumenten.  En dat we data analyses
 kunnen doen zonder domein-specifieke tooling.
 
-## Afstand tot kerncentrales: landelijk
+## Landelijke afstand tot kunstijsbanen
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="maximum-kerncentrale.rq">
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql"
+     data-query-sparql="maximum-kunstijsbaan.rq">
 </div>
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="thematische-kaart-kerncentrale.rq">
-</div>
-
-## Afstand tot elektriciteitscentrales: landelijk
-
-<div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="maximum-elektriciteitscentrale.rq">
-</div>
-
-<div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
-     data-query-sparql="thematische-kaart-elektriciteitscentrale.rq">
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql"
+     data-query-sparql="thematische-kaart-kunstijsbaan.rq">
 </div>

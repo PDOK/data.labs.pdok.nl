@@ -1,13 +1,21 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix cbs: <https://triply.cc/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-select (max(?min) as ?max) {
-  ?gemeente a cbs:Gemeente .
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktColor {
+  graph <https://triply.cc/cbs/graph/2015> {
+    ?gemeente a cbs:Gemeente ;
+              geo:hasGeometry/geo:asWKT ?wkt .
+  }
   {
     select ?gemeente (min(?d) as ?min)  {
-      ?gemeente a cbs:Gemeente ; geo:hasGeometry/geo:asWKT ?wktA .
+      graph <https://triply.cc/cbs/graph/2015> {
+        ?gemeente a cbs:Gemeente ;
+                  geo:hasGeometry/geo:asWKT ?wktA .
+      }
       graph <https://krr.triply.cc/LaurensRietveld/brt/graphs/default> {
-        ?feature a brt:KerncentraleKernreactor ; geo:hasGeometry/geo:asWKT ?wktB .
+        ?feature a brt:Kunstijsbaan ;
+                 geo:hasGeometry/geo:asWKT ?wktB .
       }
       bind (bif:ST_XMin(?wktA) as ?Ax1)
       bind (bif:ST_YMin(?wktA) as ?Ay1)
@@ -20,6 +28,11 @@ select (max(?min) as ?max) {
       bind (bif:ST_YMax(?wktB) as ?By2)
       bind (bif:st_point(?Bx1 + ((?Bx2 - ?Bx1) / 2), ?By1 + ((?By2 - ?By1) / 2)) as ?pB)
       bind (bif:st_distance(?pA, ?pB) as ?d)
-    } group by ?gemeente
+    }
+    group by ?gemeente
   }
+  bind ((173.662 - xsd:float(?min)) / 173.662 as ?normalized)
+  bind (concat("jet,",?normalized) as ?wktColor)
+  bind (concat('<p>',?gemeenteNaam,'</p><p>Afstand tot kerncentrale: ',substr(str(?min),1,5),'km</p>') as ?wktLabel)
 }
+limit 500
