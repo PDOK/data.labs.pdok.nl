@@ -8,10 +8,13 @@ title: Hackathon
 
 # Resultaten hackathon
 
-De story bevat de uitkomsten van de Kadaster Linked Data Hackathon,
-maar dan aangepast zodanig dat alleen huidige BAG records getoond
-worden.  (Het is namelijk triviaal om ‘kwaliteitsproblemen’ in oude
-records te vinden: deze zijn heel vaak opgelost in een later record.)
+De story bevat de uitkomsten van de Kadaster Linked Data Hackathon van
+het productieve team bestaande uit Bas Hendrikse, Christiaan Visscher,
+en Dylan Ye.  Dit team heeft heel veel goede SPARQL queries gemaakt
+met als doel het vinden van kwaliteitsproblemen.  Hun queries zijn
+aangepast om alleen actuele BAG records te tonen.  (Het is namelijk
+triviaal om ‘kwaliteitsproblemen’ in oude records te vinden: deze zijn
+heel vaak opgelost in een later record.)
 
 ## Oppervlakte
 
