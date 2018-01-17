@@ -102,7 +102,7 @@ title: PDOK data connector
 
             myConnector.getData = function(table, doneCallback) {
                        var userInput = JSON.parse(tableau.connectionData),
-                           apiCall = "http://grlc.io/api/StanRonzhin/tableauIntegration/PandenVoorBuurt?buurtNaam=" + userInput.input;
+                           apiCall = "https://data.labs.pdok.nl/api/StanRonzhin/tableauIntegration/PandenVoorBuurt?buurtNaam=" + userInput.input;
 
                        var settings = {
                            "async": true,
