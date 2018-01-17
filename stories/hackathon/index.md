@@ -1,7 +1,7 @@
 ---
 endpoint: https://data.pdok.nl/sparql
 layout: story
-logo: /stories/sp2b/logo.png
+logo: logo.png
 output: table
 title: Hackathon
 ---
