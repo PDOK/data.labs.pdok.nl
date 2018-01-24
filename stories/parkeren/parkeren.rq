@@ -1,0 +1,23 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX lgd: <http://linkedgeodata.org/triplify/>
+PREFIX lgdo: <http://linkedgeodata.org/ontology/>
+
+SELECT * WHERE {
+  {
+	 ?x a brt:ParkeerdakParkeerdekParkeergarage;
+	    geo:hasGeometry/geo:asWKT ?geo ;
+  		rdfs:label ?geoLabel .
+  	bind("blue" as ?geoColor)
+}
+UNION
+  {
+    service <https://data.labs.pdok.nl/sparql> {
+      	?x a lgdo:Parking;
+	    	geo:asWKT ?geo ;
+	  	bind("green" as ?geoColor)
+
+    }
+  }
+}
