@@ -15,6 +15,7 @@ met als doel het vinden van kwaliteitsproblemen in de BAG.  Hun queries zijn
 aangepast om alleen actuele BAG records te tonen.  (Het is namelijk
 triviaal om ‘kwaliteitsproblemen’ in oude records te vinden: deze zijn
 heel vaak opgelost in een later record.) Het laat zien dat SPARQL goed gebruikt kan worden om kwaliteitsproblemen in data te vinden.
+Een sfeerimpressie van de hackathon kan hier worden bekeken: https://youtu.be/yak9OTOrxNU
 
 ## Oppervlakte
 
