@@ -1,6 +1,7 @@
 ---
 layout: story
 title: Parkeren in Nederland
+logo: /stories/parkeren/logo.jpg
 ---
 
 <!-- regex voor het vervangen van de blank nodes:
