@@ -3,8 +3,9 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix woonplaats: <http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/>
 select ?wkt ?rectangle ?wktLabel {
-  woonplaats:1527 geo:hasGeometry/geo:asWKT ?wkt ;
-                  bag:naamWoonplaats ?name ;
+  bind(woonplaats:1527 as ?gemeente)
+  ?gemeente geo:hasGeometry/geo:asWKT ?wkt ;
+            bag:naamWoonplaats ?name .
   bind(geof:envelope(?wkt) as ?rectangle)
-  bind (concat('<a href="http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/1527"><b style="color: red;">',?name,'</b></a>') as ?wktLabel)
+  bind (concat('<b><a href="',str(?gemeente),'">',?name,'</a></b>') as ?wktLabel)
 }
