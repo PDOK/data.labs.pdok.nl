@@ -1,17 +1,18 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 prefix cbs: <https://triply.cc/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://krr.triply.cc/Kadaster/graph/>
 select (max(?min) as ?max) {
-  graph <https://triply.cc/cbs/graph/2015> {
+  graph graph:CBS-2015 {
     ?gemeente a cbs:Gemeente .
   }
   {
     select ?gemeente (min(?d) as ?min)  {
-      graph <https://triply.cc/cbs/graph/2015> {
+      graph graph:CBS-2015 {
         ?gemeente a cbs:Gemeente ;
                   geo:hasGeometry/geo:asWKT ?wktA .
       }
-      graph <https://krr.triply.cc/LaurensRietveld/brt/graphs/default> {
+      graph graph:BRT {
         ?feature a brt:Kunstijsbaan ;
                  geo:hasGeometry/geo:asWKT ?wktB .
       }

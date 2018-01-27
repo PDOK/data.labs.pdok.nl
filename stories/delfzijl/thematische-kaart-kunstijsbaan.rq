@@ -1,19 +1,20 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 prefix cbs: <https://triply.cc/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://krr.triply.cc/Kadaster/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?wkt ?wktColor {
-  graph <https://triply.cc/cbs/graph/2015> {
+  graph graph:CBS-2015 {
     ?gemeente a cbs:Gemeente ;
               geo:hasGeometry/geo:asWKT ?wkt .
   }
   {
     select ?gemeente (min(?d) as ?min)  {
-      graph <https://triply.cc/cbs/graph/2015> {
+      graph graph:CBS-2015 {
         ?gemeente a cbs:Gemeente ;
                   geo:hasGeometry/geo:asWKT ?wktA .
       }
-      graph <https://krr.triply.cc/LaurensRietveld/brt/graphs/default> {
+      graph graph:BRT {
         ?feature a brt:Kunstijsbaan ;
                  geo:hasGeometry/geo:asWKT ?wktB .
       }
@@ -31,7 +32,7 @@ select ?wkt ?wktColor {
     }
     group by ?gemeente
   }
-  bind ((173.662 - xsd:float(?min)) / 173.662 as ?normalized)
+  bind ((105.43 - xsd:float(?min)) / 105.43 as ?normalized)
   bind (concat("jet,",?normalized) as ?wktColor)
   bind (concat('<p>',?gemeenteNaam,'</p><p>Afstand tot kerncentrale: ',substr(str(?min),1,5),'km</p>') as ?wktLabel)
 }
