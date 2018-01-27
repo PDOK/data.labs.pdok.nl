@@ -52,7 +52,7 @@ select ?straatNaam ?wkt ?wktLabel {
         if(?maand=10,"oktober",
         if(?maand=11,"november",
         "december"))))))))))) as ?maandLabel)
-  service <https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql> {
+  service <https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql> {
     ?image foaf:depicts <https://cultureelerfgoed.nl/id/monument/12310> ;
            rce:locator ?url .
   }

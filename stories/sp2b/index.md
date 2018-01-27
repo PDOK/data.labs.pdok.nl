@@ -1,5 +1,5 @@
 ---
-endpoint: https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql
+endpoint: https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql
 layout: story
 logo: /stories/sp2b/logo.png
 output: table

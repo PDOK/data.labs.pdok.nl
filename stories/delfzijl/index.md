@@ -69,11 +69,11 @@ kunnen doen zonder domein-specifieke tooling.
 ## Landelijke afstand tot kunstijsbanen
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql"
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="maximum-kunstijsbaan.rq">
 </div>
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/services/geosoup/sparql"
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="thematische-kaart-kunstijsbaan.rq">
 </div>

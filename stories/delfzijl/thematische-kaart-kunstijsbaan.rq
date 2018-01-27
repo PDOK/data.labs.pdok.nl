@@ -1,20 +1,20 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://triply.cc/cbs/def/>
+prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://krr.triply.cc/Kadaster/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?wkt ?wktColor {
-  graph graph:CBS-2015 {
+  graph graph:cbs-2015 {
     ?gemeente a cbs:Gemeente ;
               geo:hasGeometry/geo:asWKT ?wkt .
   }
   {
     select ?gemeente (min(?d) as ?min)  {
-      graph graph:CBS-2015 {
+      graph graph:cbs-2015 {
         ?gemeente a cbs:Gemeente ;
                   geo:hasGeometry/geo:asWKT ?wktA .
       }
-      graph graph:BRT {
+      graph graph:brt {
         ?feature a brt:Kunstijsbaan ;
                  geo:hasGeometry/geo:asWKT ?wktB .
       }
