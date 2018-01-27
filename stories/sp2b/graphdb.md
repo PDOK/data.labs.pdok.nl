@@ -6,11 +6,13 @@ output: table
 title: SP2B
 ---
 
-# SP<sup>2</sup>B
+# Benchmark SP<sup>2</sup>B on GraphDB
 
 Running the <a
 href="http://dbis.informatik.uni-freiburg.de/index.php?project=SP2B/queries.php">SP<sup>2</sup>B
-SPARQL benchmark</a> over 50K triples with a 1GB Virtuoso endpoint.
+SPARQL benchmark</a> over 50K triples with a GraphDB endpoint.  The
+same benchmark is run over a <a href="index.html">Virtuoso
+endpoint</a>.
 
 ## Q1: Return the year of publication of “Journal 1 (1940)”
 
