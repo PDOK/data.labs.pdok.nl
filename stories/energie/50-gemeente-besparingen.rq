@@ -5,7 +5,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://krr.triply.cc/Kadaster/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel {
+select ?wkt ?wktColor ?wktLabel {
   bind (strdt("Amsterdam",xsd:string) as ?gemeenteNaam)
   graph graph:cbs-2015 {
     ?gemeente rdfs:label ?gemeenteNaam .
@@ -35,5 +35,7 @@ select ?wkt ?wktLabel {
       'Installatietechnische investeringen: €',str(?installatieInvestering),'</p>',
       if(?deler > 0,concat('<p>Positief rendement na ',str(?noemer / ?deler),' jaar.</p>'),'')
     ) as ?wktLabel)
+  bind (if(?deler > 0, (22.0 - (xsd:float(?noemer / ?deler) - 8.0)) / 22.0, 0) as ?normalized)
+  bind (concat("bluered,",?normalized) as ?wktColor)
 }
-limit 20
+limit 75
