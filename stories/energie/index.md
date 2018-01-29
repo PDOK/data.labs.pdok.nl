@@ -98,7 +98,7 @@ older buildings in Amsterdam.
 footprint and the energy certificate information).
 
 <div data-query
-     data-query-sparql="story_02_ams_keisergracht.rq">
+     data-query-sparql="story_02_ams_keisergracht2.rq">
 </div>
 
 3) Interesting visualization comes out of the wind turbines
