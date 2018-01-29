@@ -4,7 +4,6 @@ title: PDOK data connector
 ---
 <script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.2/wicket.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.2/wicket.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" type="text/javascript"></script>
 
 <div class="container container-table">
@@ -33,11 +32,11 @@ title: PDOK data connector
 
                         var cols = [{
                             id: "pand",
-                            alias: "PandURI",
+                            alias: "Pand URI",
                             dataType: tableau.dataTypeEnum.string
                         }, {
                             id: "pandID",
-                            alias: "pandID",
+                            alias: "pand ID",
                             dataType: tableau.dataTypeEnum.string
                         }, {
                             id: "year",
@@ -57,9 +56,11 @@ title: PDOK data connector
                             dataType: tableau.dataTypeEnum.datetime
                         }, {
                             id: "location",
+                            alias: "geographical location",
                             dataType: tableau.dataTypeEnum.geometry
                         }, {
                             id: "buurtNaam",
+                            alias: "Name of neighbourhood",
                             dataType: tableau.dataTypeEnum.string
                            }
                         ];
