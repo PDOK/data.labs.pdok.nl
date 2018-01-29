@@ -32,13 +32,13 @@ select ?wkt ?wktColor ?wktLabel {
     }
   }
   bind (if(!(bound(?energielabel)), "grey",
-        if(?energielabel="A", "#22b14c",
+        if(strstarts(?energielabel, "A"), "#22b14c",
         if(?energielabel="B", "#8ff334",
         if(?energielabel="C", "#bdfc2c",
         if(?energielabel="D", "#fff200",
         if(?energielabel="E", "#ff9a35",
         if(?energielabel="F", "#ff7f27",
         if(?energielabel="G", "#ed1c24",
-        ?grey)))))))) as ?wktColor)
+        "grey")))))))) as ?wktColor)
   bind (concat('<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',if(bound(?x),concat('<h5>Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul>'),''),'<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
 }
