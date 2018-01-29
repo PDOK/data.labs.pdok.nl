@@ -48,14 +48,15 @@ in mijn straat hebben energielabel D (
 
 ## Buurt & mogelijke besparingen
 
-Dat is mooi, maar is er in mijn buurt eigenlijk wel veel te behalen
-qua energie besparingen?  Het CBS heeft hier gegevens over.  Daarvoor
-gaan we een link leggen tussen mijn woning in de BAG en de buurt in
-de CBS wijken-en buurtenkaart.
+Mijn buurt heet ‘Dorp Warnsveld’, waar volgende de CBS dataset het
+gemiddlede aardgasverbruik 1,940m³ per jaar is, en het gemiddeldw
+elektriciteitsgebruik 3,320 kWh per jaar.
 
-Laten we voor deze buurt eens kijken wat de mogelijke besparingen op
-het gebied van energieverbruik zijn, en of het de moeite loont om in
-energiebesparing te investeren:
+Dat is mooi, maar is er in mijn buurt misschien ook energie te
+besparingen?  Het CBS heeft hier gegevens over.  Voor buurt ‘Dorp
+Warnsveld’ zijn de mogelijke besparingen €25 per jaar.  Daarvoor zijn
+éénmalige investeringen van €400 nodig.  Dat betekent dat er pad na 16
+jaar een positief rendement optreed…
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
@@ -65,7 +66,14 @@ energiebesparing te investeren:
 ## Besparingspotentie voor een gemeente
 
 In andere gemeentes kan de besparinspotentie aanzienlijker zijn,
-bijvoorbeeld in Amsterdam.
+bijvoorbeeld in Amsterdam.  We tonen hier de buurten waar besparingen
+weinig opbrengen (blauw) en de buurten waar besparingen veel opgrengen
+(rood).
+
+We zien dat in een nieuwbouwbuurt als ‘IJburg West’ (rechts in de
+kaart gelegen) bijna geen energiebesparingen mogelijk zijn.  Maar in
+de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
+van duizenden euros per jaar mogelijk.
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
