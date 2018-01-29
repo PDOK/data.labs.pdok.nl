@@ -8,7 +8,7 @@ output: leaflet
 # Energy labels, energiebesparing, en windturbines
 
 Deze data story laat zien welke mogelijkheden er ontstaan als de
-Energielabel Dataset beschikbaar gesteld wordt als Linked Data.
+Energielabel Dataset (RVO) beschikbaar gesteld wordt als Linked Data.
 Daarbij wordt vooral gefocust op de toegevoegde waarde door
 combinaties te leggen met andere datasets, zoals de BAG (Kadaster),
 Energieverbruik (Gemeente Amsterdam), en Energiebesparingspotentieel
@@ -16,8 +16,7 @@ Energieverbruik (Gemeente Amsterdam), en Energiebesparingspotentieel
 
 ## Woning
 
-Ik ben eigenaar van een woning, en wil weten welk label mijn woning
-heeft.
+Ik ben eigenaar van een woning, en wil informatie over mijn woning.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -49,13 +48,13 @@ in mijn straat hebben energielabel D (
 ## Buurt & mogelijke besparingen
 
 Mijn buurt heet ‘Dorp Warnsveld’, waar volgende de CBS dataset het
-gemiddlede aardgasverbruik 1,940m³ per jaar is, en het gemiddeldw
+gemiddelde aardgasverbruik 1,940m³ per jaar is, en het gemiddelde
 elektriciteitsgebruik 3,320 kWh per jaar.
 
 Dat is mooi, maar is er in mijn buurt misschien ook energie te
 besparingen?  Het CBS heeft hier gegevens over.  Voor buurt ‘Dorp
 Warnsveld’ zijn de mogelijke besparingen €25 per jaar.  Daarvoor zijn
-éénmalige investeringen van €400 nodig.  Dat betekent dat er pad na 16
+éénmalige investeringen van €400 nodig.  Dat betekent dat er pas na 16
 jaar een positief rendement optreed…
 
 <div data-query
@@ -71,7 +70,7 @@ weinig opbrengen (blauw) en de buurten waar besparingen veel opgrengen
 (rood).
 
 We zien dat in een nieuwbouwbuurt als ‘IJburg West’ (rechts in de
-kaart gelegen) bijna geen energiebesparingen mogelijk zijn.  Maar in
+kaart gelegen) bijna geen energiebesparingen mogelijk zijn. Maar in
 de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
 van duizenden euros per jaar mogelijk.
 
@@ -80,53 +79,22 @@ van duizenden euros per jaar mogelijk.
      data-query-sparql="50-gemeente-besparingen.rq">
 </div>
 
-## rest
+## Hoog Energieverbruik?
 
-This data story touches upon the energy-related aspects of the
-housing, includes energy labels, energy consumption tying it all
-together with the Kadaster data providing a new meaning to the data.
-
-The following data sources have been used in this data story;
-
-  * Energy related datasets from [data.amsterdam.nl](data.amsterdam.nl)
-  
-  * RVO energy labels dataset [RVO
-    EP-online](https://www.rvo.nl/onderwerpen/duurzaam-ondernemen/gebouwen/hulpmiddelen-tools-en-inspiratie-gebouwen/ep-online)
-
-All of the data sources were not RDF friendly and have been
-transformed into RDF to follow the Linked Data principles and make it
-available for wider consumption as well as linked with the rest of the
-Kadaster data.
-
-1) This one lists the buildings in Amsterdam that use the most
-electricity (amongst the registered buildings).  This query should
-give a very simple insight on the energy consumption data as well as
-the associated energy label which in this case is expected ‘E’.
+We zijn wel benieuwd welke gebouwen in Amsterdam veel energie verbruiken, en welk energielabel daar dan bij hoort. 
 
 <div data-query
      data-query-sparql="story_01_ams_most.rq">
 </div>
 
-2) Let's have a look into one of the buildings in Amsterdam that uses
-way above average electricity.  In order to get some more background
-information for the address in Amsterdam that uses almost 22K kWh and
-link it with the BAG information (VO and Pand) to get the primary
-information on that house: its surface and the status. It is no surprise, 
-the building has a surface of 1888 square meters and it is also one of the 
-older buildings in Amsterdam.
-(Click on a pin on the map to see more details about the building, its energy 
-footprint and the energy certificate information).
+Laten we eens een pand nader bekijken? Kunnen we bijvoorbeeld het hoge energieverbruik verklaren aan de hand van een grote oppervlakte van het pand (uit de BAG). We zien dat dit pand bijna 22k kWh verbruikt, maar ook een grote oppervlakte van 1888 vierkante meters heeft.
+(op het pinnetje klikken voor informatie)
 
 <div data-query
      data-query-sparql="story_02_ams_keisergracht2.rq">
 </div>
 
-3) Interesting visualization comes out of the wind turbines
-(Mindmolens) dataset, representing the turbine's basic energy-related
-properties including energy production (in mWh) and its power (in kW)
-as well as its dimensions, the WindTurbine park and the company
-operating it.  The dataset contains the wind turbines in the Amsterdam
-region.
+Het volgende voorbeeld laat een aantal BAG panden zien met een geregistreerd energielabel. We kunnen nu met queries alle geregistreerde energielabels bevragen, en on the fly combineren met andere data. Nuttig voor o.a. beleidsonderzoek voor energiemaatregelen. 
 
 <p>De kleuren duiden de verschillende energielabels aan: label A of A+
 (
@@ -163,33 +131,17 @@ label D (
 </svg>
 ).</p>
 
-<div data-query
-     data-query-sparql="story_03_ams_wind.rq">
-</div>
-
-4) This example provides a small selection of BAG ‘panden’ linked to
-the RVO energy labels dataset that enables whole new view of looking
-at the housing data.  We can show all the houses in the Netherlands
-that have a registered energy label.  This potentially can be
-interesting for both house owners and businesses that are trying to
-improve their environmental impact or perform all sorts of analysis of
-environmental impact.
 
 <div data-query
      data-query-sparql="story_04_ams_rvo.rq">
 </div>
 
-5) And with a very simple touch we can easily identify an old-build
-houses (let say pre 1950) whose owners did not just keep the buildings
-but also maintained the great energy/environmental state and earned
-‘A’ energy label for their houses.
+Zo kunnen we ook oude huizen vinden (van voor 1950) waarbij de eigenaars energie besparende maatregelen hebben genomen en beloond zijn met een A label: Een voorbeeld voor hun omgeving.  Overigens kunnen we ook zien dat dit soort queries ook gemaakt kunnen worden om kwaliteitsproblemen op te sporen, zoals pand oppervlaktes van 1 vierkante meter.
 
 <div data-query
      data-query-sparql="story_04_ams_rvo2.rq">
 </div>
 
-(To be continued… with more RVO energy label queries and interesting
-stories to be told…)
 
 # Overzicht energielabels per postcode
 
@@ -220,3 +172,12 @@ selecteren:
   - percentage huurwoningen
   - percentage koopwoningen
   - besparingspotentieel in euros per jaar
+
+# Overig
+
+3) Ook benieuwd waar de windmoles in de Amsterdamse regio staan, en hoeveel energie ze produceren, de omvang, en de eigenaren?
+Dat laten we zien in de volgende query.
+
+<div data-query
+     data-query-sparql="story_03_ams_wind.rq">
+</div>
