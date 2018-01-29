@@ -17,8 +17,7 @@ Energieverbruik (Gemeente Amsterdam), en Energiebesparingspotentieel
 ## Woning
 
 Ik ben eigenaar van een woning, en wil weten welk label mijn woning
-heeft.  QUERY E, maar dan ook met het label toegevoegd. (graag laten
-staan op mijn adres)
+heeft.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -27,7 +26,20 @@ staan op mijn adres)
 
 ## Straat
 
-Hoe doe ik het eigenlijk tov de rest van de straat?
+<p>Hoe zit het eigenlijk met de energielabels in mijn straat?  De panden
+in mijn straat hebben energielabel D (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#fff200" r="10"/>
+</svg>
+), label E (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff9a35" r="10"/>
+</svg>
+), of geen label (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
+</svg>
+).</p>
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -36,14 +48,15 @@ Hoe doe ik het eigenlijk tov de rest van de straat?
 
 ## Buurt & mogelijke besparingen
 
-Dat is mooi, maar is er in mijn buurt eigenlijk wel veel te behalen
-qua energie besparingen?  Het CBS heeft hier gegevens over.  Daarvoor
-gaan we een link leggen tussen mijn woning in de BAG en de buurt in
-de CBS wijken-en buurtenkaart.
+Mijn buurt heet ‘Dorp Warnsveld’, waar volgende de CBS dataset het
+gemiddlede aardgasverbruik 1,940m³ per jaar is, en het gemiddeldw
+elektriciteitsgebruik 3,320 kWh per jaar.
 
-Laten we voor deze buurt eens kijken wat de mogelijke besparingen op
-het gebied van energieverbruik zijn, en of het de moeite loont om in
-energiebesparing te investeren:
+Dat is mooi, maar is er in mijn buurt misschien ook energie te
+besparingen?  Het CBS heeft hier gegevens over.  Voor buurt ‘Dorp
+Warnsveld’ zijn de mogelijke besparingen €25 per jaar.  Daarvoor zijn
+éénmalige investeringen van €400 nodig.  Dat betekent dat er pad na 16
+jaar een positief rendement optreed…
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
@@ -53,7 +66,14 @@ energiebesparing te investeren:
 ## Besparingspotentie voor een gemeente
 
 In andere gemeentes kan de besparinspotentie aanzienlijker zijn,
-bijvoorbeeld in Amsterdam.
+bijvoorbeeld in Amsterdam.  We tonen hier de buurten waar besparingen
+weinig opbrengen (blauw) en de buurten waar besparingen veel opgrengen
+(rood).
+
+We zien dat in een nieuwbouwbuurt als ‘IJburg West’ (rechts in de
+kaart gelegen) bijna geen energiebesparingen mogelijk zijn.  Maar in
+de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
+van duizenden euros per jaar mogelijk.
 
 <div data-query
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
@@ -129,6 +149,41 @@ environmental impact.
 houses (let say pre 1950) whose owners did not just keep the buildings
 but also maintained the great energy/environmental state and earned
 ‘A’ energy label for their houses.
+
+<p>De kleuren duiden de verschillende energielabels aan: label A of A+
+(
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#22b14c" r="10"/>
+</svg>
+), label B (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#8ff334" r="10"/>
+</svg>
+), label C (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#bdfc2c" r="10"/>
+</svg>
+label D (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#fff200" r="10"/>
+</svg>
+), label E (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff9a35" r="10"/>
+</svg>
+), label F (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff7f27" r="10"/>
+</svg>
+), label G (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ed1c24" r="10"/>
+</svg>
+), of geen label (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
+</svg>
+).</p>
 
 <div data-query
      data-query-sparql="story_04_ams_rvo2.rq">
