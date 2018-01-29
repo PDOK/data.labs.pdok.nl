@@ -87,12 +87,16 @@ We zijn wel benieuwd welke gebouwen in Amsterdam veel energie verbruiken, en wel
      data-query-sparql="story_01_ams_most.rq">
 </div>
 
+## Een pand nader bekeken
+
 Laten we eens een pand nader bekijken? Kunnen we bijvoorbeeld het hoge energieverbruik verklaren aan de hand van een grote oppervlakte van het pand (uit de BAG). We zien dat dit pand bijna 22k kWh verbruikt, maar ook een grote oppervlakte van 1888 vierkante meters heeft.
 (op het pinnetje klikken voor informatie)
 
 <div data-query
      data-query-sparql="story_02_ams_keisergracht2.rq">
 </div>
+
+## Panden met geregistreerde labels
 
 Het volgende voorbeeld laat een aantal BAG panden zien met een geregistreerd energielabel. We kunnen nu met queries alle geregistreerde energielabels bevragen, en on the fly combineren met andere data. Nuttig voor o.a. beleidsonderzoek voor energiemaatregelen. 
 
@@ -136,6 +140,8 @@ label D (
      data-query-sparql="story_04_ams_rvo.rq">
 </div>
 
+## Goede voorbeelden
+
 Zo kunnen we ook oude huizen vinden (van voor 1950) waarbij de eigenaars energie besparende maatregelen hebben genomen en beloond zijn met een A label: Een voorbeeld voor hun omgeving.  Overigens kunnen we ook zien dat dit soort queries ook gemaakt kunnen worden om kwaliteitsproblemen op te sporen, zoals pand oppervlaktes van 1 vierkante meter.
 
 <div data-query
@@ -173,9 +179,9 @@ selecteren:
   - percentage koopwoningen
   - besparingspotentieel in euros per jaar
 
-# Overig
+# Dan toch de windmolens
 
-3) Ook benieuwd waar de windmoles in de Amsterdamse regio staan, en hoeveel energie ze produceren, de omvang, en de eigenaren?
+Ook benieuwd waar de windmoles in de Amsterdamse regio staan, en hoeveel energie ze produceren, de omvang, en de eigenaren?
 Dat laten we zien in de volgende query.
 
 <div data-query
