@@ -34,7 +34,6 @@ In order ot access the data in Tableau Desktop:
                 <div id="errorMsg"></div>
             </div>
 
-
     <script>
       (function() {
             // Create the connector object
