@@ -128,28 +128,6 @@ as well as its dimensions, the WindTurbine park and the company
 operating it.  The dataset contains the wind turbines in the Amsterdam
 region.
 
-<div data-query
-     data-query-sparql="story_03_ams_wind.rq">
-</div>
-
-
-4) This example provides a small selection of BAG ‘panden’ linked to
-the RVO energy labels dataset that enables whole new view of looking
-at the housing data.  We can show all the houses in the Netherlands
-that have a registered energy label.  This potentially can be
-interesting for both house owners and businesses that are trying to
-improve their environmental impact or perform all sorts of analysis of
-environmental impact.
-
-<div data-query
-     data-query-sparql="story_04_ams_rvo.rq">
-</div>
-
-5) And with a very simple touch we can easily identify an old-build
-houses (let say pre 1950) whose owners did not just keep the buildings
-but also maintained the great energy/environmental state and earned
-‘A’ energy label for their houses.
-
 <p>De kleuren duiden de verschillende energielabels aan: label A of A+
 (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -184,6 +162,27 @@ label D (
   <circle cx="10" cy="10" fill="grey" r="10"/>
 </svg>
 ).</p>
+
+<div data-query
+     data-query-sparql="story_03_ams_wind.rq">
+</div>
+
+4) This example provides a small selection of BAG ‘panden’ linked to
+the RVO energy labels dataset that enables whole new view of looking
+at the housing data.  We can show all the houses in the Netherlands
+that have a registered energy label.  This potentially can be
+interesting for both house owners and businesses that are trying to
+improve their environmental impact or perform all sorts of analysis of
+environmental impact.
+
+<div data-query
+     data-query-sparql="story_04_ams_rvo.rq">
+</div>
+
+5) And with a very simple touch we can easily identify an old-build
+houses (let say pre 1950) whose owners did not just keep the buildings
+but also maintained the great energy/environmental state and earned
+‘A’ energy label for their houses.
 
 <div data-query
      data-query-sparql="story_04_ams_rvo2.rq">
