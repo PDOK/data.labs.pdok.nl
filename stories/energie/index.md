@@ -91,13 +91,14 @@ the associated energy label which in this case is expected ‘E’.
 way above average electricity.  In order to get some more background
 information for the address in Amsterdam that uses almost 22K kWh and
 link it with the BAG information (VO and Pand) to get the primary
-information on that house: its surface, build year and the status.  It
-is no surprise, the building is over a thousand years old and has a
-surface of 1888 square meters.  (Click on a pin on the map to see more
-details about the building).
+information on that house: its surface and the status. It is no surprise, 
+the building has a surface of 1888 square meters and it is also one of the 
+older buildings in Amsterdam.
+(Click on a pin on the map to see more details about the building, its energy 
+footprint and the energy certificate information).
 
 <div data-query
-     data-query-sparql="story_02_ams_keisergracht.rq">
+     data-query-sparql="story_02_ams_keisergracht2.rq">
 </div>
 
 3) Interesting visualization comes out of the wind turbines
