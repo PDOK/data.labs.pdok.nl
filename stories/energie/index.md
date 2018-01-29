@@ -205,3 +205,16 @@ getoond worden.
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="100-labels-voor-postcode-prefix.rq">
 </div>
+
+# FacetCheck
+
+Naast bovenstaande queries is het ook mogelijk om buurten te filteren
+op basis van energie-gerelateerde eigenschappen.  In <a
+href="https://facetcheck.triply.cc">Kadaster FacetCheck</a> is het
+mogelijk om op de volgende eigenschappen te selecteren:
+
+  - aardgasverbruik
+  - elektriciteitsverbruik
+  - percentage huurwoningen
+  - percentage koopwoningen
+  - besparingspotentieel in euros per jaar
