@@ -20,8 +20,8 @@ select ?wkt ?wktColor ?wktLabel {
         bag:geometriePand/geo:asWKT ?wkt ;
         bag:status ?pandStatus .
   ?pandStatus rdfs:label ?pandStatusLabel .
+  bind (str(?huisnummer) as ?huisnummerString)
   service <https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql> {
-    bind (str(?huisnummer) as ?huisnummerString)
     optional {
       ?x energie:ep ?ep ;
          energie:e_label ?energielabel ;
