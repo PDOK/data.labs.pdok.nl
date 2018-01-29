@@ -17,8 +17,7 @@ Energieverbruik (Gemeente Amsterdam), en Energiebesparingspotentieel
 ## Woning
 
 Ik ben eigenaar van een woning, en wil weten welk label mijn woning
-heeft.  QUERY E, maar dan ook met het label toegevoegd. (graag laten
-staan op mijn adres)
+heeft.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -27,7 +26,20 @@ staan op mijn adres)
 
 ## Straat
 
-Hoe doe ik het eigenlijk tov de rest van de straat?
+<p>Hoe zit het eigenlijk met de energielabels in mijn straat?  De panden
+in mijn straat hebben energielabel D (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#fff200" r="10"/>
+</svg>
+), label E (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff9a35" r="10"/>
+</svg>
+), of geen label (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
+</svg>
+).</p>
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -129,6 +141,41 @@ environmental impact.
 houses (let say pre 1950) whose owners did not just keep the buildings
 but also maintained the great energy/environmental state and earned
 ‘A’ energy label for their houses.
+
+<p>De kleuren duiden de verschillende energielabels aan: label A of A+
+(
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#22b14c" r="10"/>
+</svg>
+), label B (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#8ff334" r="10"/>
+</svg>
+), label C (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#bdfc2c" r="10"/>
+</svg>
+label D (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#fff200" r="10"/>
+</svg>
+), label E (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff9a35" r="10"/>
+</svg>
+), label F (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ff7f27" r="10"/>
+</svg>
+), label G (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="#ed1c24" r="10"/>
+</svg>
+), of geen label (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
+</svg>
+).</p>
 
 <div data-query
      data-query-sparql="story_04_ams_rvo2.rq">
