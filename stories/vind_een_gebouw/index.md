@@ -5,6 +5,7 @@ logo: /stories/vind_een_gebouw/logo.png
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
+
 # Vind een gebouw
 
 De volgende vraag kan gebruikt worden om een specifieke gebouwen
@@ -13,7 +14,7 @@ gebouw kan worden opgevraagd door de query editor te openen en de
 <code>bind</code> operatoren aan het begin van de query aan te passen.
 
 <div data-query
-     data-query-sparql="myhouse.rq">
+     data-query-sparql="mijn-woning.rq">
 </div>
 
 Voor sommige gebouwen zijn meerdere registraties door de tijd heen

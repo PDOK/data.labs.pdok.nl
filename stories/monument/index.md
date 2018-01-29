@@ -23,6 +23,6 @@ We vragen een monument op uit de RCE monumenten datasets
 ## Prinsegracht 5, Den Haag
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup/containers/endpoint/sparql"
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="prinsegracht-5.rq">
 </div>

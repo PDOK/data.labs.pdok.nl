@@ -1,0 +1,16 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?status (count(?pand) as ?n) {
+  graph ?g {
+    ?pand bag:oorspronkelijkBouwjaar 9999 ;
+          bag:status ?status .
+  }
+  ?g bag:beginGeldigheid ?g1 .
+  filter not exists {
+    ?g bag:eindGeldigheid ?g2 .
+  }
+}
+group by ?status
+order by desc(?n)

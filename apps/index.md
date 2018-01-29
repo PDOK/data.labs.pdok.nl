@@ -7,6 +7,9 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+### SPARQL tutorial
+Voor een SPARQL cursus bij het Kadaster heeft Wouter Beek van Triply een presentatie gedeeld: kijk op [https://wouterbeek.github.io/pres/2018-01-18-Kadaster-SPARQL-Tutorial.html](https://wouterbeek.github.io/pres/2018-01-18-Kadaster-SPARQL-Tutorial.html)
+
 ### Data exploration with Tableau
 
 [Tableau](https://www.tableau.com/) is a BI software. 
@@ -14,8 +17,8 @@ An example of consuming BAG data in Tableau can be found below:
 
 <script type='text/javascript' src='/assets/js/tableau/viz_v1.js'></script>
 
-<div class='tableauPlaceholder' style='width: 1920px; height: 818px;'>
-  <object class='tableauViz' width='1920' height='818' style='display:none;'>
+<div class='tableauPlaceholder'>
+  <object class='tableauViz' style='display:none;'>
     <param name='host_url' value='https%3A%2F%2Fdub01.online.tableau.com%2F' />
     <param name='embed_code_version' value='2' />
     <param name='site_root' value='&#47;t&#47;kadastertableauintegration' />

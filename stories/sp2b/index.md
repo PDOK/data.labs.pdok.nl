@@ -1,16 +1,18 @@
 ---
-endpoint: https://api.krr.triply.cc/datasets/wbeek/50K/containers/1GB/sparql
+endpoint: https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql
 layout: story
 logo: /stories/sp2b/logo.png
 output: table
 title: SP2B
 ---
 
-# SP<sup>2</sup>B
+# Benchmark SP<sup>2</sup>B on Virtuoso
 
 Running the <a
 href="http://dbis.informatik.uni-freiburg.de/index.php?project=SP2B/queries.php">SP<sup>2</sup>B
-SPARQL benchmark</a> over 50K triples with a 1GB Virtuoso endpoint.
+SPARQL benchmark</a> over 50K triples in a Virtuoso endpoint
+(https://krr.triply.cc/Kadaster).  The same benchmark is run over a <a
+href="graphdb.html">GraphBD endpoint</a>.
 
 ## Q1: Return the year of publication of “Journal 1 (1940)”
 
