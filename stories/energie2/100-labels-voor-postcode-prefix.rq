@@ -1,0 +1,12 @@
+prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix gemeente: <https://krr.triply.cc/Kadaster/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+select ?energielabel (count(?x) as ?n) {
+  bind ("1094" as ?prefix)
+  ?x energie:pand_postcode  ?postcode ;
+     energie:e_label ?energielabel .
+  filter (strstarts(?postcode, ?prefix))
+}
+group by ?energielabel
+order by desc(?n)

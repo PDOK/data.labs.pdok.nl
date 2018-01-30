@@ -1,0 +1,61 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+PREFIX schema: <http://schema.org/>
+
+select ?wkt ?wktLabel
+
+# ?Eigenaar
+# ?windpark
+# ?build_year
+# ?windmolen_ashoogte
+# ?rotordiameter
+# ?productie_MWh
+# ?vermogen_kW
+
+where {
+
+  #=============================================================================================
+  graph <http://data.labs.pdok.nl/dataset/energie/windmolens>
+  {
+    ?Company a schema:Organization ;
+      schema:name ?Eigenaar;
+      schema:owns ?Windmolen .
+
+     ?Windmolen a energie:WindMolen ;
+       schema:height ?windmolen_ashoogte ;
+       schema:productionDate ?build_year ;
+       geo:asWKT ?wkt ;                     # geo location of the windmill
+       energie:windpark ?windpark ;
+       energie:rotordiameter ?rotordiameter ;
+       energie:vermogen  ?vermogen_kW ;        # power usage
+       energie:productie ?productie_MWh .      # power production
+
+   # #=================================================================================
+
+   # filter some data outliers where radius can be bigger than a mast tower
+   filter (xsd:double(?windmolen_ashoogte) > xsd:double(?rotordiameter)/2)
+
+   bind (concat(
+     '<p>',
+     'owner: ', str(?Eigenaar) ,'<br>',
+     'windpark: ', str(?windpark),'<br>',
+     'build year: ', str(?build_year) , '<br>',
+     'tower height: ', str(?windmolen_ashoogte) , '<br>',
+     'rotor diameter: ', str(?rotordiameter) , '<br>',
+     '<b>energy production (MWh):</b> ', str(?productie_MWh) , '<br>',
+     '<b>power (kW):</b> ', str(?vermogen_kW) , '<br>',
+     '</p>'
+    ) as ?wktLabel)
+
+  }
+
+}
+#limit 10
