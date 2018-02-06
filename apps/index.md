@@ -67,7 +67,7 @@ Probeer het hier zelf: [http://linkdale.org](http://linkdale.org)
 
 In de CBS/Kadaster Datathon is de Wijken en Buurten 2016 omgezet naar Linked Data. Om de rijkheid van de Wijken en Buurten data te tonen hebben we FacetCheck ingezet. FacetCheck (ontwikkeld door Triply in samenwerking met het Kadaster) is een generieke tool voor het bekijken van Linked Data sets. Grasduinen in de data is mogelijk door het instellen van filters. Deze filters zijn eigenschappen in de dataset.
 
-[https://data.labs.pdok.nl/facetcheck/](https://data.labs.pdok.nl/facetcheck/)
+[https://facetcheck.triply.cc](https://facetcheck.triply.cc)
 
 We hebben voor Wijken en Buurten niet alle eigenschappen aangezet, maar het is relatief eenvoudig om eigenschappen aan en uit te zetten. Onderstaand een overzicht van de filters die aan staan, en die potentieel ook aangezet kunnen worden.
 
