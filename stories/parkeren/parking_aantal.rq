@@ -9,7 +9,9 @@ SELECT (count(?brt_parking) as ?brt_aantal) (count(?rdw_parking) as ?rdw_aantal)
   	?brt_parking a brt:ParkeerdakParkeerdekParkeergarage .
   } UNION {
 		service <https://data.labs.pdok.nl/sparql> {
-      		?rdw_parking a lgdo:Parking .
-  	  	}
+      graph <http://data.labs.pdok.nl/dataset/parkeren> {
+      	?rdw_parking a lgdo:Parking .
+  	  }
+    }
   }
 }

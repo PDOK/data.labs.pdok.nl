@@ -14,10 +14,11 @@ SELECT * WHERE {
 UNION
   {
     service <https://data.labs.pdok.nl/sparql> {
-      	?x a lgdo:Parking;
-	    	geo:asWKT ?geo ;
-	  	bind("green" as ?geoColor)
-
+      graph <http://data.labs.pdok.nl/dataset/parkeren> {
+          ?x a lgdo:Parking;
+          geo:asWKT ?geo ;
+        bind("green" as ?geoColor)
+      }
     }
   }
 }
