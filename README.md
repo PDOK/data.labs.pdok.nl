@@ -12,7 +12,7 @@
 
   - On Fedora: `sudo dnf install ruby ruby-devel rubygem-json`
 
-  - On Ubuntu: `sudo apt-get install ruby ruby-dev`
+  - On Ubuntu: `sudo apt-get install zlib1g-dev libffi-dev ruby-full ruby-dev`
 
   - On Windows: download and install from https://rubyinstaller.org/downloads
 
@@ -20,7 +20,7 @@
 
 - From the project root directory, run `bundler install`
 
-- Now, you should be able to run `jekyll serve`.  If you encounter any
+- Now, you can run ./serve.sh from should be able to run `jekyll serve`.  If you encounter any
   trouble on dependencies, you can try alternatively `bundler exec
   jekyll serve`
 
