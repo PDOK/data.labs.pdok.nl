@@ -30,13 +30,6 @@ verblijfsobjecten per BAG status is getoond.
 
 <div data-query data-query-sparql="oppervlakte-klein.rq"></div>
 
-## Bouwjaar
-
-Panden met bouwjaar 9999.  Het aantal panden per BAG status is
-getoond.
-
-<div data-query data-query-sparql="bouwjaar.rq"></div>
-
 ## Huisnummer
 
 Nummeraanduidingen met huisnummer 9999.  Het aantal nummeraanduidingen
@@ -50,3 +43,10 @@ Nummeraanduidingen met huisnummer toevoeging ‘kwek’.  Het aantal
 nummeraanduidingen per BAG status is getoond.
 
 <div data-query data-query-sparql="huisnummer-toevoeging.rq"></div>
+
+## Bouwjaar
+
+Panden met bouwjaar 9999.  Het aantal panden per BAG status is
+getoond.
+
+<div data-query data-query-sparql="bouwjaar.rq"></div>
