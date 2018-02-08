@@ -528,11 +528,16 @@ TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie is opgezet 
 **Voor vragen en/of opmerkingen met betrekking tot één van onderstaande demo-omgevingen, kunt u een e-mail sturen naar <omgevingswet@kadaster.nl>**
 
 ### Pilot Soest 2.0
-*In samenwerking met de gemeenten Emmen, Nijmegen en Soest en informatiehuizen Geluid, Afval, Bouw en Ruimte – oktober 2017 t/m (eindatum nog onbekend)*
+*Resultaat van de integratie van drie samenwerking: (1) met de gemeenten Emmen en Nijmegen, (2) met de gemeente Soest, (3) en de informatiehuizen Geluid, Afval, Bouw en Ruimte – oktober 2017 t/m januari 2018*
 
-Dit is een preview van een demo-omgeving welke wij nu nog volop aan het ontwikkelen zijn. Al lerende richten wij ons hiermee op de volgende doelen:
-* Het vooraf toetsen van een vergunning aanvraag aan bestaande regelgeving voor het plaatsen van een bijgebouw
-* Het bieden van ondersteuning bij het maken van een keuze voor een geschikte vestigingslocatie
+In Soest 2.0 zijn twee benaderingen samengekomen:
+
+* De oorspronkelijke inzet van gemeente Soest om laagdrempelige en efficiënte dienstverlening mogelijk te maken. Dit door gebruikers een interactieve en eenvoudige manier aan te bieden om de mogelijkheden bij veel voorkomende initiatieven zelf te toetsen en in te dienen. De insteek daarbij is vooral wat mag hier? op het schaalniveau van een kavel;
+* Vanuit de huizen / domeinen Afval, Bouw, Geluid en Ruimte is dit stokje verder opgepakt, om vanuit een integrale benadering, Soest te verrijken met aanvullende bronnen die ‘previews’ zijn van informatieproducten uit deze domeinen.
+* Daaraan is de pilot Zoek bedrijfslocatie van het Kadaster met Emmen en Nijmegen toegevoegd. Deze speelt op een hoger schaalniveau en geeft vooral antwoord op waar mag dit?
+*	In de pilot Soest 2.0 zijn beide benaderingen gecombineerd tot een samenhangend geheel. Het is daarmee een afspiegeling van de veelzijdigheid van dienstverleningsvraagstukken op het gebied van de leefomgeving.
+
+Sleutelwoorden/boodschap: a) laagdrempelig b) efficiënt c) rijk aan informatie d) slim (her)gebruik van wat er al is e) denk vanuit meerdere, met elkaar samenhangende, schaalniveaus
 
 [http://omgevingsplanner.kadaster.semaku.com/](http://omgevingsplanner.kadaster.semaku.com/)
 
