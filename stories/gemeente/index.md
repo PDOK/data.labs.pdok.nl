@@ -8,7 +8,7 @@ output: leaflet
 
 # Nederlandse gemeentes
 
-Deze data story geen een overzicht van de grootste Nederlandse
+Deze data story geeft een overzicht van de grootste Nederlandse
 gemeentes (op basis van oppervlakte), en de meest dichtbevolkte
 Nederlandse gemeentes.
 
@@ -19,8 +19,8 @@ Hieronder volgt een overzicht van de 25 grootste gemeentes.  Omdat
 water wordt meegerekend is Zeewolde groter dan Amsterdam!
 
 <div data-query
-     data-query-sparql="grootste-gemeente.rq"
-     data-query-output="gchart">
+     data-query-sparql="10-grootste-gemeente.rq"
+     data-query-output="table">
 </div>
 
 Hetzelfde resultaat kan ook op een kaart getoond worden.  Merk op dat
@@ -28,18 +28,15 @@ de grootste gemeentes inderdaad vaak een groot wateroppervlak
 bezitten.
 
 <div data-query
-     data-query-sparql="grootste-gemeente-geo.rq">
+     data-query-sparql="20-grootste-gemeente-geo.rq">
 </div>
 
 ## Meest dicht-bevolkte Nederlandse gemeentes
 
 Door gebruik te maken van SPARQL federatie kunnen we dynamisch
-informatie over gemeentes opvragen uit andere datasets.  Bijvoorbeeld,
-hieronder tonen we de 25 meest dichtbevolkte gemeentes.  Het aantal
-inwoners per gemeente en het wapen, als deze beschikbaar is, worden
-uit Wikidata gehaald.  Door op de markeringen op de kaart te klikken
-wordt de bijbehorende informatie getoond.
+informatie over gemeentes opvragen uit andere datasets.  Hieronder
+tonen we voor 25 gemeentes een externe identifier in DBpedia.
 
 <div data-query
-     data-query-sparql="meest-dichtbevolkte-gemeente.rq">
+     data-query-sparql="30-meest-dichtbevolkte-gemeente.rq">
 </div>
