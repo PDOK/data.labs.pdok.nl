@@ -5,7 +5,6 @@ logo: /stories/Hack-a-LOD/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
-<!-- https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql -->
 
 # Stakingen bij Heineken
 
@@ -21,10 +20,25 @@ output: leaflet
      data-query-sparql="stakingen-brouwers.rq">
 </div>
 
+# Boeken over heineken
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
+     data-query-sparql="boeken-heineken.rq">
+</div>
+
+# Boeken over bier
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
+     data-query-sparql="boeken-bier.rq">
+</div>
+
 # Heineken monument (ABG & RCE)
 
 <div data-query
      data-query-sparql="monument-heineken.rq">
+     data-query-sparql="boeken-bier.rq">
 </div>
 
 <!--
