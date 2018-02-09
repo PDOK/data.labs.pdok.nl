@@ -89,7 +89,7 @@ In order ot access the data in Tableau Desktop:
 
             myConnector.getData = function(table, doneCallback) {
                        var userInput = JSON.parse(tableau.connectionData),
-                           apiCall = "https://data.labs.pdok.nl/api/StanRonzhin/tableauIntegration/Stadionbuurt?buurtNaam=" + userInput.input;
+                           apiCall = "https://data.labs.pdok.nl/api/StanRonzhin/tableauIntegration/Stadiumbuurt?buurtCode=" + userInput.input;
 
                        var settings = {
                            "async": true,
