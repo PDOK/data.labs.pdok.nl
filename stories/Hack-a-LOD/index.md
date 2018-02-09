@@ -29,13 +29,11 @@ output: leaflet
 # Boeken over bier
 
 <div data-query
-     data-query-endpoint="http://data.bibliotheken.nl/sparql"
      data-query-sparql="boeken-bier.rq">
 </div>
 
 # Boeken over heineken
 
 <div data-query
-     data-query-endpoint="http://data.bibliotheken.nl/sparql"
      data-query-sparql="boeken-heineken.rq">
 </div>
