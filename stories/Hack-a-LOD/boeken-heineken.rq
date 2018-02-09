@@ -1,0 +1,10 @@
+prefix schema: <http://schema.org/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+select *
+where
+{
+  ?book rdf:type schema:Book .
+  ?book schema:name ?title .
+  filter(regex(lcase(?title), "\\bheineken\\b"))
+  ?book schema:about <http://data.bibliotheken.nl/id/thes/p075601230> . #bier
+}

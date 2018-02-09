@@ -25,3 +25,17 @@ output: leaflet
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/stakingen/services/endpoint/sparql"
      data-query-sparql="stakingen-brouwers.rq">
 </div>
+
+# Boeken over bier
+
+<div data-query
+     data-query-endpoint="http://data.bibliotheken.nl/sparql"
+     data-query-sparql="boeken-bier.rq">
+</div>
+
+# Boeken over heineken
+
+<div data-query
+     data-query-endpoint="http://data.bibliotheken.nl/sparql"
+     data-query-sparql="boeken-heineken.rq">
+</div>
