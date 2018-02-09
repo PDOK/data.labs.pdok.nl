@@ -1,0 +1,4 @@
+select ?p ?o {
+  <https://cultureelerfgoed.nl/id/monument/506303> ?p ?o .
+}
+limit 100
