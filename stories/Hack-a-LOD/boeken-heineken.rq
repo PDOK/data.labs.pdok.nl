@@ -3,7 +3,7 @@ prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 select *
 where
 {
-  service<http://data.bibliotheken.nl/sparq> {
+  service<http://data.bibliotheken.nl/sparql> {
     ?book rdf:type schema:Book .
     ?book schema:name ?title .
     filter(regex(lcase(?title), "\\bheineken\\b"))
