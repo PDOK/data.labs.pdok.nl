@@ -6,7 +6,8 @@ endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
-# Digitaal Brouwgoed - Bier, Bier, Bier
+# Digitaal Brouwgoed - Bier, Bier, Bier 
+Het Digitaal Brouwgoed team heeft in de Hack-a-LOD 2018 gewerkt aan het thema Bier. De resultaten hierbij in 3 delen:
 
 # 1. Faceted Browsing door Bierdata: Vind jouw bier!
 
@@ -74,18 +75,28 @@ En ja, als we even een query uitvoeren op het Nationaal Wegenbestand, vinden we 
 ## Het Heineken monument (Datasets Basisregistratie Adressen en Gebouwen (Kadaster) en Monumenten Register (Rijksdienst Cultureel Erfgoed)
 Laten we eens kijken hoe oud het gebouw van de Heineken Experience is...hier ligt toch een groot deel van de historie van Heineken
 
-## Ojee, een verschil.... (Datasets DBpedia.org)
-De BAG en de RCE geven verschillende resultaten, maar Linked Data is fantastisch we kunnen er een derde bron bij halen om te kijken of de BAG of RCE het fout heeft....DBpedia!!!
-
 <div data-query
      data-query-sparql="monument-heineken.rq">
 </div>
 
+<!--
+https://cultureelerfgoed.nl/id/image/20557351
+-->
+
+## Ojee, een verschil.... (Datasets DBpedia.org)
+De BAG en de RCE geven verschillende resultaten, maar Linked Data is fantastisch we kunnen er een derde bron bij halen om te kijken of de BAG of RCE het fout heeft....DBpedia!!!
+
+WOUTER: QUERY DBPEDIA
+
 ## Zijstapje: waar kan ik zelf brouwen? (Ruimtelijke Plannen.nl, Kadaster)
+We kunnen ook gaan kijken waar we zelf een brouwerij mogen beginnen (op basis van linked data van brouwerijen en ruimtelijke plannen
+http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?#/map
 We kunnen ook gaan kijken waar we zelf een brouwerij mogen beginnen (op basis van linked data van brouwerijen en ruimtelijke plannen:
 <a href="http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?#/map"><button>Mag ik een brouwerij bouwen?</button></a>
 
 # Tot slot: De Brouwerij Tijdreis
-Met brouwerijdata als linked data, kunnen we ook (in analogie van de populaire topotijdreis.nl) de biertijdreis presenteren. Zie de explosie van brouwerijen in de afgelopen paar jaar:
+Met brouwerijdata als linked data, kunnen we ook (in analogie van de populaire topotijdreis.nl) de biertijdreis presenteren. Zie de explosie van brouwerijen in de afgelopen paar jaar.
+
+http://gerwinbosch.nl/Hackalod-2018/
 
 <a href="http://gerwinbosch.nl/Hackalod-2018/"><button>Brouwerij Tijdreis</button></a>
