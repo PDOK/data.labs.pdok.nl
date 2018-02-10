@@ -55,7 +55,6 @@ Dan zijn er vast nog veel meer boeken over bier geschreven, misschien ook met ee
 En de vraag, die iedereen wilt weten: is er ook bladmuziek over Heineken?
 
 <div data-query
-     data-query-endpoint="http://metamatter.io/sparql"
      data-query-sparql="muziek-heineken.rq">
 </div>
 
@@ -63,7 +62,6 @@ En de vraag, die iedereen wilt weten: is er ook bladmuziek over Heineken?
 En nog meer bierliederen, met vermakelijke titels....bier, bier, bier.
 
 <div data-query
-     data-query-endpoint="http://metamatter.io/sparql"
      data-query-sparql="muziek-bier.rq">
 </div>
 

@@ -1,7 +1,9 @@
 select * {
-  graph <http://metamatter.io/som/> {
-    ?s ?p ?o .
-    bind(lcase(str(?o)) as ?target)
-    filter(regex(?target, "\\bbier\\b") || regex(?target, "\\bbiertje\\b") || regex(?target, "\\bpils\\b"))
+  service <http://metamatter.io/sparql> {
+    graph <http://metamatter.io/som/> {
+      ?s ?p ?o .
+      bind(lcase(str(?o)) as ?target)
+      filter(regex(?target, "\\bbier\\b") || regex(?target, "\\bbiertje\\b") || regex(?target, "\\bpils\\b"))
+    }
   }
 }
