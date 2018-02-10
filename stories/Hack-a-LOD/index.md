@@ -1,10 +1,12 @@
 ---
 layout: story
-title: Krimpgebieden
+title: Hack-a-LOD
 logo: /stories/Hack-a-LOD/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
+
+# Wat weten we van Bier en Erfgoed?
 
 Misschien beginnen met een query over hoe de brouwerijen over nederland verdeelt zijn? Google chart?
 En dan een query met de grootste brouwers (hectoliters) van Nederland....en dan door met Heineken...
@@ -70,3 +72,7 @@ query op dbpedia....
      data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="muziek-bier.rq">
 </div>
+
+Ok, genoeg oude meuk; maar als we nou lekker bier willen maken, waar kan ik dat doen????
+
+http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?#/map
