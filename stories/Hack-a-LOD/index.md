@@ -1,12 +1,12 @@
 ---
 layout: story
-title: Hack-a-LOD
+title: Digitaal Brouwgoed
 logo: /stories/Hack-a-LOD/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
-# Wat weten we van Bier en Erfgoed?
+# Digitaal Brouwgoed - Wat weten we van Bier en Erfgoed?
 
 Misschien beginnen met een query over hoe de brouwerijen over nederland verdeelt zijn? Google chart?
 En dan een query met de grootste brouwers (hectoliters) van Nederland....en dan door met Heineken...
