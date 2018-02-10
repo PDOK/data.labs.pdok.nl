@@ -6,6 +6,9 @@ endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
+Misschien beginnen met een query over hoe de brouwerijen over nederland verdeelt zijn? Google chart?
+En dan een query met de grootste brouwers (hectoliters) van Nederland....en dan door met Heineken...
+
 # Stakingen bij Heineken
 
 <div data-query
@@ -34,7 +37,7 @@ output: leaflet
      data-query-sparql="boeken-bier.rq">
 </div>
 
-# Heineken monument (ABG & RCE)
+# Heineken monument (BAG & RCE)
 
 <div data-query
      data-query-sparql="monument-heineken.rq">
@@ -45,6 +48,13 @@ output: leaflet
 https://cultureelerfgoed.nl/id/image/20557351
 -->
 
+# Ojee, een verschil....
+De BAG en de RCE geven verschillende resultaten, maar Linked Data is fantastisch we kunnen er een derde bron bij halen om te kijken of de BAG of RCE het fout heeft....
+
+query op dbpedia....
+
 # Heinekenpad (Nationaal Wegenbestand)
 
 <a href="http://data.pdok.nl/nationaal-wegenbestand-wegen/id/wegvakken/wegvakken.833446">http://data.pdok.nl/nationaal-wegenbestand-wegen/id/wegvakken/wegvakken.833446</a>
+
+# Bladmuziek
