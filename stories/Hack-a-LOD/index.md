@@ -57,4 +57,16 @@ query op dbpedia....
 
 <a href="http://data.pdok.nl/nationaal-wegenbestand-wegen/id/wegvakken/wegvakken.833446">http://data.pdok.nl/nationaal-wegenbestand-wegen/id/wegvakken/wegvakken.833446</a>
 
-# Bladmuziek
+# Heineken bladmuziek
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
+     data-query-sparql="muziek-heineken.rq">
+</div>
+
+# Biermuziek
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
+     data-query-sparql="muziek-bier.rq">
+</div>

@@ -1,0 +1,8 @@
+select * where {
+  service<http://metamatter.io/sparql> {
+    graph <http://metamatter.io/som/> {
+      ?s ?p ?o .
+      filter(regex(?target, "\\bbier\\b") || regex(?target, "\\bbiertje\\b") || regex(?target, "\\bpils\\b"))
+    }
+  }
+}
