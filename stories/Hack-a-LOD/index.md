@@ -68,7 +68,7 @@ query op dbpedia....
 # Biermuziek
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
+     data-query-endpoint="http://metamatter.io/sparql"
      data-query-sparql="muziek-bier.rq">
 </div>
 
