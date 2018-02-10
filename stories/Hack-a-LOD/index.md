@@ -6,6 +6,8 @@ endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
+🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺
+
 # Digitaal Brouwgoed - Bier, Bier, Bier 
 Het Digitaal Brouwgoed team (Pano Maria, Wouter Beek, Gerwin Bosch, Erwin Folmer) heeft in de Hack-a-LOD 2018 gewerkt aan het thema Bier, waarbij 10 linked datasets gebruikt worden. De resultaten hierbij in 3 delen:
 
