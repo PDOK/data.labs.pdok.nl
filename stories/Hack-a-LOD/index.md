@@ -43,7 +43,6 @@ En dan een query met de grootste brouwers (hectoliters) van Nederland....en dan 
 
 <div data-query
      data-query-sparql="monument-heineken.rq">
-     data-query-sparql="boeken-bier.rq">
 </div>
 
 <!--
