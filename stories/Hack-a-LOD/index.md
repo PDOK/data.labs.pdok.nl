@@ -7,6 +7,7 @@ output: leaflet
 ---
 
 # Digitaal Brouwgoed - Bier, Bier, Bier 
+Het Digitaal Brouwgoed team heeft in de Hack-a-LOD 2018 gewerkt aan het thema Bier. De resultaten hierbij in 3 delen:
 
 # 1. Faceted Browsing door Bierdata: Vind jouw bier!
 
@@ -97,3 +98,4 @@ Met brouwerijdata als linked data, kunnen we ook (in analogie van de populaire t
 
 http://gerwinbosch.nl/Hackalod-2018/
 
+http://gerwinbosch.nl/Hackalod-2018/
