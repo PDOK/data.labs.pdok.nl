@@ -6,7 +6,7 @@ endpoint: https://data.pdok.nl/sparql
 output: leaflet
 ---
 
-# Digitaal Brouwgoed - 
+# Digitaal Brouwgoed - Bier, Bier, Bier 
 
 # 1. Faceted Browsing door Bierdata: Vind jouw bier!
 
