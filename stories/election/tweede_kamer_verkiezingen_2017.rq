@@ -1,5 +1,0 @@
-prefix triply: <https://triply.cc/properties/>
-select distinct ?winner (count(?result) as ?numberOfMunicipalities) {
-  ?result triply:localWinner ?winner
-}
-group by ?winner
