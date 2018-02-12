@@ -1,9 +1,14 @@
-PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
-
-SELECT (count(?buurt) as?geometry)(count(?o) as ?wkt) (count(?o2)as?gml) 
-WHERE { GRAPH <https://data.pdok.nl/cbs/2015/buurt/> { {
-    ?buurt <http://www.opengis.net/ont/geosparql#hasGeometry> ?o1.  }
-    UNION { ?s ?p ?o . 
-      filter( datatype(?o) = geosparql:wktLiteral) }
-    UNION{ ?s2 ?p2 ?o2 . 
-      filter( datatype(?o2) = geosparql:gmlLiteral) } } }
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select (count(?buurt) as ?geometry) (count(?o) as ?wkt) (count(?o2) as ?gml) {
+  graph <https://data.pdok.nl/cbs/2015/buurt/> {
+    {
+      ?buurt geo:hasGeometry ?o1
+    } union {
+      ?s ?p ?o
+      filter(datatype(?o) = geo:wktLiteral)
+    } union{
+      ?s2 ?p2 ?o2
+      filter(datatype(?o2) = geo:gmlLiteral)
+    }
+  }
+}
