@@ -64,7 +64,9 @@ fill="#ed1c24" r="10"/> </svg> ), of geen label ( <svg height="20"
 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle
 cx="10" cy="10" fill="grey" r="10"/> </svg> ).</p>
 
-<div data-query data-query-sparql="60-energielabel.rq"></div>
+<div data-query
+     data-query-endpoint="https://data.pdok.nl/sparql"
+     data-query-sparql="60-energielabel.rq"></div>
 
 ## RCE monumenten
 
