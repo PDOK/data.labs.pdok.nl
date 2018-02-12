@@ -1,0 +1,32 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
+prefix schema: <http://schema.org/>
+select ?wkt ?wktLabel {
+  graph <http://data.labs.pdok.nl/dataset/bedrijf/kvk> {
+    ?organizatie kvk:plaats "Zwolle" ;
+                 kvk:legalFormDescription ?legal ;
+                 kvk:sbiOmschrijving ?sbi ;
+                 kvk:straat "Obrechtstraat" ;
+                 kvk:huisnummer ?huisnummer ;
+                 schema:legalName ?naam ;
+                 kvk:postcode ?postcode .
+  }
+  graph <http://data.labs.pdok.nl/dataset/energielabel> {
+    ?x energie:pand_postcode ?postcode .
+  }
+  service <https://data.pdok.nl/sparql> {
+    ?woonplaats bag:naamWoonplaats "Zwolle" .
+    ?openbareRuimte bag:naamOpenbareRuimte "Obrechtstraat" ;
+                    bag:bijbehorendeWoonplaats ?woonplaats .
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisnummer ;
+                      bag:postcode ?postcode .
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:pandrelatering ?pand .
+    ?pand bag:geometriePand/geo:asWKT ?wkt .
+  }
+  bind (concat('<p>',str(?sbi),'</p><p>',str(?legal),'</p><p>',str(?naam),'</p>') as ?wktLabel)
+}
+limit 10
