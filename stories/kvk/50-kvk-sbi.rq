@@ -1,0 +1,14 @@
+prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?sbi (sum(?werknemers) as ?n) {
+  graph <http://krr.triply.cc/Kadaster/graph/kvk> {
+    ?organizatie kvk:plaats "Zwolle"^^xsd:string ;
+                 schema:legalName ?naam ;
+                 schema:numberOfEmployees ?werknemers ;
+                 kvk:sbiOmschrijving ?sbi .
+  }
+}
+group by ?sbi
+order by desc(?n)
+limit 10

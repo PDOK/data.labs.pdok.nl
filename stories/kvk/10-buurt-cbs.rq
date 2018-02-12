@@ -1,0 +1,15 @@
+prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktColor ?wktLabel {
+  graph <https://krr.triply.cc/Kadaster/graph/cbs-2016> {
+    ?buurt geo:sfWithin/geo:sfWithin <https://krr.triply.cc/Kadaster/cbs/id/gemeente/GM0193> ;
+           geo:hasGeometry/geo:asWKT ?wkt ;
+           cbs:bedrijfsvestigingen ?bedrijven ;
+           rdfs:label ?naam .
+  }
+  bind (?bedrijven / 655.0 as ?normalized)
+  bind (concat("jet,",?normalized) as ?wktColor)
+  bind (concat('<h3>',?naam,'</h3><p>Aantal bedrijven: ',?bedrijven,'</p>') as ?wktLabel)
+}
+limit 100
