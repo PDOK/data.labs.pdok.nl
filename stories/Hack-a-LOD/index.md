@@ -14,6 +14,7 @@ Het Digitaal Brouwgoed team (Pano Maria, Wouter Beek, Gerwin Bosch, Erwin Folmer
 # 1. Faceted Browsing door Bierdata: Vind jouw bier!
 
 <a href="http://hackalod.triply.cc"><button>Linked Bier Browser</button></a>
+(de Bierbrowser is tijdelijk offline, binnenkort komt hij weer beschikbaar)
 
 # 2. Wat weten we van Bier en Erfgoed?
 In dit verhaal gaan we wat achtergronden en aanvullende informatie opduiken rond Bier en Erfgoed.
