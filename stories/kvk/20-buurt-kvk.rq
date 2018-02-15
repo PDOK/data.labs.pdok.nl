@@ -1,0 +1,29 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix buurt: <https://krr.triply.cc/Kadaster/cbs/id/buurt/>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select distinct ?wkt (min(?wktLabel_) as ?wktLabel) {
+  graph <http://krr.triply.cc/Kadaster/graph/kvk> {
+    ?organizatie kvk:plaats "Zwolle"^^xsd:string ;
+                 kvk:legalFormDescription ?legal ;
+                 kvk:sbiOmschrijving ?sbi ;
+                 kvk:huisnummer ?huisnummer ;
+                 schema:legalName ?naam ;
+                 kvk:straat ?straat ;
+                 schema:longitude ?long ;
+                 schema:latitude ?lat ;
+                 kvk:postcode ?postcode ;
+                 schema:numberOfEmployees ?werknemers .
+  }
+  bind (xsd:float(?long) as ?x)
+  bind (xsd:float(?lat) as ?y)
+  bind (concat('Point(',?x,' ',?y,')') as ?point)
+  bind (concat('LineString(',?x,' ',?y,',',?x+0.00001,' ',?y,')') as ?wkt)
+  buurt:BU01931000 geo:hasGeometry/geo:asWKT ?polygon .
+  filter (bif:st_within(bif:st_geomfromtext(str(?point)),bif:st_geomfromtext(str(?polygon))))
+  bind (concat('<h3>',str(?naam),'</h3><p>',?legal,'</p><ul><li>Adres: ',?straat,' ',?huisnummer,', ',?postcode,'</li><li>SBI: ',?sbi,'</li><li>Werknemers: ',?werknemers,'</li></ul>') as ?wktLabel_)
+}
+limit 100

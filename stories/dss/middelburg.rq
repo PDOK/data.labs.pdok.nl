@@ -1,7 +1,0 @@
-prefix das: <http://purl.org/collections/nl/dss/das/>
-prefix skos: <http://www.w3.org/2004/02/skos/core#>
-select ?place {
-  ?place a das:Place ;
-         skos:prefLabel "Middelburg"
-}
-limit 100

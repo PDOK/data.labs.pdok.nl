@@ -1,6 +1,0 @@
-prefix person: <http://localhost/persons/>
-select (count(*) as ?n) {
-  select ?s ?p {
-    ?s ?p person:Paul_Erdoes
-  }
-}

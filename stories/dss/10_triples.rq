@@ -1,4 +1,0 @@
-select ?s ?p ?o {
-  ?s ?p ?o
-}
-limit 10

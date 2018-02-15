@@ -1,0 +1,9 @@
+prefix schema: <http://schema.org/>
+select * {
+  service <http://data.bibliotheken.nl/sparql> {
+    ?book a schema:Book ;
+          schema:name ?title ;
+          schema:about <http://data.bibliotheken.nl/id/thes/p075601230> . #bier
+    filter(regex(lcase(?title), "\\bheineken\\b"))
+  }
+}

@@ -1,0 +1,9 @@
+prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix gemeente: <https://krr.triply.cc/Kadaster/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select (min(?bedrijven) as ?min) (max(?bedrijven) as ?max) {
+  graph <https://krr.triply.cc/Kadaster/graph/cbs-2016> {
+    ?buurt geo:sfWithin/geo:sfWithin gemeente:GM0193 ;
+           cbs:bedrijfsvestigingen ?bedrijven .
+  }
+}
