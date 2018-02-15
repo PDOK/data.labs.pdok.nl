@@ -7,9 +7,6 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
-### SPARQL tutorial
-Voor een SPARQL cursus bij het Kadaster heeft Wouter Beek van Triply een presentatie gedeeld: kijk op [https://wouterbeek.github.io/pres/2018-02-06-Kadaster-SPARQL-Hands-on-Sessie.html](https://wouterbeek.github.io/pres/2018-02-06-Kadaster-SPARQL-Hands-on-Sessie.html)
-
 ### Data exploration with Tableau
 
 [Tableau](https://www.tableau.com/) is a Business intelligence (BI) software. Broadly, BI refers to the methods and technologies 
