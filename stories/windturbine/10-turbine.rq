@@ -2,13 +2,14 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix wd: <http://www.wikidata.org/entity/>
 prefix wdt: <http://www.wikidata.org/prop/direct/>
 select ?wkt ?wktLabel {
-  ?windturbine wdt:P31 wd:Q49833 ; # win turbine
+  ?windturbine wdt:P31 wd:Q49833 ; # windturbine
                wdt:P17 wd:Q55 ; # Netherlands
                wdt:P625 ?wkt ;
                rdfs:label ?label .
   optional {
-    ?windturbine wdt:P18 ?url .
+    ?windturbine wdt:P18 ?http .
+    bind (replace(str(?http), "^http://", "https://") as ?https)
   }
-  bind (concat('<img src="https://wiki.openstreetmap.org/w/images/0/0c/Power-wind-16.svg"><a href="',str(?windturbine),'">',str(?label),'</a>',if(bound(?url),concat('<img src="',str(?url),'">'),'')) as ?wktLabel)
+  bind (concat('<a href="',str(?windturbine),'">',str(?label),'</a>',if(bound(?https),concat('<img src="',str(?https),'">'),'')) as ?wktLabel)
 }
 limit 100

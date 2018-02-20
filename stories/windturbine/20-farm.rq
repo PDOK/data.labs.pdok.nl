@@ -2,7 +2,7 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix wd: <http://www.wikidata.org/entity/>
 prefix wdt: <http://www.wikidata.org/prop/direct/>
 select ?wkt ?wktLabel {
-  ?windfarm wdt:P31 wd:Q194356 ; # wind farm
+  ?windfarm wdt:P31 wd:Q194356 ; # windfarm
             wdt:P17 wd:Q55 ; # Netherlands
             wdt:P625 ?wkt ;
             rdfs:label ?label .
