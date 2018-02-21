@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Kwaliteit BGT en BAG Deel 2 - Statusverschillen
-logo: /stories/KwaliteitBGTBAG2/BGT2.png
+logo: /stories/Kwaliteit BGTBAG2/BGT2.png
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
 ---
