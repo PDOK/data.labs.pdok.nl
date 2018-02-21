@@ -58,7 +58,22 @@ href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
 
 <div data-query
      data-query-endpoint="https://query.wikidata.org/sparql"
-     data-query data-query-sparql="20-farm.rq"></div>
+     data-query-sparql="20-farm.rq"></div>
+
+## Alle windturbines in Flevoland
+
+Alle windturbines in Flevoland volgens BGT
+( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="blue" r="10"/></svg> ),
+BRT
+( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="yellow" r="10"/></svg> ),
+OSM
+( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="green" r="10"/></svg> ),
+en WindStats
+( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="red" r="10"/></svg> ).
+
+<div data-query
+     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql"
+     data-query-sparql="windturbine.rq">
 
 ## RVO windturbines zonder BRT equivalent
 
