@@ -30,5 +30,5 @@ RVO heeft ongeveer 2300 windturbines. Minstens een BRT windturbine heeft geen RV
 
 <div data-query 
   data-query-sparql="30-rvo-turbines-niet-in-brt.rq"
-  data-query-endpoint="http://data.labs.pdok.nl/geosparql" >
+  data-query-endpoint="https://data.labs.pdok.nl/geosparql" >
 </div>
