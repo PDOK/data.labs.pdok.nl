@@ -72,7 +72,7 @@ en WindStats
 ( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="red" r="10"/></svg> ).
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql"
+     data-query-endpoint="https://data.labs.pdok.nl/geosparql"
      data-query-sparql="windturbine.rq">
 
 ## RVO windturbines zonder BRT equivalent
