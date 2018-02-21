@@ -26,7 +26,7 @@ in OpenStreetMap</a>.
 <div data-query data-query-sparql="20-farm.rq"></div>
 
 ## RVO windturbines zonder BRT equivalent
-RVO heeft ongeveer 2300 windturbines. Minstens een BRT windturbine heeft geen RVO variant binnen een straal van 30 meter:
+RVO heeft ongeveer 2300 windturbines. Minstens één BRT windturbine heeft geen RVO variant binnen een straal van 30 meter:
 
 <div data-query 
   data-query-sparql="30-rvo-turbines-niet-in-brt.rq"
