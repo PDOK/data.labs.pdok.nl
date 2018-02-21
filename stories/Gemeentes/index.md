@@ -1,6 +1,6 @@
 ---
 layout: story
-title: Windturbines
+title: Kadaster Knowledge Graph
 logo: /stories/Gemeentes/gemeenten.png
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
