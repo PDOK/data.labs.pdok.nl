@@ -8,8 +8,9 @@ output: leaflet
 
 Dit is de placeholder voor ongoing werk rond de Kadaster Knowledge Graph
 
-<img src="https://raw.githubusercontent.com/PDOK/grid-labs/master/KKG-model/kkg.png?token=AZDf8751b-12QwExo0v64aXjLSfk4VZkks5akCuKwA%3D%3D">
-
+<a href="https://raw.githubusercontent.com/PDOK/grid-labs/master/KKG-model/kkg.png?token=AZDf8751b-12QwExo0v64aXjLSfk4VZkks5akCuKwA%3D%3D">
+  <img src="https://raw.githubusercontent.com/PDOK/grid-labs/master/KKG-model/kkg.png?token=AZDf8751b-12QwExo0v64aXjLSfk4VZkks5akCuKwA%3D%3D">
+</a>
 
 ## Nederlandse windturbines in Wikidata
 
