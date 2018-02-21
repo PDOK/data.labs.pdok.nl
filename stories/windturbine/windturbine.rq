@@ -15,7 +15,7 @@ select ?wkt ?wktColor {
                geo:hasGeometry/geo:asWKT ?wkt .
     bind ("red" as ?wktColor)
   } union {
-    service <https://data.pdok.nl/sparql> {
+    service <https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql> {
       ?brt a brt:Windturbine ;
            geo:hasGeometry/geo:asWKT ?wkt .
       bind ("yellow" as ?wktColor)
