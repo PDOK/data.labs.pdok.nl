@@ -12,6 +12,8 @@ Deze datastory gaat verder in op het thema kwaliteit tussen de BGT en de BAG
 
 Opmerking: Altijd de actuele voorkomens; in de BGT: Die hebben een lege ‘registratieDatumVervallen’.
 
+<img src="statustabel3.png">
+
 Query 1: Altijd fout: Query op BGT (bestaand vervallen) en BAG (pand in gebruik, pand buiten gebruik, sloopvergunning verleend)
 
 Query 2: Fout (met tijd delta): Query op BGT (bestaand vervallen) en BAG (pand in gebruik-niet ingemeten, en pand gesloopt) waarbij delta in bron registratie datum meer dan 6 maanden is. (gradient yasgui)
