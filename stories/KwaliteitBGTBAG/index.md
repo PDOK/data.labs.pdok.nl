@@ -1,6 +1,6 @@
 ---
 layout: story
-title: Kwaliteit BGT en BAG
+title: Kwaliteit BGT
 logo: /stories/KwaliteitBGTBAG/BGT.jpg
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
