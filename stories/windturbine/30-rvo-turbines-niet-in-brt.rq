@@ -1,28 +1,27 @@
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
-PREFIX lgd: <http://linkedgeodata.org/triplify/>
-PREFIX lgdo: <http://linkedgeodata.org/ontology/>
 PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+PREFIX dbpo: <http://dbpedia.org/ontology/>
 
 SELECT ?brt_turbine ?rvo_turbine
 ?brt_geo
-?rvo_geo
+#?rvo_geo
 ?distance
 WHERE {
   service <https://data.pdok.nl/sparql> {
 	  select ?brt_turbine ?brt_geo where {
-  		?brt_parking a brt:Windturbine;
+  		?brt_turbine a brt:Windturbine;
          geo:hasGeometry/geo:asWKT ?brt_geo .
     }
+    limit 20
   }
-  {
-    graph <http://data.labs.pdok.nl/dataset/parkeren> {
-	    ?rdw_parking a lgdo:Parking;
-        	geo:asWKT ?rdw_geo .
+  filter not exists {
+    graph <http://data.labs.pdok.nl/dataset/windstats> {
+      ?rvo_turbine a dbpo:WindMotor;
+                   geo:hasGeometry/geo:asWKT ?rvo_geo .
     }
+    bind(geof:distance(?brt_geo, ?rvo_geo, uom:metre) as ?distance)
+    filter(?distance < 30)
   }
-  bind(geof:distance(?brt_geo, ?rdw_geo, uom:metre) as ?distance)
-  filter(?distance < 50)
 }
