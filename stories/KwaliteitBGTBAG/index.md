@@ -38,12 +38,32 @@ Op basis van de resultaten van bij 1: er is een mismatch; kunnen we dan een sugg
 
 
 
+# Statistieken Linked Data BGT
 
+Statistieken over het de naar Linked Data omgezette deel van de BGT.
 
+## Aantal grafen
 
+Het aantal grafen in de volledige dataset.
 
+<div data-query data-query-sparql="stat-graphs.rq"></div>
 
-Op basis van Wikidata klasse ‘<a
-href="http://www.wikidata.org/entity/Q49833">Wind turbine</a>’.
+## Aantal triples
 
-<div data-query data-query-sparql="10-turbine.rq"></div>
+Het aantal uitspraken (triples) in de volledige dataset.
+
+<div data-query data-query-sparql="stat-triples.rq"></div>
+
+## Concepten
+
+Een overzicht van de concepten/klassen, met het aantal instanties per
+concept.
+
+<div data-query data-query-sparql="stat-concepten.rq"></div>
+
+## Eigenschappen
+
+Een overzicht van de eigenschappen, met het aantal uitspraken per
+eigenschap.
+
+<div data-query data-query-sparql="stat-eigenschappen.rq"></div>
