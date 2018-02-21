@@ -1,10 +1,15 @@
 ---
 layout: story
 title: Windturbines
-logo: /stories/energie/logo.png
+logo: /stories/Gemeentes/gemeenten.png
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
 ---
+
+Dit is de placeholder voor ongoing werk rond de Kadaster Knowledge Graph
+
+<img src="https://raw.githubusercontent.com/PDOK/grid-labs/master/KKG-model/kkg.png?token=AZDf8751b-12QwExo0v64aXjLSfk4VZkks5akCuKwA%3D%3D">
+
 
 ## Nederlandse windturbines in Wikidata
 
