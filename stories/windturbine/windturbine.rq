@@ -7,7 +7,8 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?wkt ?wktColor {
   {
     ?bgt_turbine a bgt:Windturbine ;
-                 geo:hasGeometry/geo:asWKT ?wkt .
+                 geo:hasGeometry/geo:asWKT ?wkt_poly .
+      bind (strdt(concat("POINT (", substr(str(?wkt_poly), 11, 34), ")"), geo:wktLiteral) as ?wkt)
       bind ("blue" as ?wktColor)
   } union {
     ?windstats a dbo:WindMotor ;
