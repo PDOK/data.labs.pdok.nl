@@ -1,14 +1,15 @@
 ---
 layout: story
-title: Kwaliteit BGT en BAG
+title: Kwaliteit BGT en BAG Deel 2 - Statusverschillen
 logo: /stories/energie/logo.png
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
 ---
 
-Deze datastory laat zien...
+Deze datastory gaat verder in op het thema kwaliteit tussen de BGT en de BAG
 
-## Identifiers...
+## Welke statussen mogen gecombineerd niet voorkomen.
+
 Opmerking: Altijd de actuele voorkomens; in de BGT: Die hebben een lege ‘registratieDatumVervallen’.
 
 Query 1: Altijd fout: Query op BGT (bestaand vervallen) en BAG (pand in gebruik, pand buiten gebruik, sloopvergunning verleend)
