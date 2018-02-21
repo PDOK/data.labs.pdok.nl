@@ -1,6 +1,6 @@
 ---
 layout: story
-title: BGT 1
+title: BGT ID
 logo: /stories/KwaliteitBGTBAG/BGT.jpg
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
