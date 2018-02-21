@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Kwaliteit BGT en BAG
-logo: /stories/energie/logo.png
+logo: /stories/KwaliteitBGTBAG/BGT.jpg
 endpoint: https://query.wikidata.org/sparql
 output: leaflet
 ---
