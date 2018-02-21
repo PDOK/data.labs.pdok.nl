@@ -13,6 +13,9 @@ Opmerking: Altijd de actuele voorkomens; in de BGT: Die hebben een lege ‘regis
 
 Query 1: Welke BAG pand IDs met als status “Pand in Gebruik” en “Pand in Gebruik – Niet ingemeten” komen we niet tegen in de BGT PandID met status “Bestaand”
 
+<div data-query
+     data-query-endpoint="https://data.pdok.nl/sparql"
+     data-query-sparql="BAG-BGT.rq"></div>
 
 Query 2: En omgekeerd: Welke BGT PandIDs met status “Bestaand” komen we niet tegen in de BAG (met beide statusen), met daarbij een onderscheid tussen herkenbare dummy waardes (vier willekeurige en dan 12 nullen: ????000000000000), en niet dummy waardes.
 
