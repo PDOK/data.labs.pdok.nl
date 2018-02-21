@@ -1,5 +1,5 @@
 ---
-endpoint: http://triply.eculture.labs.vu.nl/sparql
+endpoint: https://triply.eculture.labs.vu.nl/sparql
 layout: story
 logo: /stories/windturbine/logo.gif
 output: leaflet

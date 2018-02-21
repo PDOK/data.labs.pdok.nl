@@ -2,7 +2,7 @@
 layout: story
 title: BGT ID
 logo: /stories/KwaliteitBGTBAG/BGT.jpg
-endpoint: https://query.wikidata.org/sparql
+endpoint: https://triply.eculture.labs.vu.nl/sparql
 output: leaflet
 ---
 
