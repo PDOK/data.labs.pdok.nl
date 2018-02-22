@@ -35,18 +35,6 @@ href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
      data-query-endpoint="https://query.wikidata.org/sparql"
      data-query-sparql="20-farm.rq"></div>
 
-## Windturbines in de BAG
-
-Voorbeeld:
-
-<div data-query
-     data-query-sparql="windturbine-bag1.rq"></div>
-
-## Alle windturbines in de BAG
-
-<div data-query
-     data-query-sparql="windturbine-bag2.rq"></div>
-
 ## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
 De kaart hieronder biedt een overzicht van alle beschikbare data over windturbines voor Zuidwest-Flevoland. Het kaartbeeld is gelaagd opgebouwd; eerst worden de turbines uit Windstats geplot, hieroverheen de windturbines uit OpenStreetMap, hierover weer de turbines uit de BRT, en als laatste de turbines uit de BGT.
@@ -72,3 +60,15 @@ Wijzigen we de volgorde van de kaartopbouw, dan zien we welke turbines niet in d
 <div data-query 
   data-query-sparql="30-turbines-niet-in-brt.rq" 
   data-query-endpoint="https://data.labs.pdok.nl/geosparql"></div>
+
+## Windturbines in de BAG
+
+Één voorbeeld:
+
+<div data-query
+     data-query-sparql="windturbine-bag1.rq"></div>
+
+Allemaal:
+
+<div data-query
+     data-query-sparql="windturbine-bag2.rq"></div>
