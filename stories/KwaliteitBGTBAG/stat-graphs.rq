@@ -1,5 +1,8 @@
-select (count(distinct ?g) as ?n) {
+select ?g (count(*) as ?n) {
   graph ?g {
     ?s ?p ?o .
   }
 }
+group by ?g
+order by desc(?n)
+limit 10
