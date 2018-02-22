@@ -35,8 +35,7 @@ href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
      data-query-endpoint="https://query.wikidata.org/sparql"
      data-query-sparql="20-farm.rq"></div>
 
-# Alle windturbines in (Zuidwest-)Flevoland
-De kaart hieronder biedt een overzicht van alle beschikbare data over windturbines voor Zuidwest-Flevoland. Het kaartbeeld is gelaagd opgebouwd; eerst worden de turbines uit Windstats geplot, hieroverheen de windturbines uit OpenStreetMap, hierover weer de turbines uit de BRT, en als laatste de turbines uit de BGT. 
+## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
 Alle markers waar geen blauwe marker uit de BGT overheen geplaatst is, kan mogelijk aangevuld worden in de BGT. Het kaarbeeld laat zien dat vooral de BRT, OpenStreetMap maar in beperktere mate ook Windstats mogelijk nog aanvulling kunnen betekenen voor de BGT.
 

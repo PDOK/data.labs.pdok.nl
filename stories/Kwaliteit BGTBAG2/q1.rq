@@ -1,0 +1,50 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select distinct ?wkt ?wktLabel {
+  {
+    select ?bgt ?bag ?begin1 ?eind1 {
+      ?bgt a bgt:Pand ;
+           bgt:status ?status ;
+           foaf:isPrimaryTopicOf ?voorkomen1 ;
+           bgt:gerelateerdBagPand ?bag .
+      ?voorkomen1 bgt:objectBegintijd ?begin1 ;
+                  bgt:objectEindtijd ?eind1 .
+      optional {
+        ?bgt foaf:isPrimaryTopicOf ?voorkomen2 .
+        filter not exists {
+          ?voorkomen2 bgt:objectEindtijd ?eind2 .
+        }
+      }
+      filter (!(bound(?voorkomen2)))
+    }
+    limit 500
+  }
+  service <https://data.pdok.nl/sparql> {
+    graph ?voorkomen {
+      ?bag bag:status ?status .
+      filter (?status != begrip:PandGesloopt)
+    }
+    filter not exists {
+      ?voorkomen bag:eindGeldigheid ?eind0 .
+    }
+    ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteLabel ;
+                  bag:bijbehorendeWoonplaats/rdfs:label ?woonplaatsLabel .
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisnummer ;
+                      bag:postcode ?postcode .
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?bag .
+    ?bag bag:geometriePand/geo:asWKT ?wkt ;
+         bag:oorspronkelijkBouwjaar ?bouwjaar .
+    ?status rdfs:label ?statusLabel .
+  }
+  bind (concat(str(year(?begin1)),'-',str(month(?begin1)),'-',str(day(?begin1))) as ?beginLabel)
+  bind (concat(str(year(?eind1)),'-',str(month(?eind1)),'-',str(day(?eind1))) as ?eindLabel)
+  bind (concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m²<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
+}
+limit 1000
