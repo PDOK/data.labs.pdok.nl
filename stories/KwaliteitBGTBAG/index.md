@@ -36,6 +36,18 @@ Vervolgens gaan we op zoek:
 
 Query 4. Geef mij de BGT panden waar bij het bagpandid op positie 5 en 6 geen 10 staat.
 
+Weer gefiltered op 000000000000.
+
+Het aantal:
+
+<div data-query
+     data-query-sparql="id4_count.rq"></div>
+
+De panden:
+
+<div data-query
+     data-query-sparql="id4.rq"></div>
+
 Query 5. De bronhoudercode geeft de gemeente weer; het id van het pand (eerste vier cijfers) moet beginnen met deze bronhouder code: Geef mij alle BGT panden waarbij de identifier niet overeenkomt met de verwachte bronhoudercode.
 
 

@@ -1,0 +1,19 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ogc: <http://www.opengis.net/def/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX og: <http://ogp.me/ns#>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT distinct ?bgt_pand ?bag_pand ?pandid WHERE {
+  ?bgt_pand a bgt:Pand ;
+             bgt:gerelateerdBagPand ?bag_pand ;
+             foaf:isPrimaryTopicOf ?v1 .
+  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  bind(substr(strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),5,2) as ?pandid)
+  filter (?pandid != '10') .
+  filter not exists{
+    ?v1 bgt:objectEindtijd ?eind .
+  }
+} limit 100
