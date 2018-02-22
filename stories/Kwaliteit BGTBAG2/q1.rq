@@ -21,7 +21,7 @@ select distinct ?wkt ?wktLabel {
       }
       filter (!(bound(?voorkomen2)))
     }
-    limit 50
+    limit 500
   }
   service <https://data.pdok.nl/sparql> {
     graph ?voorkomen {
@@ -47,4 +47,4 @@ select distinct ?wkt ?wktLabel {
   bind (concat(str(year(?eind1)),'-',str(month(?eind1)),'-',str(day(?eind1))) as ?eindLabel)
   bind (concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m²<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
 }
-limit 100
+limit 1000
