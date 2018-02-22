@@ -20,22 +20,33 @@ Query 1: Welke BAG pand IDs met als status “Pand in Gebruik” en “Pand in G
 Query 2: En omgekeerd: Welke BGT PandIDs met status “Bestaand” komen we niet tegen in de BAG (met beide statusen), met daarbij een onderscheid tussen herkenbare dummy waardes (vier willekeurige en dan 12 nullen: ????000000000000), en niet dummy waardes.
 
 
-Query 3: Geef me de BAG pandIDs die meer dan 1 keer voorkomen in de BGT. (dat mag namelijk niet) 
-Query 4. Geef mij de BGT panden waar bij het bagpandid op positie 5 en 6 geen 10 staat. 
+Query 3: Geef me de BAG pandIDs die meer dan 1 keer voorkomen in de BGT. (dat mag namelijk niet)
+
+We weten dat BAG panden met 000000000000 als id vaak voorkomen in de BGT.
+Namelijk:
+
+<div data-query
+     data-query-sparql="id3-count.rq"></div>
+
+Deze filteren we eruit.
+Vervolgens gaan we op zoek:
+
+<div data-query
+     data-query-sparql="id3.rq"></div>
+
+Query 4. Geef mij de BGT panden waar bij het bagpandid op positie 5 en 6 geen 10 staat.
 
 Query 5. De bronhoudercode geeft de gemeente weer; het id van het pand (eerste vier cijfers) moet beginnen met deze bronhouder code: Geef mij alle BGT panden waarbij de identifier niet overeenkomt met de verwachte bronhoudercode.
 
 
 
-Query 6: 
+Query 6:
 Op basis van de resultaten van bij 1: er is een mismatch; kunnen we dan een suggestie doen van het bijbehorende BAG pand of BGT pand.
 
 6A. Situatie een BGT pand zonder (goed) BAG pand ID. Daarvoor een vervolg query: geef mij dichtstbijzijnde BAG PandID die niet voorkomt in de BGT.
 	(uitkomst bij use case 1: is een lijst met BAG Panden ID, en daar doen we dan een qeoquery op)
 
-6B. Situatie: een BAG pand id zonder (goed) BGT pand id….twee subsituaties; onbekend BGT pand ID, of Dummy waarde. 
-
-
+6B. Situatie: een BAG pand id zonder (goed) BGT pand id….twee subsituaties; onbekend BGT pand ID, of Dummy waarde.
 
 
 
