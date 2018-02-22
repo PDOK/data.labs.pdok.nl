@@ -13,8 +13,8 @@ select distinct ?windturbineWkt ?windturbineWktColor ?windturbineWktLabel ?bgtWk
   filter (?bag != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
   bind ("green" as ?windturbineWktColor)
   # bouwjaar, mutatiedatum
-  bind (concat('<a href="',str(?bag),'">BAG link</a><p>Bouwjaar: ',str(?bouwjaar),'</p>') as ?bgtWktLabel)
-  bind (concat('<a href="',str(?bag),'">BAG link</a><p>Bouwjaar: ',str(?bouwjaar),'</p>') as ?windturbineWktLabel)
+  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?bgtWktLabel)
+  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?windturbineWktLabel)
 }
 offset 20
 limit 1
