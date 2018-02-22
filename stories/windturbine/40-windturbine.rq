@@ -1,0 +1,33 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix windstats: <http://data.labs.pdok.nl/dataset/windstats/def#>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktColor {
+  {
+    ?windstats a dbo:WindMotor ;
+               windstats:Provincie "Flevoland"^^xsd:string ;
+               geo:hasGeometry/geo:asWKT ?wkt .
+    bind ("red" as ?wktColor)
+  } union {
+    service <https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql> {
+      graph <https://data.pdok.nl/windturbine/osm-flevoland> {
+        ?osm a <http://www.wikidata.org/entity/Q49833> ;
+             geo:hasGeometry/geo:asWKT ?wkt .
+      }
+      bind ("green" as ?wktColor)
+    }
+  } union {
+    service <https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql> {
+      ?brt a brt:Windturbine ;
+           geo:hasGeometry/geo:asWKT ?wkt .
+      bind ("yellow" as ?wktColor)
+    }
+  } union {
+    ?bgt_turbine a bgt:Windturbine ;
+                 geo:hasGeometry/geo:asWKT ?wkt_poly .
+      bind (strdt(concat("POINT (", substr(str(?wkt_poly), 11, 34), ")"), geo:wktLiteral) as ?wkt)
+      bind ("blue" as ?wktColor)
+  }
+}
