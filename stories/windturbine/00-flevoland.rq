@@ -1,6 +1,6 @@
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 select ?wkt {
-  graph <https://data.pdok.nl/windturbine/flevoland> {
+  graph <https://data.pdok.nl/windturbine/osm-flevoland> {
     ?windturbine geo:hasGeometry/geo:asWKT ?wkt .
   }
 }
