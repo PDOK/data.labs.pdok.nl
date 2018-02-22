@@ -26,7 +26,7 @@ We weten dat BAG panden met 000000000000 als id vaak voorkomen in de BGT.
 Namelijk:
 
 <div data-query
-     data-query-sparql="id3-count.rq"></div>
+     data-query-sparql="id3_count.rq"></div>
 
 Deze filteren we eruit.
 Vervolgens gaan we op zoek:
