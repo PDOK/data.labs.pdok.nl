@@ -12,9 +12,12 @@ BY-SA 3.0</a>], <a
 href="https://commons.wikimedia.org/wiki/File%3AWind_turbine.gif">via
 Wikimedia Commons</a>
 
-In deze Data Story willen we aan de hand van windturbines laten zien hoe kwaliteitsverbetering mogelijk is door combinaties van datasets met informatie over windturbines. Windturbines komen voor in de BGT (overig bouwwerk, type windturbine), in de BRT (type windturbine), in Windstats, in Dbpedia (2013; gebaseerd op CBS), in Wikidata (te weinig), en Open Street Map (OSM).
-
-6. 	OSM/wikidata: windmolens:  Wouter met bgt in contact brengen…eerst brt dan bgt
+In deze Data Story willen we aan de hand van windturbines laten zien
+hoe kwaliteitsverbetering mogelijk is door combinaties van datasets
+met informatie over windturbines. Windturbines komen voor in de BGT
+(overig bouwwerk, type windturbine), in de BRT (type windturbine), in
+Windstats, in Dbpedia (2013; gebaseerd op CBS), in Wikidata (te
+weinig), en Open Street Map (OSM).
 
 Voor elke query alleen Flevoland! 
 Query 1: Verschillen in de windmodels tussen BGT en BRT 
@@ -27,16 +30,13 @@ Query 4 (geo): Welke windmolens hebben een BAG pandid? (dat is onterecht)
 
 Query 5: Geef mij de windturbines uit windstats, waar op 50m geen evenkie in de brt te vinden. 
 
-
-
-
-
 ## Windturbines in Flevoland
 
 De windturbines in Flevoland volgens OpenStreetMap (OSM):
 
 <div
   data-query
+  data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql"
   data-query-sparql="00-flevoland.rq"></div>
 
 ## Wikidata
@@ -60,7 +60,7 @@ href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
      data-query-endpoint="https://query.wikidata.org/sparql"
      data-query-sparql="20-farm.rq"></div>
 
-## Alle windturbines in Flevoland
+## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
 Alle windturbines in Flevoland volgens BGT
 ( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="blue" r="10"/></svg> ),
@@ -77,14 +77,10 @@ en WindStats
 
 ## RVO windturbines zonder BRT equivalent
 
-RVO heeft ongeveer 2300 windturbines. Minstens een BRT windturbine
+RVO heeft ongeveer 2.300 windturbines.  Minstens één BRT windturbine
 heeft geen RVO variant binnen een straal van 30 meter:
 
 <div
   data-query
-  data-query-sparql="30-rvo-turbines-niet-in-brt.rq"
-  data-query-endpoint="https://data.labs.pdok.nl/geosparql"></div>
-
-<!--
-<img src="https://wiki.openstreetmap.org/w/images/0/0c/Power-wind-16.svg">
--->
+  data-query-endpoint="https://data.labs.pdok.nl/geosparql"
+  data-query-sparql="30-rvo-turbines-niet-in-brt.rq"></div>
