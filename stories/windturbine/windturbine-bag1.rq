@@ -14,6 +14,7 @@ select distinct ?bag ?windturbineWkt ?windturbineWktColor ?bgtWkt ?bgtWktLabel {
   bind ("green" as ?windturbineWktColor)
   # bouwjaar, mutatiedatum
   bind (concat('<a href="',str(?bag),'">BAG link</a><p>Bouwjaar: ',str(?bouwjaar),'</p>') as ?bgtWktLabel)
+  bind (concat('<a href="',str(?bag),'">BAG link</a><p>Bouwjaar: ',str(?bouwjaar),'</p>') as ?windturbineWktLabel)
 }
 offset 20
 limit 1
