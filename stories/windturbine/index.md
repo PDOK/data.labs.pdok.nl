@@ -12,37 +12,13 @@ BY-SA 3.0</a>], <a
 href="https://commons.wikimedia.org/wiki/File%3AWind_turbine.gif">via
 Wikimedia Commons</a>
 
-In deze Data Story willen we aan de hand van windturbines laten zien
-hoe kwaliteitsverbetering mogelijk is door combinaties van datasets
-met informatie over windturbines. Windturbines komen voor in de BGT
-(overig bouwwerk, type windturbine), in de BRT (type windturbine), in
-Windstats, in Dbpedia (2013; gebaseerd op CBS), in Wikidata (te
-weinig), en Open Street Map (OSM).
+In deze Data Story willen we aan de hand van windturbines laten zien hoe kwaliteitsverbetering mogelijk is door combinaties van datasets met informatie over windturbines. Windturbines komen voor in de BGT (overig bouwwerk, type windturbine), in de BRT (type windturbine), in Windstats, in Dbpedia (2013; gebaseerd op CBS), in Wikidata (te weinig), en Open Street Map (OSM).
 
-Voor elke query alleen Flevoland! 
-Query 1: Verschillen in de windmodels tussen BGT en BRT 
+Deze story beschrijft de volgende zoekopdrachten:
+- Welke windturbines staan er in de [OpenStreetMap](http://sophox.org/sophox/) en [WikiData](https://query.wikidata.org/) SPARQL endpoints?
+- Waarin zitten de verschillen tussen de BGT, BRT, OpenStreetMap en Windstats als het gaat om windturbines in Flevoland?
 
-Query 2: (indien Windstats data omgezet is): verschil tussen BGT en BRT en Windstats
-
-Query 3: Verschil tussen BGT, BRT, Windstats, en OSM!
-
-Query 4 (geo): Welke windmolens hebben een BAG pandid? (dat is onterecht)
-
-Query 5: Geef mij de windturbines uit windstats, waar op 50m geen evenkie in de brt te vinden. 
-
-## Windturbines in Flevoland
-
-De windturbines in Flevoland volgens OpenStreetMap (OSM):
-
-<div
-  data-query
-  data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/windturbines/services/windturbines/sparql"
-  data-query-sparql="00-flevoland.rq"></div>
-
-## Wikidata
-
-### Windturbines in Nederland
-
+# Wikidata windturbines in Nederland
 De windturbines in Nederland volgens Wikidata (klasse ‘<a
 href="http://www.wikidata.org/entity/Q49833">Wind turbine</a>’):
 
@@ -51,8 +27,7 @@ href="http://www.wikidata.org/entity/Q49833">Wind turbine</a>’):
   data-query-endpoint="https://query.wikidata.org/sparql"
   data-query-sparql="10-turbine.rq"></div>
 
-### Windturbine parken in Nederland
-
+# Windturbineparken in Nederland
 De windturbine parken in Nederland volgens Wikidata (klasse ‘<a
 href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
 
@@ -74,7 +49,11 @@ Voorbeeld:
 
 ## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
-Alle windturbines in Flevoland volgens BGT
+De kaart hieronder biedt een overzicht van alle beschikbare data over windturbines voor Zuidwest-Flevoland. Het kaartbeeld is gelaagd opgebouwd; eerst worden de turbines uit Windstats geplot, hieroverheen de windturbines uit OpenStreetMap, hierover weer de turbines uit de BRT, en als laatste de turbines uit de BGT.
+
+Alle markers waar geen blauwe marker uit de BGT overheen geplaatst is, kan mogelijk aangevuld worden in de BGT. Het kaarbeeld laat zien dat vooral de BRT, OpenStreetMap maar in beperktere mate ook Windstats mogelijk nog aanvulling kunnen betekenen voor de BGT.
+
+Alle windturbines in Zuidwest-Flevoland volgens BGT
 ( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="blue" r="10"/></svg> ),
 BRT
 ( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="yellow" r="10"/></svg> ),
@@ -85,14 +64,11 @@ en WindStats
 
 <div data-query
      data-query-endpoint="https://data.labs.pdok.nl/geosparql"
-     data-query-sparql="windturbine.rq">
+     data-query-sparql="40-windturbine.rq"></div>
 
-## RVO windturbines zonder BRT equivalent
+# Windturbines ontbrekend (?) in de BRT
+Wijzigen we de volgorde van de kaartopbouw, dan zien we welke turbines niet in de BRT voorkomen. Alle markers in een andere kleur dan geel is mogelijk een ontbrekend element.
 
-RVO heeft ongeveer 2.300 windturbines.  Minstens één BRT windturbine
-heeft geen RVO variant binnen een straal van 30 meter:
-
-<div
-  data-query
-  data-query-endpoint="https://data.labs.pdok.nl/geosparql"
-  data-query-sparql="30-rvo-turbines-niet-in-brt.rq"></div>
+<div data-query 
+  data-query-sparql="30-turbines-niet-in-brt.rq" 
+  data-query-endpoint="https://data.labs.pdok.nl/geosparql"></div>

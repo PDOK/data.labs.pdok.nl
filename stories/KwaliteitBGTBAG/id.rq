@@ -1,0 +1,57 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix bag_beg: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+#select (count(?bag_pand) as ?count) {
+select distinct ?bag_pand {
+  # Alle bag panden in Zeewolde
+  {
+    select (?bag_pand_i as ?bag_pand) {
+      ?bgt_pand a bgt:Pand ;
+                foaf:isPrimaryTopicOf ?bgt_voorkomen .
+      ?bgt_voorkomen bgt:bronhouder <http://data.labs.pdok.nl/bbi/id/gemeente/0050> .
+      #<http://data.labs.pdok.nl/bbi/id/provincie/Noord-Holland>
+      filter not exists {
+        ?bgt_voorkomen bgt:objectEindtijd ?eind .
+      }
+      ?bgt_voorkomen bgt:objectBegintijd ?begin .
+      graph ?bgt_voorkomen  {
+        ?bgt_pand bgt:gerelateerdBagPand ?bag_pand_i .
+      }
+    }
+    limit 2000
+  }
+  service<https://data.pdok.nl/sparql> {
+    ?verblijfsobject bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats <http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/1075> ;
+                                                                  bag:pandrelatering ?bag_pand .
+    graph ?voorkomen {
+      ?bag_pand a bag:Pand .
+    }
+    filter not exists {
+      ?voorkomen bag:eindGeldigheid ?eind .
+    }
+  }
+  MINUS
+  # Alle huidig geldige bag panden in Zeewolde
+  {
+    select ?bag_pand {
+      service<https://data.pdok.nl/sparql> {
+        select distinct ?bag_pand {
+          ?verblijfsobject bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats <http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/1075> ;
+                                                                        bag:pandrelatering ?bag_pand .
+          graph ?voorkomen {
+            ?bag_pand a bag:Pand .
+            ?bag_pand bag:status ?status .
+            filter (?status = bag_beg:PandInGebruik || ?status = bag_beg:PandInGebruik_nietIngemeten)
+          }
+          filter not exists {
+            ?voorkomen bag:eindGeldigheid ?eind .
+          }
+        }
+      }
+    }
+  }
+}
+#limit 100
