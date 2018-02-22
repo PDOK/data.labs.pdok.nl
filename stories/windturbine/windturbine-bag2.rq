@@ -1,0 +1,18 @@
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select distinct ?bag ?windturbineWkt ?windturbineWktColor ?bgtWkt ?bgtWktLabel {
+  graph <https://data.pdok.nl/windturbine/osm-flevoland> {
+    ?windturbine a <http://www.wikidata.org/entity/Q49833> ;
+                 geo:hasGeometry/geo:asWKT ?windturbineWkt .
+  }
+  ?bgt a bgt:Pand ;
+       geo:hasGeometry/geo:asWKT ?bgtWkt ;
+       bgt:gerelateerdBagPand ?bag .
+  filter (bif:st_intersects(?windturbineWkt, ?bgtWkt))
+  filter (?bag != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  bind ("green" as ?windturbineWktColor)
+  # bouwjaar, mutatiedatum
+  bind (concat('<a href="',str(?bag),'">BAG link</a><p>Bouwjaar: ',str(?bouwjaar),'</p>') as ?bgtWktLabel)
+}
+limit 1000

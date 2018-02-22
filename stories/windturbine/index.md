@@ -60,6 +60,18 @@ href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
      data-query-endpoint="https://query.wikidata.org/sparql"
      data-query-sparql="20-farm.rq"></div>
 
+## Windturbines in de BAG
+
+Voorbeeld:
+
+<div data-query
+     data-query-sparql="windturbine-bag1.rq"></div>
+
+## Alle windturbines in de BAG
+
+<div data-query
+     data-query-sparql="windturbine-bag2.rq"></div>
+
 ## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
 Alle windturbines in Flevoland volgens BGT
