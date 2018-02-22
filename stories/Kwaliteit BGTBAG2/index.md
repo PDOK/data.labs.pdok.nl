@@ -34,6 +34,18 @@ maanden). Oftewel die moet de bronhouder aanpassen.
      data-query-endpoint="https://data.labs.pdok.nl/gsparql"
      data-query-sparql="q2.rq"></div>
 
+## Windturbines in de BAG
+
+Één voorbeeld:
+
+<div data-query
+     data-query-sparql="windturbine-bag1.rq"></div>
+
+Allemaal:
+
+<div data-query
+     data-query-sparql="windturbine-bag2.rq"></div>
+
 Query 4: De BGT bevat ook de straatnaam, en die zou overgenomen moeten
 zijn uit de BAG: Query: Geeft mij de straatnamen in de gemeente
 Dronten waarbij verschil zit tussen de BGT en BAG straatnaam.

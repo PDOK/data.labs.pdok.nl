@@ -60,15 +60,3 @@ Wijzigen we de volgorde van de kaartopbouw, dan zien we welke turbines niet in d
 <div data-query 
   data-query-sparql="30-turbines-niet-in-brt.rq" 
   data-query-endpoint="https://data.labs.pdok.nl/geosparql"></div>
-
-## Windturbines in de BAG
-
-Één voorbeeld:
-
-<div data-query
-     data-query-sparql="windturbine-bag1.rq"></div>
-
-Allemaal:
-
-<div data-query
-     data-query-sparql="windturbine-bag2.rq"></div>
