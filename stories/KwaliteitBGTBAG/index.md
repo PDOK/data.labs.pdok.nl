@@ -46,7 +46,7 @@ Het aantal:
 De panden:
 
 <div data-query
-     data-query-endpoint="http://data.labs.pdok.nl/gsparql"
+     data-query-endpoint="https://data.labs.pdok.nl/gsparql"
      data-query-sparql="id4.rq"></div>
 
 Query 5. De bronhoudercode geeft de gemeente weer; het id van het pand (eerste vier cijfers) moet beginnen met deze bronhouder code: Geef mij alle BGT panden waarbij de identifier niet overeenkomt met de verwachte bronhoudercode.
