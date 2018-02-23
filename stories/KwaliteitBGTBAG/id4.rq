@@ -20,8 +20,17 @@ SELECT distinct ?bgt_pand ?bag_pand ?pandid ?lat ?long ?wkt ?wktLabel WHERE {
   ?bgt_pand geo:hasGeometry/geo:asWKT ?wkt ;
                            rdfs:label ?bgt .
 
-  bind(substr(str(?wkt), 29, 16) as ?lat)
-  bind(substr(str(?wkt), 11, 15) as ?long)
+  bind(
+    if(strstarts(str(?wkt), 'POLYGON') ,
+      substr(str(?wkt), 29, 16),
+      substr(str(?wkt), 35, 16)
+    ) as ?lat)
+  bind(
+    if(strstarts(str(?wkt), 'POLYGON') ,
+      substr(str(?wkt), 11, 15),
+      substr(str(?wkt), 17, 15)
+    ) as ?long)
+    
   bind (
     concat('<h4>BGT panden</h4>',
       '<p>',?bgt,'</p>',
