@@ -1,0 +1,37 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ogc: <http://www.opengis.net/def/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX og: <http://ogp.me/ns#>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT distinct ?bgt_pand1 ?bgt_pand2 ?bag_pand ?wkt1 ?wkt2 ?wkt1Label ?bgt1 ?bgt2 WHERE {
+  ?bgt_pand1 a bgt:Pand ;
+              bgt:gerelateerdBagPand ?bag_pand ;
+              foaf:isPrimaryTopicOf ?v1 .
+  ?bgt_pand2 a bgt:Pand ;
+             bgt:gerelateerdBagPand ?bag_pand ;
+             foaf:isPrimaryTopicOf ?v2 .
+  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  filter (?bgt_pand1 != ?bgt_pand2)
+
+  filter not exists{
+   ?v1 bgt:objectEindtijd ?eind .
+  }
+  filter not exists{
+   ?v2 bgt:objectEindtijd ?eind2 .
+  }
+
+  ?bgt_pand1 geo:hasGeometry/geo:asWKT ?wkt1 ;
+                            rdfs:label ?bgt1 .
+  ?bgt_pand2 geo:hasGeometry/geo:asWKT ?wkt2 ;
+                            rdfs:label ?bgt2 .
+  bind (
+    concat('<h4>BGT panden</h4>',
+      '<p>',?bgt1,'</p>',
+      '<p>',?bgt2,'</p>',
+      '<h4>BAG pand</h4>',
+      '<p><a href="',str(?bag_pand),'">pand ',strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),'</a></p>') as ?wkt1Label)
+}
+LIMIT 1000
