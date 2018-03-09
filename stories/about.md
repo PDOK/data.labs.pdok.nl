@@ -30,7 +30,7 @@ The following attributes are defined on a *data story* element:
   * `data-query-endpoint`
 
     The SPARQL endpoint against which all queries in this story are
-    executed.
+    executed. Default: data-query-endpoint="https://data.labs.pdok.nl/sparql/".
 
   * `data-query-output`
 
