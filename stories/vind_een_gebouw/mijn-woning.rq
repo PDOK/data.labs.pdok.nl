@@ -10,8 +10,9 @@ select ?wkt ?wktLabel {
                   bag:bijbehorendeWoonplaats ?woonplaats .
   ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
-                    bag:huisnummer ?huisnummer ; 
-                    bag:huisletter ?huisletter .
+            #        bag:huisletter ?huisletter ;
+                    bag:huisnummer ?huisnummer .
+                    
   ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
                    bag:oppervlakte ?oppervlakte ;
                    bag:pandrelatering ?pand ;
