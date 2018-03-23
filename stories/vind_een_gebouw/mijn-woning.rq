@@ -5,11 +5,14 @@ select ?wkt ?wktLabel {
   bind ("Warnsveld" as ?woonplaatsNaam)
   bind ("'t Spiker" as ?straatNaam)
   bind (24 as ?huisnummer)
+  # bind ("B" as ?huisletter)
   ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
                   bag:bijbehorendeWoonplaats ?woonplaats .
   ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+            #        bag:huisletter ?huisletter ;
                     bag:huisnummer ?huisnummer .
+                    
   ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
                    bag:oppervlakte ?oppervlakte ;
                    bag:pandrelatering ?pand ;
