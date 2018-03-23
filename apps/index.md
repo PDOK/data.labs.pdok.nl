@@ -8,9 +8,10 @@ title: Demonstrators (apps)
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
 ## Visualisatie van BAG vocabulaire met WebVOWL
-WebVOWL is een visualisatietool waarmee de samenhang van een semantisch model wordt weergegeven. Met deze tool kunnen we bijvoorbeeld de gebruikte klassen en eigenschappen van de BAG tonen:
+WebVOWL is een visualisatietool waarmee de samenhang van een semantisch model wordt weergegeven. Met deze tool kunnen we bijvoorbeeld de gebruikte klassen en eigenschappen van de BAG tonen. Klik op de afbeelding om het model te bekijken:
 
-<iframe width="100%" height="600px" src="http://visualdataweb.de/webvowl/#iri=http://ec2-34-252-124-184.eu-west-1.compute.amazonaws.com/model/bag.ttl"></iframe>
+[![BAG in WebVOWL](/assets/images/WebVOWL.png)](
+http://visualdataweb.de/webvowl/#iri=http://ec2-34-252-124-184.eu-west-1.compute.amazonaws.com/model/bag.ttl)
 
 ### Data exploration with Tableau
 
