@@ -25,7 +25,7 @@ h3 {
   font-size: 20px;
 }
 
-p, ul, ol, table, dl {
+p, ul, ol, dl {
   margin: 0 0 22px;
   font-size: 16px;
 }
@@ -39,11 +39,6 @@ section {
 
 a.github {
   font-size: smaller;
-}
-
-th.sorting {
-  color: black;
-  font-family: Roboto;
 }
 
 header {
@@ -108,4 +103,35 @@ img {
 .tableauViz {
   width: 100%;
   height: 800px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 22px;
+  font-size: 16px;
+}
+
+th {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 10px;
+  //background: #232323;
+  //color: #FDFEFB;
+}
+
+th.sorting {
+  color: black;
+  font-family: Roboto;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:nth-child(odd){background-color: #fff;}
+
+tr:hover {background-color: #ddd;}
+
+td {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  background: none;
 }
