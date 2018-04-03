@@ -1,0 +1,17 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix windstats: <http://data.labs.pdok.nl/dataset/windstats/def#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?rvoWkt ?rvoWktColor ?brtWkt ?brtWktColor {
+  ?rvo a dbo:WindMotor ;
+       windstats:Provincie "Flevoland"^^xsd:string ;
+       geo:hasGeometry/geo:asWKT ?rvoWkt .
+  filter not exists {
+    ?brt a brt:Windturbine ;
+           geo:hasGeometry/geo:asWKT ?brtWkt .
+    filter(bif:st_intersects(?rvoWkt, ?brtWkt, 1.0))
+  }
+  bind ("green" as ?rvoWktColor)
+  bind ("red" as ?brtWktColor)
+}
