@@ -1,15 +1,15 @@
-prefix buurt: <https://krr.triply.cc/Kadaster/cbs/id/buurt/>
-prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix buurt: <https://data.labs.pdok.nl/cbs/id/buurt/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix graph: <https://krr.triply.cc/Kadaster/graph/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?wkt ?wktLabel {
   bind (buurt:BU03010500 as ?buurt)
-  graph graph:cbs-2015 {
+  graph graph:wijkbuurt-2015 {
     ?buurt geo:hasGeometry/geo:asWKT ?wkt ;
            rdfs:label ?buurtNaam .
   }
-  graph graph:cbs-energie-2015 {
+  graph graph:energiepotentie {
     ?buurt cbs:aardgasverbruikKoopwoning ?gemAardgas ;
            cbs:elektriciteitsverbruikKoopwoning ?gemElektra ;
            cbs:reëleBesparingspotentieAlleMaatregelen ?besparing ;

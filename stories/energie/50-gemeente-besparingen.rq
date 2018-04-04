@@ -1,19 +1,19 @@
-prefix buurt: <https://krr.triply.cc/Kadaster/cbs/id/buurt/>
-prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
-prefix gemeente: <https://krr.triply.cc/Kadaster/cbs/id/gemeente/>
+prefix buurt: <https://data.labs.pdok.nl/cbs/id/buurt/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix gemeente: <https://data.labs.pdok.nl/cbs/id/gemeente/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix graph: <https://krr.triply.cc/Kadaster/graph/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?wkt ?wktColor ?wktLabel {
   bind (strdt("Amsterdam",xsd:string) as ?gemeenteNaam)
-  graph graph:cbs-2015 {
+  graph graph:wijkbuurt-2015 {
     ?gemeente rdfs:label ?gemeenteNaam .
     ?buurt geo:sfWithin/geo:sfWithin ?gemeente ;
            geo:hasGeometry/geo:asWKT ?wkt ;
            rdfs:label ?buurtNaam .
   }
-  graph graph:cbs-energie-2015 {
+  graph graph:energiepotentie {
     ?buurt cbs:aardgasverbruikKoopwoning ?gemAardgas ;
            cbs:elektriciteitsverbruikKoopwoning ?gemElektra ;
            cbs:reëleBesparingspotentieAlleMaatregelen ?besparing ;
@@ -36,6 +36,6 @@ select ?wkt ?wktColor ?wktLabel {
       if(?deler > 0,concat('<p>Positief rendement na ',str(?noemer / ?deler),' jaar.</p>'),'')
     ) as ?wktLabel)
   bind (if(?deler > 0, (22.0 - (xsd:float(?noemer / ?deler) - 8.0)) / 22.0, 0) as ?normalized)
-  bind (concat("bluered,",?normalized) as ?wktColor)
+  bind (concat("bluered,",str(?normalized)) as ?wktColor)
 }
 limit 75
