@@ -1,8 +1,6 @@
-PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dbr: <http://dbpedia.org/resource/>
-select * where {
-	dbr:Onze_Lieve_Vrouwetoren rdfs:comment ?comment .
- 	filter(lang(?comment) = "nl") .
+prefix dbr: <http://dbpedia.org/resource/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select * {
+  dbr:Onze_Lieve_Vrouwetoren rdfs:comment ?comment .
+  filter (lang(?comment) = "nl") .
 }
