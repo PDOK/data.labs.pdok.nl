@@ -84,7 +84,7 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
              cbs:gehuwd ?gehuwd ;
              cbs:ongehuwd ?ongehuwd ;
              cbs:verweduwd ?verweduwd ;
-       #      cbs:woz ?woz ;
+            #cbs:woz ?woz ;
              cbs:zwembad ?afstandZwembad ;
              geo:hasGeometry/geo:asWKT ?buurtWkt ;
              geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
@@ -95,7 +95,7 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
         'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
         'Gehuwd: ',str(?gehuwd),' personen<br>',
         'Ongehuwd: ',str(?ongehuwd),' personen<br>',
-        #'WOZ waarde: € ',str(?woz),'.000,-<br>',
+       #'WOZ waarde: € ',str(?woz),'.000,-<br>',
         'Afstand tot café: ',str(?afstandCafe),' km</p>'
         ) as ?buurtWktLabel)
     }

@@ -9,7 +9,7 @@ select ?buurtWkt ?buurtWktColor ?buurtWktLabel {
       service <https://data.pdok.nl/sparql> {
         bind ("Apeldoorn"@nl as ?woonplaatsNaam)
         ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
-                            brt:nummer ?registratiefGebiedCode
+                            brt:nummer ?registratiefGebiedCode .
         bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
       }
       ?buurt cbs:afstandCafé ?café ;
@@ -19,7 +19,7 @@ select ?buurtWkt ?buurtWktColor ?buurtWktLabel {
   service <https://data.pdok.nl/sparql> {
     bind ("Apeldoorn"@nl as ?woonplaatsNaam)
     ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
-                        brt:nummer ?registratiefGebiedCode
+                        brt:nummer ?registratiefGebiedCode .
     bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
   }
   graph graph:wijkbuurt-2015 {

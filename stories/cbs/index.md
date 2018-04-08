@@ -1,9 +1,9 @@
 ---
-layout: story
-title: Kadaster Data Stories ― CBS
-logo: /stories/cbs/logo.png
 endpoint: https://data.labs.pdok.nl/sparql
+layout: story
+logo: /stories/cbs/logo.png
 output: leaflet
+title: Kadaster Data Stories ― CBS
 ---
 
 # BAG panden & CBS buurten
