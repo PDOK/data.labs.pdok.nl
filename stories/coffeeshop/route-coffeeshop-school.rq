@@ -1,56 +1,54 @@
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-PREFIX nwbw: <http://data.labs.pdok.nl/nwb-wegen/def/nwb-wegen#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
-PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
-
-select * where {
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix nwbw: <http://data.labs.pdok.nl/nwb-wegen/def/nwb-wegen#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
+select * {
   {
     service <https://data.pdok.nl/sparql> {
-      select distinct ?vbo ?wkt ?wktLabel ?afstand where {
+      select distinct ?vbo ?wkt ?wktLabel ?afstand {
         {
           ?vbo a ?type ;
-               rdfs:label ?vbolabel ;
                bag:pandrelatering ?pand ;
-               geo:hasGeometry/geo:asWKT ?wkt .
-          ?pand rdfs:label ?pandlabel .
-          filter(?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000462567>)
+               geo:hasGeometry/geo:asWKT ?wkt ;
+               rdfs:label ?vboLabel .
+          ?pand rdfs:label ?pandLabel .
+          filter(?vbo = verblijfsobject:0307010000462567)
           bind(concat(
-              "<h3>Coffeeshop</h3>",
-              "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
-              "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+            '<h3>Coffeeshop</h3>',
+            '<p><a href="',str(?pand),'">',str(?pandLabel),'</a><br>',
+            '<a href="',str(?vbo),'">',str(?vboLabel),'</a></p>'
             ) as ?wktLabel)
         } union {
           ?vbo a ?type ;
-               rdfs:label ?vbolabel ;
                bag:pandrelatering ?pand ;
-               geo:hasGeometry/geo:asWKT ?wkt .
-          ?pand rdfs:label ?pandlabel .
-          filter(
-            ?vbo = <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0307010000519401>
-          )
-          bind(concat(
-              "<h3>School</h3>",
-              "<a href='", str(?pand), "'>", str(?pandlabel), "</a><br>",
-              "<a href='", str(?vbo), "'>", str(?vbolabel), "</a>"
+               geo:hasGeometry/geo:asWKT ?wkt ;
+               rdfs:label ?vboLabel .
+          ?pand rdfs:label ?pandLabel .
+          filter (?vbo = verblijfsobject:0307010000519401)
+          bind (concat(
+            '<h3>School</h3>',
+            '<p><a href="',str(?pand),'">',str(?pandLabel),'</a><br>',
+            '<a href="',str(?vbo),'">',str(?vboLabel),'</a></p>'
             ) as ?wktLabel) .
-          bind(?wkt as ?punt2) .
+          bind( ?wkt as ?punt2) .
         }
       }
     }
-  } union
-  {
-    select * where {
+  } union {
+    select * {
       ?wegvak a nwbw:Wegvak ;
-              rdfs:label ?wegvaklabel ;
-              geo:hasGeometry/geo:asWKT ?wkt .
-      bind(geof:distance(?punt2, ?wkt, uom:metre) as ?coffeeshop_weg_afstand) .
-      bind(concat(
-              "<h3>Wegvak</h3>",
-              "<a href='", str(?wegvak), "'>", str(?wegvaklabel), "</a>"
+              geo:hasGeometry/geo:asWKT ?wkt ;
+              rdfs:label ?wegvaklabel .
+      bind (geof:distance(?punt2, ?wkt, uom:metre) as ?afstand) .
+      bind (concat(
+        '<h3>Wegvak</h3>',
+        '<p><a href="',str(?wegvak),'">',str(?wegvaklabel),'</a></p>'
         ) as ?wktLabel)
-    } order by ?coffeeshop_weg_afstand
+    }
+    order by ?afstand
     limit 1
   }
 }
