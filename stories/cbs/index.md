@@ -93,7 +93,9 @@ onderstaande query zichtbaar gemaakt.
 _Laan van Westenenk 701_ blijkt in buurt _Wernem_ te liggen (CBS code
 BU02000311), en in wijk _Apeldoorn Zuidwest (CBS code WK02003).
 
-<div data-query data-query-sparql="buurt.rq">
+<div data-query
+     data-query-endpoint="https://data.pdok.nl/sparql"
+     data-query-sparql="buurt.rq">
 </div>
 
 _Laan van Westenenk 701_ lijkt niet de beste plek te zijn voor iemand

@@ -1,7 +1,6 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/def/>
-prefix dct: <http://purl.org/dc/terms/>
+prefix dcterm: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -33,7 +32,7 @@ select ?wkt ?wktLabel {
   filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
   ?voorkomen bag:beginGeldigheid ?begin .
   filter not exists { ?voorkomen bag:eindGeldigheid [] }
-  ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+  ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
   ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
   ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
         bag:geometriePand/geo:asWKT ?wkt ;

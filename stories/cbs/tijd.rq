@@ -1,41 +1,28 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel {
+select ?buurtWkt ?buurtWktLabel {
   bind ("GM0200" as ?gemeenteCode)
-  graph <https://data.pdok.nl/cbs/2015> {
-    ?buurt2015 cbs:GM_CODE ?gemeenteCode ;
-               cbs:BU_CODE [] ;
-               cbs:WK_CODE [] ;
-               cbs:AF_CAFE ?cafe2015 ;
-               cbs:BU_NAAM ?buurtNaam ;
-               geo:hasGeometry/geo:asWKT ?wkt
+  graph graph:wijkbuurt-2015 {
+    ?buurt cbs:afstandCafé ?café2015 ;
+           cbs:buurtNaam ?buurtNaam ;
+           geo:hasGeometry/geo:asWKT ?buurtWkt ;
+           geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  graph <https://data.pdok.nl/cbs/2014> {
-    ?buurt2014 cbs:GM_CODE ?gemeenteCode ;
-               cbs:BU_CODE [] ;
-               cbs:WK_CODE [] ;
-               cbs:AF_CAFE ?cafe2014
+  graph graph:wijkbuurt-2014 {
+    ?buurt cbs:afstandCafé ?café2014 ;
+           geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  graph <https://data.pdok.nl/cbs/2013> {
-    ?buurt2013 cbs:GM_CODE ?gemeenteCode ;
-               cbs:BU_CODE [] ;
-               cbs:WK_CODE [] ;
-               cbs:AF_CAFE ?cafe2013
+  graph graph:wijkbuurt-2013 {
+    ?buurt cbs:afstandCafé ?café2013 ;
+           geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  graph <https://data.pdok.nl/cbs/2012> {
-    ?buurt2012 cbs:GM_CODE ?gemeenteCode ;
-               cbs:BU_CODE [] ;
-               cbs:WK_CODE [] ;
-               cbs:AF_CAFE ?cafe2012
+  graph graph:wijkbuurt-2012 {
+    ?buurt cbs:afstandCafé ?café2012 ;
+           geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  bind (concat('<p><b>Afstrand tot café<br>',
-    str(?buurtNaam),'</b></p>',
-    '<p>2012: ',str(?cafe2012),' km<br>',
-    '2013: ',str(?cafe2013),' km<br>',
-    '2014: ',str(?cafe2014),' km<br>',
-    '2015: ',str(?cafe2015),' km</p>'
-    ) as ?wktLabel)
+  bind (concat('<p><b>Afstrand tot café<br>',str(?buurtNaam),'</b></p><p>2012: ',str(?café2012),' km<br>2013: ',str(?café2013),' km<br>2014: ',str(?café2014),' km<br>2015: ',str(?café2015),' km</p>') as ?buurtWktLabel)
 }
 limit 200
