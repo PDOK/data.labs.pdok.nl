@@ -1,42 +1,46 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix dct: <http://purl.org/dc/terms/>
+prefix dcterm: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix rce: <https://cultureelerfgoed.nl/vocab/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix monument: <https://data.labs.pdok.nl/rce/id/monument/>
+prefix rce: <https://data.labs.pdok.nl/rce/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?straatNaam ?wkt ?wktLabel {
-  bind ("Delfzijl"@nl as ?woonplaatsNaam)
-  bind ("Molenberg" as ?straatNaam)
-  bind (21 as ?huisnummer)
-  bind(str(?woonplaatsNaam) as ?bagWplNaam) .
+select ?straatNaam ?pandWkt ?pandWktLabel {
+  values (?woonplaatsNaam ?straatNaam ?huisnummer) {
+    ("Delfzijl"@nl "Molenberg" 21)
+  }
+  bind (str(?woonplaatsNaam) as ?bagWoonplaatsNaam) .
   ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                   bag:naamOpenbareRuimte ?straatNaam ;
                   bag:status ?openbareRuimteStatus .
   ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel .
   ?woonplaats bag:identificatiecode ?woonplaatsCode ;
-              bag:naamWoonplaats ?bagWplNaam .
+              bag:naamWoonplaats ?bagWoonplaatsNaam .
   ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                       brt:nummer ?registratiefGebiedCode .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
                     bag:huisnummer ?huisnummer ;
                     bag:postcode ?postcode .
-  ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+  ?verblijfsobject a ?verblijfsobjectKlasse ;
+                   bag:hoofdadres ?nummeraanduiding ;
                    bag:oppervlakte ?surface ;
                    bag:pandrelatering ?pand ;
                    bag:status ?verblijfsobjectStatus ;
                    geo:hasGeometry/geo:asWKT ?punt ;
-                   a ?verblijfsobjectKlasse ; # Bring this to the top to destroy performance :-)
                    rdfs:isDefinedBy ?voorkomen .
   filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
   ?voorkomen bag:beginGeldigheid ?begin .
-  filter not exists { ?voorkomen bag:eindGeldigheid [] }
-  ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+  filter not exists {
+    ?voorkomen bag:eindGeldigheid ?eind .
+  }
+  ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
   ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
   ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
-        bag:geometriePand/geo:asWKT ?wkt ;
+        bag:geometriePand/geo:asWKT ?pandWkt ;
         bag:status ?pandStatus .
   ?pandStatus skos:prefLabel ?pandStatusLabel
   bind (month(?begin) as ?maand)
@@ -52,9 +56,11 @@ select ?straatNaam ?wkt ?wktLabel {
         if(?maand=10,"oktober",
         if(?maand=11,"november",
         "december"))))))))))) as ?maandLabel)
-  service <https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql> {
-    ?image foaf:depicts <https://cultureelerfgoed.nl/id/monument/12310> ;
-           rce:locator ?url .
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:beeldbank {
+      ?image foaf:depicts monument:12310 ;
+             rce:locator ?url .
+      }
   }
   bind (concat(
     '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
@@ -72,6 +78,6 @@ select ?straatNaam ?wkt ?wktLabel {
     'Status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></p>',
     '<p>Registratief gebied (BRT)<br>',
     '<a href="',str(?registratiefGebied),'">',str(?woonplaatsNaam),'</a> (',str(?registratiefGebiedCode),')</p>'
-    ) as ?wktLabel)
+    ) as ?pandWktLabel)
 }
 limit 1
