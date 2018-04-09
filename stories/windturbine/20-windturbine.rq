@@ -1,21 +1,24 @@
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix wd: <http://www.wikidata.org/entity/>
 select ?shape ?shapeColor {
   {
     graph <https://data.pdok.nl/windturbine/osm-flevoland> {
-      ?windturbine a <http://www.wikidata.org/entity/Q49833> ;
+      ?windturbine a wd:Q49833 ;
                    geo:hasGeometry/geo:asWKT ?shape .
     }
     bind ('green' as ?shapeColor)
+  } union {
+    service <https://data.pdok.nl/sparql> {
+      ?windturbine a brt:Windturbine ;
+                   geo:hasGeometry/geo:asWKT ?shape .
+      bind ('yellow' as ?shapeColor)
+    }
   } union {
     ?windturbine a bgt:Windturbine ;
                  geo:hasGeometry/geo:asWKT ?shapePolygon .
     bind (strdt(concat('Point (',substr(str(?shapePolygon),11,34),')'),geo:wktLiteral) as ?shape)
     bind ('blue' as ?shapeColor)
-  } union {
-    ?windturbine a brt:Windturbine ;
-                 geo:hasGeometry/geo:asWKT ?shape .
-    bind ('yellow' as ?shapeColor)
   }
 }
