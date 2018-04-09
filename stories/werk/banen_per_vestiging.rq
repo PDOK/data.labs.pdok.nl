@@ -1,7 +1,7 @@
 PREFIX cbs: <https://data.pdok.nl/cbs/vocab/>
 PREFIX wibu: <https://data.pdok.nl/cbs/vocab/>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX dcterm: <http://purl.org/dc/terms/>
 PREFIX krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX lisa: <http://data.labs.pdok.nl/datasets/lisa/def/>
@@ -12,9 +12,9 @@ where {
   {
     # Bereken de globale min en max aantal banen per vestiging in Nederland voor 2016
     select
-	    (avg(?banen_per_vestiging) as ?gem_banen_per_vestiging)
-	    (min(?banen_per_vestiging) as ?min_banen_per_vestiging)
-    	(max(?banen_per_vestiging) as ?max_banen_per_vestiging)
+      (avg(?banen_per_vestiging) as ?gem_banen_per_vestiging)
+      (min(?banen_per_vestiging) as ?min_banen_per_vestiging)
+      (max(?banen_per_vestiging) as ?max_banen_per_vestiging)
     where {
       graph <http://data.labs.pdok.nl/dataset/lisa> {
         ?lisa_gem a lisa:Gemeente ;
@@ -45,7 +45,7 @@ where {
       as ?banen_per_vestiging_rank)
     bind(concat('hot,', str(?banen_per_vestiging_rank)) as ?wktColor)
     bind(concat("<h3>Banen per vestigingen</h3>",
-        		"<h4>", ?g_naam, " ", str(?jaar), "</h4>",
+            "<h4>", ?g_naam, " ", str(?jaar), "</h4>",
         "<p>Voor deze gemeente: <b>", substr(str(?banen / ?vestigingen), 1, 4), " banen per vestiging</b></p>" ,
         "<p>Relatieve score: <b>", str(?banen_per_vestiging_rank), "</b></p>" ,
         "<p>Voor Nederland: <b>", substr(str(?gem_banen_per_vestiging), 1, 4), "</b></p>") as ?wktLabel)

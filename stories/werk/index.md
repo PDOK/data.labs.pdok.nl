@@ -1,8 +1,8 @@
 ---
-title: LISA werkgelegenheidsregister
-layout: story
 endpoint: https://data.labs.pdok.nl/sparql
+layout: story
 logo: /stories/werk/logo.jpg
+title: LISA werkgelegenheidsregister
 ---
 
 # Werkgelegenheidsinformatie combineren uit verschillende bronnen
