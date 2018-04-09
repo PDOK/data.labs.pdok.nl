@@ -1,11 +1,12 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix dbo: <http://dbpedia.org/ontology/>
-prefix dct: <http://purl.org/dc/terms/>
+prefix dcterm: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix monument: <https://cultureelerfgoed.nl/id/monument/>
 prefix rce: <https://cultureelerfgoed.nl/vocab/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?code ?wkt ?wktLabel {
   #monument:17892
   bind (5 as ?huisnummer)
@@ -13,10 +14,9 @@ select ?code ?wkt ?wktLabel {
   bind ("'s-Gravenhage" as ?plaatsNaam)
   bind (strdt(?huisnummer,xsd:string) as ?o1)
   bind (strdt(?straatNaam,xsd:string) as ?o2)
-  ?monument dct:description ?desc ;
+  ?monument dcterm:description ?desc ;
             dbo:city ?city ;
-            <http://dbpedia.org/ontology/codeNationalMonument> ?code ;
-            dbo:codeNationalMonument ?code1 ;
+            dbo:codeNationalMonument ?code ;
             rce:huisnummer ?o1 ;
             vcard:hasStreetAddress ?o2 .
   filter (str(?city) = ?plaatsNaam)
