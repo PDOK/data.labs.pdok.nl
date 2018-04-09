@@ -1,9 +1,9 @@
 ---
-layout: story
-title: Energiebesparing
-logo: /stories/energiebesparing/logo.png
 endpoint: https://data.labs.pdok.nl/sparql
+layout: story
+logo: /stories/energiebesparing/logo.png
 output: leaflet
+title: Energiebesparing
 ---
 
 # Energiebesparing
@@ -20,7 +20,8 @@ wanneer alle energiebesparende maatregelen die nog kunnen worden
 toegepast in de woning worden gerealiseerd.  Besparingen liggen
 landelijk tussen €0 (blauw/koud) en €2.280 (rood/warm).
 
-<div data-query data-query-sparql="reëel.rq">
+<div data-query
+     data-query-sparql="10-reëel.rq">
 </div>
 
 ## Reële energiebesparing: Bouwfysische besparingen
