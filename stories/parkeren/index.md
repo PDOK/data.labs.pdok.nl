@@ -20,7 +20,8 @@ BRT en RDW, allereerst op aantallen:
      data-query-sparql="parking_aantal.rq">
 </div>
 
-En ten tweede is het evident dat er verschillen zijn als we de parkings (BRT in blauw, RDW in groen) op een kaartje tonen:
+En ten tweede is het evident dat er verschillen zijn als we de
+parkings (BRT in blauw, RDW in groen) op een kaartje tonen:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
