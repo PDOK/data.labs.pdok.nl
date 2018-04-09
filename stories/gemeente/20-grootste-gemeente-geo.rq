@@ -15,21 +15,21 @@ select ?gemeenteWkt ?gemeenteWktLabel {
       }
     }
   }
-  bind(geof:envelope(?gemeenteWkt) as ?gemeenteBoundingBox)
-  bind('^POLYGON\\s\\(\\(([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*).*\\)\\)$' as ?regex)
-  bind(replace(str(?gemeenteBoundingBox), ?regex, '$1') as ?x1)
-  bind(replace(str(?gemeenteBoundingBox), ?regex, '$2') as ?y1)
-  bind(replace(str(?gemeenteBoundingBox), ?regex, '$5') as ?x2)
-  bind(replace(str(?gemeenteBoundingBox), ?regex, '$4') as ?y2)
-  bind(geof:distance(
+  bind (geof:envelope(?gemeenteWkt) as ?gemeenteBoundingBox)
+  bind ('^POLYGON\\s\\(\\(([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*).*\\)\\)$' as ?regex)
+  bind (replace(str(?gemeenteBoundingBox), ?regex, '$1') as ?x1)
+  bind (replace(str(?gemeenteBoundingBox), ?regex, '$2') as ?y1)
+  bind (replace(str(?gemeenteBoundingBox), ?regex, '$5') as ?x2)
+  bind (replace(str(?gemeenteBoundingBox), ?regex, '$4') as ?y2)
+  bind (geof:distance(
     strdt(concat('Point (',str(?x1),' ',str(?y1),')'),geo:wktLiteral),
     strdt(concat('Point (',str(?x2),' ',str(?y1),')'),geo:wktLiteral),
     uom:metre) as ?x)
-  bind(geof:distance(
+  bind (geof:distance(
     strdt(concat('Point (',str(?x1),' ',str(?y1),')'),geo:wktLiteral),
     strdt(concat('Point (',str(?x1),' ',str(?y2),')'),geo:wktLiteral),
     uom:metre) as ?y)
-  bind(?x * ?y as ?gemeenteOppervlakte)
+  bind (?x * ?y as ?gemeenteOppervlakte)
   bind (concat(
     '<h3><a href="',str(?gemeente),'">',?gemeenteNaam,'</a></h3>',
     '<p>Oppervlakte: ',str(?gemeenteOppervlakte),'</p>') as ?gemeenteWktLabel)

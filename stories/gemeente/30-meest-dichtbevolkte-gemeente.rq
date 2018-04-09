@@ -6,7 +6,7 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?woonplaatsWkt ?woonplaatsWktLabel {
   ?woonplaats1 brt:isBAGwoonplaats true ;
-               geo:hasGeometry/geo:asWKT ?woonplaatsWoonplaatsWkt ;
+               geo:hasGeometry/geo:asWKT ?woonplaatsWkt ;
                rdfs:label ?woonplaatsNaam .
   service <https://dbpedia.org/sparql> {
     ?woonplaats2 foaf:depiction ?woonplaatsVlag ;

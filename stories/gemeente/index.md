@@ -31,7 +31,7 @@ bezitten.
      data-query-sparql="20-grootste-gemeente-geo.rq">
 </div>
 
-## Meest dicht-bevolkte Nederlandse gemeentes
+## Nederlandse gemeentes in DBpedia
 
 Door gebruik te maken van SPARQL federatie kunnen we dynamisch
 informatie over gemeentes opvragen uit andere datasets.  Hieronder
