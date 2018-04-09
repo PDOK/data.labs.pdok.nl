@@ -16,12 +16,12 @@ where {
   # filter(?woningvoorraad > 100)
 
   graph <https://data.pdok.nl/cbs/graph/2016> {
-	?buurt geo:sfWithin/geo:sfWithin ?gemeente .
+  ?buurt geo:sfWithin/geo:sfWithin ?gemeente .
   }
   filter(?gemeente=cbs_gem:2016GM0363)
 
   graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
-   	?buurt geo:hasGeometry/geo:asWKT ?wkt .
+     ?buurt geo:hasGeometry/geo:asWKT ?wkt .
   }
   bind (xsd:integer(?transacties / 100 * 255) as ?green)
   bind (xsd:integer(255 - (?transacties / 100 * 255)) as ?red)
