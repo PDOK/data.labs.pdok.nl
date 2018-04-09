@@ -1,10 +1,11 @@
 ---
-layout: story
-title: Energy labels, Energy consumption and Wind turbines
-logo: /stories/energie/logo.png
 endpoint: https://data.labs.pdok.nl/sparql
+layout: story
+logo: /stories/energie/logo.png
 output: leaflet
+title: Energy labels, Energy consumption and Wind turbines
 ---
+
 # Energy labels, energiebesparing, en windturbines
 
 Deze data story laat zien welke mogelijkheden er ontstaan als de
@@ -58,7 +59,7 @@ Warnsveld’ zijn de mogelijke besparingen €25 per jaar.  Daarvoor zijn
 jaar een positief rendement optreed…
 
 <div data-query
-     data-query-sparql="40-buurt-besparingen.rq">
+     data-query-sparql="30-buurt-besparingen.rq">
 </div>
 
 ## Besparingspotentie voor een gemeente
@@ -74,7 +75,7 @@ de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
 van duizenden euros per jaar mogelijk.
 
 <div data-query
-     data-query-sparql="50-gemeente-besparingen.rq">
+     data-query-sparql="40-gemeente-besparingen.rq">
 </div>
 
 ## Hoog Energieverbruik?
