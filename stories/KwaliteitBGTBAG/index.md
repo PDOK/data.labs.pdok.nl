@@ -57,7 +57,7 @@ Query 6:
 Op basis van de resultaten van bij 1: er is een mismatch; kunnen we dan een suggestie doen van het bijbehorende BAG pand of BGT pand.
 
 6A. Situatie een BGT pand zonder (goed) BAG pand ID. Daarvoor een vervolg query: geef mij dichtstbijzijnde BAG PandID die niet voorkomt in de BGT.
-	(uitkomst bij use case 1: is een lijst met BAG Panden ID, en daar doen we dan een qeoquery op)
+  (uitkomst bij use case 1: is een lijst met BAG Panden ID, en daar doen we dan een qeoquery op)
 
 6B. Situatie: een BAG pand id zonder (goed) BGT pand id….twee subsituaties; onbekend BGT pand ID, of Dummy waarde.
 

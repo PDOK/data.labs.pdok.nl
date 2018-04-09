@@ -4,6 +4,7 @@ title: Digitaal Brouwgoed
 logo: /stories/Hack-a-LOD/logo.jpg
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
+published: false
 ---
 
 🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺

@@ -16,6 +16,9 @@ select ?perceelWkt ?perceelWktLabel {
   ?perceel a brk:Perceel;
            brk:begrenzingPerceel/geo:asWKT ?perceelWkt ;
            brk:perceelnummer ?perceelnummer .
-  bind (concat('<h1><a href="',str(?nummeraanduiding),'" target="_blank">',str(?straatNaam),' ',str(?huisnummer),'</a></h1><p><a href="',str(?perceel),'" target="_blank">perceel №: ',str(?perceelnummer),'</a></p>') as ?perceelWktLabel)
+  bind (concat(
+    '<h1><a href="',str(?nummeraanduiding),'" target="_blank">',str(?straatNaam),' ',str(?huisnummer),'</a></h1>',
+    '<p><a href="',str(?perceel),'" target="_blank">Perceel №: ',str(?perceelnummer),'</a></p>'
+  ) as ?perceelWktLabel)
 }
 limit 50

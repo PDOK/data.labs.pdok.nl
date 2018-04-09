@@ -1,9 +1,9 @@
 ---
+endpoint: https://data.labs.pdok.nl/sparql
 layout: story
-title: BGT Status
 logo: /stories/KwaliteitBGTBAG/BGT.jpg
-endpoint: https://triply.eculture.labs.vu.nl/sparql
 output: leaflet
+title: BGT Status
 ---
 
 Deze datastory gaat verder in op het thema kwaliteit tussen de BGT en
@@ -20,7 +20,6 @@ Query 1: Altijd fout: Query op BGT (bestaand vervallen) en BAG (pand
 in gebruik, pand buiten gebruik, sloopvergunning verleend)
 
 <div data-query
-     data-query-endpoint="https://data.labs.pdok.nl/gsparql"
      data-query-sparql="q1.rq"></div>
 
 Query 2: Fout (met tijd delta): Query op BGT (bestaand vervallen) en
@@ -31,7 +30,6 @@ Query 3: Signalerings query (zelfde als bij 2, maar dan binnen de 6
 maanden). Oftewel die moet de bronhouder aanpassen.
 
 <div data-query
-     data-query-endpoint="https://data.labs.pdok.nl/gsparql"
      data-query-sparql="q2.rq"></div>
 
 ## Windturbines in de BAG
