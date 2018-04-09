@@ -1,5 +1,5 @@
 # Afstand tot voorzieningen in krimpregio's.
-prefix dct: <http://purl.org/dc/terms/>
+prefix dcterm: <http://purl.org/dc/terms/>
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -15,7 +15,7 @@ select ?wkt ?wktLabel {
   ?gemeente a cbs:Gemeente ;
     geo:hasGeometry/geo:asWKT ?wkt ;
     rdfs:label ?label ;
-    dct:partOf [] ;
+    dcterm:partOf [] ;
     cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?oprit ;
     cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?trein ;
     cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?kind ;
