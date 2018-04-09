@@ -14,9 +14,9 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
       values (?woonplaatsNaam ?straatNaam ?huisnummer) {
         ("Apeldoorn"@nl "Laan van Westenenk" 701)
       }
-      bind(str(?woonplaatsNaam) as ?bagWplNaam) .
+      bind(str(?woonplaatsNaam) as ?woonplaatsNaamString) .
       ?woonplaats bag:identificatiecode ?woonplaatsCode ;
-                  bag:naamWoonplaats ?bagWplNaam .
+                  bag:naamWoonplaats ?woonplaatsNaamString .
       ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                       bag:naamOpenbareRuimte ?straatNaam ;
                       bag:status ?openbareRuimteStatus .

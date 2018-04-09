@@ -28,7 +28,9 @@ select ?buurtWkt ?buurtWktColor ?buurtWktLabel {
            cbs:buurtNaam ?buurtNaam ;
            geo:hasGeometry/geo:asWKT ?buurtWkt ;
            geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
-    bind (concat('<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',str(?café),' km tot café</p>') as ?buurtWktLabel)
+    bind (concat(
+      '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',str(?café),' km tot café</p>'
+    ) as ?buurtWktLabel)
     bind (concat('jet,',str(xsd:float(?café) / xsd:float(?caféMax))) as ?buurtWktColor)
   }
 }

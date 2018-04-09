@@ -23,7 +23,7 @@ select ?wkt ?wktLabel {
                     bag:huisnummer ?huisnummer ;
                     bag:postcode ?postcode .
   ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                   bag:oppervlakte ?surface ;
+                   bag:oppervlakte ?oppervlakte ;
                    bag:pandrelatering ?pand ;
                    bag:status ?verblijfsobjectStatus ;
                    geo:hasGeometry/geo:asWKT ?punt ;
@@ -59,7 +59,7 @@ select ?wkt ?wktLabel {
     'Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>',
     '<p><b><a href="',str(?verblijfsobject),'">Verblijfsobject</a></b><br>',
     'Geldig vanaf: ',str(day(?begin)),' ',str(?maandLabel),' ',str(year(?begin)),'<br>',
-    'Oppervlakte: ',str(?surface),'m²<br>',
+    'Oppervlakte: ',str(?oppervlakte),'m²<br>',
     'Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a><br>',
     'Type: <a href="',str(?verblijfsobjectKlasse),'">',str(?verblijfsobjectKlasseLabel),'</a></p>',
     '<p><b><a href="',str(?openbareRuimte),'">Openbare ruimte</a></b><br>',

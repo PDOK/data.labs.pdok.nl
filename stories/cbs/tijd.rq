@@ -23,6 +23,11 @@ select ?buurtWkt ?buurtWktLabel {
     ?buurt cbs:afstandCafé ?café2012 ;
            geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  bind (concat('<p><b>Afstrand tot café<br>',str(?buurtNaam),'</b></p><p>2012: ',str(?café2012),' km<br>2013: ',str(?café2013),' km<br>2014: ',str(?café2014),' km<br>2015: ',str(?café2015),' km</p>') as ?buurtWktLabel)
+  bind (concat(
+    '<h3>Afstrand tot café<br>',str(?buurtNaam),'</h3>',
+    '<p>2012: ',str(?café2012),' km<br>',
+    '2013: ',str(?café2013),' km<br>',
+    '2014: ',str(?café2014),' km<br>',
+    '2015: ',str(?café2015),' km</p>') as ?buurtWktLabel)
 }
 limit 200
