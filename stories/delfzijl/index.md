@@ -84,9 +84,10 @@ informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de
 BAG, Wijken en Buurten, BRT, Monumenten.  En dat we data analyses
 kunnen doen zonder domein-specifieke tooling.
 
+<!-- geo support
 ## Landelijke afstand tot kunstijsbanen
 
 <div data-query
-     data-query-endpoint="https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql"
      data-query-sparql="thematische-kaart-kunstijsbaan.rq">
 </div>
+-->
