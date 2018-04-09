@@ -12,5 +12,8 @@ select ?gebouwWkt ?gebouwWktLabel {
     ?gebouw brt:hoogteklasse ?hoogteklasse .
     filter (?hoogteklasse != begrip:Hoogbouw)
   }
-  bind (concat('<a href="',str(?gebouw),'" target="_blank">',str(?label),'</a><br>Hoogte: ',str(?hoogte)) as ?gebouwWktLabel).
+  bind (concat(
+    '<a href="',str(?gebouw),'" target="_blank">',str(?label),'</a><br>',
+    'Hoogte: ',str(?hoogte)
+  ) as ?gebouwWktLabel).
 }

@@ -9,5 +9,10 @@ select ?gebouwWkt ?gebouwWktLabel {
           geo:hasGeometry/geo:asWKT ?gebouwWkt ;
           rdfs:label ?label .
   ?hoogteklasse rdfs:label ?hoogteklasseLabel .
-  bind (concat('<h3>Onze-Lieve-Vrouwetoren</h3><a href="',str(?gebouw),'" target="_blank">',str(?label),'</a><br>Hoogte: onbekend<br>Hoogteklasse: <a href="',str(?hoogteklasse),'">',str(?hoogteklasseLabel),'</a>') as ?gebouwWktLabel)
+  bind (concat(
+    '<h3>Onze-Lieve-Vrouwetoren</h3>',
+    '<a href="',str(?gebouw),'" target="_blank">',str(?label),'</a><br>',
+    'Hoogte: onbekend<br>',
+    'Hoogteklasse: <a href="',str(?hoogteklasse),'">',str(?hoogteklasseLabel),'</a>'
+  ) as ?gebouwWktLabel)
 }
