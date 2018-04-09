@@ -1,27 +1,21 @@
-prefix cbs: <https://data.pdok.nl/cbs/vocab/>
-prefix wibu: <https://data.pdok.nl/cbs/vocab/>
-prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix dc: <http://purl.org/dc/terms/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dcterm: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
-PREFIX schema: <http://schema.org/>
+prefix schema: <http://schema.org/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix wibu: <https://data.pdok.nl/cbs/vocab/>
 
 select distinct ?geo_location ?geo_locationLabel
 ?woonplaatsNaam ?postcode ?straatNaam ?huisnummer
 ?pand_status ?build_year ?building_type
-
 ?elektraverbuik_kWh
 ?gasverbuik_m3
-?energieklasse
-?surface
-#==========================
-
-where {
-
+?energieklasse {
   service <https://data.pdok.nl/sparql> {
     values (?woonplaatsNaam ?straatNaam ?huisnummer) {
       ("Amsterdam"@nl "Keizersgracht" 493)
@@ -39,7 +33,7 @@ where {
                       bag:huisnummer ?huisnummer ;
                       bag:postcode ?postcode .
     ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                     bag:oppervlakte ?surface ;
+                     bag:oppervlakte ?oppervlakte ;
                      bag:pandrelatering ?pand ;
                      bag:status ?verblijfsobjectStatus ;
                      geo:hasGeometry/geo:asWKT ?geo_location ;
@@ -51,7 +45,7 @@ where {
 
     filter not exists { ?voorkomen bag:eindGeldigheid [] }
 
-    ?verblijfsobjectKlasse dc:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+    ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
     ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
     ?pand bag:oorspronkelijkBouwjaar ?build_year ;
           bag:geometriePand/geo:asWKT ?wkt ;
@@ -67,27 +61,34 @@ where {
         energie:pand_huisnummer ?huisnummer_ ;     #not a full street address, data has to be enriched.
         schema:description ?building_type ;
         energie:e_label ?energieklasse ;
+        energie:registratie_datum ?energy_registratiedatum ;
         energie:hasFootprint ?Footprint .
-
+  #   #
      ?Footprint a energie:EnergyFootprint ;
+        dcterm:identifier ?certificaatnummer ;
         energie:energie_verbuik_ruimte_m2 ?PandVanMeting_energieverbuik_m2 ;
         energie:elektra_verbuik_kWh ?PandVanMeting_elektraverbuik_kWh ;
+        energie:energie_verbuik_MJ ?PandVanMeting_energieverbuik_MJ ;
         energie:gas_verbuik_m3 ?PandVanMeting_gasverbuik_m3 ;
         energie:co2_verbruik_kg ?PandVanMeting_CO2verbruik_kg .
-
+  # #
+  # #=============================================================================================
+  #
     bind (xsd:integer(?huisnummer_) as ?huisnummer)
     BIND (xsd:double(?PandVanMeting_elektraverbuik_kWh) AS ?elektraverbuik_kWh)
-    BIND (xsd:double(?PandVanMeting_energieverbuik_m2) AS ?energieverbuik_m2)
+    BIND (xsd:double(?PandVanMeting_energieverbuik_MJ) AS ?energieverbuik_MJ)
     BIND (xsd:double(?PandVanMeting_gasverbuik_m3) AS ?gasverbuik_m3)
 
     bind (concat(
       '<p>',
-      'address: ', str(?woonplaatsNaam),',  ',str(?postcode),'<br>', str(?straatNaam),',  ', str(?huisnummer) ,'<br>',
+      'address: ', str(?woonplaatsNaam),' ', str(?postcode),'  ', str(?straatNaam),'  ',str(?huisnummer) ,'<br>',
       'pand status: ', str(?pand_status),'<br>',
-      'build year: ', str(?build_year) , '<br>',
-      'surface (m2): ', str(?surface) , '<br>',
+      'pand oppervlakte: ', str(?oppervlakte), ' (m2)', '<br>',
       'description: ', str(?building_type) , '<br>',
+      '<b>energy certificate:</b> ', str(?certificaatnummer) , '<br>',
+      '<b>certificate registered on:</b> ', str(?energy_registratiedatum) , '<br>',
       '<b>electricity consumption (kWh):</b> ', str(?elektraverbuik_kWh) , '<br>',
+      '<b>energy consumption (MJ):</b> ', str(?energieverbuik_MJ) , '<br>',
       '<b>gas consumption (m3):</b> ', str(?gasverbuik_m3) , '<br>',
       '<b>Energy Label:</b> ', str(?energieklasse) , '<br>',
       '</p>'

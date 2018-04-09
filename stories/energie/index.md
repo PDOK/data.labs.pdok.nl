@@ -24,6 +24,7 @@ Ik ben eigenaar van een woning, en wil informatie over mijn woning.
      data-query-sparql="10-woning.rq">
 </div>
 
+<!-- performance issues
 ## Straat
 
 <p>Hoe zit het eigenlijk met de energielabels in mijn straat?  De panden
@@ -45,6 +46,7 @@ in mijn straat hebben energielabel D (
      data-query-endpoint="https://data.pdok.nl/sparql"
      data-query-sparql="20-straat.rq">
 </div>
+-->
 
 ## Buurt & mogelijke besparingen
 
@@ -83,21 +85,28 @@ van duizenden euros per jaar mogelijk.
 We zijn wel benieuwd welke gebouwen in Amsterdam veel energie verbruiken, en welk energielabel daar dan bij hoort.
 
 <div data-query
-     data-query-sparql="story_01_ams_most.rq">
+     data-query-sparql="50-hoog-energieverbruik.rq">
 </div>
 
 ## Een pand nader bekeken
 
-Laten we eens een pand nader bekijken? Kunnen we bijvoorbeeld het hoge energieverbruik verklaren aan de hand van een grote oppervlakte van het pand (uit de BAG). We zien dat dit pand bijna 22k kWh verbruikt, maar ook een grote oppervlakte van 1888 vierkante meters heeft.
-(op het pinnetje klikken voor informatie)
+Laten we eens een pand nader bekijken.  Kunnen we bijvoorbeeld het
+hoge energieverbruik verklaren aan de hand van een grote oppervlakte
+van het pand (uit de BAG).  We zien dat dit pand bijna 22.000 kWh
+verbruikt, maar ook een grote oppervlakte van 1.888 m² heeft (op het
+pinnetje klikken voor informatie).
 
 <div data-query
-     data-query-sparql="story_02_ams_keisergracht2.rq">
+     data-query-sparql="60-Keizersgracht.rq">
 </div>
 
+<!-- queries were unscoped, and now there is much more data: scope the queries
 ## Panden met geregistreerde labels
 
-Het volgende voorbeeld laat een aantal BAG panden zien met een geregistreerd energielabel. We kunnen nu met queries alle geregistreerde energielabels bevragen, en on the fly combineren met andere data. Nuttig voor o.a. beleidsonderzoek voor energiemaatregelen.
+Het volgende voorbeeld laat een aantal BAG panden zien met een
+geregistreerd energielabel.  We kunnen nu alle geregistreerde
+energielabels bevragen, en de resultaten <em>on the fly</em> verrijken
+met andere data.
 
 <p>De kleuren duiden de verschillende energielabels aan: label A of A+
 (
@@ -134,7 +143,6 @@ Het volgende voorbeeld laat een aantal BAG panden zien met een geregistreerd ene
 </svg>
 ).</p>
 
-
 <div data-query
      data-query-sparql="story_04_ams_rvo.rq">
 </div>
@@ -160,7 +168,6 @@ een overzicht van de energielabels die in postcodes
 <code>1094**</code> voorkomen.  Merk op dat label C binnen deze
 postcode het meeste voorkomt.
 
-<!--
 Deze query staat tijdelijk uit vanwege performance problemen.
 <div
   data-query="http://localhost:4000/stories/energie/#query=prefix+cbs%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fdef%2F%3E%0Aprefix+gemeente%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fid%2Fgemeente%2F%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix+energie%3A+%3Chttp%3A%2F%2Fdata.labs.pdok.nl%2Fdataset%2Fenergie%23%3E%0Aselect+%3Fenergielabel+(count(%3Fx)+as+%3Fn)+%7B%0A++bind+(%221094%22+as+%3Fprefix)%0A++%3Fx+energie%3Apand_postcode++%3Fpostcode+%3B%0A+++++energie%3Ae_label+%3Fenergielabel+.%0A++filter+(strstarts(%3Fpostcode%2C+%3Fprefix))%0A%7D%0Agroup+by+%3Fenergielabel%0Aorder+by+desc(%3Fn)%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fapi.krr.triply.cc%2Fdatasets%2FKadaster%2Fgeosoup2%2Fservices%2Fgeosoup%2Fsparql&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22legend%22%3A%22right%22%2C%22width%22%3A600%2C%22height%22%3A371%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22ColumnChart%22%7D%2C%22motionChartState%22%3Anull%7D"

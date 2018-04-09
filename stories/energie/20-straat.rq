@@ -30,12 +30,14 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
   service <https://data.labs.pdok.nl/sparql> {
     graph graph:energielabels {
       optional {
-        ?x energielabels:ep ?ep ;
-           energielabels:e_label ?energielabel ;
-           energielabels:opname_datum ?opnamedatum ;
-           energielabels:pand_huisnummer ?huisnummerString ;
-           energielabels:pand_postcode ?postcode ;
-           energielabels:registratie_datum ?registratiedatum .
+        [
+          energielabels:ep ?ep ;
+          energielabels:e_label ?energielabel ;
+          energielabels:opname_datum ?opnamedatum ;
+          energielabels:pand_huisnummer ?huisnummerString ;
+          energielabels:pand_postcode ?postcode ;
+          energielabels:registratie_datum ?registratiedatum
+        ] .
       }
     }
   }
@@ -51,7 +53,7 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
   bind (concat(
     '<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
     if(
-      bound(?wktColor),
+      bound(?energielabel),
       concat(
         '<h5><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?wktColor),'" r="10"/></svg> Energielabel informatie:</h5>',
         '<ul><li>Energielabel: ',str(?energielabel),'</li>',
@@ -65,8 +67,7 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
     '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
     '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
     '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',
-    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>'
-    ) as ?wktLabel0)
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel0)
 }
 group by ?wkt ?wktColor
 limit 200

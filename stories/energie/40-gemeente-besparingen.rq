@@ -1,0 +1,40 @@
+prefix buurt: <https://data.labs.pdok.nl/cbs/id/buurt/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix gemeente: <https://data.labs.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktColor ?wktLabel {
+  bind (strdt("Amsterdam",xsd:string) as ?gemeenteNaam)
+  graph graph:wijkbuurt-2015 {
+    ?buurt geo:hasGeometry/geo:asWKT ?wkt ;
+           geo:sfWithin/geo:sfWithin/rdfs:label ?gemeenteNaam ;
+           rdfs:label ?buurtNaam .
+  }
+  graph graph:cbs-energie-2015 {
+    ?buurt cbs:aardgasverbruikKoopwoning ?gemAardgas ;
+           cbs:elektriciteitsverbruikKoopwoning ?gemElektra ;
+           cbs:reëleBesparingspotentieAlleMaatregelen ?besparing ;
+           cbs:reëleBesparingspotentieBouwfysischeMaatregelen ?bouwfysischeBesparing ;
+           cbs:reëleBesparingspotentieInstallatietechnischeMaatregelen ?installatieBesparing ;
+           cbs:reëleEenmaligBenodigdeInvesteringAlleMaatregelen ?investering ;
+           cbs:reëleEenmaligBenodigdeInvesteringBouwfysischeMaatregeln ?bouwfysischeInvestering ;
+           cbs:reëleEenmaligBenodigdeInvesteringInstallatietechnischeMaatregelen ?installatieInvestering .
+  }
+  bind (?bouwfysischeInvestering + ?installatieInvestering as ?noemer)
+  bind (?bouwfysischeBesparing + ?installatieBesparing as ?deler)
+  bind (concat(
+    '<h3>',str(?buurtNaam),'</h3>',
+    '<p>Gemiddeld gebruik aardgas: ',str(?gemAardgas),'m³ per jaar<br>',
+    'Gemiddeld gebruik elektriciteit: ',str(?gemElektra),'kWh per jaar</p>',
+    '<p>Mogelijke bouwfysische besparingen: €',str(?bouwfysischeBesparing),' per jaar<br>',
+    'Mogelijke installatietechnische besparingen: €',str(?installatieBesparing),' per jaar</p>',
+    '<p>Bouwfysische investeringen: €',str(?bouwfysischeInvestering),'<br>',
+    'Installatietechnische investeringen: €',str(?installatieInvestering),'</p>',
+    if(?deler > 0,concat('<p>Positief rendement na ',str(?noemer / ?deler),' jaar.</p>'),'')
+    ) as ?wktLabel)
+  bind (if(?deler > 0, (22.0 - (xsd:float(?noemer / ?deler) - 8.0)) / 22.0, 0) as ?normalized)
+  bind (concat("bluered,",str(?normalized)) as ?wktColor)
+}
+limit 75

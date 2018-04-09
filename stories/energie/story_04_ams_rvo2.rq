@@ -30,7 +30,7 @@ select distinct ?pand ?wkt ?wktColor ?wktLabel {
   service <https://data.pdok.nl/sparql> {
     ?vo bag:identificatiecode ?id ;
         a ?vo_type ;
-        bag:oppervlakte ?surface ;
+        bag:oppervlakte ?oppervlakte ;
         bag:hoofdadres ?adres ;
         bag:status [rdfs:label ?vo_status ];
         bag:pandrelatering ?pand .
@@ -42,14 +42,14 @@ select distinct ?pand ?wkt ?wktColor ?wktLabel {
         bag:oorspronkelijkBouwjaar ?build_year ;
         rdfs:isDefinedBy ?pand_defined ;
         geo:hasGeometry/geo:asWKT ?wkt .
-    ?weg rdfs:label ?streetname ;
+    ?weg rdfs:label ?straatname ;
           bag:bijbehorendeWoonplaats/rdfs:label ?woonplaats .
      bind (concat(
        '<p>',
-       'address: ', str(?woonplaats),',  ',str(?pand_postcode),'<br> ', str(?streetname),',  ', str(?huisnummer) ,'<br>',
+       'address: ', str(?woonplaats),',  ',str(?pand_postcode),'<br> ', str(?straatname),',  ', str(?huisnummer) ,'<br>',
        'pand status: ', str(?pand_status),'<br>',
        'build year: ', str(?build_year) , '<br>',
-       'surface (m2): ', str(?surface) , '<br>',
+       'oppervlakte (m2): ', str(?oppervlakte) , '<br>',
        '<b>Energy Label:</b> ', str(?e_label) , '<br>',
        '<b>Energy label date:</b> ', str(?registratie_datum) , '<br>',
        '</p>'
