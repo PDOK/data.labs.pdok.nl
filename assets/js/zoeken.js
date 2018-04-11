@@ -1,6 +1,28 @@
-$('#searchbox').on('input', function (data) {
+function fillTableRows(result) {
+  var urlParts = result.uri[0].split('/');
+  if (urlParts.length == 3) { // URL is already a base url
+    baseURL = result.uri[0];
+  } else {
+    baseURL = urlParts
+      .slice(0, 3)
+      .join('/');
+  }
+
+  var tableRow =
+    '<tr><td><a href="'+ result.uri[0] + '">'+ result.prefixedName[0] +
+    '</a></td>' +
+    '<td><a href="' + baseURL + '">'+ baseURL +
+    '</a></td></tr>';
+
+  if (result.uri[0].match('overheid.nl')) {
+    $("#trustedResults tbody").append(tableRow);
+  } else {
+    $("#miscResults tbody").append(tableRow);
+  }
+}
+
+function searchForTerm(data) {
   var searchTerm = data.target.value;
-  console.log(searchTerm);
 
   var settings = {
     "async": true,
@@ -9,32 +31,12 @@ $('#searchbox').on('input', function (data) {
     "method": "GET",
   };
 
-  function fillTableRows(result) {
-    var urlParts = result.uri[0].split('/');
-    if (urlParts.length == 3) { // URL is already a base url
-      baseURL = result.uri[0];
-    } else {
-      baseURL = urlParts
-        .slice(0, 3)
-        .join('/');
-    }
-
-    var tableRow =
-      '<tr><td><a href="'+ result.uri[0] + '">'+ result.prefixedName[0] +
-      '</a></td>' +
-      '<td><a href="' + baseURL + '">'+ baseURL +
-      '</a></td></tr>';
-
-    if (result.uri[0].match('overheid.nl')) {
-      $("#trustedResults tbody").append(tableRow);
-    } else {
-      $("#miscResults tbody").append(tableRow);
-    }
-  }
-
   $.ajax(settings).done(function (response) {
     $('#trustedResults tbody').empty();
     $('#miscResults tbody').empty();
     response.results.forEach(fillTableRows);
   });
-});
+}
+
+// Using https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
+$('#searchbox').on('input', $.debounce(250, searchForTerm));

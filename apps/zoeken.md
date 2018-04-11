@@ -2,7 +2,6 @@
 layout: default
 title: Zoeken in metadata
 ---
-
 # Zoek naar dataset op begrip
 Geef een begrip op om een bijbehorende dataset te vinden
 
@@ -25,11 +24,15 @@ Geef een begrip op om een bijbehorende dataset te vinden
 ### Overige data
 <div id="misc">
   <table id="miscResults">
-    <tr>
-      <th>term</th>
-      <th>dataset</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>term</th>
+        <th>dataset</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
   </table>
 </div>
 
+<script src="/assets/js/jquery.ba-throttle-debounce.js"></script>
 <script src="/assets/js/zoeken.js"></script>
