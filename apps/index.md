@@ -7,6 +7,11 @@ title: Demonstrators (apps)
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+## Zoeken op begrip in datasets
+In welke datasets vind ik adresgegevens? De labs-omgeving biedt de uitkomst: zoek naar 'adres' als [begrip in datasets](/apps/zoeken).
+
+<a href="/apps/zoeken"><img height="200" src="/assets/images/zoeken-in-begrippen.png" alt="Zoeken op begrip in datasets"></a>
+
 ## Visualisatie van BAG vocabulaire met WebVOWL
 WebVOWL is een visualisatietool waarmee de samenhang van een semantisch model wordt weergegeven. Met deze tool kunnen we bijvoorbeeld de gebruikte klassen en eigenschappen van de BAG tonen. Klik op de afbeelding om het model te bekijken:
 
