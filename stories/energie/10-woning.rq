@@ -5,19 +5,34 @@ select ?pandWkt ?pandWktLabel {
   values (?woonplaatsNaam ?straatNaam ?huisnummer) {
     ("Warnsveld" "'t Spiker" 24)
   }
-  ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
-                  bag:naamOpenbareRuimte ?straatNaam .
-  ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
-  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
-                    bag:huisnummer ?huisnummer .
-  ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                   bag:oppervlakte ?oppervlakte ;
-                   bag:pandrelatering ?pand ;
-                   bag:status ?verblijfsobjectStatus .
+  graph ?openbareRuimteVoorkomen {
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                    bag:naamOpenbareRuimte ?straatNaam .
+  }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+  graph ?woonplaatsVoorkomen {
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+  }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+  graph ?nummeraanduidingVoorkomen {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisnummer .
+  }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+  graph ?verblijfsobjectVoorkomen {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand ;
+                     bag:status ?verblijfsobjectStatus .
+  }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
   ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
-  ?pand bag:geometriePand/geo:asWKT ?pandWkt ;
-        bag:oorspronkelijkBouwjaar ?bouwjaar ;
-        bag:status ?pandStatus .
+  graph ?pandVoorkomen {
+    ?pand bag:geometriePand/geo:asWKT ?pandWkt ;
+          bag:oorspronkelijkBouwjaar ?bouwjaar ;
+          bag:status ?pandStatus .
+  }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
   ?pandStatus rdfs:label ?pandStatusLabel
   bind (concat(
     '<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
