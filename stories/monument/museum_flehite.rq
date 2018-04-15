@@ -1,5 +1,5 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-prefix dcterm: <http://purl.org/dc/terms/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
@@ -18,7 +18,7 @@ select distinct ?monument (min(?pandWkt) as ?pandWkt) (min(?pandWktLabel) as ?pa
               rce:plaatsnaam ?plaatsNaamNL ;
               rce:straat ?straatNaamNL ;
               rdfs:label ?monumentNaam .
-    ?image dcterm:created ?date ;
+    ?image dct:created ?date ;
            foaf:depicts ?monument ;
            rce:fotograaf ?photographer ;
            rce:locator ?url .

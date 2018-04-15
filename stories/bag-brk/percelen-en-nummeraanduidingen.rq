@@ -1,24 +1,24 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
-prefix dcterm: <http://purl.org/dc/terms/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?perceelWkt ?perceelWktLabel {
-  bind ("Oranjekade"@nl as ?straatNaam)
+select ?perceelShape ?perceelShapeLabel {
+  bind ('Oranjekade'@nl as ?straatNaam)
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte/rdfs:label ?straatNaam ;
                     bag:huisnummer ?huisnummer ;
                     bag:postcode ?postcode .
-  filter (strstarts(?postcode, "2011"))
+  filter (strstarts(?postcode,'2011'))
   service <https://data.labs.pdok.nl/sparql> {
     # TBD: Dit komt uit de Default Graph.
-    ?nummeraanduiding dcterm:related ?perceel .
+    ?nummeraanduiding dct:related ?perceel .
   }
   ?perceel a brk:Perceel;
-           brk:begrenzingPerceel/geo:asWKT ?perceelWkt ;
+           brk:begrenzingPerceel/geo:asWKT ?perceelShape ;
            brk:perceelnummer ?perceelnummer .
   bind (concat(
     '<h1><a href="',str(?nummeraanduiding),'" target="_blank">',str(?straatNaam),' ',str(?huisnummer),'</a></h1>',
     '<p><a href="',str(?perceel),'" target="_blank">Perceel №: ',str(?perceelnummer),'</a></p>'
-  ) as ?perceelWktLabel)
+  ) as ?perceelShapeLabel)
 }
 limit 50

@@ -1,19 +1,18 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
-prefix dcterm: <http://purl.org/dc/terms/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
+select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
   {
-    select ?gemeenteCode ?pandWkt ?pandWktLabel ?verblijfsobjectWkt {
-      values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-        ("Apeldoorn"@nl "Laan van Westenenk" 701)
-      }
+    select ?gemeenteCode ?pandShape ?pandShapeLabel ?verblijfsobjectShape {
+      values (?woonplaatsNaam ?straatNaam          ?huisnummer) {
+             ('Apeldoorn'@nl  'Laan van Westenenk' 701        ) }
       bind(str(?woonplaatsNaam) as ?woonplaatsNaamString) .
       ?woonplaats bag:identificatiecode ?woonplaatsCode ;
                   bag:naamWoonplaats ?woonplaatsNaamString .
@@ -31,33 +30,31 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
                        bag:oppervlakte ?oppervlakte ;
                        bag:pandrelatering ?pand ;
                        bag:status ?verblijfsobjectStatus ;
-                       geo:hasGeometry/geo:asWKT ?verblijfsobjectWkt ;
+                       geo:hasGeometry/geo:asWKT ?verblijfsobjectShape ;
                        rdfs:isDefinedBy ?voorkomen .
       filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
       ?voorkomen bag:beginGeldigheid ?begin .
-      filter not exists {
-        ?voorkomen bag:eindGeldigheid ?eind .
-      }
-      ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+      filter not exists { ?voorkomen bag:eindGeldigheid [] }
+      ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
       ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
-      ?pand bag:geometriePand/geo:asWKT ?pandWkt ;
+      ?pand bag:geometriePand/geo:asWKT ?pandShape ;
             bag:oorspronkelijkBouwjaar ?bouwjaar ;
             bag:status ?pandStatus .
       ?pandStatus skos:prefLabel ?pandStatusLabel
       bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
       bind (month(?begin) as ?maand)
-      bind (if(?maand=1,"januari",
-            if(?maand=2,"februari",
-            if(?maand=3,"maart",
-            if(?maand=4,"april",
-            if(?maand=5,"mei",
-            if(?maand=6,"juni",
-            if(?maand=7,"juli",
-            if(?maand=8,"augustus",
-            if(?maand=9,"september",
-            if(?maand=10,"oktober",
-            if(?maand=11,"november",
-            "december"))))))))))) as ?maandLabel)
+      bind (if(?maand=1,'januari',
+            if(?maand=2,'februari',
+            if(?maand=3,'maart',
+            if(?maand=4,'april',
+            if(?maand=5,'mei',
+            if(?maand=6,'juni',
+            if(?maand=7,'juli',
+            if(?maand=8,'augustus',
+            if(?maand=9,'september',
+            if(?maand=10,'oktober',
+            if(?maand=11,'november',
+            'december'))))))))))) as ?maandLabel)
       bind (concat(
         '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
         '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
@@ -73,7 +70,7 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
         'Status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></p>',
         '<p>Registratief gebied (BRT)<br>',
         '<a href="',str(?registratiefGebied),'">',str(?woonplaatsNaam),'</a> (',str(?registratiefGebiedCode),')</p>'
-        ) as ?pandWktLabel)
+        ) as ?pandShapeLabel)
     }
   }
   service <https://data.labs.pdok.nl/sparql> {
@@ -86,9 +83,9 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
              cbs:verweduwd ?verweduwd ;
             #cbs:woz ?woz ;
              cbs:zwembad ?afstandZwembad ;
-             geo:hasGeometry/geo:asWKT ?buurtWkt ;
+             geo:hasGeometry/geo:asWKT ?buurtShape ;
              geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
-      filter (geof:sfWithin(?verblijfsobjectWkt, ?buurtWkt) = true)
+      filter (geof:sfWithin(?verblijfsobjectShape, ?buurtShape) = true)
       bind (concat(
         '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
         '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
@@ -97,7 +94,7 @@ select ?buurtWkt ?buurtWktLabel ?pandWkt ?pandWktLabel {
         'Ongehuwd: ',str(?ongehuwd),' personen<br>',
        #'WOZ waarde: € ',str(?woz),'.000,-<br>',
         'Afstand tot café: ',str(?afstandCafe),' km</p>'
-        ) as ?buurtWktLabel)
+        ) as ?buurtShapeLabel)
     }
   }
 }

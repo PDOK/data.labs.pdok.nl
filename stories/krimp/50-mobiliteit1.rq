@@ -1,6 +1,6 @@
 # Landelijke gemiddeldes voor afstanden tot voorzieningen.
-prefix dcterm: <http://purl.org/dc/terms/>
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
 select
   (avg(?_oprit) as ?oprit)
   (avg(?_trein) as ?trein)
@@ -12,13 +12,13 @@ select
   (avg(?_totaal) as ?totaal)
 {
   ?gemeente a cbs:Gemeente ;
-    dcterm:partOf [] ;
-    cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?_oprit ;
-    cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?_trein ;
-    cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?_kind ;
-    cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?_boodschap ;
-    cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?_auto ;
-    cbs:werkgelegenheid_aantalbanen_B_Fnijverheidenenergie_Binnen10km_x1000 ?_nijverheid ;
-    cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?_landbouw ;
-    cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?_totaal .
+            cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?_oprit ;
+            cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?_trein ;
+            cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?_kind ;
+            cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?_boodschap ;
+            cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?_auto ;
+            cbs:werkgelegenheid_aantalbanen_B_Fnijverheidenenergie_Binnen10km_x1000 ?_nijverheid ;
+            cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?_landbouw ;
+            cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?_totaal ;
+            dct:partOf [] .
 }

@@ -1,6 +1,6 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix dcterm: <http://purl.org/dc/terms/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
@@ -11,8 +11,7 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?straatNaam ?pandWkt ?pandWktLabel {
   values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-    ("Delfzijl"@nl "Molenberg" 21)
-  }
+         ("Delfzijl"@nl   "Molenberg" 21         ) }
   bind (str(?woonplaatsNaam) as ?bagWoonplaatsNaam) .
   ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                   bag:naamOpenbareRuimte ?straatNaam ;
@@ -34,10 +33,8 @@ select ?straatNaam ?pandWkt ?pandWktLabel {
                    rdfs:isDefinedBy ?voorkomen .
   filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
   ?voorkomen bag:beginGeldigheid ?begin .
-  filter not exists {
-    ?voorkomen bag:eindGeldigheid ?eind .
-  }
-  ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+  filter not exists { ?voorkomen bag:eindGeldigheid [] }
+  ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
   ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
   ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
         bag:geometriePand/geo:asWKT ?pandWkt ;
