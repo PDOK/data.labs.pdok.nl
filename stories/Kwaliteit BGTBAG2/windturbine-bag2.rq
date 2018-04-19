@@ -12,7 +12,7 @@ select distinct ?bag ?windturbineShape ?windturbineShapeLabel ?windturbineShapeC
   ?bgt a bgt:Pand ;
        geo:hasGeometry/geo:asWKT ?bgtShape ;
        bgt:gerelateerdBagPand ?bag .
-  filter (bif:st_intersects(?windturbineShape, ?bgtShape))
+  filter (geof:sfIntersects(?windturbineShape, ?bgtShape))
   filter (?bag != pand:0000000000000000)
   bind ('green' as ?windturbineShapeColor)
   # bouwjaar, mutatiedatum
