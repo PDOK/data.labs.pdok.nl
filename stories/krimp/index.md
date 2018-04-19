@@ -66,7 +66,7 @@ treinstations, kinderdagverblijf, supermarkt en hoeveelheid auto's per
 huishouden.  Eerst nemen we voor alle gemeenten de gemiddelde
 afstanden tot enkele voorzieningen:
 
-<div data-query data-query-sparql="mobiliteit1.rq"></div>
+<div data-query data-query-sparql="50-mobiliteit1.rq"></div>
 
 Daarna vergelijken we de gemiddelde afstand tot voorzieningen per
 krimpgemeente tot het landelijk gemiddelde (over alle gemeentes): ‘🠋’
