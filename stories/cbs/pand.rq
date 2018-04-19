@@ -1,15 +1,14 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix dcterm: <http://purl.org/dc/terms/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel {
-  values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-    ("Apeldoorn"@nl "Laan van Westenenk" 701)
-  }
+select ?shape ?shapeLabel {
+  values (?woonplaatsNaam ?straatNaam          ?huisnummer) {
+         ('Apeldoorn'@nl  'Laan van Westenenk' 701        ) }
   bind(str(?woonplaatsNaam) as ?bagWplNaam) .
   ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
                   bag:naamOpenbareRuimte ?straatNaam ;
@@ -32,25 +31,25 @@ select ?wkt ?wktLabel {
   filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
   ?voorkomen bag:beginGeldigheid ?begin .
   filter not exists { ?voorkomen bag:eindGeldigheid [] }
-  ?verblijfsobjectKlasse dcterm:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+  ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
   ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
   ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
-        bag:geometriePand/geo:asWKT ?wkt ;
+        bag:geometriePand/geo:asWKT ?shape ;
         bag:status ?pandStatus .
   ?pandStatus skos:prefLabel ?pandStatusLabel
   bind (month(?begin) as ?maand)
-  bind (if(?maand=1,"januari",
-        if(?maand=2,"februari",
-        if(?maand=3,"maart",
-        if(?maand=4,"april",
-        if(?maand=5,"mei",
-        if(?maand=6,"juni",
-        if(?maand=7,"juli",
-        if(?maand=8,"augustus",
-        if(?maand=9,"september",
-        if(?maand=10,"oktober",
-        if(?maand=11,"november",
-        "december"))))))))))) as ?maandLabel)
+  bind (if(?maand=1,'januari',
+        if(?maand=2,'februari',
+        if(?maand=3,'maart',
+        if(?maand=4,'april',
+        if(?maand=5,'mei',
+        if(?maand=6,'juni',
+        if(?maand=7,'juli',
+        if(?maand=8,'augustus',
+        if(?maand=9,'september',
+        if(?maand=10,'oktober',
+        if(?maand=11,'november',
+        'december'))))))))))) as ?maandLabel)
   bind (concat(
     '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
     '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
@@ -66,6 +65,6 @@ select ?wkt ?wktLabel {
     'Status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></p>',
     '<p>Registratief gebied (BRT)<br>',
     '<a href="',str(?registratiefGebied),'">',str(?woonplaatsNaam),'</a> (',str(?registratiefGebiedCode),')</p>'
-    ) as ?wktLabel)
+    ) as ?shapeLabel)
 }
 limit 10

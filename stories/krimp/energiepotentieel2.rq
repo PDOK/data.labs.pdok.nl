@@ -1,18 +1,18 @@
-prefix dcterm: <http://purl.org/dc/terms/>
 prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktColor ?wktLabel {
+select ?shape ?shapeColor ?shapeLabel {
   ?gemeente a cbs:Gemeente ;
-            geo:hasGeometry/geo:asWKT ?wkt ;
-            rdfs:label ?label ;
-            dcterm:partOf [] .
+            dct:partOf [] ;
+            geo:hasGeometry/geo:asWKT ?shape ;
+            rdfs:label ?label .
   graph <https://data.pdok.nl/cbs/energiebesparingspotentie_gemeente> {
     ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
   }
   bind (xsd:float(?euro - 25) / 1900 as ?normalized)
-  bind (concat("jet,",str(?normalized)) as ?wktColor)
-  #bind (concat('<h3>',str(?label),'</h3><p>€',str(?euro),',-</p>') as ?wktLabel)
+  bind (concat("jet,",str(?normalized)) as ?shapeColor)
+  bind (concat('<h3>',str(?label),'</h3><p>€',str(?euro),',-</p>') as ?shapeLabel)
 }
 limit 100

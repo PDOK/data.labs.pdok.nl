@@ -1,12 +1,11 @@
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX cbs: <https://data.pdok.nl/cbs/vocab/>
-PREFIX wibu: <https://data.pdok.nl/cbs/vocab/>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX dcterm: <http://purl.org/dc/terms/>
-PREFIX krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
-PREFIX lisa: <http://data.labs.pdok.nl/datasets/lisa/def/>
-select ?gemeente ?wkt ?wktLabel ?wktColor
-where {
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
+prefix lisa: <http://data.labs.pdok.nl/datasets/lisa/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix wibu: <https://data.pdok.nl/cbs/vocab/>
+select ?gemeente ?shape ?shapeLabel ?shapeColor {
   # LISA data
   graph <http://data.labs.pdok.nl/dataset/lisa> {
     ?lisa_gem a lisa:Gemeente ;
@@ -15,10 +14,8 @@ where {
     ?peiljaar lisa:jaar ?jaar ;
               lisa:banenTotaal ?banen ;
               lisa:vestigingenTotaal ?vestigingen .
-
-    filter(xsd:int(?jaar)=2016)
+    filter (xsd:int(?jaar) = 2016)
   }
-
   # Bijbehorende CBS gemeente
   graph<https://data.pdok.nl/cbs/wijken_buurten_2016> {
     ?gemeente wibu:regioaanduiding_Gemeentenaam_naam ?g_naam ;
@@ -26,49 +23,46 @@ where {
   }
   # Bijbehorende CBS gemeentegeometrie
   graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
-    ?gemeente geo:hasGeometry/geo:asWKT ?wkt .
+    ?gemeente geo:hasGeometry/geo:asWKT ?shape .
   }
-
   # CBS data
   graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
-    ?regio ^dcterm:partOf ?gemeente ;
-            rdfs:label ?regio_naam .
+    ?regio ^dct:partOf ?gemeente ;
+           rdfs:label ?regio_naam .
     # Of kies een andere regio uit de lijst van beschikbare regio's hieronder
     filter(?regio = krimp:Oost_Groningen )
   }
-
-  values (?regio ?wktColor) {
-    # Beschikbare regio's:
-    ( krimp:Achterhoek  "orangered")
-    ( krimp:DeMarne  "violet" )
-    ( krimp:Eemsdelta  "teal" )
-    ( krimp:Maastricht_Mergelland  "rebeccapurple" )
-    ( krimp:Noord_OostFriesland  "midnightblue" )
-    ( krimp:Oost_Groningen  "slateblue" )
-    ( krimp:ParkstadLimburg  "mediumvioletred" )
-    ( krimp:WestelijkeMijnstreek  "olive" )
-    ( krimp:Zeeuws_Vlaanderen  "indianred" )
-  }
+  # Beschikbare regio's:
+  values (?regio                       ?shapeColor      ) {
+         (krimp:Achterhoek             'orangered'      )
+         (krimp:DeMarne                'violet'         )
+         (krimp:Eemsdelta              'teal'           )
+         (krimp:Maastricht_Mergelland  'rebeccapurple'  )
+         (krimp:Noord_OostFriesland    'midnightblue'   )
+         (krimp:Oost_Groningen         'slateblue'      )
+         (krimp:ParkstadLimburg        'mediumvioletred')
+         (krimp:WestelijkeMijnstreek   'olive'          )
+         (krimp:Zeeuws_Vlaanderen      'indianred'      ) }
 
   graph<https://data.pdok.nl/cbs/wijken_buurten_2016> {
-    ?gemeente wibu:regioaanduiding_Gemeentenaam_naam ?g_naam ;
+    ?gemeente wibu:regioaanduiding_Gemeentenaam_naam ?g_naam .
   }
   graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
-    ?gemeente geo:hasGeometry/geo:asWKT ?wkt .
+    ?gemeente geo:hasGeometry/geo:asWKT ?shape .
   }
   graph <https://data.pdok.nl/cbs/arbeidsmarktparticipatie_gemeente> {
     ?gemeente a cbs:Gemeente ;
-      wibu:nettoarbeidsparticipatie_p ?g_ap .
+              wibu:nettoarbeidsparticipatie_p ?g_ap .
     bind(concat(
-        "<h2>Regio ", str(?regio_naam), " gemeente ", str(?g_naam), "</h2>",
-        "<h3>LISA werkgelegenheid</h3>",
-        "<p>Aantal banen: ", str(?banen), "</p>",
-        "<p>Aantal vestigingen: ", str(?vestigingen), "</p>",
-        "<h3>CBS Arbeidsparticipatie</h3>",
-        "<p>Voor deze gemeente: <b>", str(?g_ap), "%</b></p>" ,
-        "<p>Voor Nederland: <b>65.8%</b></p>",
-        "<h3>LISA banen per CBS oppervlakte</h3>",
-        "<p>Banen per hectare landoppervlak: ", substr(str(?banen / ?oppervlakte), 1, 4), "</p>"
-      ) as ?wktLabel)
+      '<h2>Regio ', str(?regio_naam), ' gemeente ', str(?g_naam), '</h2>',
+      '<h3>LISA werkgelegenheid</h3>',
+      '<p>Aantal banen: ', str(?banen), '</p>',
+      '<p>Aantal vestigingen: ', str(?vestigingen), '</p>',
+      '<h3>CBS Arbeidsparticipatie</h3>',
+      '<p>Voor deze gemeente: <b>', str(?g_ap), '%</b></p>' ,
+      '<p>Voor Nederland: <b>65.8%</b></p>',
+      '<h3>LISA banen per CBS oppervlakte</h3>',
+      '<p>Banen per hectare landoppervlak: ', substr(str(?banen / ?oppervlakte), 1, 4), '</p>'
+      ) as ?shapeLabel)
   }
 }
