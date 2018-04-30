@@ -4,6 +4,7 @@ layout: story
 logo: /stories/KwaliteitBGTBAG/BGT.jpg
 output: leaflet
 title: BGT Status
+published: false
 ---
 
 Deze datastory gaat verder in op het thema kwaliteit tussen de BGT en
