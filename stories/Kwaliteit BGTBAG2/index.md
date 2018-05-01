@@ -15,7 +15,7 @@ de BAG
 Opmerking: Altijd de actuele voorkomens; in de BGT: Die hebben een
 lege ‘registratieDatumVervallen’.
 
-<img src="statustabel3.png">
+![Mogelijke en onmogelijke statuscodes](statustabel3.png)
 
 Query 1: Altijd fout: Query op BGT (bestaand vervallen) en BAG (pand
 in gebruik, pand buiten gebruik, sloopvergunning verleend)
