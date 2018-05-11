@@ -1,29 +1,25 @@
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
-PREFIX lgd: <http://linkedgeodata.org/triplify/>
-PREFIX lgdo: <http://linkedgeodata.org/ontology/>
-PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
-
-SELECT ?parking ?geo ?geoColor
-WHERE {
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix lgdo: <http://linkedgeodata.org/ontology/>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+select ?parking ?shape ?shapeColor {
   {
-    # Vraag alle RDW parkeergarages op
+    # Vraag alle RDW parkeergarages op.
     service <https://data.labs.pdok.nl/sparql> {
       graph <http://data.labs.pdok.nl/dataset/parkeren> {
         ?parking a lgdo:Parking ;
-          geo:asWKT ?geo .
-        bind('green' as ?geoColor) .
-        filter(geof:sfWithin(?geo, strdt("POLYGON((6.558 52.998, 6.558 52.996, 6.562 52.996, 6.5621 52.9989, 6.558 52.998))", geo:wktLiteral))) .
+                 geo:asWKT ?shape .
+        bind ('green' as ?shapeColor) .
+        filter (geof:sfWithin(?shape, strdt("POLYGON((6.558 52.998, 6.558 52.996, 6.562 52.996, 6.5621 52.9989, 6.558 52.998))", geo:wktLiteral))) .
       }
     }
-  } UNION {
-    select ?parking ?geo ?geoColor where {
+  } union {
+    select ?parking ?shape ?shapeColor {
       ?parking a brt:ParkeerdakParkeerdekParkeergarage;
-                   geo:hasGeometry/geo:asWKT ?geo .
-      bind('red' as ?geoColor) .
-      filter(geof:sfIntersects(?geo, strdt("POLYGON((6.558 52.998, 6.558 52.996, 6.562 52.996, 6.5621 52.9989, 6.558 52.998))", geo:wktLiteral))) .
+               geo:hasGeometry/geo:asWKT ?shape .
+      bind ('red' as ?shapeColor) .
+      filter (geof:sfIntersects(?shape, strdt("POLYGON((6.558 52.998, 6.558 52.996, 6.562 52.996, 6.5621 52.9989, 6.558 52.998))", geo:wktLiteral))) .
     }
   }
 }

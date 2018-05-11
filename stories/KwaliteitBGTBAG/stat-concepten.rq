@@ -1,0 +1,5 @@
+select ?c (count(?i) as ?n) {
+  ?i a ?c .
+}
+group by ?c
+order by desc(?n)

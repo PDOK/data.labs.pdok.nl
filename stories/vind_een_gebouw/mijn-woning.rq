@@ -1,23 +1,37 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?wkt ?wktLabel {
-  bind ("Warnsveld" as ?woonplaatsNaam)
-  bind ("'t Spiker" as ?straatNaam)
-  bind (24 as ?huisnummer)
+select ?pandWkt ?pandWktLabel {
+  values (?woonplaatsNaam ?straatNaam ?huisnummer) { ("Warnsveld" "'t Spiker" 24) }
+  # Optioneel: stel een specifieke huisletter in.
+  #bind ("B" as ?huisletter)
   ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
                   bag:bijbehorendeWoonplaats ?woonplaats .
   ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
   ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
                     bag:huisnummer ?huisnummer .
+  # De huisletter moet worden gematched, maar alleen als deze ook is
+  # ingesteld middels bovenstaande `bind' clausule.
+  optional {
+    ?nummeraanduiding bag:huisletter ?huisletter0 .
+  }
+  filter (!bound(?huisletter) || ?huisletter = ?huisletter0)
   ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
                    bag:oppervlakte ?oppervlakte ;
                    bag:pandrelatering ?pand ;
                    bag:status ?verblijfsobjectStatus .
   ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
   ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
-        bag:geometriePand/geo:asWKT ?wkt ;
+        bag:geometriePand/geo:asWKT ?pandWkt ;
         bag:status ?pandStatus .
   ?pandStatus rdfs:label ?pandStatusLabel
-  bind (concat('<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4><h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
+  bind (concat(
+    '<h3>',str(?straatNaam),' ',str(?huisnummer),'</h3>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</p>',
+    '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+    '<li>Oppervlakte: ',str(?oppervlakte),'m²</li>',
+    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
+    '<p><a href="',str(?pand),'">Pand</a>:</p>',
+    '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?pandWktLabel)
 }

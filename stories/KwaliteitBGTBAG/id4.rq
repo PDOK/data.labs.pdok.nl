@@ -1,0 +1,40 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX ogc: <http://www.opengis.net/def/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX og: <http://ogp.me/ns#>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT distinct ?bgt_pand ?bag_pand ?pandid ?lat ?long ?wkt ?wktLabel WHERE {
+  ?bgt_pand a bgt:Pand ;
+            rdfs:label ?bgt ;
+            bgt:gerelateerdBagPand ?bag_pand ;
+            foaf:isPrimaryTopicOf ?v1 .
+  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  bind(substr(strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),5,2) as ?pandid)
+  filter (?pandid != '10') .
+  filter not exists{
+    ?v1 bgt:objectEindtijd ?eind .
+  }
+  ?bgt_pand geo:hasGeometry/geo:asWKT ?wkt ;
+                           rdfs:label ?bgt .
+
+  bind(
+    if(strstarts(str(?wkt), 'POLYGON') ,
+      substr(str(?wkt), 29, 16),
+      substr(str(?wkt), 35, 16)
+    ) as ?lat)
+  bind(
+    if(strstarts(str(?wkt), 'POLYGON') ,
+      substr(str(?wkt), 11, 15),
+      substr(str(?wkt), 17, 15)
+    ) as ?long)
+    
+  bind (
+    concat('<h4>BGT panden</h4>',
+      '<p>',?bgt,'</p>',
+      '<h4>Gerelateerd BAG pand</h4>',
+      '<p><a href="',str(?bag_pand),'">Gevonden: pand ',strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),'</a></p>',
+      '<p><a href="','https://bag.basisregistraties.overheid.nl/query/kaart?lat=',?lat,'&long=',?long,'">Zoek pand op locatie in BAG</a></p>') as ?wktLabel)
+} limit 100

@@ -1,9 +1,9 @@
 ---
-layout: story
-title: Kadaster Data Stories ― Vind een gebouw
-logo: /stories/vind_een_gebouw/logo.png
 endpoint: https://data.pdok.nl/sparql
+layout: story
+logo: /stories/vind_een_gebouw/logo.png
 output: leaflet
+title: Kadaster Data Stories ― Vind een gebouw
 ---
 
 # Vind een gebouw

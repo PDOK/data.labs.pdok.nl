@@ -1,6 +1,7 @@
-PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix begrip: <http://brt.basisregistraties.overheid.nl/id/begrip/>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 select (count(?gebouw) as ?aantal) where {
-  ?gebouw a brt:Gebouw .
-  ?gebouw brt:hoogteklasse ?hoogteklasse .
-  filter(?hoogteklasse = <http://brt.basisregistraties.overheid.nl/id/begrip/Hoogbouw>) .
+  ?gebouw a brt:Gebouw ;
+          brt:hoogteklasse ?hoogteklasse .
+  filter (?hoogteklasse = begrip:Hoogbouw)
 }

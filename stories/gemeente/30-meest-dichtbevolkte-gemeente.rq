@@ -4,14 +4,17 @@ prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel {
-  ?plaats1 rdfs:label ?naam ;
-           brt:isBAGwoonplaats true ;
-           geo:hasGeometry/geo:asWKT ?wkt .
+select ?shape ?shapeLabel {
+  ?woonplaats1 brt:isBAGwoonplaats true ;
+               geo:hasGeometry/geo:asWKT ?shape ;
+               rdfs:label ?woonplaatsNaam .
   service <https://dbpedia.org/sparql> {
-    ?plaats2 rdfs:label ?naam ;
-             foaf:depiction ?vlag .
+    ?woonplaats2 foaf:depiction ?vlag ;
+                 rdfs:label ?woonplaatsNaam .
   }
-  bind (concat('<h2>',str(?naam),'</h2>',if(bound(?vlag),concat('<img src="',str(?vlag),'" style="max-width: 150px;">'),''),'<p>Externe representatie: <a href="',str(?plaats2),'">[DBpedia]</a></p>') as ?wktLabel)
+  bind (concat(
+    '<h2>',str(?woonplaatsNaam),'</h2>',
+    if(bound(?vlag),concat('<img src="',replace(str(?vlag),'http://','https://'),'" style="max-width: 150px;">'),''),
+    '<p>Link naar DBpedia: <a href="',str(?woonplaats2),'">link</a></p>') as ?shapeLabel)
 }
 limit 25

@@ -1,0 +1,8 @@
+select ?g (count(*) as ?n) {
+  graph ?g {
+    ?s ?p ?o .
+  }
+}
+group by ?g
+order by desc(?n)
+limit 10

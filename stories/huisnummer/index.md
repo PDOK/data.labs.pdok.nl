@@ -1,10 +1,11 @@
 ---
-layout: story
-title: Kadaster Data Stories ― Huisnummer toevoeging
-logo: /stories/huisnummer/logo.jpg
 endpoint: https://data.pdok.nl/sparql
+layout: story
+logo: /stories/huisnummer/logo.jpg
 output: leaflet
+title: Kadaster Data Stories ― Huisnummer toevoeging
 ---
+
 # Huisnummertoevoegingen per plaatsnaam
 
 Geef voor een gegeven woonplaats aan welk type huisnummertoevoegingen
@@ -16,5 +17,6 @@ Schijnt namelijk in de post vaak fout te gaan, en als je weet wat de
 mogelijkheden zijn in een specifieke gemeente dan kan je misschien
 eenvoudiger de fout herstellen.
 
-<div data-query data-query-sparql="toevoegingen.rq">
+<div data-query
+     data-query-sparql="toevoegingen.rq">
 </div>

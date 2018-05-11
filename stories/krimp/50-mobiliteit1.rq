@@ -1,0 +1,24 @@
+# Landelijke gemiddeldes voor afstanden tot voorzieningen.
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
+select
+  (avg(?_oprit) as ?oprit)
+  (avg(?_trein) as ?trein)
+  (avg(?_kind) as ?kind)
+  (avg(?_boodschap) as ?boodschap)
+  (avg(?_auto) as ?auto)
+  (avg(?_nijverheid) as ?nijverheid)
+  (avg(?_landbouw) as ?landbouw)
+  (avg(?_totaal) as ?totaal)
+{
+  ?gemeente a cbs:Gemeente ;
+            cbs:verkeerenvervoer_Afstandtotoprithoofdverkeersweg_km ?_oprit ;
+            cbs:verkeerenvervoer_Treinstations_Afstandtottreinstationstotaal_km ?_trein ;
+            cbs:kinderopvang_Kinderdagverblijf_Afstandtotkinderdagverblijf_km ?_kind ;
+            cbs:detailhandel_Winkelsdagelijkseboodschappen_Afstandtotov.dagel.levensmiddelen_km ?_boodschap ;
+            cbs:motorvoertuigen_Personenauto_s_Personenauto_sperhuishouden_perhuishouden ?_auto ;
+            cbs:werkgelegenheid_aantalbanen_B_Fnijverheidenenergie_Binnen10km_x1000 ?_nijverheid ;
+            cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?_landbouw ;
+            cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?_totaal ;
+            dct:partOf [] .
+}

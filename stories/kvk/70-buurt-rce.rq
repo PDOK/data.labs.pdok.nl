@@ -2,19 +2,28 @@ prefix dbo: <http://dbpedia.org/ontology/>
 prefix dct: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix rce: <https://cultureelerfgoed.nl/vocab/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rce: <https://data.labs.pdok.nl/rce/def/>
 prefix vcard: <http://www.w3.org/2006/vcard/ns#>
-select ?wkt (min(?label) as ?wktLabel) {
-  ?monument dbo:city "Zwolle"@nl-nl ;
-            geo:hasGeometry/geo:asWKT ?wkt .
-  optional { ?monument dct:description ?desc }
-  optional { ?monument rce:huisnummer ?huisnummer }
-  optional { ?monument  rce:straat ?straat }
-  optional { ?monument  rce:bouwjaar ?bouwjaar }
-  optional { ?monument  vcard:postal-code ?postcode }
-  ?image foaf:depicts ?monument ;
-         rce:locator ?url .
-  bind (concat('<h3>',?straat,' ',?huisnummer,'</h3><p>',if(bound(?bouwjaar),concat('Bouwjaar: ',?bouwjaar,'<br>'),''),'Postcode: ',?postcode,'</p><img src="',?url,'" style="max-height: 150px;">') as ?label)
+select ?shape (min(?shapeLabel_) as ?shapeLabel) {
+  graph graph:monumenten {
+    ?monument dbo:city "Zwolle"@nl-nl ;
+              geo:hasGeometry/geo:asWKT ?shape ;
+              rce:bouwjaar ?bouwjaar ;
+              rce:huisnummer ?huisnummer ;
+              vcard:postal-code ?postcode .
+  }
+  graph graph:beeldbank {
+    ?monument rce:straat ?straat .
+    ?image foaf:depicts ?monument ;
+           rce:locator ?url .
+  }
+  bind (concat(
+    '<h3>',str(?straat),' ',str(?huisnummer),'</h3>',
+    '<p>',if(bound(?bouwjaar),concat('Bouwjaar: ',str(?bouwjaar),'<br>'),''),
+    'Postcode: ',str(?postcode),'</p>',
+    '<img src="',str(?url),'" style="max-height: 150px;">'
+  ) as ?shapeLabel_)
 }
-group by ?wkt
-limit 50
+group by ?shape
+limit 100

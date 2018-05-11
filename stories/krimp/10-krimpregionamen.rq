@@ -1,0 +1,7 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?krimpgebied {
+ graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
+   ?krimp rdfs:label ?krimpgebied .
+  }
+}

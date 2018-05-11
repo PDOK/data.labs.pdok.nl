@@ -4,6 +4,7 @@ title: Informatie Kwaliteit
 logo: /stories/informatie-kwaliteit/logo.jpg
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
+published: false
 ---
 
 # Informatie Kwaliteit

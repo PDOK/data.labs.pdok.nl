@@ -1,89 +1,60 @@
-prefix cbs: <https://data.pdok.nl/cbs/vocab/>
-prefix wibu: <https://data.pdok.nl/cbs/vocab/>
-prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix dc: <http://purl.org/dc/terms/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
-prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-
-select distinct ?EHouse
-#RVO data
-?pand_postcode ?pand_huisnummer ?pans_huisnummer_toev
-# BAG data
-?woonplaats ?streetname
-?build_year ?surface ?vo_status
-?e_label
-
-?wkt ?wktColor ?wktLabel
-
-where {
-
-  graph <http://data.labs.pdok.nl/dataset/energie/rvo_energy_labels>
-  {
-     ?EHouse a energie:HouseEnergyLabel ;
-
-       energie:pand_postcode  ?pand_postcode ;
-       energie:pand_huisnummer ?pand_huisnummer ;
-
-       energie:opname_datum ?opname_datum ;
-       energie:registratie_datum ?registratie_datum ;
-       energie:e_label ?e_label .
-
-    optional {?EHouse energie:pand_huisnummer_toev ?pans_huisnummer_toev .}
-
-    bind (xsd:integer(?pand_huisnummer) as ?huisnummer)
+prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select distinct ?pand ?wkt ?wktColor ?wktLabel {
+  graph graph:energielabels {
+    ?EHouse a energie:HouseEnergyLabel ;
+    energie:pand_postcode  ?pand_postcode ;
+    energie:pand_huisnummer ?huisnummerString ;
+    energie:opname_datum ?opname_datum ;
+    energie:registratie_datum ?registratie_datum ;
+    energie:e_label ?e_label .
+    optional {
+      ?EHouse energie:pand_huisnummer_toev ?pans_huisnummer_toev .
+    }
+    bind (xsd:integer(?huisnummerString) as ?huisnummer)
     bind (if(!(bound(?e_label)), "grey",
-          if(strstarts(?e_label, "A"), "#22b14c",
-          if(?e_label="B", "#8ff334",
-          if(?e_label="C", "#bdfc2c",
-          if(?e_label="D", "#fff200",
-          if(?e_label="E", "#ff9a35",
-          if(?e_label="F", "#ff7f27",
-          if(?e_label="G", "#ed1c24",
-          "grey")))))))) as ?wktColor)
-
+             if(strstarts(?e_label, "A"), "#22b14c",
+                if(?e_label="B", "#8ff334",
+                   if(?e_label="C", "#bdfc2c",
+                      if(?e_label="D", "#fff200",
+                         if(?e_label="E", "#ff9a35",
+                            if(?e_label="F", "#ff7f27",
+                               if(?e_label="G", "#ed1c24",
+                                  "grey")))))))) as ?wktColor)
   }
-
   service <https://data.pdok.nl/sparql> {
-
     ?vo bag:identificatiecode ?id ;
         a ?vo_type ;
-        bag:oppervlakte ?surface ;
+        bag:oppervlakte ?oppervlakte ;
         bag:hoofdadres ?adres ;
         bag:status [rdfs:label ?vo_status ];
         bag:pandrelatering ?pand .
-
     ?adres bag:huisnummer ?huisnummer ;
            bag:bijbehorendeOpenbareRuimte ?weg ;
            bag:postcode  ?pand_postcode .
-
     ?pand bag:identificatiecode ?pand_id ;
         bag:status [rdfs:label ?pand_status] ;
         bag:oorspronkelijkBouwjaar ?build_year ;
         rdfs:isDefinedBy ?pand_defined ;
         geo:hasGeometry/geo:asWKT ?wkt .
-
-    ?weg rdfs:label ?streetname ;
+    ?weg rdfs:label ?straatname ;
           bag:bijbehorendeWoonplaats/rdfs:label ?woonplaats .
-
-    #?woonplaats rdfs:label "Apeldoorn"@nl .         # change this to filter by the city name
-
      bind (concat(
        '<p>',
-       'address: ', str(?woonplaats),',  ',str(?pand_postcode),'<br> ', str(?streetname),',  ', str(?pand_huisnummer) ,'<br>',
+       'address: ', str(?woonplaats),',  ',str(?pand_postcode),'<br> ', str(?straatname),',  ', str(?huisnummer) ,'<br>',
        'pand status: ', str(?pand_status),'<br>',
        'build year: ', str(?build_year) , '<br>',
-       'surface (m2): ', str(?surface) , '<br>',
+       'oppervlakte (m2): ', str(?oppervlakte) , '<br>',
        '<b>Energy Label:</b> ', str(?e_label) , '<br>',
        '<b>Energy label date:</b> ', str(?registratie_datum) , '<br>',
        '</p>'
     ) as ?wktLabel)
-
   }
-
   filter ((?build_year < 1950)  && (?e_label = 'A'))
-
 }
 limit 100

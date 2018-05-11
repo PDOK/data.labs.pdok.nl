@@ -1,0 +1,17 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+select (count(?bgt) as ?count) {
+  graph ?bgt_voorkomen {
+    ?bgt
+      a bgt:Pand ;
+      bgt:status begrip:bestaand_Status .
+  }
+
+  filter not exists {
+    ?bgt_voorkomen bgt:objectEindtijd ?eind_bgt .
+  }
+  
+  ?bgt_voorkomen bgt:bronhouder <http://data.labs.pdok.nl/bbi/id/gemeente/0034>
+}

@@ -1,0 +1,13 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT(count(distinct ?bgt_pand_1) as ?count) WHERE {
+  ?bgt_pand_1 a bgt:Pand ;
+              bgt:gerelateerdBagPand <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000> ;
+              foaf:isPrimaryTopicOf ?v1 .
+  filter not exists{
+    ?v1 bgt:objectEindtijd ?eind .
+  }
+}

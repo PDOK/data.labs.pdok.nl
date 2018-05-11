@@ -22,4 +22,17 @@ YASGUI.sparqlStories();
   color: black;
   font-family: inherit;
 }
+
+header {
+  display: none;
+}
+
+.wrapper {
+    width: 95%;
+}
+
+section {
+  margin-left: 50px;
+  // margin-right: 50px;
+}
 </style>

@@ -1,28 +1,23 @@
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
-PREFIX lgd: <http://linkedgeodata.org/triplify/>
-PREFIX lgdo: <http://linkedgeodata.org/ontology/>
-PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
-
-SELECT ?brt_parking ?rdw_parking
-?brt_geo
-?rdw_geo
-?distance
-WHERE {
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix lgdo: <http://linkedgeodata.org/ontology/>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+select ?brtParkeergarage ?rdwParkeergarage ?brtShape ?rdwShape ?afstand {
+  # The sub-select is here to enforce that the local results are
+  # retrieved _prior to_ federating.
   {
-	  select ?brt_parking ?brt_geo where {
-  		?brt_parking a brt:ParkeerdakParkeerdekParkeergarage;
-         geo:hasGeometry/geo:asWKT ?brt_geo .
+    select * {
+      ?brtParkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
+                        geo:hasGeometry/geo:asWKT ?brtShape .
     }
   }
   service <https://data.labs.pdok.nl/sparql> {
     graph <http://data.labs.pdok.nl/dataset/parkeren> {
-	    ?rdw_parking a lgdo:Parking;
-        	geo:asWKT ?rdw_geo .
+      ?rdwParkeergarage a lgdo:Parking;
+                        geo:asWKT ?rdwShape .
     }
   }
-  bind(geof:distance(?brt_geo, ?rdw_geo, uom:metre) as ?distance)
-  filter(?distance < 50)
+  bind (geof:distance(?brtShape, ?rdwShape, uom:metre) as ?afstand)
+  filter (?afstand < 50)
 }
