@@ -4,6 +4,7 @@ title: Informatie Kwaliteit
 logo: /stories/informatie-kwaliteit/logo.jpg
 endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
+published: false
 ---
 
 # Informatie Kwaliteit
@@ -25,7 +26,7 @@ Als kwaliteits indicatie kunnen we zeggen dat dit op een uniforme manier gedaan 
 Kijk bijvoorbeeld naar de volgende query. Hier worden alle geometrieën opgevraagd en gekeken welke notatie ze gebruiken.
 
 
-<div data-query="" data-query-sparql="spatialuniformity.rq">
+<div data-query data-query-sparql="spatialuniformity.rq">
 </div>
 
 

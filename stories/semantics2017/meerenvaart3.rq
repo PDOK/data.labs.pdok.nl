@@ -1,18 +1,21 @@
-PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-PREFIX geo: <http://www.opengis.net/ont/geosparql#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT ?wkt (CONCAT("<strong>", SAMPLE(?naamOpenbareRuimte), " ", SAMPLE(STR(?huisnummer)), ", ", SAMPLE(?postcode), "</strong><br>", GROUP_CONCAT(DISTINCT ?Verblijfsobject_type; separator="<br>")) as ?wktLabel)
-WHERE {
-  ?Nummeraanduiding a bag:Nummeraanduiding ;
-    bag:postcode ?postcode ;
-    bag:huisnummer ?huisnummer ;
-    bag:bijbehorendeOpenbareRuimte ?OpenbareRuimte .
-  ?Verblijfsobject rdf:type/rdfs:label ?Verblijfsobject_type ;
-    bag:hoofdadres ?Nummeraanduiding ;
-    bag:pandrelatering ?Pand ;
-    geo:hasGeometry/geo:asWKT ?wkt .
-  ?OpenbareRuimte bag:naamOpenbareRuimte ?naamOpenbareRuimte .
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape ?shapeLabel {
+  values ?pand { pand:0363100012085435 }
+  ?nummeraanduiding a bag:Nummeraanduiding ;
+                    bag:postcode ?postcode ;
+                    bag:huisnummer ?huisnummer ;
+                    bag:bijbehorendeOpenbareRuimte ?openbareRuimte .
+  ?verblijfsobject a/rdfs:label ?verblijfsobjectType ;
+                   bag:hoofdadres ?nummeraanduiding ;
+                   bag:pandrelatering ?pand ;
+                   geo:hasGeometry/geo:asWKT ?shape .
+  ?openbareRuimte bag:naamOpenbareRuimte ?naamOpenbareRuimte .
+  bind (concat(
+    '<strong>',sample(?naamOpenbareRuimte),' ',sample(str(?huisnummer)),', ',sample(?postcode),'</strong><br>',
+    group_concat(distinct ?verblijfsobjectType;separator='<br>')) as ?shapeLabel)
 }
-GROUP BY ?wkt
-VALUES ?Pand {<http://bag.basisregistraties.overheid.nl/bag/id/pand/0363100012085435>}
+group by ?shape

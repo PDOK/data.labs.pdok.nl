@@ -1,4 +1,0 @@
-prefix dss: <http://purl.org/collections/nl/dss/>
-select ?p ?o {
-  dss:das\/voyage-5580_1 ?p ?o
-}

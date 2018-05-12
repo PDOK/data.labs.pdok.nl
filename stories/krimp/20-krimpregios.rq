@@ -1,0 +1,27 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
+select ?regio ?shape ?shapeColor {
+  values (?regio                      ?shapeColor      ) {
+         (krimp:Achterhoek            "orangered"      )
+         (krimp:DeMarne               "violet"         )
+         (krimp:Eemsdelta             "teal"           )
+         (krimp:Maastricht_Mergelland "rebeccapurple"  )
+         (krimp:Noord_OostFriesland   "midnightblue"   )
+         (krimp:Oost_Groningen        "slateblue"      )
+         (krimp:ParkstadLimburg       "mediumvioletred")
+         (krimp:WestelijkeMijnstreek  "olive"          )
+         (krimp:Zeeuws_Vlaanderen     "indianred"      ) }
+  {
+    select ?gemeente ?shape {
+      graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
+        ?gemeente a cbs:Gemeente ;
+      }
+      graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
+        ?gemeente geo:hasGeometry/geo:asWKT ?shape .
+      }
+    }
+  }
+  ?regio ^dct:partOf ?gemeente .
+}

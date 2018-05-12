@@ -1,0 +1,26 @@
+Regex voor het vervangen van de blank nodes:
+
+find: _:(.+[0-9])\s<
+replace with: <http://data.labs.pdok.nl/dataset/rdw-parkeren/id/\1> <
+
+Toegevoegd aan dataset:
+
+```sparql
+prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+insert {
+    graph <http://data.labs.pdok.nl/dataset/rdw-parkeren> {
+        ?s a <http://linkedgeodata.org/ontology/Parking> ;
+            geo:asWKT ?wktPoint .
+  }
+}
+
+where { 
+    graph <http://data.labs.pdok.nl/dataset/rdw-parkeren> {
+        ?s a <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+             wgs84:long ?long ;
+             wgs84:lat ?lat .
+        bind(strdt(concat("POINT(", ?long, " ", ?lat, ")"), geo:asWKT) as ?wktPoint)
+    }
+}
+```

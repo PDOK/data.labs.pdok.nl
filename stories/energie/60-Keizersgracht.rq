@@ -1,0 +1,81 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix wibu: <https://data.pdok.nl/cbs/vocab/>
+select distinct ?geo_location ?geo_locationLabel
+?woonplaatsNaam ?postcode ?straatNaam ?huisnummer
+?pand_status ?build_year ?building_type
+?elektraverbuik_kWh ?gasverbuik_m3 ?energieklasse {
+  service <https://data.pdok.nl/sparql> {
+    values (?woonplaatsNaam ?straatNaam     ?huisnummer) {
+           ("Amsterdam"@nl  "Keizersgracht" 493        ) }
+    bind (str(?woonplaatsNaam) as ?bagWplNaam) .
+    ?woonplaats bag:identificatiecode ?woonplaatsCode ;
+                bag:naamWoonplaats ?bagWplNaam .
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                    bag:naamOpenbareRuimte ?straatNaam ;
+                    bag:status ?openbareRuimteStatus .
+    ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel .
+    ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
+                        brt:nummer ?registratiefGebiedCode .
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer ?huisnummer ;
+                      bag:postcode ?postcode .
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand ;
+                     bag:status ?verblijfsobjectStatus ;
+                     geo:hasGeometry/geo:asWKT ?geo_location ;
+                     a ?verblijfsobjectKlasse ;
+                     rdfs:isDefinedBy ?voorkomen .
+    filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
+    ?voorkomen bag:beginGeldigheid ?begin .
+    filter not exists { ?voorkomen bag:eindGeldigheid [] }
+    ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+    ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
+    ?pand bag:oorspronkelijkBouwjaar ?build_year ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+          bag:status ?pandStatus .
+    ?pandStatus skos:prefLabel ?pand_status
+  }
+  graph <http://data.labs.pdok.nl/dataset/energie/ams_energie_labels_verbuik> {
+     ?EHouse a energie:HouseEnergyLabel ;
+             energie:pand_postcode ?postcode ;
+             energie:pand_huisnummer ?huisnummer_ ;
+             schema:description ?building_type ;
+             energie:e_label ?energieklasse ;
+             energie:registratie_datum ?energy_registratiedatum ;
+             energie:hasFootprint ?Footprint .
+     ?Footprint a energie:EnergyFootprint ;
+                dct:identifier ?certificaatnummer ;
+                energie:energie_verbuik_ruimte_m2 ?PandVanMeting_energieverbuik_m2 ;
+                energie:elektra_verbuik_kWh ?PandVanMeting_elektraverbuik_kWh ;
+                energie:energie_verbuik_MJ ?PandVanMeting_energieverbuik_MJ ;
+                energie:gas_verbuik_m3 ?PandVanMeting_gasverbuik_m3 ;
+                energie:co2_verbruik_kg ?PandVanMeting_CO2verbruik_kg .
+    bind (xsd:integer(?huisnummer_) as ?huisnummer)
+    bind (xsd:double(?PandVanMeting_elektraverbuik_kWh) as ?elektraverbuik_kWh)
+    bind (xsd:double(?PandVanMeting_energieverbuik_MJ) as ?energieverbuik_MJ)
+    bind (xsd:double(?PandVanMeting_gasverbuik_m3) as ?gasverbuik_m3)
+    bind (concat(
+      '<h3>',str(?woonplaatsNaam),' ',str(?postcode),'  ',str(?straatNaam),'  ',str(?huisnummer) ,'</h3>',
+      '<ul><li>Pand status: ',str(?pand_status),'</li>',
+      '<li>Pand oppervlakte: ',str(?oppervlakte),' m²','</li>',
+      '<li>Beschrijving: ',str(?building_type) ,'</li>',
+      '<li>Energiecertificaat: ',str(?certificaatnummer) ,'</li>',
+      '<li>certificate registered on: ',str(?energy_registratiedatum) ,'</li>',
+      '<li>Electriciteitsverbruik: ',str(?elektraverbuik_kWh) ,' kWh</li>',
+      '<li>Energieverbruik: ',str(?energieverbuik_MJ) ,' MJ</li>',
+      '<li>Gasverbruik: ',str(?gasverbuik_m3) ,' m³</li>',
+      '<li>Energielabel: ',str(?energieklasse) ,'</li></ul>'
+      ) as ?geo_locationLabel)
+  }
+
+}

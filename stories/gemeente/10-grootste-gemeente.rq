@@ -1,0 +1,35 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+select ?gemeenteOppervlakte ?gemeenteNaam {
+  {
+    select * {
+      ?gemeente bag:naamWoonplaats ?gemeenteNaam ;
+                bag:status begrip:WoonplaatsAangewezen ;
+                geo:hasGeometry/geo:asWKT ?gemeenteWkt .
+      filter not exists {
+        ?gemeente rdfs:isDefinedBy/bag:eindGeldigheid ?eind  .
+      }
+    }
+  }
+  bind(geof:envelope(?gemeenteWkt) as ?gemeenteBoundingBox)
+  bind('^POLYGON\\s\\(\\(([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*)\\,\\s([0-9]*\\.[0-9]*)\\s([0-9]*\\.[0-9]*).*\\)\\)$' as ?regex)
+  bind(replace(str(?gemeenteBoundingBox), ?regex, '$1') as ?x1)
+  bind(replace(str(?gemeenteBoundingBox), ?regex, '$2') as ?y1)
+  bind(replace(str(?gemeenteBoundingBox), ?regex, '$5') as ?x2)
+  bind(replace(str(?gemeenteBoundingBox), ?regex, '$4') as ?y2)
+  bind(geof:distance(
+    strdt(concat('Point (',str(?x1),' ',str(?y1),')'), geo:wktLiteral),
+    strdt(concat('Point (',str(?x2),' ',str(?y1),')'), geo:wktLiteral),
+    uom:metre) as ?x)
+  bind(geof:distance(
+    strdt(concat('Point (',str(?x1),' ',str(?y1),')'), geo:wktLiteral),
+    strdt(concat('Point (',str(?x1),' ',str(?y2),')'), geo:wktLiteral),
+    uom:metre) as ?y)
+  bind(?x * ?y as ?gemeenteOppervlakte)
+}
+order by desc(?gemeenteOppervlakte)
+limit 25

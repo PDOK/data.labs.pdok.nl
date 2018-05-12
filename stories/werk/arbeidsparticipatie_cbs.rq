@@ -1,0 +1,43 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix dct: <http://purl.org/dc/terms/>
+prefix krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix wibu: <https://data.pdok.nl/cbs/vocab/>
+select * {
+  {
+    select ?gemeente ?shape ?shapeColor { #?shapeLabel
+      {
+        select (min(?g_ap) as ?min) (max(?g_ap) as ?max) {
+          graph <https://data.pdok.nl/cbs/arbeidsmarktparticipatie_gemeente> {
+            ?gemeente_all a cbs:Gemeente ;
+                          wibu:nettoarbeidsparticipatie_p ?g_ap .
+          }
+        }
+      }
+      bind(((?max + ?min) / 2) as ?gemiddeld)
+      bind((?max - ?min) as ?spreiding)
+      bind((100 / ?spreiding) as ?factor)
+#      graph <https://data.pdok.nl/cbs/krimpgebieden_2016> {
+#        ?regio ^dct:partOf ?gemeente .
+##        filter(?regio = krimp:Oost_Groningen )
+#      }
+      graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+        ?gemeente wibu:regioaanduiding_Gemeentenaam_naam ?g_naam .
+      }
+      graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
+        ?gemeente geo:hasGeometry/geo:asWKT ?shape .
+      }
+      graph <https://data.pdok.nl/cbs/arbeidsmarktparticipatie_gemeente> {
+        ?gemeente a cbs:Gemeente ;
+                  wibu:nettoarbeidsparticipatie_p ?g_ap .
+#        bind(concat("<h3>Arbeidsparticipatie</h3>",
+#            "<h4>", ?g_naam, "</h4>",
+#            "<p>Voor deze gemeente: <b>", ?g_ap, "%</b></p>" ,
+#            "<p>Voor Nederland: <b>65.8%</b></p>") as ?shapeLabel)
+        bind (((?g_ap - ?min) / ?spreiding) as ?shapeColorIndex)
+        bind (concat('hot,', str(?shapeColorIndex)) as ?shapeColor)
+      }
+    }
+  }
+}

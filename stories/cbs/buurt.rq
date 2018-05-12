@@ -1,100 +1,101 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
 prefix dct: <http://purl.org/dc/terms/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel ?oppervlakte ?oppervlakteLabel {
-  service <https://data.pdok.nl/sparql> {
-    values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-      ("Apeldoorn" "Laan van Westenenk" 701) 
+select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
+  {
+    select ?gemeenteCode ?pandShape ?pandShapeLabel ?verblijfsobjectShape {
+      values (?woonplaatsNaam ?straatNaam          ?huisnummer) {
+             ('Apeldoorn'@nl  'Laan van Westenenk' 701        ) }
+      bind(str(?woonplaatsNaam) as ?woonplaatsNaamString) .
+      ?woonplaats bag:identificatiecode ?woonplaatsCode ;
+                  bag:naamWoonplaats ?woonplaatsNaamString .
+      ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                      bag:naamOpenbareRuimte ?straatNaam ;
+                      bag:status ?openbareRuimteStatus .
+      ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel .
+      ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
+                          brt:nummer ?registratiefGebiedCode .
+      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                        bag:huisnummer ?huisnummer ;
+                        bag:postcode ?postcode .
+      ?verblijfsobject a ?verblijfsobjectKlasse ;
+                       bag:hoofdadres ?nummeraanduiding ;
+                       bag:oppervlakte ?oppervlakte ;
+                       bag:pandrelatering ?pand ;
+                       bag:status ?verblijfsobjectStatus ;
+                       geo:hasGeometry/geo:asWKT ?verblijfsobjectShape ;
+                       rdfs:isDefinedBy ?voorkomen .
+      filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
+      ?voorkomen bag:beginGeldigheid ?begin .
+      filter not exists { ?voorkomen bag:eindGeldigheid [] }
+      ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
+      ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
+      ?pand bag:geometriePand/geo:asWKT ?pandShape ;
+            bag:oorspronkelijkBouwjaar ?bouwjaar ;
+            bag:status ?pandStatus .
+      ?pandStatus skos:prefLabel ?pandStatusLabel
+      bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+      bind (month(?begin) as ?maand)
+      bind (if(?maand=1,'januari',
+            if(?maand=2,'februari',
+            if(?maand=3,'maart',
+            if(?maand=4,'april',
+            if(?maand=5,'mei',
+            if(?maand=6,'juni',
+            if(?maand=7,'juli',
+            if(?maand=8,'augustus',
+            if(?maand=9,'september',
+            if(?maand=10,'oktober',
+            if(?maand=11,'november',
+            'december'))))))))))) as ?maandLabel)
+      bind (concat(
+        '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
+        '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
+        '<p><b><a href="',str(?pand),'">Pand</a></b><br>',
+        'Bouwjaar: ',str(?bouwjaar),'<br>',
+        'Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>',
+        '<p><b><a href="',str(?verblijfsobject),'">Verblijfsobject</a></b><br>',
+        'Geldig vanaf: ',str(day(?begin)),' ',str(?maandLabel),' ',str(year(?begin)),'<br>',
+        'Oppervlakte: ',str(?oppervlakte),'m²<br>',
+        'Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a><br>',
+        'Type: <a href="',str(?verblijfsobjectKlasse),'">',str(?verblijfsobjectKlasseLabel),'</a></p>',
+        '<p><b><a href="',str(?openbareRuimte),'">Openbare ruimte</a></b><br>',
+        'Status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></p>',
+        '<p>Registratief gebied (BRT)<br>',
+        '<a href="',str(?registratiefGebied),'">',str(?woonplaatsNaam),'</a> (',str(?registratiefGebiedCode),')</p>'
+        ) as ?pandShapeLabel)
     }
-    ?woonplaats bag:identificatiecode ?woonplaatsCode ;
-                bag:naamWoonplaats ?woonplaatsNaam .
-    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
-                    bag:naamOpenbareRuimte ?straatNaam ;
-                    bag:status ?openbareRuimteStatus .
-    ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel .
-    ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
-                        brt:nummer ?registratiefGebiedCode .
-    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
-                      bag:huisnummer ?huisnummer ;
-                      bag:postcode ?postcode .
-    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                     bag:oppervlakte ?surface ;
-                     bag:pandrelatering ?pand ;
-                     bag:status ?verblijfsobjectStatus ;
-                     geo:hasGeometry/geo:asWKT ?punt ;
-                     a ?verblijfsobjectKlasse ; # Bring this to the top to destroy performance :-)
-                     rdfs:isDefinedBy ?voorkomen .
-    filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
-    ?voorkomen bag:beginGeldigheid ?begin .
-    filter not exists { ?voorkomen bag:eindGeldigheid [] }
-    ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
-    ?verblijfsobjectStatus skos:prefLabel ?verblijfsobjectStatusLabel .
-    ?pand bag:oorspronkelijkBouwjaar ?buildyear ;
-          bag:geometriePand/geo:asWKT ?wkt ;
-          bag:status ?pandStatus .
-    ?pandStatus skos:prefLabel ?pandStatusLabel
   }
-  graph <https://data.pdok.nl/cbs/2015> {
-    bind (concat("GM",?registratiefGebiedCode) as ?gemeenteCode)
-    ?buurt cbs:GM_CODE ?gemeenteCode ;
-           cbs:BU_CODE ?buurtCode ;
-           cbs:WK_CODE ?wijkCode ;
-           geo:hasGeometry/geo:asWKT ?oppervlakte ;
-           cbs:BU_NAAM ?buurtNaam .
-    filter (geof:sfWithin(?punt, ?oppervlakte) = true)
-    ?buurt cbs:AF_CAFE ?afstandCafe ;
-           cbs:BEV_DICHTH ?bevolkingsDichtheid ;
-           cbs:AF_ZWEMB ?afstandZwembad ;
-           cbs:WOZ ?woz0 ;
-           cbs:P_GEHUWD ?gehuwd ;
-           cbs:P_ONGEHUWD ?ongehuwd ;
-           cbs:P_VERWEDUW ?verweduwd .
-    bind (concat('€ ',?woz0,',000,-') as ?woz)
-    filter (xsd:integer(?bevolkingsDichtheid) > 0)
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:wijkbuurt-2015 {
+      ?buurt cbs:afstandCafé ?afstandCafe ;
+             cbs:bevolkingsdichtheid ?bevolkingsDichtheid ;
+             cbs:buurtNaam ?buurtNaam ;
+             cbs:gehuwd ?gehuwd ;
+             cbs:ongehuwd ?ongehuwd ;
+             cbs:verweduwd ?verweduwd ;
+            #cbs:woz ?woz ;
+             cbs:zwembad ?afstandZwembad ;
+             geo:hasGeometry/geo:asWKT ?buurtShape ;
+             geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
+      filter (geof:sfWithin(?verblijfsobjectShape, ?buurtShape) = true)
+      bind (concat(
+        '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
+        '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
+        'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
+        'Gehuwd: ',str(?gehuwd),' personen<br>',
+        'Ongehuwd: ',str(?ongehuwd),' personen<br>',
+       #'WOZ waarde: € ',str(?woz),'.000,-<br>',
+        'Afstand tot café: ',str(?afstandCafe),' km</p>'
+        ) as ?buurtShapeLabel)
+    }
   }
-  bind (concat(
-    '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
-    '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
-    'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
-    'Gehuwd: ',str(?gehuwd),' personen<br>',
-    'Ongehuwd: ',str(?ongehuwd),' personen<br>',
-    #'Verweduwd: ',str(?verweduwd),' personen<br>',
-    'Afstand tot café: ',str(?afstandCafe),' km</p>'
-    ) as ?oppervlakteLabel)
-  bind (month(?begin) as ?maand)
-  bind (if(?maand=1,"januari",
-        if(?maand=2,"februari",
-        if(?maand=3,"maart",
-        if(?maand=4,"april",
-        if(?maand=5,"mei",
-        if(?maand=6,"juni",
-        if(?maand=7,"juli",
-        if(?maand=8,"augustus",
-        if(?maand=9,"september",
-        if(?maand=10,"oktober",
-        if(?maand=11,"november",
-        "december"))))))))))) as ?maandLabel)
-  bind (concat(
-    '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
-    '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
-    '<p><b><a href="',str(?pand),'">Pand</a></b><br>',
-    'Bouwjaar: ',str(?buildyear),'<br>',
-    'Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>',
-    '<p><b><a href="',str(?verblijfsobject),'">Verblijfsobject</a></b><br>',
-    'Geldig vanaf: ',str(day(?begin)),' ',str(?maandLabel),' ',str(year(?begin)),'<br>',
-    'Oppervlakte: ',str(?surface),'m²<br>',
-    'Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a><br>',
-    'Type: <a href="',str(?verblijfsobjectKlasse),'">',str(?verblijfsobjectKlasseLabel),'</a></p>',
-    '<p><b><a href="',str(?openbareRuimte),'">Openbare ruimte</a></b><br>',
-    'Status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></p>',
-    '<p>Registratief gebied (BRT)<br>',
-    '<a href="',str(?registratiefGebied),'">',str(?woonplaatsNaam),'</a> (',str(?registratiefGebiedCode),')</p>'
-    ) as ?wktLabel)
 }
-limit 10
+limit 1

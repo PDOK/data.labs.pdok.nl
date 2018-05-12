@@ -1,0 +1,35 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix lgdo: <http://linkedgeodata.org/ontology/>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+select ?parkeergarage ?shape ?shapeColor {
+  {
+    # Vraag parkeergarages die in RDW staan op.  Door de `minus'
+    # clausule hieronder zullen we later tussenresultaat verwijderen,
+    # zodanig dat parkeergarages die _alleen_ in RDW staan over
+    # blijven.
+    {
+      select * {
+        service <https://data.labs.pdok.nl/sparql> {
+          graph <http://data.labs.pdok.nl/dataset/parkeren> {
+            ?parkeergarage a lgdo:Parking ;
+                           geo:asWKT ?shape .
+          }
+        }
+        bind ('green' as ?shapeColor)
+      }
+    }
+    filter not exists {
+      # Minus de parkeergarages die in zowel BRT alsook RDW staan.
+      ?andereParkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
+                           geo:hasGeometry/geo:asWKT ?andereShape .
+      bind (geof:distance(?shape, ?andereShape, uom:metre) as ?afstand)
+      filter (?afstand < 50)
+    }
+  } union {
+    ?parkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
+                   geo:hasGeometry/geo:asWKT ?shape .
+    bind('red' as ?shapeColor)
+  }
+}

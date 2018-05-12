@@ -1,0 +1,22 @@
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
+
+select distinct ?wkt0 ?wkt0Color ?wkt0Label ?wkt ?wktLabel {
+  bind (pand:0010100000008706 as ?pand)
+  service <https://data.pdok.nl/sparql> {
+    verblijfsobject:0010010000050378 geo:hasGeometry/geo:asWKT ?p0 .
+    ?pand bag:geometriePand/geo:asWKT ?wkt0 .
+    ?kerncentrale a brt:KerncentraleKernreactor ;
+      geo:hasGeometry/geo:asWKT ?wkt .
+  }
+  bind (concat('<p><a href="',?pand,'">BAG</a></p>') as ?wkt0Label)
+  bind ("red" as ?wkt0Color)
+  bind (substr(str(geof:distance(?wkt0, ?wkt, uom:metre) / 1000), 1, 5) as ?d)
+  bind (concat('<p>Afstand tot kerncentrale: ', ?d, ' km</p>') as ?wktLabel)
+}
+order by asc(?d)

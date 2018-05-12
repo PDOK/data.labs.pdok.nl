@@ -1,0 +1,13 @@
+prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rce: <https://data.labs.pdok.nl/rce/def/>
+prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+select ?monument ?straat ?huisnummer {
+  graph graph:monumenten {
+    ?monument geo:sfWithin <https://data.labs.pdok.nl/cbs/id/gemeente/GM0010> ;
+              rce:huisnummer ?huisnummer ;
+              vcard:street-address ?straat .
+  }
+}
+limit 10

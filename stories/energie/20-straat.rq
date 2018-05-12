@@ -1,0 +1,73 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
+  {
+    select * {
+      values (?woonplaatsNaam ?straatNaam) {
+        ("Warnsveld" "'t Spiker")
+      }
+      ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                      bag:naamOpenbareRuimte ?straatNaam .
+      ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                        bag:huisnummer ?huisnummer ;
+                        bag:postcode ?postcode .
+      ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                       bag:oppervlakte ?oppervlakte ;
+                       bag:pandrelatering ?pand ;
+                       bag:status ?verblijfsobjectStatus .
+      ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+      ?pand bag:geometriePand/geo:asWKT ?wkt ;
+            bag:oorspronkelijkBouwjaar ?bouwjaar ;
+            bag:status ?pandStatus .
+      ?pandStatus rdfs:label ?pandStatusLabel .
+      bind (str(?huisnummer) as ?huisnummerString)
+    }
+  }
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:energielabels {
+      optional {
+        [
+          energielabels:ep ?ep ;
+          energielabels:e_label ?energielabel ;
+          energielabels:opname_datum ?opnamedatum ;
+          energielabels:pand_huisnummer ?huisnummerString ;
+          energielabels:pand_postcode ?postcode ;
+          energielabels:registratie_datum ?registratiedatum
+        ] .
+      }
+    }
+  }
+  bind (if(!(bound(?energielabel)), "grey",
+        if(strstarts(?energielabel, "A"), "#22b14c",
+        if(?energielabel="B", "#8ff334",
+        if(?energielabel="C", "#bdfc2c",
+        if(?energielabel="D", "#fff200",
+        if(?energielabel="E", "#ff9a35",
+        if(?energielabel="F", "#ff7f27",
+        if(?energielabel="G", "#ed1c24",
+        "grey")))))))) as ?wktColor)
+  bind (concat(
+    '<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
+    if(
+      bound(?energielabel),
+      concat(
+        '<h5><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?wktColor),'" r="10"/></svg> Energielabel informatie:</h5>',
+        '<ul><li>Energielabel: ',str(?energielabel),'</li>',
+        '<li>EP: ',str(?ep),'</li>',
+        '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
+        '<li>Registratiedatum: ',str(?registratiedatum),'</li></ul>'),
+      ''),
+    '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
+    '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+    '<li>Oppervlakte: ',str(?oppervlakte),'m²</li>',
+    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
+    '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
+    '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel0)
+}
+group by ?wkt ?wktColor
+limit 200

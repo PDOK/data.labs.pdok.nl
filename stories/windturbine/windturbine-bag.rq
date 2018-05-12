@@ -1,0 +1,22 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix wd: <http://www.wikidata.org/entity/>
+select ?windturbineShape ?windturbineShapeColor ?windturbineShapeLabel ?bgtShape ?bgtShapeLabel {
+  graph <https://data.pdok.nl/windturbine/osm-flevoland> {
+    ?windturbine a wd:Q49833 ;
+                 geo:hasGeometry/geo:asWKT ?windturbineShape .
+  }
+  ?bgt a bgt:Pand ;
+       geo:hasGeometry/geo:asWKT ?bgtShape ;
+       bgt:gerelateerdBagPand ?bag .
+  filter (bif:st_intersects(?windturbineShape, ?bgtShape))
+  filter (?bag != pand:0000000000000000)
+  bind ("green" as ?windturbineShapeColor)
+  # bouwjaar, mutatiedatum
+  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?bgtShapeLabel)
+  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?windturbineShapeLabel)
+}
+offset 20
+limit 1

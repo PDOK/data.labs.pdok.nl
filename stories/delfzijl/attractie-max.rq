@@ -1,0 +1,7 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+select (max(?value) as ?max) {
+  graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+    ?gemeente a cbs:Gemeente ;
+      cbs:vrijetijdencultuur_Recreatie_Afstandtotattractie_km ?value .
+  }
+}

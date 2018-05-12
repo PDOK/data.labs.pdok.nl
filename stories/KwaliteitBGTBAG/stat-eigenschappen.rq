@@ -1,0 +1,5 @@
+select ?p (count(*) as ?n) {
+  ?s ?p ?o .
+}
+group by ?p
+order by desc(?n)

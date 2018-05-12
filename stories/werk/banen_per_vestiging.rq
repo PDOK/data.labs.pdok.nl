@@ -1,0 +1,55 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix krimp: <https://data.pdok.nl/cbs/id/krimpgebied/>
+prefix lisa: <http://data.labs.pdok.nl/datasets/lisa/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix wibu: <https://data.pdok.nl/cbs/vocab/>
+select ?lisa_gem ?g_naam ?gemeente ?shape ?shapeColor { #?shapeLabel
+  {
+    # Bereken de globale min en max aantal banen per vestiging in Nederland voor 2016
+    select
+      (avg(?banen_per_vestiging) as ?gem_banen_per_vestiging)
+      (min(?banen_per_vestiging) as ?min_banen_per_vestiging)
+      (max(?banen_per_vestiging) as ?max_banen_per_vestiging)
+    {
+      graph <http://data.labs.pdok.nl/dataset/lisa> {
+        ?lisa_gem a lisa:Gemeente ;
+                  lisa:peiljaar ?peiljaar .
+        ?peiljaar lisa:jaar ?jaar ;
+                  lisa:banenTotaal ?banen ;
+                  lisa:vestigingenTotaal ?vestigingen .
+        filter (xsd:int(?jaar)=2016)
+        bind (?banen / ?vestigingen as ?banen_per_vestiging)
+      }
+    }
+  }
+  graph <http://data.labs.pdok.nl/dataset/lisa> {
+    ?lisa_gem a lisa:Gemeente ;
+              lisa:gemeente ?g_naam ;
+              lisa:peiljaar ?peiljaar .
+    ?peiljaar lisa:jaar ?jaar ;
+              lisa:banenTotaal ?banen ;
+              lisa:vestigingenTotaal ?vestigingen .
+    filter (xsd:int(?jaar) = 2016)
+    bind (?banen / ?vestigingen as ?banen_per_vestiging)
+    bind (((?banen_per_vestiging - ?min_banen_per_vestiging) /
+          (?max_banen_per_vestiging - ?min_banen_per_vestiging))
+          as ?banen_per_vestiging_rank)
+    bind (concat('hot,', str(?banen_per_vestiging_rank)) as ?shapeColor)
+    bind (concat(
+      '<h3>Banen per vestigingen</h3>',
+      '<h4>',str(?g_naam),' ',str(?jaar),'</h4>',
+      '<p>Voor deze gemeente: <b>',substr(str(?banen/?vestigingen),1,4),' banen per vestiging</b></p>' ,
+      '<p>Relatieve score: <b>',str(?banen_per_vestiging_rank),'</b></p>' ,
+      '<p>Voor Nederland: <b>',substr(str(?gem_banen_per_vestiging),1,4),'</b></p>'
+      ) as ?shapeLabel)
+  }
+  graph<https://data.pdok.nl/cbs/wijken_buurten_2016> {
+    ?gemeente wibu:regioaanduiding_Gemeentenaam_naam ?g_naam .
+  }
+  graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
+    ?gemeente geo:hasGeometry/geo:asWKT ?shape .
+  }
+}

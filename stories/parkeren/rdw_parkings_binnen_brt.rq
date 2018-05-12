@@ -1,0 +1,23 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix lgdo: <http://linkedgeodata.org/ontology/>
+prefix uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+select ?brtParkeergarage ?rdwParkeergarage ?brtShape ?rdwShape ?afstand {
+  # The sub-select is here to enforce that the local results are
+  # retrieved _prior to_ federating.
+  {
+    select * {
+      ?brtParkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
+                        geo:hasGeometry/geo:asWKT ?brtShape .
+    }
+  }
+  service <https://data.labs.pdok.nl/sparql> {
+    graph <http://data.labs.pdok.nl/dataset/parkeren> {
+      ?rdwParkeergarage a lgdo:Parking;
+                        geo:asWKT ?rdwShape .
+    }
+    bind (geof:distance(?brtShape, ?rdwShape, uom:metre) as ?afstand)
+    filter (?afstand < 50)
+  }
+}

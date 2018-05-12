@@ -6,7 +6,7 @@ construct {
   ?uri a nwbw:Wegvak ;
     nwbw:junctieEindWegvak ?eindwegvakuri ;
     nwbw:junctieBeginWegvak ?beginwegvakuri ;
-	#optionele dingen
+  #optionele dingen
     nwbw:begindatum ?begdat ;
     nwbw:wegbeheerderSoort ?wegbeheersoort ;
     nwbw:wegnummer ?wegnummer ;
@@ -58,11 +58,11 @@ construct {
 
 } where {
   ?s <urn:col:WVK_ID> ?o ;
-  	<urn:col:WVK_BEGDAT> ?begdat ;
-  	<urn:col:JTE_ID_BEG> ?beginwegvak ;
-  	<urn:col:JTE_ID_END> ?eindwegvak ;
-  	<urn:col:WGVK_LEN_M> ?lengte ;
-  	<urn:col:wkt_sha1> ?geomhash ;
+    <urn:col:WVK_BEGDAT> ?begdat ;
+    <urn:col:JTE_ID_BEG> ?beginwegvak ;
+    <urn:col:JTE_ID_END> ?eindwegvak ;
+    <urn:col:WGVK_LEN_M> ?lengte ;
+    <urn:col:wkt_sha1> ?geomhash ;
     <urn:col:WKT> ?wkt .
 
   optional { ?s <urn:col:WVK_BEGDAT> ?begdat }

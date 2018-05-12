@@ -1,0 +1,23 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix windstats: <http://data.labs.pdok.nl/dataset/windstats/def#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?wkt ?wktColor {
+  {
+    graph <https://data.pdok.nl/windturbine/osm-flevoland> {
+      ?osm a <http://www.wikidata.org/entity/Q49833> ;
+           geo:hasGeometry/geo:asWKT ?wkt .
+    }
+    bind ("green" as ?wktColor)
+  } union {
+    ?windstats a dbo:WindMotor ;
+               windstats:Provincie "Flevoland"^^xsd:string ;
+               geo:hasGeometry/geo:asWKT ?wkt .
+    bind ("red" as ?wktColor)
+  } union {
+    ?brt a brt:Windturbine ;
+         geo:hasGeometry/geo:asWKT ?wkt .
+    bind ("yellow" as ?wktColor)
+  }
+}

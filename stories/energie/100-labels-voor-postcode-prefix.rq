@@ -1,0 +1,15 @@
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix gemeente: <https://data.labs.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix energielabel: <http://data.labs.pdok.nl/dataset/energie#>
+select ?energielabel (count(?x) as ?n) {
+  graph graph:energielabels {
+    bind ("1094" as ?prefix)
+    ?x energielabel:pand_postcode  ?postcode ;
+       energielabel:e_label ?energielabel .
+    filter (strstarts(?postcode, ?prefix))
+  }
+}
+group by ?energielabel
+order by desc(?n)

@@ -1,28 +1,37 @@
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?wkt ?wktLabel ?wktColor ?cafeBuurt ?green ?red {
-  service <https://data.pdok.nl/sparql> {
-    bind ("Apeldoorn" as ?woonplaatsNaam)
-    ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
-                        brt:nummer ?registratiefGebiedCode
+select ?buurtWkt ?buurtWktColor ?buurtWktLabel {
+  {
+    select (max(?café) as ?caféMax) {
+      service <https://data.pdok.nl/sparql> {
+        bind ("Apeldoorn"@nl as ?woonplaatsNaam)
+        ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
+                            brt:nummer ?registratiefGebiedCode .
+        bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+      }
+      ?buurt cbs:afstandCafé ?café ;
+             geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
+    }
   }
-  graph <https://data.pdok.nl/cbs/2015> {
-    bind (concat("GM",?registratiefGebiedCode) as ?gemeenteCode)
-    ?buurt cbs:GM_CODE ?gemeenteCode ;
-           cbs:BU_CODE ?buurtCode ;
-           cbs:WK_CODE ?wijkCode ;
-           geo:hasGeometry/geo:asWKT ?wkt ;
-           cbs:AF_CAFE ?cafeBuurt ;
-           cbs:BU_NAAM ?buurtNaam .
+  service <https://data.pdok.nl/sparql> {
+    bind ("Apeldoorn"@nl as ?woonplaatsNaam)
+    ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
+                        brt:nummer ?registratiefGebiedCode .
+    bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+  }
+  graph graph:wijkbuurt-2015 {
+    ?buurt cbs:afstandCafé ?café ;
+           cbs:buurtCode ?buurtCode ;
+           cbs:buurtNaam ?buurtNaam ;
+           geo:hasGeometry/geo:asWKT ?buurtWkt ;
+           geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
     bind (concat(
-      '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',
-      str(?cafeBuurt),' km tot café</p>'
-      ) as ?wktLabel)
-    bind (xsd:integer(xsd:float(?cafeBuurt)) * 50 as ?green)
-    bind (255 - (xsd:integer(xsd:float(?cafeBuurt)) * 50) as ?red)
-    bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
+      '<p><b><a href="',str(?buurt),'">',str(?buurtNaam),'</a></b> (',str(?buurtCode),')<br>',str(?café),' km tot café</p>'
+    ) as ?buurtWktLabel)
+    bind (concat('jet,',str(xsd:float(?café) / xsd:float(?caféMax))) as ?buurtWktColor)
   }
 }
 limit 100

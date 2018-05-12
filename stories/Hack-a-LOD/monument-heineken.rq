@@ -1,0 +1,35 @@
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix monument: <https://cultureelerfgoed.nl/id/monument/>
+prefix schema: <http://schema.org/>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select distinct ?wkt ?wktLabel {
+  graph ?g1 { ?openbareRuimte bag:naamOpenbareRuimte "Stadhouderskade" }
+  graph ?g2 {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer 78 ;
+                      bag:postcode "1072AE"
+  }
+  graph ?g3 {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand
+  }
+  graph ?g4 {
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+                           bag:status ?pandStatus
+  }
+  ?pandStatus rdfs:label ?pandStatusLabel
+  # Geldigheidsbepaling
+  filter not exists { ?g1 bag:eindGeldigheid ?einddatum }
+  filter not exists { ?g2 bag:eindGeldigheid ?einddatum }
+  filter not exists { ?g3 bag:eindGeldigheid ?einddatum }
+  filter not exists { ?g4 bag:eindGeldigheid ?einddatum }
+  service <https://api.krr.triply.cc/datasets/Kadaster/geosoup2/services/geosoup/sparql> {
+    monument:527809 <https://cultureelerfgoed.nl/vocab/bouwjaar> ?bouwjaar2 ;
+                    dbo:codeNationalMonument ?code
+  }
+  bind (concat('<h3>Stadhouderskade 78, 1072AE Amsterdam</h3><h5>BAG</h5><ul><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul><h5>RCE</h5><ul><li>Monumentnummer: ',str(?code),'<li>Bouwjaar: ',str(?bouwjaar2),'</li></ul>') as ?wktLabel)
+}

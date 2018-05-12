@@ -1,45 +1,51 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-prefix beeldbank: <https://data.pdok.nl/beeldbank/id/monument/>
-prefix dc: <http://purl.org/dc/elements/1.1/>
+prefix dct: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rce: <https://data.labs.pdok.nl/rce/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix vocab: <https://data.pdok.nl/beeldbank/vocab/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select distinct ?monument (min(?wkt) as ?wkt) (min(?wktLabel) as ?wktLabel) {
-  bind ("Amersfoort" as ?plaatsnaam)
-  bind ("Breestraat" as ?streetName)
-  bind (78 as ?houseNumber)
-  bind (strlang(?plaatsnaam, "nl") as ?plaatsnaamNL)
-  bind (strlang(?streetName, "nl") as ?streetNameNL)
-  bind (str(?houseNumber) as ?houseNumberNL)
-  ?monument vocab:houseNumber ?houseNumberNL ;
-            vocab:place ?plaatsnaamNL ;
-            vocab:street ?streetNameNL ;
-            rdfs:label ?monumentName .
-  ?image foaf:depicts ?monument ;
-         vocab:locator ?locator ;
-         dc:created ?date ;
-         vocab:fotograaf ?photographer
+select distinct ?monument (min(?pandWkt) as ?pandWkt) (min(?pandWktLabel) as ?pandWktLabel) {
+  values (?plaatsNaam ?straatNaam ?huisnummer) {
+    ("Amersfoort" "Breestraat" 78)
+  }
+  bind (strlang(?plaatsNaam, "nl-nl") as ?plaatsNaamNL)
+  bind (strlang(?straatNaam, "nl-nl") as ?straatNaamNL)
+  bind (str(?huisnummer) as ?huisnummerNL)
+  graph graph:beeldbank {
+    ?monument rce:huisnummer ?huisnummerNL ;
+              rce:plaatsnaam ?plaatsNaamNL ;
+              rce:straat ?straatNaamNL ;
+              rdfs:label ?monumentNaam .
+    ?image dct:created ?date ;
+           foaf:depicts ?monument ;
+           rce:fotograaf ?photographer ;
+           rce:locator ?url .
+  }
   service <https://data.pdok.nl/sparql> {
-    ?plaats bag:naamWoonplaats ?plaatsnaam .
-    ?openbareRuimte bag:naamOpenbareRuimte ?streetName ;
-                    bag:bijbehorendeWoonplaats ?plaats .
+    ?plaats bag:naamWoonplaats ?plaatsNaam .
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?plaats ;
+                    bag:naamOpenbareRuimte ?straatNaam .
     ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
-                      bag:huisnummer ?houseNumber .
+                      bag:huisnummer ?huisnummer .
     ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                     bag:oppervlakte ?surface ;
+                     bag:oppervlakte ?oppervlakte ;
                      bag:pandrelatering ?pand ;
                      bag:status ?verblijfsobjectStatus .
     ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
-    ?pand bag:oorspronkelijkBouwjaar ?buildYear ;
-          bag:geometriePand/geo:asWKT ?wkt ;
+    ?pand bag:geometriePand/geo:asWKT ?pandWkt ;
+          bag:oorspronkelijkBouwjaar ?bouwjaar ;
           bag:status ?pandStatus .
     ?pandStatus rdfs:label ?pandStatusLabel
   }
-  bind (concat('http://images.memorix.nl/rce/download/fullsize/',?locator,'.jpg') as ?url)
-  bind (concat('<a href="',?url,'"><img src="',?url,'" style="width: 225px;"></a><p>',str(?photographer),', ',str(?date),'</p>') as ?rce)
-  bind (concat('<center><h4><a href="',str(?monument),'">',str(?monumentName),'</a></h4><h4>',str(?streetNameNL),' ',str(?houseNumber),', <a href="',str(?plaats),'">',str(?plaatsnaamNL),'</a></h4>',?rce,'<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?surface),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p><p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?buildYear),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p></center>') as ?wktLabel)
+  bind (concat(
+    '<h3><a href="',str(?monument),'">',str(?monumentNaam),'</a></h3>',
+    '<h3>',str(?straatNaamNL),' ',str(?huisnummer),', <a href="',str(?plaats),'">',str(?plaatsNaamNL),'</a></h3>',
+    '<a href="',str(?url),'"><img src="',str(?url),'" style="width: 225px;"></a>',
+    '<p>',str(?photographer),', ',str(?date),'</p>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
+    '<p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?bouwjaar),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>') as ?pandWktLabel)
 }
 group by ?monument
 limit 1

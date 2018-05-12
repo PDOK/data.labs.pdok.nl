@@ -1,0 +1,9 @@
+PREFIX cbs: <https://data.pdok.nl/cbs/vocab/>
+PREFIX wibu: <https://data.pdok.nl/cbs/vocab/>
+SELECT (min(?g_ap) as ?min_arbeidsparticipatie_perc) (max(?g_ap) as ?max_arbeidsparticipatie_perc) WHERE {
+  graph <https://data.pdok.nl/cbs/arbeidsmarktparticipatie_gemeente> {
+    ?gemeente a cbs:Gemeente ;
+              wibu:nettoarbeidsparticipatie_p ?g_ap ;
+    .
+  }
+}

@@ -1,0 +1,12 @@
+prefix kvk: <http://data.labs.pdok.nl/kvk/def/>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?werknemers ?naam {
+  graph <http://data.labs.pdok.nl/graph/kvk> {
+    ?organizatie kvk:plaats "Zwolle"^^xsd:string ;
+                 schema:legalName ?naam ;
+                 schema:numberOfEmployees ?werknemers .
+  }
+}
+order by desc(?werknemers)
+limit 25

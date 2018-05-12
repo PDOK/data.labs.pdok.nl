@@ -1,0 +1,20 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape ?shapeLabel {
+  ?woonplaats1 brt:isBAGwoonplaats true ;
+               geo:hasGeometry/geo:asWKT ?shape ;
+               rdfs:label ?woonplaatsNaam .
+  service <https://dbpedia.org/sparql> {
+    ?woonplaats2 foaf:depiction ?vlag ;
+                 rdfs:label ?woonplaatsNaam .
+  }
+  bind (concat(
+    '<h2>',str(?woonplaatsNaam),'</h2>',
+    if(bound(?vlag),concat('<img src="',replace(str(?vlag),'http://','https://'),'" style="max-width: 150px;">'),''),
+    '<p>Link naar DBpedia: <a href="',str(?woonplaats2),'">link</a></p>') as ?shapeLabel)
+}
+limit 25

@@ -1,0 +1,5 @@
+select (count(distinct ?g) as ?n) {
+  graph ?g {
+    ?s ?p ?o .
+  }
+}

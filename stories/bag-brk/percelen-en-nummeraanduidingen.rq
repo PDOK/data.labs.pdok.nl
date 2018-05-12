@@ -1,29 +1,24 @@
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-PREFIX brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
-select distinct * where {
-  {
-    select distinct ?nummeraanduiding ?straat ?huisnummer where {
-      bind ("Oranjekade"@nl as ?straat)
-      ?or_uri rdfs:label ?straat .
-      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?or_uri ;
-			  bag:postcode ?postcode ;
-        bag:huisnummer ?huisnummer .
-      filter(strstarts(?postcode, "2011"))
-    }
-  }
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
+prefix dct: <http://purl.org/dc/terms/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?perceelShape ?perceelShapeLabel {
+  bind ('Oranjekade'@nl as ?straatNaam)
+  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte/rdfs:label ?straatNaam ;
+                    bag:huisnummer ?huisnummer ;
+                    bag:postcode ?postcode .
+  filter (strstarts(?postcode,'2011'))
   service <https://data.labs.pdok.nl/sparql> {
-	  ?nummeraanduiding dcterms:related ?perceel
+    # TBD: Dit komt uit de Default Graph.
+    ?nummeraanduiding dct:related ?perceel .
   }
-  # Haal de perceelsinformatie op
   ?perceel a brk:Perceel;
-           brk:begrenzingPerceel ?geom ;
+           brk:begrenzingPerceel/geo:asWKT ?perceelShape ;
            brk:perceelnummer ?perceelnummer .
-  ?geom geosparql:asWKT ?wkt .
-  # Vorm eenvoudige html voor de labelinformatie
-  bind(concat(
-      "<a target='_blank' href='", str(?nummeraanduiding), "'>", str(?straat), " ", str(?huisnummer), "</a>: <a target='_blank' href='", str(?perceel), "'>", "perceel no. ", str(?perceelnummer), "</a>"
-    ) as ?wktLabel)
+  bind (concat(
+    '<h1><a href="',str(?nummeraanduiding),'" target="_blank">',str(?straatNaam),' ',str(?huisnummer),'</a></h1>',
+    '<p><a href="',str(?perceel),'" target="_blank">Perceel №: ',str(?perceelnummer),'</a></p>'
+  ) as ?perceelShapeLabel)
 }
+limit 50

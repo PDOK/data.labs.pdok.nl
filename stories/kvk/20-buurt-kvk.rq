@@ -1,0 +1,37 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix buurt: <https://data.labs.pdok.nl/cbs/id/buurt/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix kvk: <http://data.labs.pdok.nl/kvk/def/>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  graph <http://data.labs.pdok.nl/graph/kvk> {
+    ?organizatie kvk:huisnummer ?huisnummer ;
+                 kvk:legalFormDescription ?legal ;
+                 kvk:plaats "Zwolle"^^xsd:string ;
+                 kvk:postcode ?postcode ;
+                 kvk:sbiOmschrijving ?sbi ;
+                 kvk:straat ?straat ;
+                 schema:latitude ?lat ;
+                 schema:legalName ?naam ;
+                 schema:longitude ?long ;
+                 schema:numberOfEmployees ?werknemers .
+  }
+  bind (xsd:float(?long) as ?x)
+  bind (xsd:float(?lat) as ?y)
+  bind (concat('Point(',str(?x),' ',str(?y),')') as ?point)
+  bind (concat('LineString(',str(?x),' ',str(?y),',',str(?x + 0.00001),' ',str(?y),')') as ?shape)
+  graph <https://data.labs.pdok.nl/graph/wijkbuurt-2016> {
+    ?buurt a cbs:Buurt ; geo:hasGeometry/geo:asWKT ?polygon .
+  }
+  filter (geof:stWithin(?point,?polygon))
+  bind (concat(
+    '<h3>',str(?naam),'</h3>',
+    '<p>',str(?legal),'</p>',
+    '<ul><li>Adres: ',str(?straat),' ',str(?huisnummer),', ',str(?postcode),'</li>',
+    '<li>SBI: ',str(?sbi),'</li>',
+    '<li>Werknemers: ',str(?werknemers),'</li></ul>') as ?shapeLabel_)
+}
+limit 100

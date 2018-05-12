@@ -3,21 +3,42 @@
 
 @import 'jekyll-theme-dinky';
 
+/* Wouter commented this out on 2017/10/12 because the YASGUI widgets
+   in Data Storis became too narrow due to this rule.
+.wrapper {
+  width: 70%;
+}
+*/
+
 h1 {
   font-family: Roboto;
+  font-size: 26px;
 }
 
 h2 {
   font-family: inherit;
+  font-size: 22px;
+}
+
+h3 {
+  font-family: inherit;
+  font-size: 20px;
+}
+
+p, ul, ol, dl {
+  margin: 0 0 22px;
+  font-size: 16px;
+}
+
+section {
+  width: 100%;
+  float: left;
+  margin-left: 250px;
+  padding-bottom: 50px;
 }
 
 a.github {
   font-size: smaller;
-}
-
-th.sorting {
-  color: black;
-  font-family: Roboto;
 }
 
 header {
@@ -49,7 +70,7 @@ img {
 
 .showcase {
   float: left;
-  width: 45%;
+  width: 400px;
   height: 300px;
   margin: 10px;
   border: 1px solid black;
@@ -68,4 +89,49 @@ img {
 .btn.showcase-btn {
   margin: 10px;
   vertical-align: bottom;
+}
+.yasgui.hasFullScreen {
+  z-index: 1000;
+}
+.yasgui .yasqe .CodeMirror-fullscreen {
+  top: 80px !important;/**save space for the menu**/
+}
+.yasgui .yasr.yasr_fullscreen {
+  top: 80px !important;/**save space for the menu**/
+}
+
+.tableauViz {
+  width: 100%;
+  height: 800px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 22px;
+  font-size: 16px;
+}
+
+th {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 10px;
+  //background: #232323;
+  //color: #FDFEFB;
+}
+
+th.sorting {
+  color: black;
+  font-family: Roboto;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:nth-child(odd){background-color: #fff;}
+
+tr:hover {background-color: #ddd;}
+
+td {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  background: none;
 }

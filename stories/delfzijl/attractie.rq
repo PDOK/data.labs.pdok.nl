@@ -1,0 +1,23 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix gg: <http://www.gemeentegeschiedenis.nl/provincie/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix verblijfsobject: <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/>
+select ?wkt ?wktColor ?wktLabel {
+  graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
+    ?gemeente a cbs:Gemeente ;
+              cbs:regioaanduiding_Gemeentenaam_naam ?buurtNaam ;
+              cbs:vrijetijdencultuur_Recreatie_Afstandtotattractie_km ?afstand .
+    bind ((46.5 - xsd:float(?afstand)) / 46.5 as ?normalized)
+    bind (concat("jet,",str(?normalized)) as ?wktColor)
+  }
+  graph <https://data.pdok.nl/cbs/gemeente_gegeneraliseerd_2016> {
+    ?gemeente geo:hasGeometry/geo:asWKT ?wkt ;
+  }
+  { ?gemeente geo:sfWithin* gg:Groningen } union { ?gemeente geo:sfWithin* gg:Friesland }
+  # cbs:vrijetijdencultuur_Recreatie_Afstandtotattractie_km rdfs:label ?label ; rdfs:comment ?desc .
+  bind ('Afstand tot attractie' as ?label)
+  bind ('De gemiddelde afstand van alle inwoners in een gebied tot de dichtstbijzijnde attractie, berekend over de weg.<br /><br />Attractie: Pretpark, dierentuin en binnenspeeltuin.' as ?desc)
+  bind (concat('<h3>', ?label, ': ', str(?afstand), ' km</h3><p>', ?desc, '</p>') as ?wktLabel)
+}

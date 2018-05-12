@@ -1,0 +1,83 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix cbs: <https://data.pdok.nl/cbs/def/>
+prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# This still returns the same ?pand multiple times, once for each
+# energy label that has been assigned to a ?verblijfsobject within
+# that ?pand.
+select ?shape ?shapeColor ?shapeLabel {
+  {
+    select * {
+      graph graph:energielabels {
+        ?energielabel0 energielabels:e_label ?energielabel ;
+                       energielabels:pand_postcode  ?postcode ;
+                       energielabels:pand_huisnummer ?huisnummerString ;
+                       energielabels:opname_datum ?opnamedatum ;
+                       energielabels:registratie_datum ?registratiedatum .
+        optional {
+          ?energielabel0 energielabels:pand_huisnummer_toev ?huisnummerToevoeging .
+        }
+        bind (xsd:integer(?huisnummerString) as ?huisnummer)
+        bind (if(!(bound(?e_label)), "grey",
+              if(strstarts(?e_label, "A"), "#22b14c",
+              if(?e_label="B", "#8ff334",
+              if(?e_label="C", "#bdfc2c",
+              if(?e_label="D", "#fff200",
+              if(?e_label="E", "#ff9a35",
+              if(?e_label="F", "#ff7f27",
+              if(?e_label="G", "#ed1c24",
+              "grey")))))))) as ?shapeColor)
+      }
+    }
+  }
+  service <https://data.pdok.nl/sparql> {
+    graph ?voorkomen1 {
+      ?vo a ?vo_type ;
+          bag:hoofdadres ?adres ;
+          bag:identificatiecode ?id ;
+          bag:oppervlakte ?oppervlakte ;
+          bag:pandrelatering ?pand .
+    }
+    filter not exists {
+      ?voorkomen1 bag:eindGeldigheid ?eind1 .
+    }
+    graph ?voorkomen2 {
+      ?adres bag:bijbehorendeOpenbareRuimte ?weg ;
+             bag:huisnummer ?huisnummer ;
+             bag:postcode ?postcode .
+    }
+    filter not exists {
+      ?voorkomen2 bag:eindGeldigheid ?eind2 .
+    }
+    graph ?voorkomen3 {
+      ?pand bag:identificatiecode ?pand_id ;
+            bag:oorspronkelijkBouwjaar ?bouwjaar ;
+            bag:status ?pandStatus ;
+            geo:hasGeometry/geo:asWKT ?shape ;
+            rdfs:isDefinedBy ?pand_defined .
+    }
+    filter not exists {
+      ?voorkomen3 bag:eindGeldigheid ?eind3 .
+    }
+    ?pandStatus rdfs:label ?pandStatusLabel .
+    graph ?voorkomen4 {
+      ?weg bag:bijbehorendeWoonplaats ?woonplaats ;
+           rdfs:label ?straatnaam .
+    }
+    filter not exists {
+      ?voorkomen4 bag:eindGeldigheid ?eind4 .
+    }
+    ?woonplaats rdfs:label ?woonplaatsLabel .
+    bind (concat(
+      '<p>address: ',str(?woonplaatsLabel),',  ',str(?postcode),'<br>',str(?straatnaam),',',str(?huisnummer),if(bound(?huisnummerToevoeging),concat(' ',str(?huisnummerToevoeging)),''),'<br>',
+      'Pand status: ',str(?pandStatusLabel),'<br>',
+      'Bouwjaar: ',str(?bouwjaar) ,'<br>',
+      'Oppervlakte: ',str(?oppervlakte),'m²<br>',
+      'Opnamedatum: ',str(?opnamedatum),'<br>',
+      'Registratiedatum: ',str(?registratiedatum),'</p>') as ?shapeLabel)
+  }
+}
+limit 5

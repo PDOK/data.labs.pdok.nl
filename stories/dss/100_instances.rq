@@ -1,4 +1,0 @@
-select ?instance ?class {
-  ?instance a ?class
-}
-limit 100

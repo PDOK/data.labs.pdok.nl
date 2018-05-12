@@ -1,0 +1,20 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix lgdo: <http://linkedgeodata.org/ontology/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape {
+  {
+    ?parkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
+                   geo:hasGeometry/geo:asWKT ?shape ;
+                   rdfs:label ?shapeLabel .
+    bind('blue' as ?shapeColor)
+  } union {
+    service <https://data.labs.pdok.nl/sparql> {
+      graph <http://data.labs.pdok.nl/dataset/parkeren> {
+        ?parkeergarage a lgdo:Parking;
+                       geo:asWKT ?shape ;
+      }
+      bind('green' as ?shapeColor)
+    }
+  }
+}

@@ -1,0 +1,20 @@
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix gemeente: <https://data.labs.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  graph graph:wijkbuurt-2016 {
+    ?buurt cbs:bedrijfsvestigingen ?bedrijven ;
+           geo:sfWithin/geo:sfWithin gemeente:GM0193 ;
+           geo:hasGeometry/geo:asWKT ?shape ;
+           rdfs:label ?naam .
+  }
+  bind (xsd:float(?bedrijven) / 655.0 as ?normalized)
+  bind (concat('jet,',str(?normalized)) as ?shapeColor)
+  bind (concat(
+    '<h3>',str(?naam),'</h3>',
+    '<p>Aantal bedrijven: ',str(?bedrijven),'</p>') as ?shapeLabel)
+}
+limit 100

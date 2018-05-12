@@ -3,6 +3,9 @@
     "@language": "nl",
     "dcterms": "http://purl.org/dc/terms/",
     "dcterms:related": { "@type": "@id" },
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "foaf:homepage": { "@type": "@id"},
+    "foaf:page": { "@type": "@id"},
     "owl": "http://www.w3.org/2002/07/owl#",
     "prov": "http://www.w3.org/ns/prov#",
     "prov:used": { "@type": "@id" },
@@ -25,27 +28,29 @@
     }
   ],
   "dcterms:description": [
-    "Linkset van BAG nummeraanduidingen naar BRK percelen, beperkt tot Kennemerland",
+    "Linkset van BAG nummeraanduidingen naar BRK percelen",
     {
-      "@value": "Partial linkset of BAG addresses to BRK parcels, limited to pertaining to the area of Kennemerland",
+      "@value": "Partial linkset of BAG addresses to BRK parcels",
       "@language": "en"
     }
   ],
   "dcterms:title": [
-    "Gedeeltelijke linkset BAG-BRK",
+    "Linkset BAG-BRK",
     {
-      "@value": "Partial linkset BAG-BRK",
+      "@value": "Linkset BAG-BRK",
       "@language": "en"
     }
   ],
   "void:sparqlEndpoint": "https://data.labs.pdok.nl/sparql",
-  "void:dataDump": "https://raw.githubusercontent.com/PDOK/data.labs.pdok.nl/master/data/bag-brk/statements_bag_brk.nt.zip",
+  "foaf:homepage": "https://data.labs.pdok.nl/",
+  "foaf:page": "https://data.labs.pdok.nl/stories/bag-brk/",
+  "void:dataDump": "https://data.labs.pdok.nl/dumps/bag-brk-linkset-20170830.nq.gz",
   "void:target": ["http://bag.basisregistraties.overheid.nl", "http://brk.basisregistraties.overheid.nl"],
   "void:subjectsTarget": "http://bag.basisregistraties.overheid.nl/def/bag#Nummeraanduiding",
   "void:objectsTarget": "http://brk.basisregistraties.overheid.nl/def/brk#Perceel",
   "void:linkPredicate": {
     "@type": "owl:ObjectProperty",
-    "@id": "http://data.labs.pdok.nl/linksets/def/bag_brk_kennemerland#relatedParcel",
+    "@id": "http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel",
     "rdfs:label": ["BRK-perceel gerelateerd aan BAG nummeraanduiding",
       {
         "@value": "BRK parcel related to BAG address",
@@ -66,9 +71,9 @@
     "prov:endedAtTime": "2017-05-24T15:15:00",
     "prov:used": [
       "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/bag-brk.py",
-      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-with-uris.xlsx",
-      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Kennemerland-KadastraleObjectenEnAdressen.xlsm",
-      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/Apprechtcomplex-met-Grondpercelen.csv"
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/data/Inspire-BRK-Adressen-Koppelingen-Nederland-07062016.zip",
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/data/Apprechtcomplex-met-Grondpercelen.csv",
+      "https://github.com/PDOK/data.labs.pdok.nl/blob/master/data/bag-brk/data/linkset.nq.gz"
     ]
   }
   ],
@@ -82,5 +87,5 @@
       "rdfs:label": "Kadaster"
     }
   },
-  "void:triples": 248944
+  "void:triples": 11899057
 }
