@@ -4,8 +4,21 @@ title: Demonstrators (apps)
 ---
 <script src="/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
+# Presentaties
+
+## 3D High5
+
+Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
+Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
+link](../presentations/2018-04-05-3D-High5.html) voor de presentatie
+van het Linked Data onderdeel.
+
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
+
+## FacetCheck
+
+  - [BRT browser](../presentations/brt-browser/index.html)
 
 ## Zoeken op begrip in datasets
 Een van de obstakels voor het (her)gebruik van data is dat data vaak moeilijk vindbaar is voor potentiële gebruikers, of zelfs helemaal niet vindbaar is. Dit geldt met name voor gebruikers die niet bekend zijn binnen het geo-domein, zij zoeken vaak niet op de BAG maar op zoektermen zoals ‘adres’. Zeker voor linked data is dit een obstakel: hoe meer datasets gelinkt worden, hoe meer data verspreid zal staan over heterogene datasets. Om de vindbaarheid van data te vergroten is een zoekmachine gemaakt, die het mogelijk maakt datasets te zoeken door op begrippen te zoeken uit de linked data vocabulaires. [Klik op de afbeelding om de zoekmachine te openen.](/apps/zoeken).
@@ -571,6 +584,8 @@ De Omgevingswet vraagt om beschikbaarheid van informatie uit diverse informatied
 
 In de demonstrator is het mogelijk om een vraag te beantwoorden met gebruikmaking van informatie uit meer domeinen tegelijkertijd. De use case wil ingaan op veelverwachte vragen van initiatiefnemers over een bepaald pand: “Wat is dat” en “Mag dat”. Dus onder meer antwoord geven op de vraag welke bestemming een pand heeft en wat er in dat pand is toegelaten. Dit heeft geresulteerd in de demo-omgeving met als titel: “Wasda Magda”.  
 
-Klik op onderstaande link om de demo-omgeving te verkennen.
+Klik op onderstaande link om de demo-omgeving te verkennen:
+
+[http://kadaster.semaku.com/ProeftuinOK/StartenBedrijf/](http://kadaster.semaku.com/ProeftuinOK/StartenBedrijf/)
 
 [https://kadaster.appnetwork.nl/](https://kadaster.appnetwork.nl/)

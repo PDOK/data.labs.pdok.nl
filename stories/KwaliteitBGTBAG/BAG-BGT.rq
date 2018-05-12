@@ -1,18 +1,19 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-prefix begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
+prefix bag-begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
 prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix bgt-begrip: <http://bgt.basisregistraties.overheid.nl/bgt/id/begrip/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select * {
   ?verblijfsobject bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats/rdfs:label "Almere"@nl ;
                    bag:pandrelatering ?bag .
   graph ?voorkomen {
-    ?bag bag:status <http://bag.basisregistraties.overheid.nl/id/begrip/PandInGebruik> .
+    ?bag bag:status bag-begrip:PandInGebruik .
   }
   filter not exists {
     ?voorkomen bag:eindGeldigheid ?eind .
   }
   service <https://triply.eculture.labs.vu.nl/sparql> {
-    ?bgt bgt:status begrip:bestaand_Status ;
+    ?bgt bgt:status bgt-begrip:bestaand_Status ;
          bgt:gerelateerdBagPand ?bag .
   }
 }
