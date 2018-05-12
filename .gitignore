@@ -1,10 +1,10 @@
 *~
 *.log
+.bundle/
 .idea/
-/data/bag-brk/error.log
-/data/bag-brk/logfile.log
-/_site/
 Gemfile.lock
+/_site/
+/data/bag-brk/error.log
 /data/bag-brk/data/BRK-Adressen-Koppelingen-Nederland-07062016.csv
 /data/bag-brk/data/Apprechtcomplex-met-Grondpercelen-mei2017.csv
 /data/bag-brk/data/linkset.nq
@@ -13,3 +13,5 @@ Gemfile.lock
 /data/bag-brk/data/BRK-Adressen-Koppelingen-Nederland-07062016.zip
 /data/bag-brk/data/_processed-lines.db
 /data/bag-brk/db/processed-lines.db
+/data/bag-brk/logfile.log
+/vendor/*
