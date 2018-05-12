@@ -3,8 +3,21 @@ layout: default
 title: Demonstrators (apps)
 ---
 
+# Presentaties
+
+## 3D High5
+
+Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
+Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
+link](../presentations/2018-04-05-3D-High5.html) voor de presentatie
+van het Linked Data onderdeel.
+
 # Applicaties
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
+
+## FacetCheck
+
+  - [BRT browser](../presentation/brt-browser/index.html)
 
 ## Proeftuin Omgevingswet Kadaster
 **Pilot Starten Bierbrouwerij**
