@@ -27,8 +27,8 @@ select * {
                geo:hasGeometry/geo:asWKT ?wkt ;
                rdfs:label ?vboLabel .
           ?pand rdfs:label ?pandLabel .
-          filter (?vbo = verblijfsobject:0307010000519401)
-          bind (concat(
+          filter(?vbo = verblijfsobject:0307010000519401)
+          bind(concat(
             '<h3>School</h3>',
             '<p><a href="',str(?pand),'">',str(?pandLabel),'</a><br>',
             '<a href="',str(?vbo),'">',str(?vboLabel),'</a></p>'
@@ -42,8 +42,8 @@ select * {
       ?wegvak a nwbw:Wegvak ;
               geo:hasGeometry/geo:asWKT ?wkt ;
               rdfs:label ?wegvaklabel .
-      bind (geof:distance(?punt2, ?wkt, uom:metre) as ?afstand) .
-      bind (concat(
+      bind(geof:distance(?punt2, ?wkt, uom:metre) as ?afstand) .
+      bind(concat(
         '<h3>Wegvak</h3>',
         '<p><a href="',str(?wegvak),'">',str(?wegvaklabel),'</a></p>'
         ) as ?wktLabel)

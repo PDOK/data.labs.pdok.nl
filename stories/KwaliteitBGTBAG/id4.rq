@@ -11,9 +11,9 @@ SELECT distinct ?bgt_pand ?bag_pand ?pandid ?lat ?long ?wkt ?wktLabel WHERE {
             rdfs:label ?bgt ;
             bgt:gerelateerdBagPand ?bag_pand ;
             foaf:isPrimaryTopicOf ?v1 .
-  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  filter(?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
   bind(substr(strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),5,2) as ?pandid)
-  filter (?pandid != '10') .
+  filter(?pandid != '10') .
   filter not exists{
     ?v1 bgt:objectEindtijd ?eind .
   }
@@ -31,7 +31,7 @@ SELECT distinct ?bgt_pand ?bag_pand ?pandid ?lat ?long ?wkt ?wktLabel WHERE {
       substr(str(?wkt), 17, 15)
     ) as ?long)
     
-  bind (
+  bind(
     concat('<h4>BGT panden</h4>',
       '<p>',?bgt,'</p>',
       '<h4>Gerelateerd BAG pand</h4>',

@@ -7,20 +7,20 @@ select ?wijkWkt ?wijkWktColor ?wijkWktLabel {
   {
     select (max(?café) as ?caféMax) {
       service <https://data.pdok.nl/sparql> {
-        bind ("Apeldoorn"@nl as ?woonplaatsNaam)
+        bind("Apeldoorn"@nl as ?woonplaatsNaam)
         ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                             brt:nummer ?registratiefGebiedCode
-        bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+        bind(concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
       }
       ?wijk cbs:afstandCafé ?café ;
             geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
     }
   }
   service <https://data.pdok.nl/sparql> {
-    bind ("Apeldoorn"@nl as ?woonplaatsNaam)
+    bind("Apeldoorn"@nl as ?woonplaatsNaam)
     ?registratiefGebied brt:naamOfficieel ?woonplaatsNaam ;
                         brt:nummer ?registratiefGebiedCode
-    bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+    bind(concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
   }
   graph graph:wijkbuurt-2015 {
     ?wijk cbs:afstandCafé ?café ;
@@ -28,11 +28,11 @@ select ?wijkWkt ?wijkWktColor ?wijkWktLabel {
           cbs:wijkNaam ?wijkNaam ;
           geo:hasGeometry/geo:asWKT ?wijkWkt ;
           geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
-    bind (concat(
+    bind(concat(
       '<p><b><a href="',str(?wijk),'">',str(?wijkNaam),'</a></b> (',str(?wijkCode),')<br>',
       str(?café),' km tot café</p>') as ?wijkWktLabel)
-    bind (xsd:float(?café) / xsd:float(?caféMax) as ?normalized)
-    bind (concat('jet,',str(?normalized)) as ?wijkWktColor)
+    bind(xsd:float(?café) / xsd:float(?caféMax) as ?normalized)
+    bind(concat('jet,',str(?normalized)) as ?wijkWktColor)
   }
 }
 limit 25

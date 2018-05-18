@@ -18,7 +18,7 @@ select ?shape (min(?shapeLabel_) as ?shapeLabel) {
     ?image foaf:depicts ?monument ;
            rce:locator ?url .
   }
-  bind (concat(
+  bind(concat(
     '<h3>',str(?straat),' ',str(?huisnummer),'</h3>',
     '<p>',if(bound(?bouwjaar),concat('Bouwjaar: ',str(?bouwjaar),'<br>'),''),
     'Postcode: ',str(?postcode),'</p>',

@@ -11,7 +11,7 @@ select (count(?bag_pand) as ?count) {
   graph ?voorkomen {
     ?bag_pand a bag:Pand .
     #    ?bag_pand bag:status ?status .
-    #    filter (?status = bag_beg:PandInGebruik || ?status = bag_beg:PandInGebruik_nietIngemeten)
+    #    filter(?status = bag_beg:PandInGebruik || ?status = bag_beg:PandInGebruik_nietIngemeten)
   }
   filter not exists {
     ?voorkomen bag:eindGeldigheid ?eind .

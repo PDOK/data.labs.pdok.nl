@@ -14,7 +14,7 @@ select ?shape ?shapeLabel {
                    bag:pandrelatering ?pand ;
                    geo:hasGeometry/geo:asWKT ?shape .
   ?openbareRuimte bag:naamOpenbareRuimte ?naamOpenbareRuimte .
-  bind (concat(
+  bind(concat(
     '<strong>',sample(?naamOpenbareRuimte),' ',sample(str(?huisnummer)),', ',sample(?postcode),'</strong><br>',
     group_concat(distinct ?verblijfsobjectType;separator='<br>')) as ?shapeLabel)
 }

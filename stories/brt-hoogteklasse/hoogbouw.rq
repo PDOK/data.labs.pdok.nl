@@ -3,5 +3,5 @@ prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 select (count(?gebouw) as ?aantal) where {
   ?gebouw a brt:Gebouw ;
           brt:hoogteklasse ?hoogteklasse .
-  filter (?hoogteklasse = begrip:Hoogbouw)
+  filter(?hoogteklasse = begrip:Hoogbouw)
 }

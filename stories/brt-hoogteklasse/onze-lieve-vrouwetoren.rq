@@ -3,13 +3,13 @@ prefix gebouw: <http://brt.basisregistraties.overheid.nl/top10nl/id/gebouw/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?gebouwWkt ?gebouwWktLabel {
-  bind (gebouw:103018712 as ?gebouw)
+  bind(gebouw:103018712 as ?gebouw)
   ?gebouw a brt:Gebouw ;
           brt:hoogteklasse ?hoogteklasse ;
           geo:hasGeometry/geo:asWKT ?gebouwWkt ;
           rdfs:label ?label .
   ?hoogteklasse rdfs:label ?hoogteklasseLabel .
-  bind (concat(
+  bind(concat(
     '<h3>Onze-Lieve-Vrouwetoren</h3>',
     '<a href="',str(?gebouw),'" target="_blank">',str(?label),'</a><br>',
     'Hoogte: onbekend<br>',

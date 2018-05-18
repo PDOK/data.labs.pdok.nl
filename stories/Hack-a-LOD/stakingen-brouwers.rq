@@ -6,6 +6,6 @@ select ?bedrijf ?begin ?werknemers ?duur ?resultaat {
   optional { ?staking def:date ?begin }
   optional { ?staking def:number-of-days ?dagen }
   optional { ?staking def:number-of-workers ?werknemers }
-  optional { ?staking def:result/rdfs:label ?resultaat filter (lang(?resultaat) = "nl-nl") }
+  optional { ?staking def:result/rdfs:label ?resultaat filter(lang(?resultaat) = "nl-nl") }
 }
 order by ?begin

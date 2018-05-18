@@ -6,7 +6,7 @@ select ?shape ?shapeLabel {
             wdt:P17 wd:Q55 ; # Netherlands
             wdt:P625 ?shape ;
             rdfs:label ?label .
-  bind (concat(
+  bind(concat(
     '<img src="https://wiki.openstreetmap.org/w/images/0/0c/Power-wind-16.svg">',
     '<a href="',str(?windfarm),'">',str(?label),'</a>') as ?shapeLabel)
 }

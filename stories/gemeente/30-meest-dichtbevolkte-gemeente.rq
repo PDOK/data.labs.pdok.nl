@@ -12,7 +12,7 @@ select ?shape ?shapeLabel {
     ?woonplaats2 foaf:depiction ?vlag ;
                  rdfs:label ?woonplaatsNaam .
   }
-  bind (concat(
+  bind(concat(
     '<h2>',str(?woonplaatsNaam),'</h2>',
     if(bound(?vlag),concat('<img src="',replace(str(?vlag),'http://','https://'),'" style="max-width: 150px;">'),''),
     '<p>Link naar DBpedia: <a href="',str(?woonplaats2),'">link</a></p>') as ?shapeLabel)

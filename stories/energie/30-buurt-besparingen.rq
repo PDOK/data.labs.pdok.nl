@@ -4,7 +4,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?wkt ?wktLabel {
-  bind (buurt:BU03010500 as ?buurt)
+  bind(buurt:BU03010500 as ?buurt)
   graph graph:wijkbuurt-2015 {
     ?buurt geo:hasGeometry/geo:asWKT ?wkt ;
            rdfs:label ?buurtNaam .
@@ -19,8 +19,8 @@ select ?wkt ?wktLabel {
            cbs:reëleEenmaligBenodigdeInvesteringBouwfysischeMaatregeln ?bouwfysischeInvestering ;
            cbs:reëleEenmaligBenodigdeInvesteringInstallatietechnischeMaatregelen ?installatieInvestering .
   }
-  bind ((?bouwfysischeInvestering + ?installatieInvestering) / (?bouwfysischeBesparing + ?installatieBesparing) as ?jaren)
-  bind (concat(
+  bind((?bouwfysischeInvestering + ?installatieInvestering) / (?bouwfysischeBesparing + ?installatieBesparing) as ?jaren)
+  bind(concat(
     '<h3>',str(?buurtNaam),'</h3>',
     '<p>Gemiddeld gebruik aardgas: ',str(?gemAardgas),'m³ per jaar<br>',
     'Gemiddeld gebruik elektriciteit: ',str(?gemElektra),'kWh per jaar</p>',

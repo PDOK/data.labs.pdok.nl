@@ -7,15 +7,15 @@ select ?shape ?shapeColor {
       ?windturbine a <http://www.wikidata.org/entity/Q49833> ;
                    geo:hasGeometry/geo:asWKT ?shape .
     }
-    bind ('green' as ?shapeColor)
+    bind('green' as ?shapeColor)
   } union {
     ?windturbine a bgt:Windturbine ;
                  geo:hasGeometry/geo:asWKT ?shapePolygon .
-    bind (strdt(concat('Point (',substr(str(?shapePolygon),11,34),')'),geo:wktLiteral) as ?shape)
-    bind ('blue' as ?shapeColor)
+    bind(strdt(concat('Point (',substr(str(?shapePolygon),11,34),')'),geo:wktLiteral) as ?shape)
+    bind('blue' as ?shapeColor)
   } union {
     ?windturbine a brt:Windturbine ;
                  geo:hasGeometry/geo:asWKT ?shape .
-    bind ('yellow' as ?shapeColor)
+    bind('yellow' as ?shapeColor)
   }
 }

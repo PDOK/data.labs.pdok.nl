@@ -19,15 +19,15 @@ select * {
                  schema:longitude ?long ;
                  schema:numberOfEmployees ?werknemers .
   }
-  bind (xsd:float(?long) as ?x)
-  bind (xsd:float(?lat) as ?y)
-  bind (concat('Point(',str(?x),' ',str(?y),')') as ?point)
-  bind (concat('LineString(',str(?x),' ',str(?y),',',str(?x + 0.00001),' ',str(?y),')') as ?shape)
+  bind(xsd:float(?long) as ?x)
+  bind(xsd:float(?lat) as ?y)
+  bind(concat('Point(',str(?x),' ',str(?y),')') as ?point)
+  bind(concat('LineString(',str(?x),' ',str(?y),',',str(?x + 0.00001),' ',str(?y),')') as ?shape)
   graph <https://data.labs.pdok.nl/graph/wijkbuurt-2016> {
     ?buurt a cbs:Buurt ; geo:hasGeometry/geo:asWKT ?polygon .
   }
-  filter (geof:stWithin(?point,?polygon))
-  bind (concat(
+  filter(geof:stWithin(?point,?polygon))
+  bind(concat(
     '<h3>',str(?naam),'</h3>',
     '<p>',str(?legal),'</p>',
     '<ul><li>Adres: ',str(?straat),' ',str(?huisnummer),', ',str(?postcode),'</li>',

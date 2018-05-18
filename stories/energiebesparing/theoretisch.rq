@@ -6,6 +6,6 @@ select ?wkt ?wktColor {
   optional {
     ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
   }
-  bind (if(bound(?euro),?euro/1900,0) as ?normalized)
-  bind (concat("jet,",str(?normalized)) as ?wktColor)
+  bind(if(bound(?euro),?euro/1900,0) as ?normalized)
+  bind(concat("jet,",str(?normalized)) as ?wktColor)
 }

@@ -9,8 +9,8 @@ select ?wkt ?wktColor ?wktLabel {
   graph <https://data.pdok.nl/cbs/energiebesparingspotentie_gemeente> {
     ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
   }
-  bind (xsd:float(?euro - 25) / 1900 as ?normalized)
-  bind (concat("jet,",str(?normalized)) as ?wktColor)
-  #bind (concat('<h3>',?label,'</h3><p>€',str(?euro),',-</p>') as ?wktLabel)
+  bind(xsd:float(?euro - 25) / 1900 as ?normalized)
+  bind(concat("jet,",str(?normalized)) as ?wktColor)
+  #bind(concat('<h3>',?label,'</h3><p>€',str(?euro),',-</p>') as ?wktLabel)
 }
 limit 400

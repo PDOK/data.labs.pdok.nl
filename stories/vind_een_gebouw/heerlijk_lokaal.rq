@@ -47,7 +47,7 @@ select ?pandWkt ?pandWktLabel {
     ?pandVoorkomen bag:eindGeldigheid [] .
   }
   ?pandStatus rdfs:label ?pandStatusLabel .
-  bind (concat(
+  bind(concat(
     '<h3>',str(?straatNaam),' ',str(?huisnummer),'</h3>',
     '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</p>',
     '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',

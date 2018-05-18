@@ -16,7 +16,7 @@ select
       ?gemeente geo:sfWithin/rdfs:label ?label .
     }
   } union {
-    bind ('Nederland' as ?label)
+    bind('Nederland' as ?label)
   }
   graph graph:wijkbuurt-2016 {
     ?gemeente cbs:inwoners0-14 ?x1 ;

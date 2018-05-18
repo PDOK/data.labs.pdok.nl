@@ -37,10 +37,10 @@ select * {
           '<p>Voor deze gemeente: <b>', str(?g_ap), '%</b></p>' ,
           '<p>Voor Nederland: <b>65.8%</b></p>'
         ) as ?wktLabel)
-        bind (((?g_ap - ?min) / ?spreiding) as ?wktColorIndex)
-        bind (xsd:integer(?wktColorIndex * 255) as ?green)
-        bind (xsd:integer(255 - (?wktColorIndex * 255)) as ?red)
-        bind (concat('rgb(', str(?red), ',', str(?green), ',0)') as ?wktColor)
+        bind(((?g_ap - ?min) / ?spreiding) as ?wktColorIndex)
+        bind(xsd:integer(?wktColorIndex * 255) as ?green)
+        bind(xsd:integer(255 - (?wktColorIndex * 255)) as ?red)
+        bind(concat('rgb(', str(?red), ',', str(?green), ',0)') as ?wktColor)
       }
     }
   }

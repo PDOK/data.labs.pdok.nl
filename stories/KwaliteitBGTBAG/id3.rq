@@ -13,8 +13,8 @@ SELECT distinct ?bgt_pand1 ?bgt_pand2 ?bag_pand ?wkt1 ?wkt2 ?wkt1Label ?bgt1 ?bg
   ?bgt_pand2 a bgt:Pand ;
              bgt:gerelateerdBagPand ?bag_pand ;
              foaf:isPrimaryTopicOf ?v2 .
-  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
-  filter (?bgt_pand1 != ?bgt_pand2)
+  filter(?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  filter(?bgt_pand1 != ?bgt_pand2)
 
   filter not exists{
    ?v1 bgt:objectEindtijd ?eind .
@@ -27,7 +27,7 @@ SELECT distinct ?bgt_pand1 ?bgt_pand2 ?bag_pand ?wkt1 ?wkt2 ?wkt1Label ?bgt1 ?bg
                             rdfs:label ?bgt1 .
   ?bgt_pand2 geo:hasGeometry/geo:asWKT ?wkt2 ;
                             rdfs:label ?bgt2 .
-  bind (
+  bind(
     concat('<h4>BGT panden</h4>',
       '<p>',?bgt1,'</p>',
       '<p>',?bgt2,'</p>',

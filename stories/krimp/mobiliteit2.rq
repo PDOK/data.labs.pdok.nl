@@ -18,7 +18,7 @@ select ?wkt ?wktLabel {
             cbs:werkgelegenheid_aantalbanen_B_Fnijverheidenenergie_Binnen10km_x1000 ?nijverheid ;
             cbs:werkgelegenheid_aantalbanen_Alandbouw_bosbouwenvisserij_Binnen10km_x1000 ?landbouw ;
             cbs:werkgelegenheid_aantalbanen_A_Ualleeconomischeactiviteiten_Binnen10km_x1000 ?totaal .
-  bind (concat(
+  bind(concat(
     '<h4>Afstanden tot voorzieningen voor krimpgemeente ‘',str(?label),'’</h4>',
     if(?oprit<?_oprit,'🠋','🠉'),' Oprit hoofdverkeersweg: ',str(?oprit), ' km (gem. ',str(?_oprit),' km)<br>',
     if(?trein<?_trein,'🠋','🠉'),' Treinstation: ',str(?trein),' km (gem. ',str(?_trein),' km)<br>',

@@ -18,6 +18,6 @@ select ?brtParkeergarage ?rdwParkeergarage ?brtShape ?rdwShape ?afstand {
                         geo:asWKT ?rdwShape .
     }
   }
-  bind (geof:distance(?brtShape, ?rdwShape, uom:metre) as ?afstand)
-  filter (?afstand < 50)
+  bind(geof:distance(?brtShape, ?rdwShape, uom:metre) as ?afstand)
+  filter(?afstand < 50)
 }

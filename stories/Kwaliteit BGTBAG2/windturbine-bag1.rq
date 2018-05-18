@@ -12,12 +12,12 @@ select distinct ?windturbineShape ?windturbineShapeColor ?windturbineShapeLabel 
   ?pand a bgt:Pand ;
        geo:hasGeometry/geo:asWKT ?pandShape ;
        bgt:gerelateerdBagPand ?bag .
-  filter (geof:sfIntersects(?windturbineShape, ?pandShape))
-  filter (?bag != pand:0000000000000000)
-  bind ('green' as ?windturbineShapeColor)
+  filter(geof:sfIntersects(?windturbineShape, ?pandShape))
+  filter(?bag != pand:0000000000000000)
+  bind('green' as ?windturbineShapeColor)
   # bouwjaar, mutatiedatum
-  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?pandShapeLabel)
-  bind (concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?windturbineShapeLabel)
+  bind(concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?pandShapeLabel)
+  bind(concat('<h3><a href="',str(?bag),'">BAG link</a></h3>') as ?windturbineShapeLabel)
 }
 offset 20
 limit 1

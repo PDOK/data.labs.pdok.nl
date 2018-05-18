@@ -23,7 +23,7 @@ select ?shape (sample(?shapeColor_) as ?shapeColor) (sample(?shapeLabel_) as ?sh
           ?pandStatus rdfs:label ?pandStatusLabel .
     }
   }
-  bind (str(?huisnummer) as ?huisnummerString)
+  bind(str(?huisnummer) as ?huisnummerString)
   service <https://data.labs.pdok.nl/sparql> {
     graph graph:energielabels {
       optional {
@@ -36,7 +36,7 @@ select ?shape (sample(?shapeColor_) as ?shapeColor) (sample(?shapeLabel_) as ?sh
       }
     }
   }
-  bind (if(!(bound(?energielabel)), "grey",
+  bind(if(!(bound(?energielabel)), "grey",
         if(strstarts(?energielabel, "A"), "#22b14c",
         if(?energielabel="B", "#8ff334",
         if(?energielabel="C", "#bdfc2c",
@@ -45,7 +45,7 @@ select ?shape (sample(?shapeColor_) as ?shapeColor) (sample(?shapeLabel_) as ?sh
         if(?energielabel="F", "#ff7f27",
         if(?energielabel="G", "#ed1c24",
         "grey")))))))) as ?shapeColor_)
-  bind (concat('<h4><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',?shapeColor_,'" r="10"/></svg> Diezerstraat ',str(?huisnummer),'</h4>',if(bound(?x),concat('<h5>Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul>'),''),'<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">Zwolle</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?shapeLabel_)
+  bind(concat('<h4><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',?shapeColor_,'" r="10"/></svg> Diezerstraat ',str(?huisnummer),'</h4>',if(bound(?x),concat('<h5>Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul>'),''),'<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">Zwolle</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?shapeLabel_)
 }
 group by ?shape
 limit 100

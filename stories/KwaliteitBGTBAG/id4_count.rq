@@ -10,9 +10,9 @@ SELECT (count(distinct ?bgt_pand)as ?count) WHERE {
   ?bgt_pand a bgt:Pand ;
              bgt:gerelateerdBagPand ?bag_pand ;
              foaf:isPrimaryTopicOf ?v1 .
-  filter (?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
+  filter(?bag_pand != <http://bag.basisregistraties.overheid.nl/bag/id/pand/0000000000000000>)
   bind(substr(strafter(str(?bag_pand), "http://bag.basisregistraties.overheid.nl/bag/id/pand/"),5,2) as ?pandid)
-  filter (?pandid != '10') .
+  filter(?pandid != '10') .
   filter not exists{
     ?v1 bgt:objectEindtijd ?eind .
   }

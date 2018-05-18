@@ -23,8 +23,8 @@ where {
   graph <https://data.pdok.nl/cbs/wijken_buurten_2016> {
      ?buurt geo:hasGeometry/geo:asWKT ?wkt .
   }
-  bind (xsd:integer(?transacties / 100 * 255) as ?green)
-  bind (xsd:integer(255 - (?transacties / 100 * 255)) as ?red)
-  bind (concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
+  bind(xsd:integer(?transacties / 100 * 255) as ?green)
+  bind(xsd:integer(255 - (?transacties / 100 * 255)) as ?red)
+  bind(concat('rgb(',str(?red),',0,',str(?green),')') as ?wktColor)
 }
 order by desc(?hipheid)

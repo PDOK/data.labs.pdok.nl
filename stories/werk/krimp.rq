@@ -14,7 +14,7 @@ select ?gemeente ?shape ?shapeLabel ?shapeColor {
     ?peiljaar lisa:jaar ?jaar ;
               lisa:banenTotaal ?banen ;
               lisa:vestigingenTotaal ?vestigingen .
-    filter (xsd:int(?jaar) = 2016)
+    filter(xsd:int(?jaar) = 2016)
   }
   # Bijbehorende CBS gemeente
   graph<https://data.pdok.nl/cbs/wijken_buurten_2016> {

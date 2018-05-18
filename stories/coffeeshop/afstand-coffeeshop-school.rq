@@ -11,8 +11,8 @@ select ?vboWkt ?vboWktLabel {
          geo:hasGeometry/geo:asWKT ?vboWkt ;
          rdfs:label ?vboLabel .
     ?pand rdfs:label ?pandLabel .
-    filter (?vbo = verblijfsobject:0307010000462567)
-    bind (concat(
+    filter(?vbo = verblijfsobject:0307010000462567)
+    bind(concat(
       '<h3>Coffeeshop</h3>',
       '<p><a href="',str(?pand),'">',str(?pandLabel),'</a><br>',
       '<a href="',str(?vbo),'">',str(?vboLabel),'</a></p>'
@@ -23,8 +23,8 @@ select ?vboWkt ?vboWktLabel {
          geo:hasGeometry/geo:asWKT ?vboWkt ;
          rdfs:label ?vboLabel .
     ?pand rdfs:label ?pandLabel .
-    filter (?vbo = verblijfsobject:0307010000519401)
-    bind (concat(
+    filter(?vbo = verblijfsobject:0307010000519401)
+    bind(concat(
       '<h3>School</h3>',
       '<p><a href="',str(?pand),'">',str(?pandLabel),'</a><br>',
       '<a href="',str(?vbo),'">',str(?vboLabel),'</a></p>'
@@ -32,8 +32,8 @@ select ?vboWkt ?vboWktLabel {
   } union {
     verblijfsobject:0307010000462567 geo:hasGeometry/geo:asWKT ?punt1 .
     verblijfsobject:0307010000519401 geo:hasGeometry/geo:asWKT ?punt2 .
-    bind (concat('LineString ((',replace(str(?punt1),'POINT\\s\\((.*)\\)','$1'),', ',replace(str(?punt2),'Point\\s\\((.*)\\)','$1'),'))') as ?vboWkt)
-    bind (geof:distance(?punt1, ?punt2, uom:metre) as ?afstand)
-    bind (concat('<h3>Afstand hemelsbreed</h3><br>',str(round(?afstand)),' meter') as ?vboWktLabel)
+    bind(concat('LineString ((',replace(str(?punt1),'POINT\\s\\((.*)\\)','$1'),', ',replace(str(?punt2),'Point\\s\\((.*)\\)','$1'),'))') as ?vboWkt)
+    bind(geof:distance(?punt1, ?punt2, uom:metre) as ?afstand)
+    bind(concat('<h3>Afstand hemelsbreed</h3><br>',str(round(?afstand)),' meter') as ?vboWktLabel)
   }
 }

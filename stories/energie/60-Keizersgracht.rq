@@ -16,7 +16,7 @@ select distinct ?geo_location ?geo_locationLabel
   service <https://data.pdok.nl/sparql> {
     values (?woonplaatsNaam ?straatNaam     ?huisnummer) {
            ("Amsterdam"@nl  "Keizersgracht" 493        ) }
-    bind (str(?woonplaatsNaam) as ?bagWplNaam) .
+    bind(str(?woonplaatsNaam) as ?bagWplNaam) .
     ?woonplaats bag:identificatiecode ?woonplaatsCode ;
                 bag:naamWoonplaats ?bagWplNaam .
     ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
@@ -35,7 +35,7 @@ select distinct ?geo_location ?geo_locationLabel
                      geo:hasGeometry/geo:asWKT ?geo_location ;
                      a ?verblijfsobjectKlasse ;
                      rdfs:isDefinedBy ?voorkomen .
-    filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
+    filter(?verblijfsobjectKlasse != bag:Verblijfsobject)
     ?voorkomen bag:beginGeldigheid ?begin .
     filter not exists { ?voorkomen bag:eindGeldigheid [] }
     ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
@@ -60,11 +60,11 @@ select distinct ?geo_location ?geo_locationLabel
                 energie:energie_verbuik_MJ ?PandVanMeting_energieverbuik_MJ ;
                 energie:gas_verbuik_m3 ?PandVanMeting_gasverbuik_m3 ;
                 energie:co2_verbruik_kg ?PandVanMeting_CO2verbruik_kg .
-    bind (xsd:integer(?huisnummer_) as ?huisnummer)
-    bind (xsd:double(?PandVanMeting_elektraverbuik_kWh) as ?elektraverbuik_kWh)
-    bind (xsd:double(?PandVanMeting_energieverbuik_MJ) as ?energieverbuik_MJ)
-    bind (xsd:double(?PandVanMeting_gasverbuik_m3) as ?gasverbuik_m3)
-    bind (concat(
+    bind(xsd:integer(?huisnummer_) as ?huisnummer)
+    bind(xsd:double(?PandVanMeting_elektraverbuik_kWh) as ?elektraverbuik_kWh)
+    bind(xsd:double(?PandVanMeting_energieverbuik_MJ) as ?energieverbuik_MJ)
+    bind(xsd:double(?PandVanMeting_gasverbuik_m3) as ?gasverbuik_m3)
+    bind(concat(
       '<h3>',str(?woonplaatsNaam),' ',str(?postcode),'  ',str(?straatNaam),'  ',str(?huisnummer) ,'</h3>',
       '<ul><li>Pand status: ',str(?pand_status),'</li>',
       '<li>Pand oppervlakte: ',str(?oppervlakte),' m²','</li>',

@@ -6,7 +6,7 @@ select ?status (count(?verblijfsobject) as ?n) {
   graph ?g {
     ?verblijfsobject bag:oppervlakte ?oppervlakte ;
                      bag:status ?status .
-    filter (?oppervlakte = 1)
+    filter(?oppervlakte = 1)
   }
   filter not exists {
     ?g bag:eindGeldigheid ?eind .

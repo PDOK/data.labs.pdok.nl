@@ -20,8 +20,8 @@ select ?lisa_gem ?g_naam ?gemeente ?shape ?shapeColor { #?shapeLabel
         ?peiljaar lisa:jaar ?jaar ;
                   lisa:banenTotaal ?banen ;
                   lisa:vestigingenTotaal ?vestigingen .
-        filter (xsd:int(?jaar)=2016)
-        bind (?banen / ?vestigingen as ?banen_per_vestiging)
+        filter(xsd:int(?jaar)=2016)
+        bind(?banen / ?vestigingen as ?banen_per_vestiging)
       }
     }
   }
@@ -32,13 +32,13 @@ select ?lisa_gem ?g_naam ?gemeente ?shape ?shapeColor { #?shapeLabel
     ?peiljaar lisa:jaar ?jaar ;
               lisa:banenTotaal ?banen ;
               lisa:vestigingenTotaal ?vestigingen .
-    filter (xsd:int(?jaar) = 2016)
-    bind (?banen / ?vestigingen as ?banen_per_vestiging)
-    bind (((?banen_per_vestiging - ?min_banen_per_vestiging) /
+    filter(xsd:int(?jaar) = 2016)
+    bind(?banen / ?vestigingen as ?banen_per_vestiging)
+    bind(((?banen_per_vestiging - ?min_banen_per_vestiging) /
           (?max_banen_per_vestiging - ?min_banen_per_vestiging))
           as ?banen_per_vestiging_rank)
-    bind (concat('hot,', str(?banen_per_vestiging_rank)) as ?shapeColor)
-    bind (concat(
+    bind(concat('hot,', str(?banen_per_vestiging_rank)) as ?shapeColor)
+    bind(concat(
       '<h3>Banen per vestigingen</h3>',
       '<h4>',str(?g_naam),' ',str(?jaar),'</h4>',
       '<p>Voor deze gemeente: <b>',substr(str(?banen/?vestigingen),1,4),' banen per vestiging</b></p>' ,

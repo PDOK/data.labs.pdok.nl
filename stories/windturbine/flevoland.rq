@@ -9,15 +9,15 @@ select ?wkt ?wktColor {
       ?osm a <http://www.wikidata.org/entity/Q49833> ;
            geo:hasGeometry/geo:asWKT ?wkt .
     }
-    bind ("green" as ?wktColor)
+    bind("green" as ?wktColor)
   } union {
     ?windstats a dbo:WindMotor ;
                windstats:Provincie "Flevoland"^^xsd:string ;
                geo:hasGeometry/geo:asWKT ?wkt .
-    bind ("red" as ?wktColor)
+    bind("red" as ?wktColor)
   } union {
     ?brt a brt:Windturbine ;
          geo:hasGeometry/geo:asWKT ?wkt .
-    bind ("yellow" as ?wktColor)
+    bind("yellow" as ?wktColor)
   }
 }

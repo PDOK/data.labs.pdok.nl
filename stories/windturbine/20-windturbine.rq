@@ -8,17 +8,17 @@ select ?shape ?shapeColor {
       ?windturbine a wd:Q49833 ;
                    geo:hasGeometry/geo:asWKT ?shape .
     }
-    bind ('green' as ?shapeColor)
+    bind('green' as ?shapeColor)
   } union {
     service <https://data.pdok.nl/sparql> {
       ?windturbine a brt:Windturbine ;
                    geo:hasGeometry/geo:asWKT ?shape .
-      bind ('yellow' as ?shapeColor)
+      bind('yellow' as ?shapeColor)
     }
   } union {
     ?windturbine a bgt:Windturbine ;
                  geo:hasGeometry/geo:asWKT ?shapePolygon .
-    bind (strdt(concat('Point (',substr(str(?shapePolygon),11,34),')'),geo:wktLiteral) as ?shape)
-    bind ('blue' as ?shapeColor)
+    bind(strdt(concat('Point (',substr(str(?shapePolygon),11,34),')'),geo:wktLiteral) as ?shape)
+    bind('blue' as ?shapeColor)
   }
 }

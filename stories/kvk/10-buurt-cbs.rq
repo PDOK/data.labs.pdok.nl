@@ -11,9 +11,9 @@ select * {
            geo:hasGeometry/geo:asWKT ?shape ;
            rdfs:label ?naam .
   }
-  bind (xsd:float(?bedrijven) / 655.0 as ?normalized)
-  bind (concat('jet,',str(?normalized)) as ?shapeColor)
-  bind (concat(
+  bind(xsd:float(?bedrijven) / 655.0 as ?normalized)
+  bind(concat('jet,',str(?normalized)) as ?shapeColor)
+  bind(concat(
     '<h3>',str(?naam),'</h3>',
     '<p>Aantal bedrijven: ',str(?bedrijven),'</p>') as ?shapeLabel)
 }

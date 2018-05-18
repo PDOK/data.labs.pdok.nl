@@ -40,9 +40,9 @@ where {
    # #=================================================================================
 
    # filter some data outliers where radius can be bigger than a mast tower
-   filter (xsd:double(?windmolen_ashoogte) > xsd:double(?rotordiameter)/2)
+   filter(xsd:double(?windmolen_ashoogte) > xsd:double(?rotordiameter)/2)
 
-   bind (concat(
+   bind(concat(
      '<p>',
      'owner: ', str(?Eigenaar) ,'<br>',
      'windpark: ', str(?windpark),'<br>',

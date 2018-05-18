@@ -32,7 +32,7 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
                        bag:status ?verblijfsobjectStatus ;
                        geo:hasGeometry/geo:asWKT ?verblijfsobjectShape ;
                        rdfs:isDefinedBy ?voorkomen .
-      filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
+      filter(?verblijfsobjectKlasse != bag:Verblijfsobject)
       ?voorkomen bag:beginGeldigheid ?begin .
       filter not exists { ?voorkomen bag:eindGeldigheid [] }
       ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
@@ -41,9 +41,9 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
             bag:oorspronkelijkBouwjaar ?bouwjaar ;
             bag:status ?pandStatus .
       ?pandStatus skos:prefLabel ?pandStatusLabel
-      bind (concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
-      bind (month(?begin) as ?maand)
-      bind (if(?maand=1,'januari',
+      bind(concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
+      bind(month(?begin) as ?maand)
+      bind(if(?maand=1,'januari',
             if(?maand=2,'februari',
             if(?maand=3,'maart',
             if(?maand=4,'april',
@@ -55,7 +55,7 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
             if(?maand=10,'oktober',
             if(?maand=11,'november',
             'december'))))))))))) as ?maandLabel)
-      bind (concat(
+      bind(concat(
         '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
         '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
         '<p><b><a href="',str(?pand),'">Pand</a></b><br>',
@@ -85,8 +85,8 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
              cbs:zwembad ?afstandZwembad ;
              geo:hasGeometry/geo:asWKT ?buurtShape ;
              geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
-      filter (geof:sfWithin(?verblijfsobjectShape, ?buurtShape) = true)
-      bind (concat(
+      filter(geof:sfWithin(?verblijfsobjectShape, ?buurtShape) = true)
+      bind(concat(
         '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
         '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
         'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',

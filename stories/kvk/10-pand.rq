@@ -28,7 +28,7 @@ select ?shape ?shapeLabel {
                      bag:pandrelatering ?pand .
     ?pand bag:geometriePand/geo:asWKT ?shape .
   }
-  bind (concat(
+  bind(concat(
     '<p>',str(?sbi),'</p>',
     '<p>',str(?legal),'</p>',
     '<p>',str(?naam),'</p>') as ?shapeLabel)

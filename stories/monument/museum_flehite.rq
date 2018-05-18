@@ -10,9 +10,9 @@ select distinct ?monument (min(?pandWkt) as ?pandWkt) (min(?pandWktLabel) as ?pa
   values (?plaatsNaam ?straatNaam ?huisnummer) {
     ("Amersfoort" "Breestraat" 78)
   }
-  bind (strlang(?plaatsNaam, "nl-nl") as ?plaatsNaamNL)
-  bind (strlang(?straatNaam, "nl-nl") as ?straatNaamNL)
-  bind (str(?huisnummer) as ?huisnummerNL)
+  bind(strlang(?plaatsNaam, "nl-nl") as ?plaatsNaamNL)
+  bind(strlang(?straatNaam, "nl-nl") as ?straatNaamNL)
+  bind(str(?huisnummer) as ?huisnummerNL)
   graph graph:beeldbank {
     ?monument rce:huisnummer ?huisnummerNL ;
               rce:plaatsnaam ?plaatsNaamNL ;
@@ -39,7 +39,7 @@ select distinct ?monument (min(?pandWkt) as ?pandWkt) (min(?pandWktLabel) as ?pa
           bag:status ?pandStatus .
     ?pandStatus rdfs:label ?pandStatusLabel
   }
-  bind (concat(
+  bind(concat(
     '<h3><a href="',str(?monument),'">',str(?monumentNaam),'</a></h3>',
     '<h3>',str(?straatNaamNL),' ',str(?huisnummer),', <a href="',str(?plaats),'">',str(?plaatsNaamNL),'</a></h3>',
     '<a href="',str(?url),'"><img src="',str(?url),'" style="width: 225px;"></a>',

@@ -11,14 +11,14 @@ select ?code ?wkt ?wktLabel {
   #monument:17892
   values (?plaatsNaam     ?straatNaam    ?huisnummer) {
          ("'s-Gravenhage" "Prinsegracht" 5          ) }
-  bind (strdt(?huisnummer,xsd:string) as ?o1)
-  bind (strdt(?straatNaam,xsd:string) as ?o2)
+  bind(strdt(?huisnummer,xsd:string) as ?o1)
+  bind(strdt(?straatNaam,xsd:string) as ?o2)
   ?monument dbo:city ?city ;
             dbo:codeNationalMonument ?code ;
             dct:description ?desc ;
             rce:huisnummer ?o1 ;
             vcard:hasStreetAddress ?o2 .
-  filter (str(?city) = ?plaatsNaam)
+  filter(str(?city) = ?plaatsNaam)
   service <https://data.pdok.nl/sparql> {
     ?plaats bag:naamWoonplaats ?plaatsNaam .
     ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
@@ -35,7 +35,7 @@ select ?code ?wkt ?wktLabel {
           bag:status ?pandStatus .
     ?pandStatus rdfs:label ?pandStatusLabel
   }
-  bind (concat(
+  bind(concat(
     '<h4>Monument ',str(?code),', ',str(?straatNaam),' ',str(?huisNummer),', <a href="',str(?plaats),'">',str(?plaatsNaam),'</a></h4>',
     '<p>',str(?desc),'</p>',
     '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',

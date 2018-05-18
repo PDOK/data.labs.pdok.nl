@@ -17,15 +17,15 @@ select ?parkeergarage ?shape ?shapeColor {
                            geo:asWKT ?shape .
           }
         }
-        bind ('green' as ?shapeColor)
+        bind('green' as ?shapeColor)
       }
     }
     filter not exists {
       # Minus de parkeergarages die in zowel BRT alsook RDW staan.
       ?andereParkeergarage a brt:ParkeerdakParkeerdekParkeergarage;
                            geo:hasGeometry/geo:asWKT ?andereShape .
-      bind (geof:distance(?shape, ?andereShape, uom:metre) as ?afstand)
-      filter (?afstand < 50)
+      bind(geof:distance(?shape, ?andereShape, uom:metre) as ?afstand)
+      filter(?afstand < 50)
     }
   } union {
     ?parkeergarage a brt:ParkeerdakParkeerdekParkeergarage;

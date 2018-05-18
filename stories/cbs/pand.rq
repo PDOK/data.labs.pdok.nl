@@ -28,7 +28,7 @@ select ?shape ?shapeLabel {
                    geo:hasGeometry/geo:asWKT ?punt ;
                    a ?verblijfsobjectKlasse ; # Bring this to the top to destroy performance :-)
                    rdfs:isDefinedBy ?voorkomen .
-  filter (?verblijfsobjectKlasse != bag:Verblijfsobject)
+  filter(?verblijfsobjectKlasse != bag:Verblijfsobject)
   ?voorkomen bag:beginGeldigheid ?begin .
   filter not exists { ?voorkomen bag:eindGeldigheid [] }
   ?verblijfsobjectKlasse dct:subject/skos:prefLabel ?verblijfsobjectKlasseLabel .
@@ -37,8 +37,8 @@ select ?shape ?shapeLabel {
         bag:geometriePand/geo:asWKT ?shape ;
         bag:status ?pandStatus .
   ?pandStatus skos:prefLabel ?pandStatusLabel
-  bind (month(?begin) as ?maand)
-  bind (if(?maand=1,'januari',
+  bind(month(?begin) as ?maand)
+  bind(if(?maand=1,'januari',
         if(?maand=2,'februari',
         if(?maand=3,'maart',
         if(?maand=4,'april',
@@ -50,7 +50,7 @@ select ?shape ?shapeLabel {
         if(?maand=10,'oktober',
         if(?maand=11,'november',
         'december'))))))))))) as ?maandLabel)
-  bind (concat(
+  bind(concat(
     '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
     '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
     '<p><b><a href="',str(?pand),'">Pand</a></b><br>',

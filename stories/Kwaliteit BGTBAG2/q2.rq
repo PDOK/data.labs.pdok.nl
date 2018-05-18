@@ -12,14 +12,14 @@ select distinct ?wkt ?wktColor ?wktLabel {
            bgt:gerelateerdBagPand ?bag .
       ?voorkomen bgt:objectBegintijd ?begin ;
                  bgt:objectEindtijd ?eind .
-      filter (year(?eind) <= 2017)
+      filter(year(?eind) <= 2017)
     }
     limit 100
   }
   service <https://data.pdok.nl/sparql> {
     graph ?voorkomen {
       ?bag bag:status ?status .
-      filter (?status = begrip:PandInGebruik_nietIngemeten || ?status = begrip:PandGesloopt)
+      filter(?status = begrip:PandInGebruik_nietIngemeten || ?status = begrip:PandGesloopt)
     }
     optional {
       ?voorkomen bag:eindGeldigheid ?eind0 .
@@ -36,11 +36,11 @@ select distinct ?wkt ?wktColor ?wktLabel {
          bag:oorspronkelijkBouwjaar ?bouwjaar .
     ?status rdfs:label ?statusLabel .
   }
-  filter (!(bound(?eind0)))
-  bind (if(year(?eind) < 2017,"red",if(month(?eind) < 7,"red","orange")) as ?wktColor)
-  bind (concat(str(year(?begin)),'-',str(month(?begin)),'-',str(day(?begin))) as ?beginLabel)
-  bind (concat(str(year(?eind)),'-',str(month(?eind)),'-',str(day(?eind))) as ?eindLabel)
-  bind (concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m²<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
+  filter(!(bound(?eind0)))
+  bind(if(year(?eind) < 2017,"red",if(month(?eind) < 7,"red","orange")) as ?wktColor)
+  bind(concat(str(year(?begin)),'-',str(month(?begin)),'-',str(day(?begin))) as ?beginLabel)
+  bind(concat(str(year(?eind)),'-',str(month(?eind)),'-',str(day(?eind))) as ?eindLabel)
+  bind(concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m²<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
 }
 order by ?delta
 limit 200

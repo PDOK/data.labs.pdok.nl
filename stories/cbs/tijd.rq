@@ -4,7 +4,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?buurtWkt ?buurtWktLabel {
-  bind ("GM0200" as ?gemeenteCode)
+  bind("GM0200" as ?gemeenteCode)
   graph graph:wijkbuurt-2015 {
     ?buurt cbs:afstandCafé ?café2015 ;
            cbs:buurtNaam ?buurtNaam ;
@@ -23,7 +23,7 @@ select ?buurtWkt ?buurtWktLabel {
     ?buurt cbs:afstandCafé ?café2012 ;
            geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
   }
-  bind (concat(
+  bind(concat(
     '<h3>Afstrand tot café<br>',str(?buurtNaam),'</h3>',
     '<p>2012: ',str(?café2012),' km<br>',
     '2013: ',str(?café2013),' km<br>',

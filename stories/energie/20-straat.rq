@@ -24,7 +24,7 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
             bag:oorspronkelijkBouwjaar ?bouwjaar ;
             bag:status ?pandStatus .
       ?pandStatus rdfs:label ?pandStatusLabel .
-      bind (str(?huisnummer) as ?huisnummerString)
+      bind(str(?huisnummer) as ?huisnummerString)
     }
   }
   service <https://data.labs.pdok.nl/sparql> {
@@ -41,7 +41,7 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
       }
     }
   }
-  bind (if(!(bound(?energielabel)), "grey",
+  bind(if(!(bound(?energielabel)), "grey",
         if(strstarts(?energielabel, "A"), "#22b14c",
         if(?energielabel="B", "#8ff334",
         if(?energielabel="C", "#bdfc2c",
@@ -50,7 +50,7 @@ select ?wkt ?wktColor (max(?wktLabel0) as ?wktLabel) {
         if(?energielabel="F", "#ff7f27",
         if(?energielabel="G", "#ed1c24",
         "grey")))))))) as ?wktColor)
-  bind (concat(
+  bind(concat(
     '<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
     if(
       bound(?energielabel),

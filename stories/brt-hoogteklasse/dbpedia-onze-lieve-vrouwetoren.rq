@@ -2,5 +2,5 @@ prefix dbr: <http://dbpedia.org/resource/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select * {
   dbr:Onze_Lieve_Vrouwetoren rdfs:comment ?comment .
-  filter (lang(?comment) = "nl")
+  filter(lang(?comment) = "nl")
 }
