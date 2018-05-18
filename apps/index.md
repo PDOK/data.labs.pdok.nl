@@ -27,6 +27,13 @@ Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld
   - [Transport browser](../presentations/transport-browser/index.html)
   - [Voorzieningen browser](../presentations/voorzieningen-browser/index.html)
 
+## Bier tijdreis
+
+Als onderdeel van de [Hach-a-LOD 2018](http://hackalod.com) heeft het
+Kadaster een **bier tijdreis** gemaakt, waarin het ontstaan van
+bierbrouwerijen door de tijd heen wordt gevisualiseerd op een kaart:
+[zie de live demo](../presentations/bier-tijdreis/index.html).
+
 ## Zoeken op begrip in datasets
 Een van de obstakels voor het (her)gebruik van data is dat data vaak moeilijk vindbaar is voor potentiële gebruikers, of zelfs helemaal niet vindbaar is. Dit geldt met name voor gebruikers die niet bekend zijn binnen het geo-domein, zij zoeken vaak niet op de BAG maar op zoektermen zoals ‘adres’. Zeker voor linked data is dit een obstakel: hoe meer datasets gelinkt worden, hoe meer data verspreid zal staan over heterogene datasets. Om de vindbaarheid van data te vergroten is een zoekmachine gemaakt, die het mogelijk maakt datasets te zoeken door op begrippen te zoeken uit de linked data vocabulaires. [Klik op de afbeelding om de zoekmachine te openen.](/apps/zoeken).
 
