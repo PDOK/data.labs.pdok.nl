@@ -10,7 +10,7 @@ title: Demonstrators (apps)
 
 Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
 Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
-link](../presentations/2018-04-05-3D-High5.html) voor de presentatie
+link](3D-High5.md) voor de presentatie
 van het Linked Data onderdeel.
 
 # Applicaties
