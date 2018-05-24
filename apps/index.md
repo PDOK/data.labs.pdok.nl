@@ -22,6 +22,11 @@ van het Linked Data onderdeel.
 
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
 
+## Archiefviewer
+Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee de perceelsgeschiedenis van Lisse is in te zien. De applicatie is nog in ontwikkeling.
+
+[Archiefviewer op de kaart](archief-mapviewer.html) 
+
 ## FacetCheck
 
   - [Bier browser](../presentations/bier-browser/)
