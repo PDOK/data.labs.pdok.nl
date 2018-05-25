@@ -34,122 +34,123 @@ In order ot access the data in Tableau Desktop:
                 <div id="errorMsg"></div>
             </div>
 
-    <script>
-      (function() {
-            // Create the connector object
-            var myConnector = tableau.makeConnector();
+     <script>
+                        (function() {
+                            // Create the connector object
+                            var myConnector = tableau.makeConnector();
 
-            myConnector.getSchema = function(schemaCallback) {
+                            myConnector.getSchema = function(schemaCallback) {
 
-                        var cols = [{
-                            id: "pand",
-                            alias: "Pand URI",
-                            dataType: tableau.dataTypeEnum.string
-                        }, {
-                            id: "pandID",
-                            alias: "pand ID",
-                            dataType: tableau.dataTypeEnum.string
-                        }, {
-                            id: "year",
-                            alias: "year of construction",
-                            dataType: tableau.dataTypeEnum.int
-                        }, {
-                            id: "voorkomenPand",
-                            alias: "voorkomen",
-                            dataType: tableau.dataTypeEnum.string
-                        }, {
-                            id: "beginPand",
-                            alias: "date of registration",
-                            dataType: tableau.dataTypeEnum.datetime
-                        }, {
-                            id: "endPand",
-                            alias: "date of expiration",
-                            dataType: tableau.dataTypeEnum.datetime
-                        }, {
-                            id: "location",
-                            alias: "geographical location",
-                            dataType: tableau.dataTypeEnum.geometry
-                        }, {
-                            id: "buurtNaam",
-                            alias: "Name of neighbourhood",
-                            dataType: tableau.dataTypeEnum.string
-                           }
-                        ];
-
-
-                        var tableSchema = {
-                            id: "BagvoorBuurt",
-                            alias: "Registration and expiration dates of panden",
-                            columns: cols
-                        };
-
-                        tableau.log(cols);
-                        schemaCallback([tableSchema]);
-                    };
-
-            myConnector.getData = function(table, doneCallback) {
-                       var userInput = JSON.parse(tableau.connectionData),
-                           apiCall = "https://data.labs.pdok.nl/api/StanRonzhin/tableauIntegration/PandenVoorBuurt?buurtNaam=" + userInput.input;
-
-                       var settings = {
-                           "async": true,
-                           "crossDomain": true,
-                           "url": apiCall,
-                           "method": "GET",
-                           "headers": {
-                              "accept": "application/json"
-                           }
-                       };
-
-            $.ajax(settings).done(function (resp) {
-                       var feat = resp.results.bindings,
-                       tableData = [];
-
-                      // Iterate over the JSON object
-                         for (var i = 0, len = feat.length; i < len; i++) {
-                                    var wkt_data = new Wkt.Wkt();
-                                    wkt_data.read(feat[i].wkt.value);
-                                    var dateFormat = "Y-MM-DD HH:mm:ss";
-                                    var beginPand = moment(feat[i].beginPand.value).format(dateFormat);
-                                    
-                                     tableData.push({
-                                           "buurtNaam": userInput.input,
-                                           "pand": feat[i].pand.value,
-                                           "pandID": feat[i].pandID.value,
-                                           "year": feat[i].year.value,
-                                           "voorkomenPand": feat[i].voorkomenPand.value,
-                                           "beginPand": beginPand,
-                                           "endPand" : (function() {
-                                     if (typeof feat[i].endPand == 'undefined') {
-                                                     return moment().format(dateFormat);     
-                                               } else { return moment(feat[i].endPand.value).format(dateFormat);                                                     }})(),
-                                         "location": wkt_data.toJson()
-                                                       });
-                                                   }
-                                                   tableau.log(tableData);
-                                                   table.appendRows(tableData);
-                                                   doneCallback();
-                                               });
-
-                                           };
-
-            tableau.registerConnector(myConnector);
+                                var cols = [{
+                                    id: "pand",
+                                    alias: "Pand URI",
+                                    dataType: tableau.dataTypeEnum.string
+                                }, {
+                                    id: "pandID",
+                                    alias: "pand ID",
+                                    dataType: tableau.dataTypeEnum.string
+                                }, {
+                                    id: "year",
+                                    alias: "year of construction",
+                                    dataType: tableau.dataTypeEnum.int
+                                }, {
+                                    id: "voorkomenPand",
+                                    alias: "voorkomen",
+                                    dataType: tableau.dataTypeEnum.string
+                                }, {
+                                    id: "beginPand",
+                                    alias: "date of registration",
+                                    dataType: tableau.dataTypeEnum.datetime
+                                }, {
+                                    id: "endPand",
+                                    alias: "date of expiration",
+                                    dataType: tableau.dataTypeEnum.datetime
+                                }, {
+                                    id: "location",
+                                    alias: "geographical location",
+                                    dataType: tableau.dataTypeEnum.geometry
+                                }, {
+                                    id: "buurtNaam",
+                                    alias: "Name of neighbourhood",
+                                    dataType: tableau.dataTypeEnum.string
+                                }
+                                ];
 
 
-            // Create event listeners for when the user submits the form
-            $(document).ready(function() {
-                $("#submitButton").click(function() {
-                  var userInput = {
-                  input: $('#buurtNaam').val().trim()
-                  };
-                   tableau.connectionData = JSON.stringify(userInput); // Use this variable to pass data to your getSchema and getData functions
-                        tableau.log(userInput);
+                                var tableSchema = {
+                                    id: "BagvoorBuurt",
+                                    alias: "Registration and expiration dates of panden",
+                                    columns: cols
+                                };
 
-                  tableau.connectionName = "Panden voor Buurt"; // This will be the data source name in Tableau
-                    tableau.submit(); // This sends the connector object to Tableau
-                });
-            });
-        })();
+                                tableau.log(cols);
+                                schemaCallback([tableSchema]);
+                            };
+
+                            myConnector.getData = function(table, doneCallback) {
+                                var userInput = JSON.parse(tableau.connectionData),
+                                    apiCall = "https://data.labs.pdok.nl/api/StanRonzhin/tableauIntegration/PandenVoorBuurt?buurtNaam=" + userInput.input,
+                                api_call_sparql = "https://data.pdok.nl/sparql?query=Prefix%20bag%3A%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%20%0D%0APrefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%20%0D%0APrefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20%0D%0APrefix%20cbs_vocab%3A%20%3Chttps%3A%2F%2Fdata.pdok.nl%2Fcbs%2Fvocab%2F%3E%0D%0APrefix%20cbs_def%3A%20%3Chttps%3A%2F%2Fdata.pdok.nl%2Fcbs%2Fdef%2F%3E%0D%0A%20%0D%0Aselect%20distinct%20%20%3Fpand%20%3FpandID%20%3Fyear%20%3FvoorkomenPand%20%3FbeginPand%20%3FendPand%20%20%3Fwkt%0D%0A%7B%0D%0A%20%20%20%20Service%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Fsparql%3E%20%7B%20%0D%0A%09Graph%20%3Chttp%3A%2F%2Fdata.pdok.nl%2Flinksets%2FVerblijfsobjecten2Buurten2016%3E%7B%0D%0A%20%20%20%20%20%20%3Fs%20%3Fp%20%3Fo%7D%0D%0A%20%20%20%20%20%20%3Fbuurt%20cbs_def%3ABU_CODE%20%3FbuurtCode%3B%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20cbs_def%3ABU_NAAM%20%22" + userInput.input + "%22%20.%20%0D%0A%20%20%20%20%20%20%3Fo%20cbs_vocab%3Aregioaanduiding_Codering_code%20%3FbuurtCode.%0D%0A%20%20%7D%20%20%0D%0A%20%20%20%20%3Fs%20rdfs%3AisDefinedBy%20%3Fvoorkomen.%0D%0A%20%20%3Fvoorkomen%20bag%3AbeginGeldigheid%20%3Fbegin.%20%0D%0A%20%20%3Fs%20bag%3Apandrelatering%20%3Fpand.%20%0D%0A%20%20%3Fpand%20bag%3Aidentificatiecode%20%3FpandID%3B%0D%0A%09%09geo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fwkt%3B%0D%0A%20%20%20%20%20%20%20%20bag%3AoorspronkelijkBouwjaar%20%3Fyear%3B%0D%0A%09%09rdfs%3AisDefinedBy%20%3FvoorkomenPand%20.%20%0D%0A%3FvoorkomenPand%20bag%3AbeginGeldigheid%20%3FbeginPand.%20%0D%0A%20Optional%20%7B%3FvoorkomenPand%20bag%3AeindGeldigheid%20%3FendPand%7D%20%0D%0A%7D%20";
+
+                                var settings = {
+                                    "async": true,
+                                    "crossDomain": true,
+                                    "url": api_call_sparql,
+                                    "method": "GET",
+                                    "headers": {
+                                        "accept": "application/json"
+                                    }
+                                };
+
+                                $.ajax(settings).done(function (resp) {
+                                    var feat = resp.results.bindings,
+                                        tableData = [];
+
+                                    // Iterate over the JSON object
+                                    for (var i = 0, len = feat.length; i < len; i++) {
+                                        var wkt_data = new Wkt.Wkt();
+                                        wkt_data.read(feat[i].wkt.value);
+                                        var dateFormat = "Y-MM-DD HH:mm:ss";
+                                        var beginPand = moment(feat[i].beginPand.value).format(dateFormat);
+
+                                        tableData.push({
+                                            "buurtNaam": userInput.input,
+                                            "pand": feat[i].pand.value,
+                                            "pandID": feat[i].pandID.value,
+                                            "year": feat[i].year.value,
+                                            "voorkomenPand": feat[i].voorkomenPand.value,
+                                            "beginPand": beginPand,
+                                            "endPand" : (function() {
+                                                if (typeof feat[i].endPand == 'undefined') {
+                                                    return moment().format(dateFormat);
+                                                } else { return moment(feat[i].endPand.value).format(dateFormat);                                                     }})(),
+                                            "location": wkt_data.toJson()
+                                        });
+                                    }
+                                    tableau.log(tableData);
+                                    table.appendRows(tableData);
+                                    doneCallback();
+                                });
+
+                            };
+
+                            tableau.registerConnector(myConnector);
 
 
-    </script>
+                            // Create event listeners for when the user submits the form
+                            $(document).ready(function() {
+                                $("#submitButton").click(function() {
+                                    var userInput = {
+                                        input: $('#buurtNaam').val().trim()
+                                    };
+                                    tableau.connectionData = JSON.stringify(userInput); // Use this variable to pass data to your getSchema and getData functions
+                                    tableau.log(userInput);
+
+                                    tableau.connectionName = "Panden voor Buurt"; // This will be the data source name in Tableau
+                                    tableau.submit(); // This sends the connector object to Tableau
+                                });
+                            });
+                        })();
+
+
+                    </script>
