@@ -17,5 +17,5 @@ We hebben een eigen sparql endpoint. Wil je deze bevragen in de browser, dan heb
 ## GeoSPARQL
 We hosten een apart [geosparql endpoint](/geosparql). We hebben hier geen eigen [yasgui](/yasgui) sectie voor, maar je kan hier wel het endpointadres aanpassen.
 
-## Demonstrators (apps)
+## Demonstrators & apps
 Bekijk de [visualisatie- en dataverwerkingsapplicaties](/apps)

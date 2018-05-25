@@ -4,23 +4,10 @@ title: Demonstrators (apps)
 ---
 <script src="/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
-# Presentaties
-
-## In ontwikkeling
-
-Hierbij een voorproefje van het bevragen van 3D data door de tijd heen
-(4D) in [BAG to the Future](BAG-to-the-Future.html)
-
-## 3D High5
-
-Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
-Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
-link](3D-High5.md) voor de presentatie
-van het Linked Data onderdeel.
-
 # Applicaties
 
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden ontwikkeld of getest.
+Presentaties zijn te vinden onder [publicaties](/publications).
 
 ## Archiefviewer
 Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee de perceelsgeschiedenis van Lisse is in te zien. De applicatie is nog in ontwikkeling.
