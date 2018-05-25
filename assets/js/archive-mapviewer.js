@@ -80,14 +80,21 @@ ${parcelNumber}
 `;
             const foundFieldwork = parcelsToFieldwork
               .filter(entry => entry.Perceel.toString() === parcelNumber)
-              .filter(entry => fieldworkFiles.filter(f => {
-                return f.veldwerk === entry.Veldwerk;
-              }).length > 0);
+              .filter(entry => fieldworkFiles
+                .filter(f => f.veldwerk === entry.Veldwerk).length > 0);
+
+            const foundFiles = foundFieldwork.map(entry => fieldworkFiles
+              .filter(f => f.veldwerk === entry.Veldwerk));
 
             if (foundFieldwork.length > 0) {
-              foundFieldwork.forEach(found => innerHTML += `
-${found.Perceel.toString()}, 
-veldwerk: ${found.Veldwerk.toString()}<br>`);
+              foundFieldwork.forEach((found, index) => {
+                innerHTML += `Veldwerk ${found.Veldwerk.toString()}<br>`;
+                foundFiles[index]
+                  .forEach((file) => {
+                    const imgUri = `https://data.labs.pdok.nl/dumps/perceel/veldwerk/${file.file}`;
+                    innerHTML += `<a href="${imgUri}" target="_blank"><img src="${imgUri}" /></a>`;
+                  });
+              });
             } else {
               innerHTML += 'Geen historisch veldwerk voor 1919 gevonden\n';
             }

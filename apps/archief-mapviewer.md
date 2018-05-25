@@ -37,6 +37,7 @@ title: Archiefviewer op de kaart
     background-color: white;
     padding: 0 0.5em 0.5em 0.5em;
     opacity: 0.8;
+    overflow-y: auto;
   }
 </style>
     
