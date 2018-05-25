@@ -41,7 +41,7 @@ title: Archiefviewer op de kaart
   }
 </style>
     
+<button id="fullscreen" style="position:relative; float:right;">Fullscreen</button>
 <div id="map" class="map"><div id="overlay" style="z-index:9999">Selecteer een perceel</div></div>
-
 <script src="/assets/js/archive-mapviewer.js">
 </script>
