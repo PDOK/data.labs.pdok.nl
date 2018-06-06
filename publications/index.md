@@ -29,6 +29,5 @@ Hierbij een voorproefje van het bevragen van 3D data door de tijd heen
 
 Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
 Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
-link](3D-High5.md) voor de presentatie
+link](3D-High5.html) voor de presentatie
 van het Linked Data onderdeel.
-
