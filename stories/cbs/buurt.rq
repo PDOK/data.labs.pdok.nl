@@ -1,12 +1,16 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
-prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix cbs-qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
 prefix dct: <http://purl.org/dc/terms/>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix slice: <http://betalinkeddata.cbs.nl/83487NED/id/slice/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
   {
@@ -44,17 +48,17 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
       bind(concat('GM',str(?registratiefGebiedCode)) as ?gemeenteCode)
       bind(month(?begin) as ?maand)
       bind(if(?maand=1,'januari',
-            if(?maand=2,'februari',
-            if(?maand=3,'maart',
-            if(?maand=4,'april',
-            if(?maand=5,'mei',
-            if(?maand=6,'juni',
-            if(?maand=7,'juli',
-            if(?maand=8,'augustus',
-            if(?maand=9,'september',
-            if(?maand=10,'oktober',
-            if(?maand=11,'november',
-            'december'))))))))))) as ?maandLabel)
+           if(?maand=2,'februari',
+           if(?maand=3,'maart',
+           if(?maand=4,'april',
+           if(?maand=5,'mei',
+           if(?maand=6,'juni',
+           if(?maand=7,'juli',
+           if(?maand=8,'augustus',
+           if(?maand=9,'september',
+           if(?maand=10,'oktober',
+           if(?maand=11,'november',
+           'december'))))))))))) as ?maandLabel)
       bind(concat(
         '<p><b><a href="',str(?openbareRuimte),'">',str(?straatNaam),'</a> ',str(?huisnummer),'</b><br>',
         '<a href="',str(?nummeraanduiding),'">',str(?postcode),'</a> <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a> (',str(?woonplaatsCode),')</p>',
@@ -73,28 +77,26 @@ select ?buurtShape ?buurtShapeLabel ?pandShape ?pandShapeLabel {
         ) as ?pandShapeLabel)
     }
   }
-  service <https://data.labs.pdok.nl/sparql> {
-    graph graph:wijkbuurt-2015 {
-      ?buurt cbs:afstandCafé ?afstandCafe ;
-             cbs:bevolkingsdichtheid ?bevolkingsDichtheid ;
-             cbs:buurtNaam ?buurtNaam ;
-             cbs:gehuwd ?gehuwd ;
-             cbs:ongehuwd ?ongehuwd ;
-             cbs:verweduwd ?verweduwd ;
-            #cbs:woz ?woz ;
-             cbs:zwembad ?afstandZwembad ;
-             geo:hasGeometry/geo:asWKT ?buurtShape ;
-             geo:sfWithin/geo:sfWithin/cbs:gemeenteCode ?gemeenteCode .
-      filter(geof:sfWithin(?verblijfsobjectShape, ?buurtShape) = true)
-      bind(concat(
-        '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
-        '<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
-        'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
-        'Gehuwd: ',str(?gehuwd),' personen<br>',
-        'Ongehuwd: ',str(?ongehuwd),' personen<br>',
-       #'WOZ waarde: € ',str(?woz),'.000,-<br>',
-        'Afstand tot café: ',str(?afstandCafe),' km</p>'
-        ) as ?buurtShapeLabel)
+  service <https://data.acceptatie.pdok.nl/sparql/cbs> {
+    ?observation cbs-qb:inObservationGroup slice:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ;
+                 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?afstand ;
+                 dimension:regio ?buurt ;
+                 rdfs:label ?buurtNaam .
+#cbs:bevolkingsdichtheid ?bevolkingsDichtheid ;
+#cbs:gehuwd ?gehuwd ;
+#cbs:ongehuwd ?ongehuwd ;
+#cbs:verweduwd ?verweduwd ;
+#cbs:zwembad ?afstandZwembad ;
+    ?buurt geo:hasGeometry/geo:asWKT ?buurtShape ;
+           geo:sfWithin/geo:sfWithin/cbs:regioCode ?gemeenteCode .
+    filter(geof:sfWithin(?verblijfsobjectShape,?buurtShape))
+    bind(concat(
+      '<p><b>Statistieken voor buurt ',str(?buurtNaam),'</b></p>',
+      #'<p>Bevolkingsdichtheid: ',str(?bevolkingsDichtheid),' inwoners per km²<br>',
+      #'Afstand tot zwembad: ',str(?afstandZwembad),' km<br>',
+      #'Gehuwd: ',str(?gehuwd),' personen<br>',
+      #'Ongehuwd: ',str(?ongehuwd),' personen<br>',
+      'Afstand tot café: ',str(?afstand),' km</p>') as ?buurtShapeLabel)
     }
   }
 }
