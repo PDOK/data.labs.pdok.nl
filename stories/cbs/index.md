@@ -1,132 +1,142 @@
 ---
-endpoint: https://data.labs.pdok.nl/sparql
+endpoint: https://data.pdok.nl/sparql/cbs
 layout: story
 logo: /stories/cbs/logo.png
 output: leaflet
-title: Kadaster Data Stories ― CBS
+title: CBS/Kadaster Data Story
 ---
 
-# BAG panden & CBS buurten
+# CBS/Kadaster Data Story
 
-Alle gebouwen in Nederland zijn vindbaar in de Basisregistratie
-Adressen en Gebouwen (BAG).  Voor gebouwen wordt o.a. de volgende
-informatie opgeslagen:
+## Query 1
 
-  * bouwjaar
-  * geldigheids-datum
-  * geometrie
-  * oppervlakte
-  * postcode
-  * status (wel/niet in gebruik)
-  * type (wooning, kantoor, etc.)
-  
-In de volgende query worden deze gegevens opgevraagd voor _Laan van
-Westenenk 701_ te _Apeldoorn_.  Op de BAG achtergrondkaart wordt de
-geometrie van het aan het bijbehorende verblijfsobject getoond.  Door
-op de pin middenin de gemetrie te klikken worden de beschikbare
-gegevens voor dit gebouw getoond.
+bv. query 1 zou dan zijn om op basis van een aantal criteria uit te
+komen bij zoetermeer (dichtbij uitvalswegen, etc..)
 
-Merk op dat deze popup niet alleen de informatie als platte waardes
-bevat (getallen en tekst), maar ook als Linked Data identificatoren.
-Door op de links te klikken kan men door het Kadaster Semantisch Web
-wandelen.  Bijvoorbeeld: door op de
-link
-[_Laan van Westenenk_](http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0200300022472362) te
-klikken navigeert men naar de registratie van de bijbehorende openbare
-ruimte.  Hier is meer informatie over deze openbare ruimte
-beschikbaar.  Andere links op de popup in deze query verwijzen naar
-de:
+## Query 2
 
-  * [nummeraanduiding](http://bag.basisregistraties.overheid.nl/bag/id/nummeraanduiding/0200200000075716)
-  * [openbare ruimte](http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0200300022472362)
-  * [pand](http://bag.basisregistraties.overheid.nl/bag/id/pand/0200100000085932)
-  * [verblijfsobject](http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0200010000130331)
-  * [woonplaats](http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/3560)
+Een vergelijking tussen de wijken in zoetermeer o.b.v inwoners (bar
+chart).
 
-Niet alleen de verschillende registratie objecten, maar ook de bij wet
-vastgelegde terminologie is semantic gedocumenteerd en middels directe
-links opvraagbaar:
-
-  * [openbare ruimte](http://bag.basisregistraties.overheid.nl/id/begrip/NaamgevingUitgegeven)
-  * [status van het pand](http://bag.basisregistraties.overheid.nl/id/begrip/PandInGebruik)
-  * [status van het verblijfsobject](http://bag.basisregistraties.overheid.nl/id/begrip/VerblijfsobjectInGebruik)
-  * [type verblijfsobject](http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0200010000130331)
-
-Deze semantisch interpreteerbare links kunnen zo gevolgd worden door
-een mens die door de data browsed, maar ze kunnen ook genavigeerd
-worden door een stukje software: de queries op deze pagina zijn
-voorbeelden van zulke stukjes software.  Zo is het mogelijk om
-specifieke gegevens op te halen en om overzichten van de data te
-genereren.  Dit lijkt op de manier waarop traditionele databases te
-werk gaan, maar er is een belangrijk verschil: een traditionele
-database geeft _4334DP_ terug; platte tekst die een domein expert moet
-interpreteren.  Linked Data geeft niet alleen alleen de tekst terug,
-maar ook de link naar de onderliggende data en bijbehorende
-definities.  Dit is het verschil tussen _4334DP_
-en
-[_4334DP_](http://bag.basisregistraties.overheid.nl/bag/id/nummeraanduiding/0200200000075716).
-
-Ten slotte is het volgen van links niet beperkt tot één dataset.
-Onderaan de popup in deze query staat bijvoorbeeld het registratief
-gebied waartoe _Laan van Westenenk_ behoord.  Registratieve gebieden
-staan in een andere dataset: de Basisregistratie Topografie (BRT).
-
-<div data-query data-query-sparql="pand.rq"
-     data-query-endpoint="https://data.pdok.nl/sparql">
+<div data-query="http://localhost:4000/stories/cbs/#query=prefix+def%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2F83487NED%23%3E%0Aprefix+dimension%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2Fdimension%23%3E%0Aprefix+land%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fregios%2F2016%2Fid%2Fland-geografisch%2F%3E%0Aprefix+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aprefix+wijk%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fregios%2F2016%2Fid%2Fwijk%2F%3E%0Aselect+%3FregioLabel+%3Finwoners0_14+%3Finwoners15_24+%3Finwoners25_44+%3Finwoners45_64+%3Finwoners65plus+%7B%0A++values+%3Fregio+%7B%0A++++land%3ANL00%0A++++wijk%3AWK063709%0A++++wijk%3AWK063702%0A++++wijk%3AWK063700%0A++++wijk%3AWK063708%0A++++wijk%3AWK063701%0A++++wijk%3AWK063704%0A++++wijk%3AWK063706%0A++++wijk%3AWK063705%0A++++wijk%3AWK063703%0A++%7D%0A++_%3A0+def%3Abevolking_AantalInwoners+%3Ftotaal+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A1+def%3Abevolking_Leeftijdsgroepen_0Tot15Jaar+%3Fx1+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A2+def%3Abevolking_Leeftijdsgroepen_15Tot25Jaar+%3Fx2+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A3+def%3Abevolking_Leeftijdsgroepen_25Tot45Jaar+%3Fx3+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A4+def%3Abevolking_Leeftijdsgroepen_45Tot65Jaar+%3Fx4+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A5+def%3Abevolking_Leeftijdsgroepen_65JaarOfOuder+%3Fx5+%3B+dimension%3Aregio+%3Fregio+.%0A++bind(xsd%3Aint(%3Fx1%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners0_14)%0A++bind(xsd%3Aint(%3Fx2%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners15_24)%0A++bind(xsd%3Aint(%3Fx3%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners25_44)%0A++bind(xsd%3Aint(%3Fx4%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners45_64)%0A++bind(xsd%3Aint(%3Fx5%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners65plus)%0A++%3Fregio+rdfs%3Alabel+%3FregioLabel%0A%7D%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql%2Fcbs&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22legend%22%3A%22right%22%2C%22width%22%3A600%2C%22height%22%3A371%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22ColumnChart%22%7D%2C%22motionChartState%22%3Anull%7D"
+     data-query-output="gchart">
 </div>
 
-Hierboven lieten we al zien dat Linked Data zich niet beperkt to één
-dataset: BAG en BRT informatie is opvraagbaar vanuit dezelfde query.
-Dat betekent dat we nu _vragen over datasets heen kunnen stellen_.
+## Query 3
 
-Als voorbeeld nemen we
-de
-[CBS Wijk- en Buurtstatistieken](https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken).
-Stel dat we geïnteresseerd zijn in de afstand van gebouwen tot cafés.
-Informatie over cafés is niet per gebouw opgeslagen, maar wel per
-buurt.  We kunnen met Linked Data niet alleen expliciete links volgen,
-maar ook impliciete links.  Ons BAG gebouw en de CBS gegevens voor
-buurten zijn impliciet gelinked middels hun geometrie: het BAG gebouw
-ligt binnen de CBS buurt.  Deze ruimtelijke relatering is in
-onderstaande query zichtbaar gemaakt.
+zou een vergelijking kunnen zijn op woningvoorraad
 
-_Laan van Westenenk 701_ blijkt in buurt _Wernem_ te liggen (CBS code
-BU02000311), en in wijk _Apeldoorn Zuidwest (CBS code WK02003).
+<div data-query data-query-output="leaflet" data-query-sparql="q3.rq"></div>
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="buurt.rq">
-</div>
+## Query 4
 
-_Laan van Westenenk 701_ lijkt niet de beste plek te zijn voor iemand
-die dicht bij een café in de buurt wil zijn: de afstand voor de buurt
-(Wernem) is groter dan de afstand voor de wijk (Apeldoorn Zuidwest).
-Welke buurten in Apeldoorn hebben de beste toegang tot cafés?  Die
-vraag wordt beantwoord in onderstaande query.
+Zou bv. voor 1 wijk dan kunnen zijn wat de gemiddelde bouwjaar is van
+die wijk (die komt dan uit de BAG...) moet je even kijken of je juist
+de datastory volledig op de CBS data wilt richten (dan heb je focus),
+of dat je ook een kracht van linked data kan zien (het combineren)…)
 
-Het centrum heeft, als vanzelfsprekend, kortere afstanden tot cafés.
-Soms verschilt de afstand abrupt tussen twee buurten.  Een voorbeeld
-hiervan zijn _Ugchelen_ met een afstand van 0.8 km, en _Ugchelen-Zuid_
-met een afstand van 1.7 km.  Op de BAG achtergrondkaart is de oorzaak
-van dit grote verschil direct inzichtelijk: beide buurten zijn van
-elkaar gescheiden door een snelweg.
+<div data-query data-query-output="leaflet" data-query-sparql="q4.rq"></div>
 
-<div data-query data-query-sparql="buurten.rq">
-</div>
+## Query 5
 
-De CBS data bevatten nog veel meer statistieken: de afstand tot
-voorzieningen, bioscopen, en restaurants.  De samenstelling van de
-bevolking in leeftijdscathegoriën.  Door meerdere statistieken te
-combineren kan voor alle gebouwen in Nederland een indicator van de
-buurt/omgeving gemaakt worden.
+Soort totaal query met een stuk of 5 criteria die je dan voor de
+wijken van zoetermeer op een kaart plot…zou je dan zelfs met kleurtjes
+de meest geschikte tot minst geschikte kunnen aangeven…(slagje om de
+arm of dat mogelijk is)
 
-Hoe zit het met de afstand tot cafés door de tijd heen?  Neemt de
-afstand toe of af?  De CBS data zijn beschikbaar voor de jaren
-2010-2016.  Niet alle statistieken worden ieder jaar gemeten, maar
-voor de jaren waarin de afstand tot cafés gemeten is, kunnen we deze
-weergeven in onderstaande query.  We zien dat de afstand tot cafés in
-de laatste jaren erg is toegenomen.
+<div data-query data-query-output="leaflet" data-query-sparql="q5.rq"></div>
 
-<div data-query
-     data-query-sparql="tijd.rq">
-</div>
+## Appendix
+
+<table>
+  <thead>
+    <tr><th>Statistic</th><th>№ observations</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>bevolking_AantalInwoners</td><td>16194</td></tr>
+    <tr><td>bevolking_BurgerlijkeStaat_Gehuwd</td><td>16194</td></tr>
+    <tr><td>bevolking_BurgerlijkeStaat_Gescheiden</td><td>16194</td></tr>
+    <tr><td>bevolking_BurgerlijkeStaat_Ongehuwd</td><td>16194</td></tr>
+    <tr><td>bevolking_BurgerlijkeStaat_Verweduwd</td><td>16194</td></tr>
+    <tr><td>bevolking_GeboorteEnSterfte_GeboorteRelatief</td><td>16194</td></tr>
+    <tr><td>bevolking_GeboorteEnSterfte_GeboorteTotaal</td><td>16194</td></tr>
+    <tr><td>bevolking_GeboorteEnSterfte_SterfteRelatief</td><td>16194</td></tr>
+    <tr><td>bevolking_GeboorteEnSterfte_SterfteTotaal</td><td>16194</td></tr>
+    <tr><td>bevolking_Geslacht_Mannen</td><td>16194</td></tr>
+    <tr><td>bevolking_Geslacht_Vrouwen</td><td>16194</td></tr>
+    <tr><td>bevolking_Leeftijdsgroepen_0Tot15Jaar</td><td>16194</td></tr>
+    <tr><td>bevolking_Leeftijdsgroepen_15Tot25Jaar</td><td>16194</td></tr>
+    <tr><td>bevolking_Leeftijdsgroepen_25Tot45Jaar</td><td>16194</td></tr>
+    <tr><td>bevolking_Leeftijdsgroepen_45Tot65Jaar</td><td>16194</td></tr>
+    <tr><td>bevolking_Leeftijdsgroepen_65JaarOfOuder</td><td>16194</td></tr>
+    <tr><td>bevolking_ParticuliereHuishoudens_Eenpersoonshuishoudens</td><td>16194</td></tr>
+    <tr><td>bevolking_ParticuliereHuishoudens_HuishoudensMetKinderen</td><td>16194</td></tr>
+    <tr><td>bevolking_ParticuliereHuishoudens_HuishoudensTotaal</td><td>16194</td></tr>
+    <tr><td>bevolking_ParticuliereHuishoudens_HuishoudensZonderKinderen</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Bedrijfsmotorvoertuigen</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Motorfietsen</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_sTotaal</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_s_Brandstoftype_Personenauto_s_BrandstofBenzine</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_s_Brandstoftype_Personenauto_s_OverigeBrandstof</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_s_Leeftijd_Personenauto_s_6JaarEnOuder</td><td>16194</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_s_Leeftijd_Personenauto_s_JongerDan6Jaar</td><td>16194</td></tr>
+    <tr><td>oppervlakte_OppervlakteLand</td><td>16194</td></tr>
+    <tr><td>oppervlakte_OppervlakteTotaal</td><td>16194</td></tr>
+    <tr><td>oppervlakte_OppervlakteWater</td><td>16194</td></tr>
+    <tr><td>wonen_Woningvoorraad</td><td>16194</td></tr>
+    <tr><td>stedelijkheid_MateVanStedelijkheid</td><td>16134</td></tr>
+    <tr><td>stedelijkheid_Omgevingsadressendichtheid</td><td>16134</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal</td><td>15998</td></tr>
+    <tr><td>bevolking_ParticuliereHuishoudens_GemiddeldeHuishoudensgrootte</td><td>15882</td></tr>
+    <tr><td>bevolking_Bevolkingsdichtheid</td><td>15596</td></tr>
+    <tr><td>nabijheidVoorzieningen_AfstandTotGroteSupermarkt</td><td>15520</td></tr>
+    <tr><td>nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk</td><td>15520</td></tr>
+    <tr><td>nabijheidVoorzieningen_AfstandTotKinderdagverblijf</td><td>15520</td></tr>
+    <tr><td>nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool</td><td>15520</td></tr>
+    <tr><td>nabijheidVoorzieningen_Basisonderwijs_ScholenBinnen3Km</td><td>15520</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_GemiddeldElektriciteitsverbruikTotaal</td><td>15033</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_GemiddeldAardgasverbruikTotaal</td><td>14847</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarEigendom_EigenWoning</td><td>14814</td></tr>
+    <tr><td>socialeZekerheid_PersonenPerSoortUitkering_Ao</td><td>14814</td></tr>
+    <tr><td>socialeZekerheid_PersonenPerSoortUitkering_Aow</td><td>14814</td></tr>
+    <tr><td>socialeZekerheid_PersonenPerSoortUitkering_Bijstand</td><td>14814</td></tr>
+    <tr><td>socialeZekerheid_PersonenPerSoortUitkering_Ww</td><td>14814</td></tr>
+    <tr><td>wonen_WoningenNaarBewoning_PercentageBewoond</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarBewoning_PercentageOnbewoond</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarBouwjaar_BouwjaarVoor2000</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarType_PercentageEengezinswoning</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarType_PercentageMeergezinswoning</td><td>14746</td></tr>
+    <tr><td>wonen_WoningenNaarEigendom_EigendomOnbekend</td><td>14721</td></tr>
+    <tr><td>wonen_WoningenNaarEigendom_Huurwoningen_HuurwoningenTotaal</td><td>14721</td></tr>
+    <tr><td>wonen_WoningenNaarEigendom_Huurwoningen_InBezitOverigeVerhuurders</td><td>14721</td></tr>
+    <tr><td>wonen_WoningenNaarEigendom_Huurwoningen_InBezitWoningcorporatie</td><td>14721</td></tr>
+    <tr><td>wonen_WoningenNaarEigendom_Koopwoningen</td><td>14721</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarEigendom_EigenWoning</td><td>14624</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_ALandbouw_BosbouwEnVisserij</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_B-fNijverheidEnEnergie</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_G_p_IHandelEnHoreca</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_H_p_JVervoer_InformatieEnCommunicatie</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_K-lFinancieleDiensten_OnroerendGoed</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_M-nZakelijkeDienstverlening</td><td>13896</td></tr>
+    <tr><td>bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten</td><td>13896</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_sNaarOppervlakte</td><td>13268</td></tr>
+    <tr><td>motorvoertuigen_Personenauto_s_Personenauto_sPerHuishouden</td><td>13268</td></tr>
+    <tr><td>wonen_GemiddeldeWoningwaarde</td><td>13018</td></tr>
+    <tr><td>postcode_Dekkingspercentage</td><td>12766</td></tr>
+    <tr><td>postcode_MeestVoorkomendePostcode</td><td>12766</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_VrijstaandeWoning</td><td>12694</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarWoningtype_VrijstaandeWoning</td><td>12595</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarEigendom_Huurwoning</td><td>12439</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarEigendom_Huurwoning</td><td>12223</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Twee-onder-een-kap-woning</td><td>11159</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarWoningtype_Twee-onder-een-kap-woning</td><td>11027</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Tussenwoning</td><td>10524</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarWoningtype_Tussenwoning</td><td>10334</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Hoekwoning</td><td>10270</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarWoningtype_Hoekwoning</td><td>10094</td></tr>
+    <tr><td>energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Appartement</td><td>9099</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_NaarWoningtype_Appartement</td><td>8908</td></tr>
+    <tr><td>energie_GemiddeldAardgasverbruik_PercentageWoningenMetStadsverwarming</td><td>866</td></tr>
+  </tbody>
+</table>

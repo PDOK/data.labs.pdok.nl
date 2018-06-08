@@ -14,11 +14,12 @@ Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee
 
 [Archiefviewer op de kaart](archief-mapviewer.html) 
 
-## FacetCheck
+## Linked Data browsers
 
   - [Bier browser](../presentations/bier-browser/)
   - [BRT browser](../presentations/brt-browser/)
   - [Buurt browser](../presentations/buurt-browser/)
+  - [CBS browser](../presentations/cbs-browser)
   - [Economie browser](../presentations/economie-browser/)
   - [Energie browser](../presentations/energie-browser/)
   - [Monumenten browser](../presentations/monumenten-browser/)

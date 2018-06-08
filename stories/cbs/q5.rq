@@ -1,0 +1,41 @@
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {#?shape ?shapeColor ?shapeLabel {
+  ?buurt geo:hasGeometry/geo:asWKT ?shape ;
+         geo:sfWithin/geo:sfWithin gemeente:GM0637 ;
+         rdfs:label ?buurtLabel .
+  {
+    select (min(?afstand) as ?min) (max(?afstand) as ?max) {
+      ?buurt geo:sfWithin/geo:sfWithin gemeente:GM0637 .
+      _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
+          dimension:regio ?buurt .
+      _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
+          dimension:regio ?buurt .
+      _:3 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
+          dimension:regio ?buurt .
+      _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
+          dimension:regio ?buurt .
+      bind(?supermarkt+?huisarts+?kinderdagverblijf+?school as ?afstand)
+    }
+  }
+  _:5 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
+      dimension:regio ?buurt .
+  _:6 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
+      dimension:regio ?buurt .
+  _:7 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
+      dimension:regio ?buurt .
+  _:8 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
+      dimension:regio ?buurt .
+  bind(?supermarkt+?huisarts+?kinderdagverblijf+?school as ?afstand)
+  bind((?afstand-?min)/xsd:double(?max-?min) as ?score)
+  bind(concat('jet,',str(?score)) as ?shapeColor)
+  bind(concat('<h3>Zoetermeer 》 ',str(?buurtLabel),'</h3>',
+              '<h4>🛒 Afstand tot supermark: ',str(?supermarkt),' km</h4>',
+              '<h4>🏥 Afstand tot huisarts: ',str(?huisarts),' km</h4>',
+              '<h4>👶 Afstand tot kinderopvang: ',str(?kinderdagverblijf),' km</h4>',
+              '<h4>🏫 Afstand tot school: ',str(?school),' km</h4>') as ?shapeLabel)
+}
