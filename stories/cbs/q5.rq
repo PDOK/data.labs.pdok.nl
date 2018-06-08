@@ -4,7 +4,7 @@ prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografis
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select * {#?shape ?shapeColor ?shapeLabel {
+select ?shape ?shapeColor ?shapeLabel {
   ?buurt geo:hasGeometry/geo:asWKT ?shape ;
          geo:sfWithin/geo:sfWithin gemeente:GM0637 ;
          rdfs:label ?buurtLabel .

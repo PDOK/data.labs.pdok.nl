@@ -4,18 +4,7 @@ prefix land: <http://betalinkeddata.cbs.nl/regios/2016/id/land-geografisch/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix wijk: <http://betalinkeddata.cbs.nl/regios/2016/id/wijk/>
 select ?regioLabel ?inwoners0_14 ?inwoners15_24 ?inwoners25_44 ?inwoners45_64 ?inwoners65plus {
-  values ?regio {
-    land:NL00
-    wijk:WK063709
-    wijk:WK063702
-    wijk:WK063700
-    wijk:WK063708
-    wijk:WK063701
-    wijk:WK063704
-    wijk:WK063706
-    wijk:WK063705
-    wijk:WK063703
-  }
+  values ?regio { land:NL00 wijk:WK063709 wijk:WK063702 wijk:WK063700 wijk:WK063708 wijk:WK063701 wijk:WK063704 wijk:WK063706 wijk:WK063705 wijk:WK063703 }
   _:0 def:bevolking_AantalInwoners ?totaal ; dimension:regio ?regio .
   _:1 def:bevolking_Leeftijdsgroepen_0Tot15Jaar ?x1 ; dimension:regio ?regio .
   _:2 def:bevolking_Leeftijdsgroepen_15Tot25Jaar ?x2 ; dimension:regio ?regio .

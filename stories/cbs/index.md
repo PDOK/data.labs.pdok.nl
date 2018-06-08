@@ -15,8 +15,9 @@ komen bij zoetermeer (dichtbij uitvalswegen, etc..)
 
 ## Query 2
 
-Een vergelijking tussen de wijken in zoetermeer o.b.v inwoners (bar
-chart).
+We visualiseren de samenstelling van de bevolking in Zoetermeer, naar
+leeftijdscategorie en per wijk, met de gemiddeldes voor heel
+Nederland.
 
 <div data-query="http://localhost:4000/stories/cbs/#query=prefix+def%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2F83487NED%23%3E%0Aprefix+dimension%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2Fdimension%23%3E%0Aprefix+land%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fregios%2F2016%2Fid%2Fland-geografisch%2F%3E%0Aprefix+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aprefix+wijk%3A+%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fregios%2F2016%2Fid%2Fwijk%2F%3E%0Aselect+%3FregioLabel+%3Finwoners0_14+%3Finwoners15_24+%3Finwoners25_44+%3Finwoners45_64+%3Finwoners65plus+%7B%0A++values+%3Fregio+%7B%0A++++land%3ANL00%0A++++wijk%3AWK063709%0A++++wijk%3AWK063702%0A++++wijk%3AWK063700%0A++++wijk%3AWK063708%0A++++wijk%3AWK063701%0A++++wijk%3AWK063704%0A++++wijk%3AWK063706%0A++++wijk%3AWK063705%0A++++wijk%3AWK063703%0A++%7D%0A++_%3A0+def%3Abevolking_AantalInwoners+%3Ftotaal+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A1+def%3Abevolking_Leeftijdsgroepen_0Tot15Jaar+%3Fx1+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A2+def%3Abevolking_Leeftijdsgroepen_15Tot25Jaar+%3Fx2+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A3+def%3Abevolking_Leeftijdsgroepen_25Tot45Jaar+%3Fx3+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A4+def%3Abevolking_Leeftijdsgroepen_45Tot65Jaar+%3Fx4+%3B+dimension%3Aregio+%3Fregio+.%0A++_%3A5+def%3Abevolking_Leeftijdsgroepen_65JaarOfOuder+%3Fx5+%3B+dimension%3Aregio+%3Fregio+.%0A++bind(xsd%3Aint(%3Fx1%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners0_14)%0A++bind(xsd%3Aint(%3Fx2%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners15_24)%0A++bind(xsd%3Aint(%3Fx3%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners25_44)%0A++bind(xsd%3Aint(%3Fx4%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners45_64)%0A++bind(xsd%3Aint(%3Fx5%2Fxsd%3Adouble(%3Ftotaal)*1.0e2)+as+%3Finwoners65plus)%0A++%3Fregio+rdfs%3Alabel+%3FregioLabel%0A%7D%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql%2Fcbs&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22legend%22%3A%22right%22%2C%22width%22%3A600%2C%22height%22%3A371%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22ColumnChart%22%7D%2C%22motionChartState%22%3Anull%7D"
      data-query-output="gchart">
@@ -24,25 +25,32 @@ chart).
 
 ## Query 3
 
-zou een vergelijking kunnen zijn op woningvoorraad
+We visualiseren de gemiddelde woningwaarde per buurt in Zoetermeer.
 
 <div data-query data-query-output="leaflet" data-query-sparql="q3.rq"></div>
 
 ## Query 4
 
-Zou bv. voor 1 wijk dan kunnen zijn wat de gemiddelde bouwjaar is van
-die wijk (die komt dan uit de BAG...) moet je even kijken of je juist
-de datastory volledig op de CBS data wilt richten (dan heb je focus),
-of dat je ook een kracht van linked data kan zien (het combineren)…)
+We zoomen in op het stadscentrum van Zoetermeer (buurt <a
+href="http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU06370002">BU06370002</a>).
+We tonen de bouwjaren voor de bebouwen in deze buurt.  Hiervoor
+combineren we informatie uit CBS Wijken en Buurten met informatie uit
+de BAG.
 
 <div data-query data-query-output="leaflet" data-query-sparql="q4.rq"></div>
 
 ## Query 5
 
-Soort totaal query met een stuk of 5 criteria die je dan voor de
-wijken van zoetermeer op een kaart plot…zou je dan zelfs met kleurtjes
-de meest geschikte tot minst geschikte kunnen aangeven…(slagje om de
-arm of dat mogelijk is)
+We vergelijken de buurten in Zoetermeer op basis van hoe toegankelijk
+de volgende voorzieningen zijn:
+
+  - Basisschool
+  - Huisarts
+  - Kinderdagverblijf
+  - Supermarkt
+
+De kleurcode geeft de gemiddelde score voor de toegankelijkheid van
+deze voorzieningen aan.
 
 <div data-query data-query-output="leaflet" data-query-sparql="q5.rq"></div>
 
