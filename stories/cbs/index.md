@@ -27,7 +27,11 @@ Nederland.
 
 We visualiseren de gemiddelde woningwaarde per buurt in Zoetermeer.
 
-<div data-query data-query-output="leaflet" data-query-sparql="q3.rq"></div>
+<div data-query
+     data-query-endpoint="https://api.demo.triply.cc/datasets/wouter/cbs-dump/services/sparql/sparql"
+     data-query-output="leaflet"
+     data-query-sparql="q3.rq">
+</div>
 
 ## Query 4
 
@@ -52,7 +56,11 @@ de volgende voorzieningen zijn:
 De kleurcode geeft de gemiddelde score voor de toegankelijkheid van
 deze voorzieningen aan.
 
-<div data-query data-query-output="leaflet" data-query-sparql="q5.rq"></div>
+<div data-query
+     data-query-endpoint="https://api.demo.triply.cc/datasets/wouter/cbs-dump/services/sparql/sparql"
+     data-query-output="leaflet"
+     data-query-sparql="q5.rq">
+</div>
 
 ## Appendix
 
