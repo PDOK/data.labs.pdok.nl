@@ -6,20 +6,29 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?shape ?shapeColor ?shapeLabel {
   {
-    select (min(?waarde) as ?min) (max(?waarde) as ?max) {
-      _:1 def:wonen_GemiddeldeWoningwaarde ?waarde ;
-          dimension:regio/geo:sfWithin/geo:sfWithin gemeente:GM0637
+    _:1 def:wonen_Woningvoorraad ?aantal ;
+        dimension:regio ?buurt .
+    filter not exists {
+      _:2 def:wonen_GemiddeldeWoningwaarde ?waarde ;
+          dimension:regio ?buurt .
     }
+  } union {
+    {
+      select (min(?waarde) as ?min) (max(?waarde) as ?max) {
+        _:3 def:wonen_GemiddeldeWoningwaarde ?waarde ;
+            dimension:regio/geo:sfWithin/geo:sfWithin gemeente:GM0637
+      }
+    }
+    _:4 def:wonen_GemiddeldeWoningwaarde ?waarde ;
+        dimension:regio ?buurt .
+    _:5 def:wonen_Woningvoorraad ?aantal ;
+        dimension:regio ?buurt .
+    bind(concat('jet,',str((?waarde-?min)/xsd:double(?max-?min))) as ?shapeColor)
   }
-  _:2 def:wonen_GemiddeldeWoningwaarde ?waarde ;
-      dimension:regio ?buurt .
-  _:3 def:wonen_Woningvoorraad ?aantal ;
-      dimension:regio ?buurt .
   ?buurt geo:hasGeometry/geo:asWKT ?shape ;
          geo:sfWithin/geo:sfWithin gemeente:GM0637 ;
          rdfs:label ?buurtLabel
-  bind(concat('jet,',str((?waarde-?min)/xsd:double(?max-?min))) as ?shapeColor)
   bind(concat('<h3>Zoetermeer 》 ',str(?buurtLabel),'</h3>',
-              '<h4>🏠 Gem. woningwaarde: €',str(?waarde),'.000,-</h4>',
-              '<h4>🏙 Woning voorraad: ',str(?waarde),'</h4>') as ?shapeLabel)
+              '<h4>🏠 Gem. woningwaarde: ',if(bound(?waarde),concat('€ ',str(?waarde),'.000,-'),'onbekend'),'</h4>',
+              '<h4>🏙 Woning voorraad: ',replace(?aantal,'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</h4>') as ?shapeLabel)
 }
