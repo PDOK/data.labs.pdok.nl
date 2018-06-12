@@ -13,7 +13,11 @@ layout: default
 
 </div>
 <script type="text/javascript">
+{% if page.basemap %}
+YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "{{ page.basemap }}";
+{% else %}
 YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
+{% endif %}
 YASGUI.sparqlStories();
 </script>
 
