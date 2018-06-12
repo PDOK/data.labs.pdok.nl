@@ -18,7 +18,7 @@ Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee
 
   - [Bier browser](../presentations/bier-browser/)
   - [BRT browser](../presentations/brt-browser/)
-  - [Buurt browser](../presentations/buurt-browser/) ([oude versie](../presentations/buurt-browser-triply/)
+  - [Buurt browser](../presentations/buurt-browser/) ([oude versie](../presentations/buurt-browser-triply/))
   - [Economie browser](../presentations/economie-browser/)
   - [Energie browser](../presentations/energie-browser/)
   - [Monumenten browser](../presentations/monumenten-browser/)
