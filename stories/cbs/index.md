@@ -37,7 +37,7 @@ We visualiseren de gemiddelde woningwaarde per buurt in Zoetermeer.
 
 We zoomen in op het stadscentrum van Zoetermeer (buurt <a
 href="http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU06370002">BU06370002</a>).
-We tonen de bouwjaren voor de bebouwen in deze buurt.  Hiervoor
+We tonen de bouwjaren voor de gebouwen in deze buurt.  Hiervoor
 combineren we informatie uit CBS Wijken en Buurten met informatie uit
 de BAG.
 
