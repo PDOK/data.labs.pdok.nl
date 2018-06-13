@@ -23,7 +23,7 @@ Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee
   - [Energie Browser](../presentations/energie-browser/)
   - [Monumenten Browser](../presentations/monumenten-browser/)
   - [Transport Browser](../presentations/transport-browser/)
-  - [Voorzieningen Browser](../presentations/voorzieningen-browser-triply/)
+  - [Voorzieningen Browser](../presentations/voorzieningen-browser/)
   - [Woningen Browser](../presentations/woningen-browser/)
 
 ## Bier tijdreis
