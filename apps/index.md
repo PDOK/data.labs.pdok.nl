@@ -16,14 +16,15 @@ Voor de historische werkgroep Lisse ontwikkelde het labs-team een viewer waarmee
 
 ## Linked Data browsers
 
-  - [Bier browser](../presentations/bier-browser/)
-  - [BRT browser](../presentations/brt-browser/)
   - [Bevolkings Browser](../presentations/bevolkings-browser/)
-  - [Economie browser](../presentations/economie-browser/)
-  - [Energie browser](../presentations/energie-browser/)
-  - [Monumenten browser](../presentations/monumenten-browser/)
-  - [Transport browser](../presentations/transport-browser/)
-  - [Voorzieningen browser](../presentations/voorzieningen-browser/) ([oude versie](../presentations/voorzieningen-browser-triply/))
+  - [Bier Browser](../presentations/bier-browser/)
+  - [BRT Browser](../presentations/brt-browser/)
+  - [Economie Browser](../presentations/economie-browser/)
+  - [Energie Browser](../presentations/energie-browser/)
+  - [Monumenten Browser](../presentations/monumenten-browser/)
+  - [Transport Browser](../presentations/transport-browser/)
+  - [Voorzieningen Browser](../presentations/voorzieningen-browser/)
+  - [Woningen Browser](../presentations/woningen-browser/)
 
 ## Bier tijdreis
 

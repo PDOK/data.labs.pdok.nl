@@ -1,0 +1,13 @@
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/>
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?label ?gouda ?waddinxveen ?zoetermeer {
+  values (?p) { (def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool) ( def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf) }
+  ?p rdfs:label ?label .
+  ?observatie1 ?p ?gouda ; dimension:regio gemeente:GM0513 . # Gouda
+  ?observatie2 ?p ?waddinxveen ; dimension:regio gemeente:GM0627 . # Waddinxveen
+  ?observatie3 ?p ?zoetermeer ; dimension:regio gemeente:GM0637 . # Zoetermeer
+}
