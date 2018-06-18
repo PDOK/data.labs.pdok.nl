@@ -1,0 +1,53 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix monument: <https://data.labs.pdok.nl/rce/id/monument/>
+prefix rce: <https://data.labs.pdok.nl/rce/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select distinct ?wkt ?wktLabel {
+  graph ?g1 {
+    ?openbareRuimte bag:naamOpenbareRuimte "Stadhouderskade"
+  }
+  graph ?g2 {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                      bag:huisnummer 78 ;
+                      bag:postcode "1072AE"
+  }
+  graph ?g3 {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                     bag:oppervlakte ?oppervlakte ;
+                     bag:pandrelatering ?pand
+  }
+  graph ?g4 {
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+          bag:geometriePand/geo:asWKT ?wkt ;
+          bag:status ?pandStatus
+  }
+  ?pandStatus rdfs:label ?pandStatusLabel
+  # Geldigheidsbepaling
+  filter not exists { ?g1 bag:eindGeldigheid ?einddatum1 }
+  filter not exists { ?g2 bag:eindGeldigheid ?einddatum2 }
+  filter not exists { ?g3 bag:eindGeldigheid ?einddatum3 }
+  filter not exists { ?g4 bag:eindGeldigheid ?einddatum4 }
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:monumenten {
+      monument:527809 rce:bouwjaar ?bouwjaar2 ;
+                      dbo:codeNationalMonument ?code
+    }
+  }
+  bind(concat(
+    '<h3>Stadhouderskade 78, 1072AE Amsterdam</h3>',
+    '<h5>BAG</h5>',
+    '<ul>',
+    '<li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m²</li>',
+    '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
+    '</ul>',
+    '<h5>RCE</h5>',
+    '<ul>',
+    '<li>Monumentnummer: ',str(?code),'</li>',
+    '<li>Bouwjaar: ',str(?bouwjaar2),'</li>',
+    '</ul>'
+  ) as ?wktLabel)
+}

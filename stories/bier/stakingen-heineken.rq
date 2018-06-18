@@ -1,0 +1,26 @@
+prefix company: <https://iisg.amsterdam/resource/company/>
+prefix def: <https://iisg.amsterdam/vocab/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?begin ?werknemers ?duur ?resultaat ?beroep {
+  ?staking def:company company:Heineken
+  optional {
+    ?staking def:date ?begin
+  }
+  optional {
+    ?staking def:occupation ?beroep
+  }
+  optional {
+    ?staking def:number-of-days ?dagen
+  }
+  optional {
+    ?staking def:duration ?duur
+  }
+  optional {
+    ?staking def:result/rdfs:label ?resultaat
+    filter(lang(?resultaat)="nl-nl")
+  }
+  optional {
+    ?staking def:number-of-workers ?werknemers
+  }
+}
+order by ?begin

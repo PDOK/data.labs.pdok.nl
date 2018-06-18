@@ -1,0 +1,23 @@
+prefix def: <https://iisg.amsterdam/vocab/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?bedrijf ?begin ?werknemers ?duur ?resultaat {
+  ?staking def:occupation "Brewer, General"@en-gb ;
+           def:company/rdfs:label ?bedrijf
+  optional {
+    ?staking def:date ?begin
+  }
+  optional {
+    ?staking def:number-of-days ?dagen
+  }
+  optional {
+    ?staking def:duration ?duur
+  }
+  optional {
+    ?staking def:result/rdfs:label ?resultaat
+    filter(lang(?resultaat)="nl-nl")
+  }
+  optional {
+    ?staking def:number-of-workers ?werknemers
+  }
+}
+order by ?begin
