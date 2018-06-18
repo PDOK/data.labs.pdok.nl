@@ -20,6 +20,10 @@ Beek, W., Folmer, E., Rietveld, L., and Walker, J.: GEOYASGUI: THE GEOSPARQL QUE
 
 # Presentaties
 
+## Kadaster SPARQL Tutorial
+
+[Kadaster SPARQL Tutorial](../presentations/Kadaster-SPARQL-Tutorial.html)
+
 ## In ontwikkeling
 
 Hierbij een voorproefje van het bevragen van 3D data door de tijd heen
