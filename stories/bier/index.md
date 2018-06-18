@@ -11,24 +11,30 @@ title: 🍺 Bier Data Story 🍺
 
 ## Linked Bier Browser
 
+Gebruik Linked Data om te zoeken naar biertjes en brouwerijen:
+
 <a href="../../presentations/bier-browser" target="_blank">
   <button>Linked Bier Browser</button>
 </a>
 
 ## Stakingen bij brouwers
 
-Maar als we die glazenwassers nou buiten beschouwing laten, en alleen de stakingen van brouwers bekijken, wat leert ons dat?
-Er zou wel een zekere afhankelijkheid in zitten met de kwaliteit van het brouwsel….
+Stakingen die in Nederland hebben plaatsgevonden worden als Linked
+Data gepubliceerd door het Instituur voor Sociale Geschiedenis (IISG)
+op [Druid](https://druid.datalegend.net/dataLegend/strikes).  We
+kunnen de stakingen per beroep opvragen.  Hieronder de stakingen
+geïnitieerd door brouwers:
 
 <div data-query
      data-query-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql"
      data-query-sparql="stakingen-brouwers.rq">
 </div>
 
-## Stakingen bij Heineken
+### Stakingen bij Heineken
 
-We zitten in Amsterdam, en dus bij Heineken, is daar wel eens
-gestaakt? en door wie?  Opmerkelijk die glazenwassers…
+Maar niet alleen brouwers hebben gestaakt bij Heineken.  Hieronder de
+stakingen van *alle* beroepsgroepen bij Heineken door door de jaren
+heen:
 
 <div data-query
      data-query-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql"
@@ -37,8 +43,9 @@ gestaakt? en door wie?  Opmerkelijk die glazenwassers…
 
 ## De Heineken brouwerij (Kadaster BAG & RCE Monumenten Register)
 
-Laten we eens kijken hoe oud het gebouw van de Heineken Experience is…
-hier ligt toch een groot deel van de historie van Heineken.
+Laten we eens kijken hoe oud het gebouw van de Heineken Experience /
+de oude Heineken brouwerij is.  We zoeken dit op in zowel de Kadaster
+BAG alsook het RCE Monumenten Register:
 
 <div data-query
      data-query-sparql="monument-heineken.rq">
