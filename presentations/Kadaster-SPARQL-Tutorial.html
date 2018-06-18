@@ -153,7 +153,7 @@ limit 5
           </section>
           <section>
             <h2>Alles heeft een naam</h2>
-            <img height="500px" src="../assets/images/naming.jpg">
+            <img height="400" src="../assets/images/naming.jpg">
           </section>
           <section>
             <h2>Maar soms hebben 2 verschillende dingen toch dezelfde
@@ -161,7 +161,8 @@ limit 5
           </section>
           <section>
             <h2><a target="_blank" href="https://data.pdok.nl/sparql#query=select+%3Fs+%7B%0A++%3Fs+%3Fp+%22De+Brug%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.%0A%7D%0Alimit+100%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=🌉+Wat+is+‘De+Brug’%3F&headers=%7B%7D&outputFormat=table">Wat is ‘De Brug’? 🌉</a></h2>
-            <pre><code data-trim data-noescape>select ?s {
+            <pre><code data-trim data-noescape>
+select ?s {
   ?s ?p "De Brug"^^&lt;http://www.w3.org/2001/XMLSchema#string&gt; .
 }
 limit 100
@@ -811,10 +812,27 @@ limit 100
 
       </div>
     </div>
-    <script src="../assets/js/head.min.js"></script>
+    <script src="../assets/lib/js/head.min.js"></script>
     <script src="../assets/js/reveal.js"></script>
     <script>
-      Reveal.initialize();
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: '../assets/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../assets/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../assets/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../assets/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: '../assets/plugin/zoom-js/zoom.js', async: true },
+      { src: '../assets/plugin/notes/notes.js', async: true }
+      ]
+      });
     </script>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
