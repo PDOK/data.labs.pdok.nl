@@ -5,9 +5,6 @@ title: Home
 # PDOK data labs!
 Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
 
-### SPARQL tutorial
-[Kadaster SPARQL Tutorial](https://wouterbeek.github.io/pres/2018-02-15-Kadaster-SPARQL-Tutorial.html)
-
 ## Data Stories
 Check onze [Data Stories](/stories)
 
