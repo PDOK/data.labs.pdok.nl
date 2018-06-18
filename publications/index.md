@@ -22,7 +22,12 @@ Beek, W., Folmer, E., Rietveld, L., and Walker, J.: GEOYASGUI: THE GEOSPARQL QUE
 
 ## Kadaster SPARQL Tutorial
 
-[Kadaster SPARQL Tutorial](../presentations/Kadaster-SPARQL-Tutorial.html)
+Het kost best een beetje tijd om SPARQL onder de vingers te krijgen.
+Tegelijkertijd is het data model van de BAG relatief complex.  Om het
+bevragen van de BAG middels SPARQL eenvoudiger te maken hebben we een
+tutorial voor SPARQL gemaakt waarbij we de Linked Data van het
+Kadaster (m.n. BAG) gebruiken: [Kadaster SPARQL
+Tutorial](../presentations/Kadaster-SPARQL-Tutorial.html)
 
 ## In ontwikkeling
 
