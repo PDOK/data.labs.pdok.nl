@@ -11,6 +11,7 @@ var prompoly = document.createElement('script');
 var parcelscript = document.createElement('script');
 var parcel;
 var filiationReq = 'https://intranet.kadaster.nl/iad/kdv/api/kdv/filiatie/?appartementvolgnummer=&deelperceelnummer=&deelperceelvolgnummer=&gemeentecode=LSE00&richting=down&sectie=D&toevoeging=&toevoegingdisplay=&perceelnummer=';
+var processedFiliations = [];
 
 jq.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js';
 document.getElementsByTagName('head')[0].appendChild(jq);
@@ -23,8 +24,19 @@ function getFiliation(parcelID) {
   return new Promise(function (resolve, reject) {
     jQuery.ajax(filiationReq + parcelID)
       .done(function (res) {
-        var selectedFiliations = res.resultaten.filter(function (result) {
-          return result.sectie === 'D' && result.kadastraleGemeenteCode === 'LSE00';
+        var selectedFiliations = res.resultaten
+        .filter(function filterOnlyLisseSectionD(filiation) {
+          return filiation.sectie === 'D' && filiation.gemeenteCode === 'LSE00';
+        })
+        .filter(function skipProcessedEntries(filiation) {
+          var link = parcelID + '->' + filiation.perceelNummer; 
+          var alreadyProcessed = jQuery.inArray(link, processedFiliations);
+          if (alreadyProcessed > -1) {
+            console.log('Already did', link);
+            return false
+          } else {
+            return true
+          }
         });
         if (selectedFiliations.length === 0) { return resolve(res); }
 
@@ -40,6 +52,9 @@ function getFiliation(parcelID) {
           fq.src = url;
           jQuery('head').append(fq);
           jQuery(document).ready(function () { jQuery(fq).remove(); });
+          var link = parcelID + '->' + filiation.perceelNummer; 
+          processedFiliations.push(link);
+          console.log('Added', link);
         });
 
         return Promise
@@ -61,5 +76,6 @@ getFiliation(parcel)
 Promise.map(parcels.features.slice(0, 10), function (feature) {
   return getFiliation(feature.properties.perceelnummer);
 }, { concurrency: 1 })
-  .then(function () { console.log('Done!'); });
+  .then(function () { console.log('Done!'); })
+  .catch(function (e) { console.error(e); });
 
