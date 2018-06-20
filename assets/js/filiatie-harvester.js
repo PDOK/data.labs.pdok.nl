@@ -40,42 +40,38 @@ function getFiliation(parcelID) {
         });
         if (selectedFiliations.length === 0) { return resolve(res); }
 
-        selectedFiliations.forEach(function (filiation) {
-          var url = 'https://data.labs.pdok.nl/filiation?descendant=' + parcelID
+        return Promise
+          .mapSeries(selectedFiliations, function (filiation) {
+            var url = 'https://data.labs.pdok.nl/filiation?descendant=' + parcelID
             + '&ancestor=' + filiation.perceelNummer
             + '&timestamp=' + new Date().toUTCString();
-          // filiations.push({
-          // descendant: parcelID.toString(),
-          // ancestor: filiation.perceelNummer.toString()
-          // });
-          var fq = document.createElement('script');
-          fq.src = url;
-          jQuery('head').append(fq);
-          jQuery(document).ready(function () { jQuery(fq).remove(); });
-          var link = parcelID + '->' + filiation.perceelNummer; 
-          processedFiliations.push(link);
-          console.log('Added', link);
-        });
+            var fq = document.createElement('script');
+            fq.src = url;
+            jQuery('head').append(fq);
+            jQuery(document).ready(function () { jQuery(fq).remove(); });
+            var link = parcelID + '->' + filiation.perceelNummer; 
+            processedFiliations.push(link);
+            console.log('Added', link);
 
-        return Promise
-          .map(selectedFiliations, function (filiation) {
             return getFiliation(filiation.perceelNummer);
-          }, { concurrency: 1 })
+          })
           .then(function (r) { return resolve(r); })
           .catch(function (err) { return reject(err); });
       })
-      .error(function (err) { return reject(err); });
+      .fail(function (err) { return reject(err); });
   });
 }
 
 parcel = parcels.features[0].properties.perceelnummer;
-getFiliation(parcel)
+getFiliation(parcel, retries=3)
   .then(function () { console.log('Done!'); })
   .catch(function (err) { console.error(err); });
 
-Promise.map(parcels.features.slice(0, 10), function (feature) {
-  return getFiliation(feature.properties.perceelnummer);
-}, { concurrency: 1 })
+Promise.mapSeries(parcels.features.slice(1000), function (feature, index, length) {
+  console.log('Process contemporary entry', index, 'of', length);
+  return getFiliation(feature.properties.perceelnummer, retries=3);
+})
   .then(function () { console.log('Done!'); })
   .catch(function (e) { console.error(e); });
+
 
