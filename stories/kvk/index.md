@@ -56,23 +56,23 @@ de BAG panden aan de ‘Diezerstraat’, samen met de kadastrale gegevens.
 <p>De kleuren duiden de verschillende energielabels aan: label A of A+
 ( <svg height="20" viewBox="0 0 20 20"
 xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10"
-fill="#22b14c" r="10"/> </svg> ), label B ( <svg height="20"
+fill="#22b14c" r="10"> </svg> ), label B ( <svg height="20"
 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle
-cx="10" cy="10" fill="#8ff334" r="10"/> </svg> ), label C ( <svg
+cx="10" cy="10" fill="#8ff334" r="10"> </svg> ), label C ( <svg
 height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-<circle cx="10" cy="10" fill="#bdfc2c" r="10"/> </svg> ) label D (
+<circle cx="10" cy="10" fill="#bdfc2c" r="10"> </svg> ) label D (
 <svg height="20" viewBox="0 0 20 20"
 xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10"
-fill="#fff200" r="10"/> </svg> ), label E ( <svg height="20"
+fill="#fff200" r="10"> </svg> ), label E ( <svg height="20"
 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle
-cx="10" cy="10" fill="#ff9a35" r="10"/> </svg> ), label F ( <svg
+cx="10" cy="10" fill="#ff9a35" r="10"> </svg> ), label F ( <svg
 height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-<circle cx="10" cy="10" fill="#ff7f27" r="10"/> </svg> ), label G (
+<circle cx="10" cy="10" fill="#ff7f27" r="10"> </svg> ), label G (
 <svg height="20" viewBox="0 0 20 20"
 xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10"
-fill="#ed1c24" r="10"/> </svg> ), of geen label ( <svg height="20"
+fill="#ed1c24" r="10"> </svg> ), of geen label ( <svg height="20"
 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle
-cx="10" cy="10" fill="grey" r="10"/> </svg> ).</p>
+cx="10" cy="10" fill="grey" r="10"> </svg> ).</p>
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"

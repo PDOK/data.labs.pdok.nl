@@ -52,7 +52,7 @@ select ?shape ?shapeColor (min(?shapeLabel) as ?shapeLabel) {
        if(?energielabel="G", "#ed1c24", "grey")))))))) as ?shapeColor)
   bind(concat('<h3>',
               if(bound(?energielabel),
-                 concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10"/></svg> '),
+                 concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10"></svg> '),
                  ''),
               'Waarderstraat, ',?huisnummerString,', ',str(?postcode),' Zoetermeer</h3>',
               '<ul>',
