@@ -71,20 +71,6 @@ pas na 16 jaar een positief rendement optreed…
 
 <div data-query data-query-sparql="q4.rq"></div>
 
-## Besparingspotentie voor een gemeente
-
-In andere gemeentes kan de besparinspotentie aanzienlijker zijn,
-bijvoorbeeld in Amsterdam.  We tonen hier de buurten waar besparingen
-weinig opbrengen (blauw) en de buurten waar besparingen veel opgrengen
-(rood).
-
-We zien dat in een nieuwbouwbuurt als ‘IJburg West’ (rechts in de
-kaart gelegen) bijna geen energiebesparingen mogelijk zijn. Maar in
-de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
-van duizenden euros per jaar mogelijk.
-
-<div data-query data-query-sparql="q5.rq"></div>
-
 ## Reële energiebesparing
 
 De volgende kaart toont de totale besparing in energieverbruik
@@ -109,6 +95,20 @@ We zijn wel benieuwd welke gebouwen in Amsterdam veel energie
 verbruiken, en welk energielabel daar dan bij hoort.
 
 <div data-query data-query-sparql="q8.rq"></div>
+
+## Besparingspotentie voor een gemeente
+
+In andere gemeentes kan de besparinspotentie aanzienlijker zijn,
+bijvoorbeeld in Amsterdam.  We tonen hier de buurten waar besparingen
+weinig opbrengen (blauw) en de buurten waar besparingen veel opgrengen
+(rood).
+
+We zien dat in een nieuwbouwbuurt als ‘IJburg West’ (rechts in de
+kaart gelegen) bijna geen energiebesparingen mogelijk zijn. Maar in
+de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
+van duizenden euros per jaar mogelijk.
+
+<div data-query data-query-sparql="q5.rq"></div>
 
 <!-- Werk niet met zo veel data + federatie + geen linkbare eigenschappen
 ## Goede voorbeelden
@@ -195,7 +195,7 @@ Deze query staat tijdelijk uit vanwege performance problemen.
   data-query-output="gchart"
   data-query-sparql="100-labels-voor-postcode-prefix.rq"></div>
 -->
-
+<!--
 # FacetCheck
 
 Naast bovenstaande queries is het ook mogelijk om buurten te filteren
@@ -209,3 +209,4 @@ selecteren:
   - percentage huurwoningen
   - percentage koopwoningen
   - besparingspotentieel in euros per jaar
+-->
