@@ -17,7 +17,7 @@ Energieverbruik (Gemeente Amsterdam), en Energiebesparingspotentieel
 
 ## Woning
 
-Ik ben eigenaar van een woning, en wil informatie over mijn woning.
+We beginnen bij een specifieke woning in Zoetermeer: Waarderstraat 1.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -26,16 +26,17 @@ Ik ben eigenaar van een woning, en wil informatie over mijn woning.
 
 ## Straat
 
-<p>Hoe zit het eigenlijk met de energielabels in mijn straat?  De panden
-in mijn straat hebben energielabel label A (
+<p>Hoe zit het eigenlijk met de energielabels op de Waarderstraat?  De
+panden in deze straat hebben energielabel A (
+
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
   <circle cx="10" cy="10" fill="#22b14c" r="10"/>
 </svg>
-), label B (
+), energielabel B (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
   <circle cx="10" cy="10" fill="#8ff334" r="10"/>
 </svg>
-), of geen label (
+), of geen energielabel (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
   <circle cx="10" cy="10" fill="grey" r="10"/>
 </svg>
