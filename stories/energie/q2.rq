@@ -35,11 +35,13 @@ select ?shape ?shapeColor (min(?shapeLabel) as ?shapeLabel) {
   }
   service <https://data.labs.pdok.nl/sparql> {
     graph graph:energielabels {
-      _:0 energielabels:e_label ?energielabel ;
-          energielabels:opname_datum ?opnamedatum ;
-          energielabels:pand_huisnummer ?huisnummerString ;
-          energielabels:pand_postcode ?postcode ;
-          energielabels:registratie_datum ?registratiedatum
+      optional {
+        _:0 energielabels:e_label ?energielabel ;
+            energielabels:opname_datum ?opnamedatum ;
+            energielabels:pand_huisnummer ?huisnummerString ;
+            energielabels:pand_postcode ?postcode ;
+            energielabels:registratie_datum ?registratiedatum
+      }
     }
   }
   bind(if(!(bound(?energielabel)), "grey",
@@ -61,7 +63,7 @@ select ?shape ?shapeColor (min(?shapeLabel) as ?shapeLabel) {
                         '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
                         '<li>Registratiedatum: ',str(?registratiedatum),'</li>'),
                  ''),
-              '<li>Pand status: ',str(?pandStatusLabel),'</li>',
+              '<li>Pand status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
               '<li>Bouwjaar: ',str(?bouwjaar) ,'</li>',
               '</ul>') as ?shapeLabel)
 }

@@ -29,15 +29,15 @@ Ik ben eigenaar van een woning, en wil informatie over mijn woning.
 <p>Hoe zit het eigenlijk met de energielabels in mijn straat?  De panden
 in mijn straat hebben energielabel label A (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#22b14c" r="10">
+  <circle cx="10" cy="10" fill="#22b14c" r="10"/>
 </svg>
 ), label B (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#8ff334" r="10">
+  <circle cx="10" cy="10" fill="#8ff334" r="10"/>
 </svg>
 ), of geen label (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="grey" r="10">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
 </svg>
 ).</p>
 
@@ -110,6 +110,7 @@ verbruiken, en welk energielabel daar dan bij hoort.
 
 <div data-query data-query-sparql="q8.rq"></div>
 
+<!-- Werk niet met zo veel data + federatie + geen linkbare eigenschappen
 ## Goede voorbeelden
 
 Zo kunnen we ook oude huizen vinden (van voor 1950) waarbij de
@@ -119,7 +120,7 @@ kunnen we ook zien dat dit soort queries ook gemaakt kunnen worden om
 kwaliteitsproblemen op te sporen, zoals pand oppervlaktes van 1m².
 
 <div data-query data-query-sparql="q9.rq"></div>
-
+-->
 <!-- not needed anymore
 ## Een pand nader bekeken
 
@@ -144,35 +145,35 @@ met andere data.
 <p>De kleuren duiden de verschillende energielabels aan: label A of A+
 (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#22b14c" r="10">
+  <circle cx="10" cy="10" fill="#22b14c" r="10"/>
 </svg>
 ), label B (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#8ff334" r="10">
+  <circle cx="10" cy="10" fill="#8ff334" r="10"/>
 </svg>
 ), label C (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#bdfc2c" r="10">
+  <circle cx="10" cy="10" fill="#bdfc2c" r="10"/>
 </svg>
 ) label D (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#fff200" r="10">
+  <circle cx="10" cy="10" fill="#fff200" r="10"/>
 </svg>
 ), label E (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#ff9a35" r="10">
+  <circle cx="10" cy="10" fill="#ff9a35" r="10"/>
 </svg>
 ), label F (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#ff7f27" r="10">
+  <circle cx="10" cy="10" fill="#ff7f27" r="10"/>
 </svg>
 ), label G (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="#ed1c24" r="10">
+  <circle cx="10" cy="10" fill="#ed1c24" r="10"/>
 </svg>
 ), of geen label (
 <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="10" cy="10" fill="grey" r="10">
+  <circle cx="10" cy="10" fill="grey" r="10"/>
 </svg>
 ).</p>
 
@@ -208,12 +209,3 @@ selecteren:
   - percentage huurwoningen
   - percentage koopwoningen
   - besparingspotentieel in euros per jaar
-
-# Dan toch de windmolens
-
-Ook benieuwd waar de windmoles in de Amsterdamse regio staan, en hoeveel energie ze produceren, de omvang, en de eigenaren?
-Dat laten we zien in de volgende query.
-
-<div data-query
-     data-query-sparql="story_03_ams_wind.rq">
-</div>
