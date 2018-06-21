@@ -1,0 +1,11 @@
+prefix cbs: <https://data.pdok.nl/cbs/vocab/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select ?wkt ?wktColor {
+  ?gemeente a cbs:Gemeente ;
+            geo:hasGeometry/geo:asWKT ?wkt .
+  optional {
+    ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
+  }
+  bind(if(bound(?euro),?euro/1900,0) as ?normalized)
+  bind(concat("jet,",str(?normalized)) as ?wktColor)
+}

@@ -1,9 +1,9 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?pandWkt ?pandWktLabel {
+select ?shape ?shapeLabel {
   values (?woonplaatsNaam ?straatNaam ?huisnummer) {
-    ("Warnsveld" "'t Spiker" 24)
+    ("Zoetermeer" "Waarderstraat" 1)
   }
   graph ?openbareRuimteVoorkomen {
     ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
@@ -28,20 +28,22 @@ select ?pandWkt ?pandWktLabel {
   filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
   ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
   graph ?pandVoorkomen {
-    ?pand bag:geometriePand/geo:asWKT ?pandWkt ;
+    ?pand bag:geometriePand/geo:asWKT ?shape ;
           bag:oorspronkelijkBouwjaar ?bouwjaar ;
           bag:status ?pandStatus .
   }
   filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
   ?pandStatus rdfs:label ?pandStatusLabel
-  bind(concat(
-    '<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
-    '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
-    '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
-    '<li>Oppervlakte: ',str(?oppervlakte),'m²</li>',
-    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
-    '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
-    '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',
-    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>'
-    ) as ?pandWktLabel)
+  bind(concat('<h4>',str(?straatNaam),' ',str(?huisnummer),'</h4>',
+              '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
+              '<ul>',
+              '<li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+              '<li>Oppervlakte: ',str(?oppervlakte),'m²</li>',
+              '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
+              '</ul>',
+              '<h5><a href="',str(?pand),'">Pand</a></h5>',
+              '<ul>',
+              '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
+              '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
+              '</ul>') as ?shapeLabel)
 }
