@@ -3,10 +3,10 @@ endpoint: https://data.labs.pdok.nl/sparql
 layout: story
 logo: /stories/energie/logo.png
 output: leaflet
-title: Energy labels, Energy consumption and Wind turbines
+title: 🗲 Energie Data Story 🗲
 ---
 
-# Energy labels, energiebesparing, en windturbines
+# 🗲 Energie Data Story 🗲
 
 Deze data story laat zien welke mogelijkheden er ontstaan als de
 Energielabel Dataset (RVO) beschikbaar gesteld wordt als Linked Data.
