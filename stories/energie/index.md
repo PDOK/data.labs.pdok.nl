@@ -121,6 +121,7 @@ kwaliteitsproblemen op te sporen, zoals pand oppervlaktes van 1m².
 
 <div data-query data-query-sparql="q9.rq"></div>
 -->
+
 <!-- not needed anymore
 ## Een pand nader bekeken
 
@@ -134,6 +135,7 @@ pinnetje klikken voor informatie).
      data-query-sparql="60-Keizersgracht.rq">
 </div>
 -->
+
 <!-- queries were unscoped, and now there is much more data: scope the queries
 ## Panden met geregistreerde labels
 
@@ -195,6 +197,7 @@ Deze query staat tijdelijk uit vanwege performance problemen.
   data-query-output="gchart"
   data-query-sparql="100-labels-voor-postcode-prefix.rq"></div>
 -->
+
 <!--
 # FacetCheck
 
@@ -210,3 +213,9 @@ selecteren:
   - percentage koopwoningen
   - besparingspotentieel in euros per jaar
 -->
+
+## Energie browser
+
+<a href="../../presentations/energie-browser" target="_blank">
+  <button>Energie Browser</button>
+</a>
