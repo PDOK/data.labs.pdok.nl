@@ -22,7 +22,7 @@ explosie van brouwerijen in de afgelopen paar jaar:
 ## Stakingen bij brouwers
 
 Stakingen die in Nederland hebben plaatsgevonden worden als Linked
-Data gepubliceerd door het Instituur voor Sociale Geschiedenis (IISG)
+Data gepubliceerd door het Instituut voor Sociale Geschiedenis (IISG)
 op [Druid](https://druid.datalegend.net/dataLegend/strikes).  We
 kunnen de stakingen per beroep opvragen.  Hieronder de stakingen
 geïnitieerd door brouwers:
@@ -52,6 +52,8 @@ BAG alsook het RCE Monumenten Register:
 <div data-query
      data-query-sparql="monument-heineken.rq">
 </div>
+
+En wat zegt [Wikipedia](https://nl.wikipedia.org/wiki/Heineken_Brouwerij_(Amsterdam)) ? 
 
 ## Linked Bier Browser
 
