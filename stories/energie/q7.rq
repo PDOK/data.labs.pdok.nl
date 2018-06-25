@@ -43,7 +43,7 @@ select ?shape ?shapeColor ?shapeLabel {
       '<li>Installatietechnisch: € ',replace(str(?installatieInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
       '</ul>',
       if(bound(?normalized),
-         concat('<p>🕗 Positief rendement na ',substr(str(?normalized),0,4),' jaar.</p>'),
+         concat('<p>🕗 Positief rendement na ',substr(str(?normalized), 1, 4),' jaar.</p>'),
          '')) as ?shapeLabel)
 }
 limit 75
