@@ -4,7 +4,7 @@ prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?shape ?shapeLabel {
-  bind(buurt:BU03010500 as ?buurt)
+  bind(buurt:BU06370601 as ?buurt)
   graph graph:wijkbuurt-2015 {
     ?buurt geo:hasGeometry/geo:asWKT ?shape ;
            rdfs:label ?buurtNaam .
@@ -12,21 +12,30 @@ select ?shape ?shapeLabel {
   graph graph:cbs-energie-2015 {
     ?buurt cbs:aardgasverbruikKoopwoning ?gemAardgas ;
            cbs:elektriciteitsverbruikKoopwoning ?gemElektra ;
-           cbs:reëleBesparingspotentieAlleMaatregelen ?besparing ;
-           cbs:reëleBesparingspotentieBouwfysischeMaatregelen ?bouwfysischeBesparing ;
-           cbs:reëleBesparingspotentieInstallatietechnischeMaatregelen ?installatieBesparing ;
-           cbs:reëleEenmaligBenodigdeInvesteringAlleMaatregelen ?investering ;
-           cbs:reëleEenmaligBenodigdeInvesteringBouwfysischeMaatregeln ?bouwfysischeInvestering ;
-           cbs:reëleEenmaligBenodigdeInvesteringInstallatietechnischeMaatregelen ?installatieInvestering .
+           cbs:theoretischeBesparingspotentieAlleMaatregelen ?besparing ;
+           cbs:theoretischeBesparingspotentieBouwfysischeMaatregelen ?bouwfysischeBesparing ;
+           cbs:theoretischeBesparingspotentieInstallatietechnischeMaatregelen ?installatieBesparing ;
+           cbs:theoretischeEenmaligBenodigdeInvesteringAlleMaatregelen ?investering ;
+           cbs:theoretischeEenmaligBenodigdeInvesteringBouwfysischeMaatregelen ?bouwfysischeInvestering ;
+           cbs:theoretischeEenmaligBenodigdeInvesteringInstallatietechnischeMaatregelen ?installatieInvestering .
   }
   bind((?bouwfysischeInvestering + ?installatieInvestering) / (?bouwfysischeBesparing + ?installatieBesparing) as ?jaren)
-  bind(concat('<h3>',str(?buurtNaam),'</h3>',
-              '<p>Gemiddeld gebruik aardgas: ',str(?gemAardgas),'m³ per jaar<br>',
-              'Gemiddeld gebruik elektriciteit: ',str(?gemElektra),'kWh per jaar</p>',
-              '<p>Mogelijke bouwfysische besparingen: €',str(?bouwfysischeBesparing),' per jaar<br>',
-              'Mogelijke installatietechnische besparingen: €',str(?installatieBesparing),' per jaar</p>',
-              '<p>Bouwfysische investeringen: €',str(?bouwfysischeInvestering),'<br>',
-              'Installatietechnische investeringen: €',str(?installatieInvestering),'</p>',
-              '<p>Positief rendement na ',str(?jaren),' jaar.</p>') as ?shapeLabel)
+  bind(concat('<h3>Zoetermeer 》 ',str(?buurtNaam),'</h3>',
+      '<p>🗲 Energiegebruik:</p>',
+      '<ul>',
+      '<li>Elektriciteit: ',replace(str(?gemElektra),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'kWh per jaar</li>',
+      '<li>Aardgas: ',replace(str(?gemAardgas),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m³ per jaar</li>',
+      '</ul>',
+      '<p>💰 Besparingen:</p>'
+      '<ul>',
+      '<li>Bouwfysische: € ',replace(str(?bouwfysischeBesparing),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' per jaar</li>',
+      '<li>Installatietechnische: € ',replace(str(?installatieBesparing),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' per jaar</li>',
+      '</ul>',
+      '<p>💰 Investeringen:</p>',
+      '<ul>'
+      '<li>Bouwfysisch: € ',replace(str(?bouwfysischeInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
+      '<li>Installatietechnisch: € ',replace(str(?installatieInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
+      '</ul>',
+      '<p>🕗 Positief rendement na ',replace(str(?jaren),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' jaar</p>') as ?shapeLabel)
 }
 limit 1
