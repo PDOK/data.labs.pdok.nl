@@ -217,23 +217,11 @@ Deze query staat tijdelijk uit vanwege performance problemen.
   data-query-sparql="100-labels-voor-postcode-prefix.rq"></div>
 -->
 
-<!--
-# FacetCheck
+## Energie browser
 
 Naast bovenstaande queries is het ook mogelijk om buurten te filteren
-op basis van energie-gerelateerde eigenschappen.  In <a
-target="_blank" href="https://facetcheck.triply.cc">Kadaster
-FacetCheck</a> is het mogelijk om op de volgende eigenschappen te
-selecteren:
-
-  - aardgasverbruik
-  - elektriciteitsverbruik
-  - percentage huurwoningen
-  - percentage koopwoningen
-  - besparingspotentieel in euros per jaar
--->
-
-## Energie browser
+op basis van energie-gerelateerde eigenschappen in the Energie
+Browser:
 
 <a href="../../presentations/energie-browser" target="_blank">
   <button>Energie Browser</button>
