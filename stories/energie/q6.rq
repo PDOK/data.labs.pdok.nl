@@ -4,8 +4,8 @@ select ?wkt ?wktColor {
   ?gemeente a cbs:Gemeente ;
             geo:hasGeometry/geo:asWKT ?wkt .
   optional {
-    ?gemeente cbs:gemiddeldeReeleBesparingspotentieInEuroPerJaar_populatie ?euro .
+    ?gemeente cbs:gemiddeldeTheoretischeBesparingspotentieInEuroPerJaar_populatie ?euro
   }
-  bind(if(bound(?euro),?euro / 2280,0) as ?normalized)
+  bind(if(bound(?euro),?euro/1900,0) as ?normalized)
   bind(concat("jet,",str(?normalized)) as ?wktColor)
 }

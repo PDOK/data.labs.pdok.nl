@@ -80,7 +80,7 @@ wanneer alle energiebesparende maatregelen die nog kunnen worden
 toegepast in de woning worden gerealiseerd.  Besparingen liggen
 landelijk tussen €0 (blauw/koud) en €2.280 (rood/warm).
 
-<div data-query data-query-sparql="q6.rq"></div>
+<div data-query data-query-sparql="q5.rq"></div>
 
 ## Theoretische energiebesparing
 
@@ -88,14 +88,7 @@ De volgende thematische kaart laat de theoretische energiebesparing
 zien.  Landelijk ligt dit besparingspotentieel tussen €0 en €1.900 per
 koopwoning per jaar.
 
-<div data-query data-query-sparql="q7.rq"> </div>
-
-## Hoog Energieverbruik?
-
-We zijn wel benieuwd welke gebouwen in Amsterdam veel energie
-verbruiken, en welk energielabel daar dan bij hoort.
-
-<div data-query data-query-sparql="q8.rq"></div>
+<div data-query data-query-sparql="q6.rq"> </div>
 
 ## Besparingspotentie voor een gemeente
 
@@ -109,7 +102,14 @@ kaart gelegen) bijna geen energiebesparingen mogelijk zijn. Maar in
 de oude buurten in de binnenstad zijn aanzienlijke energiesparingen
 van duizenden euros per jaar mogelijk.
 
-<div data-query data-query-sparql="q5.rq"></div>
+<div data-query data-query-sparql="q7.rq"></div>
+
+## Hoog Energieverbruik?
+
+We zijn wel benieuwd welke gebouwen in Amsterdam veel energie
+verbruiken, en welk energielabel daar dan bij hoort.
+
+<div data-query data-query-sparql="q8.rq"></div>
 
 <!-- Werk niet met zo veel data + federatie + geen linkbare eigenschappen
 ## Goede voorbeelden
