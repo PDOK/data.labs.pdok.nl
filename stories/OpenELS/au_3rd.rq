@@ -6,6 +6,6 @@ select ?wktLabel ?wkt
  {  graph <https://data.pdok.nl/OpenELS/AU> { 
 	?s a  au:AdministrativeUnit;
     rdfs:label ?wktLabel;
-    au:AdministrativeUnit.nationalLevel nationallevel:2ndOrder;  
+    au:AdministrativeUnit.nationalLevel nationallevel:3rdOrder;  
     geo:hasGeometry [ geo:asWKT ?wkt] .
     }}
