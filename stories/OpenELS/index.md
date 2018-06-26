@@ -21,3 +21,10 @@ Each national territory is divided into administrative units.
 </div>
 
 ## Geographical Names
+
+### Living in a "brink"
+
+<div data-query
+     data-query-endpoint="https://data.labs.pdok.nl/geosparql"
+     data-query-sparql="brink.rq">
+</div>
