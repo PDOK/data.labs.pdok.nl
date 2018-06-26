@@ -7,5 +7,5 @@ SELECT Distinct ?type ?label ?wkt {
                 gn:NamedPlace.localType	?type;
                 geo:hasGeometry [ geo:asWKT ?wkt].
     ?geographicalName rdfs:label ?label.
-    Filter (CONTAINS(?label, "Brink")  )
+    Filter (CONTAINS(?label, "Brink")  || CONTAINS(?label, "brink")  )
   }}    
