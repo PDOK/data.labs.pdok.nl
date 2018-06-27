@@ -1,0 +1,13 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gn: <http://inspire.ec.europa.eu/ont/gn#>
+SELECT Distinct ?type ?label ?wkt {
+  graph <https://data.pdok.nl/openels/gn> {
+    Values ?toponymRoot {"brink"}
+    ?namedPlace gn:NamedPlace.name ?geographicalName;
+                gn:NamedPlace.localType	?type;
+                geo:hasGeometry [ geo:asWKT ?wkt].
+    ?geographicalName rdfs:label ?label.
+ FILTER regex(?label, ?toponymRoot, "i")
+  }
+}   

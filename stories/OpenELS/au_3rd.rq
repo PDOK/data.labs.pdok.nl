@@ -1,0 +1,11 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix au: <http://inspire.ec.europa.eu/ont/au#>
+Prefix nationallevel: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
+select ?wktLabel ?wkt
+ {  graph <https://data.pdok.nl/OpenELS/AU> { 
+	?s a  au:AdministrativeUnit;
+    rdfs:label ?wktLabel;
+    au:AdministrativeUnit.nationalLevel nationallevel:3rdOrder;  
+    geo:hasGeometry [ geo:asWKT ?wkt] .
+    }}
