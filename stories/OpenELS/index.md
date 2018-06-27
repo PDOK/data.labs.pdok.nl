@@ -3,7 +3,7 @@ endpoint: https://data.labs.pdok.nl/geosparql
 layout: story
 logo: /stories/OpenELS/logo.png
 output: leaflet
-title:  
+title:  .
 ---
 
 #  OpenELS Data Story 
