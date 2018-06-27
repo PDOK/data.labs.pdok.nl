@@ -6,7 +6,7 @@ output: leaflet
 title:  .
 ---
 
-#  OpenELS Data Story 
+#  OpenELS
 
 [The Open European Location Services (OpenELS)](http://openels.eu/about/) project is developing pan-European data services using authoritative geospatial information and an associated business model. Here we present the LinkedData version of two main INSPIRE theme, namely Administrative Units(AU) and Geographicl Names (GN)
 
