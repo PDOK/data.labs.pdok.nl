@@ -24,7 +24,8 @@ select ?shape ?shapeColor ?shapeLabel {
   }
   bind(?bouwfysischeInvestering + ?installatieInvestering as ?noemer)
   bind(?bouwfysischeBesparing + ?installatieBesparing as ?deler)
-  bind(if(?deler>0, (22.0-(xsd:float(?noemer/?deler)-8.0))/22.0, 0) as ?normalized)
+  bind(xsd:float(?noemer)/?deler as ?jaren)
+  bind(if(?deler>0, (22.0-(xsd:float(?noemer)/?deler-8.0))/22.0, 0) as ?normalized)
   bind(concat("bluered,",str(?normalized)) as ?shapeColor)
   bind(concat('<h3>Amsterdam 》 ',str(?buurtNaam),'</h3>',
       '<p>🗲 Energiegebruik:</p>',
@@ -43,7 +44,7 @@ select ?shape ?shapeColor ?shapeLabel {
       '<li>Installatietechnisch: € ',replace(str(?installatieInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
       '</ul>',
       if(bound(?normalized),
-         concat('<p>🕗 Positief rendement na ',substr(str(?normalized), 1, 4),' jaar.</p>'),
+         concat('<p>🕗 Positief rendement na ',substr(str(?jaren), 1, 4),' jaar.</p>'),
          '')) as ?shapeLabel)
 }
 limit 75
