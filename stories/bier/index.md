@@ -9,7 +9,7 @@ title: 🍺 Bier Data Story 🍺
 
 # 🍺 Bier Data Story 🍺
 
-# De Brouwerij Tijdreis
+## De Brouwerij Tijdreis
 
 Met brouwerijdata als Linked Data, kunnen we ook (in analogie van de
 populaire topotijdreis.nl) de biertijdreis presenteren. Zie de
