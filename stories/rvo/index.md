@@ -33,7 +33,7 @@ https://api.demo.triply.cc/s/HJZ1Hh4zX
 
 Waar worden bepaalde talen gesproken?
 
-<div data-query-sparql="q5.rq"></div>
+<div data-query data-query-sparql="q5.rq"></div>
 
 ## Vergelijkingen met andere bronnen
 
