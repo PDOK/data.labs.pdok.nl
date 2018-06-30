@@ -1,0 +1,17 @@
+prefix cia: <http://www.daml.org/2001/12/factbook/factbook-ont#>
+prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+select
+  ?naam
+  (xsd:double(?rvo) as ?rvo)
+  (xsd:double(?cia) * 1.0e3 as ?cia)
+  (?cshapes * 1.0e3 as ?cshapes)
+{
+  ?land a rvo:Land ;
+    owl:sameAs/cia:landArea ?cia ;
+    owl:sameAs/iisg:area ?cshapes ;
+    rdfs:label ?naam ;
+    rvo:oppervlakte ?rvo .
+}

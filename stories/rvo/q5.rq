@@ -1,0 +1,9 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+select ?taal (count(?naam) as ?n) (group_concat(?naam; separator=', ') as ?landen) {
+  ?land a rvo:Land ;
+    rdfs:label ?naam ;
+    rvo:taal ?taal
+}
+group by ?taal
+order by desc(?n)

@@ -1,0 +1,10 @@
+prefix cia: <http://www.daml.org/2001/12/factbook/factbook-ont#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+select ?naam ?rvo ?cia {
+  ?land a rvo:Land ;
+    owl:sameAs/cia:governmentType/cia:name ?cia ;
+    rdfs:label ?naam ;
+    rvo:staatsvorm/rdfs:label ?rvo .
+}
