@@ -3,12 +3,10 @@ prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select
   ?naam
-  (xsd:integer(?bbp) as ?bbp_usd)
   (xsd:integer(?import) * 1.17 as ?import_usd)
   (xsd:integer(?export) * 1.17 as ?export_usd)
 {
   ?land a rvo:Land ;
-    rvo:bbp ?bbp ;
     rvo:invoerwaarde ?import ;
     rvo:uitvoerwaarde ?export ;
     rdfs:label ?naam
