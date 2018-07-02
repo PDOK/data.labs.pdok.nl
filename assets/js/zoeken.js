@@ -24,7 +24,6 @@ function fillTableRows(result) {
     .split('.')
     .slice(-2)
     .join('.');
-  console.log('tld', domain);
 
   if (trustedSites.indexOf(domain) > -1) {
     $('#trustedResults tbody').append(tableRow);
