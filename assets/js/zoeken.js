@@ -1,6 +1,11 @@
+var trustedSites = [
+  'overheid.nl',
+  'cbs.nl',
+];
+
 function fillTableRows(result) {
   var urlParts = result.uri[0].split('/');
-  if (urlParts.length == 3) { // URL is already a base url
+  if (urlParts.length === 3) { // URL is already a base url
     baseURL = result.uri[0];
   } else {
     baseURL = urlParts
@@ -14,10 +19,13 @@ function fillTableRows(result) {
     '<td><a href="' + baseURL + '">'+ baseURL +
     '</a></td></tr>';
 
-  if (result.uri[0].match('overheid.nl')) {
-    $("#trustedResults tbody").append(tableRow);
+  var tld = result.uri[0]
+    .split('/')[2];
+
+  if (trustedSites.indexOf(tld) > -1) {
+    $('#trustedResults tbody').append(tableRow);
   } else {
-    $("#miscResults tbody").append(tableRow);
+    $('#miscResults tbody').append(tableRow);
   }
 }
 
@@ -25,10 +33,10 @@ function searchForTerm(data) {
   var searchTerm = data.target.value;
 
   var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://lov.okfn.org/dataset/lov/api/v2/term/search?q=" + searchTerm + "&page_size=100",
-    "method": "GET",
+    async: true,
+    crossDomain: true,
+    url: 'https://lov.okfn.org/dataset/lov/api/v2/term/search?q=' + searchTerm + "&page_size=100",
+    method: 'GET',
   };
 
   $.ajax(settings).done(function (response) {
