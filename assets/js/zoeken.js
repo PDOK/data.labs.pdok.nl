@@ -19,10 +19,14 @@ function fillTableRows(result) {
     '<td><a href="' + baseURL + '">'+ baseURL +
     '</a></td></tr>';
 
-  var tld = result.uri[0]
-    .split('/')[2];
+  var domain = result.uri[0]
+    .split('/')[2]
+    .split('.')
+    .slice(-2)
+    .join('.');
+  console.log('tld', domain);
 
-  if (trustedSites.indexOf(tld) > -1) {
+  if (trustedSites.indexOf(domain) > -1) {
     $('#trustedResults tbody').append(tableRow);
   } else {
     $('#miscResults tbody').append(tableRow);
