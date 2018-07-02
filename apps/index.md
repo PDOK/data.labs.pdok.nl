@@ -151,15 +151,32 @@ Eindhoven gedemonstreerd.
 - TNO biedt in een presentatie een overzicht van de doelen en
   functionaliteit, op
   [www.tnopresenter.nl/cs](http://www.tnopresenter.nl/cs)
-- Op YouTube is een demonstratie te zien: <iframe width="560"
-  height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4"
-  frameborder="0" allowfullscreen></iframe>
+- Op YouTube is een demonstratie te zien: 
+<iframe width="560"  height="315" src="https://www.youtube.com/embed/EGTMvd5jYd4"  frameborder="0" allowfullscreen>
+</iframe>
 
 ## Proeftuin Omgevingswet Kadaster
 
 **Voor vragen en/of opmerkingen met betrekking tot één van
 onderstaande demo-omgevingen, kunt u een e-mail sturen naar
-<omgevingswet@kadaster.nl>**
+[omgevingswet@kadaster.nl](mailto:omgevingswet@kadaster.nl)**
+
+### Pilot Gebiedsscan
+
+*In samenwerking met de gemeenten Utrecht en Eindhoven – December 2017 t/m april 2018*
+
+Begin 2018 zijn wij in de geest van de Omgevingswet bezig geweest met een hands-on leerervaring voor gebieds-ontwikkeling. Samen zijn wij aan de slag gegaan om ruimtelijke data van betrokken partijen te visualiseren en als informatieve kaartlagen raadpleegbaar te maken. Het platform is een eerste stap waarin we met gemeenten samen op één plek alle ruimtelijke data, documenten, vergunningen en normen bij elkaar brengen. De uitkomst betreft een gebruiksvriendelijke oriëntatieplek, een plek om eenieder te informeren en inspireren t.b.v. ruimtelijke initiatieven. Én een platform waarop je jouw eigen initiatief kan uitwerken.
+
+Het platform zet mensen aan het denken over welke omgevingsgegevens in een dergelijke informatievoorziening relevant kunnen zijn, welke handige combinaties tussen datasets gemaakt kunnen worden en wat er onder de motorkap eigenlijk allemaal nodig is om data op deze manier als informatie beschikbaar te maken.
+
+ 
+
+Klink op onderstaande links om de demo-omgeving te verkennen en voor meer informatie zie de PowerPoint van onze eindpresentatie:
+
+* https://gebiedsscan.kadaster.semaku.com/app
+* [PDF Eindpresentatie PowerPoint](/presentations/gebiedsscan/0611.0%20Concept%20eind-presentatie%2013%20juni%202018%20_DefinitiefOpmVerwerkt.pptx) (verhaal achter de Gebiedsscan en de gebruikte data etc.)
+
+Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](www.pilotstarter.nl)
 
 ### Pilot Soest 2.0
 
