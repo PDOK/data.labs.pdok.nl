@@ -4,7 +4,7 @@ layout: story
 logo: /stories/rvo/logo.jpg
 output: leaflet
 published: true
-title: 🍺 Bier Data Story 🍺
+title: RVO Landen Story
 ---
 
 # Internationaal ondernemen
