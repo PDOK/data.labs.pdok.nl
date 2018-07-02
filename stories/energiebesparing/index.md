@@ -12,7 +12,7 @@ Deze Data Story gaat over de gemiddelde energiebesparingspotentie voor
 koopwoningen in Nederland.  Het gemiddelde besparingspotentieel wordt
 per gemeente gerekend door het CBS.
 
-## Reëele energiebesparing
+## Reële energiebesparing
 
 De volgende kaart toont de totale besparing in energieverbruik
 (uitgedrukt in euro per jaar) die in koopwoningen behaald kan worden
@@ -20,9 +20,7 @@ wanneer alle energiebesparende maatregelen die nog kunnen worden
 toegepast in de woning worden gerealiseerd.  Besparingen liggen
 landelijk tussen €0 (blauw/koud) en €2.280 (rood/warm).
 
-<div data-query
-     data-query-sparql="10-reëel.rq">
-</div>
+<div data-query data-query-sparql="10-reëel.rq"></div>
 
 ## Reële energiebesparing: Bouwfysische besparingen
 
@@ -37,8 +35,7 @@ Bouwfysische maatregelen bestaan uit:
 - isolatie van gevels
 - kierdichting en HR beglazing
 
-<div data-query data-query-sparql="bouwfysisch.rq">
-</div>
+<div data-query data-query-sparql="bouwfysisch.rq"></div>
 
 ## Reële energiebesparing: Installatietechnische besparingen
 
@@ -53,8 +50,7 @@ bestaan uit:
 - zonneboiler
 - zonnepanelen
 
-<div data-query data-query-sparql="installatietechnisch.rq">
-</div>
+<div data-query data-query-sparql="installatietechnisch.rq"></div>
 
 ## Theoretische energiebesparing
 

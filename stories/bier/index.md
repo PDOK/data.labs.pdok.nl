@@ -9,18 +9,20 @@ title: 🍺 Bier Data Story 🍺
 
 # 🍺 Bier Data Story 🍺
 
-## Linked Bier Browser
+## De Brouwerij Tijdreis
 
-Gebruik Linked Data om te zoeken naar biertjes en brouwerijen:
+Met brouwerijdata als Linked Data, kunnen we ook (in analogie van de
+populaire topotijdreis.nl) de biertijdreis presenteren. Zie de
+explosie van brouwerijen in de afgelopen paar jaar:
 
-<a href="../../presentations/bier-browser" target="_blank">
-  <button>Linked Bier Browser</button>
+<a href="../../presentations/bier-tijdreis" target="_blank">
+  <button>Brouwerij Tijdreis</button>
 </a>
 
 ## Stakingen bij brouwers
 
 Stakingen die in Nederland hebben plaatsgevonden worden als Linked
-Data gepubliceerd door het Instituur voor Sociale Geschiedenis (IISG)
+Data gepubliceerd door het Instituut voor Sociale Geschiedenis (IISG)
 op [Druid](https://druid.datalegend.net/dataLegend/strikes).  We
 kunnen de stakingen per beroep opvragen.  Hieronder de stakingen
 geïnitieerd door brouwers:
@@ -51,12 +53,12 @@ BAG alsook het RCE Monumenten Register:
      data-query-sparql="monument-heineken.rq">
 </div>
 
-# Tot slot: De Brouwerij Tijdreis
+En wat zegt [Wikipedia](https://nl.wikipedia.org/wiki/Heineken_Brouwerij_(Amsterdam)) ? 
 
-Met brouwerijdata als Linked Data, kunnen we ook (in analogie van de
-populaire topotijdreis.nl) de biertijdreis presenteren. Zie de
-explosie van brouwerijen in de afgelopen paar jaar:
+## Linked Bier Browser
 
-<a href="../../presentations/bier-tijdreis" target="_blank">
-  <button>Brouwerij Tijdreis</button>
+Gebruik Linked Data om te zoeken naar biertjes en brouwerijen:
+
+<a href="../../presentations/bier-browser" target="_blank">
+  <button>Linked Bier Browser</button>
 </a>

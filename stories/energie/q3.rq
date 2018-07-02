@@ -1,0 +1,37 @@
+prefix buurt: <http://betalinkeddata.cbs.nl/regios/2016/id/buurt/>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+select ?woningtype ?gas_m3 ?elektra_kWh {
+  bind(buurt:BU03010500 as ?buurt)
+  {
+    _:1a def:energie_GemiddeldAardgasverbruik_NaarWoningtype_Appartement ?gas_m3 ;
+         dimension:regio ?buurt .
+    _:1b def:energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Appartement ?elektra_kWh ;
+         dimension:regio ?buurt .
+    bind("appartement" as ?woningtype)
+  } union {
+    _:2a def:energie_GemiddeldAardgasverbruik_NaarWoningtype_Hoekwoning ?gas_m3 ;
+         dimension:regio ?buurt .
+    _:2b def:energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Hoekwoning ?elektra_kWh ;
+         dimension:regio ?buurt .
+    bind("hoekwoning" as ?woningtype)
+  } union {
+    _:3a def:energie_GemiddeldAardgasverbruik_NaarWoningtype_Tussenwoning ?gas_m3 ;
+         dimension:regio ?buurt .
+    _:3b def:energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Tussenwoning ?elektra_kWh ;
+         dimension:regio ?buurt .
+    bind("tussenwoning" as ?woningtype)
+  } union {
+    _:4a def:energie_GemiddeldAardgasverbruik_NaarWoningtype_Twee-onder-een-kap-woning ?gas_m3 ;
+         dimension:regio ?buurt .
+    _:4b def:energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_Twee-onder-een-kap-woning ?elektra_kWh ;
+         dimension:regio ?buurt .
+    bind("twee onder één kap" as ?woningtype)
+  } union {
+    _:5a def:energie_GemiddeldAardgasverbruik_NaarWoningtype_VrijstaandeWoning ?gas_m3 ;
+         dimension:regio ?buurt .
+    _:5b def:energie_GemiddeldElektriciteitsverbruik_NaarWoningtype_VrijstaandeWoning ?elektra_kWh ;
+         dimension:regio ?buurt .
+    bind("vrijstaande woning" as ?woningtype)
+  }
+}

@@ -1,0 +1,24 @@
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select distinct ?postcode ?huisnummer ?elektraverbuik_kWh ?gasverbuik_m3 ?energieklasse {
+  graph <http://data.labs.pdok.nl/dataset/energie/ams_energie_labels_verbuik> {
+    ?EHouse a energie:HouseEnergyLabel ;
+      energie:pand_postcode ?postcode ;
+      energie:pand_huisnummer ?huisnummer_ ;
+      energie:e_label ?energieklasse ;
+      energie:hasFootprint ?Footprint ;
+      schema:description ?building_type .
+    ?Footprint a energie:EnergyFootprint ;
+      energie:energie_verbuik_ruimte_m2 ?PandVanMeting_energieverbuik_m2 ;
+      energie:elektra_verbuik_kWh ?PandVanMeting_elektraverbuik_kWh ;
+      energie:gas_verbuik_m3 ?PandVanMeting_gasverbuik_m3 ;
+      energie:co2_verbruik_kg ?PandVanMeting_CO2verbruik_kg .
+    bind(xsd:integer(?huisnummer_) as ?huisnummer)
+    bind(xsd:double(replace(?PandVanMeting_elektraverbuik_kWh,',','.')) as ?elektraverbuik_kWh)
+    bind(xsd:double(replace(?PandVanMeting_gasverbuik_m3,',','.')) as ?gasverbuik_m3)
+    filter(bound(?elektraverbuik_kWh))  # show only with the actual energy usage labels
+    filter(?elektraverbuik_kWh > 2300)
+  }
+}
+limit 15

@@ -1,5 +1,5 @@
 ---
-endpoint: https://data.pdok.nl/sparql/cbs
+endpoint: https://betalinkeddata.cbs.nl/sparql
 layout: story
 logo: /stories/cbs/logo.png
 output: leaflet

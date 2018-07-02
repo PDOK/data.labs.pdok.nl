@@ -3,13 +3,14 @@ endpoint: https://data.labs.pdok.nl/sparql
 output: leaflet
 layout: story
 logo: /stories/monument/logo.jpg
+published: false
 title: Kadaster Data Stories ― Nederlandse monumenten
 ---
 
 # Nederlandse monumenten
 
 Deze query laat zien hoe we, gebruik makend van Linked Data, vragen
-<i>over datasets heen</i> kunnen stellen.
+over datasets heen kunnen stellen.
 
 We vragen een monument op uit de RCE monumenten datasets (dataset 1).
 Voor dat monument vragen we een afbeelding op uit de RCE beeldbank
@@ -29,10 +30,8 @@ de gebruiksstatus van dit verblijfsobject en pand.
      data-query-sparql="prinsegracht-5.rq">
 </div>
 
-<!--
 ## Monumenten in Amersfoort
 
 <div data-query
      data-query-sparql="almere_monuments.rq">
 </div>
--->

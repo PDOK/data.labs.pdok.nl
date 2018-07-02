@@ -1,0 +1,50 @@
+prefix buurt: <https://data.labs.pdok.nl/cbs/id/buurt/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix gemeente: <https://data.labs.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape ?shapeColor ?shapeLabel {
+  bind(strdt("Amsterdam",xsd:string) as ?gemeenteNaam)
+  graph graph:wijkbuurt-2015 {
+    ?buurt geo:hasGeometry/geo:asWKT ?shape ;
+           geo:sfWithin/geo:sfWithin/rdfs:label ?gemeenteNaam ;
+           rdfs:label ?buurtNaam .
+   }
+  graph graph:cbs-energie-2015 {
+    ?buurt cbs:aardgasverbruikKoopwoning ?gemAardgas ;
+           cbs:elektriciteitsverbruikKoopwoning ?gemElektra ;
+           cbs:reëleBesparingspotentieAlleMaatregelen ?besparing ;
+           cbs:reëleBesparingspotentieBouwfysischeMaatregelen ?bouwfysischeBesparing ;
+           cbs:reëleBesparingspotentieInstallatietechnischeMaatregelen ?installatieBesparing ;
+           cbs:reëleEenmaligBenodigdeInvesteringAlleMaatregelen ?investering ;
+           cbs:reëleEenmaligBenodigdeInvesteringBouwfysischeMaatregeln ?bouwfysischeInvestering ;
+           cbs:reëleEenmaligBenodigdeInvesteringInstallatietechnischeMaatregelen ?installatieInvestering .
+  }
+  bind(?bouwfysischeInvestering + ?installatieInvestering as ?noemer)
+  bind(?bouwfysischeBesparing + ?installatieBesparing as ?deler)
+  bind(xsd:float(?noemer)/?deler as ?jaren)
+  bind(if(?deler>0, (22.0-(xsd:float(?noemer)/?deler-8.0))/22.0, 0) as ?normalized)
+  bind(concat("bluered,",str(?normalized)) as ?shapeColor)
+  bind(concat('<h3>Amsterdam 》 ',str(?buurtNaam),'</h3>',
+      '<p>🗲 Energiegebruik:</p>',
+      '<ul>',
+      '<li>Elektriciteit: ',replace(str(?gemElektra),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'kWh per jaar</li>',
+      '<li>Aardgas: ',replace(str(?gemAardgas),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m³ per jaar</li>',
+      '</ul>',
+      '<p>💰 Besparingen:</p>',
+      '<ul>',
+      '<li>Bouwfysische: € ',replace(str(?bouwfysischeBesparing),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' per jaar</li>',
+      '<li>Installatietechnische: € ',replace(str(?installatieBesparing),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' per jaar</li>',
+      '</ul>',
+      '<p>💰 Investeringen:</p>',
+      '<ul>',
+      '<li>Bouwfysisch: € ',replace(str(?bouwfysischeInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
+      '<li>Installatietechnisch: € ',replace(str(?installatieInvestering),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</li>',
+      '</ul>',
+      if(bound(?normalized),
+         concat('<p>🕗 Positief rendement na ',substr(str(?jaren), 1, 4),' jaar.</p>'),
+         '')) as ?shapeLabel)
+}
+limit 75

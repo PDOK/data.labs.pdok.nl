@@ -1,0 +1,70 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape ?shapeColor (min(?shapeLabel) as ?shapeLabel) {
+  {
+    select * {
+      ?woonplaats bag:naamWoonplaats "Zoetermeer"
+      graph ?g1 {
+        ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats ;
+                        bag:naamOpenbareRuimte "Waarderstraat"
+      }
+      filter not exists { ?g1 bag:eindGeldigheid _:1 }
+      graph ?g2 {
+        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                          bag:huisnummer ?huisnummer ;
+                          bag:postcode ?postcode
+      }
+      filter not exists { ?g2 bag:eindGeldigheid _:2 }
+      bind(str(?huisnummer) as ?huisnummerString)
+      graph ?g3 {
+        ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                         bag:pandrelatering ?pand
+      }
+      filter not exists { ?g3 bag:eindGeldigheid _:3 }
+      graph ?g4 {
+        ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+              bag:status ?pandStatus ;
+              geo:hasGeometry/geo:asWKT ?shape
+      }
+      filter not exists { ?g4 bag:eindGeldigheid _:4 }
+      ?pandStatus rdfs:label ?pandStatusLabel
+    }
+  }
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:energielabels {
+      optional {
+        _:0 energielabels:e_label ?energielabel ;
+            energielabels:opname_datum ?opnamedatum ;
+            energielabels:pand_huisnummer ?huisnummerString ;
+            energielabels:pand_postcode ?postcode ;
+            energielabels:registratie_datum ?registratiedatum
+      }
+    }
+  }
+  bind(if(!(bound(?energielabel)), "grey",
+       if(strstarts(?energielabel,"A"), "#22b14c",
+       if(?energielabel="B", "#8ff334",
+       if(?energielabel="C", "#bdfc2c",
+       if(?energielabel="D", "#fff200",
+       if(?energielabel="E", "#ff9a35",
+       if(?energielabel="F", "#ff7f27",
+       if(?energielabel="G", "#ed1c24", "grey")))))))) as ?shapeColor)
+  bind(concat('<h3>',
+              if(bound(?energielabel),
+                 concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10"></svg> '),
+                 ''),
+              'Waarderstraat, ',?huisnummerString,', ',str(?postcode),' Zoetermeer</h3>',
+              '<ul>',
+              if(bound(?energielabel),
+                 concat('<li>Energielabel: ',str(?energielabel),'</li>',
+                        '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
+                        '<li>Registratiedatum: ',str(?registratiedatum),'</li>'),
+                 ''),
+              '<li>Pand status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
+              '<li>Bouwjaar: ',str(?bouwjaar) ,'</li>',
+              '</ul>') as ?shapeLabel)
+}
+group by ?shape ?shapeColor

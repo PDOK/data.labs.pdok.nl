@@ -49,16 +49,21 @@ kan mogelijk aangevuld worden in de BGT.  Het kaarbeeld laat zien dat
 vooral de BRT, OpenStreetMap maar in beperktere mate ook Windstats
 mogelijk nog aanvulling kunnen betekenen voor de BGT.
 
-Alle windturbines in Zuidwest-Flevoland volgens BGT
-( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="blue" r="10"/></svg> ),
-BRT
-( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="yellow" r="10"/></svg> ),
-en OSM
-( <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="10" fill="green" r="10"/></svg> ).
+Alle windturbines in Zuidwest-Flevoland volgens BGT (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="blue" r="10"/>
+</svg>
+), BRT (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="yellow" r="10"/>
+</svg>
+), en OSM (
+<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" fill="green" r="10"/>
+</svg>
+).
 
-<div data-query
-     data-query-sparql="20-windturbine.rq">
-</div>
+<div data-query data-query-sparql="20-windturbine.rq"></div>
 
 # Windturbines ontbrekend (?) in de BRT
 
@@ -66,6 +71,4 @@ Wijzigen we de volgorde van de kaartopbouw, dan zien we welke turbines
 niet in de BRT voorkomen.  Alle markers in een andere kleur dan geel
 is mogelijk een ontbrekend element.
 
-<div data-query 
-     data-query-sparql="30-turbines-niet-in-brt.rq">
-</div>
+<div data-query data-query-sparql="30-turbines-niet-in-brt.rq"></div>

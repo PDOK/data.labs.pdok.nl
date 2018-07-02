@@ -11,12 +11,8 @@ select
   (avg(xsd:float(?x4)) as ?inwoners45_64)
   (avg(xsd:float(?x5)) as ?inwoners65plus)
 {
-  {
-    graph graph:krimpgebied {
-      ?gemeente geo:sfWithin/rdfs:label ?label .
-    }
-  } union {
-    bind('Nederland' as ?label)
+  graph graph:krimpgebied {
+    ?gemeente geo:sfWithin/rdfs:label ?label .
   }
   graph graph:wijkbuurt-2016 {
     ?gemeente cbs:inwoners0-14 ?x1 ;
