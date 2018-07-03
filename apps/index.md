@@ -170,11 +170,9 @@ Begin 2018 zijn wij in de geest van de Omgevingswet bezig geweest met een hands-
 
 Het platform zet mensen aan het denken over welke omgevingsgegevens in een dergelijke informatievoorziening relevant kunnen zijn, welke handige combinaties tussen datasets gemaakt kunnen worden en wat er onder de motorkap eigenlijk allemaal nodig is om data op deze manier als informatie beschikbaar te maken.
 
- 
-
 Klink op onderstaande links om de demo-omgeving te verkennen en voor meer informatie zie de PowerPoint van onze eindpresentatie:
 
-* https://gebiedsscan.kadaster.semaku.com/app
+* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app)
 * [PDF Eindpresentatie PowerPoint](/presentations/gebiedsscan/0611.0%20Concept%20eind-presentatie%2013%20juni%202018%20_DefinitiefOpmVerwerkt.pptx) (verhaal achter de Gebiedsscan en de gebruikte data etc.)
 
 Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](www.pilotstarter.nl)
