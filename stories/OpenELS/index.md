@@ -25,7 +25,7 @@ These are municipalities:
 
 ## Geographical Names
 
-### Living on the "brink"
+## Living on the "brink"
 
 Brink is a very common toponym for Low German, Dutch, Danish and Swedish languahes. The Dutch and Low German meaning is "village green". In Danish and Swedish, the name is thought to be a borrowing of Middle Dutch *brinc*, meaning "grassy edge". 
 You can also try other popular Dutch toponym roots:
@@ -36,4 +36,17 @@ You can also try other popular Dutch toponym roots:
 <div data-query
      data-query-endpoint="https://data.labs.pdok.nl/geosparql"
      data-query-sparql="brink.rq">
+</div>
+
+
+## Linked Data is linked!
+
+Being cobverted to RDF, data can be seen as a part of unboundaed data space - Linked Data Cloud. 
+As a result, we can use other resources of the Semantic Web to enrich and validate our data set. 
+
+For exampel, lets check the political affiliatoin of municipal heads. This can be done using Dbpedia. 
+
+<div data-query
+     data-query-endpoint="https://data.labs.pdok.nl/sparql"
+     data-query-sparql="au_party.rq">
 </div>

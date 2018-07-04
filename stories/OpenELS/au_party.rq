@@ -1,0 +1,16 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX au: <http://inspire.ec.europa.eu/ont/au#>
+PREFIX nationallevel: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
+select distinct ?wktLabel ?wkt
+ {  graph <https://data.pdok.nl/OpenELS/AU> { 
+	?s rdfs:label "Overijssel"@nl;
+    au:AdministrativeUnit.nationalLevel nationallevel:2ndOrder.
+    }
+  ?s owl:sameAs ?o.
+  ?gem <http://purl.org/dc/terms/isPartOf> ?o.
+  ?gem owl:sameAs ?auGem.
+  ?auGem geo:hasGeometry/geo:asWKT ?wkt.
+  Service <http://nl.dbpedia.org/sparql> {Optional {?gem <http://dbpedia.org/ontology/mayor>/<http://dbpedia.org/ontology/party>/rdfs:label ?wktLabel}} 
+}
