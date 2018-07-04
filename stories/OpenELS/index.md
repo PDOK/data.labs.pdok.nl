@@ -37,3 +37,16 @@ You can also try other popular Dutch toponym roots:
      data-query-endpoint="https://data.labs.pdok.nl/geosparql"
      data-query-sparql="brink.rq">
 </div>
+
+
+## Linked Data is linked!
+
+Being cobverted to RDF, data can be seen as a part of unboundaed data space - Linked Data Cloud. 
+As a result, we can use other resources of the Semantic Web to enrich and validate our data set. 
+
+For exampel, lets check the political affiliatoin of municipal heads. This can be done using Dbpedia. 
+
+<div data-query
+     data-query-endpoint="https://data.labs.pdok.nl/sparql"
+     data-query-sparql="au_party.rq">
+</div>
