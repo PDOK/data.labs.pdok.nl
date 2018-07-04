@@ -25,7 +25,7 @@ These are municipalities:
 
 ## Geographical Names
 
-### Living on the "brink"
+## Living on the "brink"
 
 Brink is a very common toponym for Low German, Dutch, Danish and Swedish languahes. The Dutch and Low German meaning is "village green". In Danish and Swedish, the name is thought to be a borrowing of Middle Dutch *brinc*, meaning "grassy edge". 
 You can also try other popular Dutch toponym roots:
