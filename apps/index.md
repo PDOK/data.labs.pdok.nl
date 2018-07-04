@@ -8,7 +8,7 @@ title: Demonstrators (apps)
 
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden
 ontwikkeld of getest.  Presentaties en publicaties zijn te vinden
-onder [/publications](/publications).
+onder [publicaties](/publications).
 
 ## Linked Data browsers
 
