@@ -32,7 +32,7 @@ kaart](archief-mapviewer.html)
 
 ## Bier tijdreis
 
-Als onderdeel van de [Hach-a-LOD 2018](http://hackalod.com) heeft het
+Als onderdeel van de [Hack-a-LOD 2018](http://hackalod.com) heeft het
 Kadaster een **bier tijdreis** gemaakt, waarin het ontstaan van
 bierbrouwerijen door de tijd heen wordt gevisualiseerd op een kaart:
 [zie de live demo](../presentations/bier-tijdreis/).

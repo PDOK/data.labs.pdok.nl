@@ -2,7 +2,7 @@
 layout: default
 title: Home
 ---
-# PDOK data labs!
+# PDOK Labs!
 Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
 
 ## Data Stories
