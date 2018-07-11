@@ -10,19 +10,35 @@
 }
 */
 
+@font-face {
+  font-family: "Quicksand";
+  src: url(https://www.pdok.nl/o/iv-pdok-theme/assets/fonts/quicksand/quicksand-v7-latin-ext_vietnamese_latin-regular.woff2?v=u8abd1a23) format("truetype");
+}
+
 h1 {
-  font-family: Roboto;
-  font-size: 26px;
+  font-family: Quicksand;
+  font-size: 40px;
+}
+
+h1:after
+{
+  content:' ';
+  display:block;
+  width: 1em;
+  height: .1em;
+  margin-top: .5em;
+  border-radius: 2px;
+  background: #1a1e4f;
 }
 
 h2 {
-  font-family: inherit;
-  font-size: 22px;
+  font-family: Quicksand;
+  font-size: 32px;
 }
 
 h3 {
-  font-family: inherit;
-  font-size: 20px;
+  font-family: Quicksand;
+  font-size: 24px;
 }
 
 p, ul, ol, dl {
@@ -38,7 +54,8 @@ section {
 }
 
 a.github {
-  font-size: smaller;
+  background: url(../images/octocat-small.png) no-repeat 1px;
+  font-size: 16px;
 }
 
 header {
@@ -48,17 +65,13 @@ header {
   padding: 34px 25px 22px 40px;
   li {
     width: 142px;
-    background: -webkit-linear-gradient(top, #005693 0%, #032F93 100%);
+    background: -webkit-linear-gradient(top, #005693 0%, #1a1e4f 100%);
     -webkit-box-shadow: none;
     box-shadow: none;
   }
 }
 
 header ul {position: static}
-
-h1.header {
-  font-family: inherit;
-}
 
 img {
   border: 0;
@@ -80,10 +93,12 @@ img {
 .showcase-title {
   margin: 4px;
   overflow: hidden;
-  text-overflow: ellipsis;
   height: 62px;
   vertical-align: top;
   background-color: rgba(255, 255, 255, 0.6);
+  //text-overflow: ellipsis;
+  //white-space:nowrap;
+  font-size: 24px;
 }
 
 .btn.showcase-btn {
@@ -98,6 +113,10 @@ img {
 }
 .yasgui .yasr.yasr_fullscreen {
   top: 80px !important;/**save space for the menu**/
+}
+
+#sparql-editor {
+  margin-top: 24px;
 }
 
 .tableauViz {

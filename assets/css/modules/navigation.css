@@ -3,11 +3,14 @@
 .main__navigation {
     position: fixed;
     top: 0;
-    height: 80px;
+    height: 100px;
     width: 100%;
     z-index: 999;
-    background: #FBFAF7;
+    background: #1a1e4f;
     border-bottom: 1px solid #154273;
+    font-family: Quicksand;
+    font-weight: 300;
+    color: #fff;
 }
 
     .main__navigation-brand {
@@ -20,7 +23,7 @@
         height: 58px;
         padding: 0;
         text-indent: -9999em;
-        background: url(../../images/logo.png);
+        /*background: url(/assets/images/PDOK_logo.svg);*/
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -43,13 +46,16 @@
     }
     .main__navigation__list li a{
         display: inline-block;
-        padding: 0 12px;
-        color: #585968;
+        padding: 12px 12px;
+        color: #fff;
         transition: .2s ease-in-out;
         -webkit-transition: .2s ease-in-out;
+        font-size: 20px;
+        line-height: 1.5;
+
     }
     .main__navigation__list li a:hover{
-        color: #e46f00;
+        color: #51ecff;
     }
 
     .main__navigation__list li.call__to__action a {
