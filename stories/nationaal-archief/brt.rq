@@ -1,0 +1,30 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dc: <http://purl.org/dc/elements/1.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+select ?gebouwShape ?gebouwShapeLabel {
+  {
+    select ?gebouw ?gebouwShape (sample(strdt(?gemeenteNaam,xsd:string)) as ?location) {
+      ?gebouw a brt:Zwembad_gebouw ;
+        geo:hasGeometry/geo:asWKT ?gebouwShape .
+      ?gemeente a gg:Municipality ;
+        geo:hasGeometry/geo:asWKT ?gemeenteShape ;
+        rdfs:label ?gemeenteNaam .
+      filter(bif:st_within(?gebouwShape,?gemeenteShape))
+    }
+    group by ?gebouw ?gebouwShape
+  }
+  ?image dc:subject ?subject ;
+         schema:thumbnail ?url .
+  {
+    ?image schema:contentLocation ?location
+    filter(isLiteral(?location))
+  } union {
+    ?image schema:contentLocation/schema:name ?location .
+  }
+  filter(strstarts(?subject,'zwem'))
+  bind(concat('<img width="250" src="',?url,'">') as ?gebouwShapeLabel)
+}
+limit 1000

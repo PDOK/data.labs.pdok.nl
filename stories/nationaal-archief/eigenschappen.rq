@@ -1,0 +1,8 @@
+prefix graph: <https://data.labs.pdok.nl/graph/>
+select ?p (count(?s) as ?n) {
+  graph graph:nationaal-archief-beeldbank {
+    ?s ?p ?o
+  }
+}
+group by ?p
+order by desc(?n)

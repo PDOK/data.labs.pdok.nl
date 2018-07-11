@@ -1,0 +1,19 @@
+PREFIX schema: <http://schema.org/>
+PREFIX dce: <http://purl.org/dc/elements/1.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape (sample(?shapeLabel) as ?shapeLabel) {
+  ?gemeente a gg:Municipality ;
+    geo:hasGeometry/geo:asWKT ?shape ;
+    rdfs:label ?gemeenteNaam1 .
+  filter not exists { ?gemeente gg:endDate _:1 . }
+  ?image
+    schema:contentLocation/schema:name ?gemeenteNaam2 ;
+    schema:thumbnail ?url ;
+    dce:description ?description .
+  filter(str(?gemeenteNaam1) = str(?gemeenteNaam2))
+  bind(concat('<h3>',?gemeenteNaam1,'</h3><img width="250" src="',?url,'"><p>',?description,'</p>') as ?shapeLabel)
+}
+group by ?shape
+limit 250
