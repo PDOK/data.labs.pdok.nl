@@ -12,7 +12,7 @@ select * {
   filter not exists {
     ?voorkomen bag:eindGeldigheid ?eind .
   }
-  service <https://triply.eculture.labs.vu.nl/sparql> {
+  service <https://data.labs.pdok.nl/sparql> {
     ?bgt bgt:status bgt-begrip:bestaand_Status ;
          bgt:gerelateerdBagPand ?bag .
   }
