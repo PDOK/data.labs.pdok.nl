@@ -7,12 +7,14 @@ PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
 SELECT ?wktlabel ?gml WHERE {
-  ?rg a gwsw:Rioleringsgebied ;
-     rdfs:label ?wktlabel ;
-     gwsw:hasAspect ?ori .
-  ?ori a gwsw:Gebiedsorientatie ;
-    gwsw:hasAspect ?bg .
-     ?bg a gwsw:Buitengrens ;
-       gwsw:hasValue ?gml .
-  filter(contains(?wktlabel, "pancras"))
+  SERVICE <http://sparql.gwsw.nl/repositories/TestVali> {
+    ?rg a gwsw:Rioleringsgebied ;
+       rdfs:label ?wktlabel ;
+       gwsw:hasAspect ?ori .
+    ?ori a gwsw:Gebiedsorientatie ;
+      gwsw:hasAspect ?bg .
+       ?bg a gwsw:Buitengrens ;
+         gwsw:hasValue ?gml .
+    filter(contains(?wktlabel, "pancras"))
+  }
 }

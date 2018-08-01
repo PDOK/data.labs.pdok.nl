@@ -18,7 +18,7 @@ We bekijken hier het rioleringsgebied van Pancras, bij Alkmaar. We vragen dit ge
 TODO: wgs84-geometrie in WKT beschikbaar stellen en in geo representatie plotten
 
 <div data-query
-     data-query-endpoint="http://sparql.gwsw.nl/repositories/TestVali"
+     data-query-endpoint="https://data.pdok.nl/sparql"
      data-query-sparql="rioleringsgebied-pancras.rq">
 </div>
 
