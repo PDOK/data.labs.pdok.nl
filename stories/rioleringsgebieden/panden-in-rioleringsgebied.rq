@@ -1,0 +1,53 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX pdok: <http://data.pdok.nl/def/pdok#>
+PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
+
+SELECT distinct ?pand ?wkt ?wktLabel WHERE {
+
+  {
+    ?vbo a bag:Verblijfsobject;
+         bag:hoofdadres ?hoofdadres ;
+         bag:pandrelatering ?pand .
+    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
+    ?or bag:bijbehorendeWoonplaats ?wp .
+    ?wp rdfs:label "Sint Pancras"@nl.
+  } UNION {
+    ?vbo a bag:Verblijfsobject;
+         bag:hoofdadres ?hoofdadres ;
+         bag:pandrelatering ?pand .
+    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
+    ?or bag:bijbehorendeWoonplaats ?wp .
+    ?wp rdfs:label "Alkmaar"@nl.
+  } UNION {
+    ?vbo a bag:Verblijfsobject;
+         bag:hoofdadres ?hoofdadres ;
+         bag:pandrelatering ?pand .
+    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
+    ?or bag:bijbehorendeWoonplaats ?wp .
+    ?wp rdfs:label "Broek op Langedijk"@nl.
+  }
+
+  ?pand a bag:Pand ;
+        rdfs:label ?pand_label ;
+        geo:hasGeometry ?geom .
+  ?geom geo:asWKT ?wkt ;
+       pdok:asWKT-RD ?wkt_rd .
+  bind(concat("<a href='", str(?pand), "' target='_blank'><h2>", str(?pand_label), "</h2></a>") as ?wktLabel)
+
+  service <http://sparql.gwsw.nl/repositories/TestVali> {
+    ?rg a gwsw:Rioleringsgebied ;
+        rdfs:label ?rg_naam ;
+        gwsw:hasAspect ?ori .
+    ?ori a gwsw:Gebiedsorientatie ;
+         gwsw:hasAspect ?bg .
+    ?bg a gwsw:Buitengrens ;
+        gwsw:hasValue ?gml .
+    filter(contains(?rg_naam, "pancras"))
+  }
+
+  filter(geof:sfWithin(?wkt_rd, ?gml))
+}
