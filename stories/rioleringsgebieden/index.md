@@ -4,6 +4,7 @@ title: Gegevensbronnen combineren voor waterzuivering
 published: true
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
+logo: /stories/rioleringsgebieden/logo.jpg
 ---
 
 # Combineren van gegevensbronnen voor waterzuivering
