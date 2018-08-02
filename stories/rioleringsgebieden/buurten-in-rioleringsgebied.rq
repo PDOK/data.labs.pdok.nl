@@ -8,6 +8,10 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 PREFIX pdok: <http://data.pdok.nl/def/pdok#>
 PREFIX cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+PREFIX cbs_dim: <http://betalinkeddata.cbs.nl/def/dimension#>
+PREFIX cbs_slice: <http://betalinkeddata.cbs.nl/83487NED/id/slice/>
+PREFIX cbs_qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
+PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
 
 SELECT ?buurt ?wkt ?wktLabel WHERE {
   SERVICE <http://sparql.gwsw.nl/repositories/TestVali> {
@@ -23,27 +27,35 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
 
 
   {
-    ?buurt a cbs:Buurt;
-           rdfs:label ?buurt_label ;
-           geo:hasGeometry ?geom ;
-           ?within ?wijk .
-    ?wijk a cbs:Wijk;
-           ?within ?cbs_gemeente .
     ?cbs_gemeente rdfs:label "Langedijk"@nl .
   } UNION {
-    ?buurt a cbs:Buurt;
-           rdfs:label ?buurt_label ;
-           geo:hasGeometry ?geom ;
-           ?within ?wijk .
-    ?wijk a cbs:Wijk;
-           ?within ?cbs_gemeente .
     ?cbs_gemeente rdfs:label "Alkmaar"@nl .
   }
 
+  ?buurt a cbs:Buurt;
+         rdfs:label ?buurt_label ;
+         geo:hasGeometry ?geom ;
+         ?within ?wijk .
+  ?wijk a cbs:Wijk;
+        ?within ?cbs_gemeente .
   ?geom geo:asWKT ?wkt ;
         pdok:asWKT-RD ?wkt_rd .
 
   filter(geof:sfIntersects(?wkt_rd, ?gml))
-  bind(concat("<a href='", str(?buurt), "' target='_blank'><h2>", str(?buurt_label), "</h2></a>") as ?wktLabel)
+
+  # Veelzeggende eigenschappen van de buurt
+  ?aantal_inwoners_obs cbs_dim:regio ?buurt ;
+                       cbs_qb:inObservationGroup cbs_slice:bevolking_AantalInwoners ;
+                       cbs_83487:bevolking_AantalInwoners ?aantal_inwoners .
+
+  ?aantal_huishoudens_obs cbs_dim:regio ?buurt ;
+                          cbs_qb:inObservationGroup cbs_slice:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ;
+                          cbs_83487:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ?aantal_huishoudens .
+
+  bind(concat(
+      "<a href='", str(?buurt), "' target='_blank'><h2>", str(?buurt_label), "</h2></a>",
+      "<p>Aantal inwoners: <a target='_blank' href='", str(?aantal_inwoners_obs), "'>", str(?aantal_inwoners), "</a></p>",
+      "<p>Aantal huishoudens:  <a target='_blank' href='", str(?aantal_huishoudens_obs), "'>", str(?aantal_huishoudens), "</p>"
+    ) as ?wktLabel)
 
 }
