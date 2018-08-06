@@ -235,7 +235,7 @@ via bovengenoemd e-mail adres.
 
 Klik op onderstaande link en/of PDF document met toelichting om meer
 over deze pilot te lezen en de demo-omgeving te verkennen:
-  - [kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
+  - [http://zoekbedrijfslocatie.kadaster.semaku.com/](http://zoekbedrijfslocatie.kadaster.semaku.com/)
   - [Toelichting in
     PDF.](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
 
