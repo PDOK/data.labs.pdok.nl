@@ -40,7 +40,7 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
          ?within ?wijk .
   ?wijk a cbs:Wijk;
         ?within ?cbs_gemeente .
-
+#mv: (20180828) omzetting naar EPSG 4326 conform GML werkt niet in GraphDB, zie issue
   ?geom geo:asWKT ?wkt ;
         pdok:asWKT-RD ?wkt_rd .
 
