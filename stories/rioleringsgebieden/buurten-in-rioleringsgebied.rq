@@ -14,7 +14,7 @@ PREFIX cbs_qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
 PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
 
 SELECT ?buurt ?wkt ?wktLabel WHERE {
-  SERVICE <http://sparql.gwsw.nl/repositories/TestVali> {
+  SERVICE <https://sparql.gwsw.nl/repositories/TestVali> {
       ?rg a gwsw:Rioleringsgebied ;
           rdfs:label ?rg_naam ;
           gwsw:hasAspect ?ori .
@@ -22,10 +22,12 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
            gwsw:hasAspect ?bg .
       ?bg a gwsw:Buitengrens ;
           gwsw:hasValue ?gml .
+    
+#mv: (20180828) dit filter is niet nodig, de GWSW-Repository bevat de selectie aan rioleringsgebieden
       filter(contains(?rg_naam, "pancras"))
   }
 
-
+#mv: (20180828) ook zonder onderstaand filter blijft de response-tijd acceptabel
   {
     ?cbs_gemeente rdfs:label "Langedijk"@nl .
   } UNION {
@@ -38,6 +40,7 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
          ?within ?wijk .
   ?wijk a cbs:Wijk;
         ?within ?cbs_gemeente .
+
   ?geom geo:asWKT ?wkt ;
         pdok:asWKT-RD ?wkt_rd .
 
