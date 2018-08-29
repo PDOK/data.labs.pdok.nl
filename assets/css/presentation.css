@@ -1,0 +1,60 @@
+/* The following allows a slide to be (partially) split into a left
+   and a right column.  When full with content appears underneath such
+   a two column layout, use `clear: left;'.
+*/
+
+.left {
+  float: left;
+  width: 50%;
+}
+
+.right {
+  float: right;
+  width: 50%;
+}
+
+/* Sometimes we want text to have a white font color, e.g., when we
+   use a background image.
+*/
+
+.white {
+  color: white !important;
+}
+
+/* Sometimes textual content is too large to fit a slide.  E.g., a
+   table with multiple columns and rows, or a figure caption that is
+   part of figure that is part of a column in a two column layout.  In
+   such cases, the following class can be added, which reduces the
+   size of the text a bit.
+
+   For some reason, textual content in <code> tags is always displayed
+   too large.  We therefore reduce the font size inside all <code>
+   tags.
+*/
+
+.small {
+  font-size: 80% !important;
+}
+
+pre code {
+  font-size: 100% !important;
+}
+
+code {
+  font-size: 80% !important;
+}
+
+/* The following ensures that image do not run off the screen in the
+   most common cases.
+*/
+
+figure img, figure video {
+  max-height: 575px !important;
+}
+
+/* We do not like the ALL-CAPS default for headers in Reveal.js.
+*/
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: none !important;
+}

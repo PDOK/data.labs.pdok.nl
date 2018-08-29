@@ -1,0 +1,16 @@
+digraph simple {
+  graph [fontname="courier"];
+
+  feature -> geometry [label=<<font face="courier">geo:hasGeometry</font>>];
+  geometry -> wkt [label=<<font face="courier">geo:asWKT</font>>];
+
+  feature [fixedsize="false",height="1",image="de-brug.jpg",imagescale="both",label="",shape="box"];
+  geometry [label=<<font face="courier">_:2</font>>];
+  wkt [label=<<font face="courier">Polygon ((…))</font>>];
+
+  Feature -> feature [arrowtail="onormal",dir="back",label=<<font face="courier">rdf:type</font>>,URL="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"];
+  Geometry -> geometry [arrowtail="onormal",dir="back",label=<<font face="courier">rdf:type</font>>,URL="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"];
+
+  Feature [label=<<font face="courier">geo:Feature</font>>,URL="http://www.opengis.net/ont/geosparql#Feature"];
+  Geometry [label=<<font face="courier">geo:Geometry</font>>,URL="http://www.opengis.net/ont/geosparql#Geometry"];
+}

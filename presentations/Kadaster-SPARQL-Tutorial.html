@@ -8,13 +8,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="../assets/css/reveal.css">
-    <link rel="stylesheet" href="../assets/css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../assets/reveal.js-3.7.0/css/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal.js-3.7.0/css/theme/solarized.css" id="theme">
     <script>
       var link = document.createElement( 'link' );
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? '../assets/css/print/pdf.css' : '../assets/css/print/paper.css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../assets/reveal.js-3.7.0/css/print/pdf.css' : '../assets/reveal.js-3.7.0/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
     <style>
@@ -63,7 +63,7 @@
           </small>
           <hr>
           <p>
-            <b>Intructies</b>: Gebruik de links/rechts en boven/onder
+            <b>Instructies</b>: Gebruik de links/rechts en boven/onder
             pijltjes toetsen om door de presentatie te navigeren.
             Druk op de <kbd>ESC</kbd> toets voor een overzicht.</p>
         </section>
@@ -574,6 +574,7 @@ limit 1000
           <section>
             <h2><a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+brt%3A+%3Chttp%3A%2F%2Fbrt.basisregistraties.overheid.nl%2Fdef%2Ftop10nl%23%3E%0Aprefix+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aselect+%3Fshape+%3FshapeLabel+%7B%0A++bind(%22Amsterdam%22%40nl+as+%3Fnaam)%0A++%3Fplaats1+rdfs%3Alabel+%3Fnaam+%3B+brt%3AisBAGwoonplaats+true+%3B+geo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape%0A++service+%3Chttps%3A%2F%2Fdbpedia.org%2Fsparql%3E+%7B%0A++++%3Fplaats2+rdfs%3Alabel+%3Fnaam+%3B+foaf%3Adepiction+%3Fvlag%0A++%7D%0A++bind(concat(%0A++++'%3Ch2%3E'%2Cstr(%3Fnaam)%2C'%3C%2Fh2%3E'%2C%0A++++if(bound(%3Fvlag)%2Cconcat('%3Cimg+src%3D%22'%2Creplace(str(%3Fvlag)%2C%22http%3A%2F%2F%22%2C%22https%3A%2F%2F%22)%2C'%22+style%3D%22max-width%3A+150px%3B%22%3E')%2C'')%2C%0A++++'%3Cp%3EExterne+representatie%3A+%3Ca+href%3D%22'%2Cstr(%3Fplaats2)%2C'%22%3E%5BDBpedia%5D%3C%2Fa%3E%3C%2Fp%3E'%0A++)+as+%3FshapeLabel)%0A%7D%0Alimit+1%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=BRT%2FBAG+gemeente+%E2%86%92+DBpedia+%F0%9F%95%B8&headers=%7B%7D&outputFormat=leaflet">BRT/BAG gemeente → DBpedia 🕸</a></h2>
             <pre><code data-trim data-noescape>
+prefix brt: &lt;http://brt.basisregistraties.overheid.nl/def/top10nl#&gt;
 prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
 prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
 prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -812,8 +813,8 @@ limit 100
 
       </div>
     </div>
-    <script src="../assets/lib/js/head.min.js"></script>
-    <script src="../assets/js/reveal.js"></script>
+    <script src="../assets/reveal.js-3.7.0/lib/js/head.min.js"></script>
+    <script src="../assets/reveal.js-3.7.0/js/reveal.js"></script>
     <script>
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
@@ -825,12 +826,12 @@ limit 100
       transition: 'slide', // none/fade/slide/convex/concave/zoom
       // Optional reveal.js plugins
       dependencies: [
-      { src: '../assets/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-      { src: '../assets/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: '../assets/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: '../assets/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-      { src: '../assets/plugin/zoom-js/zoom.js', async: true },
-      { src: '../assets/plugin/notes/notes.js', async: true }
+      { src: '../assets/reveal.js-3.7.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../assets/reveal.js-3.7.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../assets/reveal.js-3.7.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../assets/reveal.js-3.7.0/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: '../assets/reveal.js-3.7.0/plugin/zoom-js/zoom.js', async: true },
+      { src: '../assets/reveal.js-3.7.0/plugin/notes/notes.js', async: true }
       ]
       });
     </script>

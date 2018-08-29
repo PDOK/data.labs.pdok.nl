@@ -5,19 +5,19 @@ select * {
   {
     select
       ?image
-      (strdt(?date,xsd:date) as ?date)
+      (strdt(?lex,xsd:date) as ?date)
       ?description
       (group_concat(distinct ?format;separator=', ') as ?format)
       (group_concat(distinct ?subject;separator=', ') as ?subject)
       (min(str(?url)) as ?url)
     {
-      ?image dc:date ?date ;
+      ?image dc:date ?lex ;
              dc:description ?description ;
              dc:format ?format ;
              dc:subject ?subject ;
              schema:contentLocation "Apeldoorn"^^xsd:string ;
              schema:thumbnail ?url .
-      filter(str(?date) != "000-00-00")
+      filter(str(?lex) != "000-00-00")
     }
     group by ?image ?date ?description
   }
