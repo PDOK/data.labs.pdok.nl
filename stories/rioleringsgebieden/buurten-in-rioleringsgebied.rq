@@ -22,10 +22,12 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
            gwsw:hasAspect ?bg .
       ?bg a gwsw:Buitengrens ;
           gwsw:hasValue ?gml .
+    
+#mv: (20180828) dit filter is niet nodig, de GWSW-Repository bevat de selectie aan rioleringsgebieden
       filter(contains(?rg_naam, "pancras"))
   }
 
-
+#mv: (20180828) ook zonder onderstaand filter blijft de response-tijd acceptabel
   {
     ?cbs_gemeente rdfs:label "Langedijk"@nl .
   } UNION {
@@ -38,6 +40,7 @@ SELECT ?buurt ?wkt ?wktLabel WHERE {
          ?within ?wijk .
   ?wijk a cbs:Wijk;
         ?within ?cbs_gemeente .
+#mv: (20180828) omzetting naar EPSG 4326 conform GML werkt niet in GraphDB, zie issue
   ?geom geo:asWKT ?wkt ;
         pdok:asWKT-RD ?wkt_rd .
 
