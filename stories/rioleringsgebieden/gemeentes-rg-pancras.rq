@@ -7,7 +7,7 @@ PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
 SELECT distinct ?wktLabel ?gem_uri ?wkt WHERE {
-  service <http://sparql.gwsw.nl/repositories/TestVali> {
+  service <https://sparql.gwsw.nl/repositories/TestVali> {
 	  ?rg a gwsw:Rioleringsgebied ;
        rdfs:label ?rg_naam ;
        gwsw:hasAspect ?ori .

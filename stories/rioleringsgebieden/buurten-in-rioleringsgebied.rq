@@ -14,7 +14,7 @@ PREFIX cbs_qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
 PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
 
 SELECT ?buurt ?wkt ?wktLabel WHERE {
-  SERVICE <http://sparql.gwsw.nl/repositories/TestVali> {
+  SERVICE <https://sparql.gwsw.nl/repositories/TestVali> {
       ?rg a gwsw:Rioleringsgebied ;
           rdfs:label ?rg_naam ;
           gwsw:hasAspect ?ori .
