@@ -1,0 +1,31 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT distinct ?wktLabel ?gem_uri ?wkt WHERE {
+  service <https://sparql.gwsw.nl/repositories/TestVali> {
+	  ?rg a gwsw:Rioleringsgebied ;
+       rdfs:label ?rg_naam ;
+       gwsw:hasAspect ?ori .
+    ?ori a gwsw:Gebiedsorientatie ;
+	    gwsw:hasAspect ?bg .
+       ?bg a gwsw:Buitengrens ;
+           gwsw:hasValue ?geo .
+    filter(contains(?rg_naam, "pancras"))
+  }
+
+  # Zoek de bijbehorende gemeentenaam erbij
+  ?gem_uri a brt:Gemeente ;
+       rdfs:label ?gem_naam ;
+       brt:geometrie ?geom .
+  ?geom <http://data.pdok.nl/def/pdok#asWKT-RD> ?wkt_rd ;
+        geo:asWKT ?wkt .
+  filter(geof:sfIntersects(?geo, ?wkt_rd))
+  # Bij beschikbaarheid wgs84 geometrie van het rioolgebied:
+  # filter(geof:sfIntersects(?geo, ?wkt))
+  bind(concat("<a href='", str(?gem_uri), "' target='_blank'><h2>", str(?gem_naam), "</h2></a>") as ?wktLabel)
+}

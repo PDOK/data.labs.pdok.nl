@@ -1,0 +1,38 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX pdok: <http://data.pdok.nl/def/pdok#>
+
+SELECT distinct ?wp_naam ?wkt ?wktLabel WHERE {
+  service <https://sparql.gwsw.nl/repositories/TestVali> {
+    ?rg a gwsw:Rioleringsgebied ;
+       rdfs:label ?rg_naam ;
+       gwsw:hasAspect ?ori .
+    ?ori a gwsw:Gebiedsorientatie ;
+      gwsw:hasAspect ?bg .
+       ?bg a gwsw:Buitengrens ;
+           gwsw:hasValue ?geo .
+    filter(contains(?rg_naam, "pancras"))
+  }
+
+  ?gem_uri a brt:Gemeente ;
+    rdfs:label ?gem_naam ;
+    brt:geometrie ?gem_geom .
+  ?gem_geom geo:asWKT ?gem_wkt .
+  filter(?gem_naam = "Alkmaar"@nl || ?gem_naam = "Langedijk"@nl)
+
+  ?wp a bag:Woonplaats ;
+      rdfs:label ?wp_naam ;
+      geo:hasGeometry ?wp_geom .
+  ?wp_geom geo:asWKT ?wkt ;
+      pdok:asWKT-RD ?wkt_rd .
+  filter(geof:sfIntersects(?wkt, ?gem_wkt))
+  filter(geof:sfIntersects(?wkt_rd, ?geo))
+
+  bind(concat("<a href='", str(?wp), "' target='_blank'><h2>", str(?wp_naam), "</h2></a>") as ?wktLabel)
+}

@@ -130,16 +130,6 @@ teksten.
 
 Probeer het hier zelf op: [linkdale.org](http://linkdale.org)
 
-## Demonstrator Energielabels
-
-De volgende demonstrator is in het kader van de DSO Hackathon (25/26
-oktober 2017) van de gemeente Amsterdam ontwikkeld.  Met deze
-applicatie worden de energielabels per Bag object getoond.  Naast deze
-open energielabel data set van Amsterdam wordt de BAG informatie en
-ook de ruimtelijke plannnen informatie op de kaart getoond.
-
-[kadaster.semaku.com/energielabels/#/map](http://kadaster.semaku.com/energielabels/#/map)
-
 ## Common Sense demo
 
 TNO heeft een faceted browser ontwikkeld waarmee een demo-applicatie
@@ -172,10 +162,10 @@ Het platform zet mensen aan het denken over welke omgevingsgegevens in een derge
 
 Klink op onderstaande links om de demo-omgeving te verkennen en voor meer informatie zie de PowerPoint van onze eindpresentatie:
 
-* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app)
+* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app) (openen in Chrome of Firefox voor een goede functionaliteit)
 * [PDF Eindpresentatie](/presentations/gebiedsscan/0611.0_Concept_eind-presentatie_13_juni_2018_DefinitiefOpmVerwerkt.pptx.pdf) (verhaal achter de Gebiedsscan en de gebruikte data etc.)
 
-Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](www.pilotstarter.nl)
+Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](http://www.pilotstarter.nl)
 
 ### Pilot Soest 2.0
 
@@ -207,7 +197,7 @@ In Soest 2.0 zijn twee benaderingen samengekomen:
 Sleutelwoorden/boodschap: a) laagdrempelig b) efficiënt c) rijk aan
 informatie d) slim (her)gebruik van wat er al is e) denk vanuit
 meerdere, met elkaar samenhangende, schaalniveaus
-[http://omgevingsplanner.kadaster.semaku.com/](omgevingsplanner.kadaster.semaku.com).
+[https://omgevingsplanner.kadaster.semaku.com/](https://omgevingsplanner.kadaster.semaku.com).
 
 ### Pilot Starten Bierbrouwerij
 
@@ -235,7 +225,7 @@ via bovengenoemd e-mail adres.
 
 Klik op onderstaande link en/of PDF document met toelichting om meer
 over deze pilot te lezen en de demo-omgeving te verkennen:
-  - [kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?](http://kadaster.semaku.com/ProeftuinOK/ZoekBedrijfslocatie/?)
+  - [kadaster.semaku.com/ProeftuinOK/StartenBedrijf](http://kadaster.semaku.com/ProeftuinOK/StartenBedrijf)
   - [Toelichting in
     PDF.](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
 
@@ -264,5 +254,4 @@ toegelaten.  Dit heeft geresulteerd in de demo-omgeving met als titel:
 “Wasda Magda”.
 
 Klik op onderstaande link om de demo-omgeving te verkennen:
-  - [kadaster.semaku.com/ProeftuinOK/StartenBedrijf](http://kadaster.semaku.com/ProeftuinOK/StartenBedrijf/)
   - [kadaster.appnetwork.nl](https://kadaster.appnetwork.nl/)
