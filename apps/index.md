@@ -162,7 +162,7 @@ Het platform zet mensen aan het denken over welke omgevingsgegevens in een derge
 
 Klink op onderstaande links om de demo-omgeving te verkennen en voor meer informatie zie de PowerPoint van onze eindpresentatie:
 
-* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app)
+* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app) (openen in Chrome of Firefox voor een goede functionaliteit)
 * [PDF Eindpresentatie](/presentations/gebiedsscan/0611.0_Concept_eind-presentatie_13_juni_2018_DefinitiefOpmVerwerkt.pptx.pdf) (verhaal achter de Gebiedsscan en de gebruikte data etc.)
 
 Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](http://www.pilotstarter.nl)
