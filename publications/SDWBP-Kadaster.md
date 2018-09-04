@@ -1,3 +1,8 @@
+---
+title: Spatial Data on the Web Best Practice Implementation Report
+layout: default
+---
+
 # Spatial Data on the Web Best Practice Implementation Report
 
 ## Title
