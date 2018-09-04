@@ -63,5 +63,5 @@ te vinden, maar dat lukt niet helemaal:
 De Beeldbank van het Nationaal Archief leent zich goed voor SPARQL
 Galleries, waarin een SPARQL query direct kan worden omgezet naar een
 verzamling HTML widgets: <a
-href="https://api.nightly.triply.cc/s/HynlegNXX"
+href="https://api.demo.triply.cc/s/HJr-pnovQ"
 target="_blank">demo</a>.

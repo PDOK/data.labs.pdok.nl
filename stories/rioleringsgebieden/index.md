@@ -9,13 +9,12 @@ logo: /stories/rioleringsgebieden/logo.jpg
 
 # Combineren van gegevensbronnen voor waterzuivering
 
-Waterschappen maken gebruik van veel verschillende informatiebronnen bij het beheer van grijs water, oppervlakte water en drinkwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te verzamelen? Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema waterzuivering.
+Waterschappen en gemeenten maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
-## Rioleringsgebied Pancras 
-De data bij het GWSW beschikt over informatie rondom het thema waterzuivering. Zo heeft een rioolwaterzuiveringsinstallatie (RWZI) een aantal rioolgebieden die afwateren naar de RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
+## Rioleringsgebied Heiloo Centrum 
+De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water (GWSW) bevatten informatie rondom het thema transport en zuivering. Een rioolwaterzuiveringsinstallatie (RWZI) wordt beschreven als zuiveringsgebied met daarbinnen heeft een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
 
-We bekijken hier het rioleringsgebied van Pancras, bij Alkmaar. We vragen dit gebied op uit het toegangspunt van het Gegevenswoordenboek Stedelijk Water (GWSW).
-TODO: wgs84-geometrie in WKT beschikbaar stellen en in geo representatie plotten
+We bekijken hier het rioleringsgebied van Heiloo Centrum (mv: enzovoort, hierop de tekst afstemmen). We vragen dit gebied op uit het toegangspunt van het GWSW. Hieronder wordt een selectie van de beschikbare gegevens getoond
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -23,7 +22,7 @@ TODO: wgs84-geometrie in WKT beschikbaar stellen en in geo representatie plotten
 </div>
 
 ## BRT zuiveringsinstallaties in gebied
-De Basisregistratie Topografie (BRT) biedt informatie omtrent de rioolwaterzuiveringsinstallaties (RWZI's). Zo ook voor deze locatie, de regio kent twee zuiveringsinstallaties in de BRT:
+De Basisregistratie Topografie (BRT)), die door het Kadaster ontsloten wordt, biedt informatie omtrent de RWZI's. Zo ook voor deze locatie, de regio kent twee zuiveringsinstallaties in de BRT:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -31,7 +30,7 @@ De Basisregistratie Topografie (BRT) biedt informatie omtrent de rioolwaterzuive
 </div>
 
 ## Gemeentes rond het rioleringsgebied
-We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeentes ligt het rioolwatergebied Pancras eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op:
+We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Heillo Centrum eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -39,7 +38,7 @@ We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De wate
 </div>
 
 ## Woonplaatsen rond het rioleringsgebied
-Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsen opvragen. Het gaat om Alkmaar, Sint Pancras en Broek op Langedijk:
+Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Het gaat om Alkmaar, Sint Pancras en Broek op Langedijk (mv: dat wordt anders):
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -47,7 +46,7 @@ Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu 
 </div>
 
 ## Panden in het rioleringsgebied
-Vanuit de BAG zouden we nu kunnen opvragen hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de bag eerst administratief beperken tot de woonplaatsen die er omheen liggen, vervolgens kunnen we geografisch filteren. Het gaat om ruim 1600 panden (zie ook de tabelweergave door "Table" te selecteren):
+Vanuit de Basisregistraties Adressen en Gebouwen (BAG) zouden we nu kunnen opvragen hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen die er omheen liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om ruim 1600 panden (zie ook de tabelweergave door "Table" te selecteren):
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -56,7 +55,7 @@ Vanuit de BAG zouden we nu kunnen opvragen hoeveel panden er binnen het riolerin
 
 
 ## Statistieken voor buurten in het rioleringsgebied: 
-Voor het onderhoud en de ontwikkeling van de RWZI is het van belang te weten wat de wijzigingen zijn in grondgebruik en inwoneraantallen. Die gegevens vinden we bij het CBS. Het CBS verzamelt per buurt vele statistieken, waaronder gegevens over het landgebruik en het aantal mensen dat er woont.
+Voor het beheer en de (capaciteits)ontwikkeling van de rioolstelsels, de rioolgemalen en de RWZI is het van belang te weten wat de wijzigingen zijn in grondgebruik en inwoneraantallen. Die gegevens vinden we bij het CBS. Het CBS verzamelt per buurt vele statistieken, waaronder gegevens over het landgebruik en het aantal mensen dat er woont.
 
 <div data-query
      data-query-endpoint="https://betalinkeddata.cbs.nl/sparql"
@@ -65,5 +64,15 @@ Voor het onderhoud en de ontwikkeling van de RWZI is het van belang te weten wat
 
 
 ## Combineren van data
-Door deze data met elkaar te combineren, kunnen we een rapport genereren met informatie uit verschillende bronnen. Elke gegevensbron kan afzonderlijk worden bijgehouden zonder duplicatie, en op verzoek worden gecombineerd. De combinatie wordt met behulp van locatiegegevens gevonden: het zijn de buurten die binnen de rioleringsgebieden vallen en die daarmee afwateren naar de RWZI.
+Door genoemde data met elkaar te combineren kunnen we een rapport genereren met informatie uit verschillende bronnen. Elke gegevensbron kan afzonderlijk worden bijgehouden zonder duplicatie en op verzoek worden gecombineerd. De combinatie wordt met behulp van locatiegegevens gevonden: het zijn de buurten die binnen de rioleringsgebieden vallen en die daarmee afwateren via rioolstelsels naar de RWZI. Die combinatie van gegevens wordt in het vakgebied de "kengetallen" van het rioleringsgebied genoemd.
+
+## Toepassen met het GWSW
+Stichting RIONED ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld. GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: https://geodata.gwsw.nl/TestDatastory/kengetallen
+
+<div data-query
+     data-query-endpoint="https://sparql.gwsw.nl/TestDatastory"
+     data-query-sparql="kengetallen.spq">
+</div>
+
+
 

@@ -1,0 +1,22 @@
+digraph complex {
+  graph [fontname="courier"];
+
+  feature -> geometry2 [label=<<font face="courier">geo:hasGeometry</font>>];
+  feature -> geometry3 [label=<<font face="courier">geo:hasGeometry</font>>];
+  geometry2 -> gml2 [label=<<font face="courier">geo:asGML</font>>];
+  geometry2 -> wkt2 [label=<<font face="courier">geo:asWKT</font>>];
+  geometry2 -> dimension2 [label=<<font face="courier">geo:dimension</font>>];
+  geometry3 -> gml3 [label=<<font face="courier">geo:asGML</font>>];
+  geometry3 -> wkt3 [label=<<font face="courier">geo:asWKT</font>>];
+  geometry3 -> dimension3 [label=<<font face="courier">geo:dimension</font>>];
+
+  feature [fixedsize="false",height="1",image="de-brug.jpg",imagescale="both",label="",shape="box"];
+  geometry2 [label=<<font face="courier">_:2</font>>];
+  gml2 [label=<<font face="courier">&lt;gml:Polygon&gt;…</font>>];
+  wkt2 [label=<<font face="courier">Polygon ((…))</font>>];
+  dimension2 [label=<2>];
+  geometry3 [label=<<font face="courier">_:3</font>>];
+  gml3 [label=<<font face="courier">&lt;gml:Polygon srsDimension="3"&gt;…</font>>];
+  wkt3 [label=<<font face="courier">Polygon Z ((…))</font>>];
+  dimension3 [label=<3>];
+}

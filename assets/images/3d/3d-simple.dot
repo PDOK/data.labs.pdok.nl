@@ -1,0 +1,10 @@
+digraph simple {
+  graph [fontname="courier"];
+
+  feature -> geometry [label=<<font face="courier">geo:hasGeometry</font>>];
+  geometry -> wkt [label=<<font face="courier">geo:asWKT</font>>];
+
+  feature [fixedsize="false",height="1",image="de-brug.jpg",imagescale="both",label="",shape="box"];
+  geometry [label=<<font face="courier">_:2</font>>];
+  wkt [label=<<font face="courier">Polygon ((…))</font>>];
+}

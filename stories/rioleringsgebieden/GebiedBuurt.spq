@@ -1,0 +1,95 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX pdok: <http://data.pdok.nl/def/pdok#>
+PREFIX cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+PREFIX cbs_dim: <http://betalinkeddata.cbs.nl/def/dimension#>
+PREFIX cbs_slice: <http://betalinkeddata.cbs.nl/83487NED/id/slice/>
+PREFIX cbs_qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
+PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
+
+#SELECT ?buurt_naam ?buurt_wkt ?rg_wkt
+#SELECT ?buurt_naam ?buurt_wkt_rd ?geo
+
+SELECT ?naam ?geo ?lei_lengte ?gemeente_naam ?wijk_naam ?buurt ?buurt_naam ?buurt_geo ?inwoners_aantal ?huishoudens_aantal ?bedrijven_aantal ?recreatie_aantal
+WHERE 
+{
+  {
+	SELECT ?naam ?geo ?rg_wkt (SUM (?lengte) AS ?lei_lengte)
+	WHERE
+	{
+		?rg a gwsw:Rioleringsgebied ;
+			rdfs:label ?naam ;
+			gwsw:hasAspect ?ori .
+		?ori a gwsw:Gebiedsorientatie ;
+			 gwsw:hasAspect ?bg .
+		?bg a gwsw:Buitengrens ;
+			gwsw:hasValue ?geo ;
+			geo:asWKT ?rg_wkt .
+
+		?rg gwsw:hasPart ?rs .
+		?rs rdfs:label ?rs_naam ;
+			gwsw:hasPart ?lei .
+		?lei a gwsw:Leiding .
+
+		?lei gwsw:hasAspect [ 
+			a gwsw:LengteLeiding ; 
+			gwsw:hasValue ?lengte ;
+			] .
+	}
+	GROUP BY ?naam ?geo ?rg_wkt
+  }
+  SERVICE <https://betalinkeddata.cbs.nl/sparql> 
+  {
+	  { ?gemeente rdfs:label "Castricum"@nl . }
+	  UNION   
+	  { ?gemeente rdfs:label "Alkmaar"@nl . } 
+	  
+	  ?gemeente rdfs:label ?gemeente_naam .
+
+	  ?buurt a cbs:Buurt ;
+			 rdfs:label ?buurt_naam ;
+			 geo:hasGeometry 
+			 [  geo:asWKT ?buurt_wkt ; 
+				pdok:asWKT-RD ?buurt_geo ; 
+			 ] ;
+			?within ?wijk .
+	  ?wijk a cbs:Wijk ;
+	  		 rdfs:label ?wijk_naam ;
+	  		 geo:hasGeometry 
+	  	 	 [  geo:asWKT ?wijk_wkt ; 
+	  			#pdok:asWKT-RD ?wijk_wkt_rd ; 
+	  		 ] ;
+	  		?within ?gemeente .
+
+	  #filter(geof:sfIntersects(?buurt_geo, ?geo))
+	  #filter (geof:sfContains(?wijk_wkt, ?buurt_wkt))
+	  filter (geof:sfIntersects(?buurt_wkt, ?rg_wkt))   
+	  #filter (geof:sfContains(?rg_wkt, ?buurt_wkt))
+
+	  # Veelzeggende eigenschappen van de buurt
+	  ?inwoners cbs_dim:regio ?buurt ;
+				cbs_qb:inObservationGroup cbs_slice:bevolking_AantalInwoners ;
+				cbs_83487:bevolking_AantalInwoners ?inwoners_aantal .
+
+	  ?huishoudens cbs_dim:regio ?buurt ;
+				   cbs_qb:inObservationGroup cbs_slice:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ;
+				   cbs_83487:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ?huishoudens_aantal .
+	  
+	  optional
+	  {
+		?bedrijven cbs_dim:regio ?buurt ;
+				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ;
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ?bedrijven_aantal .
+	  }
+	  optional
+	  {
+		?recreatie cbs_dim:regio ?buurt ;
+				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ;
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ?recreatie_aantal .
+	  }
+  }
+}
+ORDER BY ?naam ?buurt_naam

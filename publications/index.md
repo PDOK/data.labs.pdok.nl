@@ -37,6 +37,12 @@ Hierbij een voorproefje van het bevragen van 3D data door de tijd heen
 ## 3D High5
 
 Als onderdeel van de 3D Linked Data High5 kan de Basisregistratie
-Gebouwen (BAG) nu in 3D opgevraagd worden.  Klik op [deze
-link](3D-High5.html) voor de presentatie
-van het Linked Data onderdeel.
+Gebouwen (BAG) nu in 3D opgevraagd worden.
+
+Klik op [deze link](3D-High5.html) voor de voorbeeld queries die
+tijdens de High5 focusweek geschreven zijn.
+
+Klik op [deze
+link](../presentations/Adding-3D-Visualization-to-the-SPARQL-Query-Loop.html)
+voor de presentatie die Erwin Folmer en Wouter Beek op de Free and
+Open Source Software for Geo (FOSS4G) conferentie hebben gegeven.
