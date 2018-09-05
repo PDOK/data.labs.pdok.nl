@@ -162,7 +162,7 @@ Het platform zet mensen aan het denken over welke omgevingsgegevens in een derge
 
 Klink op onderstaande links om de demo-omgeving te verkennen en voor meer informatie zie de PowerPoint van onze eindpresentatie:
 
-* [https://gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app) (openen in Chrome of Firefox voor een goede functionaliteit)
+* [gebiedsscan.kadaster.semaku.com/app](https://gebiedsscan.kadaster.semaku.com/app) (openen in Chrome of Firefox voor een goede functionaliteit)
 * [PDF Eindpresentatie](/presentations/gebiedsscan/0611.0_Concept_eind-presentatie_13_juni_2018_DefinitiefOpmVerwerkt.pptx.pdf) (verhaal achter de Gebiedsscan en de gebruikte data etc.)
 
 Voor meer informatie over de betrokkenen en overige informatie zie ook: [www.pilotstarter.nl](http://www.pilotstarter.nl)
@@ -197,7 +197,7 @@ In Soest 2.0 zijn twee benaderingen samengekomen:
 Sleutelwoorden/boodschap: a) laagdrempelig b) efficiënt c) rijk aan
 informatie d) slim (her)gebruik van wat er al is e) denk vanuit
 meerdere, met elkaar samenhangende, schaalniveaus
-[https://omgevingsplanner.kadaster.semaku.com/](https://omgevingsplanner.kadaster.semaku.com).
+[omgevingsplanner.kadaster.semaku.com/](https://omgevingsplanner.kadaster.semaku.com).
 
 ### Pilot Starten Bierbrouwerij
 
@@ -225,9 +225,8 @@ via bovengenoemd e-mail adres.
 
 Klik op onderstaande link en/of PDF document met toelichting om meer
 over deze pilot te lezen en de demo-omgeving te verkennen:
-  - [kadaster.semaku.com/ProeftuinOK/StartenBedrijf](http://kadaster.semaku.com/ProeftuinOK/StartenBedrijf)
-  - [Toelichting in
-    PDF.](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
+  - [zoekbedrijfslocatie.kadaster.semaku.com](http://zoekbedrijfslocatie.kadaster.semaku.com)
+  - [Toelichting in PDF.](/web-content/resources/0102_ZoekBedrijfslocatie_toelichting_0.3.pdf)
 
 ### Beeldende pilot
 
