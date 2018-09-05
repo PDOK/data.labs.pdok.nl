@@ -1,0 +1,40 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select
+  ?shapeVerblijfsobject
+  ?shapeVerblijfsobjectColor
+  ?shapeVerblijfsobjectLabel
+  ?shapePand
+  ?shapePandLabel
+{
+  bind("Science Park" as ?streetName)
+  graph ?g1 {
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
+                    bag:naamOpenbareRuimte ?streetName.
+  }
+  filter not exists { ?g1 bag:eindGeldigheid _:1. }
+  ?woonplaats rdfs:label "Amsterdam"@nl.
+  graph ?g2 {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                      bag:huisnummer ?huisnummer;
+                      bag:postcode ?postcode.
+  }
+  filter not exists { ?g2 bag:eindGeldigheid _:2. }
+  graph ?g3 {
+    ?verblijfsobject a ?class;
+                     bag:hoofdadres ?nummeraanduiding;
+                     bag:pandrelatering ?pand;
+                     geo:hasGeometry/geo:asWKT ?shapeVerblijfsobject.
+  }
+  filter not exists { ?g3 bag:eindGeldigheid _:3. }
+  ?class rdfs:label ?label.
+  graph ?g4 {
+    ?pand bag:geometriePand/geo:asWKT ?shapePand.
+  }
+  filter not exists { ?g4 bag:eindGeldigheid _:4. }
+  bind(concat(str(?streetName),' ',str(?huisnummer)) as ?shapePandLabel)
+  bind(concat(?shapePandLabel,' ',str(?postcode),'<br>',str(?label)) as ?shapeVerblijfsobjectLabel)
+  bind("red" as ?shapeVerblijfsobjectColor)
+}
+limit 1000
