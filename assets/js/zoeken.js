@@ -38,7 +38,7 @@ function searchForTerm(data) {
   var settings = {
     async: true,
     crossDomain: true,
-    url: 'https://lov.okfn.org/dataset/lov/api/v2/term/search?q=' + searchTerm + "&page_size=100",
+    url: 'https://lov.linkeddata.es/dataset/lov/api/v2/term/search?q=' + searchTerm + "&page_size=100",
     method: 'GET',
   };
 
