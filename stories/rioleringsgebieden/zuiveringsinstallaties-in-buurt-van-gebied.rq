@@ -3,17 +3,19 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
 
 SELECT ?zi ?gem_naam ?wkt ?wktLabel WHERE {
   ?gem a brt:Gemeente ;
     rdfs:label ?gem_naam ;
     brt:geometrie ?geom .
   ?geom geo:asWKT ?gem_wkt .
-  filter(?gem_naam = "Alkmaar"@nl || ?gem_naam = "Langedijk"@nl)
+  filter(?gem_naam = "Castricum"@nl)
 
   ?zi a brt:Zuiveringsinstallatie ;
     brt:geometrie ?geometrie .
   ?geometrie geo:asWKT ?wkt .
   bind(?zi as ?wktLabel)
-  filter(geof:sfIntersects(?gem_wkt, ?wkt))
+  bind(geof:buffer(?gem_wkt, 0.02) as ?buffered_municipality)
+  filter(geof:sfIntersects(?buffered_municipality, ?wkt))
 }
