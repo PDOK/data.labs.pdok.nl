@@ -71,7 +71,7 @@ Stichting RIONED ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daa
 
 <div data-query
      data-query-endpoint="https://sparql.gwsw.nl/TestDatastory"
-     data-query-sparql="kengetallen.spq">
+     data-query-sparql="kengetallen.rq">
 </div>
 
 
