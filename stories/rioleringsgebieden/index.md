@@ -12,17 +12,17 @@ logo: /stories/rioleringsgebieden/logo.jpg
 Waterschappen en gemeenten maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
 ## Rioleringsgebied Heiloo Centrum 
-De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water (GWSW) bevatten informatie rondom het thema transport en zuivering. Een rioolwaterzuiveringsinstallatie (RWZI) wordt beschreven als zuiveringsgebied met daarbinnen heeft een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
+De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://apps.gwsw.nl) bevatten informatie rondom het thema transport en zuivering. Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
 
-We bekijken hier het rioleringsgebied van Heiloo Centrum (mv: enzovoort, hierop de tekst afstemmen). We vragen dit gebied op uit het toegangspunt van het GWSW. Hieronder wordt een selectie van de beschikbare gegevens getoond
+We bekijken hier het rioleringsgebied van Castricum. We vragen dit gebied op uit het toegangspunt van het GWSW. Hieronder wordt een selectie van de beschikbare gegevens getoond.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="rioleringsgebied-pancras.rq">
+     data-query-sparql="rioleringsgebied-castricum.rq">
 </div>
 
 ## BRT zuiveringsinstallaties in gebied
-De Basisregistratie Topografie (BRT)), die door het Kadaster ontsloten wordt, biedt informatie omtrent de RWZI's. Zo ook voor deze locatie, de regio kent twee zuiveringsinstallaties in de BRT:
+De Basisregistratie Topografie [BRT](https://brt.basisregistraties.overheid.nl), die door het Kadaster ontsloten wordt, biedt informatie omtrent de RWZI's. Zo ook voor deze locatie, de regio kent twee zuiveringsinstallaties in de BRT:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -30,15 +30,15 @@ De Basisregistratie Topografie (BRT)), die door het Kadaster ontsloten wordt, bi
 </div>
 
 ## Gemeentes rond het rioleringsgebied
-We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Heillo Centrum eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op:
+We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Castricum eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="gemeentes-rg-pancras.rq">
+     data-query-sparql="gemeentes-rg-castricum.rq">
 </div>
 
 ## Woonplaatsen rond het rioleringsgebied
-Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Het gaat om Alkmaar, Sint Pancras en Broek op Langedijk (mv: dat wordt anders):
+Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Het gaat om (aanvullen):
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
