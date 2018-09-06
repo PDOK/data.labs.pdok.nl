@@ -40,18 +40,18 @@ The following programming languages and tools are used by this API:
 #### Conformance statement
 Conforms
 
-Test | Conforms
+Test|Conforms
 ---|---
-Check that within the data [Spatial Things](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing), such as countries, regions and people, are referred to by HTTP URIs or by short identifiers that can be converted to HTTP URIs. Ideally dereferencing the URIs should return the [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing), however, they have value as globally scoped variables whether they dereference or not | <ul><li>- [x] </li></ul>
+Check that within the data [Spatial Things](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing), such as countries, regions and people, are referred to by HTTP URIs or by short identifiers that can be converted to HTTP URIs. Ideally dereferencing the URIs should return the [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing), however, they have value as globally scoped variables whether they dereference or not | <ul><li>- [ ] </li></ul>
+
 
 #### How-to
-The Linked Data API version of the G-NAF was assigned a URI for identify it, <http://linked.data.gov.au/dataset/gnaf> and, further, spatial objects classes were identified within the dataset according to two main ontologies. One of these ontologies was a seperately published [OWL](https://www.w3.org/2001/sw/wiki/OWL) version of the [ISO's 19160-1:2015 -- Addressing](https://www.iso.org/standard/61710.html), see <http://linked.data.gov.au/def/iso19160-1-address>; the other the G-NAF Ontology <http://linked.data.gov.au/def/gnaf> that was created specifically for this dataset.
+For some data sets there are URI's, for others there aren't. The Dutch Cadastre (Kadaster) has several Linked Data sets pertaining spatial objects, the chief amongst these being:
+- the [Base registration for addresses and buildings](https://bag.basisregistraties.overheid.nl) (BAG) 
+- the [Cadastral Base Registration](https://brk.basisregistraties.overheid.nl)
+- the [Baste Registration for Topography](https://brt.basisregistraties.overheid.nl)
 
-Registers of the main items within the G-NAF ontology (e.g. Address, Street, Locality) were created to give access to instances of each class. Each register was assigned a unique URI (e.g. <http://linked.data.gov.au/dataset/gnaf/address/> for Address) and each individual within each Register was assigned a URI based on the Register, e.g. Address 'GAACT714845933' was assigned the URI <http://linked.data.gov.au/dataset/gnaf/address/GAACT714845933>.
-
-Finally, the most significant items classes in the datasets (Address, StreetLocality) were also assigned a second 'top-level' register URI that was not bound to the dataset to highlight the class of items. The URI for the Address register is <http://linked.data.gov.au/address/> which means there are two registers for Address objects resolving to the same API endpoint.
-
-These URIs were all assigned following rules defined by the [Australian Government Linked Data Working Group](http://linked.data.gov.au) which are articulated in their [URI Guidelines](http://linked.data.gov.au/governance).
+All spatial objects are both identified and dereferenceable by their http URI. These URIs were all minted following rules defined by the [Dutch URI strategy](https://www.geonovum.nl/uploads/documents/D1-2013-09-19_Towards_a_NL_URI_Strategy.pdf).
 
 ### [Best Practice 2: Make your spatial data indexable by search engines](https://www.w3.org/TR/sdw-bp/#indexable-by-search-engines)
 
@@ -60,18 +60,12 @@ Conforms
 
 Test | Conforms
 ---|---
-Using a Web browser, search for the landing page of your dataset | <ul><li>- [x] </li></ul>
-Using a Web browser, check that you can browse to human-readable HTML pages for each [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing) that the dataset describes | <ul><li>- [x] </li></ul>
-
-#### Evidence
-
-In this API implementation, each item class register is indexable by search engined such as Google. [A search for an address key, such as 'GAACT714845933' using Google](https://www.google.com.au/search?q=GAACT714845933) yields multiple 'hits' on the API's web pages; both the Address register containing a link to Address 'GAACT714845933' and also the item page for Address 'GAACT714845933' itself. However, the API has not been indexed beyond the first page of the register, so only 50 records can be searched this way at the moment. The register is paginated (there are 13.5M addresses), and can be browsed or crawled in its entirety by link-following clients.
-
-Note that cached Google results currently refer to a previous version of the API which will eventually be updated.
+Using a Web browser, search for the landing page of your dataset | <ul><li>- [ ] </li></ul>
+Using a Web browser, check that you can browse to human-readable HTML pages for each [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing) that the dataset describes | <ul><li>- [ ] </li></ul>
 
 #### How-to
 
-Each resource defined within the G-NAF dataset (the dataset itself; registers of items; individual items) is delvered online in both RDF and HTML, as per [Linked Data bast practice](https://www.w3.org/TR/ld-bp/). The HTML delivery ensures that current search engines can 'see' the resources and RDF ensures that Linked Data bots can.
+From the landing page, there is no direct access to browseable pages of the data. However, each spatial object in the Linked Data sets has a html representation; see for example [https://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870](https://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870). When dereferencing this ID URI, the call is redirected to a document URI [https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870](https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870). Both the ID URI and the document URI are content-negotiable. 
 
 ### [Best Practice 3: Link resources together to create the Web of Data](https://www.w3.org/TR/sdw-bp/#linking)
 
@@ -84,18 +78,6 @@ Check that hyperlinks are distinguishable within the data — a string-literal t
 Check that hyperlinks use global identifiers, preferably HTTP URIs, to identify the link target | <ul><li>- [x] </li></ul>
 Check that hyperlinks use typed relationships, and that the definition of the link relation type can be located in order to determine how to interpret the hyperlink | <ul><li>- [x] </li></ul>
 
-#### How-to
-Spend some time looking at other ontologies before designing your own. In doing this:
-1. reuse existing ontologies wherever possible. Examples of this include ISO Group on Ontology Modeling's (GOM's) 19160-1 -- Addressing Ontology, which was profiled to present a view;
-2. describe your things using properties of existing ontologies wherever possible. Exmaples of this include the use of geo:Geometry rather than establishing a new object property for defining a geometry that is specific to this modeling effort; and
-3. link your things to existing things wherever possible. Examples of this include linking locality to geonames.org items.
-4. use [IANA Link Relations](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1) where possible. Examples of this include the use of previous, next, first and last link relationships in the register at the following URI: http://gnafld.net/address/?page=7&per_page=500.
-
-Once all of these are done, all items in every register that relate to items in another register should result in links being created. e.g., Address links to Street, Locality, and will link to Meshblocks once they’re published, Street links to Locality, Locality links to Geonames, and to itself (neighbours).
-
-#### To-do
-Consider the following [IANA Link Relations](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1): licence (with the link relation type license), hasAlias (with the link relation type: alternative), hasPrimary (with the link relation type: canonical), perhaps the alternates view could use the link relation type “profile”. Link to the register could use the link relation type “up”, as “item” can be used for each register item from the register.
-
 ### [Best Practice 4: Use spatial data encodings that match your target audience](https://www.w3.org/TR/sdw-bp/#semantic-thing)
 
 #### Conformance statement
@@ -104,19 +86,14 @@ Conforms
 Test | Conforms
 ---|---
 Check if spatial data is encoded, so that it can be understood and re-used reliably | <ul><li>- [x] </li></ul>
-Consider the main target audience or audiences of a web page or service, and check if spatial information is provided in a way appropriate for that audience | <ul><li>- [x] </li></ul>
+Consider the main target audience or audiences of a web page or service, and check if spatial information is provided in a way appropriate for that audience | <ul><li>- [X] </li></ul>
 
 #### How-to
-Conduct user research to determine what [geospatial data](https://www.w3.org/TR/sdw-bp/#dfn-geographic-information-(also-geospatial-data)) encodings suit your target audience, unless you already know what these are. This includes:
- 
- 1. publishing data using different content types that suit your target audience. In this implementation, the Flask API that was built for publication supports the following spatial data encodings: GeoSPARQL asWKT/wktLiteral and GeoJSON; and
- 2. using profiles that map your data to different ontologies, and which when combined with content types allow users to choose the flavour of your spatial data that matches their needs.
-
-Profile negotiation has been described well as a problem, to be addressed by the Dataset eXchange Working Group (DXWG). However, schema.org profile provides JSONLD with GeoJSON for the schema.org audience, the G-NAF used GeoSPARQL asWKT/wktLiteral which is further encoded by content-type.
+The Cadastre/PDOK data platform supplies WKT serialisations in both CRS84 and Netherlands RD [EPSG:28992](https://epsg.io/28992) representations. The Netherlands RD grid uses a easting/northing terrestrial coordinate system in meters, so it is easy to work with in the field. The JSON REST API's provide GeoJSON, WFS provides GML.
 
 #### To-do
 
-Support profile negotiation as described by the DXWG, once it has been approved as a recommendation.
+Document URI pages such as [https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870](https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870) do not provide an easy solution to access the geometry - this is hidden within an 'appearance' (voorkomen) such as [http://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870](http://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870). This 'appearance' is a temporally constrained state of the building with its own properties in a separate graph. 
 
 ### [Best Practice 5: Provide geometries on the Web in a usable way](https://www.w3.org/TR/sdw-bp/#describe-geometry)
 
@@ -125,24 +102,9 @@ Conforms
 
 Test | Conforms
 ---|---
-[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | <ul><li>- [x] </li></ul>
-The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | <ul><li>- [x] </li></ul>
-The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | <ul><li>- [x] </li></ul>
-
-#### How-to
-Conduct user research to:
- 
- 1. identify the intended uses and applications of the Linked Data API. This resulted in largely Linked Data applications and web consumption scenarios being considered
- 2. identify possible future use cases. This added consumption through geospatial applications as a requirement, without any specific target applications being selected. WKT was therefore selected as the Linked Data geometry encoding, used to support consumption through diverse geospatial applications
- 3. identify required coordinate reference systems. This resulted in the choice of GDA94-LL being selected and used
- 4. identifying the appropriate level of geometry detail. As a point dataset, the user community simply wanted the full resolution to be available.
- 
- All of the above resulted in the choice of supported profiles combined with geometry representation. The following were selected:
- 1. Schema.org as a profile to support web users consuming point data as coordinates rather than a geospatial object, and
- 2. the native G-NAF profile to support other use cases, and using WKT to encode geometries using GeoSPARQL to link the geometry for accessibility and compactness.
-
-#### To-do
-In future, the street and locality register items could include links to other geospatial representations (e.g., lines for street, polygons for locality).
+[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | <ul><li>- [ ] </li></ul>
+The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | <ul><li>- [ ] </li></ul>
+The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | <ul><li>- [ ] </li></ul>
  
 
 ### [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries)
@@ -152,15 +114,12 @@ Conforms
 
 Test | Conforms
 ---|---
-Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | <ul><li>- [x] </li></ul>
+Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | <ul><li>- [ ] </li></ul>
 Check if a compressed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data can be obtained via HTTP content negotiation or other mechanisms | n/a
 Check if centroids and bounding boxes are made available, without the need of downloading and processing the relevant [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data | <ul><li>- [ ] </li></ul>
 Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | n/a
 Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different levels of precision, e.g., by allowing users to specify the maximum number of decimals in point coordinates | <ul><li>- [ ] </li></ul>
-Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | n/a
-
-#### How-to
-Due to the close relationship between this best practice and [Best Practice 5: Provide geometries on the Web in a usable way](https://www.w3.org/TR/sdw-bp/#describe-geometry), this was described above.
+Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | <ul><li>- [ ] </li></ul>
 
 ### [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice)
 
@@ -169,13 +128,8 @@ Conforms
 
 Test | Conforms
 ---|---
-Check that [geospatial data](https://www.w3.org/TR/sdw-bp/#dfn-geographic-information-(also-geospatial-data)) (i.e. data about things located relative to the Earth) is available, as a minimum, in a global [coordinate reference system](https://www.w3.org/TR/sdw-bp/#dfn-coordinate-reference-system-(crs)): for vector data, this should be WGS 84 Lat/Long ([EPSG:4326](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4326)) or WGS 84 Lat/Long/Elevation ([EPSG:4979](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4979)); for raster data this should be Web Mercator ([EPSG:3857](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::3857)) | <ul><li>- [ ] </li></ul>
+Check that [geospatial data](https://www.w3.org/TR/sdw-bp/#dfn-geographic-information-(also-geospatial-data)) (i.e. data about things located relative to the Earth) is available, as a minimum, in a global [coordinate reference system](https://www.w3.org/TR/sdw-bp/#dfn-coordinate-reference-system-(crs)): for vector data, this should be WGS 84 Lat/Long ([EPSG:4326](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4326)) or WGS 84 Lat/Long/Elevation ([EPSG:4979](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4979)); for raster data this should be Web Mercator ([EPSG:3857](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::3857)) | <ul><li>- [X] </li></ul>
 
-#### How-to
-Due to the close relationship between this best practice and [Best Practice 5: Provide geometries on the Web in a usable way](https://www.w3.org/TR/sdw-bp/#describe-geometry), this was described above.
-
-#### To-do
-Need to consider whether a second coordinate reference system, WGS 84, is actually required.
 
 ### [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs)
 
@@ -186,8 +140,6 @@ Test | Conforms
 ---|---
 For a given [spatial data](https://www.w3.org/TR/sdw-bp/#dfn-spatial-data) publication, check that users can find information about the coordinate axes, their order and unit of measurement, plus the [datum](https://www.w3.org/TR/sdw-bp/#dfn-datum) used | <ul><li>- [x] </li></ul>
 
-#### How-to
-[GeoSPARQL](https://www.w3.org/TR/sdw-bp/#bib-GeoSPARQL)'s extension to Well Known Text ([WKT](https://www.w3.org/TR/sdw-bp/#dfn-well-known-text-(wkt))), it's wktLiteral data type, was used and combined with specifying the [coordinate reference system](https://www.w3.org/TR/sdw-bp/#dfn-coordinate-reference-system-(crs)).
 
 ### [Best Practice 9: Describe relative positioning](https://www.w3.org/TR/sdw-bp/#relative-position)
 
@@ -198,11 +150,6 @@ Test | Conforms?
 ---|---
 Check that, when positions of entities are described as relative to other entities, these descriptions can be interpreted by a machine as well as humans, and the positions of the reference entities can be retrieved through their link relations. | <ul><li>- [x] </li></ul>
 
-#### How-to
-
-The following relative positions were identified, and encoded into the ontology:
-1. Localities have neighbour, or next to, relationships which were described using the hasNeighbour object property.
-
 ### [Best Practice 10: Use appropriate relation types to link Spatial Things](https://www.w3.org/TR/sdw-bp/#entity-level-links)
 
 #### Conformance statement
@@ -210,20 +157,8 @@ Conforms
 
 Test | Conforms?
 ---|---
-Check that hyperlinks use typed relationships, and that link relation type can be located in order to determine how to interpret the hyperlink. | <ul><li>- [ ] </li></ul>
+Check that hyperlinks use typed relationships, and that link relation type can be located in order to determine how to interpret the hyperlink. | <ul><li>- [x] </li></ul>
 Check that the source and target of the hyperlink are Spatial Things, unless the link relation type definition indicates that this should be otherwise (e.g. when relating a Spatial Thing to its geometry). | <ul><li>- [x] </li></ul>
-
-#### How-to
-
-The following relationships were identified, and encoded into the ontology:
-1. Addresses are within Localities.
-2. Addresses touch Street Localities.
-3. Street Localities are within Localities.
-4. Localities link to GeoNames states.
-
-#### To-do
-
-These relationships are currently not typed using [GeoSPARQL](https://www.w3.org/TR/sdw-bp/#bib-GeoSPARQL) relationships, and should be. sfWithin for points within polygons, sfTouches for neighbour relationships.
 
 ### [Best Practice 11: Provide information on the changing nature of spatial things](https://www.w3.org/TR/sdw-bp/#desc-changing-properties)
 
@@ -240,15 +175,8 @@ Conforms
 #### Conformance statement
 Does not conform
 
-#### To-do
-
-Need to assert spatial metadata in the dataset ontology. Things like geo:hasGeometry could be used in the ontology to define Australia in Geonames as the extent, for example. Perhaps the DCAT revision will provide some guidance on how best to do this.
 
 ### [Best Practice 14: Describe the positional accuracy of spatial data](https://www.w3.org/TR/sdw-bp/#desc-accuracy)
 
 #### Conformance statement
 Does not conform
-
-#### To-do
-
-Need to include geocode reliability to be added to the ontology, and to the data set. It further requires a code list to facilitate discovery of meaning.
