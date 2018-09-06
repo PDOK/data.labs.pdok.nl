@@ -15,10 +15,17 @@ The Land Registry and Mapping Agency of the Netherlands (‘Kadaster’ in Dutch
 
 The Dataplatform is made accessible through [PDOK](https://pdok.nl), an neutral platform that traditionally serves a broad range of geospatial datasets in geospatial (OGC) formats. By integrating both we now have a platform that is able to serve OGC formats, Linked Data & APIs, for a broad range of governmental spatial datasets (includings Cadastre, Statistical and Heritage data amongst others).
 
+### The Architecture of the Platform
+Joost kan je hier wat zeggen? Misschien een plaatje?
+[SPARQL Endpoint](<https://data.pdok.nl/sparql>)
+Building URI [example](https://bag.basisregistraties.overheid.nl/bag/id/pand/0003100000117848)
+
 
 ### The Linked Data API
 
 DIMITRI KUN JE HIER WAT INVULLEN over de API? 
+(en daarbij
+(hieronder de oude tekst van Australie)
 
 The API is a minimal implementation of a RESTful HTTP API that allows portions of the G-NAF dataset to be delivered as human- or machine-readable web resources (web pages and code files). It essentially presents endpoints (URIs; web addresses) for G-NAF items according to various conceptual models. Models such as the [ISO's 19160-1:2015 -- Addressing](https://www.iso.org/standard/61710.html) are related to the elements in G-NAF through deliberate mappings made in the *model* portion of this API's codebase. On web address request, the API extracts data for its various models from the G-NAF database using SQL queries. It then uses HTML templates or in-memory RDF graphs to generate *views* for human or machine reading.
 
@@ -29,7 +36,7 @@ The following programming languages and tools are used by this API:
 * [Apache web server](https://en.wikipedia.org/wiki/Apache_HTTP_Server) - the web server that allows communication with [Flask](http://flask.pocoo.org/) over HTTP
 * [Postgres database](https://en.wikipedia.org/wiki/PostgreSQL) - an open source relational database containing the data of the [G-NAF](https://www.psma.com.au/products/g-naf).
 
-### Documentation root
+### The PDOK Labs Environment
 <http://linked.data.gov.au/dataset/gnaf>
 
 ### Example
