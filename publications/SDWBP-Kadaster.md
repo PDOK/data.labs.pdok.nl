@@ -11,12 +11,14 @@ Kadaster/PDOK Data Platform
 ## Description of service
 
 ### About
+The Land Registry and Mapping Agency of the Netherlands (‘Kadaster’ in Dutch) is developing an online publication platform for sharing its geospatial data assets called KDP (`Kadaster Data Platform’ in Dutch). One of the main goals of this platform is to better share geospatial data with the wider, web-oriented world, including its developers, approaches, and standards. Linked Open Data (W3C), GeoSPARQL (OGC), and Open APIs (OpenAPI Specification) are the predominant standardized approaches for this purpose. As a result, the most important spatial datasets of the Netherlands – including several key registries – are now being published as Linked Open Data that can be accessed through a SPARQL endpoint and a collection of REST APIs. In addition to providing raw access to the data, Kadaster Data Platform also offers developers functionalities that allow them to gain a better understanding about the contents of its datasets. These functionalities include various ways for viewing Linked Data.
 
-The [Kadaster/PDOK Data Platform](http://pdok.nl) is a test [Linked Data](https://en.wikipedia.org/wiki/Linked_data) [API](https://en.wikipedia.org/wiki/Application_programming_interface) delivering data from [G-NAF, the Australian Geocoded National Address File](https://www.psma.com.au/products/g-naf).
+The Dataplatform is made accessible through [PDOK](https://pdok.nl), an neutral platform that traditionally serves a broad range of geospatial datasets in geospatial (OGC) formats. By integrating both we now have a platform that is able to serve OGC formats, Linked Data & APIs, for a broad range of governmental spatial datasets (includings Cadastre, Statistical and Heritage data amongst others).
 
-It is being developed through a joint initiative between [PSMA Australia](https://www.psma.com.au) and [CSIRO](https://csiro.au) to test the application of Linked Data technologies to large spatial datasets. The hope is that Linked Data will allow new applications of data presentation, access, mining and sharing that improve Australia've value from the G-NAF.
 
 ### The Linked Data API
+
+DIMITRI KUN JE HIER WAT INVULLEN over de API? 
 
 The API is a minimal implementation of a RESTful HTTP API that allows portions of the G-NAF dataset to be delivered as human- or machine-readable web resources (web pages and code files). It essentially presents endpoints (URIs; web addresses) for G-NAF items according to various conceptual models. Models such as the [ISO's 19160-1:2015 -- Addressing](https://www.iso.org/standard/61710.html) are related to the elements in G-NAF through deliberate mappings made in the *model* portion of this API's codebase. On web address request, the API extracts data for its various models from the G-NAF database using SQL queries. It then uses HTML templates or in-memory RDF graphs to generate *views* for human or machine reading.
 
