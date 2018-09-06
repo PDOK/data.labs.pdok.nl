@@ -24,7 +24,8 @@ Building URI [example](https://bag.basisregistraties.overheid.nl/bag/id/pand/000
 ### The Linked Data API
 
 DIMITRI KUN JE HIER WAT INVULLEN over de API? 
-(en daarbij
+(ook even voorbeelden; link naar de bag api en de documentation)
+
 (hieronder de oude tekst van Australie)
 
 The API is a minimal implementation of a RESTful HTTP API that allows portions of the G-NAF dataset to be delivered as human- or machine-readable web resources (web pages and code files). It essentially presents endpoints (URIs; web addresses) for G-NAF items according to various conceptual models. Models such as the [ISO's 19160-1:2015 -- Addressing](https://www.iso.org/standard/61710.html) are related to the elements in G-NAF through deliberate mappings made in the *model* portion of this API's codebase. On web address request, the API extracts data for its various models from the G-NAF database using SQL queries. It then uses HTML templates or in-memory RDF graphs to generate *views* for human or machine reading.
@@ -37,10 +38,8 @@ The following programming languages and tools are used by this API:
 * [Postgres database](https://en.wikipedia.org/wiki/PostgreSQL) - an open source relational database containing the data of the [G-NAF](https://www.psma.com.au/products/g-naf).
 
 ### The PDOK Labs Environment
-<http://linked.data.gov.au/dataset/gnaf>
+The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [facetted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
 
-### Example
-<http://linked.data.gov.au/address/GAACT714845933>
 
 ## Best Practice Scorecard
 
