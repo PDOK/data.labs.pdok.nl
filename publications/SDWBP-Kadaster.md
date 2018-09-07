@@ -68,8 +68,8 @@ Conforms
 
 Test | Conforms
 ---|---
-Using a Web browser, search for the landing page of your dataset | <ul><li>- [ ] </li></ul>
-Using a Web browser, check that you can browse to human-readable HTML pages for each [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing) that the dataset describes | <ul><li>- [ ] </li></ul>
+Using a Web browser, search for the landing page of your dataset | :black_square_button:
+Using a Web browser, check that you can browse to human-readable HTML pages for each [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing) that the dataset describes | :black_square_button:
 
 #### How-to
 
@@ -82,9 +82,9 @@ Conforms
 
 Test | Conforms
 ---|---
-Check that hyperlinks are distinguishable within the data — a string-literal that happens to contain a URL is insufficient | <ul><li>- [x] </li></ul>
-Check that hyperlinks use global identifiers, preferably HTTP URIs, to identify the link target | <ul><li>- [x] </li></ul>
-Check that hyperlinks use typed relationships, and that the definition of the link relation type can be located in order to determine how to interpret the hyperlink | <ul><li>- [x] </li></ul>
+Check that hyperlinks are distinguishable within the data — a string-literal that happens to contain a URL is insufficient | :ballot_box_with_check:
+Check that hyperlinks use global identifiers, preferably HTTP URIs, to identify the link target | :ballot_box_with_check:
+Check that hyperlinks use typed relationships, and that the definition of the link relation type can be located in order to determine how to interpret the hyperlink | :ballot_box_with_check:
 
 ### [Best Practice 4: Use spatial data encodings that match your target audience](https://www.w3.org/TR/sdw-bp/#semantic-thing)
 
@@ -93,8 +93,8 @@ Conforms
 
 Test | Conforms
 ---|---
-Check if spatial data is encoded, so that it can be understood and re-used reliably | <ul><li>- [x] </li></ul>
-Consider the main target audience or audiences of a web page or service, and check if spatial information is provided in a way appropriate for that audience | <ul><li>- [X] </li></ul>
+Check if spatial data is encoded, so that it can be understood and re-used reliably | :ballot_box_with_check:
+Consider the main target audience or audiences of a web page or service, and check if spatial information is provided in a way appropriate for that audience | :ballot_box_with_check:
 
 #### How-to
 The Cadastre/PDOK data platform supplies WKT serialisations in both CRS84 and Netherlands RD [EPSG:28992](https://epsg.io/28992) representations. The Netherlands RD grid uses a easting/northing terrestrial coordinate system in meters, so it is easy to work with in the field. The JSON REST API's provide GeoJSON, WFS provides GML.
@@ -110,9 +110,9 @@ Conforms
 
 Test | Conforms
 ---|---
-[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | <ul><li>- [ ] </li></ul>
-The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | <ul><li>- [ ] </li></ul>
-The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | <ul><li>- [ ] </li></ul>
+[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :black_square_button:
+The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | :black_square_button:
+The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | :black_square_button:
  
 
 ### [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries)
@@ -122,12 +122,12 @@ Conforms
 
 Test | Conforms
 ---|---
-Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | <ul><li>- [ ] </li></ul>
-Check if a compressed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data can be obtained via HTTP content negotiation or other mechanisms | n/a
-Check if centroids and bounding boxes are made available, without the need of downloading and processing the relevant [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data | <ul><li>- [ ] </li></ul>
-Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | n/a
-Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different levels of precision, e.g., by allowing users to specify the maximum number of decimals in point coordinates | <ul><li>- [ ] </li></ul>
-Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | <ul><li>- [ ] </li></ul>
+Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | :black_square_button:
+Check if a compressed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data can be obtained via HTTP content negotiation or other mechanisms | :black_square_button:
+Check if centroids and bounding boxes are made available, without the need of downloading and processing the relevant [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data | :black_square_button:
+Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | :black_square_button:
+Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different levels of precision, e.g., by allowing users to specify the maximum number of decimals in point coordinates | :black_square_button:
+Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | :black_square_button:
 
 ### [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice)
 
@@ -136,7 +136,7 @@ Conforms
 
 Test | Conforms
 ---|---
-Check that [geospatial data](https://www.w3.org/TR/sdw-bp/#dfn-geographic-information-(also-geospatial-data)) (i.e. data about things located relative to the Earth) is available, as a minimum, in a global [coordinate reference system](https://www.w3.org/TR/sdw-bp/#dfn-coordinate-reference-system-(crs)): for vector data, this should be WGS 84 Lat/Long ([EPSG:4326](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4326)) or WGS 84 Lat/Long/Elevation ([EPSG:4979](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4979)); for raster data this should be Web Mercator ([EPSG:3857](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::3857)) | <ul><li>- [X] </li></ul>
+Check that [geospatial data](https://www.w3.org/TR/sdw-bp/#dfn-geographic-information-(also-geospatial-data)) (i.e. data about things located relative to the Earth) is available, as a minimum, in a global [coordinate reference system](https://www.w3.org/TR/sdw-bp/#dfn-coordinate-reference-system-(crs)): for vector data, this should be WGS 84 Lat/Long ([EPSG:4326](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4326)) or WGS 84 Lat/Long/Elevation ([EPSG:4979](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::4979)); for raster data this should be Web Mercator ([EPSG:3857](http://epsg-registry.org/?display=entity&urn=urn:ogc:def:crs:EPSG::3857)) | :ballot_box_with_check:
 
 
 ### [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs)
@@ -146,7 +146,7 @@ Conforms
 
 Test | Conforms
 ---|---
-For a given [spatial data](https://www.w3.org/TR/sdw-bp/#dfn-spatial-data) publication, check that users can find information about the coordinate axes, their order and unit of measurement, plus the [datum](https://www.w3.org/TR/sdw-bp/#dfn-datum) used | <ul><li>- [x] </li></ul>
+For a given [spatial data](https://www.w3.org/TR/sdw-bp/#dfn-spatial-data) publication, check that users can find information about the coordinate axes, their order and unit of measurement, plus the [datum](https://www.w3.org/TR/sdw-bp/#dfn-datum) used | :ballot_box_with_check:
 
 
 ### [Best Practice 9: Describe relative positioning](https://www.w3.org/TR/sdw-bp/#relative-position)
@@ -166,22 +166,22 @@ Conforms
 Test | Conforms?
 ---|---
 Check that hyperlinks use typed relationships, and that link relation type can be located in order to determine how to interpret the hyperlink. | <ul><li>- [x] </li></ul>
-Check that the source and target of the hyperlink are Spatial Things, unless the link relation type definition indicates that this should be otherwise (e.g. when relating a Spatial Thing to its geometry). | <ul><li>- [x] </li></ul>
+Check that the source and target of the hyperlink are Spatial Things, unless the link relation type definition indicates that this should be otherwise (e.g. when relating a Spatial Thing to its geometry). | :ballot_box_with_check:
 
 ### [Best Practice 11: Provide information on the changing nature of spatial things](https://www.w3.org/TR/sdw-bp/#desc-changing-properties)
 
 #### Conformance statement
-Does not conform
+Does not conform, mostly.
 
 ### [Best Practice 12: Expose spatial data through 'convenience APIs'](https://www.w3.org/TR/sdw-bp/#convenience-apis)
 
 #### Conformance statement
-Conforms
+Mostly does not conform, with a few exceptions
 
 ### [Best Practice 13: Include spatial metadata in dataset metadata](https://www.w3.org/TR/sdw-bp/#spatial-info-dataset-metadata)
 
 #### Conformance statement
-Does not conform
+Conforms, through metadata records in the [national geo register](https://nationaalgeoregister.nl)
 
 
 ### [Best Practice 14: Describe the positional accuracy of spatial data](https://www.w3.org/TR/sdw-bp/#desc-accuracy)
