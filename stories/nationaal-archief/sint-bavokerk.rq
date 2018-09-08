@@ -1,0 +1,73 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape ?shapeLabel {
+  {
+    select
+      (sample(?title) as ?title)
+      (group_concat(?widget;separator='<hr>') as ?widgets)
+    {
+      {
+        select
+          ?image
+          (strdt(?dateStr,xsd:date) as ?date)
+          ?description
+          (group_concat(distinct ?format;separator=', ') as ?format)
+          ?pand
+          (group_concat(distinct ?subject;separator=', ') as ?subject)
+          ?title
+          (sample(?url) as ?url)
+        {
+          bind(pand:0392100000065734 as ?pand)
+          ?image dce:date ?dateStr;
+                 dce:description ?description;
+                 dce:format ?format;
+                 dce:subject ?subject;
+                 dce:title ?title;
+                 owl:sameAs ?pand;
+                 schema:contentLocation ?location;
+                 schema:thumbnail ?url.
+        }
+        group by ?image ?dateStr ?description ?pand ?title
+        order by ?date
+      }
+      bind(concat(
+        '<figure>',
+          '<a href="',str(?url),'" target="_blank">',
+            '<img src="',str(?url),'" width="250px">',
+          '</a>',
+          '<figcaption>',
+            '<dl>',
+              '<dt>Beschrijving</dt><dd>',str(?description),'</dd>',
+              '<dt>Datum</dt><dd>',year(?date),'-',month(?date),'-',day(?date),'</dd>',
+              if(?format='','',concat('<dt>Formaten</dt><dd>',?format,'</dd>')),
+              if(?subject='','',concat('<dt>Onderwerpen</dt><dd>',str(?subject),'</dd>')),
+            '</dl>',
+          '</figcaption>',
+        '</figure>') as ?widget)
+    }
+    group by ?pand
+  }
+  bind(pand:0392100000065734 as ?pand)
+  service <https://data.pdok.nl/sparql> {
+    ?pand geo:hasGeometry/geo:asWKT ?shape.
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                     bag:pandrelatering ?pand.
+    ?openbareRuimte bag:naamOpenbareRuimte ?street;
+                    bag:bijbehorendeWoonplaats ?woonplaats.
+    ?woonplaats rdfs:label ?city.
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                      bag:huisnummer ?housenumber;
+                      bag:postcode ?zipcode.
+  }
+  bind(concat(
+    '<center><h3>⛪<br><a href="',str(?pand),'">',?street,' ',?housenumber,', ',?city,'</a></h3></center>',
+    ?widgets
+  ) as ?shapeLabel)
+}
+limit 1

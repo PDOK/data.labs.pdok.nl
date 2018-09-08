@@ -1,19 +1,32 @@
-PREFIX schema: <http://schema.org/>
-PREFIX dce: <http://purl.org/dc/elements/1.1/>
+prefix dce: <http://purl.org/dc/elements/1.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
 select ?shape (sample(?shapeLabel) as ?shapeLabel) {
-  ?gemeente a gg:Municipality ;
-    geo:hasGeometry/geo:asWKT ?shape ;
-    rdfs:label ?gemeenteNaam1 .
-  filter not exists { ?gemeente gg:endDate _:1 . }
+  {
+    select ?gemeenteNaam1 ?shape {
+      ?gemeente a gg:Municipality;
+        geo:hasGeometry ?geo1;
+        rdfs:label ?gemeenteNaam1.
+      filter not exists { ?gemeente gg:endDate ?end. }
+      ?geo1 geo:asWKT ?shape;
+            gg:year ?year1.
+      filter not exists {
+        ?gemeente geo:hasGeometry/gg:year ?year2.
+        filter(?year2 > ?year1)
+      }
+    }
+  }
   ?image
-    schema:contentLocation/schema:name ?gemeenteNaam2 ;
-    schema:thumbnail ?url ;
-    dce:description ?description .
+    dce:description ?description;
+    schema:contentLocation/schema:name ?gemeenteNaam2;
+    schema:thumbnail ?url.
   filter(str(?gemeenteNaam1) = str(?gemeenteNaam2))
-  bind(concat('<h3>',?gemeenteNaam1,'</h3><img width="250" src="',?url,'"><p>',?description,'</p>') as ?shapeLabel)
+  bind(concat(
+    '<h3>',?gemeenteNaam1,'</h3>',
+    '<img width="250" src="',?url,'">',
+    '<p>',?description,'</p>') as ?shapeLabel)
 }
 group by ?shape
-limit 250
+limit 150

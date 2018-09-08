@@ -1,0 +1,15 @@
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+select ?location (count(?image) as ?n) {
+  ?image a schema:Photograph.
+  {
+    ?image schema:contentLocation/rdfs:label ?location.
+  } union {
+    ?image schema:contentLocation ?location.
+    filter(isLiteral(?location))
+  }
+}
+group by ?location
+order by desc(?n)
+limit 20

@@ -1,0 +1,43 @@
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape (group_concat(?widget;separator="") as ?shapeLabel) {
+  {
+    select
+      ?image
+      (strdt(?dateStr,xsd:date) as ?date)
+      ?description
+      (group_concat(distinct ?format;separator=', ') as ?format)
+      (group_concat(distinct ?subject;separator=', ') as ?subject)
+      ?url
+    {
+      ?image dce:date ?dateStr;
+             dce:description ?description;
+             dce:format ?format;
+             dce:subject ?subject;
+             owl:sameAs pand:0202100000253372;
+             schema:contentLocation ?location;
+             schema:thumbnail ?url.
+    }
+  }
+  service <https://data.pdok.nl/sparql> {
+    ?pand geo:hasGeometry/geo:asWKT ?shape.
+  }
+  bind(concat(
+    '<div style="position: relative;">',
+    '<img src="',str(?url),'" style="max-width: 325px;">',
+    '<h2 style="position: absolute; bottom: -11px; left: 0; width: 100%;">',
+    '<span style="color: white; font: bold 24px/45px Helvetica, Sans-Serif; letter-spacing: -1px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 10px;">',
+    str(?description),'<br><span style="padding:0 5px;"></span>',
+    replace(?n,'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
+    #'<p><b>Datum</b>: ',year(?date),'-',month(?date),'-',day(?date),
+    #'<br><b>Beschrijving</b>: ',?description,
+    #if(?format='','',concat('<br><b>Formaten</b>: ',?format,'.')),
+    #if(?subject='','',concat('<br><b>Onderwerpen</b>: ',str(?subject),'.'))
+  ) as ?widget)
+}
+group by ?shape
+limit 10
