@@ -5,6 +5,11 @@ title: Publications
 
 # Publicaties
 
+## Machine learning for Geospatial vector data
+Veer, R. V. T., Bloem, P., & Folmer, E. (2018). Deep Learning for Classification Tasks on Geospatial Vector Polygons. arXiv preprint arXiv:1806.03857.
+
+Available at: [https://arxiv.org/abs/1806.03857](https://arxiv.org/abs/1806.03857)
+
 ## Brainstormdocument machine learning & Kadaster
 In het kader van zijn onderzoek heeft Rein van 't Veer [een document opgesteld](https://docs.google.com/document/d/1Xrkex00xoTTP7IgxIbvnFFUruDSV0_IaTDAPxtwazdE/edit?usp=sharing) met onderwerpen waar machine learning op geodata een bijdrage kan leveren. 
 

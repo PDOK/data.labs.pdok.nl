@@ -4,3 +4,6 @@ theme: jekyll-theme-dinky
 repository: PDOK/data.labs.pdok.nl
 port: 4000
 host: 127.0.0.1
+
+plugins:
+  - jemoji
