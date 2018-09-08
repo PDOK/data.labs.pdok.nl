@@ -59,10 +59,10 @@ te vinden, maar dat lukt niet helemaal:
 </div>
 -->
 
-## Gallerij
+## Galerij
 
 De Beeldbank van het Nationaal Archief leent zich goed voor het tonen
-van een gallerij.  De volgende query toont de onderwerpen met de
+van een galerij  De volgende query toont de onderwerpen met de
 meeste afbeeldingen, samen met het aantal afbeeldingen met dat
 onderwerp.
 
