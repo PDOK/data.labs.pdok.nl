@@ -4,7 +4,7 @@ layout: default
 ---
 
 # Spatial Data on the Web Best Practice Implementation Report
-
+DISCLAIMER: THIS DOCUMENT IS WORK IN PROGRESS
 ## Title
 Kadaster/PDOK Data Platform
 
