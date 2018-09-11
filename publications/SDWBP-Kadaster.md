@@ -156,7 +156,7 @@ Conforms
 
 Test | Conforms?
 ---|---
-Check that, when positions of entities are described as relative to other entities, these descriptions can be interpreted by a machine as well as humans, and the positions of the reference entities can be retrieved through their link relations. | <ul><li>- [x] </li></ul>
+Check that, when positions of entities are described as relative to other entities, these descriptions can be interpreted by a machine as well as humans, and the positions of the reference entities can be retrieved through their link relations. | :ballot_box_with_check:
 
 ### [Best Practice 10: Use appropriate relation types to link Spatial Things](https://www.w3.org/TR/sdw-bp/#entity-level-links)
 
@@ -165,7 +165,7 @@ Conforms
 
 Test | Conforms?
 ---|---
-Check that hyperlinks use typed relationships, and that link relation type can be located in order to determine how to interpret the hyperlink. | <ul><li>- [x] </li></ul>
+Check that hyperlinks use typed relationships, and that link relation type can be located in order to determine how to interpret the hyperlink. | :ballot_box_with_check:
 Check that the source and target of the hyperlink are Spatial Things, unless the link relation type definition indicates that this should be otherwise (e.g. when relating a Spatial Thing to its geometry). | :ballot_box_with_check:
 
 ### [Best Practice 11: Provide information on the changing nature of spatial things](https://www.w3.org/TR/sdw-bp/#desc-changing-properties)
