@@ -28,9 +28,11 @@ van diep rood (0 transacties) tot felgroen (100 transacties)
 
 # Gemeente Amsterdam
 
-<div data-query
+<!-- <div data-query
      data-query-sparql="amsterdam-hipheid.rq">
-</div>
+</div> -->
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="amsterdam-hipheid.rq" data-output="geo"> </query>
 
 # Gemeente Delfzijl
 
@@ -38,17 +40,19 @@ Hieronder is het aantal woningtransacties afgezet tegen dezelfde maat
 als die voor Amsterdam is toegepast (een bereik tussen 0 en 100
 transacties per buurt).  Wat duidelijk hieruit blijkt, is dat er
 weinig woningverkopen zijn geweest in vergelijking met een grote stad.
-
+<!-- 
 <div data-query
      data-query-sparql="delfzijl-hipheid.rq">
-</div>
+</div> -->
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="delfzijl-hipheid.rq" data-output="geo"></query>
 
 # Andere gemeentecode?
 
 Je kan deze vraag natuurlijk ook stellen voor een andere gemeente.  Je
 kan de bijbehorende gemeentecode opzoeken in de onderstaande query:
-
+<!-- 
 <div data-query
      data-query-output="table"
      data-query-sparql="gemeente-lookup.rq">
-</div>
+</div> -->
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="gemeente-lookup.rq" data-output="table"></query>

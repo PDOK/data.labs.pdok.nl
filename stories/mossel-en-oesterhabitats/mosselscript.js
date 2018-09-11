@@ -20,7 +20,7 @@ order by ?dist_metres
 limit 10`;
 
 YASGUI.YASQE.defaults.value = query;
-
+window.Yasgui.Yasr.Instance.plugins.geo.defaults.map = 'nlmaps'
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(location => {
     YASGUI.YASQE.defaults.value = query.replace(

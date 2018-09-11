@@ -17,9 +17,7 @@ Query 1: Welke BAG pand IDs met als status “Pand in Gebruik” en “Pand
 in Gebruik – Niet ingemeten” komen we niet tegen in de BGT PandID met
 status “Bestaand”:
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="BAG-BGT.rq"></div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="BAG-BGT.rq" data-output="geo"></query>
 
 Query 2: En omgekeerd: Welke BGT PandIDs met status “Bestaand” komen
 we niet tegen in de BAG (met beide statusen), met daarbij een
@@ -32,13 +30,11 @@ BGT. (dat mag namelijk niet)
 We weten dat BAG panden met 000000000000 als id vaak voorkomen in de BGT.
 Namelijk:
 
-<div data-query
-     data-query-sparql="id3_count.rq"></div>
+<query data-endpoint="hhttps://data.labs.pdok.nl/sparql" data-query-ref="id3_count.rq" data-output="geo"></query>
 
 Deze filteren we eruit.  Vervolgens gaan we op zoek:
 
-<div data-query
-     data-query-sparql="id3.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="id3.rq" data-output="geo"></query>
 
 Query 4. Geef mij de BGT panden waar bij het bagpandid op positie 5 en
 6 geen 10 staat.
@@ -47,13 +43,11 @@ Weer gefiltered op 000000000000.
 
 Het aantal:
 
-<div data-query
-     data-query-sparql="id4_count.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="id4_count.rq" data-output="geo"></query>
 
 De panden:
 
-<div data-query
-     data-query-sparql="id4.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="id4.rq" data-output="geo"></query>
 
 Query 5. De bronhoudercode geeft de gemeente weer; het id van het pand
 (eerste vier cijfers) moet beginnen met deze bronhouder code: Geef mij
@@ -79,32 +73,24 @@ Statistieken over het de naar Linked Data omgezette deel van de BGT.
 
 Het aantal grafen in de volledige dataset.
 
-<div data-query
-     data-query-sparql="stat-graphs.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="stat-graphs.rq" data-output="geo"></query>
 
 ## Aantal triples
 
 Het aantal uitspraken (triples) in de volledige dataset.
 
-<div data-query
-     data-query-sparql="stat-triples.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="tat-triples.rq" data-output="geo"></query>
 
 ## Concepten
 
 Een overzicht van de concepten/klassen, met het aantal instanties per
 concept.
 
-<div data-query
-     data-query-sparql="stat-concepten.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="stat-concepten.rq" data-output="geo"></query>
 
 ## Eigenschappen
 
 Een overzicht van de eigenschappen, met het aantal uitspraken per
 eigenschap.
 
-<div data-query
-     data-query-sparql="stat-eigenschappen.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="stat-eigenschappen.rq" data-output="geo"></query>

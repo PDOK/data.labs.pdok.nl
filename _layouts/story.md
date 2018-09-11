@@ -12,14 +12,6 @@ layout: default
 {{ content }}
 
 </div>
-<script type="text/javascript">
-{% if page.basemap %}
-YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "{{ page.basemap }}";
-{% else %}
-YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
-{% endif %}
-YASGUI.sparqlStories();
-</script>
 
 <style>
 .google-visualization-table .gradient {
@@ -27,7 +19,19 @@ YASGUI.sparqlStories();
   font-family: inherit;
 }
 
-header {
+
+/*Changes made to the colours of the headers from sparql. Could only be forced with important at the moment.*/
+
+th {
+	color: black !important; 
+	background: white !important;
+}
+
+.yasgui .yasqe .CodeMirror-fullscreen {
+	top: 100px !important;
+}
+
+header {	
   display: none;
 }
 

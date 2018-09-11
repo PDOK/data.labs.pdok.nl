@@ -31,10 +31,12 @@ Deze story beschrijft de volgende zoekopdrachten:
 De windturbine parken in Nederland volgens Wikidata (klasse ‘<a
 href="http://www.wikidata.org/entity/Q194356">Wind farm</a>’).
 
-<div data-query
+<query data-endpoint="https://query.wikidata.org/sparql" data-query-ref="10-farm.rq" data-output="geo"></query>
+
+<!-- <div data-query
      data-query-endpoint="https://query.wikidata.org/sparql"
      data-query-sparql="10-farm.rq">
-</div>
+</div> -->
 
 ## Alle windturbines in Flevoland (BGT,BRT,OSM,WindStats)
 
@@ -63,7 +65,8 @@ Alle windturbines in Zuidwest-Flevoland volgens BGT (
 </svg>
 ).
 
-<div data-query data-query-sparql="20-windturbine.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/geosparql" data-query-ref="20-windturbine.rq" data-output="geo"></query>
+<!-- <div data-query data-query-sparql="20-windturbine.rq"></div> -->
 
 # Windturbines ontbrekend (?) in de BRT
 
@@ -71,4 +74,5 @@ Wijzigen we de volgorde van de kaartopbouw, dan zien we welke turbines
 niet in de BRT voorkomen.  Alle markers in een andere kleur dan geel
 is mogelijk een ontbrekend element.
 
-<div data-query data-query-sparql="30-turbines-niet-in-brt.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/geosparql" data-query-ref="30-turbines-niet-in-brt.rq" data-output="geo"></query>
+<!-- <div data-query data-query-sparql="30-turbines-niet-in-brt.rq"></div> -->

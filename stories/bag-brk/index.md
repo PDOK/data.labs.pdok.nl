@@ -71,9 +71,8 @@ gerelateerde percelen aan de Oranjekade te Haarlem.  De meest
 noordelijke marker betreft een 'outlier': hier zit mogelijk iets fout
 in de linkset.
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-output="leaflet"
-     data-query-sparql="percelen-en-nummeraanduidingen.rq"
+<query data-endpoint="https://data.pdok.nl/sparql"
+     data-query-ref="percelen-en-nummeraanduidingen.rq"
+     data-output="geo"
      data-showQuery>
-</div>
+</query>

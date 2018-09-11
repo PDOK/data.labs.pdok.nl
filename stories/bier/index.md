@@ -27,10 +27,7 @@ op [Druid](https://druid.datalegend.net/dataLegend/strikes).  We
 kunnen de stakingen per beroep opvragen.  Hieronder de stakingen
 geïnitieerd door brouwers:
 
-<div data-query
-     data-query-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql"
-     data-query-sparql="stakingen-brouwers.rq">
-</div>
+<query data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql" data-query-ref="stakingen-brouwers.rq"></query>
 
 ### Stakingen bij Heineken
 
@@ -38,10 +35,7 @@ Maar niet alleen brouwers hebben gestaakt bij Heineken.  Hieronder de
 stakingen van *alle* beroepsgroepen bij Heineken door door de jaren
 heen:
 
-<div data-query
-     data-query-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql"
-     data-query-sparql="stakingen-heineken.rq">
-</div>
+<query data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql" data-query-ref="stakingen-heineken.rq"></query>
 
 ## De Heineken brouwerij (Kadaster BAG & RCE Monumenten Register)
 
@@ -49,9 +43,7 @@ Laten we eens kijken hoe oud het gebouw van de Heineken Experience /
 de oude Heineken brouwerij is.  We zoeken dit op in zowel de Kadaster
 BAG alsook het RCE Monumenten Register:
 
-<div data-query
-     data-query-sparql="monument-heineken.rq">
-</div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="monument-heineken.rq" data-output="geo"></query>
 
 En wat zegt [Wikipedia](https://nl.wikipedia.org/wiki/Heineken_Brouwerij_(Amsterdam)) ? 
 

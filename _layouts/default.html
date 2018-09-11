@@ -6,8 +6,6 @@
     <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
     <link rel="shortcut icon" href="/assets/images/icons/64x64.png">
     <link rel="apple-touch-icon" href="/assets/images/icons/64x64.png">
-    <link rel="stylesheet" href="{{ '/assets/css/yasgui/yasgui.min.css?v=' | append: site.github.build_revision }}">
-    <script src="{{ '/assets/js/yasgui.min.js?v=' | append: site.github.build_revision }}"></script>
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision }}">
@@ -64,5 +62,19 @@
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <link href="https://nightly.yasgui.triply.cc/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="https://nightly.yasgui.triply.cc/build/yasgui.min.css" rel="stylesheet" type="text/css">
+    <script src='https://nightly.yasgui.triply.cc/build/yasgui.min.js'></script>
+    <script type="text/javascript">
+    window.onload = function () {
+      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false;
+      {% if page.basemap %}
+      window.Yasgui.Yasr.Instance.plugins.geo.defaults.map = "{{ page.basemap }}";
+      {% else %}
+      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "nlmaps";
+      {% endif %}
+      Yasgui.stories()
+    };
+    </script>
   </body>
 </html>

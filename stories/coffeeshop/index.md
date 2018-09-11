@@ -34,11 +34,11 @@ over een “afstandscriterium van 250 meter”.  Is de eis nu dat er exact
 
 Hemelsbreed liggen de panden niet ver uit elkaar:
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="afstand-coffeeshop-school.rq"
+<query data-query
+     data-endpoint="https://data.pdok.nl/sparql"
+     data-query-ref="afstand-coffeeshop-school.rq"
      data-showQuery>
-</div>
+</query>
 
 Of 198,0 meter, op decimeters afgerond.  Dan is er weinig bochtenwerk
 vereist om dit over de weg te vergroten naar 250 meter.  De discussie
@@ -113,8 +113,7 @@ kortste route uit het NWB wegen en de afstand van het BAG
 verblijfsobject naar deze route, kunnen we de afstand transparant en
 reproduceerbaar ophalen.
 
-<div data-query
-     data-query-endpoint="https://data.labs.pdok.nl/geosparql"
-     data-query-sparql="route-coffeeshop-school.rq"
+<query data-endpoint="https://data.labs.pdok.nl/geosparql"
+     data-query-ref="route-coffeeshop-school.rq"
      data-showQuery>
-</div>
+</query>

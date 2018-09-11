@@ -17,9 +17,9 @@ Basisregistraties Adressen en Gebouwen (BAG).
 
 ## Monumentale woning in de krimpgemeente Delfzijl
 
-<div data-query
-     data-query-sparql="monumenten.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql"
+     data-query-ref="monumenten.rq"  data-output="geo">
+</query>
 
 Ik heb een monumentale woning gezien in Delfzijl, maar ja, het is een
 krimpgebied.  Wil ik daar wel wonen? Als startpunt wil ik graag weten
@@ -27,22 +27,21 @@ wat de BAG en BRT weten over deze woning.  En, aangezien het een
 monument betreft, is ook informatie (zoals een foto) vanuit het
 Monumenten Register ook van harte welkom.
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="pand.rq">
-</div>
+<query data-endpoint="https://data.pdok.nl/sparql"
+     data-query-ref="pand.rq"  data-output="geo">
+</query>
 
 ## Geo query van BAG pand naar BRT gebouw
 
 Vervolgens kunnen we het bijbehorende BRT gebouw opzoeken:
 
-<div data-query data-query-sparql="brt.rq">
-</div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="brt.rq"  data-output="geo">
+</query>
 
-<!-- div data-query data-query-sparql="wijk.rq">
+<!-- query data-query data-query-ref="wijk.rq">
 ## Maar is de Wijk wel interessant? (Geo query van BAG pand naar CBS wijk)
 Maar nu wil ik meer weten over de krimpwijk.  Dus gaan we de Wijken en Buurten informatie van CBS bevragen over deze wijk.  Klik maar op de blauwe pijl van de wijk....Uit de rijke set van gegevens van Wijken en Buurten hebben we een paar semi-willekeurige items gekozen zoals afstand tot attractieparken, belangrijk voor mijn kinderen.  Alle andere items zijn eenvoudig toe te voegen door de query aan te passen.
-</div -->
+</query -->
 
 ## Afstand tot attracties
 
@@ -54,17 +53,13 @@ afstandswaardes gaan normalizeren om er kleurcodes aan te hangen.
 Daarvoor bepalen we de maximale afstand tot een attractie:
 
 
-<div data-query 
-  data-query-sparql="attractie-max.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="attractie-max.rq" data-output="geo"></query>
 
 Hiermee kunnen we een thematische kaart voor de afstand tot een
 attractie maken (voor Groningen en Friesland, maar via de query
 eenvoudig aan te passen voor andere provincies):
 
-<div data-query 
-  data-query-sparql="attractie.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="attractie.rq" data-output="geo"></query>
 
 ## Afstand tot kerncentrales: Delfzijl
 
@@ -76,8 +71,7 @@ https://brt.basisregistraties.overheid.nl/query/model).  Bijvoorbeeld
 ik wil ook weten op welke afstand de kerncentrales uit Nederland
 liggen.  (deze query is eenvoudig aan te passen voor andere gebouwen)
 
-<div data-query data-query-sparql="kerncentrales.rq">
-</div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="kerncentrales.rq" data-output="geo"></query>
 
 Met deze data story hebben we laten zien dat we een rijkheid aan
 informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de
@@ -87,7 +81,7 @@ kunnen doen zonder domein-specifieke tooling.
 <!-- geo support
 ## Landelijke afstand tot kunstijsbanen
 
-<div data-query
-     data-query-sparql="thematische-kaart-kunstijsbaan.rq">
-</div>
+<query data-query
+     data-query-ref="thematische-kaart-kunstijsbaan.rq">
+</query>
 -->
