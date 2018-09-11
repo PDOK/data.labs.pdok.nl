@@ -6,7 +6,8 @@ prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?shape ?shapeLabel {
+select ?shape ?shapeHeight ?shapeLabel ?shapeName {
+  bind(40 as ?shapeHeight)
   {
     select
       (sample(?title) as ?title)
@@ -34,16 +35,16 @@ select ?shape ?shapeLabel {
                  schema:thumbnail ?url.
         }
         group by ?image ?dateStr ?description ?pand ?title
-        order by ?date
+        order by desc(?date)
       }
       bind(concat(
+        '<h5>',str(?description),'</h5>',
         '<figure>',
           '<a href="',str(?url),'" target="_blank">',
             '<img src="',str(?url),'" width="250px">',
           '</a>',
           '<figcaption>',
             '<dl>',
-              '<dt>Beschrijving</dt><dd>',str(?description),'</dd>',
               '<dt>Datum</dt><dd>',year(?date),'-',month(?date),'-',day(?date),'</dd>',
               if(?format='','',concat('<dt>Formaten</dt><dd>',str(?format),'</dd>')),
               if(?subject='','',concat('<dt>Onderwerpen</dt><dd>',str(?subject),'</dd>')),
@@ -66,15 +67,16 @@ select ?shape ?shapeLabel {
                       bag:huisnummer ?huisnummer;
                       bag:postcode ?zipcode.
   }
+  bind(concat('⛪ ',str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?shapeName)
   bind(concat(
-    '<center><h2>⛪<br><a href="',str(?pand),'">',str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam),'</a></h2></center>',
-    '<h3>PDOK hub</h3>',
-    '<dl>',
-      '<dt>BAG</dt><dd><a href="',str(?pand),'">',str(?pandId),'</a></dd>',
-      '<dt>RCE</dt><dd><a href="https://cultureelerfgoed.nl/monumenten/19264">19264</a></dd>',
-      '<dt>Wikidata</dt><dd><a href="http://www.wikidata.org/entity/Q1545193">Q1545193</a></dd>',
-    '</dl>',
-    '<h3>Nationaal Archief Beeldbank</h3>',
+    '<center><h1>⛪ <a href="',str(?pand),'">',str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam),'</a></h1></center>',
+    '<h2>Links uit PDOK hub</h2>',
+    '<ul>',
+      '<li><b>BAG</b>: <a href="',str(?pand),'">',str(?pandId),'</a></li>',
+      '<li><b>RCE</b>: <a href="https://cultureelerfgoed.nl/monumenten/19264">19264</a></li>',
+      '<li><b>Wikidata</b>: <a href="http://www.wikidata.org/entity/Q1545193">Q1545193</a></li>',
+    '</ul>',
+    '<h2>Afbeeldingen van Nationaal Archief</h2>',
     ?widgets
   ) as ?shapeLabel)
 }
