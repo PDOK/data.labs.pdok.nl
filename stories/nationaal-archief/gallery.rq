@@ -1,32 +1,23 @@
-prefix dc: <http://purl.org/dc/elements/1.1/>
+prefix dce: <http://purl.org/dc/elements/1.1/>
 prefix schema: <http://schema.org/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select * {
+select ?widget ?n {
   {
-    select
-      ?image
-      (strdt(?lex,xsd:date) as ?date)
-      ?description
-      (group_concat(distinct ?format;separator=', ') as ?format)
-      (group_concat(distinct ?subject;separator=', ') as ?subject)
-      (min(str(?url)) as ?url)
-    {
-      ?image dc:date ?lex ;
-             dc:description ?description ;
-             dc:format ?format ;
-             dc:subject ?subject ;
-             schema:contentLocation "Apeldoorn"^^xsd:string ;
-             schema:thumbnail ?url .
-      filter(str(?lex) != "000-00-00")
+    select ?subject (sample(?url) as ?url) (count(?image) as ?n) {
+      ?image a schema:Photograph;
+        dce:subject ?subject;
+        schema:thumbnail ?url.
     }
-    group by ?image ?date ?description
+    group by ?subject
+    order by desc(?n)
   }
-  bind(concat('<img src="',?url,'">',
-      '<p><b>Datum</b>: ',year(?date),'-',month(?date),'-',day(?date),
-      '<br><b>Beschrijving</b>: ',?description,
-      if(?format='','',concat('<br><b>Formaten</b>: ',?format,'.')),
-      if(?subject='','',concat('<br><b>Onderwerpen</b>: ',?subject,'.')),
-      '') as ?widget)
+  bind(concat(
+    '<div style="position: relative;">',
+    '<img src="',str(?url),'" style="max-width: 325px;">',
+    '<h2 style="position: absolute; bottom: -11px; left: 0; width: 100%;">',
+    '<span style="color: white; font: bold 24px/45px Helvetica, Sans-Serif; letter-spacing: -1px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 10px;">',
+    str(?subject),'<br><span style="padding:0 5px;"></span>',
+    replace(?n,'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
+    ' afbeeldingen</span></h2></div>') as ?widget)
 }
-order by desc(?date)
-limit 100
+limit 25

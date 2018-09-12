@@ -60,3 +60,8 @@ Nationaal Archief Beeldbank geconfigureerd:
 <a href="https://data.labs.pdok.nl/presentations/nationaal-archief/" target="_blank">
   <button>Open browser</button>
 </a>
+
+<!-- <query data-config="https://api.demo.triply.cc/s/T9g5GrVT9" data-endpoint="https://api.demo.triply.cc/datasets/nationaal-archief/beeldbank/services/sparql/sparql" data-query-ref="gallery.rq" data-output="gallery"></query>
+<a href="https://api.demo.triply.cc/s/9vHwRHw9X" target="_blank">
+  <button>Voer query uit</button>
+</a> -->

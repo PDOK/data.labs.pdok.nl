@@ -18,7 +18,7 @@ Linked Data.
      data-query-sparql="q1.rq"
      data-query-output="leaflet"></div> -->
 
-<query data-endpoint="https://api.demo.triply.cc/datasets/rvo/landen/services/sparql/sparql" data-query-ref="q1.rq" data-output="geo"> </query>
+<query data-config="https://demo.triply.cc/rvo/landen/services/sparql#query=prefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix%20owl%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aprefix%20rvo%3A%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Frvo%2Fdef%2F%3E%0Aselect%20%3Fshape%20%3FshapeLabel%20%7B%0A%20%20%3Fland%20a%20rvo%3ALand%20%3B%0A%20%20%20%20rdfs%3Alabel%20%3Fnaam%20%3B%0A%20%20%20%20owl%3AsameAs%2Fgeo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fshape%20%3B%0A%20%20%20%20rvo%3Avlag%20%3Furl%20.%0A%20%20bind(concat('%3Ca%20href%3D%22https%3A%2F%2Fdemo.triply.cc%2Frvo%2Flanden%2Fbrowser%3Fresource%3D'%2Cencode_for_uri(%3Fland)%2C'%22%20target%3D%22_blank%22%3E%3Ch2%3E'%2C%3Fnaam%2C'%3C%2Fh2%3E%3C%2Fa%3E'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20'%3Cimg%20src%3D%22'%2C%3Furl%2C'%22%20width%3D%22300%22%3E')%20as%20%3FshapeLabel)%0A%7D%0A&endpoint=https%3A%2F%2Fapi.demo.triply.cc%2Fdatasets%2Frvo%2Flanden%2Fservices%2Fsparql%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22grouped%22%3Afalse%7D" data-endpoint="https://api.demo.triply.cc/datasets/rvo/landen/services/sparql/sparql" data-query-ref="q1.rq" data-output="geo"> </query>
 
 ## BBP
 
