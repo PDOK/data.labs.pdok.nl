@@ -21,21 +21,11 @@ Joost kan je hier wat zeggen? Misschien een plaatje?
 Building URI [example](https://bag.basisregistraties.overheid.nl/bag/id/pand/0003100000117848)
 
 
-### The Linked Data API
+### REST APIs
 
-DIMITRI KUN JE HIER WAT INVULLEN over de API? 
-(ook even voorbeelden; link naar de bag api en de documentation)
+The REST APIs exposed by the Dataplatform use Linked Data as source data. This makes it possible to use SPARQL to create different types of responses, as specificied by the design-first approached OpenAPI Specifications ([OAS3](https://github.com/OAI/OpenAPI-Specification)). The designs of the APIs follow the Dutch API Guidelines in order to make them as developer-friendly as possible. Hence, the target audience for the APIs (webdevelopers) isn't aware of the Linked Data being used under the hood, where the APIs follow best practices and standards from the API community. For example, the APIs return [HAL+JSON](https://en.wikipedia.org/wiki/Hypertext_Application_Language) (`application/hal+json`) [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) responses by default, with `_embedded` resources and `_links` properties to make it easier to consume and navigate (through) the APIs using mainstream client libraries and frameworks like [AngularJS](https://angularjs.org/).
 
-(hieronder de oude tekst van Australie)
-
-The API is a minimal implementation of a RESTful HTTP API that allows portions of the G-NAF dataset to be delivered as human- or machine-readable web resources (web pages and code files). It essentially presents endpoints (URIs; web addresses) for G-NAF items according to various conceptual models. Models such as the [ISO's 19160-1:2015 -- Addressing](https://www.iso.org/standard/61710.html) are related to the elements in G-NAF through deliberate mappings made in the *model* portion of this API's codebase. On web address request, the API extracts data for its various models from the G-NAF database using SQL queries. It then uses HTML templates or in-memory RDF graphs to generate *views* for human or machine reading.
-
-The following programming languages and tools are used by this API:
-
-* [pyLDAPI](https://pypi.org/project/pyldapi/) - a tiny [Python](https://www.python.org) module implementing Linked Data-style functionality on top of the commonly used [Flask](http://flask.pocoo.org/) HTTP framework
-* [Python Flask framework](http://flask.pocoo.org/) - the lower-level Python HTTP framework used by this API
-* [Apache web server](https://en.wikipedia.org/wiki/Apache_HTTP_Server) - the web server that allows communication with [Flask](http://flask.pocoo.org/) over HTTP
-* [Postgres database](https://en.wikipedia.org/wiki/PostgreSQL) - an open source relational database containing the data of the [G-NAF](https://www.psma.com.au/products/g-naf).
+For each API, its OpenAPI Specification is being used to validate and return routes, input parameters, headers, HTTP status codes etc. Vendor extenions in the spec are parsed by the Dataplatform to map the responses to pre-configured SPARQL queries. On top of that, the spec itself is (stripped from vendor extensions) exposed on the API's root endpoint to make sure it's always in sync with the actual behaviour of the software. Example: https://brk.basisregistraties.overheid.nl/api/v1. This vendor-neutral spec can also be used to generate client SDKs and different API references, such as https://petstore.swagger.io/?url=https://brk.basisregistraties.overheid.nl/api/v1 or http://rebilly.github.io/ReDoc/?url=https://brk.basisregistraties.overheid.nl/api/v1.
 
 ### The PDOK Labs Environment
 The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [facetted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
