@@ -3,23 +3,21 @@ prefix dc: <http://purl.org/dc/elements/1.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 
-select ?shape (sample(?shapeLabel) as ?shapeLabel) {
-  {
-    select ?gemeenteNaam1 ?shape {
-      ?gemeente a brt:Gemeente;
-        geo:hasGeometry ?geo1;
-        rdfs:label ?gemeenteNaam1.
-      ?geo1 geo:asWKT ?shape.
-
+select ?shape (sample(?shapeLabel) as ?shapeLabel)
+WHERE{
+      service <https://data.pdok.nl/sparql> {
+      ?class a bag:Woonplaats;
+       rdfs:label ?gemeenteNaam1;
+       bag:geometrieWoonplaats ?geo1.
+       ?geo1 geo:asWKT ?shape.
     }
-  }
-  { service <https://api.demo.triply.cc/datasets/nationaal-archief/beeldbank/services/sparql/sparql> {
-    ?image schema:contentLocation ?gemeenteNaam1;
-      dc:description ?description;
-          schema:thumbnail ?url.
-    }
-}
+  ?image
+    dce:description ?description;
+    schema:contentLocation/schema:name ?gemeenteNaam2;
+    schema:thumbnail ?url.
+  filter(str(?gemeenteNaam1) = str(?gemeenteNaam2))
   bind(concat(
     '<h3>',?gemeenteNaam1,'</h3>',
     '<img width="250" src="',?url,'">',

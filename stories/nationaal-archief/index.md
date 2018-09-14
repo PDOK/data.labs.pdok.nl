@@ -23,7 +23,7 @@ Op basis van de locatie kunnen we de beelden uit de Beeldbank op de
 kaart zetten.  Hieronder tonen we de gemeentes met ten minste één
 beeld in de Beeldbank.
 
-<query data-endpoint="https://api.demo.triply.cc/datasets/kadaster/brt/services/sparql/sparql" data-query-ref="gemeentes.rq" data-output="geo"></query> -->  <!-- Deze query is uitgezet in verband met performance op de server -->
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="gemeentes.rq" data-output="geo"></query> -->  <!-- Deze query is uitgezet in verband met performance op de server -->
 
 ## Kerken: Beeldbank (Nationaal Archief) & BAG (Kadaster)
 
