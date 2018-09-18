@@ -28,7 +28,7 @@ The REST APIs exposed by the Dataplatform use Linked Data as source data. This m
 For each API, its OpenAPI Specification is being used to validate and return routes, input parameters, headers, HTTP status codes etc. Vendor extenions in the spec are parsed by the Dataplatform to map the responses to pre-configured SPARQL queries. On top of that, the spec itself is (stripped from vendor extensions) exposed on the API's root endpoint to make sure it's always in sync with the actual behaviour of the software. Example: https://brk.basisregistraties.overheid.nl/api/v1. This vendor-neutral spec can also be used to generate client SDKs and different API references, such as https://petstore.swagger.io/?url=https://brk.basisregistraties.overheid.nl/api/v1 or http://rebilly.github.io/ReDoc/?url=https://brk.basisregistraties.overheid.nl/api/v1.
 
 ### The PDOK Labs Environment
-The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [facetted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
+The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [faceted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
 
 
 ## Best Practice Scorecard
@@ -61,7 +61,8 @@ Test | Conforms
 Using a Web browser, search for the landing page of your dataset | :black_square_button:
 Using a Web browser, check that you can browse to human-readable HTML pages for each [Spatial Thing](https://www.w3.org/TR/sdw-bp/#dfn-spatial-thing) that the dataset describes | :black_square_button:
 
-#### How-to
+#### Comments
+Searches for the data set point to other references to the data set, not the landing pages unfortunately.
 
 From the landing page, there is no direct access to browseable pages of the data. However, each spatial object in the Linked Data sets has a html representation; see for example [https://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870](https://bag.basisregistraties.overheid.nl/bag/id/pand/0361100000125870). When dereferencing this ID URI, the call is redirected to a document URI [https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870](https://bag.basisregistraties.overheid.nl/bag/doc/pand/0361100000125870). Both the ID URI and the document URI are content-negotiable. 
 
@@ -103,7 +104,9 @@ Test | Conforms
 [Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :black_square_button:
 The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | :black_square_button:
 The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | :black_square_button:
- 
+
+#### Comments
+There are different geometry formats available, but no varying detail levels, accuracies, precisions and sizes. Conformance to BP 6, 7 and 8 is discussed in more detail below. There are alternative geometry descriptions available for some data sets (BRK, BRT, BAG) but not through content negotiation.
 
 ### [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries)
 
@@ -118,6 +121,9 @@ Check if centroids and bounding boxes are made available, without the need of do
 Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | :black_square_button:
 Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different levels of precision, e.g., by allowing users to specify the maximum number of decimals in point coordinates | :black_square_button:
 Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | :black_square_button:
+
+#### Comments
+The interfaces provided by the platform do not offer these fine-grained access methods, but rather more straightforward geometry requests through WFS, SPARQL and API calls.
 
 ### [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice)
 
@@ -161,20 +167,20 @@ Check that the source and target of the hyperlink are Spatial Things, unless the
 ### [Best Practice 11: Provide information on the changing nature of spatial things](https://www.w3.org/TR/sdw-bp/#desc-changing-properties)
 
 #### Conformance statement
-Does not conform, mostly.
+Does not conform, mostly: but for some datasets (BAG, BRK, BRT) changes are recorded as material history in Linked Data.
 
 ### [Best Practice 12: Expose spatial data through 'convenience APIs'](https://www.w3.org/TR/sdw-bp/#convenience-apis)
 
 #### Conformance statement
-Mostly does not conform, with a few exceptions
+Mostly does not conform, with a few exceptions: BAG, BRK and BRT have JSON REST APIs available.
 
 ### [Best Practice 13: Include spatial metadata in dataset metadata](https://www.w3.org/TR/sdw-bp/#spatial-info-dataset-metadata)
 
 #### Conformance statement
-Conforms, through metadata records in the [national geo register](https://nationaalgeoregister.nl)
+Conforms, through metadata records in the [national geo register](https://nationaalgeoregister.nl).
 
 
 ### [Best Practice 14: Describe the positional accuracy of spatial data](https://www.w3.org/TR/sdw-bp/#desc-accuracy)
 
 #### Conformance statement
-Does not conform
+Does not conform: this information is not available externally for any data set.
