@@ -28,7 +28,7 @@ The REST APIs exposed by the Dataplatform use Linked Data as source data. This m
 For each API, its OpenAPI Specification is being used to validate and return routes, input parameters, headers, HTTP status codes etc. Vendor extenions in the spec are parsed by the Dataplatform to map the responses to pre-configured SPARQL queries. On top of that, the spec itself is (stripped from vendor extensions) exposed on the API's root endpoint to make sure it's always in sync with the actual behaviour of the software. Example: https://brk.basisregistraties.overheid.nl/api/v1. This vendor-neutral spec can also be used to generate client SDKs and different API references, such as https://petstore.swagger.io/?url=https://brk.basisregistraties.overheid.nl/api/v1 or http://rebilly.github.io/ReDoc/?url=https://brk.basisregistraties.overheid.nl/api/v1.
 
 ### The PDOK Labs Environment
-The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [faceted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
+The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](https://data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [faceted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
 
 
 ## Best Practice Scorecard
