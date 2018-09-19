@@ -21,7 +21,7 @@ We bekijken hier het rioleringsgebied van Castricum. We vragen dit gebied op uit
      data-query-sparql="rioleringsgebied.rq">
 </div>
 
-## BRT zuiveringsinstallaties in gebied
+## BRT zuiveringsinstallaties in regio
 De Basisregistratie Topografie [BRT](https://brt.basisregistraties.overheid.nl), die door het Kadaster ontsloten wordt, biedt informatie omtrent de RWZI's. Het rioleringsgebied Castricum kent zelf geen waterzuiveringsinstallaties, we kennen de geometrie van het zuiveringsgebied niet, maar we kunnen wel de dichtstbijzijnde opvragen. Zo ook voor deze locatie, de directe omgeving van het zuiveringsgebied kent twee zuiveringsinstallaties in de BRT:
 
 <div data-query
@@ -30,7 +30,7 @@ De Basisregistratie Topografie [BRT](https://brt.basisregistraties.overheid.nl),
 </div>
 
 ## Gemeentes rond het rioleringsgebied
-We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Castricum eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op:
+We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Castricum eigenlijk? Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op. Als je goed inzoomt, blijkt dat er naast Castricum een kleine overlap is met de gemeentes Bergen, Heemskerk en Uitgeest:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -38,7 +38,7 @@ We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De wate
 </div>
 
 ## Woonplaatsen rond het rioleringsgebied
-Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Het gaat om (aanvullen):
+Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Dit doen we door een kleine buffer (in oranje) om de gemeente te leggen en alleen die woonplaatsgebieden te selecteren die hier volledig binnen vallen. Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -46,7 +46,7 @@ Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu 
 </div>
 
 ## Panden in het rioleringsgebied
-Vanuit de Basisregistraties Adressen en Gebouwen (BAG) zouden we nu kunnen opvragen hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen die er omheen liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om ruim 1600 panden (zie ook de tabelweergave door "Table" te selecteren):
+Vanuit de Basisregistraties Adressen en Gebouwen (BAG) zouden we nu kunnen opvragen hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -63,16 +63,15 @@ Voor het beheer en de (capaciteits)ontwikkeling van de rioolstelsels, de rioolge
 </div>
 
 
-## Combineren van data
+## Combineren van data met kengetallen in het GWSW
 Door genoemde data met elkaar te combineren kunnen we een rapport genereren met informatie uit verschillende bronnen. Elke gegevensbron kan afzonderlijk worden bijgehouden zonder duplicatie en op verzoek worden gecombineerd. De combinatie wordt met behulp van locatiegegevens gevonden: het zijn de buurten die binnen de rioleringsgebieden vallen en die daarmee afwateren via rioolstelsels naar de RWZI. Die combinatie van gegevens wordt in het vakgebied de "kengetallen" van het rioleringsgebied genoemd.
 
-## Toepassen met het GWSW
-Stichting RIONED ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld. GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: https://geodata.gwsw.nl/TestDatastory/kengetallen
+Stichting RIONED ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld. GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: [https://geodata.gwsw.nl/TestDatastory/kengetallen](https://geodata.gwsw.nl/TestDatastory/kengetallen)
 
-<div data-query
+<!-- div data-query
      data-query-endpoint="https://sparql.gwsw.nl/repositories/TestDatastory"
      data-query-sparql="kengetallen.rq">
-</div>
+</div -->
 
 
 

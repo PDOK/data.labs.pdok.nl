@@ -6,48 +6,32 @@ PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX pdok: <http://data.pdok.nl/def/pdok#>
 PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
 
-SELECT distinct ?pand ?wkt ?wktLabel WHERE {
-
+SELECT (count(?pand) as ?aantal_panden) WHERE {
   {
     ?vbo a bag:Verblijfsobject;
          bag:hoofdadres ?hoofdadres ;
          bag:pandrelatering ?pand .
     ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
     ?or bag:bijbehorendeWoonplaats ?wp .
-    ?wp rdfs:label "Sint Pancras"@nl.
-  } UNION {
-    ?vbo a bag:Verblijfsobject;
-         bag:hoofdadres ?hoofdadres ;
-         bag:pandrelatering ?pand .
-    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
-    ?or bag:bijbehorendeWoonplaats ?wp .
-    ?wp rdfs:label "Alkmaar"@nl.
-  } UNION {
-    ?vbo a bag:Verblijfsobject;
-         bag:hoofdadres ?hoofdadres ;
-         bag:pandrelatering ?pand .
-    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?or .
-    ?or bag:bijbehorendeWoonplaats ?wp .
-    ?wp rdfs:label "Broek op Langedijk"@nl.
+    ?wp rdfs:label "Castricum"@nl.
   }
-
   ?pand a bag:Pand ;
         rdfs:label ?pand_label ;
         geo:hasGeometry ?geom .
-  ?geom geo:asWKT ?wkt ;
-       pdok:asWKT-RD ?wkt_rd .
-  bind(concat("<a href='", str(?pand), "' target='_blank'><h2>", str(?pand_label), "</h2></a>") as ?wktLabel)
+  ?geom geo:asWKT ?wkt .
+  bind(concat("Pand <a target='_blank' href='", str(?pand), "' target='_blank'><h2>", str(?pand_label), "</h2></a>") as ?wktLabel)
 
-  service <https://sparql.gwsw.nl/repositories/TestVali> {
+  SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
     ?rg a gwsw:Rioleringsgebied ;
-        rdfs:label ?rg_naam ;
+        rdfs:label ?wktlabel ;
         gwsw:hasAspect ?ori .
     ?ori a gwsw:Gebiedsorientatie ;
          gwsw:hasAspect ?bg .
     ?bg a gwsw:Buitengrens ;
-        gwsw:hasValue ?gml .
-    filter(contains(?rg_naam, "pancras"))
+        geo:asWKT ?wkt_gwsw .
+    filter(contains(?wktlabel, "Castricum"))
+    bind("green" as ?wktColor)
   }
 
-  filter(geof:sfWithin(?wkt_rd, ?gml))
+  filter(geof:sfWithin(?wkt, ?wkt_gwsw))
 }

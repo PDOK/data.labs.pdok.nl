@@ -1,21 +1,51 @@
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gwsw: <http://data.gwsw.nl/1.4/totaal/>
 PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
 
-SELECT ?zi ?gem_naam ?wkt ?wktLabel WHERE {
-  ?gem a brt:Gemeente ;
-    rdfs:label ?gem_naam ;
-    brt:geometrie ?geom .
-  ?geom geo:asWKT ?gem_wkt .
-  filter(?gem_naam = "Castricum"@nl)
+SELECT ?wkt ?wktLabel ?wktColor WHERE {
+  {
+    SELECT ?wkt ?wktLabel ("red" as ?wktColor) WHERE {
+      ?gem a brt:Gemeente ;
+        rdfs:label ?gem_naam ;
+        brt:geometrie ?geom .
+      ?geom geo:asWKT ?gem_wkt .
+      filter(?gem_naam = "Castricum"@nl)
 
-  ?zi a brt:Zuiveringsinstallatie ;
-    brt:geometrie ?geometrie .
-  ?geometrie geo:asWKT ?wkt .
-  bind(?zi as ?wktLabel)
-  bind(geof:buffer(?gem_wkt, 0.02) as ?buffered_municipality)
-  filter(geof:sfIntersects(?buffered_municipality, ?wkt))
+      ?zi a brt:Zuiveringsinstallatie ;
+        brt:geometrie ?geometrie .
+      ?geometrie geo:asWKT ?wkt .
+    #  bind("red" as ?wktColor) # Remove this comment and the query will time out!
+      bind(?zi as ?wktLabel)
+      bind(geof:buffer(?gem_wkt, 0.02) as ?buffered_municipality)
+      filter(geof:sfIntersects(?buffered_municipality, ?wkt))
+    }
+  } UNION {
+    SELECT ?wktLabel ?wkt ?wktColor WHERE {
+      SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
+        ?rg a gwsw:Rioleringsgebied ;
+           rdfs:label ?wktLabel ;
+           gwsw:hasAspect ?ori .
+        ?ori a gwsw:Gebiedsorientatie ;
+          gwsw:hasAspect ?bg .
+           ?bg a gwsw:Buitengrens ;
+             geo:asWKT ?wkt .
+        filter(contains(?wktLabel, "Castricum"))
+      }
+      bind("green" as ?wktColor)
+    }
+  } UNION {
+    SELECT ?wkt ("Geometrie buffer" as ?wktLabel) ("orange" as ?wktColor)
+    WHERE {
+      ?gem a brt:Gemeente ;
+        rdfs:label ?gem_naam ;
+        brt:geometrie ?geom .
+      ?geom geo:asWKT ?gem_wkt .
+      filter(?gem_naam = "Castricum"@nl)
+      bind(geof:buffer(?gem_wkt, 0.02) as ?wkt)
+    }
+  }
 }

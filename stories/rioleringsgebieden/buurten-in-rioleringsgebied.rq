@@ -13,52 +13,64 @@ PREFIX cbs_slice: <http://betalinkeddata.cbs.nl/83487NED/id/slice/>
 PREFIX cbs_qb: <http://betalinkeddata.cbs.nl/def/cbs-qb#>
 PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
 
-SELECT ?buurt ?wkt ?wktLabel WHERE {
-  SERVICE <https://sparql.gwsw.nl/repositories/TestVali> {
+SELECT ?wkt ?wktLabel ?wktColor WHERE {
+  {
+    SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
       ?rg a gwsw:Rioleringsgebied ;
-          rdfs:label ?rg_naam ;
+          rdfs:label ?wktLabel ;
           gwsw:hasAspect ?ori .
       ?ori a gwsw:Gebiedsorientatie ;
            gwsw:hasAspect ?bg .
       ?bg a gwsw:Buitengrens ;
-          gwsw:hasValue ?gml .
-    
-#mv: (20180828) dit filter is niet nodig, de GWSW-Repository bevat de selectie aan rioleringsgebieden
-      filter(contains(?rg_naam, "pancras"))
-  }
-
-#mv: (20180828) ook zonder onderstaand filter blijft de response-tijd acceptabel
-  {
-    ?cbs_gemeente rdfs:label "Langedijk"@nl .
+          geo:asWKT ?wkt .
+      filter(contains(?wktLabel, "Castricum"))
+      bind("green" as ?wktColor)
+    }
   } UNION {
-    ?cbs_gemeente rdfs:label "Alkmaar"@nl .
-  }
+    SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
+      ?rg a gwsw:Rioleringsgebied ;
+          rdfs:label ?wktlabel ;
+          gwsw:hasAspect ?ori .
+      ?ori a gwsw:Gebiedsorientatie ;
+           gwsw:hasAspect ?bg .
+      ?bg a gwsw:Buitengrens ;
+          geo:asWKT ?wkt_gwsw .
+      filter(contains(?wktlabel, "Castricum"))
+    }
 
-  ?buurt a cbs:Buurt;
-         rdfs:label ?buurt_label ;
+    ?cbs_gemeente rdfs:label "Castricum"@nl .
+    ?buurt a cbs:Buurt;
+      rdfs:label ?buurt_label ;
          geo:hasGeometry ?geom ;
          ?within ?wijk .
-  ?wijk a cbs:Wijk;
-        ?within ?cbs_gemeente .
-#mv: (20180828) omzetting naar EPSG 4326 conform GML werkt niet in GraphDB, zie issue
-  ?geom geo:asWKT ?wkt ;
-        pdok:asWKT-RD ?wkt_rd .
+      ?geom geo:asWKT ?wkt .
+    ?wijk a cbs:Wijk;
+          ?within ?cbs_gemeente .
+    ?geom geo:asWKT ?wkt_cbsgem .
+    filter(geof:sfIntersects(?wkt_cbsgem, ?wkt_gwsw))
 
-  filter(geof:sfIntersects(?wkt_rd, ?gml))
+    # Veelzeggende eigenschappen van de buurt
+    ?aantal_inwoners_obs cbs_dim:regio ?buurt ;
+                         cbs_qb:inObservationGroup cbs_slice:bevolking_AantalInwoners ;
+                         cbs_83487:bevolking_AantalInwoners ?aantal_inwoners .
 
-  # Veelzeggende eigenschappen van de buurt
-  ?aantal_inwoners_obs cbs_dim:regio ?buurt ;
-                       cbs_qb:inObservationGroup cbs_slice:bevolking_AantalInwoners ;
-                       cbs_83487:bevolking_AantalInwoners ?aantal_inwoners .
+    ?aantal_huishoudens_obs cbs_dim:regio ?buurt ;
+                            cbs_qb:inObservationGroup cbs_slice:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ;
+                            cbs_83487:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ?aantal_huishoudens .
 
-  ?aantal_huishoudens_obs cbs_dim:regio ?buurt ;
-                          cbs_qb:inObservationGroup cbs_slice:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ;
-                          cbs_83487:bevolking_ParticuliereHuishoudens_HuishoudensTotaal ?aantal_huishoudens .
+	  optional {
+		?bedrijven cbs_dim:regio ?buurt ;
+				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ;
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ?bedrijven_aantal .
+		?recreatie cbs_dim:regio ?buurt ;
+				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ;
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ?recreatie_aantal .
+	  }
 
-  bind(concat(
-      "<a href='", str(?buurt), "' target='_blank'><h2>", str(?buurt_label), "</h2></a>",
-      "<p>Aantal inwoners: <a target='_blank' href='", str(?aantal_inwoners_obs), "'>", str(?aantal_inwoners), "</a></p>",
-      "<p>Aantal huishoudens:  <a target='_blank' href='", str(?aantal_huishoudens_obs), "'>", str(?aantal_huishoudens), "</p>"
-    ) as ?wktLabel)
-
+    bind(concat(
+        "<a href='", str(?buurt), "' target='_blank'><h2>", str(?buurt_label), "</h2></a>",
+        "<p>Aantal inwoners: <a target='_blank' href='", str(?aantal_inwoners_obs), "'>", str(?aantal_inwoners), "</a></p>",
+        "<p>Aantal huishoudens:  <a target='_blank' href='", str(?aantal_huishoudens_obs), "'>", str(?aantal_huishoudens), "</p>"
+      ) as ?wktLabel)
+  }
 }
