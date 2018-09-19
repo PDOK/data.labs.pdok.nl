@@ -6,7 +6,7 @@ title: Home
 Op de Labs omgeving experimenteren we met datasets, opslag- en ontsluitingsmechanismen en applicaties.
 
 ## Data Stories
-Check onze [Data Stories](/stories)
+Check onze [Data Stories](/stories/index.html)
 
 ## SPARQL
 We hebben een eigen sparql endpoint. Wil je deze bevragen in de browser, dan hebben we [hier een pagina](/yasgui) waar je het endpoint met YASGUI kan querien. Hier is ook het adres van het endpoint zelf te vinden.
