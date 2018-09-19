@@ -12,7 +12,9 @@ WHERE{
        rdfs:label ?gemeenteNaam1;
        bag:geometrieWoonplaats ?geo1.
        ?geo1 geo:asWKT ?shape.
+
     }
+  }
   ?image
     dce:description ?description;
     schema:contentLocation/schema:name ?gemeenteNaam2;
