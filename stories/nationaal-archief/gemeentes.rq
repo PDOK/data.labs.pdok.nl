@@ -19,11 +19,6 @@ WHERE{
     dce:description ?description;
     schema:contentLocation/schema:name ?gemeenteNaam2;
     schema:thumbnail ?url.
-  filter(str(?gemeenteNaam1) = str(?gemeenteNaam2))
-  bind(concat(
-    '<h3>',?gemeenteNaam1,'</h3>',
-    '<img width="250" src="',?url,'">',
-    '<p>',?description,'</p>') as ?shapeLabel)
 }
 group by ?shape
 limit 100
