@@ -63,11 +63,11 @@
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     <link href="https://nightly.yasgui.triply.cc/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="https://nightly.yasgui.triply.cc/build/yasgui.min.css" rel="stylesheet" type="text/css">
-    <script src='https://nightly.yasgui.triply.cc/build/yasgui.min.js'></script>
+    <link href="/assets/css/yasgui/yasgui.min.css" rel="stylesheet" type="text/css">
+    <script src='/assets/js/yasgui.min.js'></script>
     <script type="text/javascript">
     window.onload = function () {
-      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false;
+      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'
       {% if page.basemap %}
       window.Yasgui.Yasr.Instance.plugins.geo.defaults.map = "{{ page.basemap }}";
       {% else %}
