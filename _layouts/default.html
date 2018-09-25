@@ -16,14 +16,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-<!-- removal of the flex tag for the .yasgui .yasr .yasr_btn to improve styling issue. -->
-<style type="text/css">
 
-	.yasgui .yasr .yasr_btn {
-  display: initial;
-}
-
-</style>
 
 
   </head>
@@ -75,6 +68,15 @@
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     <link href="https://nightly.yasgui.triply.cc/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/yasgui/yasgui.min.css" rel="stylesheet" type="text/css">
+
+	<!-- removal of the flex tag for the .yasgui .yasr .yasr_btn to improve styling issue. -->
+	<style type="text/css">
+
+		.yasgui .yasr .yasr_btn {
+	  display: flow-root;
+	}
+
+	</style>
     <script src='/assets/js/yasgui.min.js'></script>
     <script type="text/javascript">
     window.onload = function () {
