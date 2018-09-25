@@ -97,12 +97,12 @@ Conforms
 
 Test | Conforms
 ---|---
-[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :black_square_button:
+[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :ballot_box_with_check:
 The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | :black_square_button:
-The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | :black_square_button:
+The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, [such] as HTTP content negotiation | :ballot_box_with_check:
 
 #### Comments
-There are different geometry formats available, but no varying detail levels, accuracies, precisions and sizes. Conformance to BP 6, 7 and 8 is discussed in more detail below. There are alternative geometry descriptions available for some data sets (BRK, BRT, BAG) but not through content negotiation.
+There are different geometry formats available, fit for different uses on the web (GeoJSON through WFS, WKT through GeoSPARQL) but no varying detail levels, accuracies, precisions and sizes. Conformance to BP 6, 7 and 8 is discussed in more detail below. There are alternative geometry descriptions available for some data sets (BRK, BRT, BAG) by way of RDF representations of geometries in CRS84 and EPSG:28992, but not through content negotiation.
 
 ### [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries)
 
@@ -111,7 +111,7 @@ Conforms
 
 Test | Conforms
 ---|---
-Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | :black_square_button:
+Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | :ballot_box_with_check:
 Check if a compressed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data can be obtained via HTTP content negotiation or other mechanisms | :black_square_button:
 Check if centroids and bounding boxes are made available, without the need of downloading and processing the relevant [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data | :black_square_button:
 Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | :black_square_button:
@@ -119,7 +119,7 @@ Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are availab
 Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | :black_square_button:
 
 #### Comments
-The interfaces provided by the platform do not offer these fine-grained access methods, but rather more straightforward geometry requests through WFS, SPARQL and API calls.
+The Cadastre always provides the most detailed version of the geometries, even if that means that the CRS84 representations provide a higher level of significant digits than the versions in the Dutch national CRS. The interfaces provided by the platform do not offer these fine-grained access methods, but rather more straightforward geometry requests through WFS, SPARQL and API calls.
 
 ### [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice)
 
