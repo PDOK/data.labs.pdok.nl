@@ -40,7 +40,7 @@ panden in deze straat hebben energielabel A (
 </svg>
 ).</p>
 
-<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q2.rq" data-output="geo"></query>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="q2.rq" data-output="geo"></query>
 
 ## Hoe zit het dan in zo'n wijk qua energie verbruik?
 
