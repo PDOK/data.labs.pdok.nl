@@ -13,22 +13,18 @@ Kadaster/PDOK Data Platform
 ### About
 The Land Registry and Mapping Agency of the Netherlands (‘Kadaster’ in Dutch) is developing an online publication platform for sharing its geospatial data assets called KDP (`Kadaster Data Platform’ in Dutch). One of the main goals of this platform is to better share geospatial data with the wider, web-oriented world, including its developers, approaches, and standards. Linked Open Data (W3C), GeoSPARQL (OGC), and Open APIs (OpenAPI Specification) are the predominant standardized approaches for this purpose. As a result, the most important spatial datasets of the Netherlands – including several key registries – are now being published as Linked Open Data that can be accessed through a SPARQL endpoint and a collection of REST APIs. In addition to providing raw access to the data, Kadaster Data Platform also offers developers functionalities that allow them to gain a better understanding about the contents of its datasets. These functionalities include various ways for viewing Linked Data.
 
-The Dataplatform is made accessible through [PDOK](https://pdok.nl), an neutral platform that traditionally serves a broad range of geospatial datasets in geospatial (OGC) formats. By integrating both we now have a platform that is able to serve OGC formats, Linked Data & APIs, for a broad range of governmental spatial datasets (includings Cadastre, Statistical and Heritage data amongst others).
+The Dataplatform is made accessible through [PDOK](https://pdok.nl), a neutral platform that traditionally serves a broad range of geospatial datasets in geospatial (OGC) formats. By integrating both we now have a platform that is able to serve OGC formats, Linked Data & APIs, for a broad range of governmental spatial datasets (includings Cadastre, Statistical and Heritage data amongst others).
 
 ### The Architecture of the Platform
-Joost kan je hier wat zeggen? Misschien een plaatje?
-[SPARQL Endpoint](<https://data.pdok.nl/sparql>)
-Building URI [example](https://bag.basisregistraties.overheid.nl/bag/id/pand/0003100000117848)
-
+The KDP team has developed an [open-source Java-based framework](http://dotwebstack.org/), which allows organizations to define information products, which can be exposed via different interface types such as REST and RDF URIs. The framework translates each incoming request to an underlying SPARQL query. The query result is then transformed to the actual response, depending on the interface type. The framework can be extended by implementing custom frontend or backend implementations. 
 
 ### REST APIs
-
-The REST APIs exposed by the Dataplatform use Linked Data as source data. This makes it possible to use SPARQL to create different types of responses, as specificied by the design-first approached OpenAPI Specifications ([OAS3](https://github.com/OAI/OpenAPI-Specification)). The designs of the APIs follow the Dutch API Guidelines in order to make them as developer-friendly as possible. Hence, the target audience for the APIs (webdevelopers) isn't aware of the Linked Data being used under the hood, where the APIs follow best practices and standards from the API community. For example, the APIs return [HAL+JSON](https://en.wikipedia.org/wiki/Hypertext_Application_Language) (`application/hal+json`) [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) responses by default, with `_embedded` resources and `_links` properties to make it easier to consume and navigate (through) the APIs using mainstream client libraries and frameworks like [AngularJS](https://angularjs.org/).
+The REST APIs exposed by the Dataplatform use Linked Data as source data. This makes it possible to use SPARQL to create different types of responses, as specified by the design-first approached OpenAPI Specifications ([OAS3](https://github.com/OAI/OpenAPI-Specification)). The designs of the APIs follow the Dutch API Guidelines in order to make them as developer-friendly as possible. Hence, the target audience for the APIs (webdevelopers) isn't aware of the Linked Data being used under the hood, where the APIs follow best practices and standards from the API community. For example, the APIs return [HAL+JSON](https://en.wikipedia.org/wiki/Hypertext_Application_Language) (`application/hal+json`) [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) responses by default, with `_embedded` resources and `_links` properties to make it easier to consume and navigate (through) the APIs using mainstream client libraries and frameworks like [AngularJS](https://angularjs.org/).
 
 For each API, its OpenAPI Specification is being used to validate and return routes, input parameters, headers, HTTP status codes etc. Vendor extenions in the spec are parsed by the Dataplatform to map the responses to pre-configured SPARQL queries. On top of that, the spec itself is (stripped from vendor extensions) exposed on the API's root endpoint to make sure it's always in sync with the actual behaviour of the software. Example: https://brk.basisregistraties.overheid.nl/api/v1. This vendor-neutral spec can also be used to generate client SDKs and different API references, such as https://petstore.swagger.io/?url=https://brk.basisregistraties.overheid.nl/api/v1 or http://rebilly.github.io/ReDoc/?url=https://brk.basisregistraties.overheid.nl/api/v1.
 
 ### The PDOK Labs Environment
-The Kadaster/PDOK Dataplatform is a SLA based service, offering high usability. [PDOK Labs](https://data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others in includes [data stories](https://data.labs.pdok.nl/stories/), and [faceted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
+The Kadaster/PDOK Dataplatform is an SLA based service, offering high availability. [PDOK Labs](https://data.labs.pdok.nl) is used for experimental datasets, or new functionality. Amongst others includes [data stories](https://data.labs.pdok.nl/stories/) and [faceted browsers](https://data.labs.pdok.nl/presentations/bevolkings-browser/). 
 
 
 ## Best Practice Scorecard
@@ -101,12 +97,12 @@ Conforms
 
 Test | Conforms
 ---|---
-[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :black_square_button:
+[Geometries](https://www.w3.org/TR/sdw-bp/#dfn-geometry) are made available in possibly different formats and levels of complexity, considering their intended uses and their consumption on the Web | :ballot_box_with_check:
 The chosen [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions comply with [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries), [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice), and [Best Practice 8: State how coordinate values are encoded](https://www.w3.org/TR/sdw-bp/#bp-crs) | :black_square_button:
-The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, as HTTP content negotiation | :black_square_button:
+The (possibly) alternative [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) descriptions can be accessible via standard mechanisms, [such] as HTTP content negotiation | :ballot_box_with_check:
 
 #### Comments
-There are different geometry formats available, but no varying detail levels, accuracies, precisions and sizes. Conformance to BP 6, 7 and 8 is discussed in more detail below. There are alternative geometry descriptions available for some data sets (BRK, BRT, BAG) but not through content negotiation.
+There are different geometry formats available, fit for different uses on the web (GeoJSON through WFS, WKT through GeoSPARQL) but no varying detail levels, accuracies, precisions and sizes. Conformance to BP 6, 7 and 8 is discussed in more detail below. There are alternative geometry descriptions available for some data sets (BRK, BRT, BAG) by way of RDF representations of geometries in CRS84 and EPSG:28992, but not through content negotiation.
 
 ### [Best Practice 6: Provide geometries at the right level of accuracy, precision, and size](https://www.w3.org/TR/sdw-bp/#multiplegeometries)
 
@@ -115,7 +111,7 @@ Conforms
 
 Test | Conforms
 ---|---
-Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | :black_square_button:
+Check if the original and most detailed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data is available | :ballot_box_with_check:
 Check if a compressed version of [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data can be obtained via HTTP content negotiation or other mechanisms | :black_square_button:
 Check if centroids and bounding boxes are made available, without the need of downloading and processing the relevant [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data | :black_square_button:
 Check if it is possible to get a 2-dimensional representation of a 3-dimensional [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) | :black_square_button:
@@ -123,7 +119,7 @@ Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are availab
 Check if [geometry](https://www.w3.org/TR/sdw-bp/#dfn-geometry) data are available at different scales / spatial resolutions | :black_square_button:
 
 #### Comments
-The interfaces provided by the platform do not offer these fine-grained access methods, but rather more straightforward geometry requests through WFS, SPARQL and API calls.
+The Cadastre always provides the most detailed version of the geometries, even if that means that the CRS84 representations provide a higher level of significant digits than the versions in the Dutch national CRS. The interfaces provided by the platform do not offer these fine-grained access methods, but rather more straightforward geometry requests through WFS, SPARQL and API calls.
 
 ### [Best Practice 7: Choose coordinate reference systems to suit your user's applications](https://www.w3.org/TR/sdw-bp/#bp-crs-choice)
 

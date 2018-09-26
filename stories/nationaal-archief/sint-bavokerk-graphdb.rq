@@ -1,0 +1,63 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix pand: <http://bag.basisregistraties.overheid.nl/bag/id/pand/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape ?shapeHeight ?shapeName ?shapeLabel {
+  {
+    select (group_concat(distinct ?widget) as ?widgets) {
+      values ?image {
+        #<http://proxy.handle.net/10648/a8902fa8-d0b4-102d-bcf8-003048976d84>
+        #<http://proxy.handle.net/10648/a89063ce-d0b4-102d-bcf8-003048976d84>
+        <http://proxy.handle.net/10648/add8fd8c-d0b4-102d-bcf8-003048976d84>
+      }
+      ?image dce:date ?date;
+             dce:description ?description;
+             schema:thumbnail ?url.
+      bind(concat(
+    '<figure>',
+      '<a href="',str(?url),'" target="_blank">',
+        '<img src="',str(?url),'" width="250px">',
+      '</a>',
+      '<figcaption>',
+        '<dl>',
+          '<dt>Beschrijving</dt><dd>',str(?description),'</dd>',
+          '<dt>Datum</dt><dd>',str(?date),'</dd>',
+        '</dl>',
+      '</figcaption>',
+    '</figure>') as ?widget)
+    }
+  }
+  bind(pand:0392100000065734 as ?pand)
+  service <https://data.pdok.nl/sparql> {
+    pand:0392100000065734 geo:hasGeometry/geo:asWKT ?shape;
+                          bag:identificatiecode ?pandId.
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                     bag:pandrelatering pand:0392100000065734.
+    ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteNaam;
+                    bag:bijbehorendeWoonplaats ?woonplaats.
+    ?woonplaats rdfs:label ?woonplaatsNaam.
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                      bag:huisnummer ?huisnummer;
+                      bag:postcode ?zipcode.
+  }
+  bind(40 as ?shapeHeight)
+  bind(pand:0392100000065734 as ?pand)
+  bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?shapeName)
+  bind(concat(
+    '<center><h2>⛪<br><a href="',str(?pand),'">',str(?shapeName),'</a></h2></center>',
+    '<h3>PDOK hub</h3>',
+    '<dl>',
+      '<dt>BAG</dt><dd><a href="',str(?pand),'">',str(?pandId),'</a></dd>',
+      '<dt>RCE</dt><dd><a href="https://cultureelerfgoed.nl/monumenten/19264">19264</a></dd>',
+      '<dt>Wikidata</dt><dd><a href="http://www.wikidata.org/entity/Q1545193">Q1545193</a></dd>',
+    '</dl>',
+    '<h3>Nationaal Archief Beeldbank</h3>',
+    ?widgets,
+    ''
+  ) as ?shapeLabel)
+}
+limit 1

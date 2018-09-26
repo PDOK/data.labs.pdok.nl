@@ -24,13 +24,16 @@ select ?shape ?shapeHeight ?shapeLabel ?shapeName {
           ?title
           (sample(?url) as ?url)
         {
-          bind(pand:0392100000065734 as ?pand)
+          values ?image {
+            <http://proxy.handle.net/10648/a8902fa8-d0b4-102d-bcf8-003048976d84>
+            <http://proxy.handle.net/10648/a89063ce-d0b4-102d-bcf8-003048976d84>
+            <http://proxy.handle.net/10648/add8fd8c-d0b4-102d-bcf8-003048976d84>
+          }
           ?image dce:date ?dateStr;
                  dce:description ?description;
                  dce:format ?format;
                  dce:subject ?subject;
                  dce:title ?title;
-                 owl:sameAs ?pand;
                  schema:contentLocation ?location;
                  schema:thumbnail ?url.
         }

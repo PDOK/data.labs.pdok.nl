@@ -29,4 +29,4 @@ select ?shape (sample(?shapeLabel) as ?shapeLabel) {
     '<p>',?description,'</p>') as ?shapeLabel)
 }
 group by ?shape
-limit 150
+limit 100
