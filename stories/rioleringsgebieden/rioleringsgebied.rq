@@ -10,7 +10,7 @@ SELECT ?wktLabel ?wkt ?wktColor WHERE {
   SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
     SELECT
     ?rg ?wkt
-    (concat("<h1><a target='_blank' href='", str(?rg), "'>", str(?label), "</a></h1><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
+    (concat("<h3><a target='_blank' href='", str(?rg), "'>", str(?label), "</a></h3><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
     WHERE {
       ?rg a gwsw:Rioleringsgebied ;
           rdfs:label ?label ;

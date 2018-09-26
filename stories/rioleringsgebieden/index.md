@@ -1,13 +1,13 @@
 ---
 layout: story
-title: Gegevensbronnen combineren voor waterzuivering
+title: Gegevensbronnen combineren voor waterzuivering en riolering
 published: true
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
 ---
 
-# Combineren van gegevensbronnen voor waterzuivering
+# Combineren van gegevensbronnen voor waterzuivering en riolering
 
 Waterschappen en gemeenten maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
