@@ -1,15 +1,15 @@
 ---
 layout: story
-title: Gegevensbronnen combineren voor waterzuivering en riolering
+title: Combineren van gegevensbronnen in de afvalwaterketen
 published: true
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
 ---
 
-# Combineren van gegevensbronnen voor waterzuivering en riolering
+# Combineren van gegevensbronnen in de afvalwaterketen
 
-Waterschappen en gemeenten maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
+Gemeenten en waterschappen maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
 ## Rioleringsgebied Castricum 
 De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://apps.gwsw.nl) bevatten informatie rondom het thema transport en zuivering. Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
@@ -68,10 +68,10 @@ Door genoemde data met elkaar te combineren kunnen we een rapport genereren met 
 
 Stichting RIONED ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld. GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: [https://geodata.gwsw.nl/TestDatastory/kengetallen](https://geodata.gwsw.nl/TestDatastory/kengetallen)
 
-<!-- div data-query
+<div data-query
      data-query-endpoint="https://sparql.gwsw.nl/repositories/TestDatastory"
      data-query-sparql="kengetallen.rq">
-</div -->
+</div>
 
 
 
