@@ -1,7 +1,7 @@
 ---
 endpoint: https://data.labs.pdok.nl/sparql
 layout: story
-logo: /stories/nationaal-archief/logo.png
+logo: /stories/nationaal-archief/NAlogo.jpg
 title: Nationaal Archief
 ---
 
