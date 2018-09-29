@@ -16,17 +16,20 @@ PREFIX cbs_83487: <http://betalinkeddata.cbs.nl/def/83487NED#>
 SELECT ?wkt ?wktLabel ?wktColor WHERE {
   {
     SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
-      ?rg a gwsw:Rioleringsgebied ;
-          rdfs:label ?wktLabel ;
-          gwsw:hasAspect ?ori .
-      ?ori a gwsw:Gebiedsorientatie ;
-           gwsw:hasAspect ?bg .
-      ?bg a gwsw:Buitengrens ;
-          geo:asWKT ?wkt .
-      filter(contains(?wktLabel, "Castricum"))
-      bind("green" as ?wktColor)
+	
+	  ?rg a gwsw:Rioleringsgebied ;
+		  rdfs:label ?rg_naam ;
+		  gwsw:hasAspect ?ori .
+	  ?ori a gwsw:Gebiedsorientatie ;
+		   gwsw:hasAspect ?bg .
+	  ?bg a gwsw:Buitengrens ;
+		  geo:asWKT ?wkt .
+	  filter(contains(?wktLabel, "Castricum"))
+	  bind (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?rg), "'>", str(?rg_naam), "</a></h3>") as ?wktLabel)
+	  bind("green" as ?wktColor)
     }
-  } UNION {
+  } 
+  UNION {
     SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
       ?rg a gwsw:Rioleringsgebied ;
           rdfs:label ?wktlabel ;
@@ -35,10 +38,11 @@ SELECT ?wkt ?wktLabel ?wktColor WHERE {
            gwsw:hasAspect ?bg .
       ?bg a gwsw:Buitengrens ;
           geo:asWKT ?wkt_gwsw .
-      filter(contains(?wktlabel, "Castricum"))
+      #filter(contains(?wktlabel, "Castricum"))
     }
-
     ?cbs_gemeente rdfs:label "Castricum"@nl .
+    ?cbs_gemeente rdfs:label ?gemeente_naam .
+
     ?buurt a cbs:Buurt;
       rdfs:label ?buurt_label ;
          geo:hasGeometry ?geom ;
@@ -46,8 +50,12 @@ SELECT ?wkt ?wktLabel ?wktColor WHERE {
       ?geom geo:asWKT ?wkt .
     ?wijk a cbs:Wijk;
           ?within ?cbs_gemeente .
-    ?geom geo:asWKT ?wkt_cbsgem .
-    filter(geof:sfIntersects(?wkt_cbsgem, ?wkt_gwsw))
+		  
+    ?wijk rdfs:label ?wijk_naam .
+	filter(geof:sfIntersects(?wkt, ?wkt_gwsw))
+     
+    #?geom geo:asWKT ?wkt_cbsgem .
+    #filter(geof:sfIntersects(?wkt_cbsgem, ?wkt_gwsw))
 
     # Veelzeggende eigenschappen van de buurt
     ?aantal_inwoners_obs cbs_dim:regio ?buurt ;
@@ -61,16 +69,22 @@ SELECT ?wkt ?wktLabel ?wktColor WHERE {
 	  optional {
 		?bedrijven cbs_dim:regio ?buurt ;
 				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ;
-				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ?bedrijven_aantal .
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ?aantal_bedrijven .
 		?recreatie cbs_dim:regio ?buurt ;
 				   cbs_qb:inObservationGroup cbs_slice:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ;
-				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ?recreatie_aantal .
+				   cbs_83487:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenNaarActiviteit_R-uCultuur_Recreatie_OverigeDiensten ?aantal_recreatie .
 	  }
 
     bind(concat(
         "<a href='", str(?buurt), "' target='_blank'><h2>", str(?buurt_label), "</h2></a>",
-        "<p>Aantal inwoners: <a target='_blank' href='", str(?aantal_inwoners_obs), "'>", str(?aantal_inwoners), "</a></p>",
-        "<p>Aantal huishoudens:  <a target='_blank' href='", str(?aantal_huishoudens_obs), "'>", str(?aantal_huishoudens), "</p>"
+        "<p>Gemeentenaam: <a target='_blank' href='", str(?cbs_gemeente), "'>", str(?gemeente_naam), "</a></p>",
+        "<p>Wijknaam: <a target='_blank' href='", str(?wijk), "'>", str(?wijk_naam), "</a></p>",
+         "<p>Aantal inwoners: <a target='_blank' href='", str(?aantal_inwoners_obs), "'>", str(?aantal_inwoners), "</a></p>",
+         "<p>Aantal huishoudens:  <a target='_blank' href='", str(?aantal_huishoudens_obs), "'>", str(?aantal_huishoudens), "</a></p>",
+         "<p>Aantal bedrijven:  <a target='_blank' href='", str(?bedrijven), "'>", str(?aantal_bedrijven), "</a></p>", 
+        "<p>- waarvan recreatie:  <a target='_blank' href='", str(?recreatie), "'>", str(?aantal_recreatie), "</a></p>"
       ) as ?wktLabel)
+	  
+    bind("purple" as ?wktColor)
   }
 }
