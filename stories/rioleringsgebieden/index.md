@@ -12,7 +12,7 @@ logo: /stories/rioleringsgebieden/logo.jpg
 Gemeenten en waterschappen maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
 ## Rioleringsgebied Castricum 
-De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://apps.gwsw.nl) bevatten informatie rondom het thema transport en zuivering.
+De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://data.gwsw.nl) bevatten informatie rondom het thema transport en zuivering.
 Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
 
 We bekijken hier het rioleringsgebied van Castricum. We vragen dit gebied op met de bijbehorende uitlaten en pompen uit het toegangspunt van het GWSW. Hieronder wordt een selectie van de beschikbare gegevens getoond.
@@ -80,7 +80,7 @@ Door genoemde data met elkaar te combineren kunnen we een rapport genereren met 
 Stichting RIONED onderhoudt en ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. 
 Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld.
 
-De GIS presentatie van de hier gebruikte GWSW-dataset staat op daarvan staat op [https://qgiscloud.com/RIONED/TestDatastory](https://qgiscloud.com/RIONED/TestDatastory).
+De GIS presentatie van de hier gebruikte GWSW-dataset staat op daarvan staat op [https://qgiscloud.com/RIONED/Datastory](https://qgiscloud.com/RIONED/Datastory).
 GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: [https://geodata.gwsw.nl/TestDatastory/kengetallen](https://geodata.gwsw.nl/TestDatastory/kengetallen)
 
 <!-- div data-query
