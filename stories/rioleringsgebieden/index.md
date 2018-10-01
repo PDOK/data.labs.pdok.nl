@@ -16,7 +16,7 @@ Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende br
 Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zitten hier gemalen bij om het transport een handje te helpen. 
 
 De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://data.gwsw.nl) bevatten informatie rondom het thema inzameling en transport.
-We bekijken hier het rioleringsgebied van Castricum. We vragen dit gebied op met de bijbehorende uitlaten en pompen uit het toegangspunt van het GWSW. 
+We bekijken hier het rioleringsgebied van Castricum en vragen dit gebied op met de bijbehorende uitlaten en pompen uit het toegangspunt van het GWSW. 
 Hieronder wordt een selectie van de beschikbare gegevens getoond. Onder de groene, rode en blauwe markers staat informatie over respectievelijk het rioleringsgebied, het rioolgemaal en de overstorten.
 
 <div data-query
