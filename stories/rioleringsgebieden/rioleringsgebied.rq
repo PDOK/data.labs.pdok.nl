@@ -5,33 +5,103 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
 
-SELECT ?wktLabel ?wkt ?wktColor WHERE {
-  SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
-    SELECT
-    ?rg ?wkt
-    (concat("<h3><a target='_blank' href='", str(?rg), "'>", str(?label), "</a></h3><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
-    WHERE {
-      ?rg a gwsw:Rioleringsgebied ;
-          rdfs:label ?label ;
-          gwsw:hasAspect ?ori .
-      ?ori a gwsw:Gebiedsorientatie ;
-           gwsw:hasAspect ?bg .
-      ?bg a gwsw:Buitengrens ;
-          geo:asWKT ?wkt .
-      filter(contains(?label, "Castricum"))
+SELECT ?wkt ?wktLabel ?wktColor 
+WHERE {
+	{
+	  SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
+		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?rg), "'>", str(?label), "</a></h3><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
+		WHERE {
+		  ?rg a gwsw:Rioleringsgebied ;
+			  rdfs:label ?label ;
+			  gwsw:hasAspect ?ori .
+		  ?ori a gwsw:Gebiedsorientatie ;
+			   gwsw:hasAspect ?bg .
+		  ?bg a gwsw:Buitengrens ;
+			  geo:asWKT ?wkt .
+		  filter(contains(?label, "Castricum"))
 
-      ?rg gwsw:hasPart ?rs .
-      ?rs rdfs:label ?rs_naam ;
-          gwsw:hasPart ?lei .
-      ?lei a gwsw:Leiding .
+		  ?rg gwsw:hasPart ?rs .
+		  ?rs gwsw:hasPart ?lei .
+		  ?lei a gwsw:Leiding .
 
-      ?lei gwsw:hasAspect [
-          a gwsw:LengteLeiding ;
-          gwsw:hasValue ?lengte ;
-          ] .
-    }
-    GROUP BY ?rg ?wkt ?label
-  }
-  bind("green" as ?wktColor)
+		  ?lei gwsw:hasAspect [
+			  a gwsw:LengteLeiding ;
+			  gwsw:hasValue ?lengte ;
+			  ] .
+		}
+		GROUP BY ?rg ?wkt ?label
+	  }
+	  bind("green" as ?wktColor)
+	}
+	UNION
+	{ 
+	  SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
+		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type uitlaat: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
+		WHERE {
+		  ?rg a gwsw:Rioleringsgebied ;
+   			  rdfs:label ?label ;
+		  filter(contains(?label, "Castricum"))
+		  ?rg gwsw:hasPart ?rs .
+		  ?rs rdfs:label ?rs_naam ;
+			  gwsw:hasPart ?put .
+		  
+		   ?put a gwsw:Overstortput .
+  	       ?put sesame:directType ?type .
+           FILTER (!(isBlank(?put)))
+           FILTER (!(isBlank(?type)))
+			
+		   ?put rdfs:label ?naam .
+
+		   ?put gwsw:hasAspect 
+			[
+				rdf:type gwsw:Putorientatie ;
+
+				gwsw:hasAspect
+				[ 
+					rdf:type gwsw:Punt ;
+					geo:asWKT ?wkt ;
+				] ;
+			] .
+		}
+	  }
+	  bind("blue" as ?wktColor)
+	}
+	UNION
+	{ 
+	  SERVICE <https://sparql.gwsw.nl/repositories/TestDatastory> {
+		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type pomp: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
+		WHERE {
+		  ?rg a gwsw:Rioleringsgebied ;
+   			  rdfs:label ?label ;
+		  filter(contains(?label, "Castricum"))
+		  ?rg gwsw:hasPart ?rs .
+		  ?rs rdfs:label ?rs_naam ;
+			  gwsw:hasPart ?put .
+		  
+		   ?put a gwsw:Pompput .
+  	       ?put sesame:directType ?type .
+           FILTER (!(isBlank(?put)))
+           FILTER (!(isBlank(?type)))
+
+		   ?put sesame:directType ?type .
+			
+		   ?put rdfs:label ?naam .
+
+		   ?put gwsw:hasAspect 
+			[
+				rdf:type gwsw:Putorientatie ;
+
+				gwsw:hasAspect
+				[ 
+					rdf:type gwsw:Punt ;
+					geo:asWKT ?wkt ;
+				] ;
+			] .
+		}
+	  }
+	  bind("red" as ?wktColor)
+	}
 }
+
