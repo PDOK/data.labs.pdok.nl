@@ -9,13 +9,15 @@ logo: /stories/rioleringsgebieden/logo.jpg
 
 # Combineren van gegevensbronnen in de afvalwaterketen
 
-Gemeenten en waterschappen maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevensbronnen van verschillende partijen gecombineerd worden. Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
+Gemeenten en waterschappen maken gebruik van veel verschillende informatiebronnen bij de inzameling, het transport en de zuivering van afvalwater. Is het mogelijk om deze bronnen met behulp van Linked Data en SPARQL 'on the fly' bijeen te garen? Dat zou een flinke verbetering zijn ten opzichte van de huidige werkwijze, waarbij handmatig gegevens van verschillende partijen verzameld en gecombineerd worden. 
+Deze data story verkent de mogelijkheden om 'federatief' vanuit verschillende bronnen informatie te vergaren rondom het thema afvalwaterketen.
 
 ## Rioleringsgebied Castricum 
-De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://data.gwsw.nl) bevatten informatie rondom het thema transport en zuivering.
-Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zit hier een gemaal bij om het transport een handje te helpen. 
+Een zuiveringsgebied omvat een rioolwaterzuiveringsinstallatie (RWZI) en een aantal rioleringsgebieden die afwateren naar die RWZI. Vaak zitten hier gemalen bij om het transport een handje te helpen. 
 
-We bekijken hier het rioleringsgebied van Castricum. We vragen dit gebied op met de bijbehorende uitlaten en pompen uit het toegangspunt van het GWSW. Hieronder wordt een selectie van de beschikbare gegevens getoond.
+De datasets gebaseerd op het Gegevenswoordenboek Stedelijk Water [GWSW](https://data.gwsw.nl) bevatten informatie rondom het thema inzameling en transport.
+We bekijken hier het rioleringsgebied van Castricum en vragen dit gebied op met de bijbehorende uitlaten en pompen uit het toegangspunt van het GWSW. 
+Hieronder wordt een selectie van de beschikbare gegevens getoond. Onder de groene, rode en blauwe markers staat informatie over respectievelijk het rioleringsgebied, het rioolgemaal en de overstorten.
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
@@ -60,7 +62,7 @@ Vanuit de Basisregistraties Adressen en Gebouwen (BAG) zouden we nu kunnen opvra
 </div>
 -->
 
-## Afvoer binnen het rioleringsgebied 
+## Inzameling binnen het rioleringsgebied 
 Voor het beheer en de (capaciteits)ontwikkeling van de rioolstelsels, de rioolgemalen en de RWZI is het van belang te weten wat de wijzigingen zijn in grondgebruik en inwoneraantallen.
 Elke gegevensbron (BAG, BGT, GWSW) kan afzonderlijk worden bijgehouden zonder duplicatie en op verzoek worden gecombineerd. Die combinatie van gegevens wordt in het vakgebied de "kengetallen" van het rioleringsgebied genoemd. 
 Met de Basisregistraties Adressen en Gebouwen (BAG) kunnen we de panden binnen het rioleringsgebied opvragen. Het gaat ons echter om de afvoer binnen de afvalwaterketen, de belasting van de RWZI. Die gegevens over bedrijven en inwoners vinden we bij het CBS.
@@ -78,10 +80,10 @@ Het CBS verzamelt per buurt vele statistieken, waaronder gegevens over het landg
 ## Combineren van data naar kengetallen met het GWSW
 Door genoemde data met elkaar te combineren kunnen we een rapport genereren met informatie uit verschillende bronnen. 
 Stichting RIONED onderhoudt en ontwikkelt GWSW Geo, dat zijn GIS-toepassingen op het GWSW. Daarmee worden de datasets van gemeentes volgens meerdere thema's (per doelgroep) geografisch gepresenteerd. 
-Deze datastory vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de "federatieve" query-vorm verder wordt ontwikkeld.
+Deze data story vormt de inspiratiebron voor het GWSW Geo-thema "Kengetallen", waarin de federatieve query-vorm verdergaand is toegepast.
 
-De GIS presentatie van de hier gebruikte GWSW-dataset staat op daarvan staat op [https://qgiscloud.com/RIONED/Datastory](https://qgiscloud.com/RIONED/Datastory).
-GIS gebruikers kunnen de GWSW vorm van deze testcase conform WFS opvragen op: [https://geodata.gwsw.nl/TestDatastory/kengetallen](https://geodata.gwsw.nl/TestDatastory/kengetallen)
+De GIS presentatie van de hier gebruikte GWSW-dataset staat op [https://qgiscloud.com/RIONED/Datastory](https://qgiscloud.com/RIONED/Datastory).
+GIS gebruikers kunnen deze testcase conform WFS opvragen op: [https://geodata.gwsw.nl/TestDatastory/kengetallen](https://geodata.gwsw.nl/TestDatastory/kengetallen)
 
 <!-- div data-query
      data-query-endpoint="https://sparql.gwsw.nl/repositories/TestDatastory"
