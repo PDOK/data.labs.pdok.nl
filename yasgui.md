@@ -3,9 +3,16 @@ layout: default
 title: SPARQL
 ---
 
-<div id='sparql-editor'></div>
- <query data-endpoint="https://data.labs.pdok.nl/sparql" data-show-query>
-  </query>
+
+<div id="yasgui"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  Yasgui(document.getElementById("yasgui"), {
+    endpoint: "https://data.labs.pdok.nl/sparql"
+  });
+});
+</script>
+
 
 
 <style>
@@ -17,7 +24,7 @@ title: SPARQL
 /*Changes made to the colours of the headers from sparql. Could only be forced with important at the moment.*/
 
 th {
-	color: black !important; 
+	color: black !important;
 	background: white !important;
 }
 

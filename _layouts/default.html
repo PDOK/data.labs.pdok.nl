@@ -71,18 +71,26 @@
 
 		.yasgui .yasr .yasr_btn {
 	  display: flow-root;
-	}
+  }
+  /* Removing the lower line from the kadaster table. See line 789 in assets/yasgui.
+
+  .yasgui .yasr .dataTable-wrapper.no-footer .dataTable-container {
+  	border-bottom: 1px solid #d9d9d9;
+  } */
+
 
 	</style>
     <script src='/assets/js/yasgui.min.js'></script>
     <script type="text/javascript">
     window.onload = function () {
-      
+
       window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'
       {% if page.basemap %}
-      window.Yasgui.Yasr.Instance.plugins.geo.defaults.map = "{{ page.basemap }}";
+      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "{{ page.basemap }}";
+      window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "{{ page.basemap }}";
       {% else %}
       window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "nlmaps";
+      window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "nlmaps";
       {% endif %}
       Yasgui.stories()
     };
