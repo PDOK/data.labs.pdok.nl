@@ -76,7 +76,7 @@ GIS gebruikers kunnen deze testcase conform WFS opvragen op: [https://geodata.gw
 
 Uit de Basisregistraties Adressen en Gebouwen (BAG) kunnen we nog veel meer relevante gegevens destilleren.
 
-**Woonplaatsen rond het rioleringsgebied**
+**Woonplaatsen rond het rioleringsgebied**  
 Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we de bijbehorende plaatsnamen opvragen. 
 Dit doen we door een kleine buffer (in oranje) om de gemeente te leggen en alleen die woonplaatsgebieden te selecteren die hier volledig binnen vallen. 
 Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
@@ -89,7 +89,7 @@ Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 De CBS Statistieken worden verzameld per buurt. Zoals de eerdere selectie laat zien is de overlap tussen de buurten en rioleringsgebied lang niet altijd volledig. 
 Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het rioleringsgebied:
 
-**Panden in het rioleringsgebied**
+**Panden in het rioleringsgebied**  
 Vanuit BAG vragen we op hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
 
 <div data-query
