@@ -43,10 +43,11 @@ Als je goed inzoomt, blijkt dat er naast Castricum een kleine overlap is met de 
      data-query-sparql="gemeentes-bij-regio.rq">
 </div>
 
-## Inzameling binnen het rioleringsgebied 
-Voor het beheer en de (capaciteits)ontwikkeling van de rioolstelsels, de rioolgemalen en de RWZI is het van belang te weten wat de wijzigingen zijn in grondgebruik en inwoneraantallen.
-Elke gegevensbron (BAG, BGT, GWSW) kan afzonderlijk worden bijgehouden zonder duplicatie en op verzoek worden gecombineerd. Die combinatie van gegevens wordt in het vakgebied de "kengetallen" van het rioleringsgebied genoemd. 
-Met de Basisregistraties Adressen en Gebouwen (BAG) kunnen we de panden binnen het rioleringsgebied opvragen. Het gaat ons echter om de afvoer binnen de afvalwaterketen, de belasting van de RWZI. Die gegevens over bedrijven en inwoners vinden we bij het CBS.
+## Afvalwater vanuit het rioleringsgebied 
+Voor het beheer en de capaciteit van rioolstelsels, rioolgemalen en RWZI is het van belang de stand van zaken en de ontwikkelingen van grondgebruik en inwoneraantallen te kennen. 
+Die combinatie van gegevens wordt in het vakgebied de "kengetallen" van het rioleringsgebied genoemd. 
+Voor het verzamelen van de kengetallen doen we een beroep op diverse gegevensbronnen (BAG, BGT, CBS, GWSW) die afzonderlijk (zonder duplicatie) worden bijgehouden. 
+Het gaat ons om de afvoer binnen de afvalwaterketen, de belasting van de RWZI. Die gegevens over bedrijven en inwoners vinden we onder andere bij het CBS.
 
 **CBS Statistieken**  
 De combinatie is met behulp van locatiegegevens gevonden: het zijn de buurten die binnen het rioleringsgebied vallen en die daarmee afwateren via rioolstelsels naar de RWZI. 
@@ -71,17 +72,25 @@ GIS gebruikers kunnen deze testcase conform WFS opvragen op: [https://geodata.gw
      data-query-sparql="kengetallen.rq">
 </div -->
 
+## Meer mogelijkheden met de BAG
 
-### Woonplaatsen rond het rioleringsgebied
-Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we nu de bijbehorende plaatsnamen opvragen. Dit doen we door een kleine buffer (in oranje) om de gemeente te leggen en alleen die woonplaatsgebieden te selecteren die hier volledig binnen vallen. Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
+Uit de Basisregistraties Adressen en Gebouwen (BAG) kunnen we nog veel meer relevante gegevens destilleren.
+
+** Woonplaatsen rond het rioleringsgebied **
+Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we de bijbehorende plaatsnamen opvragen. 
+Dit doen we door een kleine buffer (in oranje) om de gemeente te leggen en alleen die woonplaatsgebieden te selecteren die hier volledig binnen vallen. 
+Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
      data-query-sparql="woonplaatsen-in-rioleringsgebied.rq">
 </div>
 
-### Panden in het rioleringsgebied
-Vanuit de Basisregistraties Adressen en Gebouwen (BAG) kunnen we nu opvragen hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
+De CBS Statistieken worden verzameld per buurt. Zoals de eerdere selectie laat zien is de overlap tussen de buurten en rioleringsgebied lang niet altijd volledig. 
+Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het rioleringsgebied:
+
+** Panden in het rioleringsgebied **
+Vanuit BAG vragen we op hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
 
 <div data-query
      data-query-endpoint="https://data.pdok.nl/sparql"
