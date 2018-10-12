@@ -1,0 +1,217 @@
+# Common vocabularies
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpo: <http://dbpedia.org/ontology/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ifc: <http://www.buildingsmart-tech.org/ifcOWL/IFC2X3_Final#> .
+
+# BBL 
+@prefix : <http://data.labs.pdok.nl/data/bbl#> .
+@base <http://data.labs.pdok.nl/data/bbl#> .
+
+
+:vocab a skos:ConceptScheme, owl:Ontology;
+  dct:title "Vocabulaire voor het Besluit Bouwwerken Leefomgeving (BBL)."@nl;
+  rdfs:comment "Dit vocabulaire beschrijft begrippen uit het BBL en hun samenhang. Het is gemaakt om de mogelijkheid te geven digitale modellen van bouwwerken van BLL-semantiek te kunnen voorzien. Het vocabulaire is onvolledig, het is bedoeld om een idee te geven van de mogelijkheden van een vocabualaire waarin alle begrippen die in het BLL worden gebruikt uitgewerkt zijn."@nl;
+  skos:editorialNote "Voor concepten binnen het BBL die aan elkaar gerelateerd zijn zonder een duidelijk hiërarchisch of samenstellend verband wordt skos:related gebruikt. Om aan te geven dat een BBL-concept overeenkomt met een begrip uit een ander vocabulaire wordt skos:relatedMatch gebruikt. In het bijzonder wordt skos:relatedMatch gebruikt om BBL-begrippen aan IFC-begrippen te koppelen."@nl;
+  skos:editorialNote "Voor het gemak zijn BBL-begrippen gemodelleerd als zowel skos:Concept als rdfs:Class (punning). Dat heeft effect op de mogelijkheid reasoning toe te passen. Mocht er verdere ontwikkeling plaatsvinden, dan is het daarom te overwegen het SKOS-conceptenschema apart te maken en te koppelen met de ontologie (via dct:subject)."@nl;
+.
+
+:Bouwwerk a skos:Concept, rdfs:Class;
+  skos:prefLabel "bouwwerk"@nl;
+  rdfs:label "bouwwerk"@nl;
+  skos:definition "Constructie van enige omvang van hout, steen, metaal of ander materiaal, die op de plaats van bestemming hetzij direct of indirect met de grond verbonden is, hetzij direct of indirect steun vindt in of op de grond, bedoeld om ter plaatse te functioneren, met inbegrip van de daarvan deel uitmakende installaties."@nl;
+  skos:related :Bouwlaag;
+.
+
+:Toets a rdfs:Class;
+  rdfs:subClassOf skos:Concept;
+  rdfs:label "toets"@nl;
+  rdfs:comment "Een type BBL-Toets."@nl;
+.
+
+:BestaandeBouw a :Toets;
+  skos:prefLabel "bestaande bouw"@nl;
+  skos:definition "Toetsing is gericht op het in stand houden van een bouwwerk."@nl;
+.
+
+:Nieuwbouw a :Toets;
+  skos:prefLabel "nieuwbouw"@nl;
+  skos:definition "Toetsing is gericht op het bouwen van een nieuw bouwwerk."@nl;
+.
+
+:VerbouwingVerplaatsingGebruiksfunctiewijziging a :Toets;
+  skos:prefLabel "verbouwing, verplaatsing of wijziging van gebruiksfunctie"@nl;
+  skos:definition "Toetsing is gericht op het verbouwen en/of het verplaatsen van een bouwwerk en/of op de wijziging van een gebruiksfunctie."@nl;
+.
+
+:Gebruiksfunctie a rdfs:Class;
+  rdfs:subClassOf skos:Concept;
+  rdfs:label "gebruiksfunctie"@nl;
+  rdfs:comment "Het voorziene gebruik van een bouwwerk of ruimte."@nl;
+.
+
+:Woonfunctie a :Gebruiksfunctie;
+  skos:prefLabel "woonfunctie"@nl;
+  skos:definition "Het bouwwerk is bedoeld voor wonen."@nl;
+  skos:note "Een ruimte van een woonboot valt niet onder een woonfunctie. Een woonschip is namelijk geen bouwwerk in de zin van de Woningwet."@nl;
+.
+
+:Kantoorfunctie a :Gebruiksfunctie;
+  skos:prefLabel "kantoorfunctie"@nl;
+  skos:definition "Gebruiksfuntctie voor administratieve werkzaamheden."@nl;
+.
+
+:Logiesfunctie a :Gebruiksfunctie;
+  skos:prefLabel "logiesfunctie"@nl;
+  skos:definition "Gebruiksfunctie voor het bieden van recreatief verblijf of tijdelijk onderdak aan mensen."@nl;
+.
+
+:Bijeenkomstfunctie a :Gebruiksfunctie;
+  skos:definition "Een gebruiksfunctie voor het samenkomen van mensen voor kunst, cultuur, godsdienst, communicatie, kinderopvang, het verstrekken van consumpties voor het gebruik ter plaatse en het aanschouwen van sport."@nl;
+  skos:prefLabel "logiesfunctie"@nl;
+.
+
+:Celfunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor dwangverblijf van mensen."@nl;
+  skos:prefLabel "celfunctie"@nl;
+.
+
+:Gezondheidszorgfunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor medisch onderzoek, verpleging, verzorging of behandeling."@nl;
+  skos:prefLabel "gezondheidszorgfunctie"@nl;
+.
+
+:Industriefunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor het bedrijfsmatig bewerken of opslaan van materialen en goederen, of voor agrarische doeleinden."@nl;
+  skos:prefLabel "industriefunctie"@nl;
+.
+
+:Onderwijsfunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor het geven van onderwijs."@nl;
+  skos:prefLabel "onderwijsfunctie"@nl;
+.
+
+:Sportfunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor het beoefenen van sport."@nl;
+  skos:prefLabel "sportfunctie"@nl;
+.
+
+:Winkelfunctie a :Gebruiksfunctie;
+  skos:definition "Gebruiksfunctie voor het verhandelen van materialen, goederen of diensten."@nl;
+  skos:prefLabel "winkelfunctie"@nl;
+.
+
+:OverigeGebruiksfunctie a :Gebruiksfunctie;
+  skos:definition "Geen anders aan te duiden gebruiksfunctie voor activiteiten waarbij het verblijven van mensen een ondergeschikte rol speelt."@nl;
+  skos:prefLabel "overige gebruiksfunctie"@nl;
+.
+
+:Gebouw a skos:Concept, rdfs:Class;
+  skos:prefLabel "gebouw"@nl;
+  rdfs:label "bouwwerk"@nl;
+  skos:definition "Bouwwerk dat een voor mensen toegankelijke overdekte geheel of gedeeltelijk met wanden omsloten ruimte vormt."@nl;
+  rdfs:subClassOf :Bouwwerk;
+  skos:relatedMatch ifc:IfcBuilding;
+.
+
+:Bouwlaag a skos:Concept, rdfs:Class;
+  skos:prefLabel "bouwlaag"@nl;
+  rdfs:label "bouwlaag"@nl;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL. Op het web is naar een passende definitie gezocht."@nl;
+  skos:definition "Het gedeelte van een bouwwerk tussen twee vloeren in, met uitzondering van het souterrain en de zolder."@nl;
+  skos:relatedMatch ifc:IfcBuildingStorey;
+  rdfs:subClassOf
+    [ a owl:Restriction;
+      owl:onProperty dct:isPartOf;
+      owl:someValuesFrom :Bouwwerk
+    ];
+.
+
+:Ruimte a skos:Concept, rdfs:Class;
+  skos:prefLabel "ruimte"@nl;
+  rdfs:label "ruimte"@nl;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL. De definitie is gekopieerd van wikipedia. Wellicht is het begrip officieel gedefinieerd in NEN 2748?"@nl;
+  skos:definition "Een plaats in een gebouw die geheel of gedeeltelijk door bouwkundige scheidingsconstructies wordt begrensd."@nl;
+  skos:relatedMatch ifc:IfcSpace;
+.
+
+:Verblijfsruimte a skos:Concept, rdfs:Class;
+  skos:prefLabel "verblijfsruimte"@nl;
+  rdfs:label "verblijfsruimte"@nl;
+  skos:definition "In een verblijfsgebied gelegen ruimte voor het verblijven van personen."@nl;
+  rdfs:subClassOf :Ruimte;
+.
+
+:Toiletruimte a skos:Concept, rdfs:Class;
+  skos:prefLabel "toiletruimte"@nl;
+  rdfs:label "toiletruimte"@nl;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL. Op het web is naar een passende definitie gezocht."@nl;
+  skos:definition "Ruimte waarin zich een toiletpot bevindt die is aangesloten op aan- en afvoervoorzieningen voor water."@nl;
+  rdfs:subClassOf :Ruimte;
+.
+
+:Badkamer a skos:Concept, rdfs:Class;
+  skos:prefLabel "badkamer"@nl;
+  rdfs:label "badkamer"@nl;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL. Op het web is naar een passende definitie gezocht."@nl;
+  skos:definition "Sanitaire ruimte, dat wil zeggen een ruimte die speciaal is ingericht voor lichaamsverzorging. Een badkamer bestaat meestal uit een wastafel, een spiegel, een douche en/of een kuipbad. Vaak is er ook een wc."@nl;
+  rdfs:subClassOf :Ruimte;
+.
+:Verkeersruimte a skos:Concept, rdfs:Class;
+  skos:prefLabel "verkeersruimte"@nl;
+  rdfs:label "verkeersruimte"@nl;
+  skos:definition "Ruimte voor het bereiken van een andere ruimte, die niet ligt in een verblijfsgebied of in een functiegebied, een toiletruimte, een badruimte of een technische ruimte."@nl;
+  rdfs:subClassOf :Ruimte;
+.
+
+:TechnischeRuimte a skos:Concept, rdfs:Class;
+  skos:prefLabel "technische ruimte"@nl;
+  rdfs:label "technische ruimte"@nl;
+  skos:definition "Ruimte voor het plaatsen van de apparatuur, noodzakelijk voor het functioneren van het bouwwerk, waartoe in ieder geval behoort een meterruimte, een liftmachineruimte en een stookruimte"@nl;
+  rdfs:subClassOf :Ruimte;
+.
+
+:Liftschacht a skos:Concept, rdfs:Class;
+  skos:prefLabel "liftschacht"@nl;
+  rdfs:label "liftschacht"@nl;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL. Op het web is naar een passende definitie gezocht."@nl;
+  skos:definition "Ruimte voor het bereiken van een andere ruimte, die niet ligt in een verblijfsgebied of in een functiegebied, een toiletruimte, een badruimte of een technische ruimte."@nl;
+  rdfs:subClassOf :Ruimte;
+.
+
+:bezetting a owl:DatatypeProperty;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL."@nl;
+  skos:prefLabel "bezetting"@nl;
+  rdfs:label "bezetting"@nl;
+  rdfs:comment "Het aantal personen dat normaal gesproken van een ruimte gebruik maakt."@nl;
+  rdfs:domain :Ruimte;
+  rdfs:range xsd:Integer;
+.
+
+:maximaleBezetting a owl:DatatypeProperty;
+  skos:editorialNote "Dit begrip wordt wel gebruikt, maar niet gedefinieerd in het bouwbesluit/BBL."@nl;
+  rdfs:label "maximale bezetting"@nl, "hoogste bezetting"@nl;
+  rdfs:comment "Het maximaal aantal personen dat zich redelijkerwijs in een ruimte kan bevinden."@nl;
+  rdfs:domain :Ruimte;
+  rdfs:range xsd:Integer;
+.
+
+:teToetsenOp a owl:ObjectProperty;
+  skos:editorialNote "Een aanname is dat een bouwplan dat voor BBL-toetsing wordt aangeboden op één activiteit betrekking heeft."@nl;
+  skos:prefLabel "te toetsen op"@nl;
+  rdfs:comment "Verwijzing naar de soort BBL-toets die op het bouwwerk kan worden toegepast."@nl;
+  rdfs:domain :Bouwwerk;
+  rdfs:range :Toets;
+.
+
+:heeftGebruik a owl:ObjectProperty;
+  skos:prefLabel "heeft gebruik"@nl;
+  rdfs:comment "Aanduiding van de gebruiksfunctie."@nl;
+  rdfs:domain [owl:unionOf(:Bouwwerk :Ruimte)];
+  rdfs:range :Gebruiksfunctie;
+.
