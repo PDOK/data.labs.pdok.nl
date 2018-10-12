@@ -10,8 +10,8 @@
 @prefix ifc: <http://www.buildingsmart-tech.org/ifcOWL/IFC2X3_Final#> .
 
 # BBL 
-@prefix : <http://data.labs.pdok.nl/data/bbl#> .
-@base <http://data.labs.pdok.nl/data/bbl#> .
+@prefix : <http://data.labs.pdok.nl/data/bbl/bbl#> .
+@base <http://data.labs.pdok.nl/data/bbl/bbl#> .
 
 
 :vocab a skos:ConceptScheme, owl:Ontology;
