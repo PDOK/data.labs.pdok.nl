@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Combineren van gegevensbronnen in de afvalwaterketen
-published: true
+published: false
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
