@@ -31,10 +31,8 @@ WHERE {
 			  ] .
 		}
 		GROUP BY ?rg ?wkt ?label
-	}
-	UNION
-	{ 
-		SELECT ?wkt ("blue" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type uitlaat: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
+	} UNION { 
+    	SELECT ?wkt ("blue" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type uitlaat: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
 		WHERE {
 		  ?rg a gwsw:Rioleringsgebied ;
    			  rdfs:label ?label ;
@@ -43,27 +41,21 @@ WHERE {
 		  ?rs rdfs:label ?rs_naam ;
 			  gwsw:hasPart ?put .
 		  
-		   ?put a gwsw:Overstortput .
-  	       ?put sesame:directType ?type .
-           FILTER (!(isBlank(?put)))
-           FILTER (!(isBlank(?type)))
+		  ?put a gwsw:Overstortput .
+  	  ?put sesame:directType ?type .
+			FILTER (!(isBlank(?put)))
+			FILTER (!(isBlank(?type)))
 			
-		   ?put rdfs:label ?naam .
-
-		   ?put gwsw:hasAspect 
-			[
-				rdf:type gwsw:Putorientatie ;
-
-				gwsw:hasAspect
-				[ 
+		  ?put rdfs:label ?naam ;
+				gwsw:hasAspect [
+					rdf:type gwsw:Putorientatie ;
+				gwsw:hasAspect [ 
 					rdf:type gwsw:Punt ;
 					geo:asWKT ?wkt ;
-				] ;
-			] .
+				]
+			]
 		}
-	}
-	UNION
-	{ 
+	} UNION	{ 
 		SELECT ?wkt ("red" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type pomp: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
 		WHERE {
 		  ?rg a gwsw:Rioleringsgebied ;
@@ -85,9 +77,8 @@ WHERE {
 				gwsw:hasAspect [ 
 					rdf:type gwsw:Punt ;
 					geo:asWKT ?wkt ;
-				]
-			]
+				] ;
+			] .
 		}
 	}
 }
-
