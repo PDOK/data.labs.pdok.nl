@@ -10,7 +10,7 @@ PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
 SELECT ?wkt ?wktLabel ?wktColor 
 WHERE {
 	{
-		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?rg), "'>", str(?label), "</a></h3><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
+		SELECT ?wkt ("green" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?rg), "'>", str(?label), "</a></h3><br>Totale leidinglengte: ", str(sum(?lengte))) AS ?wktLabel)
 		WHERE {
 		  ?rg a gwsw:Rioleringsgebied ;
 			  rdfs:label ?label ;
@@ -31,11 +31,10 @@ WHERE {
 			  ] .
 		}
 		GROUP BY ?rg ?wkt ?label
-	  bind("green" as ?wktColor)
 	}
 	UNION
 	{ 
-		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type uitlaat: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
+		SELECT ?wkt ("blue" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type uitlaat: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
 		WHERE {
 		  ?rg a gwsw:Rioleringsgebied ;
    			  rdfs:label ?label ;
@@ -62,11 +61,10 @@ WHERE {
 				] ;
 			] .
 		}
-	  bind("blue" as ?wktColor)
 	}
 	UNION
 	{ 
-		SELECT ?wkt (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type pomp: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
+		SELECT ?wkt ("red" as ?wktColor) (concat("<h3><a target='_blank' href='https://sparql.gwsw.nl/resource?uri=", str(?put), "'>", str(?naam), "</a></h3><br>Stelsel: ", str(?rs_naam), "<br>Type pomp: <a target='_blank' href='" , str(?type), "'>", str(?type), "</a>") AS ?wktLabel)
 		WHERE {
 		  ?rg a gwsw:Rioleringsgebied ;
    			  rdfs:label ?label ;
@@ -87,10 +85,9 @@ WHERE {
 				gwsw:hasAspect [ 
 					rdf:type gwsw:Punt ;
 					geo:asWKT ?wkt ;
-				] ;
-			] .
+				]
+			]
 		}
-	  bind("red" as ?wktColor)
 	}
 }
 
