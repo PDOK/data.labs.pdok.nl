@@ -10,6 +10,11 @@ Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden
 ontwikkeld of getest.  Presentaties en publicaties zijn te vinden
 onder [publicaties](/publications).
 
+## De Huischeck
+Voor het Geo Gebruikersfestival 2018, de Kadaster Directiedagen en de GeoBuzz heeft het Kadaster 
+[de Huischeck](../apps/huischeck/QRadres.html) ontwikkeld. In [de Huischeck](../apps/huischeck/QRadres.html) wordt op 
+basis van een adres informatie verstrekt over het desbetrefftende huis, zowel in tekstvorm als met een QR code.
+
 ## Linked Data browsers
 
   - [Bevolkings Browser](../presentations/bevolkings-browser/)
