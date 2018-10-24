@@ -1,6 +1,6 @@
 ---
 endpoint: https://data.pdok.nl/sparql
-layout: default
+layout: story
 title: De Huischeck
 output: leaflet
 ---
@@ -8,7 +8,7 @@ output: leaflet
 <script type="text/javascript" src="/apps/huischeck/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="/apps/huischeck/jquery.qrcode.js"></script>
 <script type="text/javascript" src="/apps/huischeck/qrcode.js"></script>
-<script type="text/javascript" src="/apps/huischeck/huischeck_fetch.js"></script>
+
 
 ## De Huischeck
 Op deze pagina is het mogelijk om nadere informatie te krijgen over uw huis en buurt op basis van onder andere de PDOK Locatieserver. 
@@ -23,37 +23,11 @@ dat er 1 form is en dat achter de schermen het id van de suggest API direct word
  over het adres) netjes wordt geprint op de pagina. Zie huischeck_fetch.js voor de pogingen met de Fetch API.
 -->
 
-<form action="https://geodata.nationaalgeoregister.nl/locatieserver/v3/suggest" method="get" name="adres">
   <div>
-    <label for="q"></label>
     <input name="q" id="adres" value=""> 
+    <button id='huischeck_now'>Check uw huis</button>
+    <script type="text/javascript" src="/apps/huischeck/huischeck_fetch.js"></script>
   </div>
-  <div>
-    <button>Check uw huis(suggest)</button>
-  </div>
-</form>
-
-<br>
-
-<form action="https://geodata.nationaalgeoregister.nl/locatieserver/v3/lookup" method="get" name="adres">
-  <div>
-    <label for="id"></label>
-    <input name="id" id="adres" value=""> 
-  </div>
-  <div>
-    <button>Check uw huis(lookup)</button>
-  </div>
-</form>
-
-<script>
-fetch('https://geodata.nationaalgeoregister.nl/locatieserver/v3/lookup?id=adr-c93ebdc4481109d788cb932d5b393788')
-    .then(function(response) {
-       return response.json();
-    })
-    .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-    });
-</script>
 
 ## Informatie over uw huis
 <!--
@@ -63,8 +37,10 @@ van het desbetreffende adres.
 
 Als u uw adres heeft ingevoerd, vindt u hieronder de informatie over uw huis:
 
-
-<br>
+<div>
+<p id="AdressInfo"> 
+</p>
+</div>
 
 ## QR-code
 <!--
@@ -75,14 +51,11 @@ zou dus automatisch achteraan de onderstaande URI moeten worden geplakt.
 De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) van uw huis. Wanneer u deze 
 code scant komt u uit op een pagina met informatie over uw huis uit de basisregistraties van het Kadaster.
 
-<div id="qrcodeCanvas"></div>
-<script>
-	jQuery('#qrcodeCanvas').qrcode({
-		render	: "canvas",
-		text	: "https://bag.basisregistraties.overheid.nl/bag/doc/nummeraanduiding/0228200000001253"
-	});	
-</script>
+<div id="qrcodeCanvas">
 
+</div>
+<button id='printQRcode'>Print de QR-code</button>
+ 
 ## SPARQL Query
 <!--
 De SPARQL query is nu nog een rechtstreekse kopie van de vind-een-gebouw query, om te layout van de pagina te testen
