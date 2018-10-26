@@ -53,4 +53,27 @@ $(document).ready(function() {
         mywindow.focus(); // necessary for IE >= 10*/
 
     })
+
+    $("#printSPARQL").click(function PrintElem(){
+        var mywindow = window.open('', 'PRINT', 'height=1920,width=1080');
+
+        mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+        mywindow.document.write('<style> @media print {@page { margin: 0; } body { margin: 1.6cm; }}</style>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write('<img src="Kadaster_woordmerk_RGB_crop.jpg" width="256" vspace="20" id="kadasterlogo" onload="print()"/>');
+        mywindow.document.write('<div><canvas id="printCanvas"></canvas></div>');
+        mywindow.document.write('</body></html>');
+        mywindow.document.write("<script>setTimeout(function(){print(); }, 1000)</script>");
+
+        sourceContext = document.getElementById('SPARQLcanvas').firstChild.getContext("2d");
+        imgData = sourceContext.getImageData(0, 0, 1920, 1080);
+        destinationCanvas = mywindow.document.getElementById('printCanvas');
+        destinationCanvas.width = 1000;
+        destinationCanvas.height = 1000;
+        var printContext = destinationCanvas.getContext('2d');
+        printContext.putImageData(imgData, 0, 0);
+
+        mywindow.focus(); // necessary for IE >= 10*/
+
+    })
 });

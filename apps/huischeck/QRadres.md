@@ -43,9 +43,10 @@ code scant komt u uit op een pagina met informatie over uw huis uit de basisregi
 Een andere manier om informatie van uw huis op te vragen is via SPARQL-queries. Dit kan 
 door door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaande query.
 
-<div data-query
+<div id="SPARQLcanvas" data-query
      data-query-sparql="huischeck_sparql.rq">
 </div>
+<button id='printSPARQL'>Print de resultaten van de SPARQL query</button>
 
 ## Uw huis in 3D
 Het is ook mogelijk om om huis en straat in 3D te bekijken op basis van de BAG. [Klik hier](https://stories.triply.cc/kadaster/3d-bag/) 
