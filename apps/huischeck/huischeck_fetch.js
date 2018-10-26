@@ -9,14 +9,6 @@ Provincienaam: ${locatieserverLookup.provincienaam}<br>
 Waterschapsnaam: ${locatieserverLookup.waterschapsnaam}<br>
 `);
 
-    // $('#AdressInfo').append(locatieserverLookup.buurtnaam);
-    // $('#AdressInfo').text(locatieserverLookup.weergavenaam);
-    // $('#AdressInfo').text(locatieserverLookup.gemeentenaam);
-    // $('#AdressInfo').text(locatieserverLookup.wijknaam);
-    // $('#AdressInfo').text(locatieserverLookup.waterschapsnaam);
-    // $('#AdressInfo').text(locatieserverLookup.provincienaam);
-
-
     $('#qrcodeCanvas').empty();
     $('#qrcodeCanvas').qrcode({
         render: "canvas",
@@ -50,10 +42,6 @@ $(document).ready(function() {
         mywindow.document.write('</body></html>');
         mywindow.document.write("<script>setTimeout(function(){print(); }, 1000)</script>");
 
-        // mywindow.printImage = function (){
-        //     mywindow.print();
-        // };
-
         sourceContext = document.getElementById('qrcodeCanvas').firstChild.getContext("2d");
         imgData = sourceContext.getImageData(0, 0, 256, 256);
         destinationCanvas = mywindow.document.getElementById('printCanvas');
@@ -62,14 +50,8 @@ $(document).ready(function() {
         var printContext = destinationCanvas.getContext('2d');
         printContext.putImageData(imgData, 0, 0);
 
-        //mywindow.document.close(); // necessary for IE >= 10
         mywindow.focus(); // necessary for IE >= 10*/
 
-
-        //$('#kadasterlogo').on("load", function () {
-           // mywindow.print();
-          //mywindow.close();
-        //});
     })
 });
 
