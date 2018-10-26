@@ -67,3 +67,13 @@ door door uw adres in te vullen bij de <code>values</code> operatoren in de onde
 <div data-query
      data-query-sparql="huischeck_sparql.rq">
 </div>
+
+## Uw huis in 3D
+Het is ook mogelijk om om huis en straat in 3D te bekijken op basis van de BAG. [Klik hier](https://stories.triply.cc/kadaster/3d-bag/) 
+om naar de 3D viewer te gaan.
+De onderstaande video laat zien hoe u de query kan aanpassen.
+
+<video width="1280" height="720" controls>
+  <source src="3Dbag_voorbeeld.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
