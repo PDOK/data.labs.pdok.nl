@@ -17,8 +17,16 @@ Naast broodroosters en wasmachines kunnen nu ook panden over een energielabel be
 <img src="energy_performance_rating.svg" />
 
 ## Energielabels en Machine Learning
-Het blijkt niet eenvoudig om een model voor energielabels van woningen handmatig te *tunen* zodanig dat er betrouwbare voorspellingen uit komen. Toch is het met behulp van automatisch lerende algoritmes te doen: met behulp van een eenvoudige [decision tree](https://en.wikipedia.org/wiki/Decision_tree) en slechts het bouwjaar en oppervlak van een woonhuis is met een nauwkeurigheid van 80% een energielabel te voorspellen dat maximaal één label naast het daadwerkelijke label zit. Een exacte match is lastiger: op basis van enkel bouwjaar en oppervlak is slechts een nauwkeurigheid van 45% te geven.
+Het blijkt niet eenvoudig om een model voor energielabels van woningen handmatig te *tunen* zodanig dat er betrouwbare voorspellingen uit komen. Toch is het met behulp van automatisch lerende algoritmes te doen: met behulp van een eenvoudige [decision tree](https://en.wikipedia.org/wiki/Decision_tree) en slechts het bouwjaar en oppervlak van een woonhuis is met een nauwkeurigheid van 81% een energielabel te voorspellen dat maximaal één label naast het daadwerkelijke label zit. Een exacte match is lastiger: op basis van enkel bouwjaar en oppervlak is slechts een nauwkeurigheid van 40% te geven. Let wel dat het model is getraind op enkel woningen, die voornamelijk door woningbouwcoorporaties zijn verzameld. Inschattingen met dit model op andere typen panden zoals fabrieksgebouwen of kantoren zijn onvoorspelbaar, maar waarschijnlijk zeer onbetrouwbaar.
 
 **Beweeg de kaart om de voorspellingen te genereren.**
 <div id="map"></div>
 <script src="energyLabelMap.js"></script>
+
+## Hoe werkt het?
+Deze demo is gemaakt met enkel **open data en open source software**. We hebben een een eenvoudig decision tree model met een maximum diepte van 6 beslisstappen getraind op het zo goed mogelijk voorspellen van energielabels op basis van bouwjaar en pandoppervlak. Daartoe zijn energielabels gebruikt die de [Rijkdsdienst voor Ondernemend Nederland (RVO)](https://rvo.nl) verzamelt en ter beschikking heeft gesteld. Er is gewerkt met de energielabels van juni 2017. 
+In kort bestek hebben we het volgende gedaan:
+- Een decision tree [model](https://github.com/SPINLab/energy-performance-prediction/blob/master/model/energy_label_decision_tree_demo_model.py) is getraind, met behulp van [scikit-learn](http://scikit-learn.org).
+- Het getrainde model is [met een script vertaald](https://github.com/SPINLab/energy-performance-prediction/blob/master/model/dtree_to_code.py) naar een geneste set [beslisregels in JavaScript](https://github.com/PDOK/data.labs.pdok.nl/blob/master/apps/energielabels/decisionTree.js).
+- Dit model, getransformeerd naar JavaScript, wordt ingeladen in de browser bij het opvragen van deze pagina.
+- Telkens als de kaart wordt verschoven, worden er nieuwe panden uit de [PDOK BAG WFS](http://nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/1c0dcc64-91aa-4d44-a9e3-54355556f5e7) gehaald. De eigenschappen bouwjaar en oppervlak worden door de decision tree vertaald naar een inschatting van een energielabel. Voor het label wordt de bijbehorende kleurcode berekend en vervolgens wordt het pand in de kaart ingekleurd met deze kleur. 
