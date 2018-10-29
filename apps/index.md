@@ -20,8 +20,6 @@ onder [publicaties](/publications).
   - [Landen Browser](../presentations/landen-browser/)
   - [Monumenten Browser](../presentations/monumenten-browser/)
   - [Nationaal Archief Browser](../presentations/nationaal-archief/)
-  - [Transport Browser](../presentations/transport-browser/)
-  - [Voorzieningen Browser](../presentations/voorzieningen-browser/)
   - [Woningen Browser](../presentations/woningen-browser/)
 
 ## Archiefviewer
