@@ -37,7 +37,7 @@ $(document).ready(function() {
         mywindow.document.write('<html><head><title>' + document.title  + '</title>');
         mywindow.document.write('<style> @media print {@page { margin: 0; } body { margin: 1.6cm; }}</style>');
         mywindow.document.write('</head><body >');
-        mywindow.document.write('<img src="Kadaster_woordmerk_RGB_crop.jpg" width="256" vspace="20" id="kadasterlogo" onload="print()"/>');
+        mywindow.document.write('<img src="Kadaster_woordmerk_RGB_crop.jpg" width="180" vspace="10mm" id="kadasterlogo" onload="print()"/>');
         mywindow.document.write('<div><canvas id="printCanvas"></canvas></div>');
         mywindow.document.write('</body></html>');
         mywindow.document.write("<script>setTimeout(function(){print(); }, 1000)</script>");
