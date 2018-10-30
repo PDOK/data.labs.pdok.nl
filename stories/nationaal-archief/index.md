@@ -49,20 +49,6 @@ afbeeldingen van die kerk uit de Beeldbank.
   <button>Voer query uit in 3D</button>
 </a>
 
-<!--
-## Links met andere datasets
-
-Het is veel moeilijker om beelden uit de Beeldbank te koppelen aan
-andere datasets.  Hier proberen we de afgebeelde zwembaden in de BRT
-te vinden, maar dat lukt niet helemaal:
-
-<div data-query
-     data-query-endpoint="https://api.demo.triply.cc/datasets/kadaster/brt/services/sparql/sparql"
-     data-query-sparql="brt.rq"
-     data-query-output="leaflet">
-</div>
--->
-
 ## Galerij
 
 De Beeldbank van het Nationaal Archief leent zich goed voor het tonen

@@ -1,0 +1,76 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape ?shapeColor ?shapeLabel {
+  bind("Apeldoorn" as ?woonplaatsNaam)
+  bind("Hofstraat" as ?openbareRuimteNaam)
+  bind(110 as ?huisnummer)
+  bind(str(?huisnummer) as ?huisnummer0)
+  graph ?woonplaatsVoorkomen {
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+  }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+  graph ?openbareRuimteVoorkomen {
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
+                    bag:naamOpenbareRuimte ?openbareRuimteNaam.
+  }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+  graph ?nummeraanduidingVoorkomen {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                      bag:huisnummer ?huisnummer;
+                      bag:postcode ?postcode.
+  }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+  graph ?verblijfsobjectVoorkomen {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                     bag:oppervlakte ?oppervlakte;
+                     bag:pandrelatering ?pand;
+                     bag:status ?verblijfsobjectStatus.
+  }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
+  ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
+  graph ?pandVoorkomen {
+    ?pand bag:geometriePand/geo:asWKT ?shape;
+          bag:oorspronkelijkBouwjaar ?bouwjaar;
+          bag:status ?pandStatus.
+  }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
+  ?pandStatus rdfs:label ?pandStatusLabel
+  service <https://data.labs.pdok.nl/sparql> {
+    graph graph:energielabels {
+      optional {
+        _:0 energielabels:e_label ?energielabel;
+            energielabels:opname_datum ?opnamedatum;
+            energielabels:pand_huisnummer ?huisnummer0;
+            energielabels:pand_postcode ?postcode;
+            energielabels:registratie_datum ?registratiedatum.
+      }
+    }
+  }
+  bind(if(!(bound(?energielabel)), "grey",
+       if(strstarts(?energielabel,"A"), "#22b14c",
+       if(?energielabel="B", "#8ff334",
+       if(?energielabel="C", "#bdfc2c",
+       if(?energielabel="D", "#fff200",
+       if(?energielabel="E", "#ff9a35",
+       if(?energielabel="F", "#ff7f27",
+       if(?energielabel="G", "#ed1c24", "grey")))))))) as ?shapeColor)
+  bind(concat(
+    '<h5>',
+    '<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">',
+    '<circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10">',
+    '</svg>',
+    ' Energielabel ',str(?energielabel),' (opnamedatum ',str(?opnamedatum),')</h5>',
+    '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
+    '<ul>',
+    '<li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m²</li>',
+    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
+    '</ul>',
+    '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
+    '<ul>',
+    '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
+    '</ul>') as ?shapeLabel)
+}

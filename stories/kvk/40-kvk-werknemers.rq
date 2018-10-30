@@ -1,12 +1,14 @@
 prefix kvk: <http://data.labs.pdok.nl/kvk/def/>
 prefix schema: <http://schema.org/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?werknemers ?naam {
+select ?naam (sum(?werknemers) as ?werknemers) {
   graph <http://data.labs.pdok.nl/graph/kvk> {
-    ?organizatie kvk:plaats "Zwolle"^^xsd:string ;
-                 schema:legalName ?naam ;
-                 schema:numberOfEmployees ?werknemers .
+    ?organizatie
+      kvk:plaats "Zwolle"^^xsd:string;
+      schema:legalName ?naam;
+      schema:numberOfEmployees ?werknemers.
   }
 }
+group by ?naam
 order by desc(?werknemers)
 limit 25

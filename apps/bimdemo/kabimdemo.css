@@ -65,7 +65,7 @@ h3 {
 #logo {
   position: fixed;
   width: 300px;
-  z-index: 100000;
+  z-index: 99999;
   left: 20;
   bottom: 20;
 }

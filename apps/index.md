@@ -10,6 +10,14 @@ Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden
 ontwikkeld of getest.  Presentaties en publicaties zijn te vinden
 onder [publicaties](/publications).
 
+## Energielabels voorspellen voor panden
+Voor het Geo Gebruikersfestival 2018 ontwikkelde het Kadaster een [demo-applicatie voor het voorspellen van energielabels van panden](energielabels/), op basis van slechts een bouwjaar en een pandoppervlak. Het doel van de demo is aantonen dat met een eenvoudig machine learning model een support system kan worden gerealiseerd.
+
+## De Huischeck
+Voor het Geo Gebruikersfestival 2018, de Kadaster Directiedagen en de GeoBuzz heeft het Kadaster 
+[de Huischeck](../apps/huischeck/QRadres.html) ontwikkeld. In [de Huischeck](../apps/huischeck/QRadres.html) wordt op 
+basis van een adres informatie verstrekt over het desbetrefftende huis, zowel in tekstvorm als met een QR code.
+
 ## Linked Data browsers
 
   - [Bevolkings Browser](../presentations/bevolkings-browser/)
@@ -20,8 +28,6 @@ onder [publicaties](/publications).
   - [Landen Browser](../presentations/landen-browser/)
   - [Monumenten Browser](../presentations/monumenten-browser/)
   - [Nationaal Archief Browser](../presentations/nationaal-archief/)
-  - [Transport Browser](../presentations/transport-browser/)
-  - [Voorzieningen Browser](../presentations/voorzieningen-browser/)
   - [Woningen Browser](../presentations/woningen-browser/)
 
 ## Archiefviewer

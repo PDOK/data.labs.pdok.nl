@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Combineren van gegevensbronnen in de afvalwaterketen
-published: true
+published: false
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
@@ -20,7 +20,7 @@ We bekijken hier het rioleringsgebied van Castricum en vragen dit gebied op met 
 Hieronder wordt een selectie van de beschikbare gegevens getoond. Onder de groene, rode en blauwe markers staat informatie over respectievelijk het rioleringsgebied, het rioolgemaal en de overstorten.
 
 <div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
+     data-query-endpoint="https://sparql.gwsw.nl/repositories/TestDatastory"
      data-query-sparql="rioleringsgebied.rq">
 </div>
 

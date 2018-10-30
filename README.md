@@ -14,7 +14,7 @@
 
   - On Ubuntu: `sudo apt-get install zlib1g-dev libffi-dev ruby-full ruby-dev`
 
-  - On Windows: download and install from https://rubyinstaller.org/downloads
+  - On Windows: download and install the default option from [https://rubyinstaller.org/downloads](https://rubyinstaller.org/downloads)
 
 - Run `gem install bundler`.
 
@@ -25,7 +25,7 @@
   alternatively `bundler exec jekyll serve`.
 
 - the site is now available on
-  [http://localhost:4000](http://localhost:4000).  If you have other
+  [http://localhost:5000](http://localhost:5000).  If you have other
   services running on this port, you can edit `_config.yml` to have
   Jekyll run on a different port.
 
