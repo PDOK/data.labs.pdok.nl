@@ -49,6 +49,16 @@ opvragen:
   data-query-output="gchart"
   data-query-sparql="50-kvk-sbi.rq"></div>
 
+
+## RCE monumenten
+
+In deze buurt liggen ook de meeste RCE monumenten:
+
+<div data-query
+     data-query-sparql="70-buurt-rce.rq">
+</div>
+
+
 ## Energielabels (RVO)
 
 We kunnen ook de energielabels voor Zwolle opvragen, bijvoorbeeld voor
@@ -92,9 +102,3 @@ de BAG panden aan de ‘Diezerstraat’, samen met de kadastrale gegevens.
      data-query-endpoint="https://data.pdok.nl/sparql"
      data-query-sparql="60-energielabel.rq">
 </div>
-
-## RCE monumenten
-
-In deze buurt liggen ook de meeste RCE monumenten:
-
-<div data-query data-query-sparql="70-buurt-rce.rq"></div>
