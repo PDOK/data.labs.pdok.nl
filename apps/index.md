@@ -15,7 +15,7 @@ Voor het Geo Gebruikersfestival 2018 ontwikkelde het Kadaster een [demo-applicat
 
 ## De Huischeck
 Voor het Geo Gebruikersfestival 2018, de Kadaster Directiedagen en de GeoBuzz heeft het Kadaster 
-[de Huischeck](../apps/huischeck/QRadres.html) ontwikkeld. In [de Huischeck](../apps/huischeck/QRadres.html) wordt op 
+[de Huischeck](../apps/huischeck/huischeck.html) ontwikkeld. In [de Huischeck](../apps/huischeck/huischeck.html) wordt op 
 basis van een adres informatie verstrekt over het desbetrefftende huis, zowel in tekstvorm als met een QR code.
 
 ## Linked Data browsers
