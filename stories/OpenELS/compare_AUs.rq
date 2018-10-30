@@ -1,0 +1,42 @@
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix au: <http://inspire.ec.europa.eu/ont/au#>
+Prefix nationallevel: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
+
+select distinct 
+#?au ?auLevel
+#?auFinLabel ?auFinLevel ?d
+?g ?order (count(?au) as ?count)
+ { 
+  
+ {graph ?g { ?au a  au:AdministrativeUnit;
+    rdfs:label ?auLabel;
+     au:AdministrativeUnit.nationalLevel ?auLevel.
+      Bind (Strafter(str(?auLevel),"http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/") as ?order )
+    }}
+    Union 
+  {
+  SERVICE <http://193.167.189.160/openels/fuseki/ds/query>{ 
+      graph ?g { ?au a  au:AdministrativeUnit;
+    rdfs:label ?auLabel;
+     au:AdministrativeUnit.nationalLevel ?auLevel.
+            Bind (Strafter(str(?auLevel),"http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/") as ?order )
+#     au:AdministrativeUnit.nationalLevelName ?d.
+     }
+    }
+  }
+  Union
+  {
+  SERVICE <http://rdf.kartverket.no//sparql> { 
+      Values ?g {<http://openels/administrativeunits>}
+      graph ?g { ?au a  au:AdministrativeUnit;
+#    rdfs:label ?auLabel;
+     au:AdministrativeBoundary.nationalLevel ?order1.
+        Bind (replace((?order1), "'", "") as ?order)
+#     au:AdministrativeUnit.nationalLevelName ?d.
+     }
+    }
+     }
+ } #limit 10
+Group by ?g ?order
+
