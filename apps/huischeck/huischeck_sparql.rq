@@ -6,7 +6,7 @@ prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?postcode ?huisnummer ?openbareRuimteNaam ?woonplaatsNaam ?oppervlakte ?pandStatusLabel ?supermarkt ?huisarts ?kinderdagverblijf ?school {
+select ?openbareRuimteNaam ?huisnummer ?woonplaatsNaam ?postcode ?bouwjaar ?oppervlakte ?aantalinwoners ?mannen ?vrouwen ?woningwaarde ?koopwoningen ?huurwoningen ?woningenvoor2000 ?woningenvanaf2000 ?elektriciteitsverbruik ?supermarkt ?huisarts ?kinderdagverblijf ?school {
   bind("Apeldoorn" as ?woonplaatsNaam)
   bind("Hofstraat" as ?openbareRuimteNaam)
   bind(110 as ?huisnummer)
@@ -50,6 +50,24 @@ select ?postcode ?huisnummer ?openbareRuimteNaam ?woonplaatsNaam ?oppervlakte ?p
           dimension:regio ?buurt .
       _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
           dimension:regio ?buurt .
+      _:5 def:bevolking_AantalInwoners ?aantalinwoners ;
+          dimension:regio ?buurt .
+      _:6 def:wonen_GemiddeldeWoningwaarde ?woningwaarde ;
+          dimension:regio ?buurt .
+      _:7 def:wonen_WoningenNaarEigendom_Koopwoningen ?koopwoningen ;
+          dimension:regio ?buurt .
+      _:8 def:wonen_WoningenNaarEigendom_Huurwoningen_HuurwoningenTotaal ?huurwoningen ;
+          dimension:regio ?buurt .
+      _:9 def:energie_GemiddeldElektriciteitsverbruik_GemiddeldElektriciteitsverbruikTotaal ?elektriciteitsverbruik ;
+          dimension:regio ?buurt .
+      _:10 def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?woningenvoor2000 ;
+          dimension:regio ?buurt .
+      _:11 def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?woningenvanaf2000 ;
+          dimension:regio ?buurt .
+      _:12 def:bevolking_Geslacht_Mannen ?mannen ;
+          dimension:regio ?buurt .
+      _:13 def:bevolking_Geslacht_Vrouwen ?vrouwen ;
+                dimension:regio ?buurt .
     ?buurt geo:hasGeometry ?geometry;
            a cbs:Buurt.
   }
