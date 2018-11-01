@@ -1,13 +1,15 @@
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
 prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?shape ?shapeColor ?shapeLabel {
+select ?openbareRuimteNaam ?huisnummer ?woonplaatsNaam ?postcode ?bouwjaar ?oppervlakte ?aantalinwoners ?mannen ?vrouwen ?woningwaarde ?koopwoningen ?huurwoningen ?woningenvoor2000 ?woningenvanaf2000 ?elektriciteitsverbruik ?supermarkt ?huisarts ?kinderdagverblijf ?school {
   bind("Apeldoorn" as ?woonplaatsNaam)
   bind("Hofstraat" as ?openbareRuimteNaam)
   bind(110 as ?huisnummer)
-  bind(str(?huisnummer) as ?huisnummer0)
   graph ?woonplaatsVoorkomen {
     ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
   }
@@ -38,39 +40,35 @@ select ?shape ?shapeColor ?shapeLabel {
   }
   filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
   ?pandStatus rdfs:label ?pandStatusLabel
-  service <https://data.labs.pdok.nl/sparql> {
-    graph graph:energielabels {
-      optional {
-        _:0 energielabels:e_label ?energielabel;
-            energielabels:opname_datum ?opnamedatum;
-            energielabels:pand_huisnummer ?huisnummer0;
-            energielabels:pand_postcode ?postcode;
-            energielabels:registratie_datum ?registratiedatum.
-      }
-    }
+  service <https://betalinkeddata.cbs.nl/sparql> {
+    ?shape geo:sfWithin ?geometry.
+      _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
+          dimension:regio ?buurt .
+      _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
+          dimension:regio ?buurt .
+      _:3 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
+          dimension:regio ?buurt .
+      _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
+          dimension:regio ?buurt .
+      _:5 def:bevolking_AantalInwoners ?aantalinwoners ;
+          dimension:regio ?buurt .
+      _:6 def:wonen_GemiddeldeWoningwaarde ?woningwaarde ;
+          dimension:regio ?buurt .
+      _:7 def:wonen_WoningenNaarEigendom_Koopwoningen ?koopwoningen ;
+          dimension:regio ?buurt .
+      _:8 def:wonen_WoningenNaarEigendom_Huurwoningen_HuurwoningenTotaal ?huurwoningen ;
+          dimension:regio ?buurt .
+      _:9 def:energie_GemiddeldElektriciteitsverbruik_GemiddeldElektriciteitsverbruikTotaal ?elektriciteitsverbruik ;
+          dimension:regio ?buurt .
+      _:10 def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?woningenvoor2000 ;
+          dimension:regio ?buurt .
+      _:11 def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?woningenvanaf2000 ;
+          dimension:regio ?buurt .
+      _:12 def:bevolking_Geslacht_Mannen ?mannen ;
+          dimension:regio ?buurt .
+      _:13 def:bevolking_Geslacht_Vrouwen ?vrouwen ;
+                dimension:regio ?buurt .
+    ?buurt geo:hasGeometry ?geometry;
+           a cbs:Buurt.
   }
-  bind(if(!(bound(?energielabel)), "grey",
-       if(strstarts(?energielabel,"A"), "#22b14c",
-       if(?energielabel="B", "#8ff334",
-       if(?energielabel="C", "#bdfc2c",
-       if(?energielabel="D", "#fff200",
-       if(?energielabel="E", "#ff9a35",
-       if(?energielabel="F", "#ff7f27",
-       if(?energielabel="G", "#ed1c24", "grey")))))))) as ?shapeColor)
-  bind(concat(
-    '<h5>',
-    '<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">',
-    '<circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10">',
-    '</svg>',
-    ' Energielabel ',str(?energielabel),' (opnamedatum ',str(?opnamedatum),')</h5>',
-    '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
-    '<ul>',
-    '<li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m²</li>',
-    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
-    '</ul>',
-    '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
-    '<ul>',
-    '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
-    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
-    '</ul>') as ?shapeLabel)
 }

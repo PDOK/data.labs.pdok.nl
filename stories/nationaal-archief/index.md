@@ -20,7 +20,7 @@ zijn vastgelegd.
      data-query-output="gchart">
 </div>
 
-## Gemeentes
+<!-- ## Gemeentes
 
 Op basis van de locatie kunnen we de beelden uit de Beeldbank op de
 kaart zetten.  Hieronder tonen we de gemeentes met ten minste één
@@ -30,7 +30,7 @@ beeld in de Beeldbank.
      data-query-endpoint="https://api.demo.triply.cc/datasets/kadaster/brt/services/sparql/sparql"
      data-query-sparql="gemeentes.rq"
      data-query-output="leaflet">
-</div>
+</div> --> <!-- Deze query is uitgezet in verband met performance op de server -->
 
 ## Kerken: Beeldbank (Nationaal Archief) & BAG (Kadaster)
 

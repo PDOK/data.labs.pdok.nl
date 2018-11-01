@@ -1,28 +1,25 @@
-prefix dce: <http://purl.org/dc/elements/1.1/>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix dc: <http://purl.org/dc/elements/1.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
+
 select ?shape (sample(?shapeLabel) as ?shapeLabel) {
   {
     select ?gemeenteNaam1 ?shape {
-      ?gemeente a gg:Municipality;
+      ?gemeente a brt:Gemeente;
         geo:hasGeometry ?geo1;
         rdfs:label ?gemeenteNaam1.
-      filter not exists { ?gemeente gg:endDate ?end. }
-      ?geo1 geo:asWKT ?shape;
-            gg:year ?year1.
-      filter not exists {
-        ?gemeente geo:hasGeometry/gg:year ?year2.
-        filter(?year2 > ?year1)
-      }
+      ?geo1 geo:asWKT ?shape.
+
     }
   }
-  ?image
-    dce:description ?description;
-    schema:contentLocation/schema:name ?gemeenteNaam2;
-    schema:thumbnail ?url.
-  filter(str(?gemeenteNaam1) = str(?gemeenteNaam2))
+  { service <https://api.demo.triply.cc/datasets/nationaal-archief/beeldbank/services/sparql/sparql> {
+    ?image schema:contentLocation ?gemeenteNaam1;
+      dc:description ?description;
+          schema:thumbnail ?url.
+    }
+}
   bind(concat(
     '<h3>',?gemeenteNaam1,'</h3>',
     '<img width="250" src="',?url,'">',

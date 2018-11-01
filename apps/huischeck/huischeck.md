@@ -1,6 +1,7 @@
 ---
 endpoint: https://data.pdok.nl/sparql
 layout: story
+logo: /apps/huischeck/logo.png
 title: De Huischeck
 output: leaflet
 ---
