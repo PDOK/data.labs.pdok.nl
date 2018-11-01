@@ -1,0 +1,12 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix au: <http://inspire.ec.europa.eu/ont/au#>
+select ?s ?name where {
+
+?s a au:AdministrativeUnit;
+   rdfs:label "'s-Gravenhage"@nl;
+                            rdfs:seeAlso ?inDb.
+   service <http://factforge.net/repositories/ff-news> {
+       ?inDb <http://www.geonames.org/ontology#alternateName> ?name .
+    FILTER (( lang(?name) = "es" ) || ( lang(?name) = "fi" ) || ( lang(?name) = "no" ))
+  }
+   }

@@ -3,40 +3,37 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 Prefix au: <http://inspire.ec.europa.eu/ont/au#>
 Prefix nationallevel: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
 
-select distinct 
-#?au ?auLevel
-#?auFinLabel ?auFinLevel ?d
-?g ?order (count(?au) as ?count)
- { 
-  
- {graph ?g { ?au a  au:AdministrativeUnit;
-    rdfs:label ?auLabel;
-     au:AdministrativeUnit.nationalLevel ?auLevel.
-      Bind (Strafter(str(?auLevel),"http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/") as ?order )
-    }}
-    Union 
+select
+?country (count(distinct ?au1st) as ?1stLevel) (count(distinct ?au2nd) as ?2ndLevel) (count(distinct ?au3rd) as ?3rdLevel) (count(distinct ?au4th) as ?4thLevel)
+{
+{ Values (?g ?country) {(<http://data.labs.pdok.nl/dataset/openels/au> "The Netherlands")}
+    graph ?g {
+      ?au1st au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder>.
+      ?au2nd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder>.
+      ?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.
+ }
+}
+#     Union
+#  {
+#  SERVICE <http://193.167.189.160/openels/fuseki/ds/query>{
+#    Values (?g ?country) {(<http://paikkatiedot.fi/ds/openels/au> "Finland")}
+#      graph ?g {
+#      ?au1st au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder>.
+#      ?au2nd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder>.
+#Optional {?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.}
+#       ?au4th au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/4thOrder>.
+#     }
+#    }
+#  }
+    Union
   {
-  SERVICE <http://193.167.189.160/openels/fuseki/ds/query>{ 
-      graph ?g { ?au a  au:AdministrativeUnit;
-    rdfs:label ?auLabel;
-     au:AdministrativeUnit.nationalLevel ?auLevel.
-            Bind (Strafter(str(?auLevel),"http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/") as ?order )
-#     au:AdministrativeUnit.nationalLevelName ?d.
-     }
-    }
+  SERVICE <http://rdf.kartverket.no//sparql> {
+      Values (?g ?country) {(<http://openels/administrativeunits> "Norway")}
+  graph ?g {
+    ?au2nd au:AdministrativeUnit.nationalLevel "2ndOrder".
+    ?au1st au:AdministrativeUnit.nationalLevel "1stOrder".
+    ?au3rd au:AdministrativeUnit.nationalLevel "3rdOrder".
   }
-  Union
-  {
-  SERVICE <http://rdf.kartverket.no//sparql> { 
-      Values ?g {<http://openels/administrativeunits>}
-      graph ?g { ?au a  au:AdministrativeUnit;
-#    rdfs:label ?auLabel;
-     au:AdministrativeBoundary.nationalLevel ?order1.
-        Bind (replace((?order1), "'", "") as ?order)
-#     au:AdministrativeUnit.nationalLevelName ?d.
-     }
     }
      }
- } #limit 10
-Group by ?g ?order
-
+}  Group by ?g ?country
