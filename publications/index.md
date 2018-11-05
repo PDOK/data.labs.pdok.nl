@@ -38,6 +38,7 @@ Tutorial](../presentations/Kadaster-SPARQL-Tutorial.html)
 
 Hierbij een voorproefje van het bevragen van 3D data door de tijd heen
 (4D) in [BAG to the Future](BAG-to-the-Future.html)
+Ook is er in het kader van de Proeftuin voor de Omgevingswet een [BIM demo](https://data.labs.pdok.nl/apps/bimdemo/) beschikbaar.
 
 ## 3D High5
 
