@@ -17,7 +17,7 @@ select ?widget ?n {
     '<h2 style="position: absolute; bottom: -11px; left: 0; width: 100%;">',
     '<span style="color: white; font: bold 24px/45px Helvetica, Sans-Serif; letter-spacing: -1px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 10px;">',
     str(?subject),'<br><span style="padding:0 5px;"></span>',
-    replace(?n,'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
+    replace(str(?n),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
     ' afbeeldingen</span></h2></div>') as ?widget)
 }
 limit 25
