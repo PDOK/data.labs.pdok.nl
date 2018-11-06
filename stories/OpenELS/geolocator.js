@@ -28,7 +28,7 @@
                 },
 
                 "success": function(data) {
-
+                     console.log(data);
 
                     var features = [];
 
