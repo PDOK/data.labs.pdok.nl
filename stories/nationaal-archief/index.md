@@ -50,7 +50,7 @@ van een galerij  De volgende query toont de onderwerpen met de
 meeste afbeeldingen, samen met het aantal afbeeldingen met dat
 onderwerp.
 
-<query data-query-ref="gallery.rq" data-output=""></query>
+<query data-query-ref="gallery.rq" data-output="gallery"></query>
 
 ## Linked Data Browser
 
