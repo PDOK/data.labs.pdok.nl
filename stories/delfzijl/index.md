@@ -38,7 +38,7 @@ Vervolgens kunnen we het bijbehorende BRT gebouw opzoeken:
 <query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="brt.rq"  data-output="geo">
 </query>
 
-<!-- query data-query data-query-ref="wijk.rq">
+<!-- query data-query-ref="wijk.rq">
 ## Maar is de Wijk wel interessant? (Geo query van BAG pand naar CBS wijk)
 Maar nu wil ik meer weten over de krimpwijk.  Dus gaan we de Wijken en Buurten informatie van CBS bevragen over deze wijk.  Klik maar op de blauwe pijl van de wijk....Uit de rijke set van gegevens van Wijken en Buurten hebben we een paar semi-willekeurige items gekozen zoals afstand tot attractieparken, belangrijk voor mijn kinderen.  Alle andere items zijn eenvoudig toe te voegen door de query aan te passen.
 </query -->
@@ -81,7 +81,7 @@ kunnen doen zonder domein-specifieke tooling.
 <!-- geo support
 ## Landelijke afstand tot kunstijsbanen
 
-<query data-query
+<query 
      data-query-ref="thematische-kaart-kunstijsbaan.rq">
 </query>
 -->

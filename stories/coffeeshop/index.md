@@ -25,7 +25,7 @@ staat onder de locatie-eisen onder meer dat
   middelbaar beroepsonderwijs geldt een afstandscriterium van 250
   meter.”
 
-# Hemelsbreed 
+# Hemelsbreed
 
 Maar wat is een minimum afstand eigenlijk? Is dat hemelsbreed, of over
 de weg? De regelgeving geeft daar geen uitsluitsel over.  Het spreekt
@@ -34,8 +34,7 @@ over een “afstandscriterium van 250 meter”.  Is de eis nu dat er exact
 
 Hemelsbreed liggen de panden niet ver uit elkaar:
 
-<query data-query
-     data-endpoint="https://data.pdok.nl/sparql"
+<query data-endpoint="https://data.pdok.nl/sparql"
      data-query-ref="afstand-coffeeshop-school.rq"
      data-showQuery>
 </query>

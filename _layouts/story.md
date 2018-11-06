@@ -3,10 +3,10 @@ layout: default
 ---
 
 {% if page.endpoint %}
-    <div class="container story" data-query-endpoint="{{ page.endpoint }}" data-query-output="{{ page.output }}">
+    <div class="container story" data-endpoint="{{ page.endpoint }}" data-output="{{ page.output }}">
 {% else %}
   <!-- Fallback to default labs endpoint -->
-  <div class="container story" data-query-endpoint="https://data.labs.pdok.nl/sparql/" data-query-output="{{ page.output }}">
+  <div class="container story" data-endpoint="https://data.labs.pdok.nl/sparql/" data-output="{{ page.output }}">
 {% endif %}
 
 {{ content }}
@@ -23,7 +23,7 @@ layout: default
 /*Changes made to the colours of the headers from sparql. Could only be forced with important at the moment.*/
 
 th {
-	color: black !important; 
+	color: black !important;
 	background: white !important;
 }
 
@@ -31,7 +31,7 @@ th {
 	top: 100px !important;
 }
 
-header {	
+header {
   display: none;
 }
 
