@@ -12,22 +12,23 @@ easy to showcase the results of SPARQL queries to human users.
 
 Data Stories defines the following two HTML elements:
 
-  * **data story** element
+  * <nobr>**data story** element
 
     An HTML `div` element with class name `story`.
-  * **query** element
+</nobr>
+  * <nobr>**query** element
 
     An HTML `query` element.
-
+</nobr>
 A Data Stories document has exactly one data story element, which
 contains zero or more data query elements as its direct children.
 
 ## Story element
 
 The following attributes are defined on a *data story* element:
-
+<nobr>
   * `data-endpoint`
-
+</nobr>
     The SPARQL endpoint against which all queries in this story are
     executed. Default: data-query-endpoint="https://data.labs.pdok.nl/sparql/".
   * `data-output`
