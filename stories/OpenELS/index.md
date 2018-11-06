@@ -9,7 +9,7 @@ title:  .
 ## Geolocator
    Here will be the geolocator widget
 
-  <link rel="stylesheet" type="text/css" href="/assets/css/ol.css"/>
+  <link rel="stylesheet" type="text/css" href="/assets/js/openlayers/v4.6.5-dist/ol.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
 
@@ -19,7 +19,7 @@ title:  .
       }
   </style>
 
-  <script type="text/javascript" src="/assets/js/ol.js"></script>
+  <script type="text/javascript" src="/assets/js/openlayers/v4.6.5-dist/ol.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/datatables.min.js"></script>
   
