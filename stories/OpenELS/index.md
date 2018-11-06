@@ -40,7 +40,7 @@ Lets see what names are used to refer to the corresponding administrative levels
        data-endpoint="https://data.labs.pdok.nl/openels/sparql"
        data-query-ref="levels_names.rq"
        data-output="table">
- </div>
+ </query>
 
 ### Comparing structure of administrative division
 
