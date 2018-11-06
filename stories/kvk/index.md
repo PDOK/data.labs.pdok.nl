@@ -50,7 +50,8 @@ In deze buurt liggen ook de meeste RCE monumenten:
 
 <query
     data-endpoint = "https://data.labs.pdok.nl/sparql"
-     data-query-ref="70-buurt-rce.rq">
+     data-query-ref="70-buurt-rce.rq"
+     data-output="geo">
 </query>
 
 
