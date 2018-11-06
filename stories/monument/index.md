@@ -20,18 +20,13 @@ Administratie Gebouwen (BAG) welk verblijfsobject en welk pand bij het
 monument horen (dataset 3).  In de BAG vinden we ook het bouwjaar en
 de gebruiksstatus van dit verblijfsobject en pand.
 
-<div data-query
-     data-query-sparql="museum_flehite.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="museum_flehite.rq" data-output="geo"></query>
 
 ## Prinsegracht 5, Den Haag
 
-<div data-query
-     data-query-sparql="prinsegracht-5.rq">
-</div>
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="prinsegracht-5.rq" data-output="geo"></query>
 
 ## Monumenten in Amersfoort
 
-<div data-query
-     data-query-sparql="almere_monuments.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="almere_monuments.rq" data-output="geo"></query>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <link href="https://nightly.yasgui.triply.cc/build/yasgui.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui/yasgui.min.css" rel="stylesheet" type="text/css"
   </head>
   <body>
     <h1>Testing the new Data Stories</h1>
@@ -42,7 +42,8 @@
     <query data-config="http://127.0.0.1:4000/stories/test/#query=prefix%20bag%3A%20%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aselect%0A%20%20%3FshapeVerblijfsobject%0A%20%20%3FshapeVerblijfsobjectColor%0A%20%20%3FshapeVerblijfsobjectLabel%0A%20%20%3FshapePand%0A%20%20%3FshapePandLabel%0A%7B%0A%20%20bind(%22Science%20Park%22%20as%20%3FstreetName)%0A%20%20graph%20%3Fg1%20%7B%0A%20%20%20%20%3FopenbareRuimte%20bag%3AbijbehorendeWoonplaats%20%3Fwoonplaats%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bag%3AnaamOpenbareRuimte%20%3FstreetName.%0A%20%20%7D%0A%20%20filter%20not%20exists%20%7B%20%3Fg1%20bag%3AeindGeldigheid%20_%3A1.%20%7D%0A%20%20%3Fwoonplaats%20rdfs%3Alabel%20%22Amsterdam%22%40nl.%0A%20%20graph%20%3Fg2%20%7B%0A%20%20%20%20%3Fnummeraanduiding%20bag%3AbijbehorendeOpenbareRuimte%20%3FopenbareRuimte%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bag%3Ahuisnummer%20%3Fhuisnummer%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bag%3Apostcode%20%3Fpostcode.%0A%20%20%7D%0A%20%20filter%20not%20exists%20%7B%20%3Fg2%20bag%3AeindGeldigheid%20_%3A2.%20%7D%0A%20%20graph%20%3Fg3%20%7B%0A%20%20%20%20%3Fverblijfsobject%20a%20%3Fclass%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bag%3Ahoofdadres%20%3Fnummeraanduiding%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bag%3Apandrelatering%20%3Fpand%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20geo%3AhasGeometry%2Fgeo%3AasWKT%20%3FshapeVerblijfsobject.%0A%20%20%7D%0A%20%20filter%20not%20exists%20%7B%20%3Fg3%20bag%3AeindGeldigheid%20_%3A3.%20%7D%0A%20%20%3Fclass%20rdfs%3Alabel%20%3Flabel.%0A%20%20graph%20%3Fg4%20%7B%0A%20%20%20%20%3Fpand%20bag%3AgeometriePand%2Fgeo%3AasWKT%20%3FshapePand.%0A%20%20%7D%0A%20%20filter%20not%20exists%20%7B%20%3Fg4%20bag%3AeindGeldigheid%20_%3A4.%20%7D%0A%20%20bind(concat(str(%3FstreetName)%2C'%20'%2Cstr(%3Fhuisnummer))%20as%20%3FshapePandLabel)%0A%20%20bind(concat(%3FshapePandLabel%2C'%20'%2Cstr(%3Fpostcode)%2C'%3Cbr%3E'%2Cstr(%3Flabel))%20as%20%3FshapeVerblijfsobjectLabel)%0A%20%20bind(%22red%22%20as%20%3FshapeVerblijfsobjectColor)%0A%7D%0Alimit%201000%0A&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=geo&outputSettings=%7B%22map%22%3A%22nlmaps%22%2C%22grouped%22%3Afalse%7D"
            data-endpoint="https://data.pdok.nl/sparql"
            data-output="geo"
-           data-query-ref="geo.rq">
+           data-query-ref="geo.rq"> <!-- //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped' -->
+
     </query>
     <h2>3D visualization</h2>
     <p>
@@ -67,7 +68,7 @@
            data-output="gallery"
            data-query-ref="gallery.rq"></query>
     </query>
-    <script src="https://nightly.yasgui.triply.cc/build/yasgui.min.js"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
     <script type="text/javascript">window.onload = function () { Yasgui.stories(); }</script>
   </body>
 </html>

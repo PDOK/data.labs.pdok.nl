@@ -3,28 +3,32 @@ layout: default
 ---
 
 {% if page.endpoint %}
-    <div class="container story" data-query-endpoint="{{ page.endpoint }}" data-query-output="{{ page.output }}">
+    <div class="container story" data-endpoint="{{ page.endpoint }}" data-output="{{ page.output }}">
 {% else %}
   <!-- Fallback to default labs endpoint -->
-  <div class="container story" data-query-endpoint="https://data.labs.pdok.nl/sparql/" data-query-output="{{ page.output }}">
+  <div class="container story" data-endpoint="https://data.labs.pdok.nl/sparql/" data-output="{{ page.output }}">
 {% endif %}
 
 {{ content }}
 
 </div>
-<script type="text/javascript">
-{% if page.basemap %}
-YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "{{ page.basemap }}";
-{% else %}
-YASGUI.YASR.plugins.leaflet.defaults.defaultMap = "nlmaps";
-{% endif %}
-YASGUI.sparqlStories();
-</script>
 
 <style>
 .google-visualization-table .gradient {
   color: black;
   font-family: inherit;
+}
+
+
+/*Changes made to the colours of the headers from sparql. Could only be forced with important at the moment.*/
+
+th {
+	color: black !important;
+	background: white !important;
+}
+
+.yasgui .yasqe .CodeMirror-fullscreen {
+	top: 100px !important;
 }
 
 header {

@@ -1,4 +1,5 @@
 /* global YASGUI */
+document.addEventListener("DOMContentLoaded", function(event) {
 
 const query = `
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
@@ -19,14 +20,14 @@ select * where {
 order by ?dist_metres
 limit 10`;
 
-YASGUI.YASQE.defaults.value = query;
+Yasgui.Yasqe.Instance.defaults.value = query;
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(location => {
-    YASGUI.YASQE.defaults.value = query.replace(
+    Yasgui.Yasqe.Instance.defaults.value = query.replace(
       'POINT(5 52)', `POINT(${location.coords.longitude} ${location.coords.latitude})`
     );
-    YASGUI.sparqlStories();
+    Yasgui.stories();
   });
 }
-
+});

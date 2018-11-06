@@ -20,7 +20,8 @@ wanneer alle energiebesparende maatregelen die nog kunnen worden
 toegepast in de woning worden gerealiseerd.  Besparingen liggen
 landelijk tussen €0 (blauw/koud) en €2.280 (rood/warm).
 
-<div data-query data-query-sparql="10-reëel.rq"></div>
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="10-reeel.rq" data-output="geo"></query>
 
 ## Reële energiebesparing: Bouwfysische besparingen
 
@@ -35,7 +36,7 @@ Bouwfysische maatregelen bestaan uit:
 - isolatie van gevels
 - kierdichting en HR beglazing
 
-<div data-query data-query-sparql="bouwfysisch.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="bouwfysisch.rq" data-output="geo"></query>
 
 ## Reële energiebesparing: Installatietechnische besparingen
 
@@ -50,7 +51,7 @@ bestaan uit:
 - zonneboiler
 - zonnepanelen
 
-<div data-query data-query-sparql="installatietechnisch.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="installatietechnisch.rq" data-output="geo"></query>
 
 ## Theoretische energiebesparing
 
@@ -58,4 +59,4 @@ De volgende thematische kaart laat de theoretische energiebesparing
 zien.  Landelijk ligt dit besparingspotentieel tussen €0 en €1.900 per
 koopwoning per jaar.
 
-<div data-query data-query-sparql="theoretisch.rq"> </div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="theoretisch.rq" data-output="geo"></query>

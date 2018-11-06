@@ -20,8 +20,8 @@ lege ‘registratieDatumVervallen’.
 Query 1: Altijd fout: Query op BGT (bestaand vervallen) en BAG (pand
 in gebruik, pand buiten gebruik, sloopvergunning verleend)
 
-<div data-query
-     data-query-sparql="q1.rq"></div>
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q1.rq" data-output="geo"></query>
 
 Query 2: Fout (met tijd delta): Query op BGT (bestaand vervallen) en
 BAG (pand in gebruik-niet ingemeten, en pand gesloopt) waarbij delta
@@ -30,20 +30,19 @@ in bron registratie datum meer dan 6 maanden is. (gradient yasgui)
 Query 3: Signalerings query (zelfde als bij 2, maar dan binnen de 6
 maanden). Oftewel die moet de bronhouder aanpassen.
 
-<div data-query
-     data-query-sparql="q2.rq"></div>
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q2.rq" data-output="geo"></query>
 
 ## Windturbines in de BAG
 
 Één voorbeeld:
 
-<div data-query
-     data-query-sparql="windturbine-bag1.rq"></div>
+
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="windturbine-bag1.rq" data-output="geo"></query>
 
 Allemaal:
 
-<div data-query
-     data-query-sparql="windturbine-bag2.rq"></div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="windturbine-bag2.rq" data-output="geo"></query>
 
 Query 4: De BGT bevat ook de straatnaam, en die zou overgenomen moeten
 zijn uit de BAG: Query: Geeft mij de straatnamen in de gemeente

@@ -8,6 +8,4 @@ title: Kadaster Data Stories ― Natura 2000
 
 # Natura 2000
 
-<div data-query
-     data-query-sparql="natura.rq">
-</div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="natura.rq" data-output="geo"></query>

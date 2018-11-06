@@ -18,7 +18,7 @@ select ?shape (sample(?shapeColor_) as ?shapeColor) (sample(?shapeLabel_) as ?sh
                        bag:status ?verblijfsobjectStatus .
       ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
       ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
-            bag:geometriePand/geo:asWKT ?shape ;
+            geo:hasGeometry/geo:asWKT ?shape ;
             bag:status ?pandStatus .
           ?pandStatus rdfs:label ?pandStatusLabel .
     }

@@ -14,6 +14,6 @@ Voor deze pagina dient u uw browser toe te staan om uw locatie op te halen...
 <!-- if the geolocation request doesn't work out: fill the div text with a comment -->
 <div id="remarks"></div>
 
-<div data-query></div>
+<query data-endpoint="https://data.labs.pdok.nl/geosparql" data-output="geo"></query>
 <script type="text/javascript" src="mosselscript.js">
 </script>

@@ -26,8 +26,7 @@ Als kwaliteits indicatie kunnen we zeggen dat dit op een uniforme manier gedaan 
 Kijk bijvoorbeeld naar de volgende query. Hier worden alle geometrieën opgevraagd en gekeken welke notatie ze gebruiken.
 
 
-<div data-query data-query-sparql="spatialuniformity.rq">
-</div>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="spatialuniformity.rq" data-output="geo"></query>
 
 
 De informatie die deze query ons geeft is dat het aantal geometrieën in wkt notatie, gelijk is aan het totale aantal geometrien in de dataset. 
@@ -41,9 +40,7 @@ Laten we een andere kwaliteits indicator als voorbeeld nemen. De kwaliteits metr
 Als we de SPARQL-endpoint vragen om de metriek te bescrijven krijgen we het volgende terug. 
 
 
-<div data-query="" data-query-sparql="surfaceareadescribe.rq">
-</div>
-
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="surfaceareadescribe.rq" data-output="geo"></query>
 
 We zien nu dat deze metriek een vlag plaatst bij een aantal buurten. 
 Ieder van deze heeft de property [oppervlakte](https://data.pdok.nl/cbs/2015/vocab/oppervlakte) niet. 

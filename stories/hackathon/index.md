@@ -23,30 +23,34 @@ Een sfeerimpressie van de hackathon kan hier worden bekeken:
 Verblijfsobjecten met een oppervlakte van 99,999m².  Alle
 verblijfsobjecten met deze oppervlakte worden getoond.
 
-<div data-query data-query-sparql="oppervlakte-groot.rq"></div>
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="oppervlakte-groot.rq" data-output="geo"></query>
 
 Verblijfsobjecten met een oppervlakte van 1m².  Het aantal
 verblijfsobjecten per BAG status is getoond.
 
-<div data-query data-query-sparql="oppervlakte-klein.rq"></div>
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="oppervlakte-klein.rq"></query>
 
 ## Huisnummer
 
 Nummeraanduidingen met huisnummer 9999.  Het aantal nummeraanduidingen
 per BAG status is getoond.
 
-<div data-query data-query-sparql="huisnummer.rq"></div>
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="huisnummer.rq"></query>
 
 ## Huisnummer toevoeging
 
 Nummeraanduidingen met huisnummer toevoeging ‘kwek’.  Het aantal
 nummeraanduidingen per BAG status is getoond.
 
-<div data-query data-query-sparql="huisnummer-toevoeging.rq"></div>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="huisnummer-toevoeging.rq"></query>
 
 ## Bouwjaar
 
 Panden met bouwjaar 9999.  Het aantal panden per BAG status is
 getoond.
 
-<div data-query data-query-sparql="bouwjaar.rq"></div>
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="bouwjaar.rq"></query>

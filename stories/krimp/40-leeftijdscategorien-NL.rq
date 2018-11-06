@@ -1,0 +1,25 @@
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix krimpgebied: <https://data.labs.pdok.nl/cbs/id/krimpgebied/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select
+  ?label
+  (avg(xsd:float(?x1)) as ?inwoners0_14)
+  (avg(xsd:float(?x2)) as ?inwoners15_24)
+  (avg(xsd:float(?x3)) as ?inwoners25_44)
+  (avg(xsd:float(?x4)) as ?inwoners45_64)
+  (avg(xsd:float(?x5)) as ?inwoners65plus)
+{
+  graph graph:krimpgebied {
+    ?gemeente geo:sfWithin/rdfs:label ?label .
+  }
+  graph graph:wijkbuurt-2016 {
+    ?gemeente cbs:inwoners0-14 ?x1 ;
+              cbs:inwoners15-24 ?x2 ;
+              cbs:inwoners25-44 ?x3 ;
+              cbs:inwoners45-64 ?x4 ;
+              cbs:inwoners65\+ ?x5 .
+  }
+}
+group by ?label
