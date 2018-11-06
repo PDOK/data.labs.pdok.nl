@@ -54,13 +54,13 @@ is gemeten in kilowattuur (kWh).
  <script type="text/javascript" src="/assets/js/tableau/viz_v1.js"></script>
  <div class="tableauPlaceholder">
 		<object class='tableauViz'  style='display:none;'>
-			<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-			<param name='embed_code_version' value='3' /> 
+			<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+			<param name='embed_code_version' value='3' />
 			<param name='site_root' value='' />
 			<param name='name' value='Osterheem&#47;Dashboard1' />
 			<param name='tabs' value='yes' />
 			<param name='toolbar' value='yes' />
-			<param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Os&#47;Osterheem&#47;Dashboard1&#47;1.png' /> 
+			<param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Os&#47;Osterheem&#47;Dashboard1&#47;1.png' />
 			<param name='animate_transition' value='yes' />
 			<param name='display_static_image' value='yes' />
 			<param name='display_spinner' value='yes' />
@@ -136,7 +136,7 @@ zijn met een A label: Een voorbeeld voor hun omgeving.  Overigens
 kunnen we ook zien dat dit soort queries ook gemaakt kunnen worden om
 kwaliteitsproblemen op te sporen, zoals pand oppervlaktes van 1m².
 
-<div data-query data-query-sparql="q9.rq"></div>
+<query data-query-ref="q9.rq"></query>
 -->
 
 <!-- not needed anymore
@@ -148,9 +148,9 @@ van het pand (uit de BAG).  We zien dat dit pand bijna 22.000 kWh
 verbruikt, maar ook een grote oppervlakte van 1.888 m² heeft (op het
 pinnetje klikken voor informatie).
 
-<div data-query
-     data-query-sparql="60-Keizersgracht.rq">
-</div>
+<query
+     data-query-ref="60-Keizersgracht.rq">
+</query>
 -->
 
 <!-- queries were unscoped, and now there is much more data: scope the queries
@@ -196,9 +196,9 @@ met andere data.
 </svg>
 ).</p>
 
-<div data-query
-     data-query-sparql="story_04_ams_rvo.rq">
-</div>
+<query
+     data-query-ref="story_04_ams_rvo.rq">
+</query>
 
 # Overzicht energielabels per postcode
 
@@ -209,10 +209,10 @@ een overzicht van de energielabels die in postcodes
 postcode het meeste voorkomt.
 
 Deze query staat tijdelijk uit vanwege performance problemen.
-<div
-  data-query="http://localhost:4000/stories/energie/#query=prefix+cbs%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fdef%2F%3E%0Aprefix+gemeente%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fid%2Fgemeente%2F%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix+energie%3A+%3Chttp%3A%2F%2Fdata.labs.pdok.nl%2Fdataset%2Fenergie%23%3E%0Aselect+%3Fenergielabel+(count(%3Fx)+as+%3Fn)+%7B%0A++bind+(%221094%22+as+%3Fprefix)%0A++%3Fx+energie%3Apand_postcode++%3Fpostcode+%3B%0A+++++energie%3Ae_label+%3Fenergielabel+.%0A++filter+(strstarts(%3Fpostcode%2C+%3Fprefix))%0A%7D%0Agroup+by+%3Fenergielabel%0Aorder+by+desc(%3Fn)%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fapi.krr.triply.cc%2Fdatasets%2FKadaster%2Fgeosoup2%2Fservices%2Fgeosoup%2Fsparql&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22legend%22%3A%22right%22%2C%22width%22%3A600%2C%22height%22%3A371%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22ColumnChart%22%7D%2C%22motionChartState%22%3Anull%7D"
-  data-query-output="gchart"
-  data-query-sparql="100-labels-voor-postcode-prefix.rq"></div>
+<query
+  data-config="http://localhost:4000/stories/energie/#query=prefix+cbs%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fdef%2F%3E%0Aprefix+gemeente%3A+%3Chttps%3A%2F%2Fkrr.triply.cc%2FKadaster%2Fcbs%2Fid%2Fgemeente%2F%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix+energie%3A+%3Chttp%3A%2F%2Fdata.labs.pdok.nl%2Fdataset%2Fenergie%23%3E%0Aselect+%3Fenergielabel+(count(%3Fx)+as+%3Fn)+%7B%0A++bind+(%221094%22+as+%3Fprefix)%0A++%3Fx+energie%3Apand_postcode++%3Fpostcode+%3B%0A+++++energie%3Ae_label+%3Fenergielabel+.%0A++filter+(strstarts(%3Fpostcode%2C+%3Fprefix))%0A%7D%0Agroup+by+%3Fenergielabel%0Aorder+by+desc(%3Fn)%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fapi.krr.triply.cc%2Fdatasets%2FKadaster%2Fgeosoup2%2Fservices%2Fgeosoup%2Fsparql&requestMethod=POST&tabTitle=Query+1&headers=%7B%7D&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22legend%22%3A%22right%22%2C%22width%22%3A600%2C%22height%22%3A371%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22ColumnChart%22%7D%2C%22motionChartState%22%3Anull%7D"
+  data-output="gchart"
+  data-query-ref="100-labels-voor-postcode-prefix.rq"></query>
 -->
 
 ## Energie browser

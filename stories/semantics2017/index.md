@@ -32,13 +32,8 @@ Theatre](http://www.meervaart.nl/congres-event/english/) where
 the postcode `1068LE` and house number `300`, we are able to use a
 SPARQL DESCRIBE to lookup the information about the _nummeraanduiding_
 (number designation):
-<!-- 
-<div data-query
-     data-query-sparql="meerenvaart1.rq"
-     data-query-output="rawResponse">
-</div>
- -->
-<query data-endpoint="hhttps://data.pdok.nl/sparql" data-query-ref="meerenvaart1.rq" data-output="rawResponse"> </query>
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="meerenvaart1.rq" data-output="rawResponse"> </query>
 
 As you can see the returned data shows the nummeraanduiding has an
 outbound _bijbehorende openbare ruimte_ (associated pubilc space) link
@@ -55,19 +50,11 @@ have an associated geometry, which may be a point or polygon.
 Hence it is relatively straightforward to show these geometries on a
 map:
 
-<!-- <div data-query
-     data-query-sparql="meerenvaart2.rq">
-</div> -->
-
 <query data-endpoint="hhttps://data.pdok.nl/sparql" data-query-ref="meerenvaart2.rq" data-output="geo"> </query>
 
 Or we could show the verblijfsobject located in the same property as
 the Meervaart Theatre with a pop-up showing more information about the
 object:
-
-<!-- <div data-query
-     data-query-sparql="meerenvaart3.rq">
-</div> -->
 
 <query data-endpoint="hhttps://data.pdok.nl/sparql" data-query-ref="meerenvaart3.rq" data-output="geo"> </query>
 
@@ -96,11 +83,6 @@ with the associated openbare ruimte and woonplaats.  We also include
 the begin and end date of the validity of each voorkomen.  Note the
 end date is optional as the currently valid voorkomen does not have an
 end date:
-
-<!-- <div data-query
-     data-query-sparql="meerenvaart4.rq"
-     data-query-output="table">
-</div> -->
 
 <query data-endpoint="hhttps://data.pdok.nl/sparql" data-query-ref="meerenvaart4.rq" data-output="table"> </query>
 

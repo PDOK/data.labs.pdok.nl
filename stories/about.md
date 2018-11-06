@@ -13,7 +13,7 @@ easy to showcase the results of SPARQL queries to human users.
 Data Stories defines the following two HTML elements:
 
   * **data story** element
-  
+
     An HTML `div` element with class name `story`.
 
   * **data query** element
@@ -36,7 +36,7 @@ The following attributes are defined on a *data story* element:
 
     The output format that is used to display SPARQL result sets in.
     The following values are supported:
-  
+
     * `boolean`
 
       Specifically used for `ASK` queries.
@@ -65,22 +65,26 @@ The following attributes are defined on a *data story* element:
 
 The following attributes are defined on the `query` element:
 
-  * `data-query`
-  
-    Indicates that the `div` on which it appears is a **data query**.
-  
-  * `data-query-endpoint`
-  
+  * `data-config`
+
+    Used for reading the configuration of links created by the YASGUI share function
+
+  * `data-endpoint`
+
     The SPARQL endpoint against which a particular data query is
     evaluated.  This is typically only used when the endpoint for a
     query differs from the endpoint used by the rest of the story.
 
-  * `data-query-sparql`
+  * `data-query-ref`
 
     An absolute or relative URI to a file that stores a SPARQL query.
-  
-  * `data-query-output`
+
+  * `data-output`
 
     The output format that is used to display the SPARQL result set
     in.  This is typically only used when the output format for a
-    query diffes from the output format used by the rest of the story.
+    query differs from the output format used by the rest of the story.
+
+  * `data-show-query`
+
+    Used to show the query directly to the user

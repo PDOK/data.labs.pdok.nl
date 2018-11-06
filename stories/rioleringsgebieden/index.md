@@ -65,10 +65,10 @@ Gewapend met de kennis over de gemeentes rond het rioleringsgebied kunnen we de 
 Dit doen we door een kleine buffer (in oranje) om de gemeente te leggen en alleen die woonplaatsgebieden te selecteren die hier volledig binnen vallen.
 Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="woonplaatsen-in-rioleringsgebied.rq">
-</div>
+<query
+     data-endpoint="https://data.pdok.nl/sparql"
+     data-query-ref="woonplaatsen-in-rioleringsgebied.rq">
+</query>
 
 De CBS Statistieken worden verzameld per buurt. Zoals de eerdere selectie laat zien is de overlap tussen de buurten en rioleringsgebied lang niet altijd volledig.
 Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het rioleringsgebied:
@@ -76,7 +76,7 @@ Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het r
 **Panden in het rioleringsgebied**  
 Vanuit BAG vragen we op hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
 
-<div data-query
-     data-query-endpoint="https://data.pdok.nl/sparql"
-     data-query-sparql="panden-in-rioleringsgebied.rq">
-</div>
+<query
+     data-endpoint="https://data.pdok.nl/sparql"
+     data-query-ref="panden-in-rioleringsgebied.rq">
+</query>
