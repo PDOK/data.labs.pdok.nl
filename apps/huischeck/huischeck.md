@@ -44,7 +44,7 @@ code scant komt u uit op een pagina met informatie over uw huis uit de basisregi
 Een andere manier om informatie van uw huis op te vragen is via SPARQL-queries. Dit kan
 door door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaande query.
 
-<query data-query-ref="huischeck_sparql.rq">
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="huischeck_sparql.rq">
 </div>
 
 ## Uw huis in 3D

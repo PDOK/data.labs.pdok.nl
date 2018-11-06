@@ -3,10 +3,10 @@ endpoint: https://data.labs.pdok.nl/sparql
 layout: story
 logo: /stories/energie/logo.png
 output: leaflet
-title: 🗲 Energie Data Story 🗲
+title: Energie Data Story
 ---
 
-# 🗲 Energie Data Story 🗲
+# Energie Data Story
 
 Deze data story laat zien welke mogelijkheden er ontstaan als de
 Energielabel Dataset (RVO) beschikbaar gesteld wordt als Linked Data.
