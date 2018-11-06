@@ -13,8 +13,7 @@
 
 
             $.ajax({
-                "url": "http://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
-                // "url": "http://127.0.0.1:5000/stories/OpenELS/data.json",
+                "url": "https://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
                 "async": true,
                 "crossDomain": true,
                 //      "username": "elsld",
