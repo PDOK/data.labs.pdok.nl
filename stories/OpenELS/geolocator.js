@@ -3,7 +3,6 @@
         $("#submitButton").click(function() {
 
             $("#map").empty();
-
             var userInput = $('#topoName').val().trim();
 
             console.log(userInput);
@@ -14,21 +13,13 @@
 
             $.ajax({
                 "url": "https://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
-                // "url": "http://127.0.0.1:5000/stories/OpenELS/data.json",
                 "async": true,
                 "crossDomain": true,
-                //      "username": "elsld",
-                //    "password": "Fee44Poz8",
-                "headers": {
-                    "Authorization": "Basic" + btoa(username + ":" + password)
-                },
-
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
                 },
-
                 "success": function(data) {
-                     console.log(data);
+
 
                     var features = [];
 
@@ -64,9 +55,9 @@
 
                         iconFeature.setStyle(iconStyle);
                         features.push(iconFeature);
-                        //next item...
+
                     }
-                    //    console.log("what is inside" + JSON.stringify(features));
+
                     console.log(data);
 
                     $('#table').DataTable( {
@@ -126,11 +117,11 @@
                      * Add a click handler to hide the popup.
                      * @return {boolean} Don't follow the href.
                      */
-                    closer.onclick = function() {
-                        overlay.setPosition(undefined);
-                        closer.blur();
-                        return false;
-                    };
+                    // closer.onclick = function() {
+                    //     overlay.setPosition(undefined);
+                    //     closer.blur();
+                    //     return false;
+                    // };
 
 
                     var vectorSource = new ol.source.Vector({
@@ -217,12 +208,6 @@
                         console.log(evt.selected);
                         overlay.setPosition(coordinate);
                     });
-
-
-                    // map.addLayer(vectorLayer);
-
-
-
                 }
             });
 
