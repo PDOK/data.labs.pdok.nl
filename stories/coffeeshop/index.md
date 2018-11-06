@@ -35,8 +35,7 @@ over een “afstandscriterium van 250 meter”.  Is de eis nu dat er exact
 Hemelsbreed liggen de panden niet ver uit elkaar:
 
 <query data-endpoint="https://data.pdok.nl/sparql"
-     data-query-ref="afstand-coffeeshop-school.rq"
-     data-showQuery>
+     data-query-ref="afstand-coffeeshop-school.rq">
 </query>
 
 Of 198,0 meter, op decimeters afgerond.  Dan is er weinig bochtenwerk
