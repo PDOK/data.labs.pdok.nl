@@ -22,6 +22,32 @@ title:  .
   <script type="text/javascript" src="/assets/js/ol.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/datatables.min.js"></script>
+  
+   <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+          <label for="topoName" class="font-weight-normal">Here you can search for toponyms:  </label>
+          <input type="search" class="form-control" id="topoName" placeholder="e.g. Amsterdam"/>
+          <button type="button" id="submitButton" class="btn btn-info">Search</button>
+      </form>
+  </nav>
+  
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6">
+              <div id="popup" class="ol-popup">
+                  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                  <div id="popup-content"></div>
+              </div>
+              <div id="map"></div>
+          </div>
+          <div class="col-sm-5">
+              <table id="table" class="table"></table>
+          </div>
+      </div>
+  </div>
+  
+  
+  <script type="text/javascript" src="geolocator.js"></script>
 
 
 
