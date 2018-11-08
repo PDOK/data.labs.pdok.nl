@@ -6,7 +6,7 @@ prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?openbareRuimteNaam ?huisnummer ?woonplaatsNaam ?postcode ?bouwjaar ?oppervlakte ?aantalinwoners ?mannen ?vrouwen ?woningwaarde ?koopwoningen ?huurwoningen ?woningenvoor2000 ?woningenvanaf2000 ?elektriciteitsverbruik ?supermarkt ?huisarts ?kinderdagverblijf ?school {
+select ?openbareRuimteNaam (str(?huisnummer) as ?huisnummerstring) ?woonplaatsNaam (str(?postcode) as ?postcodestring) (str(?bouwjaar) as ?bouwjaarstring) (str(?oppervlakte) as ?oppervlaktestring) (str(?aantalinwoners) as ?aantalinwonersstring) (str(?mannen) as ?mannenstring) (str(?vrouwen) as ?vrouwenstring) (str(?woningwaarde) as ?woningwaardestring) (str(?koopwoningen) as ?koopwoningenstring) (str(?huurwoningen) as ?huurwoningenstring) (str(?woningenvoor2000) as ?woningenvoor2000string) (str(?woningenvanaf2000) as ?woningenvanaf2000string) (str(?elektriciteitsverbruik) as ?elektriciteitsverbruikstring) (str(?supermarkt) as ?supermarktstring) (str(?huisarts) as ?huisartsstring) (str(?kinderdagverblijf) as ?kinderdagverblijfstring) (str(?school) as ?schoolstring) {
   bind("Apeldoorn" as ?woonplaatsNaam)
   bind("Hofstraat" as ?openbareRuimteNaam)
   bind(110 as ?huisnummer)
