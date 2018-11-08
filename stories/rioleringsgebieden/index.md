@@ -67,6 +67,7 @@ Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 
 <query
      data-endpoint="https://data.pdok.nl/sparql"
+     data-output="geo"
      data-query-ref="woonplaatsen-in-rioleringsgebied.rq">
 </query>
 
@@ -78,5 +79,6 @@ Vanuit BAG vragen we op hoeveel panden er binnen het rioleringsgebied vallen. We
 
 <query
      data-endpoint="https://data.pdok.nl/sparql"
+     data-output="table"
      data-query-ref="panden-in-rioleringsgebied.rq">
 </query>
