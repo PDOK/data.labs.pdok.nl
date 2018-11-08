@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Combineren van gegevensbronnen in de afvalwaterketen
-published: false
+published: true
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
@@ -29,7 +29,7 @@ Zo ook voor deze locatie, de directe omgeving van het zuiveringsgebied kent twee
 
 ## Gemeentes rond het rioleringsgebied
 We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Castricum eigenlijk?
-Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op.
+Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we de bijbehorende gemeentes op.
 Als je goed inzoomt, blijkt dat er naast Castricum een kleine overlap is met de gemeentes Bergen, Heemskerk en Uitgeest:
 
 <query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="gemeentes-bij-regio.rq" data-output="geo"></query>
