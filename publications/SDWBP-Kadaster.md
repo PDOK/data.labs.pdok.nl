@@ -5,8 +5,8 @@ layout: default
 
 # Spatial Data on the Web Best Practice Implementation Report
 DISCLAIMER: THIS DOCUMENT IS WORK IN PROGRESS
-## Title
-Kadaster/PDOK Data Platform
+## Spatial Data on the Web at Kadaster/PDOK Data Platform 
+
 
 ## Description of service
 
@@ -14,6 +14,8 @@ Kadaster/PDOK Data Platform
 The Land Registry and Mapping Agency of the Netherlands (‘Kadaster’ in Dutch) is developing an online publication platform for sharing its geospatial data assets called KDP (`Kadaster Data Platform’ in Dutch). One of the main goals of this platform is to better share geospatial data with the wider, web-oriented world, including its developers, approaches, and standards. Linked Open Data (W3C), GeoSPARQL (OGC), and Open APIs (OpenAPI Specification) are the predominant standardized approaches for this purpose. As a result, the most important spatial datasets of the Netherlands – including several key registries – are now being published as Linked Open Data that can be accessed through a SPARQL endpoint and a collection of REST APIs. In addition to providing raw access to the data, Kadaster Data Platform also offers developers functionalities that allow them to gain a better understanding about the contents of its datasets. These functionalities include various ways for viewing Linked Data.
 
 The Dataplatform is made accessible through [PDOK](https://pdok.nl), a neutral platform that traditionally serves a broad range of geospatial datasets in geospatial (OGC) formats. By integrating both we now have a platform that is able to serve OGC formats, Linked Data & APIs, for a broad range of governmental spatial datasets (includings Cadastre, Statistical and Heritage data amongst others).
+
+For this report we chose as focuspoint the KDP extension of PDOK, as such a part of the PDOK infrastructure, and a subset of the PDOK datasets are published by using the KDP extension. 
 
 ### The Architecture of the Platform
 The KDP team has developed an [open-source Java-based framework](http://dotwebstack.org/), which allows organizations to define information products, which can be exposed via different interface types such as REST and RDF URIs. The framework translates each incoming request to an underlying SPARQL query. The query result is then transformed to the actual response, depending on the interface type. The framework can be extended by implementing custom frontend or backend implementations. 
@@ -163,12 +165,12 @@ Check that the source and target of the hyperlink are Spatial Things, unless the
 ### [Best Practice 11: Provide information on the changing nature of spatial things](https://www.w3.org/TR/sdw-bp/#desc-changing-properties)
 
 #### Conformance statement
-Does not conform, mostly: but for some datasets (BAG, BRK, BRT) changes are recorded as material history in Linked Data.
+Conforms. For the KDP datasets (BAG, BRK & BRT) changes are recorded as material history in Linked Data.
 
 ### [Best Practice 12: Expose spatial data through 'convenience APIs'](https://www.w3.org/TR/sdw-bp/#convenience-apis)
 
 #### Conformance statement
-Mostly does not conform, with a few exceptions: BAG, BRK and BRT have JSON REST APIs available.
+Conform, for the KDP datasets (BAG, BRK and BRT) have JSON REST APIs available.
 
 ### [Best Practice 13: Include spatial metadata in dataset metadata](https://www.w3.org/TR/sdw-bp/#spatial-info-dataset-metadata)
 
