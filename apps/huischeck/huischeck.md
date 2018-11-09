@@ -49,7 +49,7 @@ door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaa
 ## Uw huis in 3D
 Het is ook mogelijk om uw huis en straat in 3D te bekijken op basis van de BAG. [Klik hier](https://stories.triply.cc/kadaster/3d-bag/)
 om naar de 3D viewer te gaan.
-De onderstaande video laat zien hoe u de query kan aanpassen.
+De onderstaande video laat zien hoe u de query kan aanpassen. Een aantal voorbeeld adressen staan [hier](https://data.labs.pdok.nl/apps/huischeck/queryResults100best.xlsx) en [hier](https://data.labs.pdok.nl/apps/huischeck/queryResults100bestUnique.xlsx).
 
 <video width="1280" height="720" controls>
   <source src="3Dbag_voorbeeld.mp4" type="video/mp4">
