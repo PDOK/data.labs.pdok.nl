@@ -6,7 +6,8 @@ endpoint: https://query.wikidata.org/sparql
 output: leaflet
 ---
 
-Dit is de placeholder voor ongoing werk rond de Kadaster Knowledge Graph!
+Het werk rondom de Kadaster Knowledge Graph in momenteel in
+uitvoering.
 
 ![KKG-model](https://github.com/PDOK/data.labs.pdok.nl/raw/master/stories/Gemeentes/gemeenten.png)
 
