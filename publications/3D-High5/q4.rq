@@ -1,17 +1,26 @@
-prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix cbs: <https://data.labs.pdok.nl/cbs/def/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select ?wkt ?wktColor ?wktHeight ?wktName {
-  graph <https://data.labs.pdok.nl/graph/cbs-2015> {
-    ?buurt geo:sfWithin/geo:sfWithin ?gemeente ;
-           geo:hasGeometry/geo:asWKT ?wkt ;
-           rdfs:label ?label ;
-           cbs:bedrijfsvestigingen ?x .
-    ?gemeente rdfs:label "Zwolle" .
-  }
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+
+select   ?wkt ?wktColor ?wktHeight ?wktName {
+
+  ?buurt geo:hasGeometry _:101.
+    _:101 geo:asWKT ?wkt .
+     ?buurt rdfs:label ?label.
+     ?buurt ?blank1 _:102.
+   _:102 ?blank2 ?gemeente.
+    ?gemeente rdfs:label "Zwolle"@nl .
+    OPTIONAL{
+       _:1 dimension:regio ?buurt .
+       _:1 def:bedrijfsvestigingen_Sbi2008_BedrijfsvestigingenTotaal ?x .
+    }
+
+
   bind (?x / 645.0 as ?norm)
   bind (concat("jet,",str(?norm)) as ?wktColor)
   bind (?x as ?wktHeight)
-  bind (concat(str(?label),':\n',str(?x),' bedrijfsvestigingen') as ?wktName)
+  bind (concat(str(?label),':\n',str(?x),' ') as ?wktName)
 }
 limit 100
