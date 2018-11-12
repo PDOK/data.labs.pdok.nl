@@ -52,7 +52,6 @@ meer en minder geschikt is.  Daarvoor moeten we eerst de
 afstandswaardes gaan normalizeren om er kleurcodes aan te hangen.
 Daarvoor bepalen we de maximale afstand tot een attractie:
 
-
 <query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="attractie-max.rq" data-output="geo"></query>
 
 Hiermee kunnen we een thematische kaart voor de afstand tot een
