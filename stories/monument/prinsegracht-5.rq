@@ -38,7 +38,7 @@ select ?code ?wkt ?wktLabel {
   bind(concat(
     '<h4>Monument ',str(?code),', ',str(?straatNaam),' ',str(?huisNummer),', <a href="',str(?plaats),'">',str(?plaatsNaam),'</a></h4>',
     '<p>',str(?desc),'</p>',
-    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m^2 oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
     '<p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?bouwjaar),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>'
     ) as ?wktLabel)
 }

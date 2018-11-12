@@ -40,7 +40,7 @@ select distinct ?wkt ?wktLabel {
     '<h3>Stadhouderskade 78, 1072AE Amsterdam</h3>',
     '<h5>BAG</h5>',
     '<ul>',
-    '<li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m²</li>',
+    '<li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m^2</li>',
     '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
     '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li>',
     '</ul>',

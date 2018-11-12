@@ -44,7 +44,7 @@ select distinct ?monument (min(?pandWkt) as ?pandWkt) (min(?pandWktLabel) as ?pa
     '<h3>',str(?straatNaamNL),' ',str(?huisnummer),', <a href="',str(?plaats),'">',str(?plaatsNaamNL),'</a></h3>',
     '<a href="',str(?url),'"><img src="',str(?url),'" style="width: 225px;"></a>',
     '<p>',str(?photographer),', ',str(?date),'</p>',
-    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m^2 oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
     '<p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?bouwjaar),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>') as ?pandWktLabel)
 }
 group by ?monument

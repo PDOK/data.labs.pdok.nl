@@ -75,7 +75,7 @@ select ?shape ?shapeColor ?shapeLabel {
       '<p>address: ',str(?woonplaatsLabel),',  ',str(?postcode),'<br>',str(?straatnaam),',',str(?huisnummer),if(bound(?huisnummerToevoeging),concat(' ',str(?huisnummerToevoeging)),''),'<br>',
       'Pand status: ',str(?pandStatusLabel),'<br>',
       'Bouwjaar: ',str(?bouwjaar) ,'<br>',
-      'Oppervlakte: ',str(?oppervlakte),'m²<br>',
+      'Oppervlakte: ',str(?oppervlakte),'m^2<br>',
       'Opnamedatum: ',str(?opnamedatum),'<br>',
       'Registratiedatum: ',str(?registratiedatum),'</p>') as ?shapeLabel)
   }

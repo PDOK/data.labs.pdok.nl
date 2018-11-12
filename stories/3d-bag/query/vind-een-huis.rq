@@ -62,7 +62,7 @@ select ?shape ?shapeColor ?shapeHeight ?shapeName ?shapeLabel {
     '<h2>',str(?shapeName),'</h2><ul>',
     '<li><b>Oorspronkelijk bouwjaar</b>: ',str(?bouwjaar),'</li>',
     '<li><b>Maximale hoogte</b>: ',str(?shapeHeight),' m</li>',
-    '<li><b>Oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m²</li>',
+    '<li><b>Oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m^2</li>',
     '</ul>') as ?shapeLabel)
 }
 limit 5

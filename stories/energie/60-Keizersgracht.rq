@@ -67,7 +67,7 @@ select distinct ?geo_location ?geo_locationLabel
     bind(concat(
       '<h3>',str(?woonplaatsNaam),' ',str(?postcode),'  ',str(?straatNaam),'  ',str(?huisnummer) ,'</h3>',
       '<ul><li>Pand status: ',str(?pand_status),'</li>',
-      '<li>Pand oppervlakte: ',str(?oppervlakte),' m²','</li>',
+      '<li>Pand oppervlakte: ',str(?oppervlakte),' m^2','</li>',
       '<li>Beschrijving: ',str(?building_type) ,'</li>',
       '<li>Energiecertificaat: ',str(?certificaatnummer) ,'</li>',
       '<li>certificate registered on: ',str(?energy_registratiedatum) ,'</li>',

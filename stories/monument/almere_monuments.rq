@@ -51,7 +51,7 @@ select * {
   }
   bind(concat(
     str(?monumentLabel),
-    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a> met ',str(?oppervlakte),'m^2 oppervlakte en status <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></p>',
     '<p><a href="',str(?pand),'">Pand</a> met bouwjaar ',str(?buildYear),' en status <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></p>') as ?pandWktLabel)
 }
 limit 25
