@@ -14,11 +14,9 @@ select ?shape (sample(?shapeLabel) as ?shapeLabel) {
 
     }
   }
-  { service <https://api.demo.triply.cc/datasets/nationaal-archief/beeldbank/services/sparql/sparql> {
     ?image schema:contentLocation ?gemeenteNaam1;
       dc:description ?description;
           schema:thumbnail ?url.
-    }
 }
   bind(concat(
     '<h3>',?gemeenteNaam1,'</h3>',

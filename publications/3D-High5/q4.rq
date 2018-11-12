@@ -1,0 +1,17 @@
+prefix cbs: <https://krr.triply.cc/Kadaster/cbs/def/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktColor ?wktHeight ?wktName {
+  graph <https://data.labs.pdok.nl/graph/cbs-2015> {
+    ?buurt geo:sfWithin/geo:sfWithin ?gemeente ;
+           geo:hasGeometry/geo:asWKT ?wkt ;
+           rdfs:label ?label ;
+           cbs:bedrijfsvestigingen ?x .
+    ?gemeente rdfs:label "Zwolle" .
+  }
+  bind (?x / 645.0 as ?norm)
+  bind (concat("jet,",str(?norm)) as ?wktColor)
+  bind (?x as ?wktHeight)
+  bind (concat(str(?label),':\n',str(?x),' bedrijfsvestigingen') as ?wktName)
+}
+limit 100

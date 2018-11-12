@@ -7,7 +7,6 @@ select ?shape ?shapeLabel {
     owl:sameAs/geo:hasGeometry/geo:asWKT ?shape;
     rdfs:label ?naam;
     rvo:vlag ?url.
-  bind(concat(
-    '<a href="https://demo.triply.cc/rvo/landen/browser?resource=',encode_for_uri(?land),'" target="_blank"><h2>',?naam,'</h2></a>',
+  bind(concat("<h2>",?naam,'</h2></a>',
     '<img src="',?url,'" width="300">') as ?shapeLabel)
 }

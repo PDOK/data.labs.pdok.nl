@@ -1,0 +1,71 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  {
+    select
+    #(group_concat(distinct ?cLabel;separator='') as ?cLabels)
+    (max(?houseNumber) as ?houseNumberMax)
+    (min(?houseNumber) as ?houseNumberMin)
+    ?huisnummer
+    (sum(?oppervlakte) as ?oppervlakte)
+    ?pand
+    (sample(?shape) as ?shape)
+    ?shapeHeight
+    ?straatNaam
+    ?woonplaatsNaam
+    (max(?zipcode) as ?zipcodeMax)
+    (min(?zipcode) as ?zipcodeMin)
+    {
+      bind("Almelo"@nl as ?woonplaatsNaam)
+      bind("Ootmarsumsestraat"^^xsd:string as ?straatNaam)
+      bind(485 as ?huisnummer)
+      service <https://data.pdok.nl/sparql> {
+        ?place
+          rdfs:isDefinedBy ?graph0;
+          rdfs:label ?woonplaatsNaam.
+        optional {
+          ?graph0 bag:eindGeldigheid ?eind0.
+        }
+        filter(!bound(?eind0))
+        ?openbareRuimte
+          bag:bijbehorendeWoonplaats ?place;
+          bag:naamOpenbareRuimte ?straatNaam;
+          rdfs:isDefinedBy ?graph1.
+        optional {
+          ?graph1 bag:eindGeldigheid ?eind1.
+        }
+        filter(!bound(?eind1))
+        ?nummeraanduiding
+          bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+          bag:huisnummer ?houseNumber;
+          bag:postcode ?zipcode;
+          rdfs:isDefinedBy ?graph2.
+        optional {
+          ?graph2 bag:eindGeldigheid ?eind2.
+        }
+        filter(!bound(?eind2))
+        ?verblijfsobject# a ?c;
+          bag:hoofdadres ?nummeraanduiding;
+          bag:oppervlakte ?oppervlakte;
+          bag:pandrelatering ?pand;
+          rdfs:isDefinedBy ?graph3.
+        optional {
+          ?graph3 bag:eindGeldigheid ?eind3.
+        }
+        filter(!bound(?eind3))
+        ?pand
+          bag:geometriePand/geo:asWKT ?shape;
+          rdfs:isDefinedBy ?graph4.
+        optional {
+          ?graph4 bag:eindGeldigheid ?eind4.
+        }
+        filter(!bound(?eind4))
+      }
+    }
+    group by ?huisnummer ?pand ?shapeHeight ?straatNaam ?woonplaatsNaam
+  }
+  optional { ?pand <https://data.labs.pdok.nl/bag/def/measuredHeight> ?shapeHeight. }
+}
+limit 500

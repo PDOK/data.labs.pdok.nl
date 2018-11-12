@@ -1,0 +1,69 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix openbare-ruimte: <http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select distinct ?shape ?shapeColor ?shapeHeight ?shapeLabel {
+  bind("2016-01-01"^^xsd:date as ?date)
+  bind(openbare-ruimte:0553300000000193 as ?openbareRuimte)
+  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte .
+  ?verblijfsobject bag:pandrelatering ?pand ; bag:hoofdadres ?nummeraanduiding .
+  graph ?voorkomen { ?pand bag:status ?status ; geo:hasGeometry/geo:asWKT ?shape . }
+  ?status rdfs:label ?statusLabel .
+  ?voorkomen bag:beginGeldigheid ?begin .
+  filter(xsd:dateTime(?date) >= ?begin)
+  optional { ?voorkomen bag:eindGeldigheid ?eind }
+  filter(!bound(?eind) || xsd:dateTime(?date) <= ?eind)
+  optional {
+    ?voorkomen bag:eindGeldigheid ?eind .
+    bind(month(?eind) as ?eindMaand)
+    bind(
+      if(?eindMaand=1,'januari',
+        if(?eindMaand=2,'februari',
+          if(?eindMaand=3,'maart',
+            if(?eindMaand=4,'april',
+              if(?eindMaand=5,'mei',
+                if(?eindMaand=6,'juni',
+                  if(?eindMaand=7,'juli',
+                    if(?eindMaand=8,'augustus',
+                      if(?eindMaand=9,'september',
+                        if(?eindMaand=10,'oktober',
+                          if(?eindMaand=11,'november',
+                            if(?eindMaand=12,'december',
+                              'unknown')))))))))))) as ?eindMaandLabel)
+    bind(concat(str(day(?eind)),' ',?eindMaandLabel,' ',str(year(?eind))) as ?eindLabel)
+  }
+  bind(if(?status=begrip:BouwvergunningVerleend,'#bdfc2c',
+       if(?status=begrip:BouwGestart,'#8ff334',
+         if((?status=begrip:PandInGebruik || ?status=begrip:PandInGebruik_nietIngemeten),'#22b14c',
+           if(?status=begrip:NietGerealiseerdPand,'#fff200',
+             if(?status=begrip:PandBuitenGebruik,'#ff9a35',
+               if(?status=begrip:SloopvergunningVerleend,'#ff7f27',
+                if(?status=begrip:PandGesloopt,'#ed1c24','grey'))))))) as ?shapeColor)
+  bind(month(?begin) as ?beginMaand)
+  bind(
+    if(?beginMaand=1,'januari',
+      if(?beginMaand=2,'februari',
+        if(?beginMaand=3,'maart',
+          if(?beginMaand=4,'april',
+            if(?beginMaand=5,'mei',
+              if(?beginMaand=6,'juni',
+                if(?beginMaand=7,'juli',
+                  if(?beginMaand=8,'augustus',
+                    if(?beginMaand=9,'september',
+                      if(?beginMaand=10,'oktober',
+                        if(?beginMaand=11,'november',
+                          if(?beginMaand=12,'december',
+                            'unknown')))))))))))) as ?beginMaandLabel)
+  bind(concat(str(day(?begin)),' ',?beginMaandLabel,' ',str(year(?begin))) as ?beginLabel)
+  bind(concat('<p>Begin datum: ',?beginLabel,'</p>',if(bound(?eind),concat('<p>Eind datum: ',?eindLabel,'</p>'),''),'<p>Status: ',str(?statusLabel),'</p><p><a href="',str(?pand),'">Link naar BAG pand.</a></p>') as ?shapeLabel)
+  bind(
+    if(?status=begrip:BouwvergunningVerleend,32,
+      if(?status=begrip:BouwGestart,30,
+        if((?status=begrip:PandInGebruik || ?status=begrip:PandInGebruik_nietIngemeten),28,
+          if(?status=begrip:NietGerealiseerdPand,26,
+            if(?status=begrip:PandBuitenGebruik,24,
+              if(?status=begrip:SloopvergunningVerleend,22,
+                if(?status=begrip:PandGesloopt,20,'grey'))))))) as ?shapeHeight)
+}

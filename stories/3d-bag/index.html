@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Data Stories ― Kadaster ― 3D BAG Demonstrator">
+    <meta name="author" content="Thomas de Groot en Wouter Beek">
+    <link href="/assets/images/logo.png" icon="/assets/images/logo.png" rel="icon" type="image/x-icon">
+    <title>Data Stories ― Kadaster ― 3D BAG Demonstrator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui/yasgui.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://nightly.yasgui.triply.cc/yasgui.bootstrap.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <!-- <a class="navbar-brand" href="/">
+            <img src="/assets/images/logo.png">
+          </a> -->
+        </div>
+      </div>
+    </nav>
+    <div class="container story" data-endpoint="https://api.demo.triply.cc/datasets/kadaster/bag/services/sparql/sparql" style="width: 100%;">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/images/logo.png">
+      </a>
+      <h1>3D BAG Demonstrator</h1>
+      <hr>
+      <h2>Vind een huis in de BAG</h2>
+      <query data-output="geo3d" data-query-ref="query/vind-een-huis.rq"></query>
+      <h2>Vind een straat in de BAG</h2>
+      <query data-output="geo3d" data-query-ref="query/vind-een-straat.rq"></query>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.Yasr.Instance.plugins.geo3d.defaults.map = 'nlmaps';
+        Yasgui.stories();
+      };
+    </script>
+  </body>
+</html>
