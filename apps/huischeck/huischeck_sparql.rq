@@ -6,69 +6,92 @@ prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select (str(?openbareRuimteNaam) as ?Straatnaam) (str(?huisnummer) as ?Huisnummer) (str(?woonplaatsNaam) as ?Woonplaats) (str(?postcode) as ?Postcode) (str(?bouwjaar) as ?Bouwjaar) (str(?oppervlakte) as ?Oppervlakte) (str(?aantalinwoners) as ?Aantalinwoners) (str(?mannen) as ?Mannen) (str(?vrouwen) as ?Vrouwen) (str(?woningwaarde) as ?Woningwaarde) (str(?koopwoningen) as ?Koopwoningen) (str(?huurwoningen) as ?Huurwoningen) (str(?woningenvoor2000) as ?Woningenvoor2000) (str(?woningenvanaf2000) as ?Woningenvanaf2000) (str(?elektriciteitsverbruik) as ?Elektriciteitsverbruik) (str(?supermarkt) as ?Afstandtotsupermarkt) (str(?huisarts) as ?Afstandtothuisarts) (str(?kinderdagverblijf) as ?Afstandtotkinderdagverblijf) (str(?school) as ?Afstandtotschool) {
-  bind("Apeldoorn" as ?woonplaatsNaam)
-  bind("Hofstraat" as ?openbareRuimteNaam)
-  bind(110 as ?huisnummer)
-  graph ?woonplaatsVoorkomen {
-    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+select (str(?openbareRuimteNaam) as ?Straatnaam) (str(?huisnummer) as ?Huisnummer) (str(?woonplaatsNaam) as ?Woonplaats) (str(?postcode) as ?Postcode) (str(?bouwjaar) as ?Bouwjaar) (str(?oppervlakte) as ?Oppervlakte) (str(?aantalinwoners) as ?Aantalinwoners) (str(?mannen) as ?Mannen) (str(?vrouwen) as ?Vrouwen) (str(?woningwaarde) as ?Woningwaarde) (str(?koopwoningen) as ?Koopwoningen) (str(?huurwoningen) as ?Huurwoningen) (str(?woningenvoor2000) as ?Woningenvoor2000) (str(?woningenvanaf2000) as ?Woningenvanaf2000) (str(?elektriciteitsverbruik) as ?Elektriciteitsverbruik) (str(?supermarkt) as ?Afstandtotsupermarkt) (str(?huisarts) as ?Afstandtothuisarts) (str(?kinderdagverblijf) as ?Afstandtotkinderdagverblijf) (str(?school) as ?Afstandtotschool) (str(?huisnummertoevoeging) as ?huisnummertoevoegingStr) (str(?huisletter) as ?huisletterStr) {
+  {
+    select * {
+      bind("Apeldoorn" as ?woonplaatsNaam)
+      bind("Anthonie Duyckstraat" as ?openbareRuimteNaam)
+      bind(1 as ?huisnummer)
+      bind("G1" as ?huisnummertoevoeging)
+      #bind("a" as ?huisletter)
+      graph ?woonplaatsVoorkomen {
+        ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+      }
+      filter not exists {
+        ?woonplaatsVoorkomen bag:eindGeldigheid []
+      }
+      graph ?openbareRuimteVoorkomen {
+        ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
+                        bag:naamOpenbareRuimte ?openbareRuimteNaam.
+      }
+      filter not exists {
+        ?openbareRuimteVoorkomen bag:eindGeldigheid []
+      }
+      graph ?nummeraanduidingVoorkomen {
+        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                          bag:huisnummer ?huisnummer;
+                          bag:postcode ?postcode.
+      }
+      filter not exists {
+        ?nummeraanduidingVoorkomen bag:eindGeldigheid []
+      }
+      optional {
+        ?nummeraanduiding bag:huisletter ?huisletter.
+      }
+      optional {
+        ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging.
+      }
+      graph ?verblijfsobjectVoorkomen {
+        ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                         bag:oppervlakte ?oppervlakte;
+                         bag:pandrelatering ?pand;
+                         bag:status ?verblijfsobjectStatus.
+      }
+      filter not exists {
+        ?verblijfsobjectVoorkomen bag:eindGeldigheid []
+      }
+      ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
+      graph ?pandVoorkomen {
+        ?pand bag:geometriePand/geo:asWKT ?shape;
+              bag:oorspronkelijkBouwjaar ?bouwjaar;
+              bag:status ?pandStatus.
+      }
+      filter not exists {
+        ?pandVoorkomen bag:eindGeldigheid []
+      }
+      ?pandStatus rdfs:label ?pandStatusLabel
+    }
   }
-  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
-  graph ?openbareRuimteVoorkomen {
-    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
-                    bag:naamOpenbareRuimte ?openbareRuimteNaam.
-  }
-  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
-  graph ?nummeraanduidingVoorkomen {
-    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
-                      bag:huisnummer ?huisnummer;
-                      bag:postcode ?postcode.
-  }
-  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
-  graph ?verblijfsobjectVoorkomen {
-    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
-                     bag:oppervlakte ?oppervlakte;
-                     bag:pandrelatering ?pand;
-                     bag:status ?verblijfsobjectStatus.
-  }
-  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
-  ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
-  graph ?pandVoorkomen {
-    ?pand bag:geometriePand/geo:asWKT ?shape;
-          bag:oorspronkelijkBouwjaar ?bouwjaar;
-          bag:status ?pandStatus.
-  }
-  filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
-  ?pandStatus rdfs:label ?pandStatusLabel
   service <https://betalinkeddata.cbs.nl/sparql> {
     ?shape geo:sfWithin ?geometry.
-      _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
-          dimension:regio ?buurt .
-      _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
-          dimension:regio ?buurt .
-      _:3 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
-          dimension:regio ?buurt .
-      _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
-          dimension:regio ?buurt .
-      _:5 def:bevolking_AantalInwoners ?aantalinwoners ;
-          dimension:regio ?buurt .
-      _:6 def:wonen_GemiddeldeWoningwaarde ?woningwaarde ;
-          dimension:regio ?buurt .
-      _:7 def:wonen_WoningenNaarEigendom_Koopwoningen ?koopwoningen ;
-          dimension:regio ?buurt .
-      _:8 def:wonen_WoningenNaarEigendom_Huurwoningen_HuurwoningenTotaal ?huurwoningen ;
-          dimension:regio ?buurt .
-      _:9 def:energie_GemiddeldElektriciteitsverbruik_GemiddeldElektriciteitsverbruikTotaal ?elektriciteitsverbruik ;
-          dimension:regio ?buurt .
-      _:10 def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?woningenvoor2000 ;
-          dimension:regio ?buurt .
-      _:11 def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?woningenvanaf2000 ;
-          dimension:regio ?buurt .
-      _:12 def:bevolking_Geslacht_Mannen ?mannen ;
-          dimension:regio ?buurt .
-      _:13 def:bevolking_Geslacht_Vrouwen ?vrouwen ;
-                dimension:regio ?buurt .
+    _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
+        dimension:regio ?buurt .
+    _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
+        dimension:regio ?buurt .
+    _:3 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
+        dimension:regio ?buurt .
+    _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
+        dimension:regio ?buurt .
+    _:5 def:bevolking_AantalInwoners ?aantalinwoners ;
+        dimension:regio ?buurt .
+    _:6 def:wonen_GemiddeldeWoningwaarde ?woningwaarde ;
+        dimension:regio ?buurt .
+    _:7 def:wonen_WoningenNaarEigendom_Koopwoningen ?koopwoningen ;
+        dimension:regio ?buurt .
+    _:8 def:wonen_WoningenNaarEigendom_Huurwoningen_HuurwoningenTotaal ?huurwoningen ;
+        dimension:regio ?buurt .
+    _:9 def:energie_GemiddeldElektriciteitsverbruik_GemiddeldElektriciteitsverbruikTotaal ?elektriciteitsverbruik ;
+        dimension:regio ?buurt .
+    _:10 def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?woningenvoor2000 ;
+         dimension:regio ?buurt .
+    _:11 def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?woningenvanaf2000 ;
+         dimension:regio ?buurt .
+    _:12 def:bevolking_Geslacht_Mannen ?mannen ;
+         dimension:regio ?buurt .
+    _:13 def:bevolking_Geslacht_Vrouwen ?vrouwen ;
+         dimension:regio ?buurt .
     ?buurt geo:hasGeometry ?geometry;
            a cbs:Buurt.
   }
 }
+limit 1
