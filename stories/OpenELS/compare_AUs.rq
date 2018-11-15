@@ -30,9 +30,9 @@ select
   SERVICE <http://rdf.kartverket.no//sparql> {
       Values (?g ?country) {(<http://openels/administrativeunits> "Norway")}
   graph ?g {
-    ?au2nd au:AdministrativeUnit.nationalLevel "2ndOrder".
-    ?au1st au:AdministrativeUnit.nationalLevel "1stOrder".
-    ?au3rd au:AdministrativeUnit.nationalLevel "3rdOrder".
+      ?au1st au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder>.
+      ?au2nd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder>.
+      ?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.
   }
     }
      }
