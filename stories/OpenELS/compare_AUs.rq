@@ -13,18 +13,18 @@ select
       ?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.
  }
 }
-#     Union
-#  {
-#  SERVICE <http://193.167.189.160/openels/fuseki/ds/query>{
-#    Values (?g ?country) {(<http://paikkatiedot.fi/ds/openels/au> "Finland")}
-#      graph ?g {
-#      ?au1st au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder>.
-#      ?au2nd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder>.
-#Optional {?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.}
-#       ?au4th au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/4thOrder>.
-#     }
-#    }
-#  }
+     Union
+  {
+  SERVICE <http://193.167.189.160/openels/fuseki/ds/query>{
+    Values (?g ?country) {(<http://paikkatiedot.fi/ds/openels/au> "Finland")}
+      graph ?g {
+      ?au1st au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder>.
+      ?au2nd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder>.
+Optional {?au3rd au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder>.}
+       ?au4th au:AdministrativeUnit.nationalLevel <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/4thOrder>.
+     }
+    }
+  }
     Union
   {
   SERVICE <http://rdf.kartverket.no//sparql> {
