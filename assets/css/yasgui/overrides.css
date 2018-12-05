@@ -16,3 +16,14 @@ div.modal-dialog.google-visualization-charteditor-dialog td
     height: 68px;
     width: 110px
 }
+
+.yasr .dataTable-table td span sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+.yasr .dataTable-table tr:hover {
+  background-color:transparent;
+}
+.yasr .dataTable-table td {
+      border: none;
+}

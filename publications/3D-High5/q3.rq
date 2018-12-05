@@ -1,0 +1,48 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bgt.basisregistraties.overheid.nl/id/begrip/>
+prefix bgt: <http://bgt.basisregistraties.overheid.nl/def/bgt#>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+select ?wkt ?wktColor ?wktHeight ?wktName (sample(?wktLabel) as ?wktLabel) {
+  {
+    select * {
+      graph <https://data.labs.pdok.nl/graph/3d-bag> {
+        ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteNaam ;
+                        bag:bijbehorendeWoonplaats ?woonplaats .
+        ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                          bag:huisnummer ?huisnummer ;
+                          bag:postcode ?postcode .
+        ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                         bag:oppervlakte ?oppervlakte ;
+                         bag:pandrelatering ?pand ;
+                         bag:status ?verblijfsobjectStatus .
+        ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+        ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+              bag:status ?pandStatus ;
+              geo:hasGeometry/geo:asWKT ?wkt .
+        ?pandStatus rdfs:label ?pandStatusLabel .
+      }
+      ?pand schema:height ?wktHeight .
+    }
+  }
+  optional {
+    ?organizatie kvk:plaats "Zwolle"^^xsd:string ;
+                 kvk:legalFormDescription ?legal ;
+                 kvk:sbiOmschrijving ?sbi ;
+                 kvk:huisnummer ?huisnummer ;
+                 schema:legalName ?naam ;
+                 kvk:straat ?straat ;
+                 kvk:postcode ?postcode ;
+                 schema:numberOfEmployees ?werknemers .
+  }
+  bind (if(bound(?organizatie),"yellow","blue") as ?wktColor)
+  bind (if(bound(?organizatie),concat('<h5>KvK informatie:</h5><ul><li>',str(?naam),'</li><li>',str(?legal),'</li><li>SBI: ',str(?sbi),'</li><li>Werknemers: ',str(?werknemers),'</li></ul><h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>'),'') as ?string)
+  bind (concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' ',str(?woonplaatsNaam)) as ?wktName)
+  bind (concat('<h4>',?wktName,'</h4>',?string,'<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
+}
+group by ?wkt ?wktColor ?wktHeight ?wktName
+limit 250

@@ -25,7 +25,6 @@ basis van een adres informatie verstrekt over het desbetrefftende huis, zowel in
   - [BRT Browser](../presentations/brt-browser/)
   - [Economie Browser](../presentations/economie-browser/)
   - [Energie Browser](../presentations/energie-browser/)
-  - [Landen Browser](../presentations/landen-browser/)
   - [Monumenten Browser](../presentations/monumenten-browser/)
   - [Nationaal Archief Browser](../presentations/nationaal-archief/)
   - [Woningen Browser](../presentations/woningen-browser/)

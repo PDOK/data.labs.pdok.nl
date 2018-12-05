@@ -1,0 +1,55 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix beeldbank: <https://cultureelerfgoed.nl/vocab/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix monumenten: <http://lod.kb.nl/rce/vocab/id/01/ceo#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+select ?wkt ?wktColor ?wktHeight ?wktName (sample(?wktLabel) as ?wktLabel) {
+  {
+    select * {
+      graph <https://data.labs.pdok.nl/graph/3d-bag> {
+        ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteNaam ;
+                        bag:bijbehorendeWoonplaats ?woonplaats .
+        ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+        ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                          bag:huisnummer ?huisnummer ;
+                          bag:postcode ?postcode .
+        ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                         bag:oppervlakte ?oppervlakte ;
+                         bag:pandrelatering ?pand ;
+                         bag:status ?verblijfsobjectStatus .
+        ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+        ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+              bag:status ?pandStatus ;
+              geo:hasGeometry/geo:asWKT ?wkt .
+        ?pandStatus rdfs:label ?pandStatusLabel .
+      }
+      ?pand schema:height ?wktHeight .
+    }
+  }
+  {
+    select ?beschrijving ?code ?huisnummer ?monumentUrl ?postcode (group_concat(?afbeeldingLabel) as ?afbeeldingLabel) {
+      graph <https://data.labs.pdok.nl/graph/3d-rce> {
+        ?monument monumenten:hasLink ?monumentUrl ;
+                  monumenten:hasPostCode ?postcode ;
+                  monumenten:hasRijksmonumentNumber ?code ;
+                  monumenten:hasRijksmonumentDefinition ?beschrijving ;
+                  monumenten:hasStreetNumber ?huisnummer .
+      }
+      bind (IRI(concat('https://cultureelerfgoed.nl/id/monument/',str(?code))) as ?x)
+      optional {
+        ?afbeelding foaf:depicts ?x ;
+                    beeldbank:locator ?afbeeldingUrl .
+      }
+      bind (concat('<a href="',str(?afbeeldingUrl),'" target="_blank"><img src="',str(?afbeeldingUrl),'" style="max-height: 100px;"></a>') as ?afbeeldingLabel)
+    }
+    group by ?beschrijving ?code ?huisnummer ?monumentUrl ?postcode
+  }
+  bind (if(?afbeeldingLabel='','blue','red') as ?wktColor)
+  bind (if(bound(?code),concat('<a href="',str(?monumentUrl),'" target="_blank">Monument ',str(?code),'</a>, '),'') as ?string1)
+  bind (if(?afbeeldingLabel='','',concat('<h4>Beelden uit de beeldbank:</h4><div style="max-height:125px; overflow-y: scroll;">',?afbeeldingLabel,'</div><h4>RCE Beschrijving:</h4><p style="max-height: 125px; overflow-y: scroll;">',str(?beschrijving),'</p>')) as ?string2)
+  bind (concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?wktName)
+  bind (concat('<h3>',?string1,str(?openbareRuimteNaam),' ',str(?huisnummer),', <a href="',str(?woonplaats),'" target="_blank">',str(?woonplaatsNaam),'</a></h3>',?string2,'<h4>Informatie uit de BAG:</h4><p><a href="',str(?verblijfsobject),'" target="_blank">Verblijfsobject</a> met ',str(?oppervlakte),'m² oppervlakte en status <a href="',str(?verblijfsobjectStatus),'" target="_blank">',str(?verblijfsobjectStatusLabel),'</a></p><p><a href="',str(?pand),'" target="_blank">Pand</a> met bouwjaar ',str(?bouwjaar),' en status <a href="',str(?pandStatus),'" target="_blank">',str(?pandStatusLabel),'</a></p></center>') as ?wktLabel)
+}
+group by ?wkt ?wktColor ?wktHeight ?wktName

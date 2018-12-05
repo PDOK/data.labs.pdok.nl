@@ -50,7 +50,7 @@ select distinct ?shape ?shapeLabel {
     str(?postcode),' ',str(?woonplaatsLabel),'</h3>',
     '<h4><a href="',str(?bag),'">BAG</a></h4>',
     '<p>Status: ',str(?statusLabel),'<br>',
-    'Oppervlakte: ',str(?oppervlakte),'m²<br>',
+    'Oppervlakte: ',str(?oppervlakte),'m^2<br>',
     'Bouwjaar: ',str(?bouwjaar),'</p>',
     '<h4><a href="',str(?bgt),'">BGT</a></h4>',
     '<p>Begintijd: ',str(?beginLabel),'<br>',

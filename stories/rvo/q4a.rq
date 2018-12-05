@@ -1,8 +1,12 @@
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?naam (xsd:integer(?bbp) as ?bbp_usd) {
+select ?naam ?bbp_usd
+FROM <https://data.labs.pdok.nl/dataset/rvo>
+{
   ?land a rvo:Land ;
     rvo:bbp ?bbp ;
-    rdfs:label ?naam
+    rdfs:label ?naam .
+      FILTER langMatches( lang(?naam), "NL" )
+    BIND(STRDT(STR(?bbp), xsd:integer) AS ?bbp_usd)
 }

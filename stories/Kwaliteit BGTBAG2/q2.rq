@@ -40,7 +40,7 @@ select distinct ?wkt ?wktColor ?wktLabel {
   bind(if(year(?eind) < 2017,"red",if(month(?eind) < 7,"red","orange")) as ?wktColor)
   bind(concat(str(year(?begin)),'-',str(month(?begin)),'-',str(day(?begin))) as ?beginLabel)
   bind(concat(str(year(?eind)),'-',str(month(?eind)),'-',str(day(?eind))) as ?eindLabel)
-  bind(concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m²<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
+  bind(concat('<h3>',str(?openbareRuimteLabel),' ',str(?huisnummer),'<br>',str(?postcode),' ',str(?woonplaatsLabel),'</h3><h4><a href="',str(?bag),'">BAG</a></h4><p>Status: ',str(?statusLabel),'<br>Oppervlakte: ',str(?oppervlakte),'m^2<br>Bouwjaar: ',str(?bouwjaar),'</p><h4><a href="',str(?bgt),'">BGT</a></h4><p>Begintijd: ',str(?beginLabel),'<br>Eindtijd: ',str(?eindLabel),'</p>') as ?wktLabel)
 }
 order by ?delta
 limit 200

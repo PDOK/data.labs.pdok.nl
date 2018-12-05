@@ -4,31 +4,35 @@ prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografis
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?shape ?shapeColor ?shapeLabel {
-  {
-    _:1 def:wonen_Woningvoorraad ?aantal ;
-        dimension:regio ?buurt .
-    filter not exists {
-      _:2 def:wonen_GemiddeldeWoningwaarde ?waarde ;
-          dimension:regio ?buurt .
-    }
-  } union {
+
+select ?shape ?shapeLabel ?shapeColor ?buurtLabel ?waarde ?aantal
+{
+  ?buurt geo:hasGeometry/geo:asWKT ?shape ;
+          rdfs:label ?buurtLabel;
+            ?blank1 _:102.
+   _:102 ?blank2 gemeente:GM0637.
+  OPTIONAL{
+     _:1 dimension:regio ?buurt ;
+      def:wonen_GemiddeldeWoningwaarde ?waarde .
+  }
+  OPTIONAL{
+      _:2 dimension:regio ?buurt ;
+      def:wonen_Woningvoorraad ?aantal .
+  }
+ {
     {
       select (min(?waarde) as ?min) (max(?waarde) as ?max) {
-        _:3 def:wonen_GemiddeldeWoningwaarde ?waarde ;
-            dimension:regio/geo:sfWithin/geo:sfWithin gemeente:GM0637
+        ?buurt def:wonen_GemiddeldeWoningwaarde ?waarde .
       }
+
     }
-    _:4 def:wonen_GemiddeldeWoningwaarde ?waarde ;
-        dimension:regio ?buurt .
-    _:5 def:wonen_Woningvoorraad ?aantal ;
-        dimension:regio ?buurt .
-    bind(concat('jet,',str((?waarde-?min)/xsd:double(?max-?min))) as ?shapeColor)
   }
-  ?buurt geo:hasGeometry/geo:asWKT ?shape ;
-         geo:sfWithin/geo:sfWithin gemeente:GM0637 ;
-         rdfs:label ?buurtLabel
-  bind(concat('<h3>Zoetermeer 》 ',str(?buurtLabel),'</h3>',
-              '<h4>🏠 Gem. woningwaarde: ',if(bound(?waarde),concat('€ ',str(?waarde),'.000,-'),'onbekend'),'</h4>',
-              '<h4>🏙 Woning voorraad: ',replace(?aantal,'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'</h4>') as ?shapeLabel)
+  bind(concat('<h3>Zoetermeer ',str(?buurtLabel),'</h3>',
+              '<h4>Gem. woningwaarde: ',if(bound(?waarde),concat('',str(?waarde),'.000 euro'),'onbekend'),'</h4>',
+      '<h4>Woning voorraad: ',if(bound(?aantal),replace(str(?aantal),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'onbekend'),'</h4>') as ?shapeLabel)
+
+
+
+  bind(concat('jet,',str((?waarde*5)/xsd:double(?max-?min*2))) as ?shapeColor)
 }
+LIMIT 26

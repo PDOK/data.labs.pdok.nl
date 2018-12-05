@@ -6,14 +6,13 @@ prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
 prefix monumenten: <http://lod.kb.nl/rce/vocab/id/01/ceo#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix schema: <http://schema.org/>
 prefix vcard: <http://www.w3.org/2006/vcard/ns#>
-select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shapeLabel) {
-  graph graph:3d-bag {
+select ?wkt ?wktColor ?wktHeight ?wktName (sample(?wktLabel) as ?wktLabel) {
+  graph <https://data.labs.pdok.nl/graph/3d-bag> {
     ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteNaam ;
                     bag:bijbehorendeWoonplaats ?woonplaats .
     ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
@@ -25,12 +24,12 @@ select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shape
                      bag:pandrelatering ?pand ;
                      bag:status ?verblijfsobjectStatus .
     ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
-    ?pand geo:hasGeometry/geo:asWKT ?shape ;
+    ?pand geo:hasGeometry/geo:asWKT ?wkt ;
           bag:oorspronkelijkBouwjaar ?bouwjaar ;
           bag:status ?pandStatus .
     ?pandStatus rdfs:label ?pandStatusLabel .
   }
-  ?pand schema:height ?shapeHeight .
+  ?pand schema:height ?wktHeight .
   # energielabel
   optional {
     ?meting energie:ep ?ep ;
@@ -54,25 +53,25 @@ select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shape
   }
   # monument
   optional {
-    graph graph:3d-rce {
+    graph <https://data.labs.pdok.nl/graph/3d-rce> {
       ?monument monumenten:hasLink ?monumentUrl ;
                 monumenten:hasPostCode ?postcode ;
                 monumenten:hasRijksmonumentNumber ?code ;
                 monumenten:hasRijksmonumentDefinition ?beschrijving ;
                 monumenten:hasStreetNumber ?huisnummer .
     }
-    bind(IRI(concat('https://cultureelerfgoed.nl/id/monument/',str(?code))) as ?x)
+    bind (IRI(concat('https://cultureelerfgoed.nl/id/monument/',str(?code))) as ?x)
     optional {
       ?afbeelding foaf:depicts ?x ;
                   beeldbank:locator ?afbeeldingUrl .
     }
-    bind(concat('<a href="',str(?afbeeldingUrl),'" target="_blank"><img src="',str(?afbeeldingUrl),'" style="max-height: 100px;"></a>') as ?afbeeldingLabel)
+    bind (concat('<a href="',str(?afbeeldingUrl),'" target="_blank"><img src="',str(?afbeeldingUrl),'" style="max-height: 100px;"></a>') as ?afbeeldingLabel)
   }
   # HTML label: RCE
-  bind(if(bound(?afbeeldingLabel),concat('<h5>🖼 Beelden uit de beeldbank:</h5><div style="max-height:125px; overflow-y: scroll;">',?afbeeldingLabel,'</div>'),'') as ?monumentString1)
-  bind(if(bound(?code),concat('<h5>⛪ <a href="',str(?monumentUrl),'" target="_blank">Monument ',str(?code),'</a></h5><p style="max-height: 125px; overflow-y: scroll;">',str(?beschrijving),'</p>',?monumentString1),'') as ?monumentString2)
-  bind(
-    if(bound(?energielabel),
+  bind (if(bound(?afbeeldingLabel),concat('<h5>🖼 Beelden uit de beeldbank:</h5><div style="max-height:125px; overflow-y: scroll;">',?afbeeldingLabel,'</div>'),'') as ?monumentString1)
+  bind (if(bound(?code),concat('<h5>⛪ <a href="',str(?monumentUrl),'" target="_blank">Monument ',str(?code),'</a></h5><p style="max-height: 125px; overflow-y: scroll;">',str(?beschrijving),'</p>',?monumentString1),'') as ?monumentString2)
+  bind (
+    if (bound(?energielabel),
       if(strstarts(?energielabel, "A"), "#22b14c",
         if(?energielabel="B", "#8ff334",
           if(?energielabel="C", "#bdfc2c",
@@ -84,17 +83,17 @@ select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shape
         if(bound(?bedrijf), "#4169e188",
           if(bound(?monument), "#4169e188",
             "#4169e133"))
-    ) as ?shapeColor)
+    ) as ?wktColor)
   # HTML label: RVO
-  bind(if(bound(?meting),concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10"/></svg> '),'') as ?energielabelString1)
-  bind(if(bound(?meting),concat('<h5>🗲 Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul><h5>'),'') as ?energielabelString2)
+  bind (if(bound(?meting),concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?wktColor),'" r="10"/></svg> '),'') as ?energielabelString1)
+  bind (if(bound(?meting),concat('<h5>🗲 Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul><h5>'),'') as ?energielabelString2)
   # HTML label: KvK
-  bind(if(bound(?bedrijf),concat('<h5>🏪 KvK informatie:</h5><ul><li>',str(?naam),'</li><li>',str(?legal),'</li><li>SBI: ',str(?sbi),'</li><li>Werknemers: ',str(?werknemers),'</li></ul>'),'') as ?bedrijfString)
+  bind (if(bound(?bedrijf),concat('<h5>🏪 KvK informatie:</h5><ul><li>',str(?naam),'</li><li>',str(?legal),'</li><li>SBI: ',str(?sbi),'</li><li>Werknemers: ',str(?werknemers),'</li></ul>'),'') as ?bedrijfString)
   # HTML label
-  bind(if(?pand=<http://bag.basisregistraties.overheid.nl/bag/id/pand/0193100000000169>,concat('<video src="https://wouterbeek.github.io/resource/vid/grote-kerk-zwolle.mp4" autoplay height="250" loop></video>'),'') as ?vid)
-  bind(concat('<h4>',?energielabelString1,str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' ',str(?woonplaatsNaam),'</h4>',?vid,?energielabelString2,?bedrijfString,?monumentString2,'<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?oppervlakte),'m^2</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?shapeLabel)
+  bind (if(?pand=<http://bag.basisregistraties.overheid.nl/bag/id/pand/0193100000000169>,concat('<video src="https://wouterbeek.github.io/vid/grote-kerk-zwolle.mp4" autoplay height="250" loop></video>'),'') as ?vid)
+  bind (concat('<h4>',?energielabelString1,str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' ',str(?woonplaatsNaam),'</h4>',?vid,?energielabelString2,?bedrijfString,?monumentString2,'<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',str(?oppervlakte),'m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?wktLabel)
   # tekst label
-  bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?shapeName)
+  bind (concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?wktName)
 }
-group by ?shape ?shapeColor ?shapeHeight ?shapeName
+group by ?wkt ?wktColor ?wktHeight ?wktName
 limit 250
