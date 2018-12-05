@@ -1,0 +1,20 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?wkt ?wktLabel ?wktZ {
+  bind (-42.67 as ?wktZ)
+  {
+    select ?verblijfsobject ?wkt {
+      graph <https://data.labs.pdok.nl/graph/3d-bim> {
+        ?verblijfsobject geo:hasGeometry/geo:asWKT ?wkt .
+      }
+    }
+  }
+  service <https://data.pdok.nl/sparql> {
+    ?verblijfsobject bag:oppervlakte ?oppervlakte ;
+                     bag:status ?verblijfsobjectStatus .
+    ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+  }
+  bind (concat('<h2>Oppervlakte: ',str(?oppervlakte),'m²</h2><h2>Status: ',str(?verblijfsobjectStatusLabel),'</h2><p><a href="',str(?verblijfsobject),'">link</a></p>') as ?wktLabel)
+  bind (substr(str(?verblijfsobject), 65) as ?wktName)
+}

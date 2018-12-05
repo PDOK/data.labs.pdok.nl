@@ -41,7 +41,7 @@ Wat is de gemiddelde woningwaarde per buurt in Zoetermeer?  Op
 onderstaande kaart loopt de schaal van blauw (goedkoper), naar geel
 (gemiddeld), naar rood (duurder).
 
-<query data-endpoint="https://api.demo.triply.cc/datasets/wouter/cbs-dump/services/sparql/sparql"
+<query data-endpoint="https://betalinkeddata.cbs.nl/sparql"
      data-query-ref="q3.rq"
      data-output="geo">
 </query>
@@ -71,7 +71,7 @@ buurt in Zoetermeer biedt de beste toegang tot deze voorzieningen?  De
 kleuren op de kaart lopen nu van donkerblauw (dicht bij), via
 lichtblauw en geel (iets minder dicht bij), naar rood (ver weg).
 
-<query data-endpoint="https://api.demo.triply.cc/datasets/wouter/cbs-dump/services/sparql/sparql"
+<query data-endpoint="https://betalinkeddata.cbs.nl/sparql"
      data-output="geo"
      data-query-ref="q5.rq">
 </query>

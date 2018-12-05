@@ -58,7 +58,7 @@ select ?shape ?shapeLabel {
               '</svg> Waarderstraat 23, 2729KJ Zoetermeer</h3>',
               '<h5><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</h5>',
               '<ul>',
-              '<li>Oppervlakte: ',str(?oppervlakte),'m²</li>',
+              '<li>Oppervlakte: ',str(?oppervlakte),'m^2</li>',
               '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
               '</ul>',
               '<h5><a href="',str(?pand),'">Pand</a>:</h5>',

@@ -51,7 +51,7 @@ select ?pandWkt ?pandWktLabel {
     '<h3>',str(?straatNaam),' ',str(?huisnummer),'</h3>',
     '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</p>',
     '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
-    '<li>Oppervlakte:',str(?oppervlakte),'m²</li>',
+    '<li>Oppervlakte:',str(?oppervlakte),'m^2</li>',
     '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
     '<p><a href="',str(?pand),'">Pand</a>:</p>',
     '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',

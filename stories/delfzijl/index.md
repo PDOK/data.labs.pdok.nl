@@ -52,7 +52,6 @@ meer en minder geschikt is.  Daarvoor moeten we eerst de
 afstandswaardes gaan normalizeren om er kleurcodes aan te hangen.
 Daarvoor bepalen we de maximale afstand tot een attractie:
 
-
 <query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="attractie-max.rq" data-output="geo"></query>
 
 Hiermee kunnen we een thematische kaart voor de afstand tot een
@@ -61,27 +60,7 @@ eenvoudig aan te passen voor andere provincies):
 
 <query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="attractie.rq" data-output="geo"></query>
 
-## Afstand tot kerncentrales: Delfzijl
-
-In bovenstaande queries werd CBS Wijken en Buurten gebruikt om
-informatie te presenteren, maar er is zoveel meer informatie
-beschikbaar! Bijvoorbeeld de BRT bevat een schat aan informatie (met
-name de "Functioneel Gebieden" en "Gebouwen":
-https://brt.basisregistraties.overheid.nl/query/model).  Bijvoorbeeld
-ik wil ook weten op welke afstand de kerncentrales uit Nederland
-liggen.  (deze query is eenvoudig aan te passen voor andere gebouwen)
-
-<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="kerncentrales.rq" data-output="geo"></query>
-
 Met deze data story hebben we laten zien dat we een rijkheid aan
 informatie bij elkaar kunnen tonen uit meerdere data bronnen zoals de
 BAG, Wijken en Buurten, BRT, Monumenten.  En dat we data analyses
 kunnen doen zonder domein-specifieke tooling.
-
-<!-- geo support
-## Landelijke afstand tot kunstijsbanen
-
-<query 
-     data-query-ref="thematische-kaart-kunstijsbaan.rq">
-</query>
--->

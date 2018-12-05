@@ -5,13 +5,17 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
 select
   ?naam
-  (xsd:double(?rvo) as ?rvo)
-  (xsd:double(?cia) * 1.0e3 as ?cia)
-  (?cshapes * 1.0e3 as ?cshapes)
+(SAMPLE(?rvo_val) as ?rvo)
+((SAMPLE(?cia_val) * 1.0e3) as ?cia)
+(SAMPLE(?cshapes_not) * 1.0e3 as ?cshapes)
 {
   ?land a rvo:Land ;
-    owl:sameAs/cia:landArea ?cia ;
-    owl:sameAs/iisg:area ?cshapes ;
+    owl:sameAs/cia:landArea ?cia_not ;
+    owl:sameAs/iisg:area ?cshapes_not ;
     rdfs:label ?naam ;
-    rvo:oppervlakte ?rvo .
+    rvo:oppervlakte ?rvo_not .
+      FILTER langMatches( lang(?naam), "NL" )
+      BIND(STRDT(STR(?rvo_not), xsd:double) AS ?rvo_val)
+      BIND(STRDT(STR(?cia_not), xsd:double) AS ?cia_val)
 }
+GROUP BY ?naam

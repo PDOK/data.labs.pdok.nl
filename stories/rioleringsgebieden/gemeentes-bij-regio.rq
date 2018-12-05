@@ -36,9 +36,15 @@ SELECT ?wktLabel ?wkt ?wktColor WHERE {
     # Zoek de bijbehorende gemeentenaam erbij
     ?gem_uri a brt:Gemeente ;
          rdfs:label ?gem_naam ;
-         brt:geometrie ?geom .
+         brt:geometrie ?geom ;
+    	 brt:nummer ?nummer .
     ?geom geo:asWKT ?wkt .
-    filter(geof:sfIntersects(?wkt_gwsw, ?wkt))
+    bind(strlang("Castricum", "nl") as ?castricum)
+    bind(strlang("Bergen", "nl") as ?bergen)
+    bind(strlang("Heemskerk", "nl") as ?heemskerk)
+    bind(strlang("Uitgeest", "nl") as ?uitgeest)
+    filter(?gem_naam=?castricum || ?gem_naam=?bergen || ?gem_naam=?heemskerk || ?gem_naam=?uitgeest)
+    filter(str(?nummer) != "0893")
     bind(concat("<a target='_blank' href='", str(?gem_uri), "' target='_blank'><h3>", str(?gem_naam), "</h3></a>") as ?wktLabel)
     bind("orange" as ?wktColor)
   }

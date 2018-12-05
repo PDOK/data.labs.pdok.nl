@@ -61,7 +61,7 @@ select distinct ?pand ?shape ?shapeColor ?shapeLabel {
   bind(concat('<h3>',str(?straatname),' ',?huisnummerString,', ',str(?postcode),str(?woonplaats),'</h3>',
               '<li>Pand status: ',str(?pand_status),'</li>',
               '<li>Bouwjaar: ',str(?build_year) ,'</li>',
-              '<li>Oppervlakte: ',str(?oppervlakte),' m²</li>',
+              '<li>Oppervlakte: ',str(?oppervlakte),' m^2</li>',
               '<li>Energie label: ',str(?energielabel),'</li>',
               '<li>Energie label datum: ',str(?registratie_datum),'</li>',
               '</ul>') as ?shapeLabel)

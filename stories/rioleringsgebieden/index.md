@@ -1,7 +1,7 @@
 ---
 layout: story
 title: Combineren van gegevensbronnen in de afvalwaterketen
-published: false
+published: true
 endpoint: https://data.pdok.nl/sparql
 output: leaflet
 logo: /stories/rioleringsgebieden/logo.jpg
@@ -29,7 +29,7 @@ Zo ook voor deze locatie, de directe omgeving van het zuiveringsgebied kent twee
 
 ## Gemeentes rond het rioleringsgebied
 We kunnen snel aan de slag om informatie uit andere bronnen te benutten. De waterschappen zijn niet gebonden aan gemeentegrenzen, dus in welke gemeente(s) ligt het rioleringsgebied Castricum eigenlijk?
-Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we met een ruimtelijke query de bijbehorende gemeentes op.
+Aangezien de toegang tot gemeentenamen worden geleverd via de Basisregistratie Topografie (BRT), vragen we de bijbehorende gemeentes op.
 Als je goed inzoomt, blijkt dat er naast Castricum een kleine overlap is met de gemeentes Bergen, Heemskerk en Uitgeest:
 
 <query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="gemeentes-bij-regio.rq" data-output="geo"></query>
@@ -67,16 +67,20 @@ Het gaat om enkel Castricum, wat Bakkum (volgens de BAG) omvat:
 
 <query
      data-endpoint="https://data.pdok.nl/sparql"
+     data-output="geo"
      data-query-ref="woonplaatsen-in-rioleringsgebied.rq">
 </query>
 
 De CBS Statistieken worden verzameld per buurt. Zoals de eerdere selectie laat zien is de overlap tussen de buurten en rioleringsgebied lang niet altijd volledig.
-Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het rioleringsgebied:
 
+<!--
+Binnen de BAG kan echter exact worden geselecteerd binnen de contouren van het rioleringsgebied:
 **Panden in het rioleringsgebied**  
 Vanuit BAG vragen we op hoeveel panden er binnen het rioleringsgebied vallen. We moeten de panden in de BAG eerst administratief beperken tot de woonplaatsen waarin deze liggen, vervolgens kunnen we geografisch filteren. Het blijkt te gaan om bijna 17000 panden:
 
 <query
      data-endpoint="https://data.pdok.nl/sparql"
+     data-output="table"
      data-query-ref="panden-in-rioleringsgebied.rq">
 </query>
+-->
