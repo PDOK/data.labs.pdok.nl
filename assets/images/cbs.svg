@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 104 156" enable-background="new 0 0 104 156" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#00A1CD" d="M41.3,34.1V42H23.8h-5.5v5.5v7.9v5.5h5.5h17.5v7.9H10.4V34.1H41.3 M46.8,28.6H9.9c-2.8,0-5,2.2-5,5v40.6
+			h41.9V55.3h-23v-7.9h23V28.6L46.8,28.6z"/>
+		<path fill="#00A1CD" d="M67.3,11.4v17.2v5.5h5.5h21.3v34.6H59.4V11.4H67.3 M67.2,60.8h5.5h7.9h5.5v-5.5v-7.9v-5.5h-5.5h-7.9h-5.5
+			v5.5v7.9V60.8 M67.8,5.9H53.9v68.3h45.7V33.6c0-2.8-2.2-5-5-5H72.8V11.2C72.8,8.4,70.5,5.9,67.8,5.9L67.8,5.9z M72.7,55.3v-7.9
+			h7.9v7.9H72.7L72.7,55.3z"/>
+		<path fill="#00A1CD" d="M94,86.8v8H23.8h-5.5v5.5v7v5.5h5.5H94v33.9H10.4v-7.9h70.3h5.5v-5.5v-7.1v-5.5h-5.5H10.4V86.8H94
+			 M99.5,81.3H4.9v44.9h75.8v7.1H4.9v13.9c0,2.8,2.2,5,5,5h84.6c2.8,0,5-2.2,5-5v-39.9H23.8v-7h75.7V81.3L99.5,81.3z"/>
+	</g>
+</g>
+</svg>
