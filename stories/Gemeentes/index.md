@@ -9,7 +9,6 @@ output: leaflet
 Het werk rondom de Kadaster Knowledge Graph in momenteel in
 uitvoering.
 
-#![KKG-model](https://github.com/PDOK/data.labs.pdok.nl/raw/master/stories/Gemeentes/gemeenten.png)
 
 De laatste versie van het KKG figuur: 
 ![KKG-model](https://github.com/PDOK/data.labs.pdok.nl/raw/master/stories/Gemeentes/kkg-publiek.png)
