@@ -176,21 +176,25 @@ kkg:brk-perceel a sh:NodeShape;
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
     sh:class brk:KadastraleGemeente;
+    rdfs:comment "Een brk:Perceel valt binnen een brk:KadastraleGemeente";
   ];
   sh:property [
     sh:path ogc:sfContains;
     sh:name "ogc:sfContains";
     sh:class bag:AdresseerbaarObject;
+    rdfs:comment "Op een brk:Perceel kan een bag:AdresseerbaarObject liggen";
   ];
   sh:property [
     sh:path ogc:sfContains;
     sh:name "ogc:sfContains";
     sh:class brk:Perceel;
+    rdfs:comment "Een brk:Perceel kan zijn ontstaan door samenvoeging van enkele brk:Perceel(en)";
   ];
   sh:property [
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
     sh:class brk:Perceel;
+    rdfs:comment "Een brk:Perceel kan zijn ontstaan door splitsing van enkele brk:Perceel(en)";
   ];
 .
 kkg:brk-appartement a sh:NodeShape;
@@ -200,6 +204,7 @@ kkg:brk-appartement a sh:NodeShape;
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
     sh:class brk:Perceel;
+    rdfs:comment "Een brk:Appartement ligt op een brk:Perceel"
   ]
 .
 kkg:brk-onroerendeZaak a sh:NodeShape;
@@ -313,6 +318,7 @@ kkg:ceo-perceel a sh:NodeShape;
     sh:class brk:Perceel;
     sh:minCount 1;
     sh:maxCount 1;
+    rdfs:comment "Een ceo:Perceel is hetzelfde als een brk:Perceel"
   ];
 .
 kkg:ceo-rijksmonument a sh:NodeShape;
@@ -322,6 +328,7 @@ kkg:ceo-rijksmonument a sh:NodeShape;
     sh:path ogc:sfIntersects;
     sh:name "ogc:sfIntersects";
     sh:class ceo:Perceel;
+    rdfs:label "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
   ];
 .
 
@@ -356,5 +363,6 @@ kkg:ro-bestemmingsvlak a sh:NodeShape;
     sh:path ogc:sfIntersects;
     sh:name "ogc:sfIntersects";
     sh:class brk:Perceel;
+    rdfs:comment "Een ro:Bestemmingsvlak doorsnijdt 1 of meerdere brk:Perceel(en)"
   ]
 .
