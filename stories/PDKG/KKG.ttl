@@ -339,7 +339,7 @@ kkg:rvo-gebouw a sh:NodeShape;
 .
 kkg:rvo-energielabel a sh:NodeShape;
   sh:name "rvo:Energielabel";
-  sh:targetclass rvo:Energielabel;
+  sh:targetClass rvo:Energielabel;
   sh:property [
     sh:path foaf:primaryTopic;
     sh:name "foaf:primaryTopic";
@@ -350,7 +350,7 @@ kkg:rvo-energielabel a sh:NodeShape;
 # Ruimtelijke plannen
 kkg:ro-bestemmingsvlak a sh:NodeShape;
   sh:name "ro:Bestemmingsvlak";
-  sh:targetclass ro:Bestemmingsvlak;
+  sh:targetClass ro:Bestemmingsvlak;
   sh:property kkg:alsPlanologischGebied;
   sh:property [
     sh:path ogc:sfIntersects;
