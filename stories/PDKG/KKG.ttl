@@ -328,7 +328,7 @@ kkg:ceo-rijksmonument a sh:NodeShape;
     sh:path ogc:sfIntersects;
     sh:name "ogc:sfIntersects";
     sh:class ceo:Perceel;
-    rdfs:label "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
+    rdfs:comment "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
   ];
 .
 

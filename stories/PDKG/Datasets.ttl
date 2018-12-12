@@ -109,6 +109,7 @@ dataset:GemeenteGemeenteGebied a void:Dataset;
 .
 
 dataset:RijksmonumentPerceel a void:Dataset;
+  rdfs:label "Monumentpercelen"@nl;
   void:target [void:classPartition [void:class ceo:Rijksmonument]];
   void:target [void:classPartition [void:class ceo:Perceel]];
   void:linkPredicate ceo:heeftPerceel;

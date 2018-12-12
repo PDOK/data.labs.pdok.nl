@@ -53,7 +53,7 @@ meta:OntbreektAanwezig a skos:Concept;
   yed:color "#FF00FF";
 .
 meta:OntbreektBeschikbaar a skos:Concept;
-  rdfs:label "Ontbreekt, wel beschikbaar.";
+  rdfs:label "Ontbreekt, wel beschikbaar te maken";
   skos:definition "Een linkset die ontbreekt als Linked Data, maar wel beschikbaar gemaakt kan worden";
   skos:broader meta:Ontbreekt;
   yed:color "#FFB000";
@@ -244,7 +244,7 @@ meta:CeoPerceelBrkPerceel a rdf:Statement;
   rdf:subject ceo:Perceel;
   rdf:predicate owl:sameAs;
   rdf:object brk:Perceel;
-  dct:type meta:ExterneKoppeling;
+  dct:type meta:OntbreektBeschikbaar;
   rdfs:comment "Het ceo perceel bevat precies de sleutel naar het brk perceel";
   dct:license meta:VrijBeschikbaar;
 .
@@ -252,7 +252,7 @@ meta:CeoRijksmonumentCeoPerceel a rdf:Statement;
   rdf:subject ceo:Rijksmonument;
   rdf:predicate ogc:sfIntersects;
   rdf:object ceo:Perceel;
-  dct:type meta:OntbreektBeschikbaar;
+  dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
 .
 
