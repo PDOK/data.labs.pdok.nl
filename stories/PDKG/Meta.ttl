@@ -1,0 +1,265 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix ogc: <http://www.opengis.net/ont/geosparql#> .
+
+@prefix kkg: <http://data.pdok.nl/def/kkg/> .
+@prefix meta: <http://data.pdok.nl/def/kkg-meta/> .
+@prefix dataset: <http://data.pdok.nl/id/dataset/>.
+@prefix nen3610: <http://example.org/ns/nen3610#> .
+@prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#> .
+@prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>.
+@prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>.
+@prefix bbi: <http://data.pdok.nl/def/bbi#> .
+@prefix owms: <http://standaarden.overheid.nl/owms/terms/>.
+@prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>.
+@prefix woz: <http://example.org/ns/woz#>.
+@prefix ceo: <https://data.cultureelerfgoed.nl/vocab/def/ceo#>.
+@prefix rvo: <http://data.pdok.nl/def/rvo#>.
+@prefix ro: <http://data.informatiehuisruimte.nl/def/ro#>.
+
+@prefix yed: <http://bp4mc2.org/yed#>.
+
+#
+# Metadata
+#
+meta:ExterneKoppeling a skos:Concept;
+  rdfs:label "Externe koppeling";
+  skos:definition "Een linkset die een URI van een externe koppelt met een URI van ons, via owl:sameAs";
+  yed:color "#00FF00";
+.
+meta:Beschikbaar a skos:Concept;
+  rdfs:label "Beschikbaar";
+  skos:definition "Een linkset die beschikbaar is in de registraties van het Kadaster, maar nog niet als Linked Data officieel gepubliceerd via KDP";
+  yed:color "#00FF00";
+.
+meta:Ontbreekt a skos:Concept;
+  rdfs:label "Ontbreekt";
+  skos:definition "Een linkset die ontbreekt als Linked Data";
+  skos:scopeNote "We maken daarbij geen onderscheid tussen linksets die in beginsel wel bij het Kadaster aanwezig zijn, maar nog niet in Linked Data zijn omgezet, en linksets die in het geheel niet aanwezig zijn.";
+  skos:editorialNote "Deze categorie gebruiken we feitelijk niet, maar 1 van de smallere categorieen";
+.
+meta:OntbreektAanwezig a skos:Concept;
+  rdfs:label "Ontbreekt, wel aanwezig.";
+  skos:definition "Een linkset die ontbreekt als Linked Data, maar wel in een andere vorm aanwezig binnen het Kadaster";
+  skos:broader meta:Ontbreekt;
+  yed:color "#FF00FF";
+.
+meta:OntbreektBeschikbaar a skos:Concept;
+  rdfs:label "Ontbreekt, wel beschikbaar te maken";
+  skos:definition "Een linkset die ontbreekt als Linked Data, maar wel beschikbaar gemaakt kan worden";
+  skos:broader meta:Ontbreekt;
+  yed:color "#FFB000";
+.
+meta:OntbreektBestaatNiet a skos:concept;
+  rdfs:label "Ontbreekt en bestaat ook niet";
+  skos:definition "Een linkset die ontbreekt als Linked Data, en ook nog niet bestaat bij het Kadaster";
+  skos:broader meta:Ontbreekt;
+  yed:color "#FF0000";
+.
+
+#
+# Licentievormen
+#
+meta:VrijBeschikbaar a dct:LicenseDocument;
+  rdfs:label "Vrij beschikbaar";
+  skos:definition "De data is vrij beschikbaar";
+  yed:color "#00FF00";
+.
+meta:PubliekBeperktBeschikbaar a dct:LicenseDocument;
+  rdfs:label "Publiek, beperkt beschikbaar";
+  skos:definition "Publieke data, maar alleen via enkelvoudige bevraging beschikbaar";
+  yed:color "#FFB000";
+.
+meta:PubliekBetaaldBeschikbaar a dct:LicenseDocument;
+  rdfs:label "Publiek, alleen via betaling beschikbaar";
+  yed:color "#0000FF";
+.
+meta:Persoonsgebonden a dct:LicenseDocument;
+  rdfs:label "Persoonsgebonden, niet-publieke beschikbaarheid";
+  yed:color "#FF0000";
+.
+meta:NietBeschikbaar a dct:LicenseDocument;
+  rdfs:label "Niet beschikbaar";
+  yed:color "#D0D0D0";
+.
+meta:Onduidelijk a dct:LicenseDocument;
+  rdfs:label "Onduidelijk";
+  yed:color "#FF00FF";
+.
+
+#
+# Temporeel
+#
+meta:Temporeel a dct:PeriodOfTime;
+  rdfs:label "Temporeel";
+  skos:definition "Er is sprake van temporele eigenschappen";
+  yed:color "#0000FF";
+.
+
+meta:PerceelSplitsing a rdf:Statement;
+  rdf:subject brk:Perceel;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:Perceel;
+  rdfs:comment "Deze dataset bestaat als onderdeel van BRKLevering, maar niet openbaar beschikbaar";
+  void:inDataset dataset:PerceelFiliatie;
+  dct:type meta:OntbreektAanwezig;
+  dct:license meta:PubliekBetaaldBeschikbaar;
+  dct:temporal meta:Temporeel;
+.
+meta:PerceelSamenvoeging a rdf:Statement;
+  rdf:subject brk:Perceel;
+  rdf:predicate ogc:sfContains;
+  rdf:object brk:Perceel;
+  rdfs:comment "Deze dataset bestaat als onderdeel van BRKLevering, maar niet openbaar beschikbaar";
+  void:inDataset dataset:PerceelFiliatie;
+  dct:type meta:OntbreektAanwezig;
+  dct:license meta:PubliekBetaaldBeschikbaar;
+  dct:temporal meta:Temporeel;
+.
+
+meta:BagPandBrtGebouw a rdf:Statement;
+  rdf:subject bag:Pand;
+  rdf:predicate ogc:sfOverlaps;
+  rdf:object brt:Gebouw;
+  rdfs:comment "Deze dataset bestaat nog niet, er lopen wel proeven om dit te doen";
+  void:inDataset dataset:PandGebouw;
+  dct:type meta:OntbreektBestaatNiet;
+  dct:license meta:NietBeschikbaar;
+.
+
+meta:BrkPerceelBagNummeraanduiding a rdf:Statement;
+  rdf:subject brk:Perceel;
+  rdf:predicate ogc:sfContains;
+  rdf:object bag:Nummeraanduiding;
+  rdfs:comment "Deze dataset zit niet in onze huidige DKK, maar bestaat wel in de registratie. We kunnen wel een bestand downloaden en omzetten, desnoods in Labs.";
+  void:inDataset dataset:LKO;
+  dct:type meta:OntbreektBeschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BagWoonplaatsBrtGemeente a rdf:Statement;
+  rdf:subject bag:Woonplaats;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:Gemeentegebied;
+  rdfs:comment "Deze dataset zit niet in onze huidige BAG, maar bestaat wel in de registratie";
+  void:inDataset dataset:WoonplaatsGemeente;
+  dct:type meta:OntbreektBeschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BrkKadastraleGemeenteBrkGemeentegebied a rdf:Statement;
+  rdf:subject brk:KadastraleGemeente;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:Gemeentegebied;
+  rdfs:comment "Deze dataset zit wel in de BRK zelf, maar nog niet in onze huidige DKK";
+  void:inDataset dataset:GemeenteGemeenteGebied;
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BbiGemeenteBrkGemeentegebied a rdf:Statement;
+  rdf:subject bbi:Gemeente;
+  rdf:predicate bbi:heeftGebied;
+  rdf:object brk:Gemeentegebied;
+  rdfs:comment "Deze dataset is onderdeel van de BBI (maar hebben we alleen nog op labs)";
+  void:inDataset dataset:Bbi;
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:OwmsGemeenteBbiGemeente a rdf:Statement;
+  rdf:subject owms:Gemeente;
+  rdf:predicate owl:sameAs;
+  rdf:object bbi:Gemeente;
+  rdfs:comment "Betreft koppeling met externe data (alleen nog in labs obv BBI)";
+  dct:type meta:ExterneKoppeling;
+  dct:license meta:VrijBeschikbaar;
+  void:inDataset dataset:Bbi;
+.
+
+meta:CbsGemeenteBrkGemeentegebied a rdf:Statement;
+  rdf:subject cbs:Gemeente;
+  rdf:predicate ogc:sfEquals;
+  rdf:object brk:Gemeentegebied;
+  rdfs:comment "De code is opgenomen bij brt:Gemeente, en daarmee ook beschikbaar voor brk:Gemeentegebied";
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+  void:inDataset dataset:CbsCode;
+.
+
+meta:BrkAppartementPerceel a rdf:Statement;
+  rdf:subject brk:Appartement;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:Perceel;
+  dct:type meta:OntbreektAanwezig;
+  rdfs:comment "Niet geheel duidelijk of dit ook als open data te leveren is. Lijkt er niet op";
+  dct:license meta:Onduidelijk;
+  void:inDataset dataset:AppartementPerceel;
+.
+
+meta:WozObjectBrkOnroerendeZaakEquals a rdf:Statement;
+  rdf:subject woz:Object;
+  rdf:predicate ogc:sfEquals;
+  rdf:object brk:OnroerendeZaak;
+  dct:type meta:OntbreektAanwezig;
+  rdfs:comment "We kunnen de link van de tussen WOZ en BRK krijgen. Wouter is hier mee bezig";
+  dct:license meta:PubliekBeperktBeschikbaar;
+.
+meta:WozObjectBrkOnroerendeZaakWithin a rdf:Statement;
+  rdf:subject woz:Object;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:OnroerendeZaak;
+  dct:type meta:OntbreektAanwezig;
+  rdfs:comment "Dit betreft gegevens die niet vrij beschikbaar zijn, onderdeel van de LV-Woz";
+  dct:license meta:PubliekBeperktBeschikbaar;
+.
+meta:WozObjectBrkOnroerendeZaakContains a rdf:Statement;
+  rdf:subject woz:Object;
+  rdf:predicate ogc:sfContains;
+  rdf:object brk:OnroerendeZaak;
+  dct:type meta:OntbreektAanwezig;
+  rdfs:comment "Dit betreft gegevens die niet vrij beschikbaar zijn, onderdeel van de LV-Woz";
+  dct:license meta:PubliekBeperktBeschikbaar;
+.
+
+meta:RvoGebouwBagAdresseerbaarObject a rdf:Statement;
+  rdf:subject rvo:Gebouw;
+  rdf:predicate ogc:sfContains;
+  rdf:object bag:AdresseerbaarObject;
+  dct:type meta:OntbreektAanwezig;
+  rdfs:comment "De data is beschikbaar, maar moet voor de proef nog omgevormd worden naar Linked Data";
+  rdfs:comment "De vrij beschikbare data betreft de toegewezen energielabels. Automatisch gegenereerde energielabels worden niet ter beschikking gesteld";
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:CeoPerceelBrkPerceel a rdf:Statement;
+  rdf:subject ceo:Perceel;
+  rdf:predicate owl:sameAs;
+  rdf:object brk:Perceel;
+  dct:type meta:OntbreektBeschikbaar;
+  rdfs:comment "Het ceo perceel bevat precies de sleutel naar het brk perceel";
+  dct:license meta:VrijBeschikbaar;
+.
+meta:CeoRijksmonumentCeoPerceel a rdf:Statement;
+  rdf:subject ceo:Rijksmonument;
+  rdf:predicate ogc:sfIntersects;
+  rdf:object ceo:Perceel;
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BestemmingsvlakPerceel a rdf:Statement;
+  rdf:subject ro:Bestemmingsvlak;
+  rdf:predicate ogc:sfIntersects;
+  rdf:object brk:Perceel;
+  dct:type meta:OntbreektBestaatNiet;
+  dct:license meta:VrijBeschikbaar;
+.

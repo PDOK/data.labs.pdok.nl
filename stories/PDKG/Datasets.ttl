@@ -1,0 +1,150 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix ogc: <http://www.opengis.net/ont/geosparql#> .
+
+@prefix kkg: <http://data.pdok.nl/def/kkg/> .
+@prefix meta: <http://data.pdok.nl/def/kkg-meta/> .
+@prefix dataset: <http://data.pdok.nl/def/kkg-dataset/> .
+@prefix nen3610: <http://example.org/ns/nen3610#> .
+@prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#> .
+@prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>.
+@prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>.
+@prefix bbi: <http://data.pdok.nl/def/bbi#> .
+@prefix owms: <http://standaarden.overheid.nl/owms/terms/>.
+@prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>.
+@prefix woz: <http://example.org/ns/woz#>.
+@prefix ceo: <https://data.cultureelerfgoed.nl/vocab/def/ceo#>.
+@prefix rvo: <http://data.pdok.nl/def/rvo#>.
+@prefix organisatie: <http://data.pdok.nl/id/organisatie/>.
+@prefix dataset: <http://data.pdok.nl/id/dataset/>.
+
+@prefix yed: <http://bp4mc2.org/yed#>.
+
+#
+# Datasets
+#
+dataset:Monumenten a void:Dataset;
+  rdfs:label "Monumenten";
+  void:classPartition [ void:class ceo:Rijksmonument];
+  void:sparqlEndpoint <https://data.pdok.nl/sparql/rce>;
+  dct:publisher organisatie:RCE;
+  void:exampleResource <https://linkeddata.cultureelerfgoed.nl/id/ceo/rijksmonument/516110>;
+.
+<https://linkeddata.cultureelerfgoed.nl/id/ceo/rijksmonument/516110> a ceo:Rijksmonument.
+
+dataset:KadastraleKaart a void:Dataset;
+  rdfs:label "Kadastrale kaart";
+  void:classPartition [ void:class brk:Perceel, brk:KadastraleGemeente];
+  void:sparqlEndpoint <https://data.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+  void:example <http://brk.basisregistraties.overheid.nl/id/perceel/420127269>;
+  void:example <http://brk.basisregistraties.overheid.nl/id/begrip/EHV00>;
+.
+<http://brk.basisregistraties.overheid.nl/id/perceel/420127269> a brk:Perceel.
+<http://brk.basisregistraties.overheid.nl/id/begrip/EHV00> a brk:KadastraleGemeente.
+
+dataset:Brt a void:Dataset;
+  rdfs:label "Basisregistratie Topografie";
+  void:classPartition [ void:class brt:Gebouw];
+  void:sparqlEndpoint <https://data.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:Bag a void:Dataset;
+  rdfs:label "Basisregistratie adressen en gebouwen";
+  void:classPartition [ void:class bag:Pand, bag:Nummeraanduiding];
+  void:sparqlEndpoint <https://data.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:WoonplaatsGemeente a void:Dataset;
+  rdfs:label "Linkset Bag woonplaats - BRT gemeente";
+  void:target dataset:Monumenten;
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Deze data zit nu in een waardelijst. Deze kan vrij makkelijk op labs gezet worden";
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:PandGebouw a void:Dataset;
+  rdfs:label "Linkset Bag pand - BRT gebouw";
+  void:target dataset:Bag;
+  void:target dataset:Brt;
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Deze data zit nu in een waardelijst. Deze kan vrij makkelijk op labs gezet worden";
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:PerceelFiliatie a void:Dataset;
+  rdfs:label "Perceel filiatie";
+  void:target dataset:KadastraleKaart;
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Deze data is nu niet beschikbaar. We hebben njson logbestand, maar die lijkt niet voldoende informatie te bevatten";
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:LKO a void:Dataset;
+  rdfs:label "LKO - Koppeling Brk perceel - Bag nummeraanduiding";
+  void:target dataset:KadastraleKaart;
+  void:target dataset:Bag;
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Deze data is nog niet beschikbaar. Er is intern een bestand beschikbaar, dit is nog niet omgezet (maar zou wel op te pakken kunnen zijn)";
+  dct:publisher organisatie:Kadaster;
+.
+
+dataset:GemeenteGemeenteGebied a void:Dataset;
+  rdfs:label "Bbi gemeente Brk Gemeentegebied";
+  void:target [void:classPartition [void:class brk:KadastraleGemeente]];
+  void:target [void:classPartition [void:class brk:Gemeentegebied]];
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+  rdfs:comment "NOG EVEN UITZOEKEN: Mogelijk staat deze data al op labs?";
+.
+
+dataset:RijksmonumentPerceel a void:Dataset;
+  rdfs:label "Monumentpercelen"@nl;
+  void:target [void:classPartition [void:class ceo:Rijksmonument]];
+  void:target [void:classPartition [void:class ceo:Perceel]];
+  void:linkPredicate ceo:heeftPerceel;
+  void:sparqlEndpoint <https://data.pdok.nl/sparql/rce>;
+  dct:publisher organisatie:RCE;
+.
+
+dataset:PerceelAdres a void:Dataset;
+  rdfs:label "BRK-BAG Perceel adres linkset";
+  void:target [void:classPartition [void:class brk:Perceel]];
+  void:target [void:classPartition [void:class bag:AdresseerbaarObject]];
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331>;
+.
+<http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331> a bag:AdresseerbaarObject.
+
+dataset:Bbi a void:Dataset;
+  rdfs:label "BBI";
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Dit staat op labs, nog wel de classPartition toevoegen!";
+  dct:publisher organisatie:Koop; #Klopt dit?
+.
+
+dataset:CbsCode a void:Dataset;
+  rdfs:label "CBS code";
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Halen we uit de BRT, maar moeten we nog ff goed op labs zetten? Of op CBS site?";
+  void:sparqlEndpoint <https://betalinkeddata.cbs.nl/sparql>;
+  dct:publisher organisatie:Cbs;
+.
+
+dataset:AppartementPerceel a void:Dataset;
+  rdfs:label "Relatie tussen appartementen en percelen";
+  void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
+  rdfs:comment "Deze hebben we nog niet!";
+  dct:publisher organisatie:Kadaster;
+.

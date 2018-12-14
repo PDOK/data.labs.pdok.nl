@@ -1,0 +1,368 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix ogc: <http://www.opengis.net/ont/geosparql#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix kkg: <http://data.pdok.nl/def/kkg/> .
+@prefix nen3610: <http://example.org/ns/nen3610#> .
+@prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#> .
+@prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>.
+@prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>.
+@prefix bbi: <http://data.pdok.nl/def/bbi#> .
+@prefix owms: <http://standaarden.overheid.nl/owms/terms/>.
+@prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>.
+@prefix woz: <http://example.org/ns/woz#>.
+@prefix ceo: <https://data.cultureelerfgoed.nl/vocab/def/ceo#>.
+@prefix rvo: <http://data.pdok.nl/def/rvo#>.
+@prefix ro: <http://data.informatiehuisruimte.nl/def/ro#>.
+
+#
+# De volgende properties zijn toegestaan om relaties te leggen tussen NEN3610 klassen (uiteindelijk specialisaties van ogc:Feature):
+#
+# ogc:sfEquals (de features kunnen als gelijk beschouwd worden, de geometry kan enigszins afwijken)
+# ogc:sfDisjoint (de features zijn verschillend)
+# ogc:sfIntersects (een feature doorsnijdt een andere feature)
+# ogc:sfTouches (een feature ligt naast / vlak bij een andere feature)
+# ogc:sfCrosses (een feature kruist een andere feature)
+# ogc:sfWithin (een feature ligt volledig in een andere feature)
+# ogc:sfContains (een feature omvat een andere feature)
+# ogc:sfOverlaps (een feature overlapt een andere feature. De features zijn grotendeels gelijk aan elkaar, maar kunnen enigszins verschillen)
+#
+#
+# Voor het leggen van relaties tussen niet-geo klassen ondersteunen we alleen:
+#
+# owl:sameAs (kan dus alleen gebruikt worden als er echt sprake is van dezelfde dingen)
+# foaf:primaryTopic (iets is een beschrijving van iets anders)
+
+#
+# NEN3610
+#
+nen3610:RegistratiefGebied a owl:Class;
+  rdfs:subClassOf nen3610:GeoObject;
+.
+nen3610:Gebouw a owl:Class;
+  rdfs:subClassOf nen3610:GeoObject;
+.
+nen3610:PlanologischGebied a owl:Class;
+  rdfs:subClassOf nen3610:GeoObject;
+.
+kkg:nen3610-registratiefGebied a sh:NodeShape;
+  sh:targetClass nen3610:RegistratiefGebied;
+  sh:name "nen3610:RegistratiefGebied";
+.
+kkg:nen3610-gebouw a sh:NodeShape;
+  sh:targetClass nen3610:Gebouw;
+  sh:name "nen3610:Gebouw";
+.
+kkg:nen3610-planologischGebied a sh:NodeShape;
+  sh:targetClass nen3610:PlanologischGebied;
+  sh:name "nen3610:PlanologischGebied";
+.
+
+#
+# Propertyshapes om verbinding met NEN3610 te leggen
+#
+kkg:alsRegistratiefGebied a sh:PropertyShape;
+  sh:name "role";
+  sh:path rdf:type;
+  sh:hasValue nen3610:RegistratiefGebied
+.
+kkg:alsGebouw a sh:PropertyShape;
+  sh:name "role";
+  sh:path rdf:type;
+  sh:hasValue nen3610:Gebouw
+.
+kkg:alsPlanologischGebied a sh:PropertyShape;
+  sh:name "role";
+  sh:path rdf:type;
+  sh:hasValue nen3610:PlanologischGebied;
+.
+
+#
+# BAG
+#
+kkg:bag-woonplaats a sh:NodeShape;
+  sh:name "bag:Woonplaats";
+  sh:targetClass bag:Woonplaats;
+  sh:property kkg:alsRegistratiefGebied;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:Gemeentegebied
+  ];
+.
+
+kkg:bag-adresseerbaarObject a sh:NodeShape;
+  sh:name "bag:AdresseerbaarObject";
+  sh:targetClass bag:AdresseerbaarObject;
+  # Uitzoekpuntje: een verblijfsobject is een gebouw, maar ligplaats en standplaatsen zijn dat weer niet?
+  sh:property [
+    sh:path ogc:sfTouches;
+    sh:name "ogc:sfTouches";
+    sh:class bag:OpenbareRuimte;
+    rdfs:comment "Elk adresseerbaar object heeft een adres, dwz: een nummeraanduiding. Deze nummeraanduiding heeft vervolgens een relatie met een openbare ruimte"
+  ]
+.
+
+kkg:bag-openbareRuimte a sh:NodeShape;
+  sh:name "bag:OpenbareRuimte (straat)";
+  sh:targetClass bag:OpenbareRuimte;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class bag:Woonplaats
+  ]
+.
+kkg:bag-pand a sh:NodeShape;
+  sh:name "bag:Pand";
+  sh:targetClass bag:Pand;
+  sh:property kkg:alsGebouw;
+  sh:property [
+    sh:path ogc:sfOverlaps;
+    sh:name "ogc:sfOverlaps";
+    sh:class brt:Gebouw;
+  ];
+  sh:property [
+    sh:path ogc:sfContains;
+    sh:name "ogc:sfContains";
+    sh:class bag:AdresseerbaarObject
+  ];
+.
+
+# BRT
+kkg:brt-gemeente a sh:NodeShape;
+  sh:name "brt:Gemeente";
+  sh:targetClass brt:Gemeente;
+  sh:property kkg:alsRegistratiefGebied;
+.
+kkg:brt-gebouw a sh:NodeShape;
+  sh:name "brt:Gebouw";
+  sh:targetClass brt:Gebouw;
+  sh:property kkg:alsGebouw;
+.
+
+# BRK
+brk:OnroerendeZaak a owl:Class.
+brk:Perceel a owl:Class;
+  rdfs:subClassOf brk:OnroerendeZaak
+.
+brk:Appartement a owl:Class;
+  rdfs:subClassOf brk:OnroerendeZaak
+.
+
+kkg:brk-kadastraleGemeente a sh:NodeShape;
+  sh:name "brk:KadastraleGemeente";
+  sh:targetClass brk:KadastraleGemeente;
+  sh:property kkg:alsRegistratiefGebied;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:Gemeentegebied;
+  ]
+.
+kkg:brk-perceel a sh:NodeShape;
+  sh:name "brk:Perceel";
+  sh:targetClass brk:Perceel;
+  sh:property kkg:alsRegistratiefGebied;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:KadastraleGemeente;
+    rdfs:comment "Een brk:Perceel valt binnen een brk:KadastraleGemeente";
+  ];
+  sh:property [
+    sh:path ogc:sfContains;
+    sh:name "ogc:sfContains";
+    sh:class bag:AdresseerbaarObject;
+    rdfs:comment "Op een brk:Perceel kan een bag:AdresseerbaarObject liggen";
+  ];
+  sh:property [
+    sh:path ogc:sfContains;
+    sh:name "ogc:sfContains";
+    sh:class brk:Perceel;
+    rdfs:comment "Een brk:Perceel kan zijn ontstaan door samenvoeging van enkele brk:Perceel(en)";
+  ];
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:Perceel;
+    rdfs:comment "Een brk:Perceel kan zijn ontstaan door splitsing van enkele brk:Perceel(en)";
+  ];
+.
+kkg:brk-appartement a sh:NodeShape;
+  sh:name "brk:Appartement";
+  sh:targetClass brk:Appartement;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:Perceel;
+    rdfs:comment "Een brk:Appartement ligt op een brk:Perceel"
+  ]
+.
+kkg:brk-onroerendeZaak a sh:NodeShape;
+  sh:name "brk:OnroerendeZaak";
+  sh:targetClass brk:OnroerendeZaak;
+.
+
+# BBI
+kkg:brk-gemeentegebied a sh:NodeShape;
+  sh:name "brk:Gemeentegebied";
+  sh:targetClass brk:Gemeentegebied;
+  sh:property kkg:alsRegistratiefGebied;
+  sh:property [
+    sh:path ogc:sfEquals;
+    sh:name "ogc:sfEquals";
+    sh:class brt:Gemeente
+  ];
+.
+kkg:bbi-gemeente a sh:NodeShape;
+  sh:name "bbi:Gemeente";
+  sh:targetClass bbi:Gemeente;
+  sh:property [
+    sh:path bbi:heeftGebied;
+    sh:name "bbi:heeftGebied";
+    sh:class brk:Gemeentegebied
+  ];
+.
+
+# OWMS
+kkg:owms-kadastraleGemeente a sh:NodeShape;
+  sh:name "owms:KadastraleGemeente";
+  sh:targetClass owms:KadastraleGemeente;
+  sh:property kkg:alsRegistratiefGebied;
+  sh:property [
+    sh:path ogc:sfEquals;
+    sh:name "ogc:sfEquals";
+    sh:class brk:KadastraleGemeente
+  ];
+.
+owms:Gemeente a owl:Class.
+kkg:owms-Gemeente a sh:NodeShape;
+  sh:name "owms:Gemeente";
+  sh:targetClass owms:Gemeente;
+  sh:property [
+    sh:path owl:sameAs;
+    sh:name "owl:sameAs";
+    sh:class bbi:Gemeente;
+    sh:minCount 1;
+    sh:maxCount 1;
+  ];
+.
+
+# CBS
+kkg:cbs-gemeente a sh:NodeShape;
+  sh:name "cbs:gemeente";
+  sh:targetClass cbs:Gemeente;
+  sh:property [
+    sh:path ogc:sfEquals;
+    sh:name "ogc:sfEquals";
+    sh:class brk:Gemeentegebied
+  ];
+  rdfs:comment "Hoewel bij de brt:Gemeente de CBS code is opgenomen, leggen we de link tussen de cbs gemeente en het brk gemeentegebied, omdat deze laatste de authentieke bron is."
+.
+kkg:cbs-wijk a sh:NodeShape;
+  sh:name "cbs:Wijk";
+  sh:targetClass cbs:Wijk;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class cbs:Gemeente;
+  ];
+.
+kkg:cbs-buurt a sh:NodeShape;
+  sh:name "cbs:Buurt";
+  sh:targetClass cbs:Buurt;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class cbs:Wijk;
+  ];
+.
+
+# LV-WOZ
+kkg:woz-object a sh:NodeShape;
+  sh:name "woz:Object";
+  sh:targetClass woz:Object;
+  sh:property [
+    sh:path ogc:sfEquals;
+    sh:name "ogc:sfEquals";
+    sh:class brk:OnroerendeZaak
+  ];
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:OnroerendeZaak
+  ];
+  sh:property [
+    sh:path ogc:sfContains;
+    sh:name "ogc:sfContains";
+    sh:class brk:OnroerendeZaak
+  ];
+.
+
+# Monumenten
+kkg:ceo-perceel a sh:NodeShape;
+  sh:name "ceo:Perceel";
+  sh:targetClass ceo:Perceel;
+  sh:property [
+    sh:path owl:sameAs;
+    sh:name "owl:sameAs";
+    sh:class brk:Perceel;
+    sh:minCount 1;
+    sh:maxCount 1;
+    rdfs:comment "Een ceo:Perceel is hetzelfde als een brk:Perceel"
+  ];
+.
+kkg:ceo-rijksmonument a sh:NodeShape;
+  sh:name "ceo:Rijksmonument";
+  sh:targetClass ceo:Rijksmonument;
+  sh:property [
+    sh:path ogc:sfIntersects;
+    sh:name "ogc:sfIntersects";
+    sh:class ceo:Perceel;
+    rdfs:comment "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
+  ];
+.
+
+# Energielabels
+kkg:rvo-gebouw a sh:NodeShape;
+  sh:name "rvo:Gebouw";
+  rdfs:comment "De definitie van gebouw volgt uit de Woningwet, artikel 1 lid 1";
+  sh:targetClass rvo:Gebouw;
+  sh:property kkg:alsGebouw;
+  sh:property [
+    sh:path ogc:sfContains;
+    sh:name "ogc:sfContains";
+    sh:class bag:AdresseerbaarObject
+  ];
+.
+kkg:rvo-energielabel a sh:NodeShape;
+  sh:name "rvo:Energielabel";
+  sh:targetClass rvo:Energielabel;
+  sh:property [
+    sh:path foaf:primaryTopic;
+    sh:name "foaf:primaryTopic";
+    sh:class rvo:Gebouw;
+  ];
+.
+
+# Ruimtelijke plannen
+kkg:ro-bestemmingsvlak a sh:NodeShape;
+  sh:name "ro:Bestemmingsvlak";
+  sh:targetClass ro:Bestemmingsvlak;
+  sh:property kkg:alsPlanologischGebied;
+  sh:property [
+    sh:path ogc:sfIntersects;
+    sh:name "ogc:sfIntersects";
+    sh:class brk:Perceel;
+    rdfs:comment "Een ro:Bestemmingsvlak doorsnijdt 1 of meerdere brk:Perceel(en)"
+  ]
+.
