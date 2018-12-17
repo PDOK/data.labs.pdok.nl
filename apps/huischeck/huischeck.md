@@ -6,10 +6,8 @@ title: De Huischeck
 output: leaflet
 ---
 
-<script type="text/javascript" src="/apps/huischeck/jquery.qrcode.min.js"></script>
-<script type="text/javascript" src="/apps/huischeck/jquery.qrcode.js"></script>
-<script type="text/javascript" src="/apps/huischeck/qrcode.js"></script>
-
+<script type="text/javascript" src="/assets/js/qrious.min.js"></script>
+<script src="/assets/js/qr-code-with-logo.browser.min.js"></script>
 
 ## De Huischeck
 Op deze pagina is het mogelijk om nadere informatie te krijgen over uw huis en buurt op basis van onder andere de PDOK Locatieserver.
@@ -29,11 +27,10 @@ Als u uw adres heeft ingevoerd, vindt u hieronder de informatie over uw huis:
 <div><p id="AdressInfo"></p></div>
 
 ## QR-code
-De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) van uw huis. Wanneer u deze
-code scant komt u uit op een pagina met informatie over uw huis uit de basisregistraties van het Kadaster.
+De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) van uw huis. Wanneer u deze code scant komt u uit op een pagina met informatie over uw huis uit de basisregistraties van het Kadaster.
 
-<div id="qrcodeCanvas"></div>
-<button id='printQRcode'>Print de QR-code</button>
+<div id="qrcode"><canvas id="qrcodeCanvas"/></div>
+<button id="printQRcode">Print de QR-code</button>
 
 ## SPARQL Query
 Een andere manier om informatie van uw huis op te vragen is via SPARQL-queries. Dit kan
