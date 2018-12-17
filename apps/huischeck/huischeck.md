@@ -6,7 +6,7 @@ title: De Huischeck
 output: leaflet
 ---
 
-<script type="text/javascript" src="/apps/huischeck/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="/assets/js/qrious.min.js"></script>
 <script src="/assets/js/qr-code-with-logo.browser.min.js"></script>
 
 ## De Huischeck
