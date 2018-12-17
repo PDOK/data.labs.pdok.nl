@@ -27,8 +27,7 @@ Als u uw adres heeft ingevoerd, vindt u hieronder de informatie over uw huis:
 <div><p id="AdressInfo"></p></div>
 
 ## QR-code
-De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) van uw huis. Wanneer u deze
-code scant komt u uit op een pagina met informatie over uw huis uit de basisregistraties van het Kadaster.
+De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) van uw huis. Wanneer u deze code scant komt u uit op een pagina met informatie over uw huis uit de basisregistraties van het Kadaster.
 
 <div id="qrcode"><canvas id="qrcodeCanvas"/></div>
 <button id="printQRcode">Print de QR-code</button>
