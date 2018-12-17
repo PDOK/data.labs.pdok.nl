@@ -31,6 +31,7 @@
 #
 # Datasets
 #
+
 dataset:Monumenten a void:Dataset;
   rdfs:label "Monumenten";
   void:classPartition [ void:class ceo:Rijksmonument];
@@ -45,8 +46,8 @@ dataset:KadastraleKaart a void:Dataset;
   void:classPartition [ void:class brk:Perceel, brk:KadastraleGemeente];
   void:sparqlEndpoint <https://data.pdok.nl/sparql>;
   dct:publisher organisatie:Kadaster;
-  void:example <http://brk.basisregistraties.overheid.nl/id/perceel/420127269>;
-  void:example <http://brk.basisregistraties.overheid.nl/id/begrip/EHV00>;
+  void:exampleResource <http://brk.basisregistraties.overheid.nl/id/perceel/420127269>;
+  void:exampleResource <http://brk.basisregistraties.overheid.nl/id/begrip/EHV00>;
 .
 <http://brk.basisregistraties.overheid.nl/id/perceel/420127269> a brk:Perceel.
 <http://brk.basisregistraties.overheid.nl/id/begrip/EHV00> a brk:KadastraleGemeente.
@@ -60,7 +61,22 @@ dataset:Brt a void:Dataset;
 
 dataset:Bag a void:Dataset;
   rdfs:label "Basisregistratie adressen en gebouwen";
-  void:classPartition [ void:class bag:Pand, bag:Nummeraanduiding];
+  void:classPartition [ void:class bag:Pand, bag:Nummeraanduiding, bag:AdresseerbaarObject];
+  void:sparqlEndpoint <https://data.pdok.nl/sparql>;
+  dct:publisher organisatie:Kadaster;
+  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331>;
+.
+<http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331> a bag:AdresseerbaarObject.
+
+#
+# Linksets (plus links binnen 1 dataset)
+#
+
+dataset:BagAdres a void:Dataset;
+  rdfs:label "BAG Adressering";
+  void:target [void:classPartition [void:class bag:Nummeraanduiding]];
+  void:target [void:classPartition [void:class bag:AdresseerbaarObject]];
+  void:linkPredicate bag:hoofdadres;
   void:sparqlEndpoint <https://data.pdok.nl/sparql>;
   dct:publisher organisatie:Kadaster;
 .
@@ -117,15 +133,15 @@ dataset:RijksmonumentPerceel a void:Dataset;
   dct:publisher organisatie:RCE;
 .
 
-dataset:PerceelAdres a void:Dataset;
-  rdfs:label "BRK-BAG Perceel adres linkset";
+dataset:AdresPerceel a void:Dataset;
+  rdfs:label "BAG-BRK Perceel adres linkset";
+  void:target [void:classPartition [void:class bag:Nummeraanduiding]];
   void:target [void:classPartition [void:class brk:Perceel]];
-  void:target [void:classPartition [void:class bag:AdresseerbaarObject]];
   void:sparqlEndpoint <https://data.labs.pdok.nl/sparql>;
   dct:publisher organisatie:Kadaster;
-  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331>;
+  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/nummeraanduiding/0772200000006580>
 .
-<http://bag.basisregistraties.overheid.nl/bag/id/verblijfsobject/0772010000746331> a bag:AdresseerbaarObject.
+<http://bag.basisregistraties.overheid.nl/bag/id/nummeraanduiding/0772200000006580> a bag:Nummeraanduiding.
 
 dataset:Bbi a void:Dataset;
   rdfs:label "BBI";
