@@ -1,0 +1,17 @@
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select * {
+  ?leiding a brt:Hoogspanningsleiding;
+           geo:hasGeometry/geo:asWKT ?leidingShape.
+  bind("yellow" as ?leidingShapeColor)
+  ?mast a brt:Hoogspanningsmast;
+        geo:hasGeometry/geo:asWKT ?mastShape.
+  bind("blue" as ?mastShapeColor)
+  ?gebied a brt:Transformatorstation_functioneelGebied;
+          geo:hasGeometry/geo:asWKT ?gebiedShape.
+  bind("green" as ?gebiedShapeColor)
+  ?gebouw a brt:Transformatorstation_gebouw;
+           geo:hasGeometry/geo:asWKT ?gebouwShape.
+  bind("red" as ?gebouwShapeColor)
+}
+limit 500
