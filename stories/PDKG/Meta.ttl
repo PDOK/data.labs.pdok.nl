@@ -35,6 +35,11 @@ meta:ExterneKoppeling a skos:Concept;
   skos:definition "Een linkset die een URI van een externe koppelt met een URI van ons, via owl:sameAs";
   yed:color "#00FF00";
 .
+meta:Aanwezig a skos:Concept;
+  rdfs:label "Aanwezig";
+  skos:definition "De data is officieel als Linked Data aanwezig op het KDP";
+  yed:color "#000000";
+.
 meta:Beschikbaar a skos:Concept;
   rdfs:label "Beschikbaar";
   skos:definition "Een linkset die beschikbaar is in de registraties van het Kadaster, maar nog niet als Linked Data officieel gepubliceerd via KDP";
@@ -53,7 +58,7 @@ meta:OntbreektAanwezig a skos:Concept;
   yed:color "#FF00FF";
 .
 meta:OntbreektBeschikbaar a skos:Concept;
-  rdfs:label "Ontbreekt, wel beschikbaar.";
+  rdfs:label "Ontbreekt, wel beschikbaar te maken";
   skos:definition "Een linkset die ontbreekt als Linked Data, maar wel beschikbaar gemaakt kan worden";
   skos:broader meta:Ontbreekt;
   yed:color "#FFB000";
@@ -135,13 +140,33 @@ meta:BagPandBrtGebouw a rdf:Statement;
   dct:license meta:NietBeschikbaar;
 .
 
-meta:BrkPerceelBagNummeraanduiding a rdf:Statement;
+meta:BrkPerceelBagAdresseerbaarObject a rdf:Statement;
   rdf:subject brk:Perceel;
   rdf:predicate ogc:sfContains;
-  rdf:object bag:Nummeraanduiding;
-  rdfs:comment "Deze dataset zit niet in onze huidige DKK, maar bestaat wel in de registratie. We kunnen wel een bestand downloaden en omzetten, desnoods in Labs.";
+  rdf:object bag:AdresseerbaarObject;
+  rdfs:comment "Deze dataset zit niet in onze huidige DKK, maar bestaat wel in de registratie. In een andere vorm (foutief) op labs beschikbaar";
   void:inDataset dataset:LKO;
   dct:type meta:OntbreektBeschikbaar;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:AdresseerbaarObjectNummeraanduiding a rdf:Statement;
+  rdf:subject bag:AdresseerbaarObject;
+  rdf:predicate bag:hoofdadres;
+  rdf:object bag:Nummeraanduiding;
+  rdfs:comment "Deze data is aanwezig op het KDP";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BagNummeraanduidingBrkPerceel a rdf:Statement;
+  rdf:subject bag:Nummeraanduiding;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:Perceel;
+  rdfs:comment "Deze dataset zit niet in onze huidige DKK, maar bestaat wel in de registratie. We hebben deze dataset op labs beschikbaar";
+  void:inDataset dataset:LKO;
+  dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
 .
 
@@ -244,7 +269,7 @@ meta:CeoPerceelBrkPerceel a rdf:Statement;
   rdf:subject ceo:Perceel;
   rdf:predicate owl:sameAs;
   rdf:object brk:Perceel;
-  dct:type meta:ExterneKoppeling;
+  dct:type meta:OntbreektBeschikbaar;
   rdfs:comment "Het ceo perceel bevat precies de sleutel naar het brk perceel";
   dct:license meta:VrijBeschikbaar;
 .
@@ -252,7 +277,7 @@ meta:CeoRijksmonumentCeoPerceel a rdf:Statement;
   rdf:subject ceo:Rijksmonument;
   rdf:predicate ogc:sfIntersects;
   rdf:object ceo:Perceel;
-  dct:type meta:OntbreektBeschikbaar;
+  dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
 .
 

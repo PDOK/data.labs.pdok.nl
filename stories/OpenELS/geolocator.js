@@ -64,7 +64,7 @@
                         data: data,
                         order: [[ 1, "asc" ]],
                         destroy: true,
-                        scrollY:        "400px",
+                        scrollY:        "200px",
                         // scrollCollapse: true,
                         paging: false,
                         searching: false,

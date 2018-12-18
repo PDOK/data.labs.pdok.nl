@@ -100,6 +100,18 @@ kkg:bag-woonplaats a sh:NodeShape;
   ];
 .
 
+kkg:bag-nummeraanduiding a sh:NodeShape;
+  sh:name "bag:Nummeraanduiding";
+  sh:targetClass bag:Nummeraanduiding;
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class brk:Perceel;
+    sh:minCount 1;
+    sh:maxCount 1;
+  ];
+.
+
 kkg:bag-adresseerbaarObject a sh:NodeShape;
   sh:name "bag:AdresseerbaarObject";
   sh:targetClass bag:AdresseerbaarObject;
@@ -109,6 +121,14 @@ kkg:bag-adresseerbaarObject a sh:NodeShape;
     sh:name "ogc:sfTouches";
     sh:class bag:OpenbareRuimte;
     rdfs:comment "Elk adresseerbaar object heeft een adres, dwz: een nummeraanduiding. Deze nummeraanduiding heeft vervolgens een relatie met een openbare ruimte"
+  ];
+  sh:property [
+    sh:path bag:hoofdadres;
+    sh:name "bag:hoofdadres";
+    sh:class bag:Nummeraanduiding;
+    rdfs:comment "Het hoofdadres van een adresseerbaar adres betreft een nummeraanduiding";
+    sh:minCount 1;
+    sh:maxCount 1;
   ]
 .
 
@@ -328,7 +348,7 @@ kkg:ceo-rijksmonument a sh:NodeShape;
     sh:path ogc:sfIntersects;
     sh:name "ogc:sfIntersects";
     sh:class ceo:Perceel;
-    rdfs:label "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
+    rdfs:comment "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
   ];
 .
 
