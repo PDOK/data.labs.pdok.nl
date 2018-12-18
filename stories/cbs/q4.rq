@@ -11,57 +11,75 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix woonplaats: <http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select ?pandShape (sample(?pandShapeColor) as ?pandShapeColor) (sample(?pandShapeLabel) as ?pandShapeLabel) {
-  {
-    select ?buurtShape ?buurtLabel ?voor ?na {
-      bind(buurt:BU06370002 as ?buurt)
-      _:1 def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?na ;
-          dimension:regio ?buurt .
-      _:2 def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?voor ;
-          dimension:regio ?buurt .
-      ?buurt geo:hasGeometry/geo:asWKT ?buurtShape ;
-             rdfs:label ?buurtLabel
+select
+  ?pandShape
+  (sample(?pandShapeColor) as ?pandShapeColor)
+  (sample(?pandShapeLabel) as ?pandShapeLabel)
+{
+  select * {
+    {
+      {
+        select ?buurtShape ?buurtLabel ?voor ?na {
+          bind(buurt:BU06370002 as ?buurt)
+          ?buurt
+            geo:hasGeometry/geo:asWKT ?buurtShape;
+            rdfs:label ?buurtLabel.
+          [ def:wonen_WoningenNaarBouwjaar_BouwjaarVanaf2000 ?na;
+            dimension:regio ?buurt ].
+          [ def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?voor;
+            dimension:regio ?buurt ].
+        }
+      }
+      service <https://data.pdok.nl/sparql> {
+        filter(geof:sfWithin(?pandShape, ?buurtShape))
+        graph ?g1 {
+          ?openbareRuimte
+            bag:bijbehorendeWoonplaats woonplaats:2293;
+            bag:naamOpenbareRuimte ?openbareRuimteLabel;
+            bag:status ?openbareRuimteStatus.
+        }
+        filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+        ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel.
+        graph ?g2 {
+          ?nummeraanduiding
+            bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+            bag:postcode ?postcode.
+        }
+        filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+        graph ?g3 {
+          ?verblijfsobject
+            bag:hoofdadres ?nummeraanduiding;
+            bag:pandrelatering ?pand;
+            geo:hasGeometry/geo:asWKT ?verblijfsobjectShape.
+        }
+        filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+        graph ?g4 {
+          ?pand
+            bag:geometriePand/geo:asWKT ?pandShape;
+            bag:oorspronkelijkBouwjaar ?bouwjaar;
+            bag:status ?pandStatus.
+          filter(?pandStatus != begrip:PandGesloopt)
+        }
+        ?pandStatus skos:prefLabel ?pandStatusLabel.
+        filter not exists { ?g4 bag:eindGeldigheid ?eind4. }
+      }
+      bind(concat('jet,',str((?bouwjaar-1850)/xsd:double(2017-1850))) as ?pandShapeColor)
+      bind('''
+           <h2>Zoetermeer {{buurtLabel}}</h2>
+           <h3>CBS buurt gegevens</h3>
+           <dl>
+             <dt>Woningen van voor 2000</dt><dd>{{voor}}%</dd>
+             <dt>Woningen van na 2000</dt><dd>{{na}}%</dd>
+           </dl>
+           <h3>BAG pand gegevens</h3>
+           <dl>
+             <dt>Bouwjaar</dt><dd>{{bouwjaar}}</dd>
+             <dt>Postcode</dt><dd>{{postcode}}</dd>
+             <dt>Openbare ruimte</dt><dd><a href="{{openbareRuimte}}">{{openbareRuimteLabel}}</a></dd>
+             <dt>Openbare ruimte status</dt><dd><a href="{{openbareRuimteStatus}}">{{openbareRuimteStatusLabel}}</a></dd>
+             <dt>Pand status</dt><dd><a href="{{pandStatus}}">{{pandStatusLabel}}</a></dd>
+           </dl>''' as ?pandShapeLabel)
     }
   }
-  service <https://data.pdok.nl/sparql> {
-    filter(geof:sfWithin(?pandShape, ?buurtShape) = true)
-    graph ?g1 {
-      ?openbareRuimte bag:bijbehorendeWoonplaats woonplaats:2293 ;
-                      bag:naamOpenbareRuimte ?openbareRuimteLabel ;
-                      bag:status ?openbareRuimteStatus
-    }
-    filter not exists { ?g1 bag:eindGeldigheid ?eind1 }
-    ?openbareRuimteStatus skos:prefLabel ?openbareRuimteStatusLabel
-    graph ?g2 {
-      ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
-                        bag:postcode ?postcode
-    }
-    filter not exists { ?g2 bag:eindGeldigheid ?eind2 }
-    graph ?g3 {
-      ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
-                       bag:pandrelatering ?pand ;
-                       geo:hasGeometry/geo:asWKT ?verblijfsobjectShape
-    }
-    filter not exists { ?g3 bag:eindGeldigheid ?eind3 }
-    graph ?g4 {
-      ?pand bag:geometriePand/geo:asWKT ?pandShape ;
-            bag:oorspronkelijkBouwjaar ?bouwjaar ;
-            bag:status ?pandStatus
-      filter(?pandStatus != begrip:PandGesloopt)
-    }
-    ?pandStatus skos:prefLabel ?pandStatusLabel
-    filter not exists { ?g4 bag:eindGeldigheid ?eind4 }
-  }
-  bind(concat('jet,',str((?bouwjaar-1850)/xsd:double(2017-1850))) as ?pandShapeColor)
-  bind(concat('<h2>Zoetermeer ',str(?buurtLabel),'</h2>',
-              '<h3>CBS buurt gegevens</h3>',
-              '<h4>Woningen van voor 2000: ',str(?voor),'%</h4>',
-              '<h4>Woningen van na 2000: ',str(?na),'%</h4>',
-              '<h3>BAG pand gegevens</h3>',
-              '<h4>Bouwjaar: ',str(?bouwjaar),'</h4>',
-              '<h4>Postcode: ',str(?postcode),'</h4>',
-              '<h4>Openbare ruimte: <a href="',str(?openbareRuimte),'">',str(?openbareRuimteLabel),'</a></h4>',
-              '<h4>Openbare ruimte status: <a href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></h4>',
-              '<h4>Pand status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></h4>') as ?pandShapeLabel)
 }
 group by ?pandShape
