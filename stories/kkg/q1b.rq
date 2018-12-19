@@ -1,0 +1,50 @@
+# 1. CBS matige stedelijkheid (o.b.v. omgevingsadressendichtheid),
+# 2. CBS alle woningen gebouwd vóór 2000,
+# 3. CBS gemiddelde woningwaarde < 100,
+# 4. Gesorteerd op hoge CBS woningvoorraad.
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix code: <http://betalinkeddata.cbs.nl/83487NED/id/code/>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select * {
+  ?gemeente
+    a cbs:Gemeente_Geografisch;
+    rdfs:label ?gemeenteNaam.
+  ?wijk
+    a cbs:Wijk;
+    ?geo_sfWithin1 ?gemeente;
+    rdfs:label ?wijkNaam.
+  ?buurt
+    a cbs:Buurt;
+    geo:hasGeometry/geo:asWKT ?shape;
+    ?geo_sfWithin2 ?wijk;
+    rdfs:label ?buurtNaam.
+  [ def:stedelijkheid_MateVanStedelijkheid code:Stedelijkheid_MateVanStedelijkheid_MatigStedelijk;
+    dimension:regio ?buurt ].
+  [ def:wonen_WoningenNaarBouwjaar_BouwjaarVoor2000 ?voor2000;
+    dimension:regio ?buurt ].
+  filter(?voor2000 >= 90)
+  [ def:wonen_Woningvoorraad ?woningvoorraad;
+    dimension:regio ?buurt ].
+  filter(?woningvoorraad >= 90)
+  bind(replace(str(?woningvoorraad), '[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.') as ?woningvoorraadLabel)
+  [ def:wonen_GemiddeldeWoningwaarde ?woningwaarde;
+    dimension:regio ?buurt ].
+  filter (?woningwaarde <= 100)
+  bind('''
+       <h3>{{buurtNaam}} te {{gemeenteNaam}}</h3>
+       <dl>
+         <dt>Woningen van voor 2000</dt>
+         <dd>{{voor2000}} %</dd>
+         <dt>Woningvoorraad</dt>
+         <dd>{{woningvoorraadLabel}}</dd>
+         <dt>Gemiddelde woningwaarde</dd>
+         <dd>EUR {{woningwaarde}}.000,-</dd>
+       </dl>
+       '''^^rdf:HTML as ?widget)
+}
+order by ?woningvoorraad
+limit 15

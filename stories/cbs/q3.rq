@@ -4,35 +4,45 @@ prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografis
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
-select ?shape ?shapeLabel ?shapeColor ?buurtLabel ?waarde ?aantal
-{
-  ?buurt geo:hasGeometry/geo:asWKT ?shape ;
-          rdfs:label ?buurtLabel;
-            ?blank1 _:102.
-   _:102 ?blank2 gemeente:GM0637.
-  OPTIONAL{
-     _:1 dimension:regio ?buurt ;
-      def:wonen_GemiddeldeWoningwaarde ?waarde .
+select * {
+  ?buurt
+    geo:hasGeometry/geo:asWKT ?shape;
+    rdfs:label ?buurtLabel;
+    # HACK: GraphDB does not support querying for `geo:sfWithin', so
+    # we use two SPARQL variables (and one SPARQL blank node to
+    # connect them).  Notice that this only works as long as no other
+    # link is added between neighborhoods and municipalities.
+    ?blank1 _:1.
+   _:1 ?blank2 gemeente:GM0637.
+  optional {
+    [ dimension:regio ?buurt;
+      def:wonen_GemiddeldeWoningwaarde ?waarde ].
   }
-  OPTIONAL{
-      _:2 dimension:regio ?buurt ;
-      def:wonen_Woningvoorraad ?aantal .
+  optional {
+    [ dimension:regio ?buurt;
+      def:wonen_Woningvoorraad ?aantal ].
   }
- {
+  {
     {
       select (min(?waarde) as ?min) (max(?waarde) as ?max) {
-        ?buurt def:wonen_GemiddeldeWoningwaarde ?waarde .
+        ?buurt def:wonen_GemiddeldeWoningwaarde ?waarde.
       }
-
     }
   }
-  bind(concat('<h3>Zoetermeer ',str(?buurtLabel),'</h3>',
-              '<h4>Gem. woningwaarde: ',if(bound(?waarde),concat('',str(?waarde),'.000 euro'),'onbekend'),'</h4>',
-      '<h4>Woning voorraad: ',if(bound(?aantal),replace(str(?aantal),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'onbekend'),'</h4>') as ?shapeLabel)
-
-
-
+  bind(if(bound(?aantal),
+          replace(str(?aantal),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
+          'onbekend') as ?aantalLabel)
+  bind(if(bound(?waarde),
+          concat('',str(?waarde),'.000 euro'),
+          'onbekend') as ?waardeLabel)
+  bind('''
+       <h3>Zoetermeer {{buurtLabel}}</h3>
+       <dl>
+         <dt>Gemiddelde woningwaarde</dt>
+         <dd>{{waardeLabel}}</dd>
+         <dt>Woning voorraad</dt>
+         <dd>{{waardeLabel}}</dd>
+       </dl>''' as ?shapeLabel)
   bind(concat('jet,',str((?waarde*5)/xsd:double(?max-?min*2))) as ?shapeColor)
 }
-LIMIT 26
+limit 26
