@@ -8,14 +8,14 @@ title: Kadaster Knowledge Graph (KKG)
 
 # Kadaster Knowledge Graph (KKG)
 
-Persona: projectontwikkelaar
+Persona: Projectontwikkelaar.
 
-We willen dat er meer huizen worden verkocht.  Er moeten meer huizen
-worden gebouwd.  Buitenstedelijk bouwen is lastig, want tast groen
-aan, is niet duurzaam.  Rand/binnenstedelijk bouwen is ook lastig,
-want waar heb je de beste kans?  Daarom de case: met het combineren
-van data uit meerdere bronnen, kun je WEL tot relevante informatie
-komen.
+We willen dat er meer huizen worden verkocht.  Één manier om dat op te
+lossen is door meer huizen te bouwen.  Buitenstedelijk bouwen is
+echter lastig: dit tast groen aan en is mogelijk minder duurzaam.
+Rand/binnenstedelijk bouwen is ook lastig, want waar heb je de beste
+kans?  Daarom de case: met het combineren van data uit meerdere
+bronnen, kun je WEL tot relevante informatie komen.
 
 ## Deel 1
 
