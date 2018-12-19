@@ -1,7 +1,7 @@
 ---
 endpoint: https://data.pdok.nl/sparql
 layout: story
-logo: /assets/images/kadaster.png
+logo: /assets/images/kadaster.jpg
 output: table
 title: Kadaster Knowledge Graph (KKG)
 ---
