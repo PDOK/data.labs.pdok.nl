@@ -82,11 +82,14 @@ Lets see what names are used to refer to the corresponding administrative levels
   enrich one description of the municipality with attributes coming from the other data set.
   The example below uses links between administrative units and corresponding objects in the [DBpedia](https://wiki.dbpedia.org/) data base.
   In this case, DBpedia serves as a linking hub of the Web of Data providing access to other resources. Therefore, for example, we can traverse those links to
-  retrieve the name of an administrative unit in another language. For example, lets find how to spell what the Dutch call "s-Gravenhage"   
+  retrieve the name of an administrative unit in another language. For example, lets find how to spell what the Dutch call "s-Gravenhage". 
+
+  <query data-config="http://yasgui.org/#query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APrefix+au%3A+%3Chttp%3A%2F%2Finspire.ec.europa.eu%2Font%2Fau%23%3E%0Aselect+distinct+%3Flanguage+%3Fname+%23%3FdutchName+%3FnorwegianName+%3FfinishName+%3FSpanishName%0AWhere+%7B%0A++++%3Fs+rdfs%3Alabel+%22's-Gravenhage%22%40nl%3B%0A+++++++rdfs%3Alabel+%3FdutchName%3B%0A+++++++rdfs%3AseeAlso+%3FinDb.++++%0A+++service+%3Chttp%3A%2F%2Ffactforge.net%2Frepositories%2Fff-news%3E+%7B%0A+++++++%3FinDb+%3Chttp%3A%2F%2Fwww.geonames.org%2Fontology%23alternateName%3E+%3Fname+.%0A+++++FILTER+((+lang(%3Fname)+%3D+%22es%22+)+%7C%7C+(+lang(%3Fname)+%3D+%22fi%22+)+%7C%7C+(+lang(%3Fname)+%3D+%22no%22+))%0A++++BInd+(if+(lang(%3Fname)+%3D+%22es%22%2C+%22Spanish%22%2C+if+(lang(%3Fname)+%3D+%22no%22%2C+%22Norwegian%22%2C+if+(lang(%3Fname)+%3D+%22fi%22%2C+%22Finnish%22%2C+%22%22)))+as+%3Flanguage)%0A%0A%7D+%0A%7D+Order+by+%3Flanguage%0A+LImit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=http%3A%2F%2Fdata.labs.pdok.nl%2Fopenels%2Fsparql&requestMethod=POST&tabTitle=Query+6&headers=%7B%7D&outputFormat=table"
+       data-endpoint="https://data.labs.pdok.nl/openels/sparql"
+       data-query-ref="den_haag.rq"
+       data-output="table">
+ </query>
 
 
-  <query data-config="http://yasgui.org/#query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APrefix+au%3A+%3Chttp%3A%2F%2Finspire.ec.europa.eu%2Font%2Fau%23%3E%0Aselect+%3Fs+%3Fname+where+%7B%0A%0A%3Fs+a+au%3AAdministrativeUnit%3B%0A+++rdfs%3Alabel+%22's-Gravenhage%22%40nl%3B%0A++++++++++++++++++++++++++++rdfs%3AseeAlso+%3FinDb.%0A+++service+%3Chttp%3A%2F%2Ffactforge.net%2Frepositories%2Fff-news%3E+%7B%0A+++++++%3FinDb+%3Chttp%3A%2F%2Fwww.geonames.org%2Fontology%23alternateName%3E+%3Fname+.%0A++++FILTER+((+lang(%3Fname)+%3D+%22es%22+)+%7C%7C+(+lang(%3Fname)+%3D+%22fi%22+)+%7C%7C+(+lang(%3Fname)+%3D+%22no%22+))%0A++%7D%0A%0A+++%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.labs.pdok.nl%2Fopenels%2Fsparql&requestMethod=POST&tabTitle=Query+27&headers=%7B%7D&outputFormat=table"
-         data-endpoint="https://data.labs.pdok.nl/openels/sparql"
-         data-query-ref="den_haag.rq"
-         data--output="table">
-   </query>
+
+
