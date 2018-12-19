@@ -70,8 +70,10 @@ verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
 
 <query data-query-ref="q3b.rq" data-output="geo"></query>
 
+<!--
 ## Deel 4
 
 Stroomvoorziening.
 
 <query data-query-ref="q4.rq" data-output="geo"></query>
+-->
