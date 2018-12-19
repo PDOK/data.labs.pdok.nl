@@ -45,18 +45,19 @@ laagste klasse, en energielabel D of hoger…
 
 ## Deel 2
 
-Panden die een winkel/industriefunctie (BAG) die dicht bij centrum
-liggen, oud zijn, en waar ruimtelijke plannen woningbouw toe staat.
+Panden met een winkel/industriefunctie volgens de BAG, die dicht bij
+het centrum liggen, oud zijn, en waar ruimtelijke plannen woningbouw
+toestaat.
 
 <query data-query-ref="q2.rq" data-output="geo"></query>
 
 ## Deel 3
 
-Scholen (BRT) die geen schoolfunctie (DUO) meer hebben, (BAG status in
-gebruik bv. of bag laatste datum wijziging: want als binnen x(5) jaar
-aanpassingen in de BAG zijn geweest, dan waarschijnlijk gebouw al
-aangepast) zijn potentieel interessant om te verbouwen…., maar het mag
-geen rijksmonumenten (RCE) zijn.
+Scholen volgens de BRT die volgens DUO geen schoolfunctie (meer)
+hebben.  BAG status in gebruik bv. of bag laatste datum wijziging:
+want als binnen x(5) jaar aanpassingen in de BAG zijn geweest, dan
+waarschijnlijk gebouw al aangepast) zijn potentieel interessant om te
+verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
 
 ## School volgens de BRT
 
