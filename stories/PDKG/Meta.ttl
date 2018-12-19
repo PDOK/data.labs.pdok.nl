@@ -200,12 +200,23 @@ meta:BagAdresseerbaarObjectBagOpenbareRuimte a rdf:Statement;
 .
 
 meta:BagNummeraanduidingBagOpenbareRuimte a rdf:Statement;
-rdf:subject bag:Nummeraanduiding;
-rdf:predicate ogc:sfTouches;
-rdf:object bag:OpenbareRuimte;
-rdfs:comment "Standaard aanwezig";
-void:inDataset dataset:Bag;
-dct:type meta:Aanwezig;
+  rdf:subject bag:Nummeraanduiding;
+  rdf:predicate ogc:sfTouches;
+  rdf:object bag:OpenbareRuimte;
+  rdfs:comment "Standaard aanwezig";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+.
+
+meta:BagOpenbareRuimteBagWoonplaats a rdf:Statement;
+  rdf:subject bag:OpenbareRuimte;
+  rdf:predicate ogc:sfWithin;
+  rdf:object bag:Woonplaats;
+  rdfs:comment "Standaard aanwezig";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+  sh:minCount 1;
+  sh:maxCount 1;
 .
 
 meta:BagWoonplaatsBrtGemeente a rdf:Statement;
