@@ -109,7 +109,16 @@ kkg:bag-nummeraanduiding a sh:NodeShape;
     sh:class brk:Perceel;
     sh:minCount 1;
     sh:maxCount 1;
+    rdfs:comment "Een nummeraanduiding is verbonden met een perceel (huidige wijze van koppelen op labs)"
   ];
+  sh:property [
+    sh:path ogc:sfTouches;
+    sh:name "ogc:sfTouches";
+    sh:class bag:OpenbareRuimte;
+    sh:minCount 1;
+    sh:maxCount 1;
+    rdfs:comment "Een nummeraanduiding ligt aan een openbare ruimte (straat, plein, etc)";
+  ]
 .
 
 kkg:bag-adresseerbaarObject a sh:NodeShape;
@@ -129,7 +138,14 @@ kkg:bag-adresseerbaarObject a sh:NodeShape;
     rdfs:comment "Het hoofdadres van een adresseerbaar adres betreft een nummeraanduiding";
     sh:minCount 1;
     sh:maxCount 1;
-  ]
+  ];
+  sh:property [
+    sh:path ogc:sfWithin;
+    sh:name "ogc:sfWithin";
+    sh:class bag:Pand;
+    rdfs:comment "Het adresseerbaar object bevind zich binnen een pand (alleen voor verblijfsobjecten)";
+    sh:maxCount 1;
+  ];
 .
 
 kkg:bag-openbareRuimte a sh:NodeShape;
@@ -149,11 +165,6 @@ kkg:bag-pand a sh:NodeShape;
     sh:path ogc:sfOverlaps;
     sh:name "ogc:sfOverlaps";
     sh:class brt:Gebouw;
-  ];
-  sh:property [
-    sh:path ogc:sfContains;
-    sh:name "ogc:sfContains";
-    sh:class bag:AdresseerbaarObject
   ];
 .
 
@@ -279,7 +290,7 @@ kkg:owms-Gemeente a sh:NodeShape;
 
 # CBS
 kkg:cbs-gemeente a sh:NodeShape;
-  sh:name "cbs:gemeente";
+  sh:name "cbs:Gemeente";
   sh:targetClass cbs:Gemeente;
   sh:property [
     sh:path ogc:sfEquals;
