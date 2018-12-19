@@ -145,25 +145,25 @@ dataset:Buurten a void:Dataset;
   rdfs:label "Buurten";
   void:subset dataset:CbsWijkenEnBuurten;
   void:classPartition [ void:class cbs:Buurt];
-  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU16800000>
+  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU03770000>
 .
-<http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU16800000> a cbs:Buurt.
+<http://betalinkeddata.cbs.nl/regios/2016/id/buurt/BU03770000> a cbs:Buurt.
 
 dataset:Wijken a void:Dataset;
   rdfs:label "Wijken";
   void:subset dataset:CbsWijkenEnBuurten;
   void:classPartition [ void:class cbs:Wijk];
-  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/wijk/WK168000>
+  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/wijk/WK037700>
 .
-<http://betalinkeddata.cbs.nl/regios/2016/id/wijk/WK168000> a cbs:Wijk.
+<http://betalinkeddata.cbs.nl/regios/2016/id/wijk/WK037700> a cbs:Wijk.
 
 dataset:CbsGemeenten a void:Dataset;
   rdfs:label "CBS Gemeenten";
   void:subset dataset:CbsWijkenEnBuurten;
   void:classPartition [ void:class cbs:Gemeente];
-  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/GM1680>
+  void:exampleResource <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/GM0377>
 .
-<http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/GM1680> a cbs:Gemeente.
+<http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/GM0377> a cbs:Gemeente.
 
 #
 # Cultureel erfgoed
@@ -239,14 +239,18 @@ dataset:BbiKadastraleGemeenten a void:Dataset;
 dataset:Gemeentegebieden a void:Dataset;
   rdfs:label "Gemeentegebieden";
   void:subset dataset:Brk;
-  void:classPartition [ void:class brk:Gemeentegebied]
+  void:classPartition [ void:class brk:Gemeentegebied];
+  void:exampleResource <http://brt.basisregistraties.overheid.nl/top10nl/id/registratief-gebied/130546416>
 .
+<http://brt.basisregistraties.overheid.nl/top10nl/id/registratief-gebied/130546416> a brk:Gemeentegebied. #Dit is eigenlijk niet goed, want dit is de brt en niet de brk, maar voor nu...
 
 dataset:Woonplaatsen a void:Dataset;
   rdfs:label "Woonplaatsen";
   void:subset dataset:Bag;
-  void:classPartition [ void:class bag:Woonplaats]
+  void:classPartition [ void:class bag:Woonplaats];
+  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/2654>
 .
+<http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/2654> a bag:Woonplaats.
 
 #
 # Basisregistratie topografie
@@ -296,9 +300,9 @@ dataset:OpenbareRuimten a void:Dataset;
   rdfs:label "Openbare ruimten";
   void:subset dataset:Bag;
   void:classPartition [ void:class bag:OpenbareRuimte];
-  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0772300000000155>;
+  void:exampleResource <http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0377300000000168>;
 .
-<http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0772300000000155> a bag:OpenbareRuimte.
+<http://bag.basisregistraties.overheid.nl/bag/id/openbare-ruimte/0377300000000168> a bag:OpenbareRuimte.
 
 # =======================
 #
@@ -424,6 +428,14 @@ dataset:WoonplaatsStraat a void:Linkset;
   dct:publisher organisatie:Kadaster;
 .
 
+dataset:NummeraanduidingOpenbareRuimte a void:Linkset;
+  rdfs:label "Nummeraanduiding - OpenbareRuimte";
+  void:target dataset:Nummeraanduidingen;
+  void:target dataset:OpenbareRuimten;
+  void:linkPredicate bag:bijbehorendeOpenbareRuimte;
+  dct:publisher organisatie:Kadaster;
+.
+
 dataset:RvoGebouwBagAdresseerbaarObject a void:Linkset;
   rdfs:label "RVO Gebouw-adres";
   void:target dataset:RvoGebouwen;
@@ -438,4 +450,28 @@ dataset:BestemmingsvlakPerceel a void:Linkset;
   void:target dataset:Percelen;
   void:linkPredicate ogc:sfIntersects;
   dct:publisher organisatie:Kadaster;
+.
+
+dataset:WijkInGemeente a void:Linkset;
+  rdfs:label "Wijk in gemeente";
+  void:target dataset:Wijken;
+  void:target dataset:CbsGemeenten;
+  void:linkPredicate ogc:sfWithin;
+  dct:publisher organisatie:CBS;
+.
+
+dataset:BuurtInWijk a void:Linkset;
+  rdfs:label "Buurt in gemeente";
+  void:target dataset:Buurten;
+  void:target dataset:Wijken;
+  void:linkPredicate ogc:sfWithin;
+  dct:publisher organisatie:CBS;
+.
+
+dataset:CbsGemeenteBrkGemeentegebied a void:Linkset;
+  rdfs:label "cbs:gemeente =~ brk:Gemeentegebied";
+  void:target dataset:CbsGemeenten;
+  void:target dataset:Gemeentegebieden;
+  void:linkPredicate ogc:sfEquals;
+  dct:publisher organisatie:CBS;
 .
