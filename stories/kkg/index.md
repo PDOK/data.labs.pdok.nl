@@ -59,7 +59,7 @@ want als binnen x(5) jaar aanpassingen in de BAG zijn geweest, dan
 waarschijnlijk gebouw al aangepast) zijn potentieel interessant om te
 verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
 
-## School volgens de BRT
+## Scholen volgens de BRT
 
 <query data-config="http://localhost:5000/stories/kkg/#query=prefix%20brt%3A%20%3Chttp%3A%2F%2Fbrt.basisregistraties.overheid.nl%2Fdef%2Ftop10nl%23%3E%0Aprefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect%20*%20%7B%0A%20%20%3Fgebouw%0A%20%20%20%20a%20brt%3ASchool%3B%0A%20%20%20%20geo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fshape.%0A%7D%0Alimit%20250%0A&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=geo&outputSettings=%7B%22map%22%3A%22nlmaps%22%2C%22visualization%22%3A%22heatmap%22%2C%22grouped%22%3Afalse%7D"
        data-query-ref="q3a.rq"
@@ -71,5 +71,7 @@ verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
 <query data-query-ref="q3b.rq" data-output="geo"></query>
 
 ## Deel 4
+
+Stroomvoorziening.
 
 <query data-query-ref="q4.rq" data-output="geo"></query>
