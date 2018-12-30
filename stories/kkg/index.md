@@ -49,15 +49,29 @@ Panden met een winkel/industriefunctie volgens de BAG, die dicht bij
 het centrum liggen, oud zijn, en waar ruimtelijke plannen woningbouw
 toestaat.
 
+<!--
+TODO: enkel bestemming
+-->
+
 <query data-query-ref="q2.rq" data-output="geo"></query>
 
 ## Deel 3
 
+<!--
+TODO: BAG onderwijsfunctie in het verleden
+-->
+
+Oud gebouw wat vroeger een school was, maar inmiddels niet meer.  5
+Jaar combineren met functie/status-verandering.
+Te laat als status “is gesloopt”.
+
+<!--
 Scholen volgens de BRT die volgens DUO geen schoolfunctie (meer)
 hebben.  BAG status in gebruik bv. of bag laatste datum wijziging:
 want als binnen x(5) jaar aanpassingen in de BAG zijn geweest, dan
 waarschijnlijk gebouw al aangepast) zijn potentieel interessant om te
 verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
+-->
 
 ## Scholen volgens de BRT
 
