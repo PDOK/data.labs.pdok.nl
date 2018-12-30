@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/assets/images/icons/64x64.png">
     <link rel="apple-touch-icon" href="/assets/images/icons/64x64.png">
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700,400italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision }}">
     <link rel="stylesheet" href="{{ '/assets/css/app.css?v=' | append: site.github.build_revision }}">
     <script src="/assets/js/scale.fix.js"></script>
@@ -67,7 +67,8 @@
 	      display: flow-root;
       }
 	  </style>
-    <script src='/assets/js/yasgui.min.js'></script>
+    <script src="/assets/js/yasgui.min.js"></script>
+    <script src="/assets/js/yasgui.polyfill.min.js"></script>
     <script type="text/javascript">
       window.onload = function () {
         window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'
