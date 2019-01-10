@@ -175,15 +175,15 @@ td {
 <img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
   <h3>Informatie over uw huis</h3>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
   <table cellpadding=0 cellspacing=0><tbody>
-    <tr><td>Straatnaam:</td><td style="text-align: right">${$('#straatnaam')[0].innerText}</td></tr>
-    <tr><td>Huisnummer:</td><td style="text-align: right">${$('#huisnummer')[0].innerText}</td></tr>
-    <tr><td>Woonplaats:</td><td style="text-align: right">${$('#woonplaats')[0].innerText}</td></tr>
+    <tr><td>Adres:</td><td style="text-align: right">${$('#straatnaam')[0].innerText} ${$('#huisnummer')[0].innerText}</td></tr>
     <tr><td>Postcode:</td><td style="text-align: right">${$('#postcode')[0].innerText}</td></tr>
+    <tr><td>Woonplaats:</td><td style="text-align: right">${$('#woonplaats')[0].innerText}</td></tr>
     <tr><td>Bouwjaar:</td><td style="text-align: right">${$('#bouwjaar')[0].nextSibling.data}</td></tr>
     <tr><td>Oppervlak:</td><td style="text-align: right">${$('#oppervlak')[0].nextSibling.data}</td></tr>
   </tbody></table>
   <h3>Informatie over uw buurt</h3>
   <table cellpadding=0 cellspacing=0><tbody>
+    <tr><td>Buurtnaam:</td><td style="text-align: right">${$('#buurtnaam')[0].innerText}</td></tr>
     <tr><td>Aantal inwoners:</td><td style="text-align: right">${$('#aantalinwoners')[0].nextSibling.data}</td></tr>
     <tr><td>Aantal mannen:</td><td style="text-align: right">${$('#aantalmannen')[0].nextSibling.data}</td></tr>
     <tr><td>Aantal vrouwen:</td><td style="text-align: right">${$('#aantalvrouwen')[0].nextSibling.data}</td></tr>
@@ -206,7 +206,7 @@ td {
   // printDiv.style.border = "solid #0000FF"; 
   printDiv.style.width = "10cm";
   printDiv.style.height = "15cm";
-  window.resizeTo(printDiv.offsetWidth,printDiv.offsetHeight);
+  window.resizeTo(printDiv.offsetWidth + 30,printDiv.offsetHeight + 30);
   setTimeout(function(){print(); }, 1000);
   
   function clean(node) {

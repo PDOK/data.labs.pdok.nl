@@ -104,6 +104,7 @@ select * {
     <div id="nummeraanduiding" hidden>{{nummeraanduiding}}</div>
     <div id="straatnaam" hidden>{{openbareRuimteNaam}}</div>
     <div id="huisnummer" hidden>{{huisnummer}}{{huisnummerPlus}}</div>
+    <div id="buurtnaam" hidden>{{buurtNaam}}</div>
     <div id="woonplaats" hidden>{{woonplaatsNaam}}</div>
     <div id="postcode" hidden>{{postcode}}</div>
     <div id="woningenvoor2000" hidden>{{woningenvoor2000}}%</div>
