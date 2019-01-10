@@ -38,7 +38,7 @@ door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaa
 
 <query data-endpoint="https://data.pdok.nl/sparql"
        data-query-ref="huischeck_sparql.rq"
-       data-output="gallery">
+       data-output="geo">
 </query>
 
 ## Uw huis in 3D
