@@ -123,18 +123,58 @@ $(document).ready(() => {
   });
 });
 
+
 function createPrintTable() {
-  let printTableWindowText = `
+  const printTableWindowText = `
 <!doctype html>
 <html lang="nl-NL"><head>
 <title>${document.title}</title>
-<style> @media print {@page { margin: 0; } body { margin: 1.6cm; }}</style>
+<style> 
+@media print {@page { margin: 0; } body { margin: 1.6cm; }}
+div {
+  font-size: smaller;
+  width: 10cm; 
+  height: 15cm; 
+  max-width: 10cm; 
+  max-height: 15cm;
+  white-space: pre-wrap; /* css-3 */    
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */    
+  white-space: -o-pre-wrap; /* Opera 7 */    
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  overflow: hidden;
+}
+
+h3 {
+  margin: 0px;
+}
+
+table {
+  /*table-layout: fixed; */
+  width: 10cm;
+  margin: 0px;
+  padding-bottom: 1px;
+}
+
+tr {
+  padding: 0px;
+  margin: 0px;
+}
+
+td {
+  white-space: pre-wrap; /* css-3 */    
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */    
+  white-space: -o-pre-wrap; /* Opera 7 */    
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+</style>
 </head><body>
-<div id="printTable" style="width: 10cm; height: 15cm;">
+<div id="printTable" style=" line-break: anywhere;">
 <img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
-<p>
-  <h3>Informatie over uw huis</h3>
-  <table style="width: 100%"><tbody>
+  <h3>Informatie over uw huis</h3>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
+  <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Straatnaam:</td><td style="text-align: right">${$('#straatnaam')[0].innerText}</td></tr>
     <tr><td>Huisnummer:</td><td style="text-align: right">${$('#huisnummer')[0].innerText}</td></tr>
     <tr><td>Woonplaats:</td><td style="text-align: right">${$('#woonplaats')[0].innerText}</td></tr>
@@ -143,7 +183,7 @@ function createPrintTable() {
     <tr><td>Oppervlak:</td><td style="text-align: right">${$('#oppervlak')[0].nextSibling.data}</td></tr>
   </tbody></table>
   <h3>Informatie over uw buurt</h3>
-  <table style="width: 100%"><tbody>
+  <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Aantal inwoners:</td><td style="text-align: right">${$('#aantalinwoners')[0].nextSibling.data}</td></tr>
     <tr><td>Aantal mannen:</td><td style="text-align: right">${$('#aantalmannen')[0].nextSibling.data}</td></tr>
     <tr><td>Aantal vrouwen:</td><td style="text-align: right">${$('#aantalvrouwen')[0].nextSibling.data}</td></tr>
@@ -155,22 +195,37 @@ function createPrintTable() {
     <tr><td>Gem. elektriciteitsverbruik:</td><td style="text-align: right">${$('#elektriciteitsverbruik')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot supermarkt:</td><td style="text-align: right">${$('#supermarkt')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot huisarts:</td><td style="text-align: right">${$('#huisarts')[0].nextSibling.data}</td></tr>
-    <tr><td>Gem. afstand tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afst. tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  
   <h3>Deze informatie is verkregen via de Huischeck van PDOK.</h3>
   <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
-</p>
 </div>
 <script>
   const printDiv = document.getElementById("printTable");
   // printDiv.style.border = "solid #0000FF"; 
+  printDiv.style.width = "10cm";
+  printDiv.style.height = "15cm";
   window.resizeTo(printDiv.offsetWidth,printDiv.offsetHeight);
   setTimeout(function(){print(); }, 1000);
+  
+  function clean(node) {
+    for (let n = 0; n < node.childNodes.length; n += 1) {
+      const child = node.childNodes[n];
+      if (child.nodeType === 8 || (child.nodeType === 3 && !/\\S/.test(child.nodeValue))) {
+        node.removeChild(child);
+        n -= 1;
+      } else if (child.nodeType === 1) {
+        clean(child);
+      }
+    }
+  }
+  
+  clean(document);
 </script>
-</body></html>
-  `;
+</body></html>`;
+
   const printTableWindow = window.open('', 'print table', 'height=1920,width=1080');
-  printTableWindow.document.write(printTableWindowText);
+  console.log(printTableWindowText.replace('\n', ''));
+  printTableWindow.document.write(printTableWindowText.replace('\n', ''));
 }

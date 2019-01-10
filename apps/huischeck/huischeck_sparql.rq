@@ -101,6 +101,7 @@ select * {
   bind('''
 	<div id="huischeckTable">
 	  <!-- wat verborgen elementen om de tabelprint op te maken -->
+    <div id="nummeraanduiding" hidden>{{nummeraanduiding}}</div>
     <div id="straatnaam" hidden>{{openbareRuimteNaam}}</div>
     <div id="huisnummer" hidden>{{huisnummer}}{{huisnummerPlus}}</div>
     <div id="woonplaats" hidden>{{woonplaatsNaam}}</div>
