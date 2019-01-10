@@ -226,6 +226,5 @@ td {
 </body></html>`;
 
   const printTableWindow = window.open('', 'print table', 'height=1920,width=1080');
-  console.log(printTableWindowText.replace('\n', ''));
-  printTableWindow.document.write(printTableWindowText.replace('\n', ''));
+  printTableWindow.document.write(printTableWindowText);
 }
