@@ -4,39 +4,47 @@ prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografis
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
-select ?shape ?shapeColor ?shapeLabel {
-  ?buurt geo:hasGeometry/geo:asWKT ?shape ;
-          rdfs:label ?buurtLabel;
-            ?blank1 _:102.
+select * {
+  ?buurt
+    geo:hasGeometry/geo:asWKT ?shape;
+    rdfs:label ?buurtLabel;
+    # HACK: Work around GraphDB bug.
+    ?blank1 _:102.
    _:102 ?blank2 gemeente:GM0637.
   {
     select (min(?afstand) as ?min) (max(?afstand) as ?max) {
-      _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
-          dimension:regio ?buurt .
-      _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
-          dimension:regio ?buurt .
-      _:3 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
-          dimension:regio ?buurt .
-      _:4 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
-          dimension:regio ?buurt .
+      [ def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt;
+        dimension:regio ?buurt ].
+      [ def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts;
+        dimension:regio ?buurt ].
+      [ def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf;
+        dimension:regio ?buurt ].
+      [ def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school;
+        dimension:regio ?buurt ].
       bind(?supermarkt+?huisarts+?kinderdagverblijf+?school as ?afstand)
     }
   }
-  _:5 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt ;
-      dimension:regio ?buurt .
-  _:6 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts ;
-      dimension:regio ?buurt .
-  _:7 def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf ;
-      dimension:regio ?buurt .
-  _:8 def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school ;
-      dimension:regio ?buurt .
+  [ def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt;
+      dimension:regio ?buurt ].
+  [ def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts;
+      dimension:regio ?buurt ].
+  [ def:nabijheidVoorzieningen_AfstandTotKinderdagverblijf ?kinderdagverblijf;
+      dimension:regio ?buurt ].
+  [ def:nabijheidVoorzieningen_Basisonderwijs_AfstandTotSchool ?school;
+      dimension:regio ?buurt ].
   bind(?supermarkt+?huisarts+?kinderdagverblijf+?school as ?afstand)
   bind((?afstand*4-?min)/xsd:double(?max-?min) as ?score)
   bind(concat('jet,',str(?score)) as ?shapeColor)
-  bind(concat('<h3>Zoetermeer ',str(?buurtLabel),'</h3>',
-              '<h4>Afstand tot supermark: ',str(?supermarkt),' km</h4>',
-              '<h4>Afstand tot huisarts: ',str(?huisarts),' km</h4>',
-              '<h4>Afstand tot kinderopvang: ',str(?kinderdagverblijf),' km</h4>',
-              '<h4>Afstand tot school: ',str(?school),' km</h4>') as ?shapeLabel)
+  bind('''
+       <h3>Zoetermeer {{buurtLabel}}</h3>
+       <dl>
+         <dt>Afstand tot supermark</dt>
+         <dd>{{supermarkt}} km</dd>
+         <dt>Afstand tot huisarts</dt>
+         <dd>{{huisarts}} km</dd>
+         <dt>Afstand tot kinderopvang<dt>
+         <dd>{{kinderdagverblijf}} km</dd>
+         <dt>Afstand tot school</dt>
+         <dd>{{school}} km</dd>
+       </dl>''' as ?shapeLabel)
 }

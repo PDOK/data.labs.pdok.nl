@@ -1,0 +1,28 @@
+# CBS wijken met matige stedelijkheid
+# (o.b.v. omgevingsadressendichtheid).
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix code: <http://betalinkeddata.cbs.nl/83487NED/id/code/>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select * {
+  ?gemeente
+    a cbs:Gemeente_Geografisch;
+    rdfs:label ?gemeenteNaam.
+  ?wijk
+    a cbs:Wijk;
+    ?geo_sfWithin1 ?gemeente; # HACK: Required in GraphDB
+    rdfs:label ?wijkNaam.
+  ?buurt
+    a cbs:Buurt;
+    geo:hasGeometry/geo:asWKT ?shape;
+    ?geo_sfWithin2 ?wijk; # HACK: Required in GraphDB
+    rdfs:label ?buurtNaam.
+  [ def:stedelijkheid_MateVanStedelijkheid code:Stedelijkheid_MateVanStedelijkheid_MatigStedelijk;
+    dimension:regio ?buurt ].
+  bind('red' as ?shapeColor)
+  bind('''<h3>Buurt {{buurtNaam}} te {{gemeenteNaam}}</h3>'''^^rdf:HTML as ?shapeLabel)
+}
+limit 10000

@@ -1,0 +1,37 @@
+# 1. BAG bouwjaar tussen 1960 en 1970,
+# 2. RVO energielabel D of slechter (TODO),
+# 3. WOZ per pand (TODO).
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select distinct ?point {
+  bind("Dordrecht" as ?woonplaatsNaam)
+  graph ?woonplaatsVoorkomen {
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+  }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid []. }
+  graph ?openbareRuimteVoorkomen {
+    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
+                    bag:naamOpenbareRuimte ?openbareRuimteNaam.
+  }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid []. }
+  graph ?nummeraanduidingVoorkomen {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte.
+  }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid []. }
+  graph ?verblijfsobjectVoorkomen {
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                     bag:pandrelatering ?pand;
+                     bag:status ?verblijfsobjectStatus;
+                     geo:hasGeometry/geo:asWKT ?point.
+    filter (?verblijfsobjectStatus = begrip:VerblijfsobjectInGebruik)
+  }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid []. }
+  graph ?pandVoorkomen {
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar;
+          bag:status ?pandStatus.
+    filter (?bouwjaar > 1950 && ?bouwjaar < 1960 && ?pandStatus not in (begrip:PandGesloopt, begrip:SloopvergunningVerleend))
+  }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid []. }
+}
+limit 10000

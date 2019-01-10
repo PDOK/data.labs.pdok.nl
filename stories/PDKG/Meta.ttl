@@ -130,6 +130,16 @@ meta:PerceelSamenvoeging a rdf:Statement;
   dct:temporal meta:Temporeel;
 .
 
+meta:PerceelKadastraleGemeente a rdf:Statement;
+  rdf:subject brk:Perceel;
+  rdf:predicate ogc:sfWithin;
+  rdf:object brk:KadastraleGemeente;
+  rdfs:comment "Onderdeel van de KadastraleKaart";
+  void:inDataset dataset:PerceelKadastraleGemeente;
+  dct:type meta:Aanwezig;
+  dct:licence meta:VrijBeschikbaar;
+.
+
 meta:BagPandBrtGebouw a rdf:Statement;
   rdf:subject bag:Pand;
   rdf:predicate ogc:sfOverlaps;
@@ -168,6 +178,45 @@ meta:BagNummeraanduidingBrkPerceel a rdf:Statement;
   void:inDataset dataset:LKO;
   dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
+.
+
+meta:BagAdresseerbaarObjectBagPand a rdf:Statement;
+  rdf:subject bag:AdresseerbaarObject;
+  rdf:predicate ogc:sfWithin;
+  rdf:object bag:Pand;
+  rdfs:comment "Deze link is standaard onderdeel van de BAG";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+  dct:license meta:VrijBeschikbaar;
+.
+
+meta:BagAdresseerbaarObjectBagOpenbareRuimte a rdf:Statement;
+  rdf:subject bag:AdresseerbaarObject;
+  rdf:predicate ogc:sfTouches;
+  rdf:object bag:OpenbareRuimte;
+  rdfs:comment "Deze link loopt via de nummeraanduiding";
+  void:inDataset dataset:Bag;
+  dct:type meta:OntbreektBeschikbaar;
+.
+
+meta:BagNummeraanduidingBagOpenbareRuimte a rdf:Statement;
+  rdf:subject bag:Nummeraanduiding;
+  rdf:predicate ogc:sfTouches;
+  rdf:object bag:OpenbareRuimte;
+  rdfs:comment "Standaard aanwezig";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+.
+
+meta:BagOpenbareRuimteBagWoonplaats a rdf:Statement;
+  rdf:subject bag:OpenbareRuimte;
+  rdf:predicate ogc:sfWithin;
+  rdf:object bag:Woonplaats;
+  rdfs:comment "Standaard aanwezig";
+  void:inDataset dataset:Bag;
+  dct:type meta:Aanwezig;
+  sh:minCount 1;
+  sh:maxCount 1;
 .
 
 meta:BagWoonplaatsBrtGemeente a rdf:Statement;
