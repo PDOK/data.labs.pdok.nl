@@ -4,6 +4,7 @@ prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
 prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
 prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select * {
@@ -52,7 +53,7 @@ select * {
       }
       ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
       graph ?pandVoorkomen {
-        ?pand bag:geometriePand/geo:asWKT ?wkt;
+        ?pand bag:geometriePand/geo:asWKT ?wkt_poly;
               bag:oorspronkelijkBouwjaar ?bouwjaar;
               bag:status ?pandStatus.
       }
@@ -60,6 +61,17 @@ select * {
         ?pandVoorkomen bag:eindGeldigheid []
       }
       ?pandStatus rdfs:label ?pandStatusLabel
+
+      bind(geof:envelope(?wkt_poly) as ?envelope)
+      bind (strbefore(strafter(str(?envelope), "((" ), "))") as ?coords)
+      bind(strbefore(?coords, " ") as ?first_long)
+      bind(strbefore(strafter(?coords, " "), ",") as ?first_lat)
+      bind(strbefore(strafter(?coords, concat(?first_lat, ", ")), ",") as ?second_coordinates)
+      bind(strbefore(strafter(?coords, concat(?second_coordinates, ", ")), " ") as ?third_long)
+      bind(strbefore(strafter(?coords, ?third_long), ",") as ?third_lat)
+      bind((strdt(?first_long, xsd:double) + strdt(?third_long, xsd:double)) / 2 as ?avg_long)
+      bind((strdt(?first_lat, xsd:double) + strdt(?third_lat, xsd:double)) / 2 as ?avg_lat)
+      bind(strdt(concat("POINT(", str(?avg_long), " ", str(?avg_lat), ")"), geo:wktLiteral) as ?wkt)
     }
   }
 
