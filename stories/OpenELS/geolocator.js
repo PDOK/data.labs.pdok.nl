@@ -1,6 +1,8 @@
 
     $(document).ready(function() {
-        $("#submitButton").click(function() {
+
+        $('form').on('submit', (event)=>{
+            event.preventDefault();
 
             $("#map").empty();
             var userInput = $('#topoName').val().trim();
