@@ -25,8 +25,8 @@ title:  .
    <nav class="navbar navbar-light bg-light">
       <form class="form-inline">
           <label for="topoName" class="font-weight-normal">Here you can search for toponyms:  </label>
-          <input type="search" class="form-control" id="topoName" placeholder="e.g. Amsterdam"/>
-          <button type="button" id="submitButton" class="btn btn-info">Search</button>
+          <input type="text" class="form-control" id="topoName" placeholder="e.g. Amsterdam"/>
+          <button type="submit" id="submitButton" class="btn btn-info">Search</button>
       </form>
   </nav>
   
