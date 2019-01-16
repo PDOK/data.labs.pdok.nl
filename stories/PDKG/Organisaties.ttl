@@ -31,6 +31,11 @@
 #
 # Organisaties
 #
+
+organisatie:RVO a foaf:Agent;
+  rdfs:label "Rijksdienst Voor Ondernemend Nederland";
+.
+
 organisatie:RCE a foaf:Agent;
   rdfs:label "Rijksdienst voor Cultureel Erfgoed"
 .
@@ -43,6 +48,10 @@ organisatie:Koop a foaf:Agent;
   rdfs:label "KOOP";
 .
 
-organisatie:Cbs a foaf:Agent;
+organisatie:CBS a foaf:Agent;
   rdfs:label "CBS";
+.
+
+organisatie:Waarderingskamer a foaf:Agent;
+  rdfs:label "Waarderingskamer";
 .

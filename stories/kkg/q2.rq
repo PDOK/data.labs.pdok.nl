@@ -1,0 +1,42 @@
+# 1. BAG panden met winkel- of industriefunctie,
+# 2. dicht bij het centrum (TODO),
+# 3. oude panden (bouwjaar vóór 1970),
+# 4. waar ruimtelijke plannen woningbouw toestaat (TODO).
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select distinct ?shape {
+  bind("Dordrecht" as ?woonplaatsNaam)
+  graph ?woonplaatsVoorkomen {
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+  }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid []. }
+  graph ?openbareRuimteVoorkomen {
+    ?openbareRuimte
+      bag:bijbehorendeWoonplaats ?woonplaats;
+      bag:naamOpenbareRuimte ?openbareRuimteNaam.
+  }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid []. }
+  graph ?nummeraanduidingVoorkomen {
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte.
+  }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid []. }
+  graph ?verblijfsobjectVoorkomen {
+    ?verblijfsobject
+      a ?klasse;
+      bag:hoofdadres ?nummeraanduiding;
+      bag:pandrelatering ?pand;
+      bag:status begrip:VerblijfsobjectInGebruik.
+    filter(?klasse in (bag:VerblijfsobjectIndustriefunctie, bag:VerblijfsobjectWinkelfunctie))
+  }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid []. }
+  graph ?pandVoorkomen {
+    ?pand
+      bag:oorspronkelijkBouwjaar ?bouwjaar;
+      bag:status ?pandStatus;
+      geo:hasGeometry/geo:asWKT ?shape.
+    filter(?bouwjaar < 1970 && ?pandStatus not in (begrip:PandGesloopt, begrip:SloopvergunningVerleend))
+  }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid []. }
+}
+limit 10000

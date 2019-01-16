@@ -9,12 +9,14 @@ title: Energielabels voorspellen
 # Energielabels voorspellen
 
 ## DISCLAIMER
-De applicatie op deze pagina kan een ruwe benadering geven van het energielabel van een woonhuis. Aan de waarden gegeven in deze applicatie kunnen geen rechten worden ontleend. 
+De applicatie op deze pagina kan een **ruwe** inschatting maken van het energielabel van een woonhuis, op basis van enkel het bouwjaar en het pandoppervlak. Aan de inschattingen gemaakt in deze applicatie kunnen geen rechten worden ontleend. 
 
 ## Energielabels voor panden
-Naast broodroosters en wasmachines kunnen nu ook panden over een energielabel beschikken. Velen hebben hier al kennis mee gemaakt: bij verkoop van een pand moet er een energielabel van dit pand bekend zijn. De labelindeling en het bijbehorende kleurenpalet is als volgt:
+Naast broodroosters en wasmachines kunnen ook panden over een energielabel beschikken. Het energielabel voor panden is een van de belangrijkste instrumenten in Europa om inzicht te krijgen in de energieconsumptie van huizen en panden. Velen hebben hier al kennis mee gemaakt: bij verkoop van een pand moet er een energielabel van dit pand bekend zijn. De labelindeling en het bijbehorende kleurenpalet is als volgt:
 
 <img src="energy_performance_rating.svg" />
+
+*Aangepast van [Wikipedia](https://en.wikipedia.org/wiki/Energy_Performance_Certificate_(United_Kingdom))*
 
 ## Energielabels en Machine Learning
 Het blijkt niet eenvoudig om een model voor energielabels van woningen handmatig te *tunen* zodanig dat er betrouwbare voorspellingen uit komen. Toch is het met behulp van automatisch lerende algoritmes te doen: met behulp van een eenvoudige [decision tree](https://en.wikipedia.org/wiki/Decision_tree) en slechts het bouwjaar en oppervlak van een woonhuis is met een nauwkeurigheid van 81% een energielabel te voorspellen dat maximaal één label naast het daadwerkelijke label zit. Een exacte match is lastiger: op basis van enkel bouwjaar en oppervlak is slechts een nauwkeurigheid van 40% te geven. Let wel dat het model is getraind op enkel woningen, die voornamelijk door woningbouwcoorporaties zijn verzameld. Inschattingen met dit model op andere typen panden zoals fabrieksgebouwen of kantoren zijn onvoorspelbaar, maar waarschijnlijk zeer onbetrouwbaar.

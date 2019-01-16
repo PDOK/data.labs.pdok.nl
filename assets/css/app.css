@@ -21,8 +21,6 @@ Download the whole folder and replace all files
 @import 'modules/usp.css';
 @import 'modules/dataset.css';
 
-@import 'yasgui/overrides.css';
-
 pre {
   color: #ffffff;
 }

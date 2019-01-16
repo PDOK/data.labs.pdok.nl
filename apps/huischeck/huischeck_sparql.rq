@@ -4,6 +4,7 @@ prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
 prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
 prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
 prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select * {
@@ -52,7 +53,7 @@ select * {
       }
       ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
       graph ?pandVoorkomen {
-        ?pand bag:geometriePand/geo:asWKT ?shape;
+        ?pand bag:geometriePand/geo:asWKT ?wkt_poly;
               bag:oorspronkelijkBouwjaar ?bouwjaar;
               bag:status ?pandStatus.
       }
@@ -60,10 +61,22 @@ select * {
         ?pandVoorkomen bag:eindGeldigheid []
       }
       ?pandStatus rdfs:label ?pandStatusLabel
+
+      bind(geof:envelope(?wkt_poly) as ?envelope)
+      bind (strbefore(strafter(str(?envelope), "((" ), "))") as ?coords)
+      bind(strbefore(?coords, " ") as ?first_long)
+      bind(strbefore(strafter(?coords, " "), ",") as ?first_lat)
+      bind(strbefore(strafter(?coords, concat(?first_lat, ", ")), ",") as ?second_coordinates)
+      bind(strbefore(strafter(?coords, concat(?second_coordinates, ", ")), " ") as ?third_long)
+      bind(strbefore(strafter(?coords, ?third_long), ",") as ?third_lat)
+      bind((strdt(?first_long, xsd:double) + strdt(?third_long, xsd:double)) / 2 as ?avg_long)
+      bind((strdt(?first_lat, xsd:double) + strdt(?third_lat, xsd:double)) / 2 as ?avg_lat)
+      bind(strdt(concat("POINT(", str(?avg_long), " ", str(?avg_lat), ")"), geo:wktLiteral) as ?wkt)
     }
   }
+
   service <https://betalinkeddata.cbs.nl/sparql> {
-    ?shape geo:sfWithin ?geometry.
+    ?wkt geo:sfWithin ?geometry.
     _:1 def:nabijheidVoorzieningen_AfstandTotGroteSupermarkt ?supermarkt;
         dimension:regio ?buurt.
     _:2 def:nabijheidVoorzieningen_AfstandTotHuisartsenpraktijk ?huisarts;
@@ -98,21 +111,34 @@ select * {
   bind(concat(if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),
               if(bound(?huisletter),concat(' ',str(?huisletter)),'')) as ?huisnummerPlus)
   bind('''
-    <h1>{{openbareRuimteNaam}} {{huisnummer}}{{huisnummerPlus}}, {{postcode}}, {{woonplaatsNaam}}</h1>
-    <dl>
-      <dt>Bouwjaar</dt><dd>{{bouwjaar}}</dd>
-      <dt>Oppervlakte</dt><dd>{{oppervlakte}} m^2</dd>
-      <dt>Aantal inwoners</dt><dd>{{aantalinwoners}}</dd>
-      <dt>Aantal mannen</dt><dd>{{mannen}}</dd>
-      <dt>Aantal vrouwen</dt><dd>{{vrouwen}}</dd>
-      <dt>Gem. woningwaarde</dt><dd>{{woningwaarde}}</dd>
-      <dt>Aantal koopwoningen</dt><dd>{{koopwoningen}}</dd>
-      <dt>Aantal huurwoningen</dt><dd>{{huurwoningen}}</dd>
-      <dt>Elektriciteitsverbruik</dt><dd>{{elektriciteitsverbruik}}</dd>
-      <dt>Afstand tot supermarkt</dt><dd>{{supermarkt}}</dd>
-      <dt>Afstand tot huisarts</dt><dd>{{huisarts}}</dd>
-      <dt>Afstand tot kinderdagverblijf</dt><dd>{{kinderdagverblijf}}</dd>
-      <dt>Afstand tot school</dt><dd>{{school}}</dd>
-    </dl>''' as ?widget)
+	<div id="huischeckTable">
+	  <!-- wat verborgen elementen om de tabelprint op te maken -->
+    <div id="nummeraanduiding" hidden>{{nummeraanduiding}}</div>
+    <div id="straatnaam" hidden>{{openbareRuimteNaam}}</div>
+    <div id="huisnummer" hidden>{{huisnummer}}{{huisnummerPlus}}</div>
+    <div id="buurtnaam" hidden>{{buurtNaam}}</div>
+    <div id="woonplaats" hidden>{{woonplaatsNaam}}</div>
+    <div id="postcode" hidden>{{postcode}}</div>
+    <div id="woningenvoor2000" hidden>{{woningenvoor2000}}%</div>
+    <div id="woningenna2000" hidden>{{woningenvanaf2000}}%</div>
+
+    <h3>{{openbareRuimteNaam}} {{huisnummer}}{{huisnummerPlus}}, {{postcode}}, {{woonplaatsNaam}}</h3>
+
+    <b id="bouwjaar" style="font-weight: bold;">Bouwjaar</b> {{bouwjaar}}<br>
+    <b id="oppervlak" style="font-weight: bold;">Oppervlak</b> {{oppervlakte}} m&sup2;<br>
+    <b id="aantalinwoners" style="font-weight: bold;">Aantal inwoners</b> {{aantalinwoners}}<br>
+    <b id="aantalmannen" style="font-weight: bold;">Aantal mannen</b> {{mannen}}<br>
+    <b id="aantalvrouwen" style="font-weight: bold;">Aantal vrouwen</b> {{vrouwen}}<br>
+    <b id="woningwaarde" style="font-weight: bold;">Gem. woningwaarde</b> &euro;{{woningwaarde}}.000<br>
+    <b id="koopwoningen" style="font-weight: bold;">Percentage koopwoningen</b> {{koopwoningen}}%<br>
+    <b id="huurwoningen" style="font-weight: bold;">Percentage huurwoningen</b> {{huurwoningen}}%<br>
+    <b id="elektriciteitsverbruik" style="font-weight: bold;">Elektriciteitsverbruik</b> {{elektriciteitsverbruik}} kWh/jr.<br>
+    <b id="supermarkt" style="font-weight: bold;">Afstand tot supermarkt</b> {{supermarkt}} km.<br>
+    <b id="huisarts" style="font-weight: bold;">Afstand tot huisarts</b> {{huisarts}} km.<br>
+    <b id="kinderdagverblijf" style="font-weight: bold;">Afstand tot kinderdagverblijf</b> {{kinderdagverblijf}} km.<br>
+    <b id="school" style="font-weight: bold;">Afstand tot school</b> {{school}} km.<br>
+	</div>
+	<button onclick="createPrintTable()">Print!</button>
+''' as ?wktLabel)
 }
 limit 1

@@ -1,6 +1,6 @@
 'use strict';
 
-/* global $ document window fetch QrCodeWithLogo QRious */
+/* global $ document window fetch QrCodeWithLogo QRious yasgui */
 
 let globalLookup = {};
 
@@ -50,8 +50,6 @@ Waterschapsnaam: ${locatieserverLookup.waterschapsnaam}<br>
         padding: 16,
         value: `https://bag.basisregistraties.overheid.nl/bag/doc/nummeraanduiding/${locatieserverLookup.nummeraanduiding_id}`,
       });
-
-      // return qr.canvas.parentNode.appendChild(qr.image);
     });
 }
 
@@ -125,3 +123,108 @@ $(document).ready(() => {
   });
 });
 
+
+function createPrintTable() {
+  const printTableWindowText = `
+<!doctype html>
+<html lang="nl-NL"><head>
+<title>${document.title}</title>
+<style> 
+@media print {@page { margin: 0; } body { margin: 1.6cm; }}
+div {
+  font-size: smaller;
+  width: 10cm; 
+  height: 15cm; 
+  max-width: 10cm; 
+  max-height: 15cm;
+  white-space: pre-wrap; /* css-3 */    
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */    
+  white-space: -o-pre-wrap; /* Opera 7 */    
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  overflow: hidden;
+}
+
+h3 {
+  margin: 0px;
+}
+
+table {
+  /*table-layout: fixed; */
+  width: 10cm;
+  margin: 0px;
+  padding-bottom: 1px;
+}
+
+tr {
+  padding: 0px;
+  margin: 0px;
+}
+
+td {
+  white-space: pre-wrap; /* css-3 */    
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */    
+  white-space: -o-pre-wrap; /* Opera 7 */    
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+</style>
+</head><body>
+<div id="printTable" style=" line-break: anywhere;">
+<img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
+  <h3>Informatie over uw huis</h3>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
+  <table cellpadding=0 cellspacing=0><tbody>
+    <tr><td>Adres:</td><td style="text-align: right">${$('#straatnaam')[0].innerText} ${$('#huisnummer')[0].innerText}</td></tr>
+    <tr><td>Postcode:</td><td style="text-align: right">${$('#postcode')[0].innerText}</td></tr>
+    <tr><td>Woonplaats:</td><td style="text-align: right">${$('#woonplaats')[0].innerText}</td></tr>
+    <tr><td>Bouwjaar:</td><td style="text-align: right">${$('#bouwjaar')[0].nextSibling.data}</td></tr>
+    <tr><td>Oppervlak:</td><td style="text-align: right">${$('#oppervlak')[0].nextSibling.data}</td></tr>
+  </tbody></table>
+  <h3>Informatie over uw buurt</h3>
+  <table cellpadding=0 cellspacing=0><tbody>
+    <tr><td>Buurtnaam:</td><td style="text-align: right">${$('#buurtnaam')[0].innerText}</td></tr>
+    <tr><td>Aantal inwoners:</td><td style="text-align: right">${$('#aantalinwoners')[0].nextSibling.data}</td></tr>
+    <tr><td>Aantal mannen:</td><td style="text-align: right">${$('#aantalmannen')[0].nextSibling.data}</td></tr>
+    <tr><td>Aantal vrouwen:</td><td style="text-align: right">${$('#aantalvrouwen')[0].nextSibling.data}</td></tr>
+    <tr><td>Gemiddelde woningwaarde:</td><td style="text-align: right">${$('#woningwaarde')[0].nextSibling.data}</td></tr>
+    <tr><td>Percentage koopwoningen:</td><td style="text-align: right">${$('#koopwoningen')[0].nextSibling.data}</td></tr>
+    <tr><td>Percentage huurwoningen:</td><td style="text-align: right">${$('#huurwoningen')[0].nextSibling.data}</td></tr>
+    <tr><td>Percentage woningen voor 2000:</td><td style="text-align: right">${$('#woningenvoor2000')[0].innerText}</td></tr>
+    <tr><td>Percentage woningen na 2000:</td><td style="text-align: right">${$('#woningenna2000')[0].innerText}</td></tr>
+    <tr><td>Gem. elektriciteitsverbruik:</td><td style="text-align: right">${$('#elektriciteitsverbruik')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afstand tot supermarkt:</td><td style="text-align: right">${$('#supermarkt')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afstand tot huisarts:</td><td style="text-align: right">${$('#huisarts')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afst. tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
+  </tbody></table>
+  <h3>Deze informatie is verkregen via de Huischeck van PDOK.</h3>
+  <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
+</div>
+<script>
+  const printDiv = document.getElementById("printTable");
+  // printDiv.style.border = "solid #0000FF"; 
+  printDiv.style.width = "10cm";
+  printDiv.style.height = "15cm";
+  window.resizeTo(printDiv.offsetWidth + 30,printDiv.offsetHeight + 30);
+  setTimeout(function(){print(); }, 1000);
+  
+  function clean(node) {
+    for (let n = 0; n < node.childNodes.length; n += 1) {
+      const child = node.childNodes[n];
+      if (child.nodeType === 8 || (child.nodeType === 3 && !/\\S/.test(child.nodeValue))) {
+        node.removeChild(child);
+        n -= 1;
+      } else if (child.nodeType === 1) {
+        clean(child);
+      }
+    }
+  }
+  
+  clean(document);
+</script>
+</body></html>`;
+
+  const printTableWindow = window.open('', 'print table', 'height=1920,width=1080');
+  printTableWindow.document.write(printTableWindowText);
+}

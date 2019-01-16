@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/assets/images/icons/64x64.png">
     <link rel="apple-touch-icon" href="/assets/images/icons/64x64.png">
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700,400italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision }}">
     <link rel="stylesheet" href="{{ '/assets/css/app.css?v=' | append: site.github.build_revision }}">
     <script src="/assets/js/scale.fix.js"></script>
@@ -15,7 +15,6 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
   </head>
   <body>
     <div class="wrapper">
@@ -30,7 +29,8 @@
           <li><a href="/apps">Demo's & apps</a></li>
           <li><a href="https://translate.google.nl/translate?sl=nl&tl=en&js=y&prev=_t&hl=nl&ie=UTF-8&u=https%3A%2F%2Fdata.labs.pdok.nl&edit-text="><img height="20" src="/assets/images/uk.png"></a></li>
         </ul>
-        <span data-target="body" class="header-toggle js-toggle icon-menu"></span></nav>
+        <span data-target="body" class="header-toggle js-toggle icon-menu"></span>
+      </nav>
       <header>
         <h1 class="header">{{ site.title | default: site.github.repository_name }}</h1>
         <img src="/assets/images/beta-orange.png" style="width: 80%; margin: 0 0 0 0; background-color: inherit"/>
@@ -39,56 +39,48 @@
             <a class="buttons github" href="{{ site.github.repository_url }}">Bekijk op GitHub</a>
           </li>
         </ul>
-
         {% if site.github.is_project_page %}
         <p>Bekijk onze datasets en services op <a class="header name" href="https://data.pdok.nl">data.pdok.nl</a>!</p>
         {% endif %}
         <h2>Laatste wijzigingen:</h2>
         <div id="updates"></div>
         <script type="application/javascript" src="{{ '/assets/js/latest-updates.js?v=' | append: site.github.build_revision }}"></script>
-
         {% if site.github.is_user_page %}
-          <ul>
-            <li><a class="buttons github" href="{{ site.github.owner_url }}">GitHub Profile</a></li>
-          </ul>
+        <ul>
+          <li><a class="buttons github" href="{{ site.github.owner_url }}">GitHub Profile</a></li>
+        </ul>
         {% endif %}
       </header>
-
       <section>
         {{ content }}
       </section>
-
       <script src="{{ '/assets/js/app.js?v=' | append: site.github.build_revision }}"></script>
       <footer>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    <link href="https://nightly.yasgui.triply.cc/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/yasgui/yasgui.min.css" rel="stylesheet" type="text/css">
-
-	<!-- removal of the flex tag for the .yasgui .yasr .yasr_btn to improve styling issue. -->
-	<style type="text/css">
-
-		.yasgui .yasr .yasr_btn {
-	  display: flow-root;
-  }
-
-
-	</style>
-    <script src='/assets/js/yasgui.min.js'></script>
+    <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.min.css" rel="stylesheet" type="text/css">
+	  <!-- removal of the flex tag for the .yasgui .yasr .yasr_btn to improve styling issue. -->
+	  <style type="text/css">
+		  .yasgui .yasr .yasr_btn {
+	      display: flow-root;
+      }
+	  </style>
+    <script src="/assets/js/yasgui.min.js"></script>
+    <script src="/assets/js/yasgui.polyfill.min.js"></script>
     <script type="text/javascript">
-    window.onload = function () {
-
-      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'
-      {% if page.basemap %}
-      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "{{ page.basemap }}";
-      window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "{{ page.basemap }}";
-      {% else %}
-      window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "nlmaps";
-      window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "nlmaps";
-      {% endif %}
-      Yasgui.stories()
-    };
+      window.onload = function () {
+        window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'
+        {% if page.basemap %}
+        window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "{{ page.basemap }}";
+        window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "{{ page.basemap }}";
+        {% else %}
+        window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.map = "nlmaps";
+        window.Yasgui.Yasr.Instance.plugins.geo3d.defaults.map =  "nlmaps";
+        {% endif %}
+        Yasgui.stories()
+      };
     </script>
   </body>
 </html>
