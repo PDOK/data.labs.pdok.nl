@@ -6,7 +6,7 @@ title: Internships and Student Assignments
 # Internships
 At Kadaster/PDOK we have continuously assignments available for students at WO or HBO level in either technical, geospatial or business related studies. And both our offices in Zwolle and Apeldoorn provide workspaces. 
 
-We have some specific assignments that can be found here: [Internships at Kadaster](https://www.werkenbijhetkadaster.nl/stages-en-afstuderen)
+We have some specific assignments that can be found at [Internships at Kadaster](https://www.werkenbijhetkadaster.nl/stages-en-afstuderen).
 But in general we believe that setting up good assignments is already a collaboration between the student and the proposed supervisors, to make sure that the assignment fits the interest and potential of the student, and is also relevant from Kadaster/PDOK perspective. 
 
 Here we provide some topics that have our explicit interest:
