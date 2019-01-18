@@ -90,6 +90,28 @@ Lets see what names are used to refer to the corresponding administrative levels
        data-output="table">
  </query>
 
+### Holy Geographical Names
 
+People are used to refer to geographical features using names. 
+Mountains, rivers, lakes, towns, villages and even single trees can have their own names. 
+OpenEls project published more than 20 million place names (toponyms) and locations as Linked Data. 
+Standardised means for describing meaning of place names enable semantic interoperability between national data sets. 
+Seamless access to such rich data allows conducting interesting research. For example, 
+linguists could potentially use this data to analyse spatial distribution of common toponym roots. 
+The following example shows locations of place that have "holy" as a part of the name. 
+Obviously, the root "holy" is spelled differently in different languages. 
+The SPARQL query language makes it possible to specify different spelling of the search requests depending on what national endpoint processes the query. 
+In the example the following spellings are used:
 
+|Language|Spelling|
+|--------|--------|
+|English| holy|
+|Dutch|heilige|
+|Norwegian|hellig|
+|Finnish|pyhä|
 
+  <query 
+       data-endpoint="https://data.labs.pdok.nl/openels/sparql"
+       data-query-ref="holy.rq"
+       data-output="geo">
+ </query>
