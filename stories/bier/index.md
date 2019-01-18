@@ -2,7 +2,7 @@
 endpoint: https://data.pdok.nl/sparql
 layout: story
 logo: /stories/bier/logo.jpg
-output: leaflet
+output: geo
 published: true
 title: 🍺 Bier Data Story 🍺
 ---
@@ -52,7 +52,7 @@ BAG alsook het RCE Monumenten Register:
        data-output="geo">
 </query>
 
-En wat zegt [Wikipedia](https://nl.wikipedia.org/wiki/Heineken_Brouwerij_(Amsterdam)) ? 
+En wat zegt [Wikipedia](https://nl.wikipedia.org/wiki/Heineken_Brouwerij_(Amsterdam)) ?
 
 ## Linked Bier Browser
 
