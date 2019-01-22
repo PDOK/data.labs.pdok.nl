@@ -100,7 +100,8 @@ Seamless access to such rich data allows conducting interesting research. For ex
 linguists could potentially use this data to analyse spatial distribution of common toponym roots. 
 The following example shows locations of place that have "holy" as a part of the name. 
 Obviously, the root "holy" is spelled differently in different languages. 
-The SPARQL query language makes it possible to specify different spelling of the search requests depending on what national endpoint processes the query. 
+The Linked Data technology makes it possible to formulate a single query that addresses  national endpoints in their native 
+languages. 
 In the example the following spellings are used:
 
 |Language|Spelling|
@@ -112,6 +113,6 @@ In the example the following spellings are used:
 
   <query 
        data-endpoint="https://data.labs.pdok.nl/openels/sparql"
-       data-query-ref="holy.rq"
+       data-query-ref="holy_names.rq"
        data-output="geo">
  </query>

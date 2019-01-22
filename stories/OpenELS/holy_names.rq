@@ -1,0 +1,39 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gn: <http://inspire.ec.europa.eu/ont/gn#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX skos: <http://www.w3.org/2008/05/skos#>
+
+SELECT DISTINCT
+?wktLabel
+?wkt
+WHERE {
+  {
+    GRAPH <http://data.labs.pdok.nl/dataset/openels/gn> {
+      ?namedPlace gn:NamedPlace.name/rdfs:label ?wktLabel;
+                  geo:hasGeometry/geo:asWKT ?wkt.
+      FILTER regex(?wktLabel, "heilig", "i")
+    }
+  }
+  UNION {
+    SERVICE <http://rdf.kartverket.no/sparql> {
+      GRAPH <http://openels/geographicalnames2> {
+        ?namedPlace gn:NamedPlace.name/skos:prefLabel ?wktLabel;
+                    geo:hasGeometry/geo:asWKT ?wkt.
+        FILTER regex(?wktLabel, "hellig", "i")
+      }
+    }
+  }
+  UNION {
+    SERVICE <http://193.167.189.160/openels/fuseki/ds/query> {
+      GRAPH <http://paikkatiedot.fi/ds/openels/gn> {
+        ?s gn:NamedPlace.name/gn:GeographicalName.spelling.text ?wktLabel;
+           gn:NamedPlace.geometry ?geom
+        FILTER regex(?wktLabel , "pyhä", "i")
+      }
+      GRAPH <http://paikkatiedot.fi/geom/openels/gn> {
+        ?geom geo:asWKT ?wkt
+      }
+    }
+  }
+}

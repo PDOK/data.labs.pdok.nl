@@ -1,15 +1,20 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-Prefix au: <http://inspire.ec.europa.eu/ont/au#>
-select distinct ?language ?name #?dutchName ?norwegianName ?finishName ?SpanishName
-Where {
-    ?s rdfs:label "'s-Gravenhage"@nl;
-       rdfs:label ?dutchName;
-       rdfs:seeAlso ?inDb.
-   service <http://factforge.net/repositories/ff-news> {
-       ?inDb <http://www.geonames.org/ontology#alternateName> ?name .
-     FILTER (( lang(?name) = "es" ) || ( lang(?name) = "fi" ) || ( lang(?name) = "no" ))
-    BInd (if (lang(?name) = "es", "Spanish", if (lang(?name) = "no", "Norwegian", if (lang(?name) = "fi", "Finnish", ""))) as ?language)
+PREFIX au: <http://inspire.ec.europa.eu/ont/au#>
+PREFIX geonames: <http://www.geonames.org/ontology#>
 
+SELECT DISTINCT
+?language
+?name
+WHERE {
+  ?s rdfs:label "'s-Gravenhage"@nl;
+     rdfs:label ?dutchName;
+     rdfs:seeAlso ?inDb.
+
+  SERVICE <http://factforge.net/repositories/ff-news> {
+    ?inDb geonames:alternateName ?name.
+    FILTER (( lang(?name) = "es" ) || ( lang(?name) = "fi" ) || ( lang(?name) = "no" ))
+    BIND (if(lang(?name) = "es", "Spanish", if (lang(?name) = "no", "Norwegian", if (lang(?name) = "fi", "Finnish", ""))) as ?language)
+  }
 }
-} Order by ?language
- LImit 10
+ORDER BY ?language
+LIMIT 10
