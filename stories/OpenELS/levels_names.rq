@@ -5,7 +5,7 @@ PREFIX au: <http://inspire.ec.europa.eu/ont/au#>
 SELECT DISTINCT
 ?AdministrativeLevel
 (group_concat(distinct ?inNetherlands_;separator=',') as ?inNetherlands)
-(group_concat(distinct ?inNorwey_;separator=',') as ?inNorway)
+(group_concat(distinct ?inNorway_;separator=',') as ?inNorway)
 (group_concat(distinct ?inFinland_;separator=',') as ?inFinland)
 
 WHERE {
