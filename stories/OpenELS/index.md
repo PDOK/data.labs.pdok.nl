@@ -6,20 +6,14 @@ output: leaflet
 title:  .
 ---
 
-  <link rel="stylesheet" type="text/css" href="/assets/css/ol.css"/>
+  <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
-
-  <style>
-      .map {
-        height: 100%;
-      }
-  </style>
-
-  <script type="text/javascript" src="/assets/js/openlayers/v4.6.5-dist/ol.js"></script>
+  <script type="text/javascript" src="leaflet/leaflet.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/datatables.min.js"></script>
   <script type="text/javascript" src="geolocator.js"></script>  
+
     
 ## Administrative units
 
@@ -113,11 +107,7 @@ In the example the following spellings are used:
    <div class="container">
        <div class="row">
            <div class="col-sm-6">
-               <div id="popup" class="ol-popup">
-                   <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                   <div id="popup-content"></div>
-               </div>
-               <div id="map"></div>
+               <div id="geolocator" style="width: 570px; height: 280px;"></div>
            </div>
            <div class="col-sm-5">
                <table id="table" class="table"></table>
