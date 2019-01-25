@@ -1,0 +1,42 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
+SELECT ?energielabel (count (?adr_obj) as ?aantal)
+WHERE {
+  bind ("0050" as ?gemeentecode) # zeewolde
+  service <https://data.pdok.nl/sparql> {
+    graph <http://brt.basisregistraties.overheid.nl/id/dataset/top10nl> {
+      ?gem brt:nummer ?gemeentecode .
+      ?gem brt:naamOfficieel ?gemeentenaam .
+    }
+  }
+  service <https://data.labs.pdok.nl/sparql> {
+    graph <http://data.pdok.nl/linksets/woonplaats2gemeente> {
+      ?bag_woonplaats dct:isPartOf ?gem .
+    }
+  }
+  service <https://data.pdok.nl/sparql> {
+    ?adr_obj bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats ?bag_woonplaats .
+    ?adr_obj rdfs:isDefinedBy ?voorkomen .
+    ?adr_obj a bag:VerblijfsobjectKantoorfunctie .
+    # Geldigheidsbepaling
+
+    ?voorkomen bag:beginGeldigheid ?begindatum .
+    filter (?begindatum <= now())
+    filter not exists {
+      ?voorkomen bag:eindGeldigheid ?einddatum .
+    }
+  }
+  optional{
+        ?gebouw epbd:heeftAdresseerbaarObject ?adr_obj .
+        ?gebouw epbd:energieprestatie-indicator/skos:notation ?energielabelletter
+    } .
+
+  bind ( COALESCE( ?energielabelletter, "geen") As ?energielabel) .
+}
+group by ?energielabel
+ORDER BY ?energielabel
