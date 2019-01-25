@@ -79,9 +79,9 @@ $(document).ready(() => {
 <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/qrious.min.js"></script>
 <script type="text/javascript" src="/assets/js/qr-code-with-logo.browser.min.js"></script>
-<style> @media print {@page { margin: 0; } body { margin: 1.6cm; }}</style>
+<style> @media print {@page { margin: 0; } body { margin: 0.6cm; }}</style>
 </head><body>
-<img alt="Kadaster logo" src="Kadaster_woordmerk_RGB_crop.jpg" width="170" hspace="20" vspace="10mm" id="kadasterlogo"/>
+<img alt="Kadaster logo" src="Kadaster_woordmerk_RGB_crop.jpg" width="170" hspace="20mm" vspace="10mm" id="kadasterlogo"/>
 <div id="qrcode"><canvas id="qrcodeCanvas"/></div>
 <script>
     'use strict';
