@@ -133,6 +133,7 @@ function createPrintTable() {
 @media print {@page { margin: 0; } body { margin: 1.6cm; }}
 div {
   font-size: smaller;
+  font-weight: bold;
   width: 10cm; 
   height: 15cm; 
   max-width: 10cm; 
@@ -147,6 +148,7 @@ div {
 
 h3 {
   margin: 0px;
+  font-weight: bolder;
 }
 
 table {
@@ -173,7 +175,7 @@ td {
 </head><body>
 <div id="printTable" style=" line-break: anywhere;">
 <img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
-  <h3>Informatie over uw huis</h3>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
+  <u><h3>Informatie over uw huis</h3></u>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
   <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Adres:</td><td style="text-align: right">${$('#straatnaam')[0].innerText} ${$('#huisnummer')[0].innerText}</td></tr>
     <tr><td>Postcode:</td><td style="text-align: right">${$('#postcode')[0].innerText}</td></tr>
@@ -181,7 +183,7 @@ td {
     <tr><td>Bouwjaar:</td><td style="text-align: right">${$('#bouwjaar')[0].nextSibling.data}</td></tr>
     <tr><td>Oppervlak:</td><td style="text-align: right">${$('#oppervlak')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  <h3>Informatie over uw buurt</h3>
+  <u><h3>Informatie over uw buurt</h3></u>
   <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Buurtnaam:</td><td style="text-align: right">${$('#buurtnaam')[0].innerText}</td></tr>
     <tr><td>Aantal inwoners:</td><td style="text-align: right">${$('#aantalinwoners')[0].nextSibling.data}</td></tr>
@@ -195,10 +197,10 @@ td {
     <tr><td>Gem. elektriciteitsverbruik:</td><td style="text-align: right">${$('#elektriciteitsverbruik')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot supermarkt:</td><td style="text-align: right">${$('#supermarkt')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot huisarts:</td><td style="text-align: right">${$('#huisarts')[0].nextSibling.data}</td></tr>
-    <tr><td>Gem. afst. tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
+    <tr><td>Gem. afstand tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  <h3>Deze informatie is verkregen via de Huischeck van PDOK.</h3>
+  <u><h3>Deze informatie is verkregen via de Huischeck van PDOK.</h3></u>
   <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
 </div>
 <script>
