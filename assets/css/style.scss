@@ -1,4 +1,4 @@
----
+--- 
 ---
 
 @import 'jekyll-theme-dinky';
@@ -20,10 +20,9 @@ h1 {
   font-size: 40px;
 }
 
-h1:after
-{
-  content:' ';
-  display:block;
+h1:after {
+  content: ' ';
+  display: block;
   width: 1em;
   height: .1em;
   margin-top: .5em;
@@ -41,7 +40,10 @@ h3 {
   font-size: 24px;
 }
 
-p, ul, ol, dl {
+p,
+ul,
+ol,
+dl {
   margin: 0 0 22px;
   font-size: 16px;
 }
@@ -63,6 +65,7 @@ header {
   border: 0;
   width: 160px;
   padding: 34px 25px 22px 40px;
+
   li {
     width: 142px;
     background: -webkit-linear-gradient(top, #005693 0%, #1a1e4f 100%);
@@ -71,7 +74,9 @@ header {
   }
 }
 
-header ul {position: static}
+header ul {
+  position: static
+}
 
 img {
   border: 0;
@@ -105,14 +110,19 @@ img {
   margin: 10px;
   vertical-align: bottom;
 }
+
 .yasgui.hasFullScreen {
   z-index: 1000;
 }
+
 .yasgui .yasqe .CodeMirror-fullscreen {
-  top: 80px !important;/**save space for the menu**/
+  top: 80px !important;
+  /**save space for the menu**/
 }
+
 .yasgui .yasr.yasr_fullscreen {
-  top: 80px !important;/**save space for the menu**/
+  top: 80px !important;
+  /**save space for the menu**/
 }
 
 #sparql-editor {
@@ -144,13 +154,20 @@ th.sorting {
   font-family: Roboto;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
-tr:nth-child(odd){background-color: #fff;}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-tr:hover {background-color: #ddd;}
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
 
 td {
-  border: 1px solid lightgrey;
+  // border: 1px solid lightgrey;
   padding: 10px;
   background: none;
 }
