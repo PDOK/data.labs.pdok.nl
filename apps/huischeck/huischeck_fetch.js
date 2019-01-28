@@ -79,7 +79,7 @@ $(document).ready(() => {
 <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/qrious.min.js"></script>
 <script type="text/javascript" src="/assets/js/qr-code-with-logo.browser.min.js"></script>
-<style> @media print {@page { margin: 0; } body { margin: 0.6cm; }}</style>
+<style> @media print {@page { margin: 0; } body { margin: 0.4cm; }}</style>
 </head><body>
 <img alt="Kadaster logo" src="Kadaster_woordmerk_RGB_crop.jpg" width="170" hspace="20mm" vspace="10mm" id="kadasterlogo"/>
 <div id="qrcode"><canvas id="qrcodeCanvas"/></div>
@@ -130,8 +130,9 @@ function createPrintTable() {
 <html lang="nl-NL"><head>
 <title>${document.title}</title>
 <style> 
-@media print {@page { margin: 0; } body { margin: 1.6cm; }}
+@media print {@page { margin: 4px; } body { margin: 1.6cm; }}
 div {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: smaller;
   font-weight: bold;
   width: 10cm; 
@@ -146,8 +147,8 @@ div {
   overflow: hidden;
 }
 
-h3 {
-  margin: 0px;
+h3, h4 {
+  margin: 1px;
   font-weight: bolder;
 }
 
@@ -200,7 +201,7 @@ td {
     <tr><td>Gem. afstand tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  <u><h3>Deze informatie is verkregen via de Huischeck van PDOK.</h3></u>
+  <u><h4>Deze informatie is verkregen via de Huischeck van PDOK.</h4></u>
   <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
 </div>
 <script>
