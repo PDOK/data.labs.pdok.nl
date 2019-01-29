@@ -130,7 +130,7 @@ function createPrintTable() {
 <html lang="nl-NL"><head>
 <title>${document.title}</title>
 <style> 
-@media print {@page { margin: 4px; } body { margin: 1.6cm; }}
+@media print {@page { margin: 2px; } body { margin: 0.4cm; }}
 div {
   font-family: Arial, Helvetica, sans-serif;
   font-size: smaller;
@@ -154,7 +154,7 @@ h3, h4 {
 
 table {
   /*table-layout: fixed; */
-  width: 10cm;
+  width: 9.6cm;
   margin: 0px;
   padding-bottom: 1px;
 }
@@ -175,8 +175,8 @@ td {
 </style>
 </head><body>
 <div id="printTable" style=" line-break: anywhere;">
-<img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
-  <u><h3>Informatie over uw huis</h3></u>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
+  <img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;" />
+  <u><h3>Informatie over uw huis</h3>${$('#nummeraanduiding')[0].innerText.replace('.nl', '.nl ')}</u>
   <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Adres:</td><td style="text-align: right">${$('#straatnaam')[0].innerText} ${$('#huisnummer')[0].innerText}</td></tr>
     <tr><td>Postcode:</td><td style="text-align: right">${$('#postcode')[0].innerText}</td></tr>
@@ -201,7 +201,7 @@ td {
     <tr><td>Gem. afstand tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  <u><h4>Deze informatie is verkregen via de Huischeck van PDOK.</h4></u>
+  <u><h4>Deze informatie is verkregen via de Huischeck van PDOK</h4></u>
   <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
 </div>
 <script>
