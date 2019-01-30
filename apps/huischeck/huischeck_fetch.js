@@ -130,7 +130,7 @@ function createPrintTable() {
 <html lang="nl-NL"><head>
 <title>${document.title}</title>
 <style> 
-@media print {@page { margin: 4px; } body { margin: 1.6cm; }}
+@media print {@page { margin: 2px; } body { margin: 0.4cm; margin-top: 0.6cm; margin-right: 0.6cm; }}
 div {
   font-family: Arial, Helvetica, sans-serif;
   font-size: smaller;
@@ -147,14 +147,20 @@ div {
   overflow: hidden;
 }
 
-h3, h4 {
+h3 {
   margin: 1px;
   font-weight: bolder;
 }
 
+h4 {
+  margin: 1px;
+  font-weight: bolder;
+  font-size: 0.3cm;
+}
+
 table {
   /*table-layout: fixed; */
-  width: 10cm;
+  width: 9.0cm;
   margin: 0px;
   padding-bottom: 1px;
 }
@@ -170,13 +176,14 @@ td {
   white-space: -pre-wrap; /* Opera 4-6 */    
   white-space: -o-pre-wrap; /* Opera 7 */    
   word-wrap: break-word; /* Internet Explorer 5.5+ */
+  font-size: 0.34cm;
 }
 
 </style>
 </head><body>
 <div id="printTable" style=" line-break: anywhere;">
-<img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue;">
-  <u><h3>Informatie over uw huis</h3></u>URL:<u>${$('#nummeraanduiding')[0].innerText}</u>
+  <img src="https://data.labs.pdok.nl/assets/images/PDOK_logo.svg" style="background-color: midnightblue; -webkit-print-color-adjust: exact;" />
+  <u><h3>Informatie over uw huis</h3>${$('#nummeraanduiding')[0].innerText.replace('.nl', '.nl<br>')}</u>
   <table cellpadding=0 cellspacing=0><tbody>
     <tr><td>Adres:</td><td style="text-align: right">${$('#straatnaam')[0].innerText} ${$('#huisnummer')[0].innerText}</td></tr>
     <tr><td>Postcode:</td><td style="text-align: right">${$('#postcode')[0].innerText}</td></tr>
@@ -201,14 +208,16 @@ td {
     <tr><td>Gem. afstand tot kinderdagverblijf:</td><td style="text-align: right">${$('#kinderdagverblijf')[0].nextSibling.data}</td></tr>
     <tr><td>Gem. afstand tot school:</td><td style="text-align: right">${$('#school')[0].nextSibling.data}</td></tr>
   </tbody></table>
-  <u><h4>Deze informatie is verkregen via de Huischeck van PDOK.</h4></u>
-  <a href="https://data.labs.pdok.nl/apps/huischeck/huischeck.html">https://data.labs.pdok.nl/apps/huischeck/huischeck.html</a>
+  <u><h4>Informatie verkregen via de Huischeck van PDOK</h4></u>
+  <a href="https://data.labs.pdok.nl/apps/huischeck">https://data.labs.pdok.nl/apps/huischeck</a>
 </div>
 <script>
   const printDiv = document.getElementById("printTable");
   // printDiv.style.border = "solid #0000FF"; 
-  printDiv.style.width = "10cm";
-  printDiv.style.height = "15cm";
+  printDiv.style.maxWidthwidth = "9.0cm";
+  printDiv.style.width = "9.0cm";
+  printDiv.style.height = "12.4cm";
+  printDiv.style.maxHeight = "12.4cm";
   window.resizeTo(printDiv.offsetWidth + 30,printDiv.offsetHeight + 30);
   setTimeout(function(){print(); }, 1000);
   
