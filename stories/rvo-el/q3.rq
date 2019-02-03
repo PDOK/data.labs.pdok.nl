@@ -10,18 +10,18 @@ PREFIX epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
 SELECT
 *
 WHERE {
-   bind ("0050" as ?gemeentecode) # Zeewolde
-   service <https://data.pdok.nl/sparql> {
-     graph <http://brt.basisregistraties.overheid.nl/id/dataset/top10nl> {
-       ?gem brt:nummer ?gemeentecode .
-       ?gem brt:naamOfficieel ?gemeentenaam .
-     }
-   }
-   service <https://data.labs.pdok.nl/sparql> {
-     graph <http://data.pdok.nl/linksets/woonplaats2gemeente> {
-       ?woonplaats dct:isPartOf ?gem .
-     }
-   }
+#  bind ("0050" as ?gemeentecode) # Zeewolde
+#  service <https://data.pdok.nl/sparql> {
+#    graph <http://brt.basisregistraties.overheid.nl/id/dataset/top10nl> {
+#      ?gem brt:nummer ?gemeentecode .
+#      ?gem brt:naamOfficieel ?gemeentenaam .
+#    }
+#  }
+#  service <https://data.labs.pdok.nl/sparql> {
+#    graph <http://data.pdok.nl/linksets/woonplaats2gemeente> {
+#      ?woonplaats dct:isPartOf ?gem .
+#    }
+#  }
   service <https://data.pdok.nl/sparql> {
     {
       select
@@ -32,7 +32,7 @@ WHERE {
       (sum(?other_opp) as ?tot_opp_gerelateerd_pand)
       (sum(?other_kantoor_opp) as ?tot_kantoor_opp_gerelateerd_pand)
       where {
-        # bind("Zeewolde" as ?woonplaatsNaam)
+        bind("Zeewolde" as ?woonplaatsNaam)
         # bepaal alle huidig geldige verblijfsobjecten met kantoorfunctie voor de woonplaats
         ?vbo bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats ?woonplaats .
         ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
@@ -130,32 +130,32 @@ WHERE {
   bind(
     concat(
       '<h4>',
-      	'<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">',
-      	'<circle cx="10" cy="10" fill="',?shapeColor,'" r="10"/>',
-      	'</svg> ', '<br />', ?adreslijn1, '<br />',?adreslijn2,
+      '<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">',
+      '<circle cx="10" cy="10" fill="',?shapeColor,'" r="10"/>',
+      '</svg> ', '<br />', ?adreslijn1, '<br />',?adreslijn2,
       '</h4>',
       (if (bound (?gebouw), concat(
             '<h5>Energielabel informatie:</h5>',
             '<ul>',
-              '<li>Energielabel: ',str(?energielabel),'</li>',
-              '<li>EP: ',str(?ep),'</li>',
-              '<li>Certificaat: ',str(?certificaatnummer),'</li>',
-              '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
-              '<li>Registratiedatum: ',str(?registratiedatum),'</li>',
+            '<li>Energielabel: ',str(?energielabel),'</li>',
+            '<li>EP: ',str(?ep),'</li>',
+            '<li>Certificaat: ',str(?certificaatnummer),'</li>',
+            '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
+            '<li>Registratiedatum: ',str(?registratiedatum),'</li>',
             '</ul>')
           , '<h5>Geen energielabel</h5>')),
       '<h5>',
-      	'<a href="',str(?vbo),'">BAG VBO met Kantoorfunctie</a>:</h5>',
+      '<a href="',str(?vbo),'">BAG VBO met Kantoorfunctie</a>:</h5>',
       '<ul>',
-        '<li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
-        '<li>Oppervlakte: ',str(?oppervlakte),'m^2</li>',
-        '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
+      '<li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+      '<li>Oppervlakte: ',str(?oppervlakte),'m^2</li>',
+      '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
       '</ul>',
       '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
       '<ul>',
-        '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
-        '<li>Totaal kantoor oppervlakte: ',str(?tot_kantoor_opp_gerelateerd_pand),'</li>',
-        '<li>Totaal oppervlakte: ',str(?tot_opp_gerelateerd_pand),'</li>',
+      '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
+      '<li>Totaal kantoor oppervlakte: ',str(?tot_kantoor_opp_gerelateerd_pand),'</li>',
+      '<li>Totaal oppervlakte: ',str(?tot_opp_gerelateerd_pand),'</li>',
       '</ul>'
     ) as ?shapeLabel)
 }
