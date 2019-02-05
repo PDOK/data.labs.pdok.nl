@@ -3,12 +3,12 @@ endpoint: https://data.acceptatie.pdok.nl/sparql/rvo-el
 layout: story
 logo: /stories/rvo-el/logo.jpg
 output: leaflet
-published: true
+published: false
 title: RVO Energielabels Story
 ---
 
 # Energielabels voor kantoorgebouwen
-Utiliteitsgebouwen met een kantoorfunctie (in de BAG) moeten verplicht energiezuiniger gemaakt worden. Vanaf 1 januari 2023 geldt energielabel-C als minimumeis.[Zie hier voor meer](http://www.energievastgoed.nl/dossiers/energielabel-c-kantoren/?doing_wp_cron=1548256930.0148301124572753906250).
+Utiliteitsgebouwen met een kantoorfunctie (in de BAG) moeten verplicht energiezuiniger gemaakt worden. Vanaf 1 januari 2023 geldt energielabel-C als minimumeis. [Zie hier voor meer](http://www.energievastgoed.nl/dossiers/energielabel-c-kantoren/?doing_wp_cron=1548256930.0148301124572753906250).
 
 Omdat het een uitdaging is om dit voor hele grote gebieden te bepalen zullen we inzoomen op een kleine gemeente: [Zeewolde](http://bag.basisregistraties.overheid.nl/bag/id/woonplaats/1075).
 
