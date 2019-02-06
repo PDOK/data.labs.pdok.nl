@@ -1,0 +1,117 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
+SELECT
+*
+WHERE {
+  #  bind ("0050" as ?gemeentecode) # Zeewolde
+  #  service <https://data.pdok.nl/sparql> {
+  #    graph <http://brt.basisregistraties.overheid.nl/id/dataset/top10nl> {
+  #      ?gem brt:nummer ?gemeentecode .
+  #      ?gem brt:naamOfficieel ?gemeentenaam .
+  #    }
+  #  }
+  #  service <https://data.labs.pdok.nl/sparql> {
+  #    graph <http://data.pdok.nl/linksets/woonplaats2gemeente> {
+  #      ?woonplaats dct:isPartOf ?gem .
+  #    }
+  #  }
+  service <https://data.pdok.nl/sparql> {
+    bind("Zeewolde" as ?woonplaatsNaam)
+    ?vbo bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats ?woonplaats .
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+    graph ?voorkomen {
+      ?vbo a bag:VerblijfsobjectKantoorfunctie ;
+           rdfs:isDefinedBy ?voorkomen .
+    }
+    ?voorkomen bag:beginGeldigheid ?begindatum .
+    filter (?begindatum <= now())
+    filter not exists {
+      ?voorkomen bag:eindGeldigheid ?einddatum .
+    }
+    # haal overige bag-info op
+    graph ?voorkomen {
+      ?vbo bag:oppervlakte ?oppervlakte ;
+           bag:status ?verblijfsobjectStatus ;
+           gsp:hasGeometry/gsp:asWKT ?shape ;
+                          bag:hoofdadres ?num ;
+                          bag:pandrelatering ?pand  .
+    }
+    ?num bag:huisnummer ?huisnummer ;
+         bag:postcode ?postcode ;
+         bag:bijbehorendeOpenbareRuimte/bag:naamOpenbareRuimte ?straatnaam .
+    optional {
+      ?num bag:huisletter ?huisletter ;
+           bag:huisnummertoevoeging ?huisnummertoevoeging .
+    }
+    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar .
+    ?verblijfsobjectStatus skos:notation ?verblijfsobjectStatusLabel .
+  }
+  ?gebouw epbd:heeftAdresseerbaarObject ?vbo ;
+          epbd:energieprestatie-indicator/skos:notation ?energielabelletter ;
+                                         epbd:energieprestatie ?ep .
+  ?gebouw foaf:isPrimaryTopicOf ?el .
+  ?el epbd:opnamedatum ?opnamedatum ;
+      epbd:registratiedatum ?registratiedatum ;
+      epbd:certificaatnummer ?certificaatnummer .
+  bind ( COALESCE( ?energielabelletter, "geen") As ?energielabel) .
+  bind(
+    if(!(bound(?energielabel)), "grey",
+      if(strstarts(?energielabel, "A"), "#22b14c",
+        if(?energielabel="B", "#8ff334",
+          if(?energielabel="C", "#bdfc2c",
+            if(?energielabel="D", "#fff200",
+              if(?energielabel="E", "#ff9a35",
+                if(?energielabel="F", "#ff7f27",
+                  if(?energielabel="G", "#ed1c24",
+                    "grey")))))))) as ?shapeColor)
+  bind(
+    concat(
+      str(?straatnaam), ' ', str(?huisnummer),
+      (if(bound(?huisletter), concat(' ', str(?huisletter)), '')),
+      (if(bound(?huisnummertoevoeging), concat(' ', str(?huisnummertoevoeging)), ''))
+    )
+    as ?adreslijn1
+  )
+  bind(
+    concat(
+      str(?postcode), ' ', str(?woonplaatsNaam)
+    )
+    as ?adreslijn2
+  )
+  bind(
+    concat(
+      '<h4>',
+      '<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">',
+      '<circle cx="10" cy="10" fill="',?shapeColor,'" r="10"/>',
+      '</svg> ', '<br />', ?adreslijn1, '<br />',?adreslijn2,
+      '</h4>',
+      (if (bound (?gebouw), concat(
+            '<h5>Energielabel informatie:</h5>',
+            '<ul>',
+            '<li>Energielabel: ',str(?energielabel),'</li>',
+            '<li>EP: ',str(?ep),'</li>',
+            '<li>Certificaat: ',str(?certificaatnummer),'</li>',
+            '<li>Opnamedatum: ',str(?opnamedatum),'</li>',
+            '<li>Registratiedatum: ',str(?registratiedatum),'</li>',
+            '</ul>')
+          , '<h5>Geen energielabel</h5>')),
+      '<h5>',
+      '<a href="',str(?vbo),'">BAG VBO met Kantoorfunctie</a>:</h5>',
+      '<ul>',
+      '<li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+      '<li>Oppervlakte: ',str(?oppervlakte),'m^2</li>',
+      '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li>',
+      '</ul>',
+      '<h5><a href="',str(?pand),'">Pand</a>:</h5>',
+      '<ul>',
+      '<li>Bouwjaar: ',str(?bouwjaar),'</li>',
+      '</ul>'
+    ) as ?shapeLabel)
+}
