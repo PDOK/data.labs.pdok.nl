@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     $.ajax({
         // "url": "https://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
-        "url": "https://data.labs.pdok.nl//openels/geolocator?request=GetLinkedData&name=" + userInput,
+        "url": "https://data.labs.pdok.nl/openels/geolocator?request=GetLinkedData&name=" + userInput,
         "async": true,
         "crossDomain": true,
         beforeSend: function (xhr) {
