@@ -28,3 +28,39 @@ div.modal-dialog.google-visualization-charteditor-dialog
 yasgui .copy_btn {
   box-sizing: unset;
 }
+/* WARNING THE CSS BELOW IS A SPECIFIC OVERRIDE FOR PDOK  */
+.google-visualization-charteditor-panel>.google-visualization-charteditor-section>div>table {
+  width: 100%
+}
+.google-visualization-charteditor-dialog tr:hover {
+  background: unset;
+}
+.google-visualization-charteditor-dialog tr:nth-child(2n) {
+  background:unset;
+}
+.google-visualization-charteditor-dialog td {
+  padding: unset;
+  border: unset;
+  background-color: transparent
+
+}
+div.modal-dialog.google-visualization-charteditor-dialog td
+div.jfk-radiobutton.google-visualization-charteditor-thumbnail.goog-control {
+  height: 68px;
+  width: 110px
+}
+
+.yasr .dataTable td span sup {
+vertical-align: super;
+font-size: smaller;
+}
+.yasr .dataTable tr:hover {
+background-color:transparent;
+}
+.yasr .dataTable td {
+    border: none;
+    background-color: transparent
+}
+.yasr .dataTable > thead > tr > th {
+    font-family: inherit;
+}

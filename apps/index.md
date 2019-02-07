@@ -5,7 +5,6 @@ title: Demonstrators (apps)
 <script src="/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 
 # Applicaties
-
 Hier worden applicaties gedemonstreerd die in de Labs-omgeving worden
 ontwikkeld of getest.  Presentaties en publicaties zijn te vinden
 onder [publicaties](/publications).
@@ -15,29 +14,27 @@ Voor het Geo Gebruikersfestival 2018 ontwikkelde het Kadaster een [demo-applicat
 
 ## De Huischeck
 Voor het Geo Gebruikersfestival 2018, de Kadaster Directiedagen en de GeoBuzz heeft het Kadaster 
-[de Huischeck](../apps/huischeck/huischeck.html) ontwikkeld. In [de Huischeck](../apps/huischeck/huischeck.html) wordt op 
+[de Huischeck](../apps/huischeck) ontwikkeld. In [de Huischeck](../apps/huischeck) wordt op 
 basis van een adres informatie verstrekt over het desbetrefftende huis, zowel in tekstvorm als met een QR code.
 
 ## Linked Data browsers
-
   - [Bevolkings Browser](../presentations/bevolkings-browser/)
   - [Bier Browser](../presentations/bier-browser/)
   - [BRT Browser](../presentations/brt-browser/)
   - [Economie Browser](../presentations/economie-browser/)
   - [Energie Browser](../presentations/energie-browser/)
+  - [Grondmarkt Browser](../presentations/grondmarkt-browser/)
   - [Monumenten Browser](../presentations/monumenten-browser/)
   - [Nationaal Archief Browser](../presentations/nationaal-archief/)
   - [Woningen Browser](../presentations/woningen-browser/)
 
 ## Archiefviewer
-
 Voor de historische werkgroep Lisse ontwikkelde het labs-team een
 viewer waarmee de perceelsgeschiedenis van Lisse is in te zien.  De
 applicatie is nog in ontwikkeling: [Archiefviewer op de
 kaart](archief-mapviewer.html)
 
 ## Bier tijdreis
-
 Als onderdeel van de [Hack-a-LOD 2018](http://hackalod.com) heeft het
 Kadaster een **bier tijdreis** gemaakt, waarin het ontstaan van
 bierbrouwerijen door de tijd heen wordt gevisualiseerd op een kaart:

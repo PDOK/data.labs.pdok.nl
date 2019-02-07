@@ -3,7 +3,7 @@ layout: default
 title: Internships and Student Assignments
 ---
 
-# Internships
+# Internships (scroll down for description in Dutch)
 At Kadaster/PDOK we have continuously assignments available for students at WO or HBO level in either technical, geospatial or business related studies. And both our offices in Zwolle and Apeldoorn provide workspaces. 
 
 We have some specific assignments that can be found at [Internships at Kadaster](https://www.werkenbijhetkadaster.nl/stages-en-afstuderen).
@@ -22,3 +22,16 @@ Here we provide some topics that have our explicit interest:
 
 If you are interested you can either ask more information by sending an e-mail to [Erwin Folmer](mailto:erwin.folmer@kadaster.nl) or directly sending your application (cv + motivation) in Dutch or English.
 
+
+# Stage en Afstudeeropdrachten
+Bij het Kadaster / PDOK hebben we continu opdrachten beschikbaar voor studenten op WO- of HBO-niveau in technische, geo of bedrijfskunde gerelateerde richtingen. Op verschillende werklocaties zoals Zwolle en Apeldoorn.  We hebben een aantal specifieke opdrachten die te vinden zijn op [Werken bij het Kadaster](https://www.werkenbijhetkadaster.nl/stages-en-afstuderen). Maar daarnaast zijn we ook flexibel om rond een aantal inhoudelijke themas samen met de student tot een goede opdrachtformulering te komen die aansluiten bij de kennis/kunde van de student en ook relevant is voor het Kadaster/PDOK. Inhoudelijke thema’s die ons expliciete interesse hebben:
+- Enterprise Knowledge Graphs: de waarde van Knowledge Graphs met Kadaster/PDOK data. 
+- Linken in Linked Data: Efficiënte en effectieve manieren om koppelingen in gegevenssets te maken.
+- GIS en Linked Data; Hoe de voordelen van beide werelden bevorderen?
+- SOLID: het nieuwe concept voor het delen van privacygegevens; wat is de impact?
+- BI en Linked Data: hoe BI-tools kunnen worden gebruikt om Linked Data te consumeren.
+- Triple Stores: State-of-the-art onderzoek naar triple stores, zoals Amazone Neptune, Oracle Spatial en Graph, enz.
+- Toerisme: De ontwikkeling van een toerisme gerelateerde use case van PDOK data.
+- LinkDale: Verbetering van de LinkDale (linkdale.org)  leeromgeving (software engineering vaardigheden zijn vereist)
+
+Bij interesse kunt u meer informatie vragen door een e-mail te sturen naar [Erwin Folmer](mailto:erwin.folmer@kadaster.nl) of direct solliciteren (cv + motivatie) in het Nederlands of Engels.
