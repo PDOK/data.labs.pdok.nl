@@ -1,37 +1,73 @@
 # 1. BAG bouwjaar tussen 1960 en 1970,
 # 2. RVO energielabel D of slechter (TODO),
-# 3. WOZ per pand (TODO).
+# 3. WOZ in de laagste klasse
 prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-select distinct ?point {
-  bind("Dordrecht" as ?woonplaatsNaam)
-  graph ?woonplaatsVoorkomen {
-    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+prefix geof: <http://www.opengis.net/def/function/geosparql/>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix waardeklasse: <https://data.labs.pdok.nl/woz/def/waardeklasse/>
+prefix woz: <https://data.labs.pdok.nl/woz/def/>
+select * {#?shape ?shapeColor ?shapeHeight ?shapeLabel ?shapeName {
+  {
+    {
+      select ?pand ?shape (sample(?prefix0) as ?prefix) (sample(?shapeName0) as ?shapeName) (sample(?verblijfsobject0) as ?verblijfsobject) {
+        graph ?woonplaatsVoorkomen {
+          ?woonplaats bag:naamWoonplaats "Dordrecht"
+        }
+        filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+        graph ?openbareRuimteVoorkomen {
+          ?openbareRuimte
+            bag:bijbehorendeWoonplaats ?woonplaats;
+            bag:naamOpenbareRuimte ?openbareRuimteNaam.
+        }
+        filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+        graph ?nummeraanduidingVoorkomen {
+          ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                            bag:huisnummer ?huisnummer;
+                            bag:postcode ?postcode.
+          optional { ?nummeraanduiding bag:huisletter ?huisletter }
+          optional { ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging }
+        }
+        filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+        graph ?verblijfsobjectVoorkomen {
+          ?verblijfsobject0
+            bag:hoofdadres ?nummeraanduiding;
+            bag:oppervlakte ?oppervlakte;
+            bag:pandrelatering ?pand;
+            bag:status ?verblijfsobjectStatus.
+        }
+        ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
+        filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
+        graph ?pandVoorkomen {
+          ?pand bag:geometriePand/geo:asWKT ?shape;
+                bag:oorspronkelijkBouwjaar ?bouwjaar;
+                bag:status ?pandStatus.
+          filter(?bouwjaar > 1950 &&
+                 ?bouwjaar < 1960 &&
+                 ?pandStatus not in (begrip:PandGesloopt, begrip:SloopvergunningVerleend))
+        }
+        filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
+        ?pandStatus rdfs:label ?pandStatusLabel
+        bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' Dordrecht') as ?shapeName0)
+        bind(concat(
+            '<p>Pand oppervlakte: ',str(?oppervlakte),' m2',
+            '<br>Pand status: ',str(?pandStatusLabel),
+            '<br>Bouwjaar: ',str(?bouwjaar)) as ?prefix0)
+      }
+      group by ?pand ?shape
+      limit 1000
+    }
   }
-  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid []. }
-  graph ?openbareRuimteVoorkomen {
-    ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats;
-                    bag:naamOpenbareRuimte ?openbareRuimteNaam.
+  service <https://data.labs.pdok.nl/migratie/sparql> {
+    #?pand <https://data.labs.pdok.nl/bag/def/measuredHeight> ?shapeHeight.
+    ?woz woz:aotvboandidentificatie ?verblijfsobject;
+         woz:waardeklasse waardeklasse:1.
   }
-  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid []. }
-  graph ?nummeraanduidingVoorkomen {
-    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte.
-  }
-  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid []. }
-  graph ?verblijfsobjectVoorkomen {
-    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
-                     bag:pandrelatering ?pand;
-                     bag:status ?verblijfsobjectStatus;
-                     geo:hasGeometry/geo:asWKT ?point.
-    filter (?verblijfsobjectStatus = begrip:VerblijfsobjectInGebruik)
-  }
-  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid []. }
-  graph ?pandVoorkomen {
-    ?pand bag:oorspronkelijkBouwjaar ?bouwjaar;
-          bag:status ?pandStatus.
-    filter (?bouwjaar > 1950 && ?bouwjaar < 1960 && ?pandStatus not in (begrip:PandGesloopt, begrip:SloopvergunningVerleend))
-  }
-  filter not exists { ?pandVoorkomen bag:eindGeldigheid []. }
 }
-limit 10000
+limit 1000
