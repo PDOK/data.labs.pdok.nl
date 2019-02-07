@@ -12,7 +12,8 @@ $(document).ready(function() {
     var password = "Fee44Poz8";
 
     $.ajax({
-        "url": "https://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
+        // "url": "https://193.166.25.14/elsld/LDService?request=GetLinkedData&name=" + userInput,
+        "url": "https://data.labs.pdok.nl//openels/geolocator?request=GetLinkedData&name=" + userInput,
         "async": true,
         "crossDomain": true,
         beforeSend: function (xhr) {
