@@ -1,0 +1,22 @@
+# Scholen in BAG/BRT.
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select ?gebouwShape ?gebouwShapeColor ?pandShape ?pandShapeColor ?pandShapeHeight {
+  {
+    select ?gebouw ?pand ?pandShapeHeight {
+      service <https://data.labs.pdok.nl/migratie/sparql> {
+        graph <http://data.labs.pdok.nl/dataset/3d-bag> {
+          ?pand <https://data.labs.pdok.nl/bag/def/measuredHeight> ?pandShapeHeight
+        }
+        graph <http://data.labs.pdok.nl/dataset/linkset-bag-pand-brt-gebouw> {
+          ?pand geo:sfOverlaps ?gebouw.
+        }
+      }
+    }
+  }
+  ?gebouw a brt:School; geo:hasGeometry/geo:asWKT ?gebouwShape.
+  ?pand geo:hasGeometry/geo:asWKT ?pandShape.
+  values (?gebouwShapeColor ?pandShapeColor) { ("blue" "red") }
+}
+limit 10
