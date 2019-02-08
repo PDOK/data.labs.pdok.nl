@@ -7,10 +7,9 @@ prefix woz: <https://data.labs.pdok.nl/woz/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select * {
   {
-    select ?bouwjaar (group_concat(distinct concat('<li>',substr(str(?functie0),65),'</li>');
-        separator='') as ?functie) (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam (group_concat(concat('<tr><td>',str(?n),'</td><td>',str(?waardeklasseLabel0),'</td></tr>');separator='') as ?waardeklasseLabel) ?woonplaatsNaam {
+    select ?bouwjaar (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam (group_concat(concat('<tr><td>',str(?n),'</td><td>',str(?waardeklasseLabel0),'</td></tr>');separator='') as ?waardeklasseLabel) ?woonplaatsNaam {
       {
-        select ?bouwjaar ?functie0 (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?waardeklasse ?woonplaatsNaam {
+        select ?bouwjaar (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?waardeklasse ?woonplaatsNaam {
           {
             select * {
               bind("Amsterdam"@nl as ?woonplaatsNaam)
@@ -49,7 +48,7 @@ select * {
                 ?g2 bag:eindGeldigheid ?eind2.
               }
               graph ?g3 {
-                ?verblijfsobject a ?functie0;
+                ?verblijfsobject
                     bag:hoofdadres ?nummeraanduiding;
                     bag:oppervlakte ?oppervlakte0;
                     bag:pandrelatering ?pand.
@@ -79,7 +78,7 @@ select * {
             }
           }
         }
-        group by ?bouwjaar ?functie0 ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam ?waardeklasse
+        group by ?bouwjaar ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam ?waardeklasse
         order by ?waardeklasse
       }
       bind(if(?waardeklasse=waardeklasse:1,'t/m 150.000 euro',
@@ -103,7 +102,6 @@ select * {
       '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
       '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
       '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
-      '<h2>Verblijfsobject functies</h2>',str(?functie),
       '<h2>WOZ waardeklassen</h2>',
       '<table><thead><tr><th>Aantal objecten</th><th>Waardeklasse</th></tr></thead><tbody>',str(?waardeklasseLabel),'</tbody></table>',
       '</ul>') as ?shapeLabel)
