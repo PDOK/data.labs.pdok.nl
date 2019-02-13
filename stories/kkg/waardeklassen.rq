@@ -102,8 +102,7 @@ select * {
       '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
       '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
       '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
-      '<h2>WOZ waardeklassen</h2>',
-      '<table><thead><tr><th>Aantal objecten</th><th>Waardeklasse</th></tr></thead><tbody>',str(?waardeklasseLabel),'</tbody></table>',
+      if(?waardeklasseLabel='','',concat('<h2>WOZ waardeklassen</h2><table><thead><tr><th>Aantal objecten</th><th>Waardeklasse</th></tr></thead><tbody>',str(?waardeklasseLabel),'</tbody></table>')),
       '</ul>') as ?shapeLabel)
 }
 limit 100

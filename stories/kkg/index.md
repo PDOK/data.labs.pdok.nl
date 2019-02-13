@@ -2,7 +2,6 @@
 endpoint: https://data.pdok.nl/sparql
 layout: story
 logo: /assets/images/kadaster.jpg
-output: table
 title: Kadaster Knowledge Graph (KKG)
 ---
 
@@ -49,17 +48,14 @@ Panden met een winkel/industriefunctie volgens de BAG, die dicht bij
 het centrum liggen, oud zijn, en waar ruimtelijke plannen woningbouw
 toestaat.
 
-<!--
-TODO: enkel bestemming
--->
-
-<query data-query-ref="q2.rq" data-output="geo"></query>
+<!-- TODO: enkel bestemming -->
+<query data-query-ref="q2.rq"
+       data-output="geo">
+</query>
 
 ## Deel 3
 
-<!--
-TODO: BAG onderwijsfunctie in het verleden
--->
+<!-- TODO: BAG onderwijsfunctie in het verleden -->
 
 Oud gebouw wat vroeger een school was, maar inmiddels niet meer.  5
 Jaar combineren met functie/status-verandering.
@@ -82,12 +78,36 @@ verbouwen…., maar het mag geen rijksmonumenten (RCE) zijn.
 
 ## BAG panden met status veranderingen binnen de afgelopen 5 jaar
 
-<query data-query-ref="q3b.rq" data-output="geo"></query>
+<query data-query-ref="q3b.rq"
+       data-output="geo">
+</query>
+
+## BAG pand & BRT school
+
+<query data-query-ref="q3c.rq"
+       data-output="geo3d">
+</query>
 
 <!--
 ## Deel 4
 
 Stroomvoorziening.
 
-<query data-query-ref="q4.rq" data-output="geo"></query>
+<query data-query-ref="q4.rq"
+       data-output="geo">
+</query>
 -->
+
+## Examples
+
+### BAG functies
+
+<query data-query-ref="functies.rq"
+       data-output="geo3d">
+</query>
+
+### WOZ waardeklasse
+
+<query data-query-ref="waardeklassen.rq"
+       data-output="geo3d">
+</query>
