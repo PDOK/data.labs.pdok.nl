@@ -102,6 +102,33 @@ Stroomvoorziening.
 
 ### BAG functies
 
+<ul>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="green" r="15"/></svg>
+    Living space
+  </li>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="red" r="15"/></svg>
+    Shopping
+  </li>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="blue" r="15"/></svg>
+    Offices
+  </li>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="yellow" r="15"/></svg>
+    Education
+  </li>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="orange" r="15"/></svg>
+    Health
+  </li>
+  <li>
+    <svg height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" fill="violet" r="15"/></svg>
+    Sport
+  </li>
+</ul>
+
 <query data-query-ref="functies.rq"
        data-output="geo3d">
 </query>

@@ -95,5 +95,12 @@ select * {
       '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
       '<li><b>Verblijfsobject functies</b>:<ul>',str(?functie),
       '</ul></li></ul>') as ?shapeLabel)
+  #bind(if(?c=bag:VerblijfsobjectWoonfunctie,"green",
+  #     if(?c=bag:VerblijfsobjectWinkelfunctie,"red",
+  #     if(?c=bag:VerblijfsobjectKantoorfunctie,"blue",
+  #     if(?c=bag:VerblijfsobjectOnderwijsfunctie,"yellow",
+  #     if(?c=bag:VerblijfsobjectGezondheidszorgfunctie,"orange",
+  #     if(?c=bag:VerblijfsobjectSportfunctie,"violet",
+  #     "orange")))))) as ?shapeColor)
 }
 limit 100
