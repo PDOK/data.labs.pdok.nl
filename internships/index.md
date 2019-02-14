@@ -12,6 +12,7 @@ But in general we believe that setting up good assignments is already a collabor
 Here we provide some topics that have our explicit interest:
 
 -  Enterprise Knowledge Graphs: The value of Knowledge Graphs on Kadaster/PDOK data.
+-  Gamification and Linked Data: Play-a-Lod Kadaster and Pokemons
 -  Linking in Linked Data: Efficient and Effective ways to create links in datasets. 
 -  GIS and Linked Data; How to foster the benefits from both worlds?
 -  SOLID: the new concept for privacy data sharing; what is the impact?
