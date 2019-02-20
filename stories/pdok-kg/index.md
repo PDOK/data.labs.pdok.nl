@@ -1,11 +1,11 @@
 ---
 endpoint: https://data.pdok.nl/sparql
 layout: story
-logo: /assets/images/kadaster.jpg
-title: PDOK Knowledge Graph (KKG)
+logo: /assets/images/icons/512x512.png
+title: PDOK Knowledge Graph
 ---
 
-# PDOK Knowledge Graph (KKG)
+# PDOK Knowledge Graph
 
 Persona: Projectontwikkelaar.
 
