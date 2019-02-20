@@ -1,0 +1,30 @@
+# 1. CBS matige stedelijkheid (o.b.v. omgevingsadressendichtheid),
+# 2. CBS alle woningen gebouwd vóór 2000,
+# 3. CBS gemiddelde woningwaarde < 100,
+# 4. Gesorteerd op hoge CBS woningvoorraad.
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix code: <http://betalinkeddata.cbs.nl/83487NED/id/code/>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape ?shapeColor ?shapeHeight ?shapeName ?shapeLabel {
+  ?wijk a cbs:Wijk;
+    ?geo_sfWithin1 gemeente:GM0505;
+    rdfs:label ?wijkNaam.
+  ?buurt
+    a cbs:Buurt;
+    geo:hasGeometry/geo:asWKT ?shape;
+    ?geo_sfWithin2 ?wijk;
+    rdfs:label ?buurtNaam.
+  [ def:wonen_GemiddeldeWoningwaarde ?x;
+    dimension:regio ?buurt ]
+  bind((?x-6.1e1)/(5.25e2-6.1e1) as ?normalized)
+  bind(concat('bluered,',str(?normalized)) as ?shapeColor)
+  bind((?x-6.1e1)*5.0e0 as ?shapeHeight)
+  bind(concat(str(?buurtNaam),', Dordrecht') as ?shapeName)
+  bind(concat('<p>Gemiddelde WOZ waarde: ',str(?x),'.000 euro</p>') as ?shapeLabel)
+}
+limit 1000

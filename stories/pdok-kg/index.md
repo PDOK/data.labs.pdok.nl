@@ -34,7 +34,15 @@ relatief hoge woningvoorraad hebben.
        data-output="gallery">
 </query>
 
-Dan gecombineerd met BAG panden van voor 1970, WOZ waarde in de
+Dordrecth komt hieruit naar voren als een regio waar winst te behalen
+valt.  Laten we eens naar de woningwaardes in Dordrecht kijken:
+
+<query data-endpoint="https://betalinkeddata.cbs.nl/sparql"
+       data-query-ref="q1d.rq"
+       data-output="geo3d">
+</query>
+
+Dan gecombineerd met BAG panden van vóór 1970, WOZ waarde in de
 laagste klasse, en energielabel D of hoger…
 
 <query data-query-ref="q1c.rq"
