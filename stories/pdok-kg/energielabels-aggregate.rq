@@ -9,13 +9,13 @@ prefix woz: <https://data.labs.pdok.nl/woz/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select * {
   {
-    select ?bouwjaar (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam (group_concat(concat('<tr><td>',str(?n),'</td><td><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?color),'" r="10"></svg> ',str(?label),'</td></tr>');separator='') as ?label) ?woonplaatsNaam {
+    select ?bouwjaar (max(?energyColor0) as ?shapeColor) (group_concat(concat('<tr><td>',str(?n),'</td><td><svg height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" fill="',str(?energyColor0),'" r="6"></svg> ',str(?energyLabel0),'</td></tr>');separator='') as ?energyLabel) (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam ?woonplaatsNaam {
       {
-        select ?bouwjaar (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?color ?label ?woonplaatsNaam {
+        select ?bouwjaar ?energyColor0 ?energyLabel0 (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?woonplaatsNaam {
           {
             select * {
               bind("Dordrecht"@nl as ?woonplaatsNaam)
-              bind("Steegoversloot"^^xsd:string as ?straatNaam)
+              values ?straatNaam {"Bankastraat"}
               #bind("1094EH"^^xsd:string as ?postcode)
               #bind(1111 as ?huisnummer)
               #bind("B" as ?huisnummertoevoeging)
@@ -95,7 +95,7 @@ select * {
             if(?energieprestatie=begrip_energielabel:E_Energielabel,'#ff9a35',
             if(?energieprestatie=begrip_energielabel:F_Energielabel,'#ff7f27',
             if(?energieprestatie=begrip_energielabel:G_Energielabel,'#ed1c24',
-                                  'grey'))))))))))) as ?color)
+                                  'grey'))))))))))) as ?energyColor0)
           bind(
             if(!(bound(?energieprestatie)),'none',
             if(?energieprestatie=begrip_energielabel:A_Energielabel,'A',
@@ -108,11 +108,12 @@ select * {
             if(?energieprestatie=begrip_energielabel:E_Energielabel,'E',
             if(?energieprestatie=begrip_energielabel:F_Energielabel,'F',
             if(?energieprestatie=begrip_energielabel:G_Energielabel,'G',
-                                  'unknown'))))))))))) as ?label)
+                                  'unknown'))))))))))) as ?energyLabel0)
         }
-        group by ?bouwjaar ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam ?label
-        order by ?label
+        group by ?bouwjaar ?energyColor0 ?energyLabel0 ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+        order by ?energyLabel
       }
+    }
     group by ?bouwjaar ?pand ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
   }
   bind(strbefore(str(?shapeHeight),'.') as ?beginning)
@@ -128,8 +129,7 @@ select * {
       '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
       '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
       '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
-      if(?label='','',concat('<h2>WOZ waardeklassen</h2><table><thead><tr><th>Aantal objecten</th><th>Waardeklasse</th></tr></thead><tbody>',str(?label),'</tbody></table>')),
+      if(?energyLabel='','',concat('<h2>Energielabel</h2><table><thead><tr><th>Aantal objecten</th><th>Label</th></tr></thead><tbody>',str(?energyLabel),'</tbody></table>')),
       '</ul>') as ?shapeLabel)
-  bind(if(?label='','blue','green') as ?shapeColor)
 }
-limit 100
+limit 10000
