@@ -1,137 +1,23 @@
-# 1. BAG bouwjaar tussen 1960 en 1970,
-# 2. RVO energielabel D of slechter (TODO),
-# 3. WOZ in de laagste klasse
-prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
-prefix begrip_bag: <http://bag.basisregistraties.overheid.nl/id/begrip/>
-prefix begrip_energielabel: <http://energielabels.gebouwen.overheid.nl/epbd/id/begrip/>
 prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
 prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
 prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
-prefix energielabels: <https://data.labs.pdok.nl/def/energielabels/>
-prefix epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
-prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
-prefix geof: <http://www.opengis.net/def/function/geosparql/>
-prefix graph: <https://data.labs.pdok.nl/graph/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix waardeklasse: <https://data.labs.pdok.nl/woz/def/waardeklasse/>
-prefix woz: <https://data.labs.pdok.nl/woz/def/>
-select * {#?shape ?shapeColor ?shapeHeight ?shapeLabel ?shapeName {
-  {
-    {
-      select
-        ?pand
-        ?shape
-        (sample(?prefix0) as ?prefix)
-        (sample(?shapeName0) as ?shapeName)
-        (sample(?verblijfsobject0) as ?verblijfsobject)
-      {
-        graph ?woonplaatsVoorkomen {
-          ?woonplaats bag:naamWoonplaats "Dordrecht"
-        }
-        filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
-        graph ?openbareRuimteVoorkomen {
-          ?openbareRuimte
-            bag:bijbehorendeWoonplaats ?woonplaats;
-            bag:naamOpenbareRuimte ?openbareRuimteNaam.
-        }
-        filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
-        graph ?nummeraanduidingVoorkomen {
-          ?nummeraanduiding
-            bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
-            bag:huisnummer ?huisnummer;
-            bag:postcode ?postcode.
-          optional { ?nummeraanduiding bag:huisletter ?huisletter }
-          optional { ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging }
-        }
-        filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
-        graph ?verblijfsobjectVoorkomen {
-          ?verblijfsobject0
-            bag:hoofdadres ?nummeraanduiding;
-            bag:oppervlakte ?oppervlakte;
-            bag:pandrelatering ?pand;
-            bag:status ?verblijfsobjectStatus.
-        }
-        ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
-        filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
-        graph ?pandVoorkomen {
-          ?pand
-            bag:geometriePand/geo:asWKT ?shape;
-            bag:oorspronkelijkBouwjaar ?bouwjaar;
-            bag:status ?pandStatus.
-          filter(?bouwjaar > 1950 &&
-                 ?bouwjaar < 1960 &&
-                 ?pandStatus not in (begrip_bag:PandGesloopt, begrip_bag:SloopvergunningVerleend))
-        }
-        filter not exists { ?pandVoorkomen bag:eindGeldigheid [] }
-        ?pandStatus rdfs:label ?pandStatusLabel
-        bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' Dordrecht') as ?shapeName0)
-        bind(concat(
-            '<p>Pand oppervlakte: ',str(?oppervlakte),' m2',
-            '<br>Pand status: ',str(?pandStatusLabel),
-            '<br>Bouwjaar: ',str(?bouwjaar)) as ?prefix0)
-      }
-      group by ?pand ?shape
-      limit 1000
-    }
-  }
-  service <https://data.labs.pdok.nl/migratie/sparql> {
-    ?pand <https://data.labs.pdok.nl/bag/def/measuredHeight> ?shapeHeight.
-    ?gebouwdeel
-      epbd:energieprestatie-indicator ?energieprestatie;
-      epbd:heeftAdresseerbaarObject ?verblijfsobject;
-      foaf:isPrimaryTopicOf ?energielabel.
-    ?energielabel
-      epbd:certificaatnummer ?certificaatnummer;
-      epbd:opnamedatum ?opnamedatum;
-      epbd:registratiedatum ?registratiedatum.
-    ?woz
-      woz:aotvboandidentificatie ?verblijfsobject;
-      woz:waardeklasse waardeklasse:1.
-  }
-  bind(
-    if(!(bound(?energieprestatie)),'grey',
-    if(?energieprestatie=begrip_energielabel:A_Energielabel,'#22b14c',
-    if(?energieprestatie=begrip_energielabel:A_p_Energielabel,'#22b14c',
-    if(?energieprestatie=begrip_energielabel:A_p__p_Energielabel,'#22b14c',
-    if(?energieprestatie=begrip_energielabel:A_p__p__p_Energielabel,'#22b14c',
-    if(?energieprestatie=begrip_energielabel:B_Energielabel,'#8ff334',
-    if(?energieprestatie=begrip_energielabel:C_Energielabel,'#bdfc2c',
-    if(?energieprestatie=begrip_energielabel:D_Energielabel,'#fff200',
-    if(?energieprestatie=begrip_energielabel:E_Energielabel,'#ff9a35',
-    if(?energieprestatie=begrip_energielabel:F_Energielabel,'#ff7f27',
-    if(?energieprestatie=begrip_energielabel:G_Energielabel,'#ed1c24',
-                          'grey'))))))))))) as ?shapeColor)
-  bind(
-    if(!(bound(?energieprestatie)),'none',
-    if(?energieprestatie=begrip_energielabel:A_Energielabel,'A',
-    if(?energieprestatie=begrip_energielabel:A_p_Energielabel,'A',
-    if(?energieprestatie=begrip_energielabel:A_p__p_Energielabel,'A',
-    if(?energieprestatie=begrip_energielabel:A_p__p__p_Energielabel,'A',
-    if(?energieprestatie=begrip_energielabel:B_Energielabel,'B',
-    if(?energieprestatie=begrip_energielabel:C_Energielabel,'C',
-    if(?energieprestatie=begrip_energielabel:D_Energielabel,'D',
-    if(?energieprestatie=begrip_energielabel:E_Energielabel,'E',
-    if(?energieprestatie=begrip_energielabel:F_Energielabel,'F',
-    if(?energieprestatie=begrip_energielabel:G_Energielabel,'G',
-                          'unknown'))))))))))) as ?lbl)
-  bind('''
-{{prefix}}
-<h2>
-  <svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="10" cy="10" fill="{{shapeColor}}" r="10">
-  </svg>
-  Energielabel {{label}}
-</h2>
-<dl>
-  <dt>Energeprestatie</dt>
-  <dd>{{lbl}}</dd>
-  <dt>Certificaatnummer</dt>
-  <dd>{{certificaatnummer}}</dd>
-  <dt>Opnamedatum</dt>
-  <dd>{{opnamedatum}}</dd>
-  <dt>Registratiedatum</dt>
-  <dd>{{registratiedatum}}</ddt>
-</dl>''' as ?shapeLabel)
+select ?shape ?shapeColor ?shapeHeight ?shapeName ?shapeLabel {
+  ?wijk a cbs:Wijk;
+    ?geo_sfWithin1 gemeente:GM0505;
+    rdfs:label ?wijkNaam.
+  ?buurt a cbs:Buurt;
+    geo:hasGeometry/geo:asWKT ?shape;
+    ?geo_sfWithin2 ?wijk;
+    rdfs:label ?buurtNaam.
+  [ def:wonen_GemiddeldeWoningwaarde ?value;
+    dimension:regio ?buurt ]
+  bind((?value-6.1e1)/(5.25e2-6.1e1) as ?normalized)
+  bind(concat('bluered,',str(?normalized)) as ?shapeColor)
+  bind((?value-6.1e1)*5.0e0 as ?shapeHeight)
+  bind(concat(str(?buurtNaam),', Dordrecht') as ?shapeName)
+  bind(concat('<p>Gemiddelde WOZ waarde: ',str(?value),'.000 euro</p>') as ?shapeLabel)
 }
 limit 1000

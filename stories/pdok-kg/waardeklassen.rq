@@ -81,11 +81,13 @@ select * {
         group by ?bouwjaar ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam ?waardeklasse
         order by ?waardeklasse
       }
-      bind(if(?waardeklasse=waardeklasse:1,'t/m 150.000 euro',
+      bind(
+        if(?waardeklasse=waardeklasse:1,'t/m 150.000 euro',
           if(?waardeklasse=waardeklasse:2,'150.000-250.000 euro',
             if(?waardeklasse=waardeklasse:3,'250.000-350.000 euro',
               if(?waardeklasse=waardeklasse:4,'350.000-500.000 euro',
-                if(?waardeklasse=waardeklasse:5,'vanaf 500.000 euro','onbekend'))))) as ?waardeklasseLabel0)
+                if(?waardeklasse=waardeklasse:5,'vanaf 500.000 euro',
+                  'onbekend'))))) as ?waardeklasseLabel0)
     }
     group by ?bouwjaar ?pand ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
   }
