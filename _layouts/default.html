@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/assets/images/icons/64x64.png">
     <link rel="apple-touch-icon" href="/assets/images/icons/64x64.png">
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700,400italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision }}">
     <link rel="stylesheet" href="{{ '/assets/css/app.css?v=' | append: site.github.build_revision }}">
     <script src="/assets/js/scale.fix.js"></script>
@@ -22,11 +22,11 @@
         <div class="main__navigation-brand"></div>
         <ul class="main__navigation__list">
           <li class="active"><a href="/" style="font-size: 30px; font-weight: bold;"><img src="/assets/images/PDOK_logo.svg">Labs</a></li>
-          <li><a href="/yasgui">SPARQL</a></li>
-          <li><a href="/datasets">Datasets</a></li>
           <li><a href="/stories">Data stories</a></li>
           <li><a href="/publications">Publicaties</a></li>
-          <li><a href="/apps">Demo's & apps</a></li>
+          <li><a href="/apps">Demo's</a></li>
+          <li><a href="/datascience">Data Science</a></li>
+          <li><a href="/internships">Internships</a></li>
           <li><a href="https://translate.google.nl/translate?sl=nl&tl=en&js=y&prev=_t&hl=nl&ie=UTF-8&u=https%3A%2F%2Fdata.labs.pdok.nl&edit-text="><img height="20" src="/assets/images/uk.png"></a></li>
         </ul>
         <span data-target="body" class="header-toggle js-toggle icon-menu"></span>
@@ -40,7 +40,7 @@
           </li>
         </ul>
         {% if site.github.is_project_page %}
-        <p>Bekijk onze datasets en services op <a class="header name" href="https://data.pdok.nl">data.pdok.nl</a>!</p>
+        <p>Bekijk onze <a class="header name" href="/datasets">datasets</a> en <a class="header name" href="/yasgui">SPARQL service</a>!</p>
         {% endif %}
         <h2>Laatste wijzigingen:</h2>
         <div id="updates"></div>
@@ -67,7 +67,8 @@
 	      display: flow-root;
       }
 	  </style>
-    <script src='/assets/js/yasgui.min.js'></script>
+    <script src="/assets/js/yasgui.min.js"></script>
+    <script src="/assets/js/yasgui.polyfill.min.js"></script>
     <script type="text/javascript">
       window.onload = function () {
         window.Yasgui.Yasr.Instance.plugins.geo.defaults.defaults.grouped = false; //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped'

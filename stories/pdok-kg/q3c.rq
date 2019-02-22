@@ -1,0 +1,33 @@
+# Scholen in BAG/BRT.
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+select ?gebouwShape ?gebouwShapeColor ?pandShape ?pandShapeColor ?pandShapeHeight ?pandShapeName ?pandShapeLabel ?pand {
+  {
+    select ?gebouw ?pand ?pandShapeHeight {
+      service <https://data.labs.pdok.nl/migratie/sparql> {
+        graph <http://data.labs.pdok.nl/dataset/3d-bag> {
+          ?pand <https://data.labs.pdok.nl/bag/def/measuredHeight> ?pandShapeHeight
+        }
+        graph <http://data.labs.pdok.nl/dataset/linkset-bag-pand-brt-gebouw> {
+          ?pand geo:sfOverlaps ?gebouw.
+        }
+      }
+    }
+  }
+  ?gebouw a brt:School; geo:hasGeometry/geo:asWKT ?gebouwShape.
+  graph ?pandVoorkomen { ?pand geo:hasGeometry/geo:asWKT ?pandShape. }
+  filter not exists { ?pandVoorkomen bag:eindGeldigheid ?eind1 }
+  graph ?verblijfsobjectVoorkomen { ?verblijfsobject bag:hoofdadres ?nummeraanduiding; bag:pandrelatering ?pand. }
+  filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid ?eind2 }
+  graph ?nummeraanduidingVoorkomen { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode }
+  filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid ?eind3 }
+  graph ?openbareRuimteVoorkomen { ?openbareRuimte bag:bijbehorendeWoonplaats ?woonplaats; bag:naamOpenbareRuimte ?openbareRuimteNaam }
+  filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid ?eind4 }
+  graph ?woonplaatsVoorkomen { ?woonplaats bag:naamWoonplaats ?woonplaatsNaam }
+  filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid ?eind5 }
+  values (?gebouwShapeColor ?pandShapeColor) { ("blue" "red") }
+  bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' ',str(?woonplaatsNaam)) as ?pandShapeName)
+  bind(concat(?pandShapeName,'<br><a href="',str(?pand),'" target="_blank">',str(?pand),'</a>') as ?pandShapeLabel)
+}
+limit 10

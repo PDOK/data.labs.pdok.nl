@@ -23,8 +23,8 @@ layout: default
 /*Changes made to the colours of the headers from sparql. Could only be forced with important at the moment.*/
 
 th {
-	color: black !important;
-	background: white !important;
+	color: black;
+  background: white;
 }
 
 .yasgui .yasqe .CodeMirror-fullscreen {

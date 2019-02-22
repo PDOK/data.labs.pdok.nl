@@ -1,0 +1,68 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
+SELECT ?energielabel (count (?vbo) as ?aantal)
+WHERE {
+  {
+    SELECT ?energielabel ?vbo
+    WHERE {
+      bind ("0050" as ?gemeentecode) # Zeewolde
+      service <https://data.pdok.nl/sparql> {
+        graph <http://brt.basisregistraties.overheid.nl/id/dataset/top10nl> {
+          ?gem brt:nummer ?gemeentecode .
+          ?gem brt:naamOfficieel ?gemeentenaam .
+        }
+      }
+      service <https://data.labs.pdok.nl/sparql> {
+        graph <http://data.pdok.nl/linksets/woonplaats2gemeente> {
+          ?woonplaats dct:isPartOf ?gem .
+        }
+      }
+      service <https://data.pdok.nl/sparql> {
+#        bind("Zeewolde" as ?woonplaatsNaam)
+        ?vbo bag:hoofdadres/bag:bijbehorendeOpenbareRuimte/bag:bijbehorendeWoonplaats ?woonplaats .
+        ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+        graph ?voorkomen {
+          ?vbo a bag:VerblijfsobjectKantoorfunctie ;
+                    rdfs:isDefinedBy ?voorkomen .
+        }
+        ?voorkomen bag:beginGeldigheid ?begindatum .
+        filter (?begindatum <= now())
+        filter not exists {
+          ?voorkomen bag:eindGeldigheid ?einddatum .
+        }
+      }
+      optional{
+        ?gebouw epbd:heeftAdresseerbaarObject ?vbo .
+        ?gebouw epbd:energieprestatie-indicator/skos:notation ?energielabelletter
+      } .
+      bind ( COALESCE( ?energielabelletter, "geen") As ?energielabel) .
+    }
+  }
+
+  # Zonder deze union heb je eigenlijk niet het complete plaatje, omdat er adresseerbare objecten zijn
+  # die niet met de BAG gekoppeld zijn. Dit zijn er echter vrij weinig, en het vertraagt de query enorm.
+
+#  UNION
+#  {
+#    SELECT ?energielabel ?vbo
+#    WHERE {
+#      ?gebouw a epbd:Utiliteitsgebouw ;
+#                epbd:energieprestatie-indicator/skos:notation ?energielabel ;
+#                epbd:heeftAdresseerbaarObject ?vbo .
+#      filter not exists {
+#        ?vbo a bag:Verblijfsobject .
+#      }
+#      ?vbo epbd:gebruiksfunctie/rdf:type epbd:Kantoorfunctie ;
+#           epbd:adres/epbd:postcode ?pcode .
+#      bind(xsd:integer(substr(?pcode, 1, 4)) as ?pcodenr)
+#      filter (?pcodenr >= 3890 && ?pcodenr <= 3899) # Zeewolde
+#    }
+#  }
+}
+group by ?energielabel
+ORDER BY ?energielabel

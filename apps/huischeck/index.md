@@ -33,12 +33,11 @@ De onderstaande QR-code bevat de link naar de URI(Uniform Resource Identifier) v
 <button id="printQRcode">Print de QR-code</button>
 
 ## SPARQL Query
-Een andere manier om informatie van uw huis op te vragen is via SPARQL-queries. Dit kan
-door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaande query.
+Een andere manier om informatie van uw huis op te vragen is via SPARQL-queries. Dit kan door uw adres in te vullen bij de <code>values</code> operatoren in de onderstaande query.
 
 <query data-endpoint="https://data.pdok.nl/sparql"
        data-query-ref="huischeck_sparql.rq"
-       data-output="gallery">
+       data-output="geo">
 </query>
 
 ## Uw huis in 3D

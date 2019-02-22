@@ -6,47 +6,14 @@ output: leaflet
 title:  .
 ---
 
-## Geolocator
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/ol.css"/>
+  <link rel="stylesheet" type="text/css" href="leaflet/leaflet.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
-
-  <style>
-      .map {
-        height: 100%;
-      }
-  </style>
-
-  <script type="text/javascript" src="/assets/js/openlayers/v4.6.5-dist/ol.js"></script>
+  <script type="text/javascript" src="leaflet/leaflet.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/datatables.min.js"></script>
-  
-   <nav class="navbar navbar-light bg-light">
-      <form class="form-inline">
-          <label for="topoName" class="font-weight-normal">Here you can search for toponyms:  </label>
-          <input type="search" class="form-control" id="topoName" placeholder="e.g. Amsterdam"/>
-          <button type="button" id="submitButton" class="btn btn-info">Search</button>
-      </form>
-  </nav>
-  
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-6">
-              <div id="popup" class="ol-popup">
-                  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                  <div id="popup-content"></div>
-              </div>
-              <div id="map"></div>
-          </div>
-          <div class="col-sm-5">
-              <table id="table" class="table"></table>
-          </div>
-      </div>
-  </div>
-  
-  
   <script type="text/javascript" src="geolocator.js"></script>  
+
     
 ## Administrative units
 
@@ -90,6 +57,60 @@ Lets see what names are used to refer to the corresponding administrative levels
        data-output="table">
  </query>
 
+### Holy Geographical Names
 
+People are used to refer to geographical features using names. 
+Mountains, rivers, lakes, towns, villages and even single trees can have their own names. 
+OpenEls project published more than 20 million place names (toponyms) and locations as Linked Data. 
+Standardised means for describing meaning of place names enable semantic interoperability between national data sets. 
+Seamless access to such rich data allows conducting interesting research. For example, 
+linguists could potentially use this data to analyse spatial distribution of common toponym roots. 
+The following example shows locations of place that have "holy" as a part of the name. 
+Obviously, the root "holy" is spelled differently in different languages. 
+The Linked Data technology makes it possible to formulate a single query that addresses  national endpoints in their native 
+languages. 
+In the example the following spellings are used:
 
+|Language|Spelling|
+|--------|--------|
+|English| holy|
+|Dutch|heilige|
+|Norwegian|hellig|
+|Finnish|pyhä|
 
+  <query 
+       data-endpoint="https://data.labs.pdok.nl/openels/sparql"
+       data-query-ref="holy_names.rq"
+       data-output="geo">
+ </query>
+ 
+ 
+ 
+## Geolocator: a URI gazetteer
+
+ The SPARQL query language is a very powerful and flexible way to retrieve data based on graph patterns. 
+ However, SPARQL lacks functionality for a fuzzy search of literal values. In other words, 
+ if there is a need to find the location of Amsterdam SPARQL requires proper spelling of this name. It is not possible 
+ to retrieve the location of Amsterdam if there is a typo (e.g Asterdam) in the spelling of the name. Moreover, for lay users
+ it is very difficult to master SPARQL. 
+ For these reasons, we created a gazetteer service enriched with Linked Data URIs for toponyms.  
+ 
+ 
+  <nav class="navbar navbar-light bg-light">
+       <form class="form-inline">
+           <label for="topoName" class="font-weight-normal">Here you can search for toponyms:  </label>
+           <input type="text" class="form-control" id="topoName" placeholder="e.g. Amsterdam"/>
+           <button type="submit" id="submitButton" class="btn btn-info">Search</button>
+       </form>
+   </nav>
+   
+   <div class="container">
+       <div class="row">
+           <div class="col-sm-6">
+               <div id="geolocator" style="width: 570px; height: 280px;"></div>
+           </div>
+           <div class="col-sm-5">
+               <table id="table" class="table"></table>
+           </div>
+       </div>
+   </div>

@@ -64,21 +64,28 @@ select
         filter not exists { ?g4 bag:eindGeldigheid ?eind4. }
       }
       bind(concat('jet,',str((?bouwjaar-1850)/xsd:double(2017-1850))) as ?pandShapeColor)
-      bind('''
-           <h2>Zoetermeer {{buurtLabel}}</h2>
-           <h3>CBS buurt gegevens</h3>
-           <dl>
-             <dt>Woningen van voor 2000</dt><dd>{{voor}}%</dd>
-             <dt>Woningen van na 2000</dt><dd>{{na}}%</dd>
-           </dl>
-           <h3>BAG pand gegevens</h3>
-           <dl>
-             <dt>Bouwjaar</dt><dd>{{bouwjaar}}</dd>
-             <dt>Postcode</dt><dd>{{postcode}}</dd>
-             <dt>Openbare ruimte</dt><dd><a href="{{openbareRuimte}}">{{openbareRuimteLabel}}</a></dd>
-             <dt>Openbare ruimte status</dt><dd><a href="{{openbareRuimteStatus}}">{{openbareRuimteStatusLabel}}</a></dd>
-             <dt>Pand status</dt><dd><a href="{{pandStatus}}">{{pandStatusLabel}}</a></dd>
-           </dl>''' as ?pandShapeLabel)
+      bind(concat(
+        '<h2>Zoetermeer ',str(?buurtLabel),'</h2>',
+        '<h3>CBS buurt gegevens</h3>',
+        '<dl>',
+          '<dt>Woningen van voor 2000</dt>',
+          '<dd>',str(?voor),'%</dd>',
+          '<dt>Woningen van na 2000</dt>',
+          '<dd>',str(?na),'%</dd>',
+        '</dl>',
+        '<h3>BAG pand gegevens</h3>',
+        '<dl>',
+          '<dt>Bouwjaar</dt>',
+          '<dd>',str(?bouwjaar),'</dd>',
+          '<dt>Postcode</dt>',
+          '<dd>',str(?postcode),'</dd>',
+          '<dt>Openbare ruimte</dt>',
+          '<dd><a target="_blank" href="',str(?openbareRuimte),'">',str(?openbareRuimteLabel),'</a></dd>',
+          '<dt>Openbare ruimte status</dt>',
+          '<dd><a target="_blank" href="',str(?openbareRuimteStatus),'">',str(?openbareRuimteStatusLabel),'</a></dd>',
+          '<dt>Pand status</dt>',
+          '<dd><a target="_blank" href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></dd>',
+        '</dl>') as ?pandShapeLabel)
     }
   }
 }

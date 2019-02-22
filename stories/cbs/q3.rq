@@ -20,7 +20,7 @@ select * {
   }
   optional {
     [ dimension:regio ?buurt;
-      def:wonen_Woningvoorraad ?aantal ].
+      def:wonen_Woningvoorraad ?voorraad ].
   }
   {
     {
@@ -29,9 +29,9 @@ select * {
       }
     }
   }
-  bind(if(bound(?aantal),
-          replace(str(?aantal),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
-          'onbekend') as ?aantalLabel)
+  bind(if(bound(?voorraad),
+          replace(str(?voorraad),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),
+          'onbekend') as ?voorraadLabel)
   bind(if(bound(?waarde),
           concat('',str(?waarde),'.000 euro'),
           'onbekend') as ?waardeLabel)
@@ -41,7 +41,7 @@ select * {
          <dt>Gemiddelde woningwaarde</dt>
          <dd>{{waardeLabel}}</dd>
          <dt>Woning voorraad</dt>
-         <dd>{{waardeLabel}}</dd>
+         <dd>{{voorraadLabel}}</dd>
        </dl>''' as ?shapeLabel)
   bind(concat('jet,',str((?waarde*5)/xsd:double(?max-?min*2))) as ?shapeColor)
 }
