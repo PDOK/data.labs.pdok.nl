@@ -11,4 +11,4 @@ Klik op onderstaand plaatje om door de PDOK Knowledge graph te navigeren. Elk af
 
 {%include_relative image.html %}
 
-![](/stories/PDKG/Legenda.png)
+![](/stories/PDKG/legenda.png)
