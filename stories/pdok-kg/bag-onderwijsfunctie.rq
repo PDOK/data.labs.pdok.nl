@@ -1,0 +1,74 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?shape ?shapeLabel {
+  {
+    select
+      ?shape
+      (group_concat(concat(
+        '<h2>Status veranderd op ',str(day(?veranderingsDatum)),' ',str(?monthLabel),' ',str(year(?veranderingsDatum)),':</h2>',
+        '<dl>',
+          '<dt>Van</dt>',
+          '<dd>',str(?pandStatusLabel1),'</dd>',
+          '<dt>Naar<dt>',
+          '<dd>',str(?pandStatusLabel2),'.</dd>',
+        '</dl>');separator='') as ?body)
+      ?head
+    {
+      bind("Dordrecht" as ?woonplaatsNaam)
+      graph ?woonplaatsVoorkomen { ?woonplaats bag:naamWoonplaats ?woonplaatsNaam }
+      filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+      graph ?openbareRuimteVoorkomen {
+        ?openbareRuimte
+          bag:bijbehorendeWoonplaats ?woonplaats;
+          bag:naamOpenbareRuimte ?openbareRuimteNaam
+      }
+      filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+      graph ?nummeraanduidingVoorkomen {
+        ?nummeraanduiding
+          bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+          bag:huisnummer ?huisnummer;
+          bag:postcode ?postcode.
+        optional { ?nummeraanduiding bag:huisletter ?huisletter }
+        optional { ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging }
+      }
+      filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+      graph ?verblijfsobjectVoorkomen {
+        ?verblijfsobject
+          a bag:VerblijfsobjectOnderwijsfunctie;
+          bag:hoofdadres ?nummeraanduiding;
+          bag:pandrelatering ?pand;
+          bag:status begrip:VerblijfsobjectInGebruik
+      }
+      filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
+      graph ?pandVoorkomen2 { ?pand bag:status ?pandStatus2; geo:hasGeometry/geo:asWKT ?shape }
+      filter not exists { ?pandVoorkomen2 bag:eindGeldigheid [] }
+      graph ?pandVoorkomen1 { ?pand bag:status ?pandStatus1 }
+      filter(?pandStatus1 != ?pandStatus2)
+      ?pandStatus1 rdfs:label ?pandStatusLabel1.
+      ?pandStatus2 rdfs:label ?pandStatusLabel2.
+      ?pandVoorkomen1 bag:eindGeldigheid ?veranderingsDatum.
+      filter(year(?veranderingsDatum) > 2013)
+      bind(concat(
+        if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),
+        if(bound(?huisletter),concat(' ',str(?huisletter)),'')) as ?huisnummerPlus)
+      bind(month(?veranderingsDatum) as ?month)
+      bind(if(?month=1,'januari',
+           if(?month=2,'februari',
+           if(?month=3,'maart',
+           if(?month=4,'april',
+           if(?month=5,'mei',
+           if(?month=6,'juni',
+           if(?month=7,'juli',
+           if(?month=8,'augustus',
+           if(?month=9,'september',
+           if(?month=10,'oktober',
+           if(?month=11,'november','december'))))))))))) as ?monthLabel)
+      bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),str(?huisnummerPlus),', ',str(?postcode),', ',str(?woonplaatsNaam)) as ?head)
+    }
+    group by ?shape ?head
+  }
+  bind(concat('<h1>',str(?head),'</h1>',str(?body)) as ?shapeLabel)
+}

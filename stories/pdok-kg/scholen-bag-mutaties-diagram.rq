@@ -1,0 +1,118 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+select
+  (str(?year) as ?x)
+  ?bouwGestart (str(?bouwGestart) as ?bouwGestartLabel) (concat('In ',str(?year),' waren er ',str(?bouwGestart),' BAG panden met een onderwijsfunctie met status "bouw gestart".') as ?bouwGestartHover)
+  ?bouwvergunningVerleend (str(?bouwvergunningVerleend) as ?bouwvergunningVerleendLabel) (concat('In ',str(?year),' waren er ',str(?bouwvergunningVerleend),' BAG panden met een onderwijsfunctie met status "bouwvergunning verleend".') as ?bouwvergunningVerleendHover)
+  ?pandInGebruik (str(?pandInGebruik) as ?pandInGebruikLabel) (concat('In ',str(?year),' waren er ',str(?pandInGebruik),' BAG panden met een onderwijsfunctie met status "pand in gebruik".') as ?pandInGebruikHover)
+  ?pandInGebruikNietIngemeten (str(?pandInGebruikNietIngemeten) as ?pandInGebruikNietIngemetenLabel) (concat('In ',str(?year),' waren er ',str(?pandInGebruikNietIngemeten),' BAG panden met een onderwijsfunctie met status "pand in gebruik, niet ingemeten".') as ?pandInGebruikNietIngemetenHover)
+  ?sloopvergunningVerleend (str(?sloopvergunningVerleend) as ?sloopvergunningVerleendLabel) (concat('In ',str(?year),' waren er ',str(?sloopvergunningVerleend),' BAG panden met een onderwijsfunctie met status "sloopvergunning verleend".') as ?sloopvergunningVerleendHover)
+{
+  optional {
+    select ?year (count(*) as ?bouwGestart0) {
+      values ?year { 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 }
+      bind("Dordrecht"@nl as ?woonplaatsNaam)
+      graph ?g0 { ?place rdfs:label ?woonplaatsNaam. }
+      filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+      graph ?g1 { ?openbareRuimte bag:bijbehorendeWoonplaats ?place; bag:naamOpenbareRuimte ?straatNaam. }
+      filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+      graph ?g2 { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode. }
+      filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+      graph ?g3 { ?verblijfsobject a bag:VerblijfsobjectOnderwijsfunctie; bag:hoofdadres ?nummeraanduiding; bag:oppervlakte ?oppervlakte; bag:pandrelatering ?pand. }
+      filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+      graph ?g4 { ?pand bag:geometriePand/geo:asWKT ?pandShape; bag:oorspronkelijkBouwjaar ?bouwjaar; bag:status begrip:BouwGestart. }
+      ?g4 bag:beginGeldigheid ?begin.
+      optional { ?g4 bag:eindGeldigheid ?eind0. }
+      bind(if(bound(?eind0),?eind0,3000) as ?eind)
+      filter(year(?begin) <= ?year && ?year <= year(?eind))
+    }
+    group by ?year
+  }
+  optional {
+    select ?year (count(*) as ?bouwvergunningVerleend0) {
+      values ?year { 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 }
+      bind("Dordrecht"@nl as ?woonplaatsNaam)
+      graph ?g0 { ?place rdfs:label ?woonplaatsNaam. }
+      filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+      graph ?g1 { ?openbareRuimte bag:bijbehorendeWoonplaats ?place; bag:naamOpenbareRuimte ?straatNaam. }
+      filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+      graph ?g2 { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode. }
+      filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+      graph ?g3 { ?verblijfsobject a bag:VerblijfsobjectOnderwijsfunctie; bag:hoofdadres ?nummeraanduiding; bag:oppervlakte ?oppervlakte; bag:pandrelatering ?pand. }
+      filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+      graph ?g4 { ?pand bag:geometriePand/geo:asWKT ?pandShape; bag:oorspronkelijkBouwjaar ?bouwjaar; bag:status begrip:BouwvergunningVerleend. }
+      ?g4 bag:beginGeldigheid ?begin.
+      optional { ?g4 bag:eindGeldigheid ?eind0. }
+      bind(if(bound(?eind0),?eind0,3000) as ?eind)
+      filter(year(?begin) <= ?year && ?year <= year(?eind))
+    }
+    group by ?year
+  }
+  optional {
+    select ?year (count(*) as ?pandInGebruik0) {
+      values ?year { 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 }
+      bind("Dordrecht"@nl as ?woonplaatsNaam)
+      graph ?g0 { ?place rdfs:label ?woonplaatsNaam. }
+      filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+      graph ?g1 { ?openbareRuimte bag:bijbehorendeWoonplaats ?place; bag:naamOpenbareRuimte ?straatNaam. }
+      filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+      graph ?g2 { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode. }
+      filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+      graph ?g3 { ?verblijfsobject a bag:VerblijfsobjectOnderwijsfunctie; bag:hoofdadres ?nummeraanduiding; bag:oppervlakte ?oppervlakte; bag:pandrelatering ?pand. }
+      filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+      graph ?g4 { ?pand bag:geometriePand/geo:asWKT ?pandShape; bag:oorspronkelijkBouwjaar ?bouwjaar; bag:status begrip:PandInGebruik. }
+      ?g4 bag:beginGeldigheid ?begin.
+      optional { ?g4 bag:eindGeldigheid ?eind0. }
+      bind(if(bound(?eind0),?eind0,3000) as ?eind)
+      filter(year(?begin) <= ?year && ?year <= year(?eind))
+    }
+    group by ?year
+  }
+  optional {
+    select ?year (count(*) as ?pandInGebruikNietIngemeten0) {
+      values ?year { 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 }
+      bind("Dordrecht"@nl as ?woonplaatsNaam)
+      graph ?g0 { ?place rdfs:label ?woonplaatsNaam. }
+      filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+      graph ?g1 { ?openbareRuimte bag:bijbehorendeWoonplaats ?place; bag:naamOpenbareRuimte ?straatNaam. }
+      filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+      graph ?g2 { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode. }
+      filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+      graph ?g3 { ?verblijfsobject a bag:VerblijfsobjectOnderwijsfunctie; bag:hoofdadres ?nummeraanduiding; bag:oppervlakte ?oppervlakte; bag:pandrelatering ?pand. }
+      filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+      graph ?g4 { ?pand bag:geometriePand/geo:asWKT ?pandShape; bag:oorspronkelijkBouwjaar ?bouwjaar; bag:status begrip:PandInGebruik_nietIngemeten. }
+      ?g4 bag:beginGeldigheid ?begin.
+      optional { ?g4 bag:eindGeldigheid ?eind0. }
+      bind(if(bound(?eind0),?eind0,3000) as ?eind)
+      filter(year(?begin) <= ?year && ?year <= year(?eind))
+    }
+    group by ?year
+  }
+  optional {
+    select ?year (count(*) as ?sloopvergunningVerleend0) {
+      values ?year { 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 }
+      bind("Dordrecht"@nl as ?woonplaatsNaam)
+      graph ?g0 { ?place rdfs:label ?woonplaatsNaam. }
+      filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+      graph ?g1 { ?openbareRuimte bag:bijbehorendeWoonplaats ?place; bag:naamOpenbareRuimte ?straatNaam. }
+      filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+      graph ?g2 { ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte; bag:huisnummer ?huisnummer; bag:postcode ?postcode. }
+      filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+      graph ?g3 { ?verblijfsobject a bag:VerblijfsobjectOnderwijsfunctie; bag:hoofdadres ?nummeraanduiding; bag:oppervlakte ?oppervlakte; bag:pandrelatering ?pand. }
+      filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+      graph ?g4 { ?pand bag:geometriePand/geo:asWKT ?pandShape; bag:oorspronkelijkBouwjaar ?bouwjaar; bag:status begrip:SloopvergunningVerleend. }
+      ?g4 bag:beginGeldigheid ?begin.
+      optional { ?g4 bag:eindGeldigheid ?eind0. }
+      bind(if(bound(?eind0),?eind0,3000) as ?eind)
+      filter(year(?begin) <= ?year && ?year <= year(?eind))
+    }
+    group by ?year
+  }
+  bind(if(bound(?bouwGestart0),?bouwGestart0,0) as ?bouwGestart)
+  bind(if(bound(?bouwvergunningVerleend0),?bouwvergunningVerleend0,0) as ?bouwvergunningVerleend)
+  bind(if(bound(?pandInGebruik0),?pandInGebruik0,0) as ?pandInGebruik)
+  bind(if(bound(?pandInGebruikNietIngemeten0),?pandInGebruikNietIngemeten0,0) as ?pandInGebruikNietIngemeten)
+  bind(if(bound(?sloopvergunningVerleend0),?sloopvergunningVerleend0,0) as ?sloopvergunningVerleend)
+}
