@@ -19,9 +19,9 @@
 @prefix bbi: <http://data.pdok.nl/def/bbi#> .
 @prefix owms: <http://standaarden.overheid.nl/owms/terms/>.
 @prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>.
-@prefix woz: <http://example.org/ns/woz#>.
+@prefix woz: <https://data.labs.pdok.nl/woz/def/>.
 @prefix ceo: <https://data.cultureelerfgoed.nl/vocab/def/ceo#>.
-@prefix rvo: <http://data.pdok.nl/def/rvo#>.
+@prefix rvo: <http://energielabels.gebouwen.overheid.nl/def/epbd#>.
 @prefix ro: <http://data.informatiehuisruimte.nl/def/ro#>.
 
 #
@@ -165,6 +165,7 @@ kkg:bag-pand a sh:NodeShape;
     sh:path ogc:sfOverlaps;
     sh:name "ogc:sfOverlaps";
     sh:class brt:Gebouw;
+    rdfs:comment "Een bag pand en een brt gebouw zijn vergelijkbaar. De geometrie zal vaak overlappend zijn."
   ];
 .
 
@@ -291,11 +292,12 @@ kkg:owms-Gemeente a sh:NodeShape;
 # CBS
 kkg:cbs-gemeente a sh:NodeShape;
   sh:name "cbs:Gemeente";
-  sh:targetClass cbs:Gemeente;
+  sh:targetClass cbs:Gemeente_Geografisch;
   sh:property [
     sh:path ogc:sfEquals;
     sh:name "ogc:sfEquals";
-    sh:class brk:Gemeentegebied
+    sh:class brk:Gemeentegebied;
+    rdfs:comment "Een CBS gemeente (geografisch) komt overeen met een gemeentegebied in de BRK";
   ];
   rdfs:comment "Hoewel bij de brt:Gemeente de CBS code is opgenomen, leggen we de link tussen de cbs gemeente en het brk gemeentegebied, omdat deze laatste de authentieke bron is."
 .
@@ -306,6 +308,7 @@ kkg:cbs-wijk a sh:NodeShape;
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
     sh:class cbs:Gemeente;
+    rdfs:comment "Een wijk ligt in een gemeente";
   ];
 .
 kkg:cbs-buurt a sh:NodeShape;
@@ -315,6 +318,7 @@ kkg:cbs-buurt a sh:NodeShape;
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
     sh:class cbs:Wijk;
+    rdfs:comment "Een buurt ligt in een wijk";
   ];
 .
 
@@ -325,18 +329,28 @@ kkg:woz-object a sh:NodeShape;
   sh:property [
     sh:path ogc:sfEquals;
     sh:name "ogc:sfEquals";
-    sh:class brk:OnroerendeZaak
+    sh:class brk:OnroerendeZaak;
+    rdfs:comment "Een woz-object kan samenvallen met een perceel";
   ];
   sh:property [
     sh:path ogc:sfWithin;
     sh:name "ogc:sfWithin";
-    sh:class brk:OnroerendeZaak
+    sh:class brk:OnroerendeZaak;
+    rdfs:comment "Een woz-object kan op een deel van een perceel liggen";
   ];
   sh:property [
     sh:path ogc:sfContains;
     sh:name "ogc:sfContains";
-    sh:class brk:OnroerendeZaak
+    sh:class brk:OnroerendeZaak;
+    rdfs:comment "Een woz-object op meerdere percelen liggen";
   ];
+  # Onderstaand property is nu in de dataset aanwezig, maar wel een rare
+  sh:property [
+    sh:path ogc:sfEquals;
+    sh:name "ogc:sfEquals";
+    sh:class bag:Nummeraanduiding;
+    rdfs:comment "Een WOZ-Object aanduiding is ontleent aan adres";
+  ]
 .
 
 # Monumenten
@@ -356,23 +370,24 @@ kkg:ceo-rijksmonument a sh:NodeShape;
   sh:name "ceo:Rijksmonument";
   sh:targetClass ceo:Rijksmonument;
   sh:property [
-    sh:path ogc:sfIntersects;
-    sh:name "ogc:sfIntersects";
+    sh:path ogc:sfOverlaps;
+    sh:name "ogc:sfOverlaps";
     sh:class ceo:Perceel;
-    rdfs:comment "Een ceo:Rijksmonument bevindt zich op een ceo:Perceel"
+    rdfs:comment "Een ceo:Rijksmonument bevindt zich op een of meerdere ceo:Perceel"
   ];
 .
 
 # Energielabels
-kkg:rvo-gebouw a sh:NodeShape;
-  sh:name "rvo:Gebouw";
-  rdfs:comment "De definitie van gebouw volgt uit de Woningwet, artikel 1 lid 1";
-  sh:targetClass rvo:Gebouw;
+kkg:rvo-woning a sh:NodeShape;
+  sh:name "rvo:Woning";
+  rdfs:comment "De definitie van woning volgt uit de Woningwet, artikel 1 lid 1";
+  sh:targetClass rvo:Woning;
   sh:property kkg:alsGebouw;
   sh:property [
     sh:path ogc:sfContains;
     sh:name "ogc:sfContains";
-    sh:class bag:AdresseerbaarObject
+    sh:class bag:AdresseerbaarObject;
+    rdfs:comment "Een woning (Woningwet, artikel 1 lid 1) omvat een adresseerbaar object"
   ];
 .
 kkg:rvo-energielabel a sh:NodeShape;
@@ -381,7 +396,8 @@ kkg:rvo-energielabel a sh:NodeShape;
   sh:property [
     sh:path foaf:primaryTopic;
     sh:name "foaf:primaryTopic";
-    sh:class rvo:Gebouw;
+    sh:class rvo:Woning;
+    rdfs:comment "Een energielabel betreft een woning";
   ];
 .
 
@@ -391,9 +407,9 @@ kkg:ro-bestemmingsvlak a sh:NodeShape;
   sh:targetClass ro:Bestemmingsvlak;
   sh:property kkg:alsPlanologischGebied;
   sh:property [
-    sh:path ogc:sfIntersects;
-    sh:name "ogc:sfIntersects";
+    sh:path ogc:sfOverlaps;
+    sh:name "ogc:sfOverlaps";
     sh:class brk:Perceel;
-    rdfs:comment "Een ro:Bestemmingsvlak doorsnijdt 1 of meerdere brk:Perceel(en)"
+    rdfs:comment "Een ro:Bestemmingsvlak overlapt 1 of meerdere brk:Perceel(en)"
   ]
 .

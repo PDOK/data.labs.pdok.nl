@@ -3,7 +3,7 @@ endpoint: https://data.acceptatie.pdok.nl/sparql/rvo-el
 layout: story
 logo: /stories/rvo-el/logo.jpg
 output: leaflet
-published: true
+published: false
 title: RVO Energielabels Story
 ---
 
