@@ -15,11 +15,6 @@ select * {
           {
             select * {
               bind("Dordrecht"@nl as ?woonplaatsNaam)
-              values ?straatNaam {"Bankastraat"}
-              #bind("1094EH"^^xsd:string as ?postcode)
-              #bind(1111 as ?huisnummer)
-              #bind("B" as ?huisnummertoevoeging)
-              #bind("a" as ?huisletter)
               graph ?g0 {
                 ?place rdfs:label ?woonplaatsNaam.
               }
@@ -50,15 +45,15 @@ select * {
                 ?g2 bag:eindGeldigheid ?eind2.
               }
               graph ?g3 {
-                ?verblijfsobject
+                ?verblijfsobject a bag:VerblijfsobjectKantoorfunctie;
                     bag:hoofdadres ?nummeraanduiding;
                     bag:oppervlakte ?oppervlakte0;
                     bag:pandrelatering ?pand.
               }
+              filter(?oppervlakte > 1.0e2)
               filter not exists {
                 ?g3 bag:eindGeldigheid ?eind3.
               }
-              filter(?functie0 not in (bag:Verblijfsobject, geo:Feature))
               graph ?g4 {
                 ?pand
                   bag:geometriePand/geo:asWKT ?shape;

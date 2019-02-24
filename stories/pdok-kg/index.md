@@ -112,6 +112,16 @@ waarde in de laagste klasse, en energielabel D of hoger…</p>
        data-output="geo3d">
 </query>
 
+<h1 class="txt">Energielabel verplichting kantoren</h1>
+
+<p class="txt">Vanaf 2023 is ieder kantoor in Nederland groter dan 100
+m2 verplicht om minimaal energielabel C te hebben.  Deze wetgeving is
+momenteel nog in ontwikkeling.</p>
+
+<query data-query-ref="energielabels-aggregatie.rq"
+       data-output="geo3d">
+</query>
+
 <!--
 Oud gebouw wat vroeger een school was, maar inmiddels niet meer.  5
 Jaar combineren met functie/status-verandering.
