@@ -12,7 +12,14 @@ select * {
   {
     select * {
       {
-        select (sample(?nummeraanduiding0) as ?nummeraanduiding) ?pand (sample(?pandShape0) as ?pandShape) (sample(?pandShapeLabel1) as ?pandShapeLabel2) (sample(?pandShapeName0) as ?pandShapeName) (sample(?verblijfsobject0) as ?verblijfsobject) {
+        select
+          (sample(?nummeraanduiding0) as ?nummeraanduiding)
+          ?pand
+          (sample(?pandShape0) as ?pandShape)
+          (sample(?pandShapeLabel1) as ?pandShapeLabel2)
+          (sample(?pandShapeName0) as ?pandShapeName)
+          (sample(?verblijfsobject0) as ?verblijfsobject)
+        {
           bind("Dordrecht"@nl as ?woonplaatsNaam)
           values ?straatNaam { "Adelaarstraat" "Billitonstraat" "Buizerdstraat" "Havikstraat" "Kokmeeuwstraat" "Pluvierstraat" "Roerdompstraat" "Snipstraat" "Sperwerstraat" "Wouwstraat" }
           graph ?g0 {

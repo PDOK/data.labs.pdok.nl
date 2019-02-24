@@ -5,7 +5,6 @@ prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix labs: <https://data.labs.pdok.nl/bag/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix woz: <https://data.labs.pdok.nl/woz/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select * {
   {
@@ -50,7 +49,7 @@ select * {
                     bag:oppervlakte ?oppervlakte0;
                     bag:pandrelatering ?pand.
               }
-              filter(?oppervlakte > 1.0e2)
+              filter(?oppervlakte0 > 1.0e2)
               filter not exists {
                 ?g3 bag:eindGeldigheid ?eind3.
               }
