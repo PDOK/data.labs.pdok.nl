@@ -12,7 +12,7 @@ title: PDOK Knowledge Graph
 
 <h1 class="txt">PDOK Knowledge Graph</h1>
 
-<h1 class="txt">Cases 1: Mogelijkheden voor projectontwikkeling</h1>
+<h1 class="txt">Casus 1: Mogelijkheden voor projectontwikkeling</h1>
 
 <p class="txt">We willen dat er meer huizen worden verkocht.  Één
 manier om dat voor elkaar te krijgen is door meer huizen te bouwen.
@@ -35,7 +35,7 @@ mag worden en sterk stedelijke gebieden waar niet gebouwd kan worden
 uit.</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>Op deze kaart zijn de kandidaat wijken gegroepeerd weergegeven.  Door op de met getallen aangeduide groepen te klikken worden de wijken binnen die groepering zichtbaar gemaakt.  Op het laagste niveau worden de individuele wijken zichtbaar.  Door op deze wijken te klikken kan de naam van de wijken getoond worden.</p>
 </div>
 
@@ -72,7 +72,7 @@ waardes zijn afkomstig van het Centraal Bureau van de Statistiek
 (CBS).</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>In deze 3D omgeving zijn de kandidaat wijken weergegeven.  De hoogte en kleur van de wijken duidt de hoogte van de gemiddelde woningwaarde aan.  Door op de 3D objecten te klikken wordt de naam van de wijk getoond samen met de gemiddelde woningwaarde voor die wijk.  Navigatie binnen de 3D omgeving functioneert door gebruik te maken van de muis en de <kbd>Ctrl</kbd> toets.</p>
 </div>
 
@@ -88,7 +88,7 @@ waarde in de laagste klasse, en energielabel D of hoger.  De ‘hete’
 deleten van de kaart duiden aan waar de potentie het hoogst is.
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>Deze heatmap maakt in één oogopslag duidelijk waar de meeste kandidaat panden gelokaliseerd zijn.  Het is ook mogelijk om dezelfde informatie op andere manieren te visualiseren, bijvoorbeeld door de editor te openen en weergave optie “Gallery” te kiezen.</p>
 </div>
 
@@ -146,7 +146,7 @@ wijziging van het Bouwbesluit 2012 en is op 2 november 2018 <a
 href="https://zoek.officielebekendmakingen.nl/stb-2018-380.html"
 target="_blank">gepubliceerd in het Staatsblad</a>.
 
-<table class="txt">
+<table class="txt" style='width:50%'>
 <thead>
 <tr><th>Kleur</th><th>Energielabel</th></tr>
 </thead>
@@ -213,7 +213,7 @@ target="_blank">gepubliceerd in het Staatsblad</a>.
 <p class="txt">Soms bevinden zich in één pand meerdere kantoren, die mogelijk verschillende energielabels hebben.  In dat geval is de kleur van het pand bepaald door het slechtste enrgielabel dat binnen dat pand aanwezig is.</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>Door op de panden te klikken wordt een overzicht getoond van de kantoren en daarbij behorende energielabels binnen dat pand.</p>
 </div>
 
