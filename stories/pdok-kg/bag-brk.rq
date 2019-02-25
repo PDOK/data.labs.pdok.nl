@@ -1,0 +1,122 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://energielabels.gebouwen.overheid.nl/epbd/id/begrip/>
+prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
+prefix epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#select ?pandShape ("blue" as ?pandShapeColor) ?pandShapeLabel { # pand-only
+#select ?perceelShape ("green" as ?perceelShapeColor) ?perceelShapeLabel { # perceel-only
+select * {
+  {
+    select * {
+      {
+        select
+          (sample(?nummeraanduiding0) as ?nummeraanduiding)
+          ?pand
+          (sample(?pandShape0) as ?pandShape)
+          (sample(?pandShapeLabel1) as ?pandShapeLabel2)
+          (sample(?pandShapeName0) as ?pandShapeName)
+          (sample(?verblijfsobject0) as ?verblijfsobject)
+        {
+          bind("Dordrecht"@nl as ?woonplaatsNaam)
+          values ?straatNaam { "Adelaarstraat" "Billitonstraat" "Buizerdstraat" "Havikstraat" "Kokmeeuwstraat" "Pluvierstraat" "Roerdompstraat" "Snipstraat" "Sperwerstraat" "Wouwstraat" }
+          graph ?g0 {
+            ?place rdfs:label ?woonplaatsNaam.
+          }
+          filter not exists { ?g0 bag:eindGeldigheid ?eind0. }
+          graph ?g1 {
+            ?openbareRuimte
+              bag:bijbehorendeWoonplaats ?place;
+              bag:naamOpenbareRuimte ?straatNaam.
+          }
+          filter not exists { ?g1 bag:eindGeldigheid ?eind1. }
+          graph ?g2 {
+            ?nummeraanduiding0
+              bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+              bag:huisnummer ?huisnummer;
+              bag:postcode ?postcode.
+          }
+          filter not exists { ?g2 bag:eindGeldigheid ?eind2. }
+          graph ?g3 {
+            ?verblijfsobject0
+              bag:hoofdadres ?nummeraanduiding0;
+              bag:oppervlakte ?oppervlakte;
+              bag:pandrelatering ?pand.
+          }
+          filter not exists { ?g3 bag:eindGeldigheid ?eind3. }
+          filter(?functie0 not in (bag:Verblijfsobject, geo:Feature))
+          graph ?g4 {
+            ?pand
+              bag:geometriePand/geo:asWKT ?pandShape0;
+              bag:oorspronkelijkBouwjaar ?bouwjaar;
+              bag:status ?pandStatus.
+          }
+          filter not exists { ?g4 bag:eindGeldigheid ?eind4. }
+          ?pandStatus rdfs:label ?pandStatusLabel.
+          bind(concat(str(?straatNaam),' ',str(?huisnummer)) as ?pandShapeName0)
+          bind(concat(
+            str(?pandShapeName0),',<br>',str(?postcode),' ',str(?woonplaatsNaam),'</h2><ul>',
+            '<li><b>Oorspronkelijk bouwjaar</b>: ',str(?bouwjaar),'</li>',
+            '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
+            '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m2</li>') as ?pandShapeLabel1)
+        }
+        group by ?pand
+      }
+      service <https://data.labs.pdok.nl/migratie/sparql> {
+        ?nummeraanduiding <http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel> ?perceel.
+        ?pand labs:measuredHeight ?pandShapeHeight.
+        ?gebouwdeel
+          epbd:energieprestatie-indicator ?energieprestatie;
+          epbd:heeftAdresseerbaarObject ?verblijfsobject;
+          foaf:isPrimaryTopicOf [
+            epbd:certificaatnummer ?certificaatnummer;
+            epbd:opnamedatum ?opnamedatum;
+            epbd:registratiedatum ?registratiedatum ].
+          bind(
+            if(!(bound(?energieprestatie)),'grey',
+            if(?energieprestatie=begrip:A_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip:A_p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip:A_p__p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip:A_p__p__p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip:B_Energielabel,'#8ff334',
+            if(?energieprestatie=begrip:C_Energielabel,'#bdfc2c',
+            if(?energieprestatie=begrip:D_Energielabel,'#fff200',
+            if(?energieprestatie=begrip:E_Energielabel,'#ff9a35',
+            if(?energieprestatie=begrip:F_Energielabel,'#ff7f27',
+            if(?energieprestatie=begrip:G_Energielabel,'#ed1c24','grey'))))))))))) as ?pandShapeColor)
+          bind(
+            if(!(bound(?energieprestatie)),'none',
+            if(?energieprestatie=begrip:A_Energielabel,'A',
+            if(?energieprestatie=begrip:A_p_Energielabel,'A',
+            if(?energieprestatie=begrip:A_p__p_Energielabel,'A',
+            if(?energieprestatie=begrip:A_p__p__p_Energielabel,'A',
+            if(?energieprestatie=begrip:B_Energielabel,'B',
+            if(?energieprestatie=begrip:C_Energielabel,'C',
+            if(?energieprestatie=begrip:D_Energielabel,'D',
+            if(?energieprestatie=begrip:E_Energielabel,'E',
+            if(?energieprestatie=begrip:F_Energielabel,'F',
+            if(?energieprestatie=begrip:G_Energielabel,'G','unknown'))))))))))) as ?energieLabel)
+          bind(concat(
+            '<h1><svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?pandShapeColor),'" r="10"></svg> ',
+            ?pandShapeLabel2,'<li><b>Energielabel</b>: ',str(?energieLabel),'</li></ul>') as ?pandShapeLabel)
+      }
+    }
+  }
+  ?perceel
+    brk:begrenzingPerceel/geo:asWKT ?perceelShape;
+    brk:sectie ?sectie;
+    brk:perceelnummer ?perceelnummer;
+    brk:kadastraleGrootte ?grootte.
+  bind(concat('Perceel ',str(?perceelnummer)) as ?perceelShapeName)
+  bind(replace(str(?grootte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.') as ?groottePrint)
+  bind(concat(
+    '<h1>',str(?perceelShapeName),'</h1>',
+    '<ul>',
+      '<li><b>Sectie</b>: ',str(?sectie),'</li>',
+      '<li><b>Nummber</b>: ',str(?perceelnummer),'</li>',
+      '<li><b>Grootte</b>: ',str(?groottePrint),' m2</li>',
+    '</ul>') as ?perceelShapeLabel)
+  bind("white" as ?perceelShapeColor)
+}

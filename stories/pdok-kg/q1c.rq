@@ -1,3 +1,4 @@
+# CBS gemiddelde woningwaarde
 prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
 prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
 prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
