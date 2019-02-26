@@ -12,7 +12,7 @@ title: PDOK Knowledge Graph
 
 <h1 class="txt">PDOK Knowledge Graph</h1>
 
-<h1 class="txt">Cases 1: Mogelijkheden voor projectontwikkeling</h1>
+<h1 class="txt">Casus 1: Mogelijkheden voor projectontwikkeling</h1>
 
 <p class="txt">We willen dat er meer huizen worden verkocht.  Één
 manier om dat voor elkaar te krijgen is door meer huizen te bouwen.
@@ -35,8 +35,8 @@ mag worden en sterk stedelijke gebieden waar niet gebouwd kan worden
 uit.</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
-  <p>Op deze kaart zijn de kandidaat buurten gegroepeerd weergegeven.  Door op de met getallen aangeduide groepen te klikken worden de buurten binnen die groepering zichtbaar gemaakt.  Op het laagste niveau worden de individuele buurten zichtbaar.  Door op deze buurten te klikken kan de naam van de buurten getoond worden.</p>
+  <h2>Probeer het uit</h2>
+  <p>Op deze kaart zijn de kandidaat wijken gegroepeerd weergegeven.  Door op de met getallen aangeduide groepen te klikken worden de wijken binnen die groepering zichtbaar gemaakt.  Op het laagste niveau worden de individuele wijken zichtbaar.  Door op deze wijken te klikken kan de naam van de wijken getoond worden.</p>
 </div>
 
 <query data-config="http://localhost:5000/stories/pdok-kg/#query=%23%20CBS%20wijken%20met%20matige%20stedelijkheid%0A%23%20(o.b.v.%20omgevingsadressendichtheid).%0Aprefix%20cbs%3A%20%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2Fcbs%23%3E%0Aprefix%20code%3A%20%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2F83487NED%2Fid%2Fcode%2F%3E%0Aprefix%20def%3A%20%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2F83487NED%23%3E%0Aprefix%20dimension%3A%20%3Chttp%3A%2F%2Fbetalinkeddata.cbs.nl%2Fdef%2Fdimension%23%3E%0Aprefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aselect%20*%20%7B%0A%20%20%3Fgemeente%0A%20%20%20%20a%20cbs%3AGemeente_Geografisch%3B%0A%20%20%20%20rdfs%3Alabel%20%3FgemeenteNaam.%0A%20%20%3Fwijk%0A%20%20%20%20a%20cbs%3AWijk%3B%0A%20%20%20%20%3Fgeo_sfWithin1%20%3Fgemeente%3B%20%23%20HACK%3A%20Required%20in%20GraphDB%0A%20%20%20%20rdfs%3Alabel%20%3FwijkNaam.%0A%20%20%3Fbuurt%0A%20%20%20%20a%20cbs%3ABuurt%3B%0A%20%20%20%20geo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fshape%3B%0A%20%20%20%20%3Fgeo_sfWithin2%20%3Fwijk%3B%20%23%20HACK%3A%20Required%20in%20GraphDB%0A%20%20%20%20rdfs%3Alabel%20%3FbuurtNaam.%0A%20%20%5B%20def%3Astedelijkheid_MateVanStedelijkheid%20code%3AStedelijkheid_MateVanStedelijkheid_MatigStedelijk%3B%0A%20%20%20%20dimension%3Aregio%20%3Fbuurt%20%5D.%0A%20%20bind('red'%20as%20%3FshapeColor)%0A%20%20bind('''%3Ch3%3EBuurt%20%7B%7BbuurtNaam%7D%7D%20te%20%7B%7BgemeenteNaam%7D%7D%3C%2Fh3%3E'''%5E%5Erdf%3AHTML%20as%20%3FshapeLabel)%0A%7D%0Alimit%2010000%0A&endpoint=https%3A%2F%2Fbetalinkeddata.cbs.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=geo&outputSettings=%7B%22map%22%3A%22nlmaps%22%2C%22visualization%22%3A%22grouped%22%2C%22grouped%22%3Afalse%7D"
@@ -72,8 +72,8 @@ waardes zijn afkomstig van het Centraal Bureau van de Statistiek
 (CBS).</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
-  <p>In deze 3D omgeving zijn de kandidaat buurten weergegeven.  De hoogte en kleur van de buurten duidt de hoogte van de gemiddelde woningwaarde aan.  Door op de 3D objecten te klikken wordt de naam van de buurt getoond samen met de gemiddelde woningwaarde voor die buurt.  Navigatie binnen de 3D omgeving functioneert door gebruik te maken van de muis en de <kbd>Ctrl</kbd> toets.</p>
+  <h2>Probeer het uit</h2>
+  <p>In deze 3D omgeving zijn de kandidaat wijken weergegeven.  De hoogte en kleur van de wijken duidt de hoogte van de gemiddelde woningwaarde aan.  Door op de 3D objecten te klikken wordt de naam van de wijk getoond samen met de gemiddelde woningwaarde voor die wijk.  Navigatie binnen de 3D omgeving functioneert door gebruik te maken van de muis en de <kbd>Ctrl</kbd> toets.</p>
 </div>
 
 <query data-endpoint="https://betalinkeddata.cbs.nl/sparql"
@@ -89,7 +89,7 @@ hoger.  De ‘hete’ deleten van de kaart duiden aan waar de potentie het
 hoogst is.
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>Deze heatmap maakt in één oogopslag duidelijk waar de meeste kandidaat panden gelokaliseerd zijn.  Het is ook mogelijk om dezelfde informatie op andere manieren te visualiseren, bijvoorbeeld door de editor te openen en weergave optie “Gallery” te kiezen.</p>
 </div>
 
@@ -147,7 +147,7 @@ wijziging van het Bouwbesluit 2012 en is op 2 november 2018 <a
 href="https://zoek.officielebekendmakingen.nl/stb-2018-380.html"
 target="_blank">gepubliceerd in het Staatsblad</a>.
 
-<table class="txt">
+<table class="txt" style='width:50%'>
 <thead>
 <tr><th>Kleur</th><th>Energielabel</th></tr>
 </thead>
@@ -214,7 +214,7 @@ target="_blank">gepubliceerd in het Staatsblad</a>.
 <p class="txt">Soms bevinden zich in één pand meerdere kantoren, die mogelijk verschillende energielabels hebben.  In dat geval is de kleur van het pand bepaald door het slechtste enrgielabel dat binnen dat pand aanwezig is.</p>
 
 <div class="alert alert-info txt" role="alert">
-  <h2>Probeer uit</h2>
+  <h2>Probeer het uit</h2>
   <p>Door op de panden te klikken wordt een overzicht getoond van de kantoren en daarbij behorende energielabels binnen dat pand.</p>
 </div>
 
