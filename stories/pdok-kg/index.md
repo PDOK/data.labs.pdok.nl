@@ -52,7 +52,7 @@ uit.</p>
 <ul class="txt">
 <li>De buurt moet woningen met een lage gemiddelde woningwaarde bevatten.</li>
 <li>De buurt moet een relatief hoge woningvoorraad hebben.</li>
-<li>De buurt moet veelal oudere woningen bevatten.</li>
+<li>De buurt moet woningen bevatten die vóór 2000 gebouwd zijn.</li>
 </ul>
 
 <p class="txt">Wanneer we alle buurten in Nederland op basis van deze
