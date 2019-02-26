@@ -171,7 +171,7 @@ Een linkset die beschikbaar is en via een SPARQL endpoint te benaderen is (Labs 
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="node_size" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="60.0" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="389.0" x="4.0" xml:space="preserve" y="4.0">Ontbreekt, wel aanwezig
-Een linkset die ontbreekt als Linked Data, maar wel in een andere vorm aanwezig binnen het Kadaster</y:NodeLabel>
+Een linkset die (deels) ontbreekt als Linked Data, maar wel in een andere vorm aanwezig binnen het Kadaster</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -275,10 +275,10 @@ Een linkset die ontbreekt als Linked Data, maar wel beschikbaar gemaakt kan word
     <node id="n14">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="60.0" width="389.0" x="219.0" y="369.0"/>
+          <y:Geometry height="60.0" width="505.0" x="219.0" y="369.0"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="left" autoSizePolicy="node_size" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="60.0" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="389.0" x="4.0" xml:space="preserve" y="4.0">Ontbreekt en bestaat ook niet
+          <y:NodeLabel alignment="left" autoSizePolicy="node_size" configuration="CroppingLabel" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="60.0" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="505.0" x="4.0" xml:space="preserve" y="4.0">Ontbreekt en bestaat ook niet
 Een linkset die ontbreekt als Linked Data, en ook nog niet bestaat bij het Kadaster. De linkset kan gemaakt worden door een geometrische vergelijking uit te voeren.</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
