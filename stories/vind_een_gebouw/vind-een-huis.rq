@@ -1,0 +1,44 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+prefix schema: <http://schema.org/>
+select ?pandWkt ?pandWktLabel ?pandWktHeight {
+  values (?woonplaatsNaam ?straatNaam ?huisnummer) { ("Warnsveld" "'t Spiker" 24) }
+  # Optioneel: stel een specifieke huisletter in.
+  #bind("B" as ?huisletter)
+  ?openbareRuimte bag:naamOpenbareRuimte ?straatNaam ;
+                  bag:bijbehorendeWoonplaats ?woonplaats .
+  ?woonplaats bag:naamWoonplaats ?woonplaatsNaam .
+  ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte ;
+                    bag:huisnummer ?huisnummer .
+  # De huisletter moet worden gematched, maar alleen als deze ook is
+  # ingesteld middels bovenstaande `bind' clausule.
+  optional {
+    ?nummeraanduiding bag:huisletter ?huisletter0 .
+  }
+  filter(!bound(?huisletter) || ?huisletter = ?huisletter0)
+  ?verblijfsobject bag:hoofdadres ?nummeraanduiding ;
+                   bag:oppervlakte ?oppervlakte ;
+                   bag:pandrelatering ?pand ;
+                   bag:status ?verblijfsobjectStatus .
+  ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel .
+  ?pand bag:oorspronkelijkBouwjaar ?bouwjaar ;
+        bag:geometriePand/geo:asWKT ?pandWkt ;
+        bag:status ?pandStatus .
+  ?pandStatus rdfs:label ?pandStatusLabel
+
+  service <https://data.labs.pdok.nl/sparql>	{
+    ?pand labs:measuredHeight ?pandWktHeight.
+  }
+
+  bind(concat(
+    '<h3>',str(?straatNaam),' ',str(?huisnummer),'</h3>',
+    '<p><a href="',str(?verblijfsobject),'">Verblijfsobject</a>:</p>',
+    '<ul><li>Woonplaats: <a href="',str(?woonplaats),'">',str(?woonplaatsNaam),'</a></li>',
+    '<li>Oppervlakte: ',str(?oppervlakte),'m^2</li>',
+    '<li>Status: <a href="',str(?verblijfsobjectStatus),'">',str(?verblijfsobjectStatusLabel),'</a></li></ul>',
+    '<p><a href="',str(?pand),'">Pand</a>:</p>',
+    '<ul><li>Bouwjaar: ',str(?bouwjaar),'</li>',
+    '<li>Status: <a href="',str(?pandStatus),'">',str(?pandStatusLabel),'</a></li></ul>') as ?pandWktLabel)
+}
