@@ -1,8 +1,7 @@
 ---
-layout: default
+layout: story
 title: SPARQL
 ---
-
 
 <div id="yasgui"></div>
 <script>
