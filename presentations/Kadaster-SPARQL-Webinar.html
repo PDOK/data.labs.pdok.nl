@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="author" content="Wouter Beek and Erwin Folmer">
+    <meta name="description" content="Kadaster SPARQL Webinar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/assets/css/presentation.css">
+    <link rel="stylesheet" href="/assets/reveal.js-3.7.0/lib/css/default.css">
+    <link rel="stylesheet" href="/assets/reveal.js-3.7.0/css/reveal.css">
+    <link rel="stylesheet" href="/assets/reveal.js-3.7.0/css/theme/simple.css" id="theme">
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '/assets/reveal.js-3.7.0/css/print/pdf.css' : '/assets/reveal.js-3.7.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <title>Kadaster SPARQL Webinar</title>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Kadaster SPARQL Webinar</h2>
+          <p class="size-80">Laatst gewijzigd op: 7 maart 2019</p>
+          <p class="info size-70">
+            <b>Instructies</b>: Gebruik de pijltjestoetsen
+            (<kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd>)
+            om door de presentatie te navigeren.  Druk op
+            de <kbd>ESC</kbd> toets voor een overzicht.
+          </p>
+          <hr>
+          <div>
+            <a href="https://kadaster.nl" target="_blank">
+              <figure class="left">
+                <img src="/assets/images/kadaster.jpg" height="120">
+              </figure>
+            </a>
+            <a href="https://pdok.nl" target="_blank">
+              <figure class="right">
+                <img src="/assets/images/pdok-square-logo.png" height="120">
+              </figure>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h1>Wat is Linked Data?</h1>
+          </section>
+          <section>
+            <h3>De 5 sterren van Linked Data</h3>
+            <figure>
+              <a href="https://5stardata.info">
+                <img src="/assets/images/5star.png">
+              </a>
+              <figcaption>Source: Tim Berners-Lee (<a href="https://5stardata.info">http://5stardata.info</a>)</figcaption>
+            </figure>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Linked Data @Kadaster</h1>
+          </section>
+          <section>
+            <a href="https://pdok.nl" target="_blank">
+              <h3>https://pdok.nl</h3>
+            </a>
+            <figure>
+              <a href="https://pdok.nl" target="_blank">
+                <img src="/assets/images/pdok-homepage-100.png">
+              </a>
+            </figure>
+          </section>
+          <section>
+            <a href="https://pdok.nl/next" target="_blank">
+              <h3>https://pdok.nl/next</h3>
+            </a>
+            <figure>
+              <a href="https://pdok.nl/next" target="_blank">
+                <img src="/assets/images/pdok-next-homepage.png">
+              </a>
+            </figure>
+          </section>
+          <section>
+            <a href="https://data.pdok.nl/sparql" target="_blank">
+              <h3>https://data.pdok.nl/sparql</h3>
+            </a>
+            <figure>
+              <a href="https://pdok.nl/next" target="_blank">
+                <img src="/assets/images/pdok-sparql.png">
+              </a>
+            </figure>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Hands-on met SPARQL</h1>
+          </section>
+          <section>
+            <h3>Vraag 1/3: <a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+brt%3A+%3Chttp%3A%2F%2Fbrt.basisregistraties.overheid.nl%2Fdef%2Ftop10nl%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+distinct+*+%7B%0A+++%3Fbunker+a+brt%3ABunker%3B%0A+++++++geo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Alimit+250%0A&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Bunkers+in+Nederland&headers=%7B%7D&outputFormat=table">Bunkers in Nederland</a></h3>
+            <figure>
+              <pre><code class="sparql" data-noescape data-trim>prefix brt: &lt;http://brt.basisregistraties.overheid.nl/def/top10nl#&gt;
+prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+select * {
+  ?gebouw a brt:Bunker;
+          geo:hasGeometry/geo:asWKT ?shape.
+}</code></pre>
+            </figure>
+            <dl class="size-70">
+              <dt>Projectie</dt>
+              <dd><code>select *</code></dd>
+              <dt>Patroon</dt>
+              <dd><code>?shapeLabel a brt:Bunker; geo:hasGeometry/geo:asWKT ?shape.</code></dd>
+            </dl>
+          </section>
+          <section>
+            <h3>Vraag 2/3: <a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+bag%3A+%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+*+%7B%0A++%3Fhoofdadres+bag%3AbijbehorendeOpenbareRuimte+%3FopenbareRuimte%3B%0A++++++++++++++bag%3Ahuisnummer+110%3B%0A++++++++++++++bag%3Apostcode+%227311KZ%22.%0A++%3Fverblijfsobject+bag%3Ahoofdadres+%3Fhoofdadres%3B%0A+++++++++++++++++++bag%3Apandrelatering%2Fgeo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Alimit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table">BAG pand</a></h3>
+            <figure>
+              <pre><code class="sparql" data-noescape data-trim>prefix bag: &lt;http://bag.basisregistraties.overheid.nl/def/bag#&gt;
+prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+select * {
+  ?hoofdadres bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+              bag:huisnummer 110;
+              bag:postcode "7311KZ".
+  ?verblijfsobject bag:hoofdadres ?hoofdadres;
+                   bag:pandrelatering/geo:hasGeometry/geo:asWKT ?shape.
+}
+limit 10</code></pre>
+            </figure>
+          </section>
+          <section>
+            <h3>Vraag 3/3: <a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+bag%3A+%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+*+%7B%0A++%3Fhoofdadres+bag%3AbijbehorendeOpenbareRuimte+%3FopenbareRuimte%3B%0A++++++++++++++bag%3Ahuisnummer+110%3B%0A++++++++++++++bag%3Apostcode+%227311KZ%22.%0A++%3Fverblijfsobject+bag%3Ahoofdadres+%3Fhoofdadres%3B%0A+++++++++++++++++++bag%3Apandrelatering%2Fgeo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Alimit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table">BAG mutatie</a> [TODO]</h3>
+            <figure>
+              <pre><code class="sparql" data-noescape data-trim>prefix bag: &lt;http://bag.basisregistraties.overheid.nl/def/bag#&gt;
+prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+select * {
+  ?hoofdadres bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+              bag:huisnummer 110;
+              bag:postcode "7311KZ".
+  ?verblijfsobject bag:hoofdadres ?hoofdadres;
+                   bag:pandrelatering/geo:hasGeometry/geo:asWKT ?shape.
+}
+limit 10</code></pre>
+            </figure>
+          </section>
+        </section>
+
+        <section>
+          <h2>Verdere voorbeelden</h2>
+          <ul>
+            <li>Vind een gebouw (pas het adres aan) [TODO]</li>
+            <li>Doe de huischeck (op een adres dat iemand via de chat mag aanleveren; bedrijfsgebouw) [TODO]</li>
+            <li>De 3D query van een straat [TODO]</li>
+            <li><a href="http://www.irisa.fr/LIS/ferre/sparklis/osparklis.html?title=PDOK&endpoint=https%3A//data.pdok.nl/sparql&entity_lexicon_select=http%3A//www.w3.org/2000/01/rdf-schema%23label&lang=nl">Sparklis</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Laten we contact houden</h2>
+          <figure>
+            <img>
+            <figcaption>
+              <ul>
+                <li>Ga naar het <a href="https://geoforum.nl" target="_blank">Geoforum</a></li>
+                <li>Email Ewin (<a href="mailto:Erwin.Folmer@kadaster.nl">Erwin.Folmer@kadaster.nl</a>) of Wouter (<a href="mailto:wouter@triply.cc">wouter@triply.cc</a>)</li>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h2>Dank voor het meedoen!</h2>
+          <dl class="size-80">
+            <dt>PDOK</dt>
+            <dd><a href="https://pdok.nl">https://pdok.nl</a></dd>
+            <dt>PDOK Next</dt>
+            <dd><a href="https://pdok.nl/next">https://pdok.nl/next</a></dd>
+            <dt>SPARQL endpoint</dt>
+            <dd><a href="https://data.pdok.nl/sparql">https://data.pdok.nl/sparql</a></dd>
+          </dl>
+          <hr>
+          <div>
+            <a href="https://kadaster.nl" target="_blank">
+              <figure class="left">
+                <img src="/assets/images/kadaster.jpg" height="120">
+              </figure>
+            </a>
+            <a href="https://pdok.nl" target="_blank">
+              <figure class="right">
+                <img src="/assets/images/pdok-square-logo.png" height="120">
+              </figure>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+    <script src="/assets/reveal.js-3.7.0/lib/js/head.min.js"></script>
+    <script src="/assets/reveal.js-3.7.0/js/reveal.js"></script>
+    <script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+		      { src: '/assets/reveal.js-3.7.0/js/classList.js', condition: function() { return !document.body.classList; } },
+		      // Interpret Markdown in <section> elements
+		      { src: '/assets/reveal.js-3.7.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		      { src: '/assets/reveal.js-3.7.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		      // Syntax highlight for <code> elements
+		      { src: '/assets/reveal.js-3.7.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		      // Zoom in and out with Alt+click
+		      { src: '/assets/reveal.js-3.7.0/plugin/zoom-js/zoom.js', async: true },
+		      // Speaker notes
+		      { src: '/assets/reveal.js-3.7.0/plugin/notes/notes.js', async: true },
+		      // MathJax
+		      { src: '/assets/reveal.js-3.7.0/plugin/math/math.js', async: true }
+        ]
+      });
+    </script>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
+  </body>
+</html>
