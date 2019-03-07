@@ -190,7 +190,7 @@ limit 10</code></pre>
             <li>Vind een gebouw (pas het adres aan) [TODO]</li>
             <li>Doe de huischeck (op een adres dat iemand via de chat mag aanleveren; bedrijfsgebouw) [TODO]</li>
             -->
-            <li>bevraag een straat in de 3D BAG (<a href="" target="_blank">voer uit</a>)</li>
+            <li>De 10 oudste BAG panden (<a href="https://data.pdok.nl/sparql#query=prefix+bag%3A+%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+*+%7B%0A++%3Fverblijfsobject+bag%3Ahoofdadres%2Fbag%3AbijbehorendeOpenbareRuimte%2Fbag%3AbijbehorendeWoonplaats%2Fbag%3AnaamWoonplaats+%22Apeldoorn%22%3B%0A+++++++++++++++++++bag%3Apandrelatering+%3Fpand.%0A++%3Fpand+bag%3AoorspronkelijkBouwjaar+%3FshapeLabel%3B%0A++++++++bag%3AgeometriePand%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Aorder+by+%3FshapeLabel%0Alimit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Oudste+gebouwen&headers=%7B%7D&outputFormat=leaflet" target="_blank">voer uit</a>)</li>
             <li>Data Stories (<a href="https://data.labs.pdok.nl/stories/pdok-kg/" target="_blank">voorbeeld</a>)</li>
             <li>FacetCheck (<a href="https://data.labs.pdok.nl/presentations/bevolkings-browser/" target="_blank">voorbeeld</a>)</li>
             <li><a href="http://www.irisa.fr/LIS/ferre/sparklis/osparklis.html?title=PDOK&endpoint=https%3A//data.pdok.nl/sparql&entity_lexicon_select=http%3A//www.w3.org/2000/01/rdf-schema%23label&lang=nl">Sparklis</a></li>
