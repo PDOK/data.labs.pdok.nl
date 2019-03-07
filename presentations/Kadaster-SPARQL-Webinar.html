@@ -163,14 +163,18 @@ limit 10</code></pre>
             </figure>
           </section>
           <section>
-            <h3>Vraag 3/3: <a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+bag%3A+%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+*+%7B%0A++%3Fhoofdadres+bag%3AbijbehorendeOpenbareRuimte+%3FopenbareRuimte%3B%0A++++++++++++++bag%3Ahuisnummer+110%3B%0A++++++++++++++bag%3Apostcode+%227311KZ%22.%0A++%3Fverblijfsobject+bag%3Ahoofdadres+%3Fhoofdadres%3B%0A+++++++++++++++++++bag%3Apandrelatering%2Fgeo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Alimit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&outputFormat=table">BAG mutatie</a> [TODO]</h3>
+            <h3>Vraag 3/3: <a target="_blank" href="https://data.pdok.nl/sparql#query=prefix+bag%3A+%3Chttp%3A%2F%2Fbag.basisregistraties.overheid.nl%2Fdef%2Fbag%23%3E%0Aprefix+geo%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aselect+%3Fbegin+%3Feind+%7B%0A++graph+%3FhoofdadresVoorkomen+%7B%0A++++%3Fhoofdadres+bag%3AbijbehorendeOpenbareRuimte+%3FopenbareRuimte%3B%0A++++++++++++++++bag%3Ahuisnummer+110%3B%0A++++++++++++++++bag%3Apostcode+%227311KZ%22.%0A++%7D%0A++%3FhoofdadresVoorkomen+bag%3AbeginGeldigheid+%3Fbegin.%0A++optional+%7B+%3FhoofdadresVoorkomen+bag%3AeindGeldigheid+%3Feind.+%7D%0A++%3Fverblijfsobject+bag%3Ahoofdadres+%3Fhoofdadres%3B%0A+++++++++++++++++++bag%3Apandrelatering%2Fgeo%3AhasGeometry%2Fgeo%3AasWKT+%3Fshape.%0A%7D%0Alimit+10&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&endpoint=https%3A%2F%2Fdata.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=BAG+mutatie&headers=%7B%7D&outputFormat=table">BAG mutatie</a></h3>
             <figure>
               <pre><code class="sparql" data-noescape data-trim>prefix bag: &lt;http://bag.basisregistraties.overheid.nl/def/bag#&gt;
 prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
-select * {
-  ?hoofdadres bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
-              bag:huisnummer 110;
-              bag:postcode "7311KZ".
+select ?begin ?eind {
+  graph ?hoofdadresVoorkomen {
+    ?hoofdadres bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                bag:huisnummer 110;
+                bag:postcode "7311KZ".
+  }
+  ?hoofdadresVoorkomen bag:beginGeldigheid ?begin.
+  optional { ?hoofdadresVoorkomen bag:eindGeldigheid ?eind. }
   ?verblijfsobject bag:hoofdadres ?hoofdadres;
                    bag:pandrelatering/geo:hasGeometry/geo:asWKT ?shape.
 }
