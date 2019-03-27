@@ -1,12 +1,14 @@
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+prefix rvo: <https://internationaal.ondernemen.overheid.nl/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select ?naam ?bbp_usd
-FROM <https://data.labs.pdok.nl/dataset/rvo>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/data>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/2016>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/2017>
 {
   ?land a rvo:Land ;
-    rvo:bbp ?bbp ;
-    rdfs:label ?naam .
-      FILTER langMatches( lang(?naam), "NL" )
-    BIND(STRDT(STR(?bbp), xsd:integer) AS ?bbp_usd)
+    rdfs:label ?naam ;
+    rvo:bbp ?bbp .
+  FILTER langMatches( lang(?naam), "NL" )
+  BIND(STRDT(STR(?bbp), xsd:integer) AS ?bbp_usd)
 }

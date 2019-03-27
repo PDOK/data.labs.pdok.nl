@@ -1,14 +1,16 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 prefix geo: <http://www.opengis.net/ont/geosparql#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+prefix rvo: <https://internationaal.ondernemen.overheid.nl/def/>
 select ?shape ?shapeLabel
-FROM <https://data.labs.pdok.nl/dataset/rvo>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/data>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/links>
 {
   ?land a rvo:Land ;
     rdfs:label ?naam ;
     geo:hasGeometry/geo:asWKT ?shape ;
-    rvo:vlag ?url .
+    foaf:depiction ?url .
   bind(concat('<h2>',str(?naam),'</h2></a>',
       '<img src="',str(?url),'" width="300">') as ?shapeLabel)
   FILTER langMatches( lang(?naam), "NL" )

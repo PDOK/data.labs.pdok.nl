@@ -1,12 +1,13 @@
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
-select ?taal (count(?naam) as ?n) (group_concat(?naam; separator=', ') as ?landen)
-FROM <https://data.labs.pdok.nl/dataset/rvo>
+prefix rvo: <https://internationaal.ondernemen.overheid.nl/def/>
+select ?taalLabel (count(?naam) as ?n) (group_concat(?naam; separator=', ') as ?landen)
+FROM <https://internationaal.ondernemen.overheid.nl/graph/data>
 {
   ?land a rvo:Land ;
-    rdfs:label ?naam ;
-    rvo:taal ?taal.
-      FILTER langMatches( lang(?naam), "NL" )
+      rdfs:label ?naam ;
+      rvo:taal ?taal .
+  ?taal rdfs:label ?taalLabel .
+  FILTER langMatches( lang(?naam), "NL" )
 }
-group by ?taal
+group by ?taalLabel
 order by desc(?n)
