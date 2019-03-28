@@ -4,6 +4,7 @@ layout: story
 logo: /stories/energie/logo.png
 output: leaflet
 title: KvK, Energie labels, BAG
+published: false
 ---
 
 ## Bedrijvigheid in Zwolle (CBS)

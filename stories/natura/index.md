@@ -4,6 +4,7 @@ layout: story
 logo: /stories/natura/logo.jpg
 output: leaflet
 title: Kadaster Data Stories ― Natura 2000
+published: false
 ---
 
 # Natura 2000

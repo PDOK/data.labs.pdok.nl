@@ -4,6 +4,7 @@ layout: story
 logo: /stories/delfzijl/logo.png
 output: leaflet
 title: Kadaster Data Stories ― Delfzijl
+published: false
 ---
 
 # Delfzijl ― Een krimpgemeente bekeken
