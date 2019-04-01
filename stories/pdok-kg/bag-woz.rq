@@ -1,0 +1,111 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix waardeklasse: <https://data.labs.pdok.nl/woz/def/waardeklasse/>
+prefix woz: <https://data.labs.pdok.nl/woz/def/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  {
+    select ?bouwjaar (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam (group_concat(concat('<tr><td>',str(?n),'</td><td>',str(?waardeklasseLabel0),'</td></tr>');separator='') as ?waardeklasseLabel) ?woonplaatsNaam {
+      {
+        select ?bouwjaar (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?waardeklasse ?woonplaatsNaam {
+          {
+            select * {
+              bind("Amsterdam"@nl as ?woonplaatsNaam)
+              bind("De Boelelaan"^^xsd:string as ?straatNaam)
+              #bind("1094EH"^^xsd:string as ?postcode)
+              #bind(1111 as ?huisnummer)
+              #bind("B" as ?huisnummertoevoeging)
+              #bind("a" as ?huisletter)
+              graph ?g0 {
+                ?place rdfs:label ?woonplaatsNaam.
+              }
+              filter not exists {
+                ?g0 bag:eindGeldigheid ?eind0.
+              }
+              graph ?g1 {
+                ?openbareRuimte
+                  bag:bijbehorendeWoonplaats ?place;
+                  bag:naamOpenbareRuimte ?straatNaam.
+              }
+              filter not exists {
+                ?g1 bag:eindGeldigheid ?eind1.
+              }
+              graph ?g2 {
+                ?nummeraanduiding
+                  bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                  bag:huisnummer ?huisnummer;
+                  bag:postcode ?postcode.
+                optional {
+                  ?nummeraanduiding bag:huisletter ?huisletter.
+                }
+                optional {
+                  ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging.
+                }
+              }
+              filter not exists {
+                ?g2 bag:eindGeldigheid ?eind2.
+              }
+              graph ?g3 {
+                ?verblijfsobject
+                    bag:hoofdadres ?nummeraanduiding;
+                    bag:oppervlakte ?oppervlakte0;
+                    bag:pandrelatering ?pand.
+              }
+              filter not exists {
+                ?g3 bag:eindGeldigheid ?eind3.
+              }
+              filter(?functie0 not in (bag:Verblijfsobject, geo:Feature))
+              graph ?g4 {
+                ?pand
+                  bag:geometriePand/geo:asWKT ?shape;
+                  bag:oorspronkelijkBouwjaar ?bouwjaar;
+                  bag:status ?pandStatus.
+              }
+              filter not exists {
+                ?g4 bag:eindGeldigheid ?eind4.
+              }
+              ?pandStatus rdfs:label ?pandStatusLabel.
+            }
+            limit 10000
+          }
+          service <https://data.labs.pdok.nl/migratie/sparql> {
+            ?pand labs:measuredHeight ?shapeHeight0.
+            optional {
+              ?woz woz:aotvboandidentificatie|woz:aotvboondidentificatie ?verblijfsobject;
+                   woz:waardeklasse ?waardeklasse.
+            }
+          }
+        }
+        group by ?bouwjaar ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam ?waardeklasse
+        order by ?waardeklasse
+      }
+      bind(
+        if(?waardeklasse=waardeklasse:1,'t/m 150.000 euro',
+          if(?waardeklasse=waardeklasse:2,'150.000-250.000 euro',
+            if(?waardeklasse=waardeklasse:3,'250.000-350.000 euro',
+              if(?waardeklasse=waardeklasse:4,'350.000-500.000 euro',
+                if(?waardeklasse=waardeklasse:5,'vanaf 500.000 euro',
+                  'onbekend'))))) as ?waardeklasseLabel0)
+    }
+    group by ?bouwjaar ?pand ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+  }
+  bind(strbefore(str(?shapeHeight),'.') as ?beginning)
+  bind(strafter(str(?shapeHeight),'.') as ?end1)
+  bind(if(strlen(?end1)>2,substr(?end1,1,2),?end1) as ?end2)
+  bind(concat(?beginning,'.',?end2) as ?hoogte)
+  bind(if(?huisnummerMin=?huisnummerMax,str(?huisnummerMin),concat(str(?huisnummerMin),'-',str(?huisnummerMax),if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),if(bound(?huisletter),concat(' ',str(?huisletter)),''))) as ?huisnummerLabel)
+  bind(if(?postcodeMin=?postcodeMax,str(?postcodeMin),concat(str(?postcodeMin),'-',str(?postcodeMax))) as ?postcodeLabel)
+  bind(concat(str(?straatNaam),' ',?huisnummerLabel) as ?shapeName)
+  bind(concat(
+      '<h2>',str(?shapeName),'<br>',str(?postcodeLabel),' ',str(?woonplaatsNaam),'</h2><ul>',
+      '<li><b>Oorspronkelijk bouwjaar</b>: ',str(?bouwjaar),'</li>',
+      '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
+      '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
+      '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
+      if(?waardeklasseLabel='','',concat('<h2>WOZ waardeklassen</h2><table><thead><tr><th>Aantal objecten</th><th>Waardeklasse</th></tr></thead><tbody>',str(?waardeklasseLabel),'</tbody></table>')),
+      '</ul>') as ?shapeLabel)
+  bind(if(?waardeklasseLabel='','blue','green') as ?shapeColor)
+}
+limit 100

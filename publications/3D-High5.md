@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: story
 title: 3D-High5 presentatie
+published: false
 ---
 
 # 3D-High5 presentatie

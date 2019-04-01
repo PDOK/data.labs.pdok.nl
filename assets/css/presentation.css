@@ -1,60 +1,87 @@
-/* The following allows a slide to be (partially) split into a left
-   and a right column.  When full with content appears underneath such
-   a two column layout, use `clear: left;'.
+/*
+For some reason, textual content in <code> tags is always displayed
+larger.  We therefore reduce the font size inside all <code> tags.
 */
+code { font-size: 80% !important; }
+pre code { font-size: 100% !important; }
 
+/*
+The following ensures that images do not run off the screen in the
+most common cases.
+*/
+figure img, figure video { max-height: 575px !important; }
+
+/*
+We do not like the ALL-CAPS default for headers in Reveal.js.
+*/
+h1, h2, h3, h4, h5, h6 { text-transform: none !important; }
+
+/*
+Images have an ugly black border.
+*/
+img {
+  border: 0px !important;
+  box-shadow: 0 0 0px !important;
+}
+
+/*
+Allow informational text boxes that stand out.
+*/
+.info {
+  background-color: #d1ecf1;
+  border-color: #bee5eb !important;
+  border-radius: .25rem;
+  border: 1px solid transparent !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+  color: #0c5460;
+  margin-bottom: 1rem !important;
+  padding: .75rem 1.25rem !important;
+  position: relative;
+}
+
+/*
+Kayboard key styling is absent in Reveal.
+*/
+kbd {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4 !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+  color: #333;
+  display: inline-block;
+  line-height: 1 !important;
+  padding: 2px 4px !important;
+  white-space: nowrap;
+}
+
+/*
+The following allows a slide to be (partially) split into a left and a
+right column.  When full with content appears underneath such a two
+column layout, use `clear: left;'.
+*/
 .left {
   float: left;
   width: 50%;
 }
-
 .right {
   float: right;
   width: 50%;
 }
 
-/* Sometimes we want text to have a white font color, e.g., when we
-   use a background image.
+/*
+Sometimes textual content is too large to fit a slide.  E.g., a table
+with multiple columns and rows, or a figure caption that is part of
+figure that is part of a column in a two column layout.  In such
+cases, the following class can be added, which reduces the size of the
+text a bit.
 */
+.size-50 { font-size: 50% !important; }
+.size-60 { font-size: 60% !important; }
+.size-70 { font-size: 70% !important; }
+.size-80 { font-size: 80% !important; }
 
-.white {
-  color: white !important;
-}
-
-/* Sometimes textual content is too large to fit a slide.  E.g., a
-   table with multiple columns and rows, or a figure caption that is
-   part of figure that is part of a column in a two column layout.  In
-   such cases, the following class can be added, which reduces the
-   size of the text a bit.
-
-   For some reason, textual content in <code> tags is always displayed
-   too large.  We therefore reduce the font size inside all <code>
-   tags.
+/*
+Sometimes we want text to have a white font color, e.g., when we use a
+background image.
 */
-
-.small {
-  font-size: 80% !important;
-}
-
-pre code {
-  font-size: 100% !important;
-}
-
-code {
-  font-size: 80% !important;
-}
-
-/* The following ensures that image do not run off the screen in the
-   most common cases.
-*/
-
-figure img, figure video {
-  max-height: 575px !important;
-}
-
-/* We do not like the ALL-CAPS default for headers in Reveal.js.
-*/
-
-h1, h2, h3, h4, h5, h6 {
-  text-transform: none !important;
-}
+.white { color: white !important; }

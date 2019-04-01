@@ -5,6 +5,7 @@ logo: /stories/bier/logo.jpg
 output: geo
 published: true
 title: 🍺 Bier Data Story 🍺
+published: false
 ---
 
 # 🍺 Bier Data Story 🍺

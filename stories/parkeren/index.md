@@ -2,6 +2,7 @@
 layout: story
 title: Parkeren in Nederland
 logo: /stories/parkeren/logo.jpg
+published: false
 ---
 
 Er wordt heel wat geparkeerd in Nederland, met wisselend succes.  Waar

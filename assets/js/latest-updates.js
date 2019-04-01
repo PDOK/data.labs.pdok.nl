@@ -26,7 +26,8 @@ $.ajax(settings).done((commits) => {
             file.filename.slice(-2) === 'md' && // just use markdown updates
             file.filename[0] !== '_' && // don't include unprocessed
             !file.filename.includes('assets') && // don't include resources in assets
-            !file.filename.includes('README')) // don't include readme's
+            !file.filename.includes('README') && // don't include readme's
+            !file.patch.includes('published: false')) // don't include unpublishings (TODO: super hacky)
           .forEach((markDownFile) => {
             const path = markDownFile.filename
               .replace('.md', '.html');

@@ -9,6 +9,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix ogc: <http://www.opengis.net/ont/geosparql#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 @prefix kkg: <http://data.pdok.nl/def/kkg/> .
 @prefix meta: <http://data.pdok.nl/def/kkg-meta/> .
@@ -20,9 +21,9 @@
 @prefix bbi: <http://data.pdok.nl/def/bbi#> .
 @prefix owms: <http://standaarden.overheid.nl/owms/terms/>.
 @prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>.
-@prefix woz: <http://example.org/ns/woz#>.
+@prefix woz: <https://data.labs.pdok.nl/woz/def/>.
 @prefix ceo: <https://data.cultureelerfgoed.nl/vocab/def/ceo#>.
-@prefix rvo: <http://data.pdok.nl/def/rvo#>.
+@prefix rvo: <http://energielabels.gebouwen.overheid.nl/def/epbd#>.
 @prefix ro: <http://data.informatiehuisruimte.nl/def/ro#>.
 
 @prefix yed: <http://bp4mc2.org/yed#>.
@@ -219,12 +220,12 @@ meta:BagOpenbareRuimteBagWoonplaats a rdf:Statement;
   sh:maxCount 1;
 .
 
-meta:BagWoonplaatsBrtGemeente a rdf:Statement;
+meta:BagWoonplaatsBrkGemeente a rdf:Statement;
   rdf:subject bag:Woonplaats;
   rdf:predicate ogc:sfWithin;
   rdf:object brk:Gemeentegebied;
   rdfs:comment "Deze dataset zit niet in onze huidige BAG, maar bestaat wel in de registratie";
-  void:inDataset dataset:WoonplaatsGemeente;
+  void:inDataset dataset:Bag;
   dct:type meta:OntbreektBeschikbaar;
   dct:license meta:VrijBeschikbaar;
 .
@@ -266,7 +267,24 @@ meta:CbsGemeenteBrkGemeentegebied a rdf:Statement;
   rdfs:comment "De code is opgenomen bij brt:Gemeente, en daarmee ook beschikbaar voor brk:Gemeentegebied";
   dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
-  void:inDataset dataset:CbsCode;
+.
+
+meta:CbsBuurtCbsWijk a rdf:Statement;
+  rdf:subject cbs:Buurt;
+  rdf:predicate ogc:sfWithin;
+  rdf:object cbs:Wijk;
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+  void:inDataset dataset:BuurtInWijk;
+.
+
+meta:CbsWijkCbsGemeente a rdf:Statement;
+  rdf:subject cbs:Wijk;
+  rdf:predicate ogc:sfWithin;
+  rdf:object cbs:Gemeente;
+  dct:type meta:Beschikbaar;
+  dct:license meta:VrijBeschikbaar;
+  void:inDataset dataset:WijkInGemeente;
 .
 
 meta:BrkAppartementPerceel a rdf:Statement;
@@ -303,9 +321,24 @@ meta:WozObjectBrkOnroerendeZaakContains a rdf:Statement;
   rdfs:comment "Dit betreft gegevens die niet vrij beschikbaar zijn, onderdeel van de LV-Woz";
   dct:license meta:PubliekBeperktBeschikbaar;
 .
+# Deze zit nu in de dataset, maar een beetje raar
+meta:WozObjectBagAdres a rdf:Statement;
+  rdf:subject woz:Object;
+  rdf:predicate ogc:sfEquals;
+  rdf:object bag:Nummeraanduiding;
+  dct:type meta:Beschikbaar;
+  dct:license meta:PubiekBeperktBeschikbaar;
+.
 
-meta:RvoGebouwBagAdresseerbaarObject a rdf:Statement;
-  rdf:subject rvo:Gebouw;
+meta:RvoWoningEnergielabel a rdf:Statement;
+  rdf:subject rvo:Energielabel;
+  rdf:predicate foaf:primaryTopic;
+  rdf:object rvo:Woning;
+  dct:type meta:OntbreektAanwezig;
+  dct:license meta:VrijBeschikbaar;
+.
+meta:RvoWoningBagAdresseerbaarObject a rdf:Statement;
+  rdf:subject rvo:Woning;
   rdf:predicate ogc:sfContains;
   rdf:object bag:AdresseerbaarObject;
   dct:type meta:OntbreektAanwezig;
@@ -324,7 +357,7 @@ meta:CeoPerceelBrkPerceel a rdf:Statement;
 .
 meta:CeoRijksmonumentCeoPerceel a rdf:Statement;
   rdf:subject ceo:Rijksmonument;
-  rdf:predicate ogc:sfIntersects;
+  rdf:predicate ogc:sfOverlaps;
   rdf:object ceo:Perceel;
   dct:type meta:Beschikbaar;
   dct:license meta:VrijBeschikbaar;
@@ -332,7 +365,7 @@ meta:CeoRijksmonumentCeoPerceel a rdf:Statement;
 
 meta:BestemmingsvlakPerceel a rdf:Statement;
   rdf:subject ro:Bestemmingsvlak;
-  rdf:predicate ogc:sfIntersects;
+  rdf:predicate ogc:sfOverlaps;
   rdf:object brk:Perceel;
   dct:type meta:OntbreektBestaatNiet;
   dct:license meta:VrijBeschikbaar;

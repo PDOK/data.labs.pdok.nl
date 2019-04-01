@@ -1,17 +1,19 @@
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix rvo: <https://data.labs.pdok.nl/rvo/def/>
+prefix rvo: <https://internationaal.ondernemen.overheid.nl/def/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 select
   ?naam
   (?import_val * 1.17 as ?import_usd)
   (?export_val * 1.17 as ?export_usd)
-FROM <https://data.labs.pdok.nl/dataset/rvo>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/data>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/2016>
+FROM <https://internationaal.ondernemen.overheid.nl/graph/2017>
 {
   ?land a rvo:Land ;
     rvo:invoerwaarde ?import ;
     rvo:uitvoerwaarde ?export ;
-    rdfs:label ?naam
-      FILTER langMatches( lang(?naam), "NL" )
-    BIND(STRDT(STR(?import), xsd:integer) AS ?import_val)
-    BIND(STRDT(STR(?export), xsd:integer) AS ?export_val)
+    rdfs:label ?naam .
+  FILTER langMatches( lang(?naam), "NL" )
+  BIND(STRDT(STR(?import), xsd:integer) AS ?import_val)
+  BIND(STRDT(STR(?export), xsd:integer) AS ?export_val)
 }

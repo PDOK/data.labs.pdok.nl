@@ -1,0 +1,129 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip_energielabel: <http://energielabels.gebouwen.overheid.nl/epbd/id/begrip/>
+prefix epbd: <http://energielabels.gebouwen.overheid.nl/def/epbd#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  {
+    select ?bouwjaar (max(?energyColor0) as ?shapeColor) (group_concat(concat('<tr><td>',str(?n),'</td><td><svg height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" fill="',str(?energyColor0),'" r="6"></svg> ',str(?energyLabel0),'</td></tr>');separator='') as ?energyLabel) (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam ?woonplaatsNaam {
+      {
+        select ?bouwjaar ?energyColor0 ?energyLabel0 (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?woonplaatsNaam {
+          {
+            select * {
+              bind("Dordrecht"@nl as ?woonplaatsNaam)
+              graph ?g0 {
+                ?place rdfs:label ?woonplaatsNaam.
+              }
+              filter not exists {
+                ?g0 bag:eindGeldigheid ?eind0.
+              }
+              graph ?g1 {
+                ?openbareRuimte
+                  bag:bijbehorendeWoonplaats ?place;
+                  bag:naamOpenbareRuimte ?straatNaam.
+              }
+              filter not exists {
+                ?g1 bag:eindGeldigheid ?eind1.
+              }
+              graph ?g2 {
+                ?nummeraanduiding
+                  bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                  bag:huisnummer ?huisnummer;
+                  bag:postcode ?postcode.
+                optional {
+                  ?nummeraanduiding bag:huisletter ?huisletter.
+                }
+                optional {
+                  ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging.
+                }
+              }
+              filter not exists {
+                ?g2 bag:eindGeldigheid ?eind2.
+              }
+              graph ?g3 {
+                ?verblijfsobject a bag:VerblijfsobjectKantoorfunctie;
+                    bag:hoofdadres ?nummeraanduiding;
+                    bag:oppervlakte ?oppervlakte0;
+                    bag:pandrelatering ?pand.
+              }
+              filter(?oppervlakte0 > 1.0e2)
+              filter not exists {
+                ?g3 bag:eindGeldigheid ?eind3.
+              }
+              graph ?g4 {
+                ?pand
+                  bag:geometriePand/geo:asWKT ?shape;
+                  bag:oorspronkelijkBouwjaar ?bouwjaar;
+                  bag:status ?pandStatus.
+              }
+              filter not exists {
+                ?g4 bag:eindGeldigheid ?eind4.
+              }
+              ?pandStatus rdfs:label ?pandStatusLabel.
+            }
+            limit 10000
+          }
+          service <https://data.labs.pdok.nl/migratie/sparql> {
+            ?pand labs:measuredHeight ?shapeHeight0.
+            ?gebouwdeel
+              epbd:energieprestatie-indicator ?energieprestatie;
+              epbd:heeftAdresseerbaarObject ?verblijfsobject;
+              foaf:isPrimaryTopicOf ?energielabel.
+            ?energielabel
+              epbd:certificaatnummer ?certificaatnummer;
+              epbd:opnamedatum ?opnamedatum;
+              epbd:registratiedatum ?registratiedatum.
+          }
+          bind(
+            if(!(bound(?energieprestatie)),'grey',
+            if(?energieprestatie=begrip_energielabel:A_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip_energielabel:A_p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip_energielabel:A_p__p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip_energielabel:A_p__p__p_Energielabel,'#22b14c',
+            if(?energieprestatie=begrip_energielabel:B_Energielabel,'#8ff334',
+            if(?energieprestatie=begrip_energielabel:C_Energielabel,'#bdfc2c',
+            if(?energieprestatie=begrip_energielabel:D_Energielabel,'#fff200',
+            if(?energieprestatie=begrip_energielabel:E_Energielabel,'#ff9a35',
+            if(?energieprestatie=begrip_energielabel:F_Energielabel,'#ff7f27',
+            if(?energieprestatie=begrip_energielabel:G_Energielabel,'#ed1c24',
+                                  'grey'))))))))))) as ?energyColor0)
+          bind(
+            if(!(bound(?energieprestatie)),'none',
+            if(?energieprestatie=begrip_energielabel:A_Energielabel,'A',
+            if(?energieprestatie=begrip_energielabel:A_p_Energielabel,'A',
+            if(?energieprestatie=begrip_energielabel:A_p__p_Energielabel,'A',
+            if(?energieprestatie=begrip_energielabel:A_p__p__p_Energielabel,'A',
+            if(?energieprestatie=begrip_energielabel:B_Energielabel,'B',
+            if(?energieprestatie=begrip_energielabel:C_Energielabel,'C',
+            if(?energieprestatie=begrip_energielabel:D_Energielabel,'D',
+            if(?energieprestatie=begrip_energielabel:E_Energielabel,'E',
+            if(?energieprestatie=begrip_energielabel:F_Energielabel,'F',
+            if(?energieprestatie=begrip_energielabel:G_Energielabel,'G',
+                                  'unknown'))))))))))) as ?energyLabel0)
+        }
+        group by ?bouwjaar ?energyColor0 ?energyLabel0 ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+        order by ?energyLabel
+      }
+    }
+    group by ?bouwjaar ?pand ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+  }
+  bind(strbefore(str(?shapeHeight),'.') as ?beginning)
+  bind(strafter(str(?shapeHeight),'.') as ?end1)
+  bind(if(strlen(?end1)>2,substr(?end1,1,2),?end1) as ?end2)
+  bind(concat(?beginning,'.',?end2) as ?hoogte)
+  bind(if(?huisnummerMin=?huisnummerMax,str(?huisnummerMin),concat(str(?huisnummerMin),'-',str(?huisnummerMax),if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),if(bound(?huisletter),concat(' ',str(?huisletter)),''))) as ?huisnummerLabel)
+  bind(if(?postcodeMin=?postcodeMax,str(?postcodeMin),concat(str(?postcodeMin),'-',str(?postcodeMax))) as ?postcodeLabel)
+  bind(concat(str(?straatNaam),' ',?huisnummerLabel) as ?shapeName)
+  bind(concat(
+      '<h2>',str(?shapeName),'<br>',str(?postcodeLabel),' ',str(?woonplaatsNaam),'</h2><ul>',
+      '<li><b>Oorspronkelijk bouwjaar</b>: ',str(?bouwjaar),'</li>',
+      '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
+      '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
+      '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
+      if(?energyLabel='','',concat('<h2>Energielabel</h2><table><thead><tr><th>Aantal objecten</th><th>Label</th></tr></thead><tbody>',str(?energyLabel),'</tbody></table>')),
+      '</ul>') as ?shapeLabel)
+}
+limit 10000

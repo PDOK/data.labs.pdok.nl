@@ -4,6 +4,7 @@ layout: story
 logo: /stories/hackathon/logo.jpg
 output: table
 title: Hackathon
+published: false
 ---
 
 # Universiteit Twente/Kadaster Hackathon; Resultaten Team: Kwaliteit BAG

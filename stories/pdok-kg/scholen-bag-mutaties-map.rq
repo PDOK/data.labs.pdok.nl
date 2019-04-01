@@ -1,0 +1,99 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix begrip: <http://bag.basisregistraties.overheid.nl/id/begrip/>
+prefix brk: <http://brk.basisregistraties.overheid.nl/def/brk#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?pandShape ?pandShapeColor ?pandShapeLabel ?pandShapeName ?perceelShape ?perceelShapeColor ?perceelShapeLabel ?perceelShapeName {
+  {
+    select * {
+      {
+        select
+          (group_concat(concat(
+            '<h4>',str(day(?veranderingsDatum)),' ',str(?monthLabel),' ',str(year(?veranderingsDatum)),'</h4>',
+            '<p><b>Van</b>: ',str(?pandStatusLabel1),'<br>',
+            '<b>Naar:</b> ',str(?pandStatusLabel2),'</p>');separator='') as ?body)
+          ?pandShape
+          ?pandShapeName
+          (sample(?nummeraanduiding0) as ?nummeraanduiding)
+          (sample(?verblijfsobject0) as ?verblijfsobject)
+        {
+          select * {
+            bind("Dordrecht" as ?woonplaatsNaam)
+            graph ?woonplaatsVoorkomen { ?woonplaats bag:naamWoonplaats ?woonplaatsNaam }
+            filter not exists { ?woonplaatsVoorkomen bag:eindGeldigheid [] }
+            graph ?openbareRuimteVoorkomen {
+              ?openbareRuimte
+                bag:bijbehorendeWoonplaats ?woonplaats;
+                bag:naamOpenbareRuimte ?openbareRuimteNaam
+            }
+            filter not exists { ?openbareRuimteVoorkomen bag:eindGeldigheid [] }
+            graph ?nummeraanduidingVoorkomen {
+              ?nummeraanduiding0
+                bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                bag:huisnummer ?huisnummer;
+                bag:postcode ?postcode.
+              optional { ?nummeraanduiding0 bag:huisletter ?huisletter }
+              optional { ?nummeraanduiding0 bag:huisnummertoevoeging ?huisnummertoevoeging }
+            }
+            filter not exists { ?nummeraanduidingVoorkomen bag:eindGeldigheid [] }
+            graph ?verblijfsobjectVoorkomen {
+              ?verblijfsobject0
+                a bag:VerblijfsobjectOnderwijsfunctie;
+                bag:hoofdadres ?nummeraanduiding0;
+                bag:pandrelatering ?pand;
+                bag:status begrip:VerblijfsobjectInGebruik
+            }
+            filter not exists { ?verblijfsobjectVoorkomen bag:eindGeldigheid [] }
+            graph ?pandVoorkomen2 { ?pand bag:status ?pandStatus2; geo:hasGeometry/geo:asWKT ?pandShape }
+            filter not exists { ?pandVoorkomen2 bag:eindGeldigheid [] }
+            graph ?pandVoorkomen1 { ?pand bag:status ?pandStatus1 }
+            filter(?pandStatus1 != ?pandStatus2)
+            ?pandStatus1 rdfs:label ?pandStatusLabel1.
+            ?pandStatus2 rdfs:label ?pandStatusLabel2.
+            ?pandVoorkomen1 bag:eindGeldigheid ?veranderingsDatum.
+            filter(year(?veranderingsDatum) > 2010)
+            bind(concat(
+              if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),
+              if(bound(?huisletter),concat(' ',str(?huisletter)),'')) as ?huisnummerPlus)
+            bind(month(?veranderingsDatum) as ?month)
+            bind(if(?month=1,'januari',
+                 if(?month=2,'februari',
+                 if(?month=3,'maart',
+                 if(?month=4,'april',
+                 if(?month=5,'mei',
+                 if(?month=6,'juni',
+                 if(?month=7,'juli',
+                 if(?month=8,'augustus',
+                 if(?month=9,'september',
+                 if(?month=10,'oktober',
+                 if(?month=11,'november','december'))))))))))) as ?monthLabel)
+            bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),str(?huisnummerPlus),', ',str(?postcode),' ',str(?woonplaatsNaam)) as ?pandShapeName)
+          }
+          order by desc(?veranderingsDatum)
+        }
+        group by ?pandShape ?pandShapeName
+      }
+      bind(concat('<h3>Status veranderingen voor ',str(?pandShapeName),'</h3>',str(?body)) as ?pandShapeLabel)
+      service <https://data.labs.pdok.nl/migratie/sparql> {
+        ?nummeraanduiding <http://data.labs.pdok.nl/linksets/def/bag_brk#relatedParcel> ?perceel.
+      }
+    }
+  }
+  ?perceel
+    brk:begrenzingPerceel/geo:asWKT ?perceelShape;
+    brk:sectie ?sectie;
+    brk:perceelnummer ?perceelnummer;
+    brk:kadastraleGrootte ?grootte.
+  bind(concat('Perceel ',str(?perceelnummer)) as ?perceelShapeName)
+  bind(replace(str(?grootte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.') as ?groottePrint)
+  bind(concat(
+    '<h1>',str(?perceelShapeName),'</h1>',
+    '<ul>',
+      '<li><b>Sectie</b>: ',str(?sectie),'</li>',
+      '<li><b>Nummber</b>: ',str(?perceelnummer),'</li>',
+      '<li><b>Grootte</b>: ',str(?groottePrint),' m2</li>',
+    '</ul>') as ?perceelShapeLabel)
+  bind("blue" as ?pandShapeColor)
+  bind("white" as ?perceelShapeColor)
+}

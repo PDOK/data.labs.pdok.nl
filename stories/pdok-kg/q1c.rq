@@ -1,0 +1,24 @@
+# CBS gemiddelde woningwaarde
+prefix cbs: <http://betalinkeddata.cbs.nl/def/cbs#>
+prefix def: <http://betalinkeddata.cbs.nl/def/83487NED#>
+prefix dimension: <http://betalinkeddata.cbs.nl/def/dimension#>
+prefix gemeente: <http://betalinkeddata.cbs.nl/regios/2016/id/gemeente-geografisch/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?shape ?shapeColor ?shapeHeight ?shapeName ?shapeLabel {
+  ?wijk a cbs:Wijk;
+    ?geo_sfWithin1 gemeente:GM0505;
+    rdfs:label ?wijkNaam.
+  ?buurt a cbs:Buurt;
+    geo:hasGeometry/geo:asWKT ?shape;
+    ?geo_sfWithin2 ?wijk;
+    rdfs:label ?buurtNaam.
+  [ def:wonen_GemiddeldeWoningwaarde ?value;
+    dimension:regio ?buurt ]
+  bind((?value-6.1e1)/(5.25e2-6.1e1) as ?normalized)
+  bind(concat('bluered,',str(?normalized)) as ?shapeColor)
+  bind((?value-6.1e1)*5.0e0 as ?shapeHeight)
+  bind(concat(str(?buurtNaam),', Dordrecht') as ?shapeName)
+  bind(concat('<p>Gemiddelde WOZ waarde: ',str(?value),'.000 euro</p>') as ?shapeLabel)
+}
+limit 1000

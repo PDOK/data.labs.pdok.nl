@@ -12,9 +12,9 @@ title: RVO Landen Story
 ## Landen
 
 We hebben voor een aantal landen data uit een spreadsheet omgezet naar
-Linked Data.  
+Linked Data.
 
-<query data-config="http://127.0.0.1:5000/stories/rvo/#query=prefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix%20owl%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aprefix%20rvo%3A%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Frvo%2Fdef%2F%3E%0Aselect%20%3Fshape%20%3FshapeLabel%0AFROM%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Fdataset%2Frvo%3E%0A%7B%0A%20%20%3Fland%20a%20rvo%3ALand%20%3B%0A%20%20%20%20rdfs%3Alabel%20%3Fnaam%20%3B%0A%20%20%20%20geo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fshape%20%3B%0A%20%20%20%20rvo%3Avlag%20%3Furl%20.%0A%20%20bind(concat('%3Ch2%3E'%2Cstr(%3Fnaam)%2C'%3C%2Fh2%3E%3C%2Fa%3E'%2C%0A%20%20%20%20%20%20'%3Cimg%20src%3D%22'%2Cstr(%3Furl)%2C'%22%20width%3D%22300%22%3E')%20as%20%3FshapeLabel)%0A%20%20FILTER%20langMatches(%20lang(%3Fnaam)%2C%20%22NL%22%20)%0A%7D%0A&endpoint=https%3A%2F%2Fdata.labs.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22grouped%22%3Afalse%7D" data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q1.rq" data-output="geo"> </query> <!-- //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped' -->
+<query data-config="http://127.0.0.1:5000/stories/rvo/#query=prefix%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0Aprefix%20owl%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0Aprefix%20rvo%3A%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Frvo%2Fdef%2F%3E%0Aselect%20%3Fshape%20%3FshapeLabel%0AFROM%20%3Chttps%3A%2F%2Fdata.labs.pdok.nl%2Fdataset%2Frvo%3E%0A%7B%0A%20%20%3Fland%20a%20rvo%3ALand%20%3B%0A%20%20%20%20rdfs%3Alabel%20%3Fnaam%20%3B%0A%20%20%20%20geo%3AhasGeometry%2Fgeo%3AasWKT%20%3Fshape%20%3B%0A%20%20%20%20rvo%3Avlag%20%3Furl%20.%0A%20%20bind(concat('%3Ch2%3E'%2Cstr(%3Fnaam)%2C'%3C%2Fh2%3E%3C%2Fa%3E'%2C%0A%20%20%20%20%20%20'%3Cimg%20src%3D%22'%2Cstr(%3Furl)%2C'%22%20width%3D%22300%22%3E')%20as%20%3FshapeLabel)%0A%20%20FILTER%20langMatches(%20lang(%3Fnaam)%2C%20%22NL%22%20)%0A%7D%0A&endpoint=https%3A%2F%2Fdata.labs.pdok.nl%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22grouped%22%3Afalse%7D  " data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q1.rq" data-output="geo"> </query> <!-- //### CHANGE GROUPING FROM grouped = false => visualization = 'grouped' -->
 
 
 ## BBP
@@ -35,7 +35,9 @@ Laten we de in- en uitvoerwaardes voor landen met elkaar vergelijken:
 Waar worden bepaalde talen gesproken?
 
 <query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q5.rq" data-output="geo"> </query>
+<!-- Disabled because of missing data
 ## Vergelijkingen met andere bronnen
+
 
 ### Oppervlakte
 
@@ -50,4 +52,4 @@ Laten we de staatsvormen van landen uit verschillende bronnen met
 elkaar vergelijken: RVO en CIA World Factbook.
 
 
-<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q3.rq" data-output="geo"> </query>
+<query data-endpoint="https://data.labs.pdok.nl/sparql" data-query-ref="q3.rq" data-output="geo"> </query> -->

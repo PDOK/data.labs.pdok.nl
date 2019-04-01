@@ -1,0 +1,105 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  {
+    select ?bouwjaar (group_concat(distinct concat('<li>',substr(str(?functie0),65),'</li>');
+        separator='') as ?functie) (min(?huisnummerMin1) as ?huisnummerMin) (max(?huisnummerMax1) as ?huisnummerMax) (sum(?oppervlakte1) as ?oppervlakte) ?pandStatusLabel (min(?postcodeMin1) as ?postcodeMin) (max(?postcodeMax1) as ?postcodeMax) ?shape (max(?shapeHeight1) as ?shapeHeight) ?straatNaam ?woonplaatsNaam {
+      {
+        select ?bouwjaar ?functie0 (min(?huisnummer) as ?huisnummerMin1) (max(?huisnummer) as ?huisnummerMax1) (sum(?oppervlakte0) as ?oppervlakte1) ?pandStatusLabel (min(?postcode) as ?postcodeMin1) (max(?postcode) as ?postcodeMax1) ?shape (max(?shapeHeight0) as ?shapeHeight1) ?straatNaam (count(distinct ?verblijfsobject) as ?n) ?woonplaatsNaam {
+          {
+            select * {
+              bind("Amsterdam"@nl as ?woonplaatsNaam)
+              bind("De Boelelaan"^^xsd:string as ?straatNaam)
+              #bind("1094EH"^^xsd:string as ?postcode)
+              #bind(1111 as ?huisnummer)
+              #bind("B" as ?huisnummertoevoeging)
+              #bind("a" as ?huisletter)
+              graph ?g0 {
+                ?place rdfs:label ?woonplaatsNaam.
+              }
+              filter not exists {
+                ?g0 bag:eindGeldigheid ?eind0.
+              }
+              graph ?g1 {
+                ?openbareRuimte
+                  bag:bijbehorendeWoonplaats ?place;
+                  bag:naamOpenbareRuimte ?straatNaam.
+              }
+              filter not exists {
+                ?g1 bag:eindGeldigheid ?eind1.
+              }
+              graph ?g2 {
+                ?nummeraanduiding
+                  bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                  bag:huisnummer ?huisnummer;
+                  bag:postcode ?postcode.
+                optional {
+                  ?nummeraanduiding bag:huisletter ?huisletter.
+                }
+                optional {
+                  ?nummeraanduiding bag:huisnummertoevoeging ?huisnummertoevoeging.
+                }
+              }
+              filter not exists {
+                ?g2 bag:eindGeldigheid ?eind2.
+              }
+              graph ?g3 {
+                ?verblijfsobject a ?functie0;
+                    bag:hoofdadres ?nummeraanduiding;
+                    bag:oppervlakte ?oppervlakte0;
+                    bag:pandrelatering ?pand.
+              }
+              filter not exists {
+                ?g3 bag:eindGeldigheid ?eind3.
+              }
+              filter(?functie0 not in (bag:Verblijfsobject, geo:Feature))
+              graph ?g4 {
+                ?pand
+                  bag:geometriePand/geo:asWKT ?shape;
+                  bag:oorspronkelijkBouwjaar ?bouwjaar;
+                  bag:status ?pandStatus.
+              }
+              filter not exists {
+                ?g4 bag:eindGeldigheid ?eind4.
+              }
+              ?pandStatus rdfs:label ?pandStatusLabel.
+            }
+            limit 10000
+          }
+          service <https://data.labs.pdok.nl/migratie/sparql> {
+            ?pand labs:measuredHeight ?shapeHeight0.
+          }
+        }
+        group by ?bouwjaar ?functie0 ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+        order by ?functie0
+      }
+    }
+    group by ?bouwjaar ?pand ?pandStatusLabel ?shape ?straatNaam ?woonplaatsNaam
+  }
+  bind(strbefore(str(?shapeHeight),'.') as ?beginning)
+  bind(strafter(str(?shapeHeight),'.') as ?end1)
+  bind(if(strlen(?end1)>2,substr(?end1,1,2),?end1) as ?end2)
+  bind(concat(?beginning,'.',?end2) as ?hoogte)
+  bind(if(?huisnummerMin=?huisnummerMax,str(?huisnummerMin),concat(str(?huisnummerMin),'-',str(?huisnummerMax),if(bound(?huisnummertoevoeging),concat('-',str(?huisnummertoevoeging)),''),if(bound(?huisletter),concat(' ',str(?huisletter)),''))) as ?huisnummerLabel)
+  bind(if(?postcodeMin=?postcodeMax,str(?postcodeMin),concat(str(?postcodeMin),'-',str(?postcodeMax))) as ?postcodeLabel)
+  bind(concat(str(?straatNaam),' ',?huisnummerLabel) as ?shapeName)
+  bind(concat(
+      '<h2>',str(?shapeName),'<br>',str(?postcodeLabel),' ',str(?woonplaatsNaam),'</h2><ul>',
+      '<li><b>Oorspronkelijk bouwjaar</b>: ',str(?bouwjaar),'</li>',
+      '<li><b>Pand hoogte</b>: ',if(bound(?hoogte),concat(?hoogte,'m'),'onbekend'),'</li>',
+      '<li><b>Pand status</b>: ',str(?pandStatusLabel),'</li>',
+      '<li><b>Verblijfsobject oppervlakte</b>: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),'m2</li>',
+      '<li><b>Verblijfsobject functies</b>:<ul>',str(?functie),
+      '</ul></li></ul>') as ?shapeLabel)
+  #bind(if(?c=bag:VerblijfsobjectWoonfunctie,"green",
+  #     if(?c=bag:VerblijfsobjectWinkelfunctie,"red",
+  #     if(?c=bag:VerblijfsobjectKantoorfunctie,"blue",
+  #     if(?c=bag:VerblijfsobjectOnderwijsfunctie,"yellow",
+  #     if(?c=bag:VerblijfsobjectGezondheidszorgfunctie,"orange",
+  #     if(?c=bag:VerblijfsobjectSportfunctie,"violet",
+  #     "orange")))))) as ?shapeColor)
+}
+limit 100

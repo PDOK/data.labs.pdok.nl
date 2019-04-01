@@ -4,6 +4,7 @@ layout: story
 logo: /stories/windturbine/logo.gif
 output: leaflet
 title: Windturbines
+published: false
 ---
 
 Logo foto: Molgreen, Animation:Amada44 (File:20120527 xl wiki

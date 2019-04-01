@@ -4,6 +4,7 @@ layout: story
 logo: /stories/huisnummer/logo.jpg
 output: leaflet
 title: Kadaster Data Stories ― Huisnummer toevoeging
+published: false
 ---
 
 # Huisnummertoevoegingen per plaatsnaam

@@ -13,7 +13,13 @@ De volgende vraag kan gebruikt worden om een specifieke gebouwen
 gebouw kan worden opgevraagd door de query editor te openen en de
 <code>bind</code> operatoren aan het begin van de query aan te passen.
 
-<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="mijn-woning.rq" data-output="geo"></query>
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="vind-een-huis.rq" data-output="geo3d"></query>
+
+Daarnaast is het ook mogelijk om de gehele straat op te vragen. De informatie voor
+een specifieke straat kan worden opgevraagd door de query editor te openen en de
+<code>bind</code> operatoren aan het begin van de query aan te passen.
+
+<query data-endpoint="https://data.pdok.nl/sparql" data-query-ref="vind-een-straat.rq" data-output="geo3d"></query>
 
 Voor sommige gebouwen zijn meerdere registraties door de tijd heen
 gemaakt.  Omdat deze history ook als Linked Data is opgeslagen moeten

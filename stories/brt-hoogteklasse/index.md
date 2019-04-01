@@ -3,6 +3,7 @@ endpoint: https://data.pdok.nl/sparql
 layout: story
 logo: brt-hoogteklasse/332px-Onze_Lieve_Vrouwetoren.jpg
 title: Hoogteklassen voor de BRT
+published: false
 ---
 
 # Het probleem met de BRT hoogteklassen

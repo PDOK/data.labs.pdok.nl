@@ -4,6 +4,7 @@ layout: story
 logo: /stories/gemeente/logo.png
 output: leaflet
 title: Kadaster Data Stories ― Nederlandse gemeentes
+published: false
 ---
 
 # Nederlandse gemeentes

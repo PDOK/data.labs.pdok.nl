@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: story
 title: BAG to the Future
 ---
 

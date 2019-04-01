@@ -1,0 +1,104 @@
+prefix bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+prefix beeldbank: <https://cultureelerfgoed.nl/vocab/>
+prefix dbo: <http://dbpedia.org/ontology/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix energie: <http://data.labs.pdok.nl/dataset/energie#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix gemeente: <https://data.pdok.nl/cbs/id/gemeente/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix graph: <https://data.labs.pdok.nl/graph/>
+prefix kvk: <http://data.labs.pdok.nl/dataset/bedrijf#>
+prefix monumenten: <http://lod.kb.nl/rce/vocab/id/01/ceo#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+prefix labs: <https://data.labs.pdok.nl/bag/def/>
+
+select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shapeLabel) {
+    ?openbareRuimte bag:naamOpenbareRuimte ?openbareRuimteNaam;
+                    bag:bijbehorendeWoonplaats ?woonplaats.
+    ?woonplaats bag:naamWoonplaats ?woonplaatsNaam.
+    ?nummeraanduiding bag:bijbehorendeOpenbareRuimte ?openbareRuimte;
+                      bag:huisnummer ?huisnummer;
+                      bag:postcode ?postcode.
+    ?verblijfsobject bag:hoofdadres ?nummeraanduiding;
+                     bag:oppervlakte ?oppervlakte;
+                     bag:pandrelatering ?pand;
+                     bag:status ?verblijfsobjectStatus.
+    ?verblijfsobjectStatus rdfs:label ?verblijfsobjectStatusLabel.
+    ?pand geo:hasGeometry/geo:asWKT ?shape;
+          bag:oorspronkelijkBouwjaar ?bouwjaar;
+          bag:status ?pandStatus.
+    ?pandStatus rdfs:label ?pandStatusLabel.
+
+  # energielabel
+  optional {
+    ?meting energie:ep ?ep;
+           energie:e_label ?energielabel;
+           energie:opname_datum ?opnamedatum;
+           energie:pand_huisnummer ?huisnummer0;
+           energie:pand_postcode ?postcode;
+           energie:registratie_datum ?registratiedatum.
+    filter (str(?huisnummer) = ?huisnummer0)
+  }
+  # bedrijf
+  optional {
+    ?bedrijf kvk:plaats "Zwolle"^^xsd:string;
+             kvk:legalFormDescription ?legal;
+             kvk:sbiOmschrijving ?sbi;
+             kvk:huisnummer ?huisnummer;
+             schema:legalName ?naam;
+             kvk:straat ?straat;
+             kvk:postcode ?postcode;
+             schema:numberOfEmployees ?werknemers.
+  }
+  # monument
+  optional {
+    graph graph:3d-rce {
+      ?monument monumenten:hasLink ?monumentUrl;
+                monumenten:hasPostCode ?postcode;
+                monumenten:hasRijksmonumentNumber ?code;
+                monumenten:hasRijksmonumentDefinition ?beschrijving;
+                monumenten:hasStreetNumber ?huisnummer.
+    }
+
+    # service <https://data.labs.pdok.nl/migratie/sparql>	{
+    #   ?pand labs:measuredHeight ?pandWktHeight.
+    # }
+    bind(IRI(concat('https://cultureelerfgoed.nl/id/monument/',str(?code))) as ?x)
+    optional {
+      ?afbeelding foaf:depicts ?x;
+                  beeldbank:locator ?afbeeldingUrl.
+    }
+    bind(concat('<a href="',str(?afbeeldingUrl),'" target="_blank"><img src="',str(?afbeeldingUrl),'" style="max-height: 100px;"></a>') as ?afbeeldingLabel)
+  }
+  # HTML label: RCE
+  bind(if(bound(?afbeeldingLabel),concat('<h5>🖼 Beelden uit de beeldbank:</h5><div style="max-height:125px; overflow-y: scroll;">',?afbeeldingLabel,'</div>'),'') as ?monumentString1)
+  bind(if(bound(?code),concat('<h5>⛪ <a href="',str(?monumentUrl),'" target="_blank">Monument ',str(?code),'</a></h5><p style="max-height: 125px; overflow-y: scroll;">',str(?beschrijving),'</p>',?monumentString1),'') as ?monumentString2)
+  bind(
+    if(bound(?energielabel),
+      if(strstarts(?energielabel, "A"), "#22b14c",
+        if(?energielabel="B", "#8ff334",
+          if(?energielabel="C", "#bdfc2c",
+            if(?energielabel="D", "#fff200",
+              if(?energielabel="E", "#ff9a35",
+                if(?energielabel="F", "#ff7f27",
+                  if(?energielabel="G", "#ed1c24",
+                    "grey"))))))),
+        if(bound(?bedrijf), "#4169e188",
+          if(bound(?monument), "#4169e188",
+            "#4169e133"))
+    ) as ?shapeColor)
+  # HTML label: RVO
+  bind(if(bound(?meting),concat('<svg height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="',str(?shapeColor),'" r="10"/></svg> '),'') as ?energielabelString1)
+  bind(if(bound(?meting),concat('<h5>🗲 Energielabel informatie:</h5><ul><li>Energielabel: ',str(?energielabel),'</li><li>EP: ',str(?ep),'</li><li>Opnamedatum: ',str(?opnamedatum),'</li><li>Registratiedatum: ',str(?registratiedatum),'</li></ul><h5>'),'') as ?energielabelString2)
+  # HTML label: KvK
+  bind(if(bound(?bedrijf),concat('<h5>🏪 KvK informatie:</h5><ul><li>',str(?naam),'</li><li>',str(?legal),'</li><li>SBI: ',str(?sbi),'</li><li>Werknemers: ',str(?werknemers),'</li></ul>'),'') as ?bedrijfString)
+  # HTML label
+  bind(if(?pand=<http://bag.basisregistraties.overheid.nl/bag/id/pand/0193100000000169>,concat('<video src="https://wouterbeek.github.io/resource/vid/grote-kerk-zwolle.mp4" autoplay height="250" loop></video>'),'') as ?vid)
+  bind(concat('<h4>',?energielabelString1,str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?postcode),' ',str(?woonplaatsNaam),'</h4>',?vid,?energielabelString2,?bedrijfString,?monumentString2,'<h5><a href="',str(?verblijfsobject),'" target="_blank">Verblijfsobject</a>:</h5><ul><li>Woonplaats: <a href="',str(?woonplaats),'" target="_blank">',str(?woonplaatsNaam),'</a></li><li>Oppervlakte: ',replace(str(?oppervlakte),'[0-9](?=(?:[0-9]{3})+(?![0-9]))','$0.'),' m²</li><li>Status: <a href="',str(?verblijfsobjectStatus),'" target="_blank">',str(?verblijfsobjectStatusLabel),'</a></li></ul><h5><a href="',str(?pand),'" target="_blank">Pand</a>:</h5><ul><li>Bouwjaar: ',str(?bouwjaar),'</li><li>Status: <a href="',str(?pandStatus),'" target="_blank">',str(?pandStatusLabel),'</a></li></ul>') as ?shapeLabel)
+  # tekst label
+  bind(concat(str(?openbareRuimteNaam),' ',str(?huisnummer),', ',str(?woonplaatsNaam)) as ?shapeName)
+}
+group by ?shape ?shapeColor ?shapeHeight ?shapeName
+limit 250

@@ -4,6 +4,7 @@ layout: story
 logo: /stories/krimp/logo.jpg
 output: leaflet
 title: Krimpgebieden
+published: false
 ---
 
 # Wat weten we over Krimp?

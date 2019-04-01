@@ -4,6 +4,7 @@ title: Mossel- en Oesterhabitats
 endpoint: https://data.labs.pdok.nl/geosparql
 logo: mossel-en-oesterhabitats/logo.jpg
 output: leaflet
+published: false
 ---
 
 # Waar ligt uw dichtstbijzijnde mossel- en oesterhabitat?
