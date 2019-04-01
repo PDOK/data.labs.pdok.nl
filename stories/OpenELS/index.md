@@ -14,6 +14,7 @@ title:  .
   <script type="text/javascript" src="/assets/js/datatables.min.js"></script>
   <script type="text/javascript" src="geolocator.js"></script>  
 
+<img src="en_horizontal_cef_logo_2.png" alt="EU logo">
     
 ## Administrative units
 
