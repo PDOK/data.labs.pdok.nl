@@ -1,0 +1,44 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX au: <http://inspire.ec.europa.eu/ont/au#>
+PREFIX nationallevel: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
+PREFIX inspire: <http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/>
+
+SELECT
+?AdministrativeLevel
+(count(?inSpain) as ?Spain)
+(count(?inNetherlands) as ?Netherlands)
+(count(?inNorway) as ?Norway)
+(count(?inFinland) as ?Finland)
+WHERE {
+  {
+    GRAPH <http://data.labs.pdok.nl/dataset/openels/au> {
+      ?inNetherlands au:AdministrativeUnit.nationalLevel ?level. }
+  }
+    Union
+  {
+    SERVICE <http://contenido.ign.es/parliament/sparql> {
+      GRAPH <http://contenido.ign.es/openels/au> {
+      ?inSpain au:AdministrativeUnit.nationalLevel ?level.
+      }
+    }
+  }
+  UNION
+  {
+    SERVICE <http://rdf.kartverket.no/sparql> {
+  GRAPH <http://openels/administrativeunits> {
+      ?inNorway au:AdministrativeUnit.nationalLevel ?level.
+
+      }
+    }
+}
+   UNION {
+    SERVICE <http://193.167.189.160/openels/fuseki/ds/query> {
+      GRAPH <http://paikkatiedot.fi/ds/openels/au> {
+      ?inFinland au:AdministrativeUnit.nationalLevel ?level.}
+      }
+    }
+   BIND (STRAFTER(str(?level), "http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/") as ?AdministrativeLevel )
+}
+Group by ?AdministrativeLevel
+ORDER BY ?AdministrativeLevel
