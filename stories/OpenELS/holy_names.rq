@@ -36,4 +36,16 @@ WHERE {
       }
     }
   }
+  UNION {
+       SERVICE <http://contenido.ign.es/parliament/sparql> {
+      GRAPH <http://contenido.ign.es/openels/gn> {
+        ?spelling gn:SpellingOfName.text ?wktLabel.
+         ?GN gn:GeographicalName.spelling ?spelling.
+          ?namedPlace gn:NamedPlace.name ?GN.
+          ?namedPlace  gn:NamedPlace.geometry ?geom.
+        ?geom geo:asWKT ?wkt.
+        FILTER regex(?wktLabel, "sagrado", "i")
+      }
+  }
+  }
 }
