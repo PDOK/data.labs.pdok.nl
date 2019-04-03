@@ -93,6 +93,7 @@ In the example below, the following spellings are used:
 |Dutch|heilige|
 |Norwegian|hellig|
 |Finnish|pyhä|
+|Spanish|sagrado|
 
 <div class="alert alert-info txt" role="alert">
   <h2>Try it out</h2>
