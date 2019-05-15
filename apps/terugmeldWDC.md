@@ -42,8 +42,8 @@ title: TerugmeldData connector
         
         	//download the data
         	myConnector.getData = function(table, doneCallback) {
-        		$.getJSON("https://github.com/leonhertgers/Live-Data-in-een-dashboard/data.json", function(resp) {
-        			var feat = resp.features,
+               $.getJSON("https://api.acceptatie.kadaster.nl/tms/v1/terugmeldingen?apikey=l71c0911dd8fe14be1abba40a2f4ba3e69", function(resp) {
+			var feat = resp.features,
         				tableData = [];
         
         			// Iterate over the JSON object
