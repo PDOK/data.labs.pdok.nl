@@ -1,4 +1,14 @@
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX brt: <http://brt.basisregistraties.overheid.nl/def/top10nl#>
+PREFIX hg: <http://rdf.histograph.io/>
+PREFIX naa: <http://archief.nl/def/> 
+PREFIX pnv: <https://w3id.org/pnv#>
+PREFIX premisv1: <http://www.loc.gov/premis/rdf/v1#>
+PREFIX ore: <http://www.openarchives.org/ore/terms/>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 select *
+from <http://archief.nl/NL-HaNA/doc/Graph:Verkaufsbucher>
+from naa:
 {
   ?s ?p ?o .
 }
