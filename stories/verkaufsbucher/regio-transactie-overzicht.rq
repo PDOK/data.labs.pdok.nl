@@ -9,6 +9,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX hg: <http://rdf.histograph.io/>
 prefix bbi: <http://data.pdok.nl/def/bbi#>
 PREFIX naa: <http://archief.nl/def/> 
+PREFIX woz: <https://data.labs.pdok.nl/woz/def/>
 SELECT 
 *
 FROM <http://archief.nl/NL-HaNA/doc/Graph:Verkaufsbucher>
@@ -17,6 +18,7 @@ FROM <http://data.pdok.nl/bbi/id/dataset/gemeente-woonplaats-relatie>
 FROM <http://archief.nl/verkaufbuchen/id/dataset/linkset-wpl-bagwpl-exact>
 FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-wpl-bagwpl-handmatig>
 FROM <http://data.pdok.nl/id/dataset/bbi>
+FROM <http://data.labs.pdok.nl/dataset/WOZ>
 FROM <http://brk.basisregistraties.overheid.nl/id/dataset/brk/bestuurlijke-grenzen/2016>
 FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-adres-bag-nummeraanduiding>
 FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadressen>
@@ -93,6 +95,16 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
       }
     }
   }
+  optional {
+  	?bag_num ^woz:aoaidentificatie / woz:waardeklasse / rdfs:label ?wozklasse .
+  }
+  
+  bind(
+  	if (bound(?wozklasse), ?wozklasse, '?')
+   	as ?woz
+  )
+  
+  
 #  optional {
 #    ?transactie naa:catalogReferenceNumber ?nummer_archiefinventaris .
 #  }
@@ -134,19 +146,21 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
 #  }
   bind(
     concat(
-      '<h2>', ?adreslabel, '<br/>', ?postcode, ' ', ?woonplaats, '</h2>',
+      '<h3>', ?adreslabel, '<br/>', ?postcode, ' ', ?woonplaats, '</h3>',
       '<hr/>',
-      '<h3>Nationaal Archief:</h3>',
+      '<h4>Nationaal Archief gegevens:</h4>',
       '<ul>',
       '<li><b>verkoper(s):</b> ', ?verkopers, '</li>',
       '<li><b>koper(s):</b> ', ?kopers, '</li>',
       '<li><b>verkoopprijs:</b> f.', (if(bound(?verkoopprijs), str(?verkoopprijs), '?')), '</li>',
       '<li><b>definitieve koopdatum:</b> ', (if(bound(?definitieve_koopdatum), substr(str(?definitieve_koopdatum), 1, 10), '?')), '</li>',
+      '<li><b>waarde tov prijspeil:</b> EUR ', (if(bound(?verkoopprijs), str(?verkoopprijs * 6.37), '?')), '</li>',
       '</ul>',
-      '<h3><a href="',str(?bag_vbo), '">', 'Kadaster gegevens</a>:</h3>',
+      '<h4><a href="',str(?bag_vbo), '">', 'Kadaster gegevens</a>:</h4>',
       '<ul>',
       '<li><b>oppervlakte:<b> ', str(?opp), 'm2</li>',
       '<li><b>bouwjaar:<b> ', str(?bouwjaar), '</li>',
+      '<li><b>woz-klasse:<b> ', str(?woz), '</li>',
       '</ul>',
       '<p><a href="', str(?streetview), '">street view</a></p>'
     )
