@@ -23,7 +23,7 @@ Een overzicht van de verhandelde objecten waarvan het adres gevonden is in de Ba
         data-query-ref="bag-matched-object-overview.rq"
         data-output="geo" />
         
-In de hieronder staande kaart wordt weergegeven welke objecten (woningen, bouwland etc.) onteigend zijn. Ook wordt hier informatie per pand getoond:
+In de hieronder staande kaart wordt voor een specifieke woonplaats weergegeven welke objecten (woningen, bouwland etc.) onteigend zijn. Ook wordt hier informatie per pand getoond:
 
 * Adres
 * Bouwjaar
@@ -33,22 +33,27 @@ In de hieronder staande kaart wordt weergegeven welke objecten (woningen, bouwla
 * Bedrag
 * Naam koper
 
+We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeurige woonplaats. 
+
+<query  data-query-ref="regio-transactie-overzicht.rq"
+        data-output="geo" />
+
 ## Stap 2. Relatie tussen koper en verkoper visueel weergeven op de kaart
 
 ## Stap 3. Statistieken
 
-## 3a. Aantal transacties per plaats</h2>
+## 3a. Aantal transacties per plaats
 
-## 3b. Top 10 kopers met de meeste transacties</h2>
+## 3b. Top 10 kopers met de meeste transacties
 
-## 3c. Verkoopbedrag versus WOZ-waarde incl. omrekentabel van het IISG van waarde guldens in de jaren '40 naar nu</h2>
+## 3c. Verkoopbedrag versus WOZ-waarde incl. omrekentabel van het IISG van waarde guldens in de jaren '40 naar nu
 
 <query  data-query-ref="stats.rq"
         data-output="table"/>
 
-<h1 class="text">Stap 4. Stolpersteine</h1>
+## Stap 4. Stolpersteine<
 
-<h1 class="text">Stap 5. Link naar Joods Monument voor biografische informatie van pand-eigenaren</h1>
+## Stap 5. Link naar Joods Monument voor biografische informatie van pand-eigenaren
 
 
 ## Proces: Van Verkaufsbuch tot visualisatie op de kaart

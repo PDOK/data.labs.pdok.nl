@@ -1,0 +1,155 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://schema.org/>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hg: <http://rdf.histograph.io/>
+prefix bbi: <http://data.pdok.nl/def/bbi#>
+PREFIX naa: <http://archief.nl/def/> 
+SELECT 
+*
+FROM <http://archief.nl/NL-HaNA/doc/Graph:Verkaufsbucher>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/transactions>
+FROM <http://data.pdok.nl/bbi/id/dataset/gemeente-woonplaats-relatie>
+FROM <http://archief.nl/verkaufbuchen/id/dataset/linkset-wpl-bagwpl-exact>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-wpl-bagwpl-handmatig>
+FROM <http://data.pdok.nl/id/dataset/bbi>
+FROM <http://brk.basisregistraties.overheid.nl/id/dataset/brk/bestuurlijke-grenzen/2016>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-adres-bag-nummeraanduiding>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadressen>
+{
+  {
+    select ?transactie ?woonplaats ?adres ?verkopers (group_concat(?koperlabel;separator=', ') as ?kopers) 
+    {
+      {
+        select ?transactie ?woonplaats ?adres (group_concat(?verkoperlabel;separator=', ') as ?verkopers) 
+        {
+          bind ("Utrecht" as ?woonplaats)
+          ?transactie 
+            a schema:TradeAction ;
+            schema:object/vcard:hasAddress ?adres .
+          ?adres 
+            vcard:locality ?woonplaats .
+          optional {
+            ?transactie schema:seller ?verkoper .
+          	?verkoper foaf:name ?verkopersnaam .
+            optional {
+              ?verkoper vcard:hasAddress/vcard:locality ?verkoperswpl .
+            }
+          }
+          bind(concat(?verkopersnaam, ' (', (if (bound(?verkoperswpl), ?verkoperswpl, '?')),')') as ?verkoperlabel)
+        }
+        group by ?transactie ?woonplaats ?adres
+      }
+      optional {
+        ?transactie schema:buyer ?koper .
+        ?koper foaf:name ?kopersnaam .
+        optional {
+          ?koper vcard:hasAddress/vcard:locality ?koperswpl .
+        }
+      }
+      bind(concat(?kopersnaam, ' (', (if (bound(?koperswpl), ?koperswpl, '?')),')') as ?koperlabel)
+    }
+    group by ?transactie ?woonplaats ?adres ?verkopers
+  }
+  ?adres  
+    vcard:street-address ?adreslabel ;
+    foaf:depiction ?streetview ;
+    owl:sameAs ?bag_num ;
+    naa:hasParcelCentroid/gsp:asWKT ?shape .
+  ?adres hg:contains ?place .
+  filter (?place != <http://archief.nl/NL-HaNA/id/land/Nederland>)
+  optional {
+    ?place owl:sameAs ?bag_wpl .
+    ?bag_wpl gsp:sfWithin ?gem .
+    ?gem rdfs:label ?gemeentenaam .
+  }
+  optional {
+    service<https://data.pdok.nl/sparql> {
+      ?bag_num bag:postcode ?postcode .
+      graph ?vbog {
+        ?bag_vbo bag:hoofdadres|bag:nevenadres ?bag_num ;
+                               bag:oppervlakte ?opp ;
+                               bag:pandrelatering ?bag_pnd .
+      }
+      #      ?vbog bag:beginGeldigheid ?vbo_begin .
+      #      filter (?vbo_begin <= now())
+      filter not exists {
+        ?vbog bag:eindGeldigheid ?vbo_eind .
+      }
+      graph ?pndg {
+        ?bag_pnd bag:oorspronkelijkBouwjaar ?bouwjaar .
+        ?bag_pnd gsp:hasGeometry/gsp:asWKT ?bagShape .
+      }
+      #      ?pndg bag:beginGeldigheid ?pnd_begin .
+      #      optional{
+      #      	?pndg bag:eindGeldigheid ?pnd_eind .
+      #      }
+      filter not exists {
+        ?pndg bag:eindGeldigheid ?pnd_eind .
+      }
+    }
+  }
+#  optional {
+#    ?transactie naa:catalogReferenceNumber ?nummer_archiefinventaris .
+#  }
+#  optional {
+#    ?transactie naa:consecutiveNumber ?volgnummer .
+#  }
+  optional {
+    ?transactie naa:sellingPrice ?verkoopprijs .
+  }
+#  optional {
+#    ?transactie naa:dateOfProvisionalSale ?voorlopige_koopdatum .
+#  }
+  optional {
+    ?transactie naa:dateOfFinalSale ?definitieve_koopdatum .
+  }
+#  optional {
+#    ?transactie naa:depositAmount ?aanbetaling .
+#  }
+#  optional {
+#    ?transactie naa:costOfSale ?verkoopkosten .
+#  }
+#  optional {
+#    ?transactie naa:salesTax ?omzetbelasting .
+#  }
+#  optional {
+#    ?transactie naa:netAmount ?netto_bedrag .
+#  }
+#  optional {
+#    ?transactie naa:dateOfTransfer ?datum_van_overschrijving .
+#  }
+#  optional {
+#    ?transactie naa:dateOfAdministrativeRemoval ?datum_van_administratieve_verwijdering .
+#  }
+#  optional {
+#    ?transactie naa:dateOfNotification ?datum_meegedeeld .
+#  }
+#  optional {
+#    ?transactie naa:dateOfAdministrativeInput ?datum_administratieve_invoer .
+#  }
+  bind(
+    concat(
+      '<h3>', ?adreslabel, '<br/>', ?postcode, ' ', ?woonplaats, '</h3>',
+      '<hr/>',
+      '<h4>Nationaal Archief:</h4>',
+      '<ul>',
+      '<li><b>verkoper(s):</b> ', ?verkopers, '</li>',
+      '<li><b>koper(s):</b> ', ?kopers, '</li>',
+      '<li><b>verkoopprijs:</b> f.', (if(bound(?verkoopprijs), str(?verkoopprijs), '?')), '</li>',
+      '<li><b>definitieve koopdatum:</b> ', (if(bound(?definitieve_koopdatum), substr(str(?definitieve_koopdatum), 1, 10), '?')), '</li>',
+      '</ul>',
+      '<h4><a href="',str(?bag_vbo), '">', 'Kadaster gegevens</a>:</h4>',
+      '<ul>',
+      '<li><b>oppervlakte:<b> ', str(?opp), 'm2</li>',
+      '<li><b>bouwjaar:<b> ', str(?bouwjaar), '</li>',
+      '</ul>',
+      '<p><a href="', str(?streetview), '">street view</a></p>'
+    )
+    as ?shapeLabel
+  )
+}
