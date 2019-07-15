@@ -15,11 +15,12 @@ Deze set is interessant vanwege het historisch belang maar ook om de inhoud die 
 
 Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal wilde graag de Verkaufsbucher koppelen aan data van het Kadaster. De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als open data met een CC0 waiver.
 
-<query  data-query-ref="test.rq"
-        data-output="geo"/>
-              
-
 ## Stap 1. Op de kaart tonen van onteigende panden
+
+Een overzicht van de verhandelde objecten waarvan het adres gevonden is in de Basisregistraties Adressen en Gebouwen (BAG).
+
+<query  data-query-ref="bag-matched-object-overview.rq"
+        data-output="geo"/>
         
 In de hieronder staande kaart wordt weergegeven welke objecten (woningen, bouwland etc.) onteigend zijn. Ook wordt hier informatie per pand getoond:
 
