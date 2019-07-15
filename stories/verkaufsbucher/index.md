@@ -42,23 +42,54 @@ We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeu
 
 ## Stap 2. Relatie tussen koper en verkoper visueel weergeven op de kaart
 
+In de Verkaufsbücher is per pand bijgehouden wie de eigenaar was en zijn woonadres. Ook de adresgegevens en de naam van de koper van het object zijn genoteerd. Door deze gegevens op de kaart te visualiseren wordt de relatie tussen kopers en verkopers zichtbaar. Woonden kopers en verkopers bijvoorbeeld in elkaars nabijheid? Oftewel, kochten kopers de huizen van hun buurtgenoten? 
+
+Als je op de kaart een eigenaar aanklikt (blauwe stip), dan worden zijn panden zichtbaar en de adressen van de kopers.
+Klik je op een koper (rood), dan verschijnt informatie over de ligging van de door hem aangekochte panden en waar de eigenaar van die panden woonde.
+
 ## Stap 3. Statistieken
 
 ## 3a. Aantal transacties per plaats
 
-## 3b. Top 10 kopers met de meeste transacties
+Het aantal transacties per plaats kon al worden opgemaakt uit de papieren Verkaufsbücher. Door de koppeling aan de gegevens over adressen en gebouwen in de BAG, is nu ook het totaal aantal verhandelde vierkante meters per plaats te berekenen.
 
-## 3c. Verkoopbedrag versus WOZ-waarde incl. omrekentabel van het IISG van waarde guldens in de jaren '40 naar nu
+### Relevantie
+De gemeente Den Haag heeft 2,6 miljoen euro gereserveerd voor schadevergoedingen aan Joodse slachtoffers die na de oorlog een aanslag kregen om alsnog hun erfpacht te betalen.
+https://www.volkskrant.nl/a-b7e75c47
 
-<query  data-query-ref="stats.rq"
-        data-output="table"/>
+Ook andere gemeenten zoals Rotterdam en Utrecht werken aan een schaderegeling. Stel dat bij het vaststellen van de hoogte van de vergoeding wordt gekeken naar de oppervlakte van panden. Met een link tussen de adressen en eigenaren van geroofde panden uit de Verkaufsbücher en de oppervlakte uit de BAG is een inschatting te maken van het totaal uit te keren (en reserveren) bedrag.
 
-## Stap 4. Stolpersteine<
+Voorbeeld: In de gemeente Rotterdam zijn X panden met in totaal een oppervlakte van X m2 verkocht. Bij 100 euro per m2 is dat xxx euro, te verdelen over x aantal eigenaren of hun nabestaanden.
 
-## Stap 5. Link naar Joods Monument voor biografische informatie van pand-eigenaren
+## 3b. Top 10 kopers met de meeste panden
 
+Onderstaande tabel toont de top 10 van kopers die gedurende de oorlog de meeste panden hebben aangekocht. 
+
+## 3c. Verkoopbedrag versus WOZ-waarde
+
+De indruk bestaat dat de panden uit de Verkaufsbücher voor een schijntje zijn verkocht. Is dat ook zo?
+
+Met de omrekentabel van IISG is het bedrag uit het Verkaufsbüch omgerekend rekening houdend met inflatie en deflatie en kan worden vergeleken met de (gemiddelde) WOZ-waarde van januari 2018.
+(Bron CBS: https://www.cbs.nl/nl-nl/nieuws/2018/34/woningwaarde-in-2018-gemiddeld-6-5-procent-omhoog)
+
+## Stap 4. Stolpersteine
+
+Stolpersteine of struikelstenen zijn een project van de Duitse kunstenaar Gunter Demnig. Voor de huizen waar Joden ooit door de nazi's werden afgevoerd, plaatst hij stenen met een messingplaatje van tien bij tien centimeter. Daarin zijn handmatig de naam, geboorte- en sterfdatum van het slachtoffer geponst, evenals de naam van het kamp waar hij of zij is vermoord.
+
+Het is niet duidelijk hoeveel Stolpersteine er in totaal in Nederland zijn geplaatst. In het Joods Monument zijn in juli 2019 ruim 6100 locaties van Stolpersteine geregistreerd.
+
+Voor welke Joodse eigenaren uit de Verkaufsbücher is een/geen Stolperstein geplaatst?
+
+## Stap 5. Link naar Joods Monument voor biografische gegevens
+
+Het Joods Monument is een online monument voor de meer dan 104.000 personen die in Nederland als joden werden vervolgd en de Holocaust niet overleefden.
+
+De zogenaamde gemeentelijsten vormen de basisbron van het Monument. Dit zijn lijsten van joodse inwoners per gemeente, die de Nederlandse gemeenten in 1941 op last van de Duitse bezetter moesten aanleggen.
+
+Hoeveel eigenaren uit de Verkaufsbücher zijn te koppelen aan namen in het Joods Monument? Hoeveel procent daarvan is volgens de gegevens in het Joods Monument omgekomen en dus niet teruggekeerd?
 
 ## Proces: Van Verkaufsbuch tot visualisatie op de kaart
+
 Papieren Verkoopboeken --> foto invoegen
 
 Ruim 7100 records/regels in een Exceltabel als letterlijke interpretatie van de fysieke exemplaren.
