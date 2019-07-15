@@ -1,0 +1,123 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://schema.org/>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hg: <http://rdf.histograph.io/>
+prefix bbi: <http://data.pdok.nl/def/bbi#>
+PREFIX naa: <http://archief.nl/def/>
+PREFIX woz: <https://data.labs.pdok.nl/woz/def/>
+SELECT
+*
+FROM <http://archief.nl/NL-HaNA/doc/Graph:Verkaufsbucher>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/transactions>
+FROM <http://data.pdok.nl/bbi/id/dataset/gemeente-woonplaats-relatie>
+FROM <http://archief.nl/verkaufbuchen/id/dataset/linkset-wpl-bagwpl-exact>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-wpl-bagwpl-handmatig>
+FROM <http://data.pdok.nl/id/dataset/bbi>
+FROM <http://data.labs.pdok.nl/dataset/WOZ>
+FROM <http://brk.basisregistraties.overheid.nl/id/dataset/brk/bestuurlijke-grenzen/2016>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-adres-bag-nummeraanduiding>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadressen>
+{
+  {
+    service <https://data.pdok.nl/sparql> {
+      select * 
+      {
+        ?wpl a bag:Woonplaats .
+        ?wpl gsp:hasGeometry/gsp:asWKT ?wkt ;
+                            bag:naamWoonplaats "Rotterdam" .
+      } limit 1
+    }
+  }
+  union
+  {
+    bind ("Rotterdam" as ?woonplaats)
+    ?transactie 
+      a schema:TradeAction ;
+      schema:object/vcard:hasAddress ?adres .
+    ?adres 
+      vcard:locality ?woonplaats ;
+      vcard:street-address ?adreslabel ;
+      naa:hasParcelCentroid/gsp:asWKT ?shape .
+    optional {
+      ?transactie schema:seller ?verkoper .
+      ?verkoper vcard:hasAddress ?verkopersadres ;
+                foaf:name ?verkopersnaam .
+      ?verkopersadres
+        vcard:street-address ?adreslabel_v ;
+        naa:hasParcelCentroid/gsp:asWKT ?shape_v .
+      optional {
+        ?verkopersadres vcard:locality ?woonplaats_v .
+      }
+    }
+    optional {
+      ?transactie schema:buyer ?koper .
+      ?koper vcard:hasAddress ?kopersadres ;
+                foaf:name ?kopersnaam .
+      ?kopersadres
+        vcard:street-address ?adreslabel_k ;
+        naa:hasParcelCentroid/gsp:asWKT ?shape_k .
+      optional {
+        ?kopersadres vcard:locality ?woonplaats_k .
+      }
+    }
+    
+    bind(
+      concat(
+        '<p>', ?adreslabel, ' ', ?woonplaats, '</p>'
+      )
+      as ?shapeLabel
+    )
+    
+    bind(
+      concat(
+      	'<p>', ?verkopersnaam,'</p>',
+        '<p>', ?adreslabel_v, ' ', (if (bound(?woonplaats_v), ?woonplaats_v, '?')), '</p>'
+      )
+      as ?shape_vLabel
+    )
+    
+    bind(
+      concat(
+      	'<p>', ?kopersnaam,'</p>',
+        '<p>', ?adreslabel_k, ' ', (if (bound(?woonplaats_k), ?woonplaats_k, '?')), '</p>'
+      )
+      as ?shape_kLabel
+    )
+    
+    bind("grey" as ?shapeColor)
+    bind("green" as ?shape_vColor)
+    bind("purple" as ?shape_kColor)
+    
+    bind(
+      if(
+        bound(?shape_v),
+        concat(
+          'LINESTRING(',
+          strafter(strbefore(str(?shape_v), ')'), 'POINT('), ',',
+           strafter(strbefore(str(?shape), ')'), 'POINT('), ')'
+        ),
+        '')
+      as ?linestring_v
+    )
+    bind('green' as ?linestring_vColor)
+    
+    bind(
+      if(
+        bound(?shape_k),
+        concat(
+          'LINESTRING(',
+          strafter(strbefore(str(?shape), ')'), 'POINT('), ',',
+          strafter(strbefore(str(?shape_k), ')'), 'POINT('), ')'
+        ),
+        '')
+      as ?linestring_k
+    )
+    bind('purple' as ?linestring_kColor)
+  }
+}
+limit 100

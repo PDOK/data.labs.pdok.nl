@@ -44,8 +44,11 @@ We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeu
 
 In de Verkaufsbücher is per pand bijgehouden wie de eigenaar was en zijn woonadres. Ook de adresgegevens en de naam van de koper van het object zijn genoteerd. Door deze gegevens op de kaart te visualiseren wordt de relatie tussen kopers en verkopers zichtbaar. Woonden kopers en verkopers bijvoorbeeld in elkaars nabijheid? Oftewel, kochten kopers de huizen van hun buurtgenoten? 
 
-Als je op de kaart een eigenaar aanklikt (blauwe stip), dan worden zijn panden zichtbaar en de adressen van de kopers.
-Klik je op een koper (rood), dan verschijnt informatie over de ligging van de door hem aangekochte panden en waar de eigenaar van die panden woonde.
+Als je op de kaart een eigenaar bekijkt (<circle cx="9" cy="9" fill="#008000" r="9"/>), dan kun je de lijntjes volgen naar de panden (<circle cx="9" cy="9" fill="#808080" r="9"/>) en door naar de adressen van de kopers (<circle cx="9" cy="9" fill="#800080" r="9"/>)) en vice versa.
+
+<query  data-query-ref="koper-verkoper-per-wpl.rq"
+        data-output="geo"> 
+</query>
 
 ## Stap 3. Statistieken
 
