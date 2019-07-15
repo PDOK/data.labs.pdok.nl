@@ -1,0 +1,29 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://schema.org/>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hg: <http://rdf.histograph.io/>
+prefix bbi: <http://data.pdok.nl/def/bbi#>
+PREFIX naa: <http://archief.nl/def/> 
+SELECT 
+*
+FROM <http://archief.nl/NL-HaNA/doc/Graph:Verkaufsbucher>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/transactions>
+FROM <http://data.pdok.nl/bbi/id/dataset/gemeente-woonplaats-relatie>
+FROM <http://archief.nl/verkaufbuchen/id/dataset/linkset-wpl-bagwpl-exact>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-wpl-bagwpl-handmatig>
+FROM <http://data.pdok.nl/id/dataset/bbi>
+FROM <http://brk.basisregistraties.overheid.nl/id/dataset/brk/bestuurlijke-grenzen/2016>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-adres-bag-nummeraanduiding>
+FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadressen>
+{
+  ?transactie 
+    a schema:TradeAction ;
+    schema:object/vcard:hasAddress ?adres .
+  ?adres
+    naa:hasParcelCentroid/gsp:asWKT ?shape .
+}
