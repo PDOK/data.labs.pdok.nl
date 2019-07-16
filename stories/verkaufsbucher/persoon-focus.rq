@@ -124,7 +124,7 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
       '</ul>',
       '<h3>',if(bound(?bag_vbo),concat('<a href="',str(?bag_vbo), '">', 'Kadaster gegevens</a>:</h3>'), 'Kadaster gegevens:</h3>'),
       '<ul>',
-      '<li><b>postocde:<b> ', if(bound(?postcode), str(?postcode), '?'), '</li>',
+      '<li><b>postcode:<b> ', if(bound(?postcode), str(?postcode), '?'), '</li>',
       '<li><b>oppervlakte:<b> ', if(bound(?opp), str(?opp), '?'), 'm2</li>',
       '<li><b>bouwjaar:<b> ', if(bound(?bouwjaar), str(?bouwjaar), '?'), '</li>',
       '<li><b>woz-klasse:<b> ', if(bound(?woz), str(?woz), '?'), '</li>',
