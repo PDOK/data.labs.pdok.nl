@@ -1,0 +1,41 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX hg: <http://rdf.histograph.io/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX naa:	<http://archief.nl/def/>
+
+SELECT ?plaatsnaam_object (count(?tradeaction) AS ?num_verkochte_panden) (count(?transactieObjectInPlaats) AS ?num_kopers_in_plaats) (count(?transactieObjectBuitenPlaats) AS ?num_kopers_buiten_plaats) (xsd:integer(sum(?prijs_object)/20000) AS ?totale_waarde_panden) WHERE 
+{
+  		{
+    		?tradeaction a schema:TradeAction ;
+                 schema:object/dct:type hg:Building ;
+                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaam_object ;
+    			 naa:sellingPrice ?prijs_object .
+  		}
+  		UNION
+		{
+		    ?transactieObjectInPlaats a schema:TradeAction ;
+                 schema:object/dct:type hg:Building ;
+                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaam_object . 
+
+		}
+    	UNION
+		{
+		    ?transactieObjectBuitenPlaats a schema:TradeAction ;
+                 schema:object/dct:type hg:Building ;
+                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaam_object ;
+                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaam_koper_object . 
+    
+    		filter (?plaatsnaam_object != ?plaatsnaam_koper_object)
+		}
+  
+} 
+GROUPBY ?plaatsnaam_object
+ORDERBY desc(?num_verkochte_panden)
+OFFSET 3
+LIMIT 20
