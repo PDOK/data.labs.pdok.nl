@@ -54,18 +54,18 @@ Als je op de kaart een eigenaar bekijkt (<svg height="18" viewBox="0 0 18 18" xm
 
 ### De casus Hermans-Helsloot
 
-<query  data-query-ref="persoon-focus.rq"
-        data-output="geo">
-</query>
-
 Piersma en Kemperman (2105) beschrijven een interessante casus betreffende de onteigening van Joods bezit en de verkoop van panden.
-https://pure.knaw.nl/portal/files/1637622/PiersmaKemperman_2015_OpenstaandeRekeningen.pdf 
+[https://pure.knaw.nl/portal/files/1637622/PiersmaKemperman_2015_OpenstaandeRekeningen.pdf](https://pure.knaw.nl/portal/files/1637622/PiersmaKemperman_2015_OpenstaandeRekeningen.pdf)
 
 "Als gevolg van de ontrechting van Joden ontstond er een levendige tussenhandel in Joods eigendom. Deze handel trok mensen aan van allerlei slag, soms met een louche achtergrond. Dat blijkt uit de dossiers die ten behoeve van hun naoorlogse berechting werden opgemaakt. Een van die tussenhandelaren was de advocaat E.Th.A. (Emile) Hermans. Het was hem voor de oorlog financieel niet voor de wind gegaan, maar met de Duitse bezetting rook hij zijn kansen op de nieuwe markt van geroofd Joods onroerend goed. Met Everout zou hij gedurende de bezettingsjaren goede zaken doen. Hermans was vanaf 1933 lid van de nsb en was een hardliner en een vechtersbaas – in 1935 verloor hij tijdens een vechtpartij in Laren een oog. Sindsdien ging hij met een glazen exemplaar door het leven. Hoewel Hermans na de oorlog zou verklaren dat hij geen ‘Jodenhater’ was, bleek hij niet te beroerd om de Duitsers behulpzaam te zijn bij hun anti-Joodse politiek. [...]  
 Begin 1941 raakte Hermans betrokken bij de liquidatie van door de Duitsers verboden organisaties. Het kostte hem een kantoorruit, die met een steen aan diggelen werd gegooid. Hermans verklaarde tegenover de politie dat deze daad waarschijnlijk te maken had met zijn bemoeienis met de opheffing van de vrijmetselarij. Dit genootschap werd door de Duitsers als volksvijandig en Joods gezien, en moest daarom het veld ruimen. Hermans zou er als liquidateur zo’n 25.000 gulden mee verdienen. Met een dergelijk kapitaal was het niet moeilijk huizen van onteigende Joden op te kopen. Dat deed Hermans dan ook veelvuldig. Hij was betrokken bij de verkoop van zo’n tweehonderd panden. Hierbij werkte hij nauw samen met zijn echtgenote en de makelaar A. Groenewegen. Ook al regelde Hermans alle praktische zaken zelf, naar buiten toe opereerden mevrouw Hermans-Helsloot en Groenewegen als duo, waarbij Groenewegen de verkoper was en Hermans-Helsloot de eigenaresse van de panden die ze zogenaamd al jaren in haar bezit had. 
 Op de panden die werden gekocht en doorverkocht werden forse winsten gemaakt, ook omdat het trio erin slaagde om in tal van gevallen de kopers ervan te overtuigen dat er geen sprake was van Joods eigendom. Een aantal panden kocht het echtpaar om zelf te houden. Hermans-Helsloot noemde er na de oorlog twee in de Utrechtsestraat (de nummers 72 en 74). Hermans kocht tevens een dubbelhuis aan het Albert Hahnplantsoen dat eigendom was van de koopman Jacob Polak. Ook al was ‘arisering’ het officiële doel van de verkoop van Joods onroerend goed, het maakte het drietal in de praktijk weinig uit met wie zij zaken deden. Volgens een getuige in het naoorlogse gerechtelijke onderzoek tegen Everout had met name Groenewegen een grote diversiteit aan klanten. Ze varieerden van ‘Italiaanse ijsventers’ tot ‘Chinese zwarthandelaren’, die hij niet kon verstaan, ‘maar die hem waarschijnlijk ook niet verstonden, want hij [Groenewegen] heeft een heel ernstig spraakgebrek’. Een vreemd team derhalve: een advocaat met een glazen oog en een verkoper met een spraakstoornis."
 
-Ook in het Historisch Nieuwsblad is een artikel verschenen over het criminele vastgoed circuit en de Jodenvervolging in de tweede wereldoorlog. https://www.historischnieuwsblad.nl/nl/artikel/24891/crimineel-vastgoedcircuit-verdiende-grof-geld-aan-jodenvervolging.html
+<query  data-query-ref="persoon-focus.rq"
+        data-output="geo">
+</query>
+
+Ook in het Historisch Nieuwsblad is een artikel verschenen over het criminele vastgoed circuit en de Jodenvervolging in de tweede wereldoorlog. [https://www.historischnieuwsblad.nl/nl/artikel/24891/crimineel-vastgoedcircuit-verdiende-grof-geld-aan-jodenvervolging.html](https://www.historischnieuwsblad.nl/nl/artikel/24891/crimineel-vastgoedcircuit-verdiende-grof-geld-aan-jodenvervolging.html)
 
 
 ## Statistieken
