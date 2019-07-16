@@ -9,7 +9,7 @@ PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 PREFIX naa:	<http://archief.nl/def/>
 
-SELECT ?plaatsnaamObject (count(?tradeaction) AS ?numVerkochtePanden) (count(?transactieObjectInPlaats) AS ?numKopersInPlaats) (count(?transactieObjectBuitenPlaats) AS ?numKopersBuitenPlaats) (xsd:integer(sum(?prijsObject)/20000) AS ?totWaardeTransactie) WHERE 
+SELECT ?plaatsnaamObject (count(?tradeaction) AS ?numVerkochtePanden) (count(?transactieObjectInPlaats) AS ?numKopersInPlaats) (count(?transactieObjectBuitenPlaats) AS ?numKopersBuitenPlaats) (xsd:integer(sum(?prijsObject)/100000) AS ?totWaarde_x100K) WHERE 
 {
   		{
     		?tradeaction a schema:TradeAction ;
