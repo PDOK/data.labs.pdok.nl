@@ -11,6 +11,8 @@ published: true
 
 Tijdens de Tweede Wereldoorlog worden door de Duitsers panden verkocht waarvan de eigenaren veelal Joods zijn. De administratie hiervan staat in de zogeheten Verkaufsbücher die het Nationaal Archief bewaart. De bijgehouden administratie in de Verkaufsbücher bevat  7107 objecten: panden, bouwkavels, bos en heidegrond zijn te herleiden tot 1891 individuele (veelal Joodse) eigenaren waaruit - zoals het een gedegen administratie betaamt - onder andere naam eigenaar, straatnaam en woonplaats zijn te herleiden. Daar zijn de adressen en de namen van de betrokken notarissen en oorlogskopers en de verkoopprijzen van het onteigende pand toegevoegd.
 
+![verkaufsbucher](Verkaufsbuch_record_Amstel_316-318.jpg)
+
 De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als open data met een [CC0 waiver](https://creativecommons.org/publicdomain/zero/1.0/deed.nl). Deze set is interessant vanwege het historisch belang maar ook om de inhoud die juist de wie, wat, waar en wanneer in zich heeft. Dit zijn de basisgegevens van een informatieobject en daarmee de eerste en belangrijkste gegevens om Linked Open Data van te maken. Daarnaast kunnen op basis van deze wie, wat waar en wanneer links gelegd worden met andere datasets zoals die van het Kadaster.
 
 Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal Archief wilde graag de Verkaufsbücher, vanwege het historisch belang, koppelen aan data van het Kadaster. In juli 2019 is hiervoor een High5 sessie georganiseerd van vier dagen.
@@ -89,7 +91,7 @@ Ook andere gemeenten zoals Rotterdam en Utrecht werken aan een schaderegeling. M
 
 Voorbeeld: In de gemeente Utrecht zijn 81 panden met in totaal een oppervlakte van 13.559 m2 verkocht. Bij 100 euro per m2 is dat ruim 1,3 miljoen euro, te verdelen over de eigenaren of hun nabestaanden.
 
-<query  data-query-ref="oppervlakte_objecten_plaats.rq"
+<query  data-query-ref="oppervlakte_objecten_plaats.rq">
 </query>
 
 ## Kopers met de meeste panden
@@ -107,25 +109,11 @@ In de tabel zijn er een aantal opvallendheden. Zo is bijvoorbeeld de persoon B.E
 De indruk bestaat dat de panden uit de Verkaufsbücher voor een schijntje zijn verkocht. Is dat ook zo?
 
 Met de omrekentabel van IISG is het bedrag uit het Verkaufsbuch omgerekend rekening houdend met inflatie en deflatie en kan worden vergeleken met de (gemiddelde) WOZ-waarde van januari 2018.
-(Bron CBS: https://www.cbs.nl/nl-nl/nieuws/2018/34/woningwaarde-in-2018-gemiddeld-6-5-procent-omhoog)
+(Bron CBS: [https://www.cbs.nl/nl-nl/nieuws/2018/34/woningwaarde-in-2018-gemiddeld-6-5-procent-omhoog](https://www.cbs.nl/nl-nl/nieuws/2018/34/woningwaarde-in-2018-gemiddeld-6-5-procent-omhoog))
 
 ![woz-waarde-panden-j40](Tabel_panden_jaren40_WOZwaarde.jpg)
 
-## Stolpersteine
-
-Stolpersteine of struikelstenen zijn een project van de Duitse kunstenaar Gunter Demnig. Voor de huizen waar Joden ooit door de nazi's werden afgevoerd, plaatst hij stenen met een messingplaatje van tien bij tien centimeter. Daarin zijn handmatig de naam, geboorte- en sterfdatum van het slachtoffer geponst, evenals de naam van het kamp waar hij of zij is vermoord.
-
-Het is niet duidelijk hoeveel Stolpersteine er in totaal in Nederland zijn geplaatst. In het Joods Monument zijn in juli 2019 ruim 6100 locaties van Stolpersteine geregistreerd.
-
-Voor welke Joodse eigenaren uit de Verkaufsbücher is een/geen Stolperstein geplaatst?
-
-## Link naar Joods Monument voor biografische gegevens
-
-Het Joods Monument is een online monument voor de meer dan 104.000 personen die in Nederland als joden werden vervolgd en de Holocaust niet overleefden.
-
-De zogenaamde gemeentelijsten vormen de basisbron van het Monument. Dit zijn lijsten van joodse inwoners per gemeente, die de Nederlandse gemeenten in 1941 op last van de Duitse bezetter moesten aanleggen.
-
-Hoeveel eigenaren uit de Verkaufsbücher zijn te koppelen aan namen in het Joods Monument? Hoeveel procent daarvan is volgens de gegevens in het Joods Monument omgekomen en dus niet teruggekeerd?
+Gemiddeld werden woningen verkocht (omgerekend naar het hedendaagse prijspeil) voor 35-40% van de WOZ-waarde.
 
 ## Verslag High5 Kadaster en Nationaal Archief
 
@@ -159,4 +147,4 @@ Er is uitgezocht wat de WOZ waarde tegenwoordig is van de onteigende panden per 
 De Duitsers hernoemden in de oorlog Nederlandse straten. De Sarphatistraat werd door de Duitsers bijvoorbeeld Muiderschans genoemd. Deze historische adressen zijn voor Amsterdam omgezet naar de huidige straatnamen. (Voor andere gemeenten is geen koppeltabel beschikbaar.)
 Een aandachtspunt is de jaren ‘40 schrijfwijze van straatnamen (spelling Marchant). Denk aan Groote Markt of Rijswijkscheplein. Ook deze straatnamen zijn in de datastory verwerkt. Nu resteren nog de straatnamen en panden die in of na de oorlog zijn verdwenen.
 
-Er is tijdens de High5 ook onderzoek gedaan naar het Joods Monument en de Stolpersteine om een link te leggen naar biografische gegevens over omgekomen Joodse slachtoffers. Uiteindelijk bleken links met de Stolpersteine niet te lukken. Link met het Joods monument is wel….
+Er is tijdens de High5 ook onderzoek gedaan naar het Joods Monument en de Stolpersteine om een link te leggen naar biografische gegevens over omgekomen Joodse slachtoffers. Uiteindelijk bleek de tijd niet toereikend voor het leggen van links met de Stolpersteine en met het Joods monument.
