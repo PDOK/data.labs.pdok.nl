@@ -9,33 +9,33 @@ PREFIX bag: <http://bag.basisregistraties.overheid.nl/def/bag#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 PREFIX naa:	<http://archief.nl/def/>
 
-SELECT ?plaatsnaam_object (count(?tradeaction) AS ?num_verkochte_panden) (count(?transactieObjectInPlaats) AS ?num_kopers_in_plaats) (count(?transactieObjectBuitenPlaats) AS ?num_kopers_buiten_plaats) (xsd:integer(sum(?prijs_object)/20000) AS ?totale_waarde_panden) WHERE 
+SELECT ?plaatsnaamObject (count(?tradeaction) AS ?numVerkochtePanden) (count(?transactieObjectInPlaats) AS ?numKopersInPlaats) (count(?transactieObjectBuitenPlaats) AS ?numKopersBuitenPlaats) (xsd:integer(sum(?prijsObject)/20000) AS ?totWaardeTransactie) WHERE 
 {
   		{
     		?tradeaction a schema:TradeAction ;
                  schema:object/dct:type hg:Building ;
-                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaam_object ;
-    			 naa:sellingPrice ?prijs_object .
+                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaamObject ;
+    			 naa:sellingPrice ?prijsObject .
   		}
   		UNION
 		{
 		    ?transactieObjectInPlaats a schema:TradeAction ;
                  schema:object/dct:type hg:Building ;
-                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaam_object . 
+                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaamObject . 
 
 		}
     	UNION
 		{
 		    ?transactieObjectBuitenPlaats a schema:TradeAction ;
                  schema:object/dct:type hg:Building ;
-                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaam_object ;
-                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaam_koper_object . 
+                 schema:object/vcard:hasAddress/vcard:locality ?plaatsnaamObject ;
+                 schema:buyer/vcard:hasAddress/vcard:locality ?plaatsnaamKoperObject . 
     
-    		filter (?plaatsnaam_object != ?plaatsnaam_koper_object)
+    		filter (?plaatsnaamObject != ?plaatsnaamKoperObject)
 		}
   
 } 
-GROUPBY ?plaatsnaam_object
-ORDERBY desc(?num_verkochte_panden)
-OFFSET 3
+GROUPBY ?plaatsnaamObject
+ORDERBY desc(?numVerkochtePanden)
+OFFSET 0
 LIMIT 20
