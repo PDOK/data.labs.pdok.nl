@@ -29,13 +29,13 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
       {
         ?wpl a bag:Woonplaats .
         ?wpl gsp:hasGeometry/gsp:asWKT ?wkt ;
-                            bag:naamWoonplaats "Amsterdam" .
+                            bag:naamWoonplaats "Utrecht" .
       } limit 1
     }
   }
   union
   {
-    bind ("Amsterdam" as ?woonplaats)
+    bind ("Utrecht" as ?woonplaats)
     ?transactie 
       a schema:TradeAction ;
       schema:object/vcard:hasAddress ?adres .
@@ -120,4 +120,3 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
     bind('purple' as ?linestring_kColor)
   }
 }
-limit 100
