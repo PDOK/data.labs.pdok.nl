@@ -83,11 +83,14 @@ In de tabel is Amsterdam dominant aanwezig waardoor inzicht in de andere plaatse
 </query>
 
 ### Maatschappelijke relevantie
-De gemeente Den Haag heeft onlangs 2,6 miljoen euro gereserveerd voor schadevergoedingen aan Joodse slachtoffers die na de oorlog een aanslag kregen om alsnog hun erfpacht te betalen. Zie het artikel hierover in de Volkskrant: https://www.volkskrant.nl/a-b7e75c47
+De gemeente Den Haag heeft onlangs 2,6 miljoen euro gereserveerd voor schadevergoedingen aan Joodse slachtoffers die na de oorlog een aanslag kregen om alsnog hun erfpacht te betalen. Zie het artikel hierover in de Volkskrant: [https://www.volkskrant.nl/a-b7e75c47](https://www.volkskrant.nl/a-b7e75c47)
 
 Ook andere gemeenten zoals Rotterdam en Utrecht werken aan een schaderegeling. Met de gegevens die we nu hebben kunnen we het mogelijk maken om op basis van het aantal m2  van de panden de hoogte van de vergoeding vast te stellen. Met een link tussen de adressen en eigenaren van geroofde panden uit de Verkaufsbücher en de oppervlakte uit de BAG is een inschatting te maken van het totaal uit te keren (en reserveren) bedrag.
 
 Voorbeeld: In de gemeente Utrecht zijn 81 panden met in totaal een oppervlakte van 13.559 m2 verkocht. Bij 100 euro per m2 is dat ruim 1,3 miljoen euro, te verdelen over de eigenaren of hun nabestaanden.
+
+<query  data-query-ref="oppervlakte_objecten_plaats.rq"
+</query>
 
 ## Kopers met de meeste panden
 
