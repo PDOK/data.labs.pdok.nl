@@ -50,6 +50,13 @@ Als je op de kaart een eigenaar bekijkt (<svg height="18" viewBox="0 0 18 18" xm
         data-output="geo">
 </query>
 
+TODO: focus op B.E.M. Hermans-Helsloot en E.H.A. Hermans.
+De query kan ook aangepast worden met andere namen.
+
+<query  data-query-ref="persoon-focus.rq"
+        data-output="geo">
+</query>
+
 ## Stap 3. Statistieken
 
 ## 3a. Aantal transacties per plaats
