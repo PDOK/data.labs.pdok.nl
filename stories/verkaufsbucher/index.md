@@ -17,7 +17,7 @@ De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als
 
 Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal Archief wilde graag de Verkaufsbücher, vanwege het historisch belang, koppelen aan data van het Kadaster. In juli 2019 is hiervoor een High5 sessie georganiseerd van vier dagen.
 
-Hieronder worden de volgende resultaten getoond: De onteigende panden op de kaart, de transacties van een koper en de gekochte panden en wie daar de eigenaar van was met een uitgelichte casus van de heer en mevrouw Hermans-Helsloot. Daarna volgen enkele statistieken over het aantal transacties per plaats, de kopers met de meeste transacties en  het verkoopbedrag versus de WOZ-waarde. We eindigen met een verslag van de High5 sessie die we hielden van 11-16 juli om dit site te realiseren.
+Hieronder worden de volgende resultaten getoond: De onteigende panden op de kaart, de transacties van een koper en de gekochte panden en wie daar de eigenaar van was met een uitgelichte casus van de heer en mevrouw Hermans-Helsloot. Daarna volgen enkele statistieken over het aantal transacties per plaats, de kopers met de meeste transacties en  het verkoopbedrag versus de WOZ-waarde. We eindigen met een verslag van de High5 sessie die we hielden van 11-16 juli om deze webpagina te realiseren.
 
 ## Op de kaart tonen van onteigende panden
 
@@ -28,15 +28,7 @@ Een overzicht van de verhandelde objecten waarvan het adres gevonden is in de Ba
         data-output="geo">
 </query>
         
-In de hieronder staande kaart wordt voor een specifieke woonplaats weergegeven welke objecten (woningen, bouwland etc.) onteigend zijn. Ook wordt hier informatie per pand getoond:
-
-* Adres
-* Bouwjaar
-* Oppervlakte
-* Naam eigenaar/verkoper
-* Datum
-* Bedrag
-* Naam koper
+In de hieronder staande kaart wordt voor een specifieke woonplaats weergegeven welke objecten (woningen, bouwland etc.) onteigend zijn. Wanneer je op een marker op de kaart klikt wordt er voor dat object informatie getoond, afkomstig van het Nationaal Archief en van het Kadaster.
 
 We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeurige woonplaats. Dit kan door via de pijl-symbool boven de onderstaande kaart de query open te klappen en op regel 32 de woonplaats aan te passen. Daarna druk je op de play-knop om de nieuwe query te draaien.
 
@@ -72,7 +64,7 @@ Ook in het Historisch Nieuwsblad is een artikel verschenen over het criminele va
 
 ## Statistieken
 
-## Aantal transacties per plaats
+### Aantal transacties per plaats
 
 Het aantal transacties per plaats kon al worden opgemaakt uit de papieren Verkaufsbücher. Door deze dataset verder uit te werken is meer inzicht gegeven over de aard van de transacties en de betrokkenen bij die transacties.
 In onderstaande tabel is een overzicht gegeven per plaats over het aantal panden dat verhandeld is binnen de transacties die in de Verkaufsbücher genoemd zijn. Daarnaast is inzicht gegeven over waar de kopers en verkopers van die panden vandaan komen. Als laatste is inzicht gegeven over de waarde van de transactie die in die plaats hebben plaats gevonden. Deze informatie geeft per gemeente inzicht hoe de verhouding tussen deze verschillende aspecten is.
@@ -94,7 +86,7 @@ Voorbeeld: In de gemeente Utrecht zijn 81 panden met in totaal een oppervlakte v
 <query  data-query-ref="oppervlakte_objecten_plaats.rq">
 </query>
 
-## Kopers met de meeste panden
+### Kopers met de meeste panden
 
 Dit is een Top20-lijst van de kopers met de meeste panden/transacties. Hierbij is per record in de Verkaufsbücher bekeken welke koper een transactie heeft gedaan waarna vervolgens het totaal van de transacties per koper is berekend. Hiernaast is in de Verkaufsbucher ook aangegeven welk bedrag de koper heeft betaald voor de transactie. Het totaalbedrag van de transacties is per koper aangegeven.
 In de tabel zijn er een aantal opvallendheden. Zo is bijvoorbeeld de persoon B.E.M. Hermans-Helsloot ook bekend onder de namen B.P.M. Hermans-Helsloot en E.T.A. Hermans. Dit zijn dezelfde personen maar komen voor op aparte regels in de tabel.
@@ -104,7 +96,7 @@ In de tabel zijn er een aantal opvallendheden. Zo is bijvoorbeeld de persoon B.E
         data-output="gchart">
 </query>
 
-## Verkoopbedrag versus WOZ-waarde
+### Verkoopbedrag versus WOZ-waarde
 
 De indruk bestaat dat de panden uit de Verkaufsbücher voor een schijntje zijn verkocht. Is dat ook zo?
 
