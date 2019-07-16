@@ -11,7 +11,7 @@ published: true
 
 Tijdens de Tweede Wereldoorlog worden door de Duitsers panden verkocht waarvan de eigenaren veelal Joods zijn. De administratie hiervan staat in de zogeheten Verkaufsbücher die het Nationaal Archief bewaart. De bijgehouden administratie in de Verkaufsbücher bevat  7107 objecten: panden, bouwkavels, bos en heidegrond zijn te herleiden tot 1891 individuele (veelal Joodse) eigenaren waaruit - zoals het een gedegen administratie betaamt - onder andere naam eigenaar, straatnaam en woonplaats zijn te herleiden. Daar zijn de adressen en de namen van de betrokken notarissen en oorlogskopers en de verkoopprijzen van het onteigende pand toegevoegd.
 
-De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als open data met een CC0 waiver. Deze set is interessant vanwege het historisch belang maar ook om de inhoud die juist de wie, wat, waar en wanneer in zich heeft. Dit zijn de basisgegevens van een informatieobject en daarmee de eerste en belangrijkste gegevens om Linked Open Data van te maken. Daarnaast kunnen op basis van deze wie, wat waar en wanneer links gelegd worden met andere datasets zoals die van het Kadaster.
+De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als open data met een [CC0 waiver](https://creativecommons.org/publicdomain/zero/1.0/deed.nl). Deze set is interessant vanwege het historisch belang maar ook om de inhoud die juist de wie, wat, waar en wanneer in zich heeft. Dit zijn de basisgegevens van een informatieobject en daarmee de eerste en belangrijkste gegevens om Linked Open Data van te maken. Daarnaast kunnen op basis van deze wie, wat waar en wanneer links gelegd worden met andere datasets zoals die van het Kadaster.
 
 Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal Archief wilde graag de Verkaufsbücher, vanwege het historisch belang, koppelen aan data van het Kadaster. In juli 2019 is hiervoor een High5 sessie georganiseerd van vier dagen.
 
@@ -36,7 +36,7 @@ In de hieronder staande kaart wordt voor een specifieke woonplaats weergegeven w
 * Bedrag
 * Naam koper
 
-We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeurige woonplaats. 
+We zoomen nu in op Utrecht, maar de query kan aangepast worden naar een willekeurige woonplaats. Dit kan door via de pijl-symbool boven de onderstaande kaart de query open te klappen en op regel 32 de woonplaats aan te passen. Daarna druk je op de play-knop om de nieuwe query te draaien.
 
 <query  data-query-ref="regio-transactie-overzicht.rq"
         data-output="geo"> 
@@ -49,6 +49,12 @@ In de Verkaufsbücher is per pand bijgehouden wie de eigenaar was en zijn woonad
 Als je op de kaart een eigenaar bekijkt (<svg height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" fill="#008000" r="9"/></svg>), dan kun je de lijntjes volgen naar de panden (<svg height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" fill="#808080" r="9"/></svg>) en door naar de adressen van de kopers (<svg height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" fill="#800080" r="9"/></svg>) en vice versa.
 
 <query  data-query-ref="koper-verkoper-per-wpl.rq"
+        data-output="geo">
+</query>
+
+### De casus Hermans-Helsloot
+
+<query  data-query-ref="persoon-focus.rq"
         data-output="geo">
 </query>
 
