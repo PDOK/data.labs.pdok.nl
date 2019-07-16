@@ -1,9 +1,9 @@
 ---
 endpoint: https://data.labs.pdok.nl/sparql
 layout: story
-logo: /stories/verkaufsbucher/NAlogo.jpg
+logo: /stories/verkaufsbucher/NA_Logo_PRIM_CMYK.png
 title: Verkaufsbücher - Nationaal Archief
-logo: verkaufsbucher/logo.png
+logo: verkaufsbucher/NA_Logo_PRIM_CMYK.png
 published: true
 ---
 
@@ -13,9 +13,9 @@ Tijdens de Tweede Wereldoorlog worden door de Duitsers panden verkocht waarvan d
 
 De Verkaufsbücher is een openbare dataset. De inhoud is beschikbaar gesteld als open data met een CC0 waiver. Deze set is interessant vanwege het historisch belang maar ook om de inhoud die juist de wie, wat, waar en wanneer in zich heeft. Dit zijn de basisgegevens van een informatieobject en daarmee de eerste en belangrijkste gegevens om Linked Open Data van te maken. Daarnaast kunnen op basis van deze wie, wat waar en wanneer links gelegd worden met andere datasets zoals die van het Kadaster.
 
-Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal Archief wilde graag de Verkaufsbücher, vanwege het historisch belang, koppelen aan data van het Kadaster. In juli 2019 is hiervoor een High5 sessie georganiseerd van vier dagen. Het verslag hiervan is onderaan deze pagina te vinden.
+Het resultaat wat u hier ziet is ontstaan uit een samenwerking tussen het Nationaal Archief en het Kadaster. In september 2018 is het idee geopperd om een experiment te doen door Linked Open Data van het Kadaster te koppelen met data van het Nationaal Archief. Het Nationaal Archief wilde graag de Verkaufsbücher, vanwege het historisch belang, koppelen aan data van het Kadaster. In juli 2019 is hiervoor een High5 sessie georganiseerd van vier dagen.
 
-Hieronder worden de volgende resultaten getoond: De onteigende panden op de kaart, de transacties van een koper en de gekochte panden en wie daar de eigenaar van was met een uitgelichte casus van de heer en mevrouw Hermans-Helsloot. Daarna volgen enkele statistieken over het aantal transacties per plaats, de kopers met de meeste transacties en  het verkoopbedrag versus de WOZ-waarde. Ook wordt er nog een link gelegd tussen de Verkaufsbücher en het Joods Monument. We eindigen met een verslag van de High5 sessie die we hielden van 11-16 juli om dit site te realiseren. 
+Hieronder worden de volgende resultaten getoond: De onteigende panden op de kaart, de transacties van een koper en de gekochte panden en wie daar de eigenaar van was met een uitgelichte casus van de heer en mevrouw Hermans-Helsloot. Daarna volgen enkele statistieken over het aantal transacties per plaats, de kopers met de meeste transacties en  het verkoopbedrag versus de WOZ-waarde. We eindigen met een verslag van de High5 sessie die we hielden van 11-16 juli om dit site te realiseren.
 
 ## Op de kaart tonen van onteigende panden
 
@@ -100,7 +100,7 @@ De indruk bestaat dat de panden uit de Verkaufsbücher voor een schijntje zijn v
 Met de omrekentabel van IISG is het bedrag uit het Verkaufsbuch omgerekend rekening houdend met inflatie en deflatie en kan worden vergeleken met de (gemiddelde) WOZ-waarde van januari 2018.
 (Bron CBS: https://www.cbs.nl/nl-nl/nieuws/2018/34/woningwaarde-in-2018-gemiddeld-6-5-procent-omhoog)
 
-
+![woz-waarde-panden-j40](Tabel_panden_jaren40_WOZwaarde.jpg)
 
 ## Stolpersteine
 
