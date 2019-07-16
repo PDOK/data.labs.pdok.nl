@@ -46,7 +46,7 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
     optional {
       ?transactie schema:seller ?verkoper .
       ?verkoper vcard:hasAddress ?verkopersadres ;
-                foaf:name ?verkopersnaam .
+                foaf:name | skos:prefLabel ?verkopersnaam .
       ?verkopersadres
         vcard:street-address ?adreslabel_v ;
         naa:hasParcelCentroid/gsp:asWKT ?shape_v .
@@ -57,7 +57,7 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
     optional {
       ?transactie schema:buyer ?koper .
       ?koper vcard:hasAddress ?kopersadres ;
-                foaf:name ?kopersnaam .
+                foaf:name | skos:prefLabel ?kopersnaam .
       ?kopersadres
         vcard:street-address ?adreslabel_k ;
         naa:hasParcelCentroid/gsp:asWKT ?shape_k .
