@@ -24,19 +24,19 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/linkset-adres-bag-nummeraandui
 FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadressen>
 {
   {
-    select ?transactie ?woonplaats ?adres ?verkopers (group_concat(?koperlabel;separator=', ') as ?kopers) 
+    select ?transactie2 ?verkopers (group_concat(?koperlabel;separator=', ') as ?kopers) 
     {
       {
-        select ?transactie ?woonplaats ?adres (group_concat(?verkoperlabel;separator=', ') as ?verkopers) 
+        select ?transactie1 (group_concat(?verkoperlabel;separator=', ') as ?verkopers) 
         {
-          bind ("Utrecht" as ?woonplaats)
-          ?transactie 
+          bind ("Lisse" as ?woonplaats)
+          ?transactie1
             a schema:TradeAction ;
             schema:object/vcard:hasAddress ?adres .
           ?adres 
             vcard:locality ?woonplaats .
           optional {
-            ?transactie schema:seller ?verkoper .
+            ?transactie1 schema:seller ?verkoper .
           	?verkoper foaf:name ?verkopersnaam .
             optional {
               ?verkoper vcard:hasAddress/vcard:locality ?verkoperswpl .
@@ -44,10 +44,11 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
           }
           bind(concat(?verkopersnaam, ' (', (if (bound(?verkoperswpl), ?verkoperswpl, '?')),')') as ?verkoperlabel)
         }
-        group by ?transactie ?woonplaats ?adres
+        group by ?transactie1 ?adres
       }
+      bind(if(bound(?transactie1), ?transactie1, bnode()) as ?transactie2)
       optional {
-        ?transactie schema:buyer ?koper .
+        ?transactie2 schema:buyer ?koper .
         ?koper foaf:name ?kopersnaam .
         optional {
           ?koper vcard:hasAddress/vcard:locality ?koperswpl .
@@ -55,12 +56,15 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
       }
       bind(concat(?kopersnaam, ' (', (if (bound(?koperswpl), ?koperswpl, '?')),')') as ?koperlabel)
     }
-    group by ?transactie ?woonplaats ?adres ?verkopers
+    group by ?transactie2 ?verkopers
   }
+  bind(if(bound(?transactie2), ?transactie2, bnode()) as ?transactie)
+  ?transactie schema:object/vcard:hasAddress ?adres .
   ?adres  
     vcard:street-address ?adreslabel ;
     foaf:depiction ?streetview ;
     owl:sameAs ?bag_num ;
+    vcard:locality ?woonplaats ;
     naa:hasParcelCentroid/gsp:asWKT ?shape .
   ?adres hg:contains ?place .
   filter (?place != <http://archief.nl/NL-HaNA/id/land/Nederland>)
