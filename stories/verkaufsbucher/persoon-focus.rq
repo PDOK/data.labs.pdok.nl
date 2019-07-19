@@ -37,7 +37,6 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
             vcard:locality ?woonplaats .
           ?transactie1 schema:buyer ?koper .
           ?koper foaf:name | skos:prefLabel ?kopersnaam .
-#          filter (?kopersnaam in ("blaa"))
           filter (?kopersnaam in ("B.E.M. Hermans-Helsloot", "B.P.M. Hermans-Helsloot", "B.E.M. Hermans", "E.T.A. Hermans", "E.H.A. Hermans"))
 #          filter (?kopersnaam in ("J.N. Brouwer"))
 #          filter (str(?kopersnaam) in ("N.V. Bon Ami"))

@@ -29,7 +29,7 @@ FROM <http://archief.nl/verkaufsbucher/id/dataset/verkaufsbucher-verkopersadress
       {
         select ?transactie1 (group_concat(?verkoperlabel;separator=', ') as ?verkopers) 
         {
-          bind ("Lisse" as ?woonplaats)
+          bind ("Utrecht" as ?woonplaats)
           ?transactie1
             a schema:TradeAction ;
             schema:object/vcard:hasAddress ?adres .
