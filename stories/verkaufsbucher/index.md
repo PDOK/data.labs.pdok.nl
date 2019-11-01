@@ -86,6 +86,7 @@ Voorbeeld: In de gemeente Utrecht zijn 81 panden met in totaal een oppervlakte v
 <query  data-query-ref="oppervlakte_objecten_plaats.rq">
 </query>
 
+<!--
 ### Kopers met de meeste panden
 
 Dit is een Top20-lijst van de kopers met de meeste panden/transacties. Hierbij is per record in de Verkaufsbücher bekeken welke koper een transactie heeft gedaan waarna vervolgens het totaal van de transacties per koper is berekend. Hiernaast is in de Verkaufsbucher ook aangegeven welk bedrag de koper heeft betaald voor de transactie. Het totaalbedrag van de transacties is per koper aangegeven.
@@ -95,6 +96,7 @@ In de tabel zijn er een aantal opvallendheden. Zo is bijvoorbeeld de persoon B.E
         data-query-ref="kopers_panden.rq"
         data-output="gchart">
 </query>
+-->
 
 ### Verkoopbedrag versus WOZ-waarde
 
